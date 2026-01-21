@@ -27,7 +27,6 @@ const PRICE_SECTIONS: PriceSection[] = [
     title: "Skin & Face",
     subtitle: "Natural skin regeneration, glow and texture support.",
     items: [
-      { name: "Polynucleotide Injection", price: "From £200" }
       { name: "PRP Facial (Vampire Facial)", price: "£350" },
       { name: "PRP + Microneedling", price: "£150" },
       { name: "PRP for Acne Scars", price: "£450", note: "Case-dependent" },
