@@ -95,7 +95,7 @@ export default function PricesPage() {
         <div className="flex flex-col sm:flex-row gap-3 mb-10">
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium border font-inter"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter border border-[var(--brand-blue-600)] text-[var(--brand-blue-600)] hover:bg-[var(--brand-blue-50)]"
           >
             Book a consultation
           </a>
@@ -199,7 +199,7 @@ export default function PricesPage() {
           </a>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium border font-inter"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter border border-[var(--brand-blue-600)] text-[var(--brand-blue-600)] hover:bg-[var(--brand-blue-50)]"
           >
             Message us
           </a>
