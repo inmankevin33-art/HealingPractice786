@@ -78,9 +78,15 @@ export default function PricesPage() {
     <main className="max-w-6xl mx-auto px-6 py-16">
       {/* Hero */}
       <div className="max-w-3xl">
+        {/* PRP/Facial-style pill */}
+        <div className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4">
+          St Albans • Hertfordshire • London • Midlands
+        </div>
+
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4">
           Treatment Prices
         </h1>
+
         <p className="text-gray-600 text-lg mb-8">
           Transparent, doctor-led pricing for PRP and regenerative treatments —
           designed around safety, clinical suitability and realistic outcomes.
@@ -89,13 +95,13 @@ export default function PricesPage() {
         <div className="flex flex-col sm:flex-row gap-3 mb-10">
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium border"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium border font-inter"
           >
             Book a consultation
           </a>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium bg-black text-white"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter bg-[var(--brand-blue-600)] hover:bg-[var(--brand-blue-700)] text-white"
           >
             Ask a question
           </a>
@@ -187,13 +193,13 @@ export default function PricesPage() {
         <div className="flex flex-col sm:flex-row gap-3">
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium bg-black text-white"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter bg-[var(--brand-blue-600)] hover:bg-[var(--brand-blue-700)] text-white"
           >
             Book consultation
           </a>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium border"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium border font-inter"
           >
             Message us
           </a>
