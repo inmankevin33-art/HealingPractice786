@@ -160,7 +160,7 @@ export default function PricesPage() {
           {
             question: "What areas can be treated?",
             answer:
-              "Common areas include face, neck, and delicate areas depending on suitability. We’ll advise the best plan at consultation.",
+              "Common areas include face, around eyes, neck, and delicate areas depending on suitability. We’ll advise the best plan at consultation.",
           },
           {
             question: "Can it be combined with other treatments?",
@@ -561,42 +561,46 @@ export default function PricesPage() {
   const sexualTreatments: Treatment[] = [
     {
       name: "P-Shot (PRP for Erectile Function)",
-      price: "£650 (Course of 3: discounted)",
+      price: "£650 (Course of 3 for £1800)",
       description:
         "Doctor-led PRP protocol designed to support erectile function and confidence using your own growth factors.",
-      benefits: [
-        "Uses your own PRP (natural approach)",
-        "Doctor-led consultation and protocol",
-        "Course option for best response",
-        "Confidential clinical setting",
+       benefits: [
+        "Improve erection firmness and duration",
+        "Enhance sensitivity and confidence",
+        "Support blood flow and repair",
       ],
-      duration: "45–60 minutes",
-      course: "Single or course of 3 (discounted)",
+      duration: "30–45 minutes",
+      course: "Up to 3 injections",
       expandedContent: {
         howItWorks:
-          "PRP is prepared from a small blood sample and applied using a structured protocol. Suitability and expectations are discussed carefully before treatment.",
+          "A small blood sample of around 40ml is taken from your arm, just like a routine blood test. The blood is then placed in a medical centrifuge to create high‑quality PRP (Platelet‑Rich Plasma). Before treatment, a numbing cream is applied to ensure comfort. The PRP is then carefully injected into precise areas of the penis to stimulate repair and regeneration. You may feel very mild discomfort during the injection, which usually settles within 5–30 minutes. You can return to work straight away. The whole procedure typically takes 30–45 minutes. Depending on your medical history and individual response, you may require a course of up to three injections, which will be discussed in detail during your online consultation. After treatment, you will receive personalised aftercare instructions.",
         whoIsItFor: [
-          "Men seeking PRP-based support",
-          "Those wanting a natural approach",
-          "People open to a course-based plan",
-          "Those wanting doctor-led care",
-          "Anyone seeking confidential support",
+          "Men with mild to moderate erectile dysfunction",
+          "Those wanting to improve erection firmness and duration",
+          "Reduced penile sensitivity or performance anxiety",
+          "Restoring sexual confidence after conditions such as diabetes or circulatory problems",
+          "Peyronie&apos;s disease (penile curvature due to scar tissue)",
         ],
         commonQuestions: [
           {
-            question: "Do you offer a course discount?",
+            question: "Is the P‑Shot painful?",
             answer:
-              "Yes — course pricing is available with a discounted rate. Message us on WhatsApp and we’ll outline the options.",
+              "Only mild discomfort, numbing cream is applied before injection.",
           },
           {
-            question: "How many sessions are recommended?",
+            question: "How soon will I see results?",
             answer:
-              "Many clients choose a course of 3 depending on goals and response. We’ll advise after assessment.",
+              "Many men notice improvements within weeks, with further gains over 2–3 months. Results may vary from patient to patient.",
           },
           {
-            question: "Is it confidential?",
+            question: "Is it safe?",
             answer:
-              "Yes — consultations and treatment are handled discreetly in a professional clinical setting.",
+              "Yes. We use your own PRP prepared with CE‑marked, medical‑grade equipment.",
+          },
+          {
+            question: "Is recovery quick?",
+            answer:
+              "Absolutely. You can return to daily activities straight away.",
           },
         ],
       },
@@ -605,49 +609,53 @@ export default function PricesPage() {
       name: "O-Shot",
       price: "£700",
       description:
-        "Doctor-led PRP protocol designed to support female sexual wellbeing and tissue quality.",
+        "Female rejuvenation for improved sensitivity and vaginal health",
       benefits: [
-        "Uses your own PRP (natural approach)",
-        "Doctor-led consultation and protocol",
-        "Tailored plan based on goals",
-        "Confidential clinical setting",
+        "Enhances sensation & supports vaginal rejuvenation",
+        "Minimal discomfort, no downtime",
+        "Uses your own PRP",
       ],
-      duration: "45–60 minutes",
-      course: "Tailored plan",
+      duration: "30–45 minutes",
+      course: "Up to 3 injections",
       expandedContent: {
         howItWorks:
-          "PRP is prepared from a small blood sample and applied using a structured protocol. Suitability and expectations are discussed carefully before treatment.",
+          "A small blood sample is processed into high‑quality PRP (Platelet‑Rich Plasma). After numbing cream is applied, the PRP is carefully injected into precise areas of the vagina to stimulate regeneration and improved sensitivity. Most women experience only mild, brief discomfort. You can return to work straight away.",
         whoIsItFor: [
-          "Women seeking PRP-based support",
-          "Those wanting a natural approach",
-          "People wanting doctor-led care",
-          "Those seeking discreet support",
-          "Anyone wanting a tailored plan",
+          "Vaginal dryness or discomfort during intimacy",
+          "Reduced sensitivity or difficulty achieving orgasm",
+          "Stress urinary incontinence (leakage when coughing, sneezing, or exercising)",
+          "Post‑menopausal vaginal rejuvenation",
+          "Enhancing sexual confidence and overall intimate health",
         ],
         commonQuestions: [
           {
-            question: "Do I need more than one session?",
+            question: "Will it help with vaginal dryness?",
             answer:
-              "Some people benefit from a single session, while others may choose a tailored plan. We’ll advise after assessment.",
+              "Yes, many women (especially post‑menopausal) experience improved natural lubrication.",
+          },
+          {
+            question: "Is recovery quick?",
+            answer:
+              "Absolutely. You can return to daily activities straight away.",
+          },
+          {
+            question: "How soon will I see results?",
+            answer:
+              "Improvements are often noticed within weeks and continue over time. Results may vary from patient to patient.",
           },
           {
             question: "Is it safe?",
             answer:
-              "PRP uses your own blood components. Suitability is confirmed in consultation.",
-          },
-          {
-            question: "What about privacy?",
-            answer:
-              "Everything is handled discreetly and professionally.",
+              "Yes, the O‑Shot uses your body's own plasma, prepared with CE‑certified equipment.",
           },
         ],
       },
     },
     {
-      name: "Enhance P-Shot",
+      name: "EXO P-Shot",
       price: "£1200",
       description:
-        "An enhanced protocol for clients seeking a stronger or more comprehensive regenerative plan.",
+        "An enhanced protocol using activated platelets to support stronger regenerative signalling and improved outcomes.",
       benefits: [
         "Advanced protocol and planning",
         "Doctor-led assessment and delivery",
@@ -658,9 +666,9 @@ export default function PricesPage() {
       course: "Tailored plan",
       expandedContent: {
         howItWorks:
-          "This is a more comprehensive PRP-based protocol. We discuss your goals, suitability, and expected outcomes carefully before treatment.",
+          "We discuss your goals, suitability, and expected outcomes carefully before treatment.",
         whoIsItFor: [
-          "Those seeking enhanced PRP protocols",
+          "Moderate to severe erectile dysfunction",
           "Men who want a more comprehensive plan",
           "Those open to tailored programmes",
           "People wanting doctor-led care",
@@ -670,7 +678,7 @@ export default function PricesPage() {
           {
             question: "What makes it ‘enhanced’?",
             answer:
-              "It’s a more comprehensive protocol and plan. We’ll explain exactly what’s included during your consultation.",
+              "An enhanced protocol using activated platelets to support stronger regenerative signalling and improved outcomes.",
           },
           {
             question: "Do you offer courses for this?",
@@ -692,7 +700,7 @@ export default function PricesPage() {
       id: "facial",
       title: "Facial Treatments",
       subtitle:
-        "Skin boosters, PRP, threads and anti-wrinkle — transparent pricing with a doctor-led approach.",
+        "Facial treatments designed around your goals — treatments can be combined and personalised rather than delivered as fixed menus.",
       items: facialTreatments,
     },
     {
@@ -713,7 +721,7 @@ export default function PricesPage() {
       id: "sexual",
       title: "Sexual Rejuvenation Treatments",
       subtitle:
-        "Confidential, doctor-led regenerative protocols with clear pricing and tailored plans.",
+        "Private, doctor-led care designed around your needs, with clear pricing and treatment plans tailored to you.",
       items: sexualTreatments,
     },
   ];
@@ -722,14 +730,14 @@ export default function PricesPage() {
     { name: "Polynucleotides", price: "From £150", href: "#facial" },
     { name: "PRP Hair", price: "£200 (3 for £500)", href: "#hair" },
     { name: "PRP Joint Injections", price: "From £250", href: "#joints" },
-    { name: "P-Shot", price: "£650 (3: discounted)", href: "#sexual" },
+    { name: "P-Shot", price: "£650 (3 for £1800)", href: "#sexual" },
   ];
 
   const faqs: QA[] = [
     {
       question: "Do your prices include a consultation?",
       answer:
-        "We’ll always discuss your goals, suitability, expected outcomes, and aftercare before confirming the final plan and total cost.",
+        "A small consultation fee may apply, which can be offset against the cost of treatment if you proceed.",
     },
     {
       question: "Why do some treatments show “From £…”?",
@@ -821,7 +829,7 @@ export default function PricesPage() {
                   className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
                   variants={itemVariants}
                 >
-                  Treatment Prices at Healing-PRP Clinics – St Albans & Birmingham
+                  Treatment Prices at Healing-PRP Clinics – St Albans
                 </motion.h1>
 
                 <motion.p
