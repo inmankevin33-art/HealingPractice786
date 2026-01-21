@@ -1,8 +1,20 @@
-import type { Metadata } from "next";
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import {
+  FaWhatsapp,
+  FaCheck,
+  FaChevronDown,
+  FaChevronUp,
+  FaPlus,
+  FaMinus,
+  FaEnvelope,
+  FaTimes,
+} from "react-icons/fa";
+import Footer from "@/components/Footer";
+import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
-import { useEffect, useState } from "react";
 
 export const metadata: Metadata = {
   title: "Treatment Prices | Healing PRP",
