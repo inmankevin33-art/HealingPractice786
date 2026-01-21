@@ -381,7 +381,7 @@ export default function FacialAestheticsPage() {
                   className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
                   variants={itemVariants}
                 >
-                  Facial Aesthetics Treatments in St Albans, Hertfordshire
+                  Treatment Prices at Healing-PRP Clinics – St Albans & Birmingham
                 </motion.h1>
 
                 <motion.p
@@ -480,11 +480,9 @@ export default function FacialAestheticsPage() {
               className="text-sm font-inter text-slate-600 mb-8 max-w-4xl"
               variants={itemVariants}
             >
-              At Healing‑PRP Clinics, we provide safe, natural, and effective
-              treatments to restore youthful skin, reduce fine lines, and
-              improve overall skin health. All procedures are carried out by a
-              GMC‑registered doctor with plenty of experience for expert,
-              medical‑led care.
+              At Healing‑PRP Clinics, we offer transparent and competitive pricing
+              for safe,natural, and effective regenerative treatments. All procedures 
+              are carried out by a GMC-registered doctor, ensuring expert, medical-led care with no hiddencosts.
             </motion.p>
 
             <motion.div
@@ -492,8 +490,8 @@ export default function FacialAestheticsPage() {
               variants={itemVariants}
             >
               {[
-                "We only use high‑quality, CE‑marked products approved for safety and effectiveness",
-                "Treatments are tailored to your skin's individual needs",
+                "Doctor Led Treatments,we only use high‑quality, CE‑marked products approved for safety and effectiveness",
+                "Treatments are tailored to your individual needs",
                 "Performed under strict medical hygiene and sterility protocols",
                 "Confidential, professional clinic environment with natural‑looking results",
               ].map((benefit, index) => (
@@ -851,7 +849,7 @@ export default function FacialAestheticsPage() {
               variants={itemVariants}
             >
               Find answers to the most frequently asked questions about our
-              facial aesthetics treatments and services in St Albans.
+              facial aesthetics treatments and services in St Albans and Birmingham.
             </motion.p>
             <motion.div
               className="space-y-4 mt-4"
