@@ -95,13 +95,13 @@ export default function PricesPage() {
         <div className="flex flex-col sm:flex-row gap-3 mb-10">
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter border border-[var(--brand-blue-600)] text-[var(--brand-blue-600)] hover:bg-[var(--brand-blue-50)]"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter border border-[var(--brand-blue-700)] text-[var(--brand-blue-700)] hover:bg-[var(--brand-blue-100)]"
           >
             Book a consultation
           </a>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter bg-[var(--brand-blue-600)] hover:bg-[var(--brand-blue-700)] text-white"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter bg-[var(--brand-blue-700)] hover:bg-[var(--brand-blue-700)] text-white"
           >
             Ask a question
           </a>
@@ -193,13 +193,13 @@ export default function PricesPage() {
         <div className="flex flex-col sm:flex-row gap-3">
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter bg-[var(--brand-blue-600)] hover:bg-[var(--brand-blue-700)] text-white"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter bg-[var(--brand-blue-700)] hover:bg-[var(--brand-blue-700)] text-white"
           >
             Book consultation
           </a>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter border border-[var(--brand-blue-600)] text-[var(--brand-blue-600)] hover:bg-[var(--brand-blue-50)]"
+            className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium font-inter border border-[var(--brand-blue-700)] text-[var(--brand-blue-700)] hover:bg-[var(--brand-blue-100)]"
           >
             Message us
           </a>
