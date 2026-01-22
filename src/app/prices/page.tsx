@@ -829,17 +829,14 @@ export default function PricesPage() {
                   className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
                   variants={itemVariants}
                 >
-                  Treatment Prices at Healing-PRP Clinics – St Albans
+                  Treatment Prices in St Albans, Hertfordshire | Healing-PRP Clinics
                 </motion.h1>
 
                 <motion.p
                   className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
                 >
-                  Clear, competitive pricing for safe, natural, and effective
-                  regenerative treatments. All procedures are carried out by a
-                  GMC-registered doctor — expert, medical-led care with no hidden
-                  costs.
+                  Clear, transparent pricing for doctor-led regenerative treatments available at our St Albans clinic, serving patients across Hertfordshire.
                 </motion.p>
 
                 <motion.div
