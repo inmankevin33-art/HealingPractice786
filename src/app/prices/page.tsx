@@ -129,7 +129,6 @@ export default function PricesPage() {
   const facialTreatments: Treatment[] = [
     {
       name: "Polynucleotide Treatments",
-      price: "From £150",
       description:
         "Advanced skin boosters designed to support repair, hydration, and rejuvenation at a cellular level.",
       benefits: [
@@ -139,6 +138,7 @@ export default function PricesPage() {
         "Deep hydration and improved skin quality",
         "Smoother texture and brighter appearance",
       ],
+      price: "From £150",
       duration: "30–45 minutes",
       course: "Up to 3 sessions",
       expandedContent: {
