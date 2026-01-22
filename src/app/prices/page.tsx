@@ -139,7 +139,7 @@ export default function PricesPage() {
         "Smoother texture and brighter appearance",
       ],
       price: "From £150",
-      duration: "30–45 minutes",
+      Price: "From £150 minutes",
       course: "Up to 3 sessions",
       expandedContent: {
         howItWorks:
@@ -942,7 +942,7 @@ export default function PricesPage() {
               className="text-sm font-inter text-slate-600"
               variants={itemVariants}
             >
-              Appointments available in St Albans and Birmingham. If you’re
+              Appointments available in St Albans. If you’re
               travelling from Harpenden, Luton, Watford, Welwyn, Hertford, or
               London, we can advise on timing and aftercare.
             </motion.p>
