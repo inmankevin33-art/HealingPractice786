@@ -829,7 +829,7 @@ export default function PricesPage() {
                   className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
                   variants={itemVariants}
                 >
-                  Treatment Prices in St Albans, Hertfordshire | Healing-PRP Clinics
+                  Treatment Prices in St Albans | Healing-PRP Clinics
                 </motion.h1>
 
                 <motion.p
