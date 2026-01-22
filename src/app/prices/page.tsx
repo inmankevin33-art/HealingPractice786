@@ -836,7 +836,8 @@ export default function PricesPage() {
                   className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
                 >
-                  Clear, transparent pricing for doctor-led regenerative treatments available at our St Albans clinic, serving patients across Hertfordshire.
+                  Clear, transparent pricing for doctor-led regenerative treatments available at our St Albans clinic.
+                  Serving patients across Hertfordshire.
                 </motion.p>
 
                 <motion.div
