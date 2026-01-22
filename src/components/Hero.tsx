@@ -117,13 +117,7 @@ export default function Hero() {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <Link
-                  href="/sexual-rejuvenation"
-                  className="underline decoration-transparent hover:decoration-white"
-                >
-                  Erectile Dysfunction
-                </Link>{" "}
-                & Natural Regeneration Treatment <br /> with PRP (
+                Natural Regeneration Treatments <br /> with PRP (
                 <a
                   href="#prp-explanation"
                   className="underline decoration-transparent hover:decoration-white cursor-pointer"
