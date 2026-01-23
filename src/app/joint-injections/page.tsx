@@ -559,4 +559,7 @@ export default function JointInjectionsPage() {
                         setExpandedTreatment(
                           expandedTreatment === treatment.name
                             ? null
-                            : treatm
+                            : treatment.name
+                          )
+                        }
+                     >
