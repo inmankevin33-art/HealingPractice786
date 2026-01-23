@@ -283,8 +283,7 @@ export default function JointInjectionsPage() {
                   Private Joint Injections (PRP & Steroid) in St Albans | Healing-PRP Clinics
                 </motion.h1>
 
-                <motion.p
-                  className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl line-clamp-3"
+                <motion.p className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl" 
                   variants={itemVariants}
                 >
                   GP-led pain relief for arthritis, sports injuries & joint
