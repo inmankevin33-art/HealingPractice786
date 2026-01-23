@@ -57,9 +57,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Healing PRP Clinics - Natural Regeneration with PRP | St Albans",
+  title: "Natural Regeneration Treatment with PRP | Healing-PRP Clinics",
   description:
-    "Confidential care by a GGMC Registered Experienced Doctor. Evidence-based, non-surgical treatments for sexual wellness, facial aesthetics & hair, and joint pain in St Albans, minutes from London.",
+    "Doctor-led natural regeneration treatments using PRP (Platelet-Rich Plasma). Evidence-based, non-surgical care for skin, hair, joints and sexual wellbeing in St Albans and Birmingham.",
   icons: {
     icon: "/favicon.png",
   },
