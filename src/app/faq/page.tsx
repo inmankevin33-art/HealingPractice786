@@ -53,37 +53,77 @@ export default function FAQPage() {
   };
 
   const faqs = [
-    {
-      question: "Do you offer a consultation before treatment?",
-      answer:
-        "Yes — every client receives a personal consultation with our GMC-registered doctor to tailor a safe, effective plan.",
-    },
-    {
-      question: "Can treatments be combined?",
-      answer:
-        "Yes. Many regenerative treatments can be safely combined or staged to suit your goals and individual needs.",
-    },
-    {
-      question: "Is there any downtime after treatment?",
-      answer:
-        "Most treatments involve minimal downtime, with mild redness or injection marks settling within 24–48 hours.",
-    },
-    {
-      question: "How many sessions will I need?",
-      answer:
-        "This depends on the treatment and your skin condition. Some treatments are one-off, others work best as a short course.",
-    },
-    {
-      question: "Are your products safe and approved?",
-      answer:
-        "We use high-quality products and follow strict medical hygiene and sterility protocols.",
-    },
-    {
-      question: "Where are you based?",
-      answer:
-        "We offer appointments in St Albans and other locations depending on the service.",
-    },
-  ];
+  {
+    question: "Do you offer a consultation before treatment?",
+    answer:
+      "Yes — every client receives a personal consultation with our GMC-registered doctor to tailor a safe, effective plan.",
+  },
+  {
+    question: "Can treatments be combined?",
+    answer:
+      "Yes. Many regenerative treatments can be safely combined or staged to suit your goals and individual needs.",
+  },
+  {
+    question: "Is there any downtime after treatment?",
+    answer:
+      "Most treatments involve minimal downtime, with mild redness or injection marks settling within 24–48 hours.",
+  },
+  {
+    question: "How many sessions will I need?",
+    answer:
+      "This depends on the treatment and your skin condition. Some treatments are one-off, others work best as a short course.",
+  },
+  {
+    question: "Are your products safe and approved?",
+    answer:
+      "We use high-quality products and follow strict medical hygiene and sterility protocols.",
+  },
+  {
+    question: "Where are you based?",
+    answer:
+      "We offer appointments in St Albans and other locations depending on the service.",
+  },
+  {
+    question: "Is PRP better than medication?",
+    answer:
+      "PRP is not a replacement for medication. It works differently by stimulating the body’s natural healing processes rather than altering body chemistry. Whether PRP is appropriate depends on the condition being treated, overall health, and previous response to other therapies. This is discussed during consultation.",
+  },
+  {
+    question: "What happens if PRP doesn’t work?",
+    answer:
+      "Not everyone responds to PRP. If improvement is limited, we will review contributing factors such as medical conditions, medications, lifestyle, or hormonal issues, and discuss alternative or adjunct treatment options where appropriate.",
+  },
+  {
+    question: "Can PRP be repeated safely?",
+    answer:
+      "Yes. PRP can be repeated safely in suitable individuals because it uses your own blood. Treatment frequency and suitability are assessed by a doctor on an individual basis.",
+  },
+  {
+    question: "Who should not have PRP or P-Shot®?",
+    answer:
+      "PRP and P-Shot® may not be suitable for people with certain blood disorders, active infections, cancers affecting blood cells, or those on specific medications. A full medical assessment is always carried out before treatment.",
+  },
+  {
+    question: "Where can I get PRP treatment in St Albans?",
+    answer:
+      "PRP treatments are available at Healing-PRP Clinics in St Albans. We also see patients from surrounding areas including Harpenden, Watford, Luton, and Hertford.",
+  },
+  {
+    question: "Do you offer P-Shot® in Birmingham?",
+    answer:
+      "Yes. P-Shot® treatments are available in Birmingham by appointment. Please contact us to confirm availability and arrange a consultation.",
+  },
+  {
+    question: "PRP vs shockwave therapy — what’s the difference?",
+    answer:
+      "PRP uses growth factors from your own blood to stimulate tissue repair, while shockwave therapy uses sound waves to improve blood flow and tissue response. In some cases, the two treatments may be combined for enhanced outcomes.",
+  },
+  {
+    question: "PRP vs fillers or Botox — which is right for me?",
+    answer:
+      "PRP focuses on natural regeneration and tissue repair, while fillers and Botox address volume loss and muscle movement. The most suitable option depends on your goals, anatomy, and expectations, which will be discussed during consultation.",
+  },
+];
 
   // ✅ JSON-LD MUST be an object inside JS — NOT raw JSON
   const faqSchema = {
