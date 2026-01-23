@@ -57,7 +57,10 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Natural Regeneration Treatment with PRP | Healing-PRP Clinics",
+  title: {
+    default: "Natural Regeneration Treatment with PRP | Healing-PRP Clinics",
+    template: "%s | Healing-PRP Clinics",
+  },
   description:
     "Doctor-led natural regeneration treatments using PRP (Platelet-Rich Plasma). Evidence-based, non-surgical care for skin, hair, joints and sexual wellbeing in St Albans and Birmingham.",
   icons: {
