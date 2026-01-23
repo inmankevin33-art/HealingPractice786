@@ -99,14 +99,14 @@ export default function JointInjectionsPage() {
 
   const treatments = [
     {
-      name: "PRP (Platelet‑Rich Plasma) Joint Injections",
+      name: "PRP (Platelet-Rich Plasma) Joint Injections",
       price: "From £400",
       description: "Natural healing using your own platelet-rich plasma",
       benefits: [
-        "Encourages cartilage & soft‑tissue repair",
+        "Encourages cartilage & soft-tissue repair",
         "May slow arthritis progression",
         "Suitable for sports injuries & early arthritis",
-        "Minimal downtime; drug‑free approach",
+        "Minimal downtime; drug-free approach",
       ],
       duration: "20–30 minutes",
       course: "Single or course of 3",
@@ -208,10 +208,46 @@ export default function JointInjectionsPage() {
       answer:
         "PRP uses your own blood to stimulate natural healing and is drug-free, while steroid injections provide fast anti-inflammatory relief. PRP has longer-lasting benefits but takes weeks to work, while steroids work quickly but benefits are shorter-term.",
     },
+    {
+      question: "Are results guaranteed?",
+      answer:
+        "No. Results vary between individuals and cannot be guaranteed. Response depends on factors such as diagnosis, severity, and overall health, which we discuss during consultation.",
+    },
+    {
+      question: "Can PRP be repeated safely?",
+      answer:
+        "Yes. PRP can be repeated safely in suitable individuals because it uses your own blood. Treatment frequency is decided on an individual basis.",
+    },
+    {
+      question: "Is PRP better than medication?",
+      answer:
+        "PRP is not a replacement for medication. It works differently by supporting tissue response and natural repair processes. The right option depends on your condition, health, and goals.",
+    },
   ];
+
+  const jointFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
 
   return (
     <>
+      {/* Joint Injections FAQ Schema (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jointFaqSchema),
+        }}
+      />
+
       {/* Hero Section */}
       <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
@@ -237,22 +273,22 @@ export default function JointInjectionsPage() {
                   className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
                   variants={itemVariants}
                 >
-                  GMC‑registered | CQC‑compliant | Private
+                  GMC-registered | CQC-compliant | Private
                 </motion.div>
 
                 <motion.h1
                   className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
                   variants={itemVariants}
                 >
-                  Private Joint Injections in St Albans & Hertfordshire
+                  Private Joint Injections (PRP & Steroid) in St Albans | Healing-PRP Clinics
                 </motion.h1>
 
                 <motion.p
-                  className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
+                  className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl line-clamp-3"
                   variants={itemVariants}
                 >
                   GP-led pain relief for arthritis, sports injuries & joint
-                  conditions in a discreet, CQC‑compliant setting.
+                  conditions in a discreet, CQC-compliant setting. Serving patients across Hertforshire.
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
@@ -331,13 +367,6 @@ export default function JointInjectionsPage() {
             >
               FAQs
             </motion.a>
-            {/* <motion.a
-              href="#contact"
-              className="px-4 py-2 text-sm border border-gray-100 shadow-xs bg-white text-[var(--brand-blue)] rounded-lg font-inter font-medium hover:bg-[var(--brand-blue-50)] transition-colors duration-300"
-              variants={itemVariants}
-            >
-              Contact
-            </motion.a> */}
           </motion.div>
         </div>
       </section>
@@ -531,401 +560,4 @@ export default function JointInjectionsPage() {
                         setExpandedTreatment(
                           expandedTreatment === treatment.name
                             ? null
-                            : treatment.name
-                        )
-                      }
-                      className="inline-flex items-center gap-2 py-3 text-[var(--brand-blue)] rounded-lg font-inter text-sm transition-all duration-300 hover:opacity-50 cursor-pointer"
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {expandedTreatment === treatment.name ? (
-                        <>
-                          Show Less
-                          <FaChevronUp className="w-3 h-3" />
-                        </>
-                      ) : (
-                        <>
-                          Learn More
-                          <FaChevronDown className="w-3 h-3 mt-[0.1rem]" />
-                        </>
-                      )}
-                    </motion.button>
-                  </div>
-
-                  {/* Expanded Content */}
-                  <AnimatePresence>
-                    {expandedTreatment === treatment.name && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden mt-6"
-                      >
-                        <div className="bg-white rounded-xl p-6 border-t border-slate-200">
-                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            {/* How It Works */}
-                            <div>
-                              <h4 className="text-lg font-raleway font-semibold text-slate-900 mb-4">
-                                How It Works
-                              </h4>
-                              <p className="text-sm font-inter text-slate-600 leading-relaxed">
-                                {treatment.expandedContent.howItWorks}
-                              </p>
-                            </div>
-
-                            {/* Who Is It For */}
-                            <div>
-                              <h4 className="text-lg font-raleway font-semibold text-slate-900 mb-4">
-                                Who Is It For?
-                              </h4>
-                              <ul className="space-y-2">
-                                {treatment.expandedContent.whoIsItFor.map(
-                                  (item, itemIndex) => (
-                                    <li
-                                      key={itemIndex}
-                                      className="flex items-start gap-3"
-                                    >
-                                      <FaCheck className="w-3 h-3 mt-[0.3rem] text-[var(--brand-blue)] flex-shrink-0" />
-                                      <span className="text-sm font-inter text-slate-700">
-                                        {item}
-                                      </span>
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            </div>
-                          </div>
-
-                          {/* Common Questions */}
-                          <div className="mt-8">
-                            <h4 className="md:text-lg text-base font-raleway font-semibold text-slate-900 mb-4">
-                              Common Questions
-                            </h4>
-                            <div className="space-y-4">
-                              {treatment.expandedContent.commonQuestions.map(
-                                (qa, qaIndex) => (
-                                  <div
-                                    key={qaIndex}
-                                    className="bg-slate-50 rounded-lg p-4"
-                                  >
-                                    <h5 className="font-inter font-semibold text-slate-900 mb-2">
-                                      {qa.question}
-                                    </h5>
-                                    <p className="text-sm font-inter text-slate-600">
-                                      {qa.answer}
-                                    </p>
-                                  </div>
-                                )
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* PRP vs Steroid Comparison Section */}
-      <section id="comparison" className="py-20 lg:py-32 bg-white relative">
-        {/* Background Elements */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-r from-[#f6f7ff] to-transparent"></div>
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.h2
-              className="text-2xl lg:text-4xl font-raleway text-slate-900 mb-8 text-center"
-              variants={itemVariants}
-            >
-              PRP vs Steroid – Which is Right for Me?
-            </motion.h2>
-
-            <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-slate-200">
-                      <th className="text-left py-4 px-4 font-raleway font-semibold text-slate-900">
-                        Feature
-                      </th>
-                      <th className="text-left py-4 px-4 font-raleway font-semibold text-slate-900">
-                        PRP Joint Injection
-                      </th>
-                      <th className="text-left py-4 px-4 font-raleway font-semibold text-slate-900">
-                        Steroid Joint Injection
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-200">
-                    <tr>
-                      <td className="py-4 px-4 font-inter font-medium text-slate-700">
-                        What it is
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Your own platelet‑rich plasma to stimulate healing
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Synthetic corticosteroid to reduce inflammation
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-4 px-4 font-inter font-medium text-slate-700">
-                        Best for
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Early–moderate arthritis, sports/tendon issues,
-                        regenerative approach
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Inflammatory flare‑ups; rapid pain relief needed
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-4 px-4 font-inter font-medium text-slate-700">
-                        Onset
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Gradual, ~3–4 weeks
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Often within 1–3 days
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-4 px-4 font-inter font-medium text-slate-700">
-                        Duration
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Months; often longer with repeat course
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Weeks to several months
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-4 px-4 font-inter font-medium text-slate-700">
-                        Downtime
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Minimal; normal activities next day
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Minimal; normal activities same day
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-4 px-4 font-inter font-medium text-slate-700">
-                        Notes
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Drug‑free; supports tissue repair
-                      </td>
-                      <td className="py-4 px-4 font-inter text-slate-600">
-                        Effective anti‑inflammatory; repeat frequency limited
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <motion.p
-                className="mt-8 text-sm font-inter text-slate-600 leading-relaxed"
-                variants={itemVariants}
-              >
-                If you prefer a natural, drug‑free option that supports
-                long‑term healing, PRP may be ideal. If you need fast relief
-                during a flare, a steroid injection may suit you better. In many
-                cases, both can be used at different stages. Book a consultation
-                and we&apos;ll advise the most effective plan for your goals.
-              </motion.p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQs Section */}
-      <section id="faqs" className="py-20 lg:py-32 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.div
-              className="flex justify-center mb-2"
-              variants={itemVariants}
-            >
-              <div className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium">
-                Frequently Asked Questions
-              </div>
-            </motion.div>
-            <motion.h2
-              className="text-2xl lg:text-4xl text-text tracking-tight font-raleway text-navy-600 leading-tight text-center"
-              variants={itemVariants}
-            >
-              Common Questions About Joint Injections
-            </motion.h2>
-
-            <motion.p
-              className="text-xs lg:text-sm font-inter text-slate-600 mx-auto leading-relaxed text-center"
-              variants={itemVariants}
-            >
-              Find answers to the most frequently asked questions about our
-              joint injection treatments and services in St Albans.
-            </motion.p>
-            <motion.div
-              className="space-y-4 mt-4"
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-            >
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200/50 overflow-hidden"
-                  variants={itemVariants}
-                >
-                  {/* Question */}
-                  <motion.button
-                    className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50/50 transition-colors duration-300"
-                    onClick={() => toggleFAQ(index)}
-                  >
-                    <h3 className="font-raleway text-slate-900 pr-4 leading-relaxed">
-                      {faq.question}
-                    </h3>
-                    <motion.div
-                      className="flex-shrink-0 w-8 h-8 bg-[var(--brand-blue)]/10 rounded-full flex items-center justify-center"
-                      animate={{ rotate: openFAQIndex === index ? 180 : 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                      <motion.div
-                        animate={{
-                          opacity: openFAQIndex === index ? 0 : 1,
-                          scale: openFAQIndex === index ? 0 : 1,
-                        }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <FaPlus className="w-3 h-3 text-[var(--brand-blue)]" />
-                      </motion.div>
-                      <motion.div
-                        className="absolute"
-                        animate={{
-                          opacity: openFAQIndex === index ? 1 : 0,
-                          scale: openFAQIndex === index ? 1 : 0,
-                        }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <FaMinus className="w-3 h-3 text-[var(--brand-blue)]" />
-                      </motion.div>
-                    </motion.div>
-                  </motion.button>
-
-                  {/* Answer */}
-                  <AnimatePresence>
-                    {openFAQIndex === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-6">
-                          <div className="border-t border-slate-200/50 pt-4">
-                            <p className="font-inter text-sm text-slate-600 leading-relaxed">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      <ContactCTASection />
-
-      <Footer />
-
-      {/* WhatsApp QR Code Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
-              onClick={() => setIsModalOpen(false)}
-            />
-            {/* Modal */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
-                {/* Close Button */}
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors"
-                  aria-label="Close modal"
-                >
-                  <FaTimes className="w-5 h-5 text-slate-600" />
-                </button>
-
-                {/* Modal Content */}
-                <div className="text-center">
-                  <h3 className="text-2xl font-raleway font-semibold text-slate-900 mb-2">
-                    Scan to Chat on WhatsApp
-                  </h3>
-                  <p className="text-sm text-slate-600 mb-6">
-                    Use your phone camera to scan the QR code
-                  </p>
-
-                  {/* QR Code */}
-                  <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
-                    <img
-                      src="/qrcode.png"
-                      alt="WhatsApp QR Code"
-                      className="w-64 h-64"
-                    />
-                  </div>
-
-                  {/* WhatsApp Web Button */}
-                  <a
-                    href="https://web.whatsapp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-medium transition-all duration-300"
-                  >
-                    <FaWhatsapp className="w-5 h-5" />
-                    Open WhatsApp Web
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
-  );
-}
+                            : treatm
