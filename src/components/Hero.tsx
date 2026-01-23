@@ -106,7 +106,7 @@ export default function Hero() {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                St Albans • Hertfordshire • London • Midlands
+                St Albans • Birmingham • London • Midlands
               </div>
 
               {/* Main Heading */}
