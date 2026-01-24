@@ -149,27 +149,54 @@ export default function FAQPage() {
         }}
       />
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
             src="/hero_img.png"
-            alt="Healing PRP Clinics"
+            alt="Projects background"
             className="w-full h-full object-cover"
           />
         </div>
 
-        <div className="relative z-20 max-w-7xl mx-auto px-6 text-white">
-          <h1 className="text-3xl lg:text-4xl font-raleway text-gray-700 mb-3">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-gray-500 max-w-2xl">
-            Clear answers about consultations, treatments, downtime, and what to
-            expect at Healing-PRP Clinics.
-          </p>
+        {/* Hero Content */}
+        <div className="relative w-full z-20 flex h-full">
+          <div className="w-full max-w-7xl mt-10 md:mt-0 mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+            <div className="text-white">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+              >
+                <motion.div
+                  className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
+                  variants={itemVariants}
+                >
+                  GMC‑registered | CE‑marked | Natural Results
+                </motion.div>
 
-          <div className="flex flex-wrap gap-4 mt-6">
+                <motion.h1
+                  className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
+                  variants={itemVariants}
+                >
+                  Frequently Asked Questions | Healing-PRP Clinics
+                </motion.h1>
+
+                <motion.p
+                  className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
+                  variants={itemVariants}
+                >
+                  Clear answers about consultations, treatments, downtime, and 
+                  what to expect at Healing-PRP Clinics.
+                </motion.p>
+                <motion.div
+                  variants={itemVariants}
+                  className={`flex flex-col mt-3 sm:flex-row gap-4`}
+                >
+            
+            <div className="flex flex-wrap gap-4 mt-6">
             {isDesktop ? (
               <button
                 onClick={handleWhatsAppClick}
