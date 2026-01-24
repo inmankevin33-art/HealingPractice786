@@ -150,53 +150,44 @@ export default function FAQPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
-          <img
-            src="/hero_img.png"
-            alt="Projects background"
-            className="w-full h-full object-cover"
-          />
-        </div>
+<section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
+  {/* Background Image */}
+  <div className="absolute inset-0 z-0">
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
+    <img
+      src="/hero_img.png"
+      alt="Projects background"
+      className="w-full h-full object-cover"
+    />
+  </div>
 
-        {/* Hero Content */}
-        <div className="relative w-full z-20 flex h-full">
-          <div className="w-full max-w-7xl mt-10 md:mt-0 mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-            <div className="text-white">
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={containerVariants}
-              >
-                <motion.div
-                  className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
-                  variants={itemVariants}
-                >
-                  GMC‑registered | CE‑marked | Natural Results
-                </motion.div>
+  {/* Hero Content */}
+  <div className="relative w-full z-20 flex h-full">
+    <div className="w-full max-w-7xl mt-10 md:mt-0 mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+      <div className="text-white">
+        <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+          <motion.div
+            className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
+            variants={itemVariants}
+          >
+            GMC-registered | CE-marked | Natural Results
+          </motion.div>
 
-                <motion.h1
-                  className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
-                  variants={itemVariants}
-                >
-                  Frequently Asked Questions | Healing-PRP Clinics
-                </motion.h1>
+          <motion.h1
+            className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
+            variants={itemVariants}
+          >
+            Frequently Asked Questions | Healing-PRP Clinics
+          </motion.h1>
 
-                <motion.p
-                  className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
-                  variants={itemVariants}
-                >
-                  Clear answers about consultations, treatments, downtime, and 
-                  what to expect at Healing-PRP Clinics.
-                </motion.p>
-                <motion.div
-                  variants={itemVariants}
-                  className={`flex flex-col mt-3 sm:flex-row gap-4`}
-                >
-            
-            <div className="flex flex-wrap gap-4 mt-6">
+          <motion.p
+            className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
+            variants={itemVariants}
+          >
+            Clear answers about consultations, treatments, downtime, and what to expect at Healing-PRP Clinics.
+          </motion.p>
+
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mt-6">
             {isDesktop ? (
               <button
                 onClick={handleWhatsAppClick}
@@ -217,10 +208,14 @@ export default function FAQPage() {
               href="/contact"
               className="px-6 py-3 border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] rounded-lg flex gap-2 items-center bg-white"
             >
-            <FaEnvelope /> Contact Us
-          </Link>
-        </div>
-      </section>
+              <FaEnvelope /> Contact Us
+            </Link>
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* FAQs */}
       <section className="py-20 bg-slate-50">
