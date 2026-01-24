@@ -539,7 +539,7 @@ export default function SexualRejuvenationPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-32 relative">
+      <section className="py-12 lg:py-16 relative">
         {/* Background Elements */}
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -647,6 +647,57 @@ export default function SexualRejuvenationPage() {
                   <span className="font-inter text-slate-700">{benefit}</span>
                 </motion.div>
               ))}
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+      
+      <section className="py-12 lg:py-16 relative">
+      {/* Background Elements */}
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={containerVariants}
+          >
+            <motion.h2
+              className="text-2xl lg:text-3xl font-raleway text-slate-900 mb-3"
+              variants={itemVariants}
+            >
+              What PRP therapy cannot do
+            </motion.h2>
+
+            <motion.div
+              className="prose prose-lg text-sm max-w-none text-slate-600 font-inter leading-relaxed space-y-6"
+              variants={itemVariants}
+            >
+              <p>
+               PRP therapy is not a guaranteed treatment for erectile dysfunction, and individual responses vary.
+               PRP therapy is not a cure for erectile dysfunction and outcomes vary between individuals. 
+               It may not be effective where erectile dysfunction is primarily caused by severe nerve damage, 
+               advanced vascular disease, significant psychological factors, or untreated hormonal imbalance
+              </p>
+              <p>
+               PRP therapy cannot provide immediate results and should not be viewed as a replacement for appropriate 
+               medical assessment, lifestyle modification, or conventional treatments where these are clinically indicated. 
+               A consultation is required to assess suitability and discuss realistic expectations.
+              </p>
+              <p>
+                Recommendations are based on individual clinical assessment and may not be appropriate for everyone.
+              </p>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Link
+                href="/blog"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
+              >
+                <BookOpen className="w-5 h-5" />
+                Read More
+              </Link>
             </motion.div>
           </motion.div>
         </div>
