@@ -338,16 +338,18 @@ export default function FacialAestheticsPage() {
                   className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
                   variants={itemVariants}
                 >
-                  Facial Aesthetics Treatments in St Albans, Hertfordshire
+                  Hair Restoration & Regenerative Hair Treatments in St Albans | Healing-PRP Clinics
                 </motion.h1>
 
                 <motion.p
                   className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
                 >
-                  Safe, natural, and effective treatments to restore youthful
-                  skin, reduce fine lines, and improve overall skin health. All
-                  procedures are carried out by a GMC‑registered doctor.
+                  At Healing-PRP Clinics in St Albans, we provide doctor-led regenerative hair treatments for 
+                  men and women experiencing hair thinning or hair loss. Our approach focuses on evidence-based 
+                  treatments such as PRP and regenerative protocols, 
+                  tailored to individual needs following a medical consultation.
+
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
