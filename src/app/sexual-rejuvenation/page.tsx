@@ -595,7 +595,7 @@ export default function SexualRejuvenationPage() {
       </section>
 
       {/* PRP Explanation Section */}
-      <section id="what-is-prp" className="py-20 lg:py-32 bg-slate-50">
+      <section id="what-is-prp" className="py-12 lg:py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
