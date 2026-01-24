@@ -139,6 +139,20 @@ export default function FAQPage() {
     })),
   };
 
+  // ✅ Motion variants (required for the Hero animations)
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+  };
+
   return (
     <>
       {/* ✅ FAQ Structured Data (SEO) */}
@@ -150,8 +164,8 @@ export default function FAQPage() {
       />
 
       {/* Hero Section */}
-<section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
-  {/* Background Image */}
+       <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
+   {/* Background Image */}
   <div className="absolute inset-0 z-0">
     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
     <img
