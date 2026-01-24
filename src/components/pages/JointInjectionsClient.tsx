@@ -16,7 +16,13 @@ import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
 
-export default function JointInjectionsClient() {
+type JointInjectionsClientProps = {
+  locationName?: string;
+};
+
+export default function JointInjectionsClient({
+  locationName = "St Albans",
+}: JointInjectionsClientProps) {
   const [expandedTreatment, setExpandedTreatment] = useState<string | null>(
     null
   );
@@ -244,7 +250,7 @@ export default function JointInjectionsClient() {
                   className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
                   variants={itemVariants}
                 >
-                  Private Joint Injections in St Albans | Healing-PRP Clinics
+                  Private Joint Injections in {locationName} | Healing-PRP Clinics
                 </motion.h1>
 
                 <motion.p
@@ -252,7 +258,7 @@ export default function JointInjectionsClient() {
                   variants={itemVariants}
                 >
                   GP-led pain relief for arthritis, sports injuries & joint
-                  conditions in a discreet, CQC‑compliant setting. Serving patients across Hertfordshire.
+                  conditions in a discreet, CQC‑compliant setting.
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
@@ -780,7 +786,7 @@ export default function JointInjectionsClient() {
               variants={itemVariants}
             >
               Find answers to the most frequently asked questions about our
-              joint injection treatments and services in St Albans.
+              joint injection treatments and services in {locationName}.        
             </motion.p>
             <motion.div
               className="space-y-4 mt-4"
