@@ -242,7 +242,7 @@ export default function FAQPage() {
               className="bg-white rounded-xl border overflow-hidden"
             >
               <button
-                onClick={() => toggleFAQ(index)}
+                onClick={() => toggleFAQ(key)}
                 className="w-full p-6 flex justify-between text-left"
               >
                 <span className="font-raleway text-slate-900">
