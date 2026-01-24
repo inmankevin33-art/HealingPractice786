@@ -754,7 +754,7 @@ export default function SexualRejuvenationPage() {
               className="text-sm font-inter text-slate-600 mb-8 max-w-4xl leading-relaxed"
               variants={itemVariants}
             >
-              Peyronie's Disease occurs when fibrous scar tissue (plaques)
+              Peyronie&apos;s Disease Disease occurs when fibrous scar tissue (plaques)
               forms in the tunica albuginea, causing penile curvature,
               indentation, pain, and sometimes shortening. It often follows
               micro‑trauma; in many cases, the cause is unclear. Emotional
