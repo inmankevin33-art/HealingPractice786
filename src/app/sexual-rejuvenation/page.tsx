@@ -146,7 +146,7 @@ export default function SexualRejuvenationPage() {
     },
     {
       name: "Exomine® P‑Shot",
-      price: "£1,250",
+      price: "",
       description:
         "Advanced PRP treatment with stronger, longer-lasting results",
       benefits: [
@@ -187,7 +187,7 @@ export default function SexualRejuvenationPage() {
     },
     {
       name: "O‑Shot®",
-      price: "£750",
+      price: "",
       description:
         "Female rejuvenation for improved sensitivity and vaginal health",
       benefits: [
@@ -233,7 +233,7 @@ export default function SexualRejuvenationPage() {
     },
     {
       name: "Exomine® O‑Shot",
-      price: "£1,250",
+      price: "",
       description: "Advanced female rejuvenation with enhanced results",
       benefits: [
         "Improves natural lubrication & sensitivity",
