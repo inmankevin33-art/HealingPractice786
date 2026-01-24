@@ -102,7 +102,7 @@ export default function FacialAestheticsPage() {
       name: "PRP Hair Restoration Treatment",
       price: "",
       description:
-        Doctor-led platelet-rich plasma (PRP) injections designed to stimulate hair follicles and support natural hair regrowth",
+        "Doctor-led platelet-rich plasma (PRP) injections designed to stimulate hair follicles and support natural hair regrowth",
       benefits: [
         "Stimulate dormant hair follicles using growth factors from your own blood",
         "Support thicker, stronger hair growth over time",
