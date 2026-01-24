@@ -50,25 +50,30 @@ const Header = () => {
   // No theme initialization; dark mode removed
 
   const menuItems = [
-    // { name: "About", hasDropdown: false, href: "/about" },
-    {
-      name: "Sexual Rejuvenation",
-      hasDropdown: false,
-      href: "/sexual-rejuvenation",
-    },
-    {
-      name: "Joint Injections",
-      hasDropdown: false,
-      href: "/joint-injections",
-    },
-    {
-      name: "Facial Aesthetics",
-      hasDropdown: false,
-      href: "/facial-aesthetics",
-    },
-    { name: "Blog", hasDropdown: false, href: "/blog" },
-    { name: "Contact", hasDropdown: false, href: "/contact" },
-  ];
+  // { name: "About", hasDropdown: false, href: "/about" },
+  {
+    name: "Sexual Rejuvenation",
+    hasDropdown: false,
+    href: "/sexual-rejuvenation",
+  },
+  {
+    name: "Joint Injections",
+    hasDropdown: false,
+    href: "/joint-injections",
+  },
+  {
+    name: "Facial Aesthetics",
+    hasDropdown: false,
+    href: "/facial-aesthetics",
+  },
+  {
+    name: "Prices",
+    hasDropdown: false,
+    href: "/prices",
+  },
+  { name: "Blog", hasDropdown: false, href: "/blog" },
+  { name: "Contact", hasDropdown: false, href: "/contact" },
+];
 
   const containerVariants = {
     hidden: { opacity: 0 },
