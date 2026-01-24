@@ -8,12 +8,12 @@ import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
 
 export default function FAQPage() {
-  const [openFAQIndex, setOpenFAQIndex] = useState<string | null>(null);
+  const [openFAQKey, setOpenFAQKey] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
   const toggleFAQ = (key: string) => {
-    setOpenFAQIndex(openFAQIndex === key ? null : key);
+    setOpenFAQKey(openFAQKey === key ? null : key);
   };
 
   useEffect(() => {
