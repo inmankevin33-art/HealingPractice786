@@ -575,6 +575,8 @@ export default function SexualRejuvenationPage() {
               <p>
                 Serving Harpenden, Watford, Welwyn Garden City, Hitchin, Luton,
                 Hertford, and London.
+                All treatments begin with a medical consultation to assess suitability.
+                Recommendations are based on individual clinical assessment and may not be appropriate for everyone.
               </p>
             </motion.div>
             <motion.div variants={itemVariants}>
