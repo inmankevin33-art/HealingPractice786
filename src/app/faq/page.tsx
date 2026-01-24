@@ -234,9 +234,11 @@ export default function FAQPage() {
       {/* FAQs */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-4xl mx-auto px-6 space-y-4">
-          {faqs.map((faq, index) => (
+          {faqs.map((faq, index) => {
+           const key = `faq-${index}`;
+           return (
             <div
-              key={index}
+              key={key}
               className="bg-white rounded-xl border overflow-hidden"
             >
               <button
@@ -246,11 +248,11 @@ export default function FAQPage() {
                 <span className="font-raleway text-slate-900">
                   {faq.question}
                 </span>
-                {openFAQIndex === index ? <FaMinus /> : <FaPlus />}
+                {openFAQKey === key ? <FaMinus /> : <FaPlus />}
               </button>
 
               <AnimatePresence>
-                {openFAQIndex === index && (
+                {openFAQIndex === key && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
@@ -263,7 +265,8 @@ export default function FAQPage() {
                 )}
               </AnimatePresence>
             </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
