@@ -17,7 +17,7 @@ import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
 
-export default function JointInjectionsPage() {
+export default function JointInjectionsClient() {
   const [expandedTreatment, setExpandedTreatment] = useState<string | null>(
     null
   );
