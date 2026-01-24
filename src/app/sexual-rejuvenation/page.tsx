@@ -378,6 +378,14 @@ export default function SexualRejuvenationPage() {
                     </a>
                   )}
 
+                  {/* NEW: Prices button */}
+                    <Link
+                      href="/prices"
+                      className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+                    >
+                      View Treatment Prices
+                    </Link>
+
                   <button className="px-6 w-full md:w-max inline-flex items-center justify-center md:text-sm text-xs items-center gap-2 py-3 cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] rounded-lg font-inter bg-white font-medium transition-all duration-300 hover:bg-[var(--brand-blue-50)]">
                     <Link className="flex items-center gap-2" href="/contact">
                       <FaEnvelope className="w-5 h-5" />
