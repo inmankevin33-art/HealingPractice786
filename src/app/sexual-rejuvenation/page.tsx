@@ -456,7 +456,7 @@ export default function SexualRejuvenationPage() {
       {/* Introduction Section */}
 
       {/* Understanding ED Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-[#f6f7ff] to-transparent">
+      <section className="py-12 lg:py-24 bg-gradient-to-b from-[#f6f7ff] to-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
