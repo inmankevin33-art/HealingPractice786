@@ -12,7 +12,7 @@ export default function FAQPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
-  const toggleFAQ = (key: strings) => {
+  const toggleFAQ = (key: string) => {
     setOpenFAQIndex(openFAQIndex === key ? null : key);
   };
 
