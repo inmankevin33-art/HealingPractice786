@@ -217,9 +217,9 @@ export default function FAQPage() {
               href="/contact"
               className="px-6 py-3 border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] rounded-lg flex gap-2 items-center bg-white"
             >
-              <FaEnvelope /> Contact Us
-            </Link>
-         </div>
+            <FaEnvelope /> Contact Us
+          </Link>
+        </div>
       </section>
 
       {/* FAQs */}
