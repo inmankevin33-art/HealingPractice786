@@ -252,7 +252,7 @@ export default function FAQPage() {
               </button>
 
               <AnimatePresence>
-                {openFAQIndex === key && (
+                {openFAQKey === key && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
