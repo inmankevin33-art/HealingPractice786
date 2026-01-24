@@ -561,13 +561,11 @@ export default function SexualRejuvenationPage() {
               variants={itemVariants}
             >
               <p>
-                Sexual health is deeply personal — and it deserves thoughtful,
-                evidence‑based care. At Healing‑PRP Clinics in St Albans,
-                Hertfordshire, we specialise in advanced regenerative treatments
-                for conditions such as erectile dysfunction and reduced
-                sensitivity. Our goal is to naturally support tissue repair,
-                improve blood flow, and enhance intimate confidence — all in a
-                confidential, professional clinical setting.
+                Sexual health is deeply personal and deserves thoughtful, evidence-based care. 
+                At Healing-PRP Clinics in St Albans, we provide doctor-led regenerative treatments 
+                for concerns such as erectile dysfunction (ED) and reduced sensitivity. 
+                Our approach focuses on supporting the body’s natural repair processes and healthy blood flow, 
+                delivered within a confidential, professional clinical setting and tailored to each individual.
               </p>
               <p>
                 We only use CE‑marked, medical‑grade products and prepare
@@ -756,7 +754,7 @@ export default function SexualRejuvenationPage() {
               className="text-sm font-inter text-slate-600 mb-8 max-w-4xl leading-relaxed"
               variants={itemVariants}
             >
-              Peyronie&apos;s Disease occurs when fibrous scar tissue (plaques)
+              Peyronie's Disease occurs when fibrous scar tissue (plaques)
               forms in the tunica albuginea, causing penile curvature,
               indentation, pain, and sometimes shortening. It often follows
               micro‑trauma; in many cases, the cause is unclear. Emotional
