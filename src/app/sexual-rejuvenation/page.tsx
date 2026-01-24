@@ -100,7 +100,7 @@ export default function SexualRejuvenationPage() {
   const treatments = [
     {
       name: "P‑Shot®",
-      price: "£750",
+      price: "",
       description:
         "Standard PRP treatment for mild to moderate erectile dysfunction",
       benefits: [
