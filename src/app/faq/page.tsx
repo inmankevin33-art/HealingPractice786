@@ -248,7 +248,14 @@ export default function FAQPage() {
                 <span className="font-raleway text-slate-900">
                   {faq.question}
                 </span>
-                {openFAQKey === key ? <FaMinus /> : <FaPlus />}
+
+                <motion.span
+                  animate={{ rotate: openFAQKey === key ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center"
+                >
+                  {openFAQKey === key ? <FaMinus /> : <FaPlus />}
+                </motion.span>
               </button>
 
               <AnimatePresence>
