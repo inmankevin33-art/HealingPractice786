@@ -653,7 +653,7 @@ export default function SexualRejuvenationPage() {
       </section>
 
       {/* Understanding Premature Ejaculation Section */}
-      <section id="premature-ejaculation" className="py-20 lg:py-32 bg-white">
+      <section id="premature-ejaculation" className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -737,7 +737,7 @@ export default function SexualRejuvenationPage() {
       </section>
 
       {/* Understanding Peyronie's Disease Section */}
-      <section id="peyronies-disease" className="py-20 lg:py-32 bg-white">
+      <section id="peyronies-disease" className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -821,7 +821,7 @@ export default function SexualRejuvenationPage() {
       </section>
 
       {/* Treatments Section */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -1030,7 +1030,7 @@ export default function SexualRejuvenationPage() {
       </section>
 
       {/* Comparison Table Section */}
-      <section id="comparison" className="py-20 lg:py-32 bg-slate-50">
+      <section id="comparison" className="py-12 lg:py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -1146,7 +1146,7 @@ export default function SexualRejuvenationPage() {
       </section>
 
       {/* Shockwave Therapy Section */}
-      <section className="py-20 lg:py-32 bg-slate-50 relative">
+      <section className="py-12 lg:py-16 bg-slate-50 relative">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <div
@@ -1235,7 +1235,7 @@ export default function SexualRejuvenationPage() {
       </section>
 
       {/* FAQs Section */}
-      <section id="faqs" className="py-20 lg:py-32 bg-white">
+      <section id="faqs" className="py-12 lg:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
