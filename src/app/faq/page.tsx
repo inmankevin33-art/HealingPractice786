@@ -219,8 +219,7 @@ export default function FAQPage() {
             >
               <FaEnvelope /> Contact Us
             </Link>
-          </div>
-        </div>
+         </div>
       </section>
 
       {/* FAQs */}
