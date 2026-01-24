@@ -141,7 +141,7 @@ export default function FacialAestheticsPage() {
       },
     },
     {
-      name: Hair Exosome Regeneration Treatment
+      name: "Hair Exosome Regeneration Treatment",
       price: "",
       description:
          "Advanced regenerative scalp treatment using purified exosomes to support hair follicle activity and scalp health. As with all regenerative treatments, individual response varies and results cannot be guaranteed.",
@@ -183,90 +183,6 @@ export default function FacialAestheticsPage() {
             question: "Is hair exosome treatment safe for people with a history of cancer?",
             answer: 
               "There is currently no evidence that exosome-based hair treatments cause cancer. However, as exosomes are involved in cellular signalling, treatment is usually avoided in individuals with active cancer or those undergoing cancer treatment. Patients with a past history of cancer are assessed on an individual basis during consultation.",
-          },
-        ],
-      },
-    },
-    {
-      name: "Collagen Stimulating Threads",
-      price: "From £200",
-      description:
-        "Non‑surgical treatment using biodegradable threads to lift and tighten while stimulating collagen",
-      benefits: [
-        "Lift and tighten sagging areas (jawline, cheeks, neck)",
-        "Stimulate natural collagen production",
-        "Improve firmness and skin texture over time",
-        "Quick procedure with minimal downtime",
-      ],
-      duration: "10–15 minutes",
-      course: "Single treatment",
-      expandedContent: {
-        howItWorks:
-          "Threads are very quick to insert — the procedure usually takes 10–15 minutes. With numbing, the treatment is essentially pain‑free. Ideal for the neck, jawline, and cheeks. Mild swelling or bruising may occur and typically settles within a few days. There's essentially no downtime.",
-        whoIsItFor: [
-          "Those with mild to moderate sagging",
-          "People wanting non-surgical lifting",
-          "Anyone seeking natural collagen stimulation",
-          "Those wanting to improve jawline definition",
-          "People looking for subtle, natural results",
-        ],
-        commonQuestions: [
-          {
-            question: "Are collagen stimulating threads painful?",
-            answer:
-              "No — threads are quick to insert (around 10–15 minutes) and essentially pain‑free with numbing, with no downtime.",
-          },
-          {
-            question: "How long do thread results last?",
-            answer:
-              "Results develop gradually over 6–12 weeks, with improvements lasting 12–18 months depending on age, skin quality, and lifestyle.",
-          },
-          {
-            question: "Can threads be combined with other treatments?",
-            answer:
-              "Yes, threads can be combined with PRP Microneedling, HA boosters, or Polynucleotides to further enhance results.",
-          },
-        ],
-      },
-    },
-    {
-      name: "Botox Anti‑Wrinkle Injections",
-      price: "3 Areas £200",
-      description:
-        "Targeted muscle relaxation to smooth lines and prevent new wrinkles",
-      benefits: [
-        "Smooth existing expression lines",
-        "Prevent formation of new wrinkles",
-        "Quick treatment with minimal discomfort",
-        "Natural-looking results",
-      ],
-      duration: "15–20 minutes",
-      course: "Single treatment",
-      expandedContent: {
-        howItWorks:
-          "Tiny injections are placed into specific facial muscles to relax them and prevent wrinkle formation. The treatment is quick with minimal discomfort and no downtime. Common areas treated include forehead, frown lines, and crow's feet.",
-        whoIsItFor: [
-          "Those with expression lines",
-          "People wanting to prevent new wrinkles",
-          "Anyone seeking quick, effective treatment",
-          "Those wanting natural-looking results",
-          "People with dynamic wrinkles",
-        ],
-        commonQuestions: [
-          {
-            question: "How much does Botox cost in Hertfordshire?",
-            answer:
-              "Our anti‑wrinkle Botox injections are £200 for 3 areas at Healing‑PRP Clinics in St Albans.",
-          },
-          {
-            question: "How long do Botox results last?",
-            answer:
-              "Effects begin within 3–5 days, with full results seen at around 2 weeks. The smoother appearance lasts for 3–4 months.",
-          },
-          {
-            question: "What areas can be treated with Botox?",
-            answer:
-              "Common areas include forehead, frown lines, and crow's feet. We can discuss other areas during your consultation.",
           },
         ],
       },
