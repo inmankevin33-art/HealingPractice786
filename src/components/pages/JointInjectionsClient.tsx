@@ -1,6 +1,5 @@
 "use client";
 
-export default function JointInjectionsClient() {
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
@@ -16,7 +15,6 @@ import {
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
-
 export default function JointInjectionsClient() {
   const [expandedTreatment, setExpandedTreatment] = useState<string | null>(
     null
