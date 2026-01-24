@@ -507,12 +507,13 @@ export default function SexualRejuvenationPage() {
             </motion.p>
 
             <motion.p
-              className="text-sm font-inter text-slate-600 leading-relaxed max-w-3xl"
+              className="text-sm font-inter text-slate-600 leading-relaxed mb-3"
               variants={itemVariants}
             >
               Because PRP is derived from your own blood, the treatment is autologous, 
-              and minimally invasive. While results vary between individuals, PRP therapy is designed to address contributing factors rather than simply 
-              masking symptoms, with the aim of supporting erectile function, confidence, and intimacy over time.
+              and minimally invasive. While results vary between individuals, PRP therapy
+              is designed to address contributing factors rather than simply masking symptoms, 
+              with the aim of supporting erectile function, confidence, and intimacy over time.
             </motion.p>
             <motion.div variants={itemVariants}>
               {isDesktop ? (
