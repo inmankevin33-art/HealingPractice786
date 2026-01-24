@@ -346,16 +346,13 @@ export default function SexualRejuvenationPage() {
                   variants={itemVariants}
                 >
                   Sexual Rejuvenation & Natural Regeneration Treatments | Healing-PRP Clinics
-                  Confidential Care by a GMC Registered Experienced Doctor
                 </motion.h1>
 
                 <motion.p
                   className="md:text-base text-xs font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
                 >
-                  Patient centered, non‑surgical solutions to restore confidence,
-                  sensitivity and intimacy — delivered by a fully insured,
-                  GMC‑registered doctor.
+                  Patient-centred, non-surgical solutions to support confidence, sensitivity and intimacy — delivered by a fully insured, GMC-registered doctor.
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
