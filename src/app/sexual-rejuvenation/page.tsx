@@ -1131,10 +1131,10 @@ export default function SexualRejuvenationPage() {
                         Cost
                       </td>
                       <td className="px-6 py-4 font-inter text-slate-600">
-                        £750 (London clinics typically £1,300–£1,500)
+                        £1,300–£1,500 (London clinics)
                       </td>
                       <td className="px-6 py-4 font-inter text-slate-600">
-                        £1,250 (London clinics typically £1,500–£1,700)
+                        £1,500–£1,700 (London clinics)
                       </td>
                     </tr>
                   </tbody>
