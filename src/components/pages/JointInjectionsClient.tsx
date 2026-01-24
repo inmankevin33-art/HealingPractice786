@@ -929,4 +929,3 @@ export default function JointInjectionsClient() {
     </>
   );
 }
-}
