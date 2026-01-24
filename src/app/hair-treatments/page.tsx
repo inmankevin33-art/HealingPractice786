@@ -121,23 +121,21 @@ export default function FacialAestheticsPage() {
         "Individuals looking to support natural hair regrowth",
         "Those wanting to improve scalp health and hair quality",
       ],
-
-        ],
-        commonQuestions: [
-          {
-            question: "How quickly will I see results from PRP hair treatment?",
-            answer:
-              "PRP works gradually by supporting the natural hair growth cycle. Early improvements in hair quality or shedding may be noticed within 2–3 months, with more visible changes typically developing over 4–6 months. Results vary between individuals.",
-          },
-          {
-            question: "Which areas of the scalp can be treated with PRP?",
-            answer:
-              "PRP can be used to treat areas of thinning such as the crown, hairline, temples, and diffuse scalp thinning, depending on individual assessment.",
-          },
-          {
-           question: "Is PRP hair treatment safe?",
-           answer:
-             "Yes. PRP is derived from your own blood and is generally well tolerated when performed by a trained medical practitioner following appropriate assessment.",
+      commonQuestions: [
+        {
+          question: "How quickly will I see results from PRP hair treatment?",
+          answer: 
+            "PRP works gradually by supporting the natural hair growth cycle. Early improvements in hair quality or shedding may be noticed within 2–3 months, with more visible changes typically developing over 4–6 months. Results vary between individuals.",
+        },
+        {
+          question: "Which areas of the scalp can be treated with PRP?",
+          answer: 
+            "PRP can be used to treat areas of thinning such as the crown, hairline, temples, and diffuse scalp thinning, depending on individual assessment.",
+        },
+        {
+          question: "Is PRP hair treatment safe?",
+          answer: 
+            "Yes. PRP is derived from your own blood and is generally well tolerated when performed by a trained medical practitioner following appropriate assessment.",
           },
         ],
       },
@@ -168,19 +166,23 @@ export default function FacialAestheticsPage() {
         commonQuestions: [
           {
             question: "How long do hair exosome treatment results last?",
-            answer: "Hair exosome treatments work gradually by supporting the natural hair growth cycle. Improvements in hair quality may be noticed over several months, with results typically assessed at 6–12 months. Longevity varies depending on individual factors and ongoing hair loss.",
+            answer: 
+              "Hair exosome treatments work gradually by supporting the natural hair growth cycle. Improvements in hair quality may be noticed over several months, with results typically assessed at 6–12 months. Longevity varies depending on individual factors and ongoing hair loss.",
           },
           {
             question: "What is the downtime after hair exosome treatment?",
-            answer: "Minimal — most patients return to normal activities the same day. Mild scalp redness, sensitivity, or tightness may occur and usually settles within 24–48 hours.",
+            answer: 
+              "Minimal — most patients return to normal activities the same day. Mild scalp redness, sensitivity, or tightness may occur and usually settles within 24–48 hours.",
           },
           {
             question: "How many hair exosome treatment sessions are recommended?",
-            answer: "Many patients are advised to have 1–2 sessions, depending on individual assessment and treatment goals. Some may benefit from a repeat treatment after several months.",
+            answer: 
+              "Many patients are advised to have 1–2 sessions, depending on individual assessment and treatment goals. Some may benefit from a repeat treatment after several months.",
           },
           {
             question: "Is hair exosome treatment safe for people with a history of cancer?",
-            answer: "There is currently no evidence that exosome-based hair treatments cause cancer. However, as exosomes are involved in cellular signalling, treatment is usually avoided in individuals with active cancer or those undergoing cancer treatment. Patients with a past history of cancer are assessed on an individual basis during consultation.",
+            answer: 
+              "There is currently no evidence that exosome-based hair treatments cause cancer. However, as exosomes are involved in cellular signalling, treatment is usually avoided in individuals with active cancer or those undergoing cancer treatment. Patients with a past history of cancer are assessed on an individual basis during consultation.",
           },
         ],
       },
