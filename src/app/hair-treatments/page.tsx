@@ -99,87 +99,88 @@ export default function FacialAestheticsPage() {
 
   const treatments = [
     {
-      name: "Non‑Crosslinked Hyaluronic Acid (HA) Skin Boosters",
-      price: "From £300",
+      name: "PRP Hair Restoration Treatment",
+      price: "",
       description:
-        "Light, hydrating injections designed to deeply rehydrate and plump the skin",
+        Doctor-led platelet-rich plasma (PRP) injections designed to stimulate hair follicles and support natural hair regrowth",
       benefits: [
-        "Bind and attract water for intense, long‑lasting hydration",
-        "Improve elasticity and skin firmness",
-        "Soften fine lines and crepey texture",
-        "Support a healthier skin barrier and glow",
+        "Stimulate dormant hair follicles using growth factors from your own blood",
+        "Support thicker, stronger hair growth over time",
+        "Improve scalp health and blood supply to hair follicles",
+        "Help slow ongoing hair thinning and shedding",
       ],
       duration: "30–45 minutes",
       course: "Up to 3 sessions",
       expandedContent: {
-        howItWorks:
-          "After numbing cream, tiny amounts of HA are injected just under the skin, creating small surface 'blips' that settle within hours. Mild redness or small injection marks can occur and typically resolve within 1–2 days (occasional light bruising is possible).",
-        whoIsItFor: [
-          "Those with dehydrated or dull skin",
-          "People wanting to improve skin plumpness",
-          "Anyone seeking enhanced skin glow",
-          "Those with fine lines and crepey texture",
-          "People wanting natural-looking hydration",
+      howItWorks:
+        "A small blood sample is taken and processed to extract platelet-rich plasma (PRP). After numbing cream is applied to the scalp, tiny amounts of PRP are injected into targeted areas to stimulate hair follicles. Mild redness, tenderness, or pinpoint marks may occur and usually settle within 1–2 days (occasional light bruising is possible).",
+      whoIsItFor: [
+        "Men and women experiencing hair thinning or early hair loss",
+        "Those with pattern hair loss or diffuse thinning",
+        "People seeking a non-surgical, regenerative approach",
+        "Individuals looking to support natural hair regrowth",
+        "Those wanting to improve scalp health and hair quality",
+      ],
+
         ],
         commonQuestions: [
           {
-            question: "How quickly will I see results from HA skin boosters?",
+            question: "How quickly will I see results from PRP hair treatment?",
             answer:
-              "Hydration improvement is often noticeable within 1–2 weeks, with results generally lasting 6–9 months or more depending on individual skin type and water intake.",
+              "PRP works gradually by supporting the natural hair growth cycle. Early improvements in hair quality or shedding may be noticed within 2–3 months, with more visible changes typically developing over 4–6 months. Results vary between individuals.",
           },
           {
-            question: "What areas can be treated with HA boosters?",
+            question: "Which areas of the scalp can be treated with PRP?",
             answer:
-              "HA skin boosters can be used on the face (£200), neck (£100), and hands (£150).",
+              "PRP can be used to treat areas of thinning such as the crown, hairline, temples, and diffuse scalp thinning, depending on individual assessment.",
           },
           {
-            question: "Are HA skin boosters safe?",
-            answer:
-              "Yes, hyaluronic acid is naturally found in the body and these treatments are very safe when performed by a qualified practitioner.",
+           question: "Is PRP hair treatment safe?",
+           answer:
+             "Yes. PRP is derived from your own blood and is generally well tolerated when performed by a trained medical practitioner following appropriate assessment.",
           },
         ],
       },
     },
     {
-      name: "Platelet‑Rich Plasma (PRP) Microneedling",
-      price: "From £120",
+      name: Hair Exosome Regeneration Treatment
+      price: "",
       description:
-        "Natural rejuvenation using your body's own PRP combined with microneedling",
+         "Advanced regenerative scalp treatment using purified exosomes to support hair follicle activity and scalp health. As with all regenerative treatments, individual response varies and results cannot be guaranteed.",
       benefits: [
-        "Improves acne scars and post‑acne marks",
-        "Promotes skin tightening and firmness",
-        "Stimulates collagen and elastin production",
-        "Reduces fine lines and wrinkles",
-        "Enhances skin tone, texture, and glow",
-        "Minimises the appearance of large pores",
+         "Support hair follicle signalling and regeneration",
+         "May help improve hair density and quality over time",
+         "Enhance scalp environment and follicle function",
+         "Often combined with PRP for a synergistic approach",
       ],
-      duration: "45–60 minutes",
-      course: "2–3 sessions recommended",
+      duration: "20–40minutes",
+      course: "1-2 sessions recommended",
       expandedContent: {
         howItWorks:
-          "A small amount of blood is taken and processed into concentrated PRP. This is applied to the skin while microneedling creates controlled micro‑channels, allowing the PRP to penetrate deeply for maximum regeneration. The treatment has minimal downtime with most clients returning to normal activities the same day.",
+         "Exosomes are tiny vesicles that act as messengers between cells. In hair treatments, they deliver signalling molecules such as growth factors and proteins that help support communication around hair follicles and the surrounding scalp tissue. This signalling may encourage follicles to remain in, or return to, the active growth phase and support a healthier scalp environment. Exosomes do not create new hair follicles but aim to support the function of existing ones over time. Treatment is usually well tolerated, with mild redness or scalp sensitivity that typically settles within 24–48 hours.",
         whoIsItFor: [
-          "Those with acne scars or post-acne marks",
-          "People wanting to improve skin texture",
-          "Anyone seeking natural collagen stimulation",
-          "Those with fine lines and wrinkles",
-          "People wanting to minimize pore appearance",
+         "Men and women with early to moderate hair thinning",
+         "Those with pattern hair loss or diffuse scalp thinning",
+         "Individuals seeking an advanced, non-surgical regenerative option",
+         "People who have had limited response to PRP alone",
+         "Those looking to support scalp health and hair quality",
         ],
         commonQuestions: [
           {
-            question: "How long do PRP microneedling results last?",
-            answer:
-              "Initial glow appears within 1–2 weeks, with collagen stimulation continuing over 4–6 weeks. Effects typically last 6–12 months depending on skin quality and lifestyle.",
+            question: "How long do hair exosome treatment results last?",
+            answer: "Hair exosome treatments work gradually by supporting the natural hair growth cycle. Improvements in hair quality may be noticed over several months, with results typically assessed at 6–12 months. Longevity varies depending on individual factors and ongoing hair loss.",
           },
           {
-            question: "What is the downtime for PRP microneedling?",
-            answer:
-              "Minimal — most clients return to normal activities the same day with just mild redness that subsides within 24-48 hours.",
+            question: "What is the downtime after hair exosome treatment?",
+            answer: "Minimal — most patients return to normal activities the same day. Mild scalp redness, sensitivity, or tightness may occur and usually settles within 24–48 hours.",
           },
           {
-            question: "How many sessions are recommended?",
-            answer:
-              "Best results are achieved with 2–3 sessions, with initial improvements visible within 1–2 weeks.",
+            question: "How many hair exosome treatment sessions are recommended?",
+            answer: "Many patients are advised to have 1–2 sessions, depending on individual assessment and treatment goals. Some may benefit from a repeat treatment after several months.",
+          },
+          {
+            question: "Is hair exosome treatment safe for people with a history of cancer?",
+            answer: "There is currently no evidence that exosome-based hair treatments cause cancer. However, as exosomes are involved in cellular signalling, treatment is usually avoided in individuals with active cancer or those undergoing cancer treatment. Patients with a past history of cancer are assessed on an individual basis during consultation.",
           },
         ],
       },
@@ -492,7 +493,7 @@ export default function FacialAestheticsPage() {
               className="text-2xl lg:text-4xl font-raleway text-slate-900 mb-8 text-center"
               variants={itemVariants}
             >
-              Our Facial Aesthetics Treatments
+              Our Hair Restoration Treatments
             </motion.h2>
 
             <div className="space-y-16">
