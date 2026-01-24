@@ -476,12 +476,12 @@ export default function SexualRejuvenationPage() {
               className="text-sm font-inter text-slate-600 leading-relaxed mb-4"
               variants={itemVariants}
             >
-              Erectile dysfunction (ED) is a common condition where achieving or
-              maintaining an erection becomes difficult. It often results from a
-              combination of factors such as reduced blood flow, stress,
-              hormonal imbalance, diabetes, high blood pressure, or certain
-              medications.
-            </motion.p>
+             Erectile dysfunction (ED) is a common condition in which achieving 
+             or maintaining an erection becomes difficult. It often results 
+             from a combination of factors, including reduced blood flow, stress, 
+             hormonal imbalance, diabetes, high blood pressure, nerve changes, 
+             or certain medications.
+             </motion.p>
 
             <motion.p
               className="text-sm font-inter text-slate-600 leading-relaxed mb-3 "
@@ -498,22 +498,23 @@ export default function SexualRejuvenationPage() {
               className="text-sm font-inter text-slate-600 leading-relaxed mb-3"
               variants={itemVariants}
             >
-              At Healing-PRP, we understand that ED can affect both physical and
-              emotional well-being. Many men prefer to avoid medication or
-              surgery, seeking a natural, regenerative alternative instead. Our
-              treatments — including the P-Shot® and Exomine® P-Shot — use your
-              body’s own PRP to stimulate tissue repair, vascular regeneration,
-              and increased sensitivity.
+              At Healing-PRP Clinics, we recognise that ED can affect both physical 
+              confidence and emotional wellbeing. Many men prefer to avoid invasive 
+              procedures and instead explore natural, regenerative options. 
+              Our treatments — including PRP-based therapies such as the P-Shot® 
+              and Exomine® P-Shot — use your body’s own growth 
+              factors to support tissue healing and sensitivity.
             </motion.p>
 
             <motion.p
               className="text-sm font-inter text-slate-600 leading-relaxed max-w-3xl"
               variants={itemVariants}
             >
-              Because PRP is derived from your own blood, the therapy is safe,
-              drug-free, and minimally invasive. It targets the root causes of
-              erectile dysfunction, not just the symptoms — helping restore
-              confidence, performance, and intimacy over time.
+              Because PRP is derived from your own blood, the treatment is autologous, 
+              drug-free, and minimally invasive. While results vary between individuals, 
+              PRP therapy is designed to address contributing factors rather than simply 
+              masking symptoms, with the aim of supporting erectile function, 
+              confidence, and intimacy over time.
             </motion.p>
             <motion.div variants={itemVariants}>
               {isDesktop ? (
