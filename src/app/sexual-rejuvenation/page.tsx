@@ -345,15 +345,15 @@ export default function SexualRejuvenationPage() {
                   className="text-2xl lg:text-3xl md:max-w-2xl text-gray-700 font-raleway leading-tight mb-2"
                   variants={itemVariants}
                 >
-                  Erectile Dysfunction & Natural Regeneration Treatment with PRP
-                  — Confidential Care by a GMC Registered Experienced Doctor
+                  Sexual Rejuvenation & Natural Regeneration Treatments | Healing-PRP Clinics
+                  Confidential Care by a GMC Registered Experienced Doctor
                 </motion.h1>
 
                 <motion.p
                   className="md:text-base text-xs font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
                 >
-                  Confidential, non‑surgical solutions to restore confidence,
+                  Patient centered, non‑surgical solutions to restore confidence,
                   sensitivity and intimacy — delivered by a fully insured,
                   GMC‑registered doctor.
                 </motion.p>
