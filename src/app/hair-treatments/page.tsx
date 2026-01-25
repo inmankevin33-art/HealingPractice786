@@ -358,11 +358,10 @@ export default function FacialAestheticsPage() {
               className="text-sm font-inter text-slate-600 mb-8 max-w-4xl"
               variants={itemVariants}
             >
-              At Healing‑PRP Clinics, we provide safe, natural, and effective
-              treatments to restore youthful skin, reduce fine lines, and
-              improve overall skin health. All procedures are carried out by a
-              GMC‑registered doctor with plenty of experience for expert,
-              medical‑led care.
+              At Healing-PRP Clinics, all hair restoration treatments are carried out by a 
+              GMC-registered doctor using evidence-based regenerative techniques. 
+              Each treatment plan is personalised following a medical consultation, 
+              with a focus on scalp health and supporting natural hair growth.
             </motion.p>
 
             <motion.div
