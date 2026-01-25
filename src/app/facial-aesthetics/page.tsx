@@ -228,6 +228,48 @@ export default function FacialAestheticsPage() {
       },
     },
     {
+      name: "Vampire Facial (PRP Microneedling)",
+      price: "",
+      description:
+        "Advanced skin rejuvenation using your body's own growth factors to stimulate collagen and restore radiance",
+      benefits: [
+        "Stimulates natural collagen production",
+        "Improves skin texture and acne scarring",
+        "Uses 100% natural material (your own blood)",
+        "Reduces fine lines and pigmentation",
+      ],
+      duration: "45–60 minutes",
+      course: "3–6 treatments recommended",
+      expandedContent: {
+        howItWorks:
+          "We draw a small sample of your blood and spin it in a centrifuge to isolate the Platelet-Rich Plasma (PRP). This 'liquid gold,' rich in growth factors, is then reintroduced into the skin via microneedling to trigger deep tissue repair and new collagen formation.",
+        whoIsItFor: [
+          "Those with acne scarring or uneven texture",
+          "People seeking natural rejuvenation",
+          "Anyone wanting to improve skin firmness",
+          "Those looking to reduce fine lines naturally",
+          "Patients with dull or tired-looking skin",
+        ],
+        commonQuestions: [
+          {
+            question: "How much does a Vampire Facial cost in Hertfordshire?",
+            answer:
+              "Our Vampire Facial treatments start from £250 per session at Healing‑PRP Clinics in St Albans. Packages are available for courses of 3.",
+          },
+          {
+            question: "Is the treatment painful?",
+            answer:
+              "We apply a strong topical numbing cream prior to the treatment to ensure minimal discomfort. Most patients describe the sensation as a light vibration or scratching.",
+          },
+          {
+            question: "What is the downtime?",
+            answer:
+              "You can expect redness similar to a mild sunburn for 24–48 hours. Most patients can return to normal activities the next day with mineral makeup.",
+          },
+        ],
+      },
+    },
+    {
       name: "Collagen Stimulating Threads",
       price: "",
       description:
