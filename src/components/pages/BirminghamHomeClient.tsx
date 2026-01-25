@@ -153,7 +153,7 @@ export default function BirminghamHomeClient() {
             <div className="relative h-[400px] bg-slate-100 rounded-2xl overflow-hidden shadow-xl">
                <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 to-transparent pointer-events-none" />
                <img 
-                 src="/about_img.png" 
+                 src="/herobg.jpg" 
                  alt="Doctor consultation" 
                  className="w-full h-full object-cover"
                />
