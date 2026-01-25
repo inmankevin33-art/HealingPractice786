@@ -112,7 +112,7 @@ export default function FacialAestheticsClient({
   const treatments = [
     {
       name: "Polynucleotide Treatments",
-      price: "From £175",
+      price: "", // Prices removed as requested
       description:
         "Advanced skin boosters that repair, hydrate, and rejuvenate at a cellular level",
       benefits: [
@@ -143,7 +143,7 @@ export default function FacialAestheticsClient({
           {
             question: "What areas can be treated?",
             answer:
-              "Polynucleotides can be used on the eyes (£175), face & eyes (£250), and neck (£150) areas.",
+              "Polynucleotides can be used on the eyes, face & eyes, and neck areas.",
           },
           {
             question: "Can polynucleotides be combined with other treatments?",
@@ -155,7 +155,7 @@ export default function FacialAestheticsClient({
     },
     {
       name: "Non‑Crosslinked Hyaluronic Acid (HA) Skin Boosters",
-      price: "From £150",
+      price: "", // Prices removed as requested
       description:
         "Light, hydrating injections designed to deeply rehydrate and plump the skin",
       benefits: [
@@ -185,7 +185,7 @@ export default function FacialAestheticsClient({
           {
             question: "What areas can be treated with HA boosters?",
             answer:
-              "HA skin boosters can be used on the face (£200), neck (£100), and hands (£150).",
+              "HA skin boosters can be used on the face, neck, and hands.",
           },
           {
             question: "Are HA skin boosters safe?",
@@ -283,7 +283,7 @@ export default function FacialAestheticsClient({
     },
     {
       name: "Vampire Facial (PRP Microneedling)",
-      price: "From £250",
+      price: "", // Prices removed as requested
       description:
         "Advanced skin rejuvenation using your body's own growth factors to stimulate collagen and restore radiance",
       benefits: [
@@ -366,7 +366,7 @@ export default function FacialAestheticsClient({
     },
     {
       name: "Botox Anti‑Wrinkle Injections",
-      price: "£200 (3 areas)",
+      price: "", // Prices removed as requested
       description:
         "Targeted muscle relaxation to smooth lines and prevent new wrinkles",
       benefits: [
@@ -806,6 +806,18 @@ export default function FacialAestheticsClient({
               ))}
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* CTA: Prices (after treatments) */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+          <Link
+            href="/prices"
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+          >
+            View Treatment Prices
+          </Link>
         </div>
       </section>
 
