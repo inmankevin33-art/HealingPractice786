@@ -352,11 +352,13 @@ export default function SexualHealthClient({
                   <span className="hidden md:block">| Confidential</span>
                 </motion.div>
 
-                <motion.h1
+               <motion.h1
                   className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
-                  Sexual Rejuvenation & Natural Regeneration in {locationName} | Healing-PRP Clinics
+                  Sexual Rejuvenation & Natural Regeneration in {locationName}
+                  {/* "block" forces this span to start on a new line */}
+                  <span className="block mt-1">Healing-PRP Clinics</span>
                 </motion.h1>
 
                 <motion.p
