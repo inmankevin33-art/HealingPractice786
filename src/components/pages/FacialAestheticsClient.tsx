@@ -196,6 +196,48 @@ export default function FacialAestheticsClient({
       },
     },
     {
+      name: "Exosome-Enhanced Skin Regeneration Therapy",
+      price: "",
+      description:
+        "A cell-free, signalling-based treatment designed to support skin repair, texture, and recovery",
+      benefits: [
+        "Delivers potent growth factors and signalling molecules",
+        "Reduces inflammation and redness (Rosacea friendly)",
+        "Accelerates skin repair and collagen synthesis",
+        "Improves skin texture, pores, and hydration",
+      ],
+      duration: "30–45 minutes",
+      course: "3–5 sessions recommended",
+      expandedContent: {
+        howItWorks:
+          "Exosomes are tiny 'messenger' vesicles derived from stem cells that contain growth factors, peptides, and anti-inflammatory signals. Unlike PRP which uses your own blood, Exosomes are a lab-purified, cell-free concentrate. We typically apply them topically immediately after microneedling, allowing these powerful signals to penetrate deep into the dermis to 'wake up' your skin cells and trigger repair.",
+        whoIsItFor: [
+          "Those with inflammatory skin conditions (Rosacea, acne)",
+          "People seeking advanced anti-aging without downtime",
+          "Patients with sun damage or uneven texture",
+          "Anyone wanting to accelerate healing after microneedling",
+          "Those looking for the latest in regenerative aesthetics",
+        ],
+        commonQuestions: [
+          {
+            question: "Are there any risks with Exosomes?",
+            answer:
+              "Exosomes are 'cell-free,' meaning they do not contain DNA or live cells, which significantly reduces the risk of immune rejection compared to stem cell therapies. However, as with any microneedling procedure, there is a minor risk of temporary redness, swelling, or very rarely, infection.",
+          },
+          {
+            question: "Who is this treatment not suitable for?",
+            answer:
+              "This treatment is not suitable for patients with active skin infections, active acne outbreaks, history of skin cancer in the treatment area, or those who are pregnant or breastfeeding. We will review your full medical history to ensure safety.",
+          },
+          {
+            question: "Are results guaranteed?",
+            answer:
+              "While Exosome therapy is at the cutting edge of regenerative medicine, individual results vary based on skin age, health, and lifestyle. As with all medical aesthetic treatments, we cannot provide a 100% guarantee of specific outcomes.",
+          },
+        ],
+      },
+    },
+    {
       name: "Platelet‑Rich Plasma (PRP) Microneedling",
       price: "",
       description:
