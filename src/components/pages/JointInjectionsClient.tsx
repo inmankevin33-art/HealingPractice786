@@ -190,6 +190,16 @@ export default function JointInjectionsClient({
 
   const faqs = [
     {
+      question: "Is the PRP treatment guaranteed to work?",
+      answer:
+        "As with all medical procedures, results cannot be 100% guaranteed. While PRP is highly effective for many patients with mild-to-moderate osteoarthritis and tendon injuries, individual responses vary based on age, severity of the condition, and overall health. We assess every patient thoroughly to ensure they have the best chance of a successful outcome.",
+    },
+    {
+      question: "Who is not suitable for PRP injections?",
+      answer:
+        "PRP may not be suitable if you have active infections, low platelet count (thrombocytopenia), severe anemia, or certain blood cancers. Patients with advanced 'bone-on-bone' arthritis may also see limited benefits compared to those with early-stage conditions. We will review your medical history during your consultation to confirm your suitability.",
+    },
+    {
       question: "How long do PRP joint injections last?",
       answer:
         "Initial improvements typically begin at 4-6 weeks, with continued benefits lasting 3-6 months. Best results are achieved with a planned course of treatments.",
