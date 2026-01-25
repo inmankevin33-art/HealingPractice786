@@ -381,7 +381,7 @@ export default function FacialAestheticsPage() {
                   className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
-                  Facial Aesthetics Treatments in St Albans | Healing-PRP Clinics
+                  Facial Aesthetics Treatments | Healing-PRP Clinics
                 </motion.h1>
 
                 <motion.p
