@@ -53,17 +53,6 @@ export default function Hero() {
     };
   }, [isModalOpen]);
 
-  const handleLearnAboutPRP = () => {
-    router.push("/sexual-rejuvenation");
-    // Scroll to PRP section after navigation
-    setTimeout(() => {
-      const element = document.getElementById("what-is-prp");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
-  };
-
   const handleWhatsAppClick = (e: React.MouseEvent) => {
     if (isDesktop) {
       e.preventDefault();
@@ -73,7 +62,7 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden">
+    <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Mobile background */}
@@ -92,168 +81,98 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/55"></div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-20 flex md:mt-30 md:mt-8 mt-20 h-full">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Hero Content */}
-            <div className="">
-              {/* Location Tag */}
-              <div
-                className={`inline-block md:px-4 px-2 md:py-2 py-1 bg-[var(--brand-blue)]  text-white rounded-full text-xs mb-2 font-medium transition-opacity transition-transform duration-1000 delay-200 ${
-                  isLoaded
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-              >
-                St Albans • Birmingham • London • Midlands
-              </div>
+      {/* Main Content - Centered */}
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-[-5vh]">
+        
+        {/* Location Tag */}
+        <div
+          className={`inline-block md:px-4 px-2 md:py-2 py-1 bg-[var(--brand-blue)] text-white rounded-full text-xs mb-6 font-medium transition-opacity transition-transform duration-1000 delay-200 ${
+            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          St Albans • Birmingham • London • Midlands
+        </div>
 
-              {/* Main Heading */}
-              <h1
-                className={`md:text-3xl font-medium text-2xl font-raleway text-white leading-tight transition-opacity transition-transform duration-1000 delay-300 ${
-                  isLoaded
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-              >
-                Natural Regeneration Treatments <br /> with PRP (
-                <a
-                  href="#prp-explanation"
-                  className="underline decoration-transparent hover:decoration-white cursor-pointer"
-                >
-                  Platelet‑Rich Plasma
-                </a>
-                )
-              </h1>
-              <h2
-                className={`mt-1 md:text-lg text-base text-white font-semibold leading-relaxed transition-opacity transition-transform duration-1000 delay-500 ${
-                  isLoaded
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-              >
-                Confidential Care by a GMC Registered Experienced Doctor
-              </h2>
-              {/* Description */}
-              <p
-                className={`mt-1 text-sm md:text-base text-white leading-relaxed transition-opacity transition-transform duration-1000 delay-500 ${
-                  isLoaded
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-              >
-                Evidence-based, non-surgical treatments for sexual wellness,
-                facial aesthetics & hair, and joint pain — with clinics in St
-                Albans and Birmingham.
-              </p>
+        {/* Main Heading */}
+        <h1
+          className={`md:text-5xl text-3xl font-medium font-raleway text-white leading-tight mb-4 transition-opacity transition-transform duration-1000 delay-300 ${
+            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          Natural Regeneration Treatments <br /> with PRP (
+          <a
+            href="#prp-explanation"
+            className="underline decoration-transparent hover:decoration-white cursor-pointer"
+          >
+            Platelet‑Rich Plasma
+          </a>
+          )
+        </h1>
 
-              {/* CTA Buttons */}
-              <div
-                className={`flex flex-col mt-3 sm:flex-row gap-4 transition-opacity transition-transform duration-1000 delay-800 ${
-                  isLoaded
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-              >
-                {isDesktop ? (
-                  <button
-                    onClick={handleWhatsAppClick}
-                    className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
-                  >
-                    <FaWhatsapp className="w-5 h-5" />
-                    Book on WhatsApp
-                  </button>
-                ) : (
-                  <a
-                    href="https://wa.me/447990364147"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
-                  >
-                    <FaWhatsapp className="w-5 h-5" />
-                    Book on WhatsApp
-                  </a>
-                )}
-                <Link
-                  href="/contact"
-                  className="px-6 py-3 hidden md:inline-flex gap-2 items-center cursor-pointer text-sm border-2 border-white/30 backdrop-blur-md bg-white/10 rounded-lg text-white font-medium transition-all duration-300 hover:bg-white/20 hover:border-white/40"
-                >
-                  <FaEnvelope className="w-5 h-5" />
-                  Contact Us
-                </Link>
-              </div>
+        <h2
+          className={`mt-2 md:text-xl text-lg text-blue-100 font-semibold leading-relaxed transition-opacity transition-transform duration-1000 delay-500 ${
+            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          Confidential Care by a GMC Registered Experienced Doctor
+        </h2>
 
-              {/* Feature Banner - Removed from here, moved to bottom */}
-            </div>
+        {/* Description */}
+        <p
+          className={`mt-4 text-sm md:text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto mb-8 transition-opacity transition-transform duration-1000 delay-500 ${
+            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          Evidence-based, non-surgical treatments for sexual wellness,
+          facial aesthetics & hair, and joint pain — with clinics in St
+          Albans and Birmingham.
+        </p>
 
-            {/* Right Side - Signature Treatments */}
-            <div
-              className={`transition-opacity transition-transform duration-1000 delay-1000 ${
-                isLoaded
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
+        {/* CTA Buttons */}
+        <div
+          className={`flex flex-col sm:flex-row gap-4 justify-center transition-opacity transition-transform duration-1000 delay-800 ${
+            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          {isDesktop ? (
+            <button
+              onClick={handleWhatsAppClick}
+              className="px-8 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg"
             >
-              <div className="p-8 bg-white/90 -mt-6 md:mt-0 rounded-lg border border-slate-200">
-                <h2 className="md:text-2xl text-lg font-raleway text-slate-900 mb-6 transition-colors">
-                  Our Signature Treatments
-                </h2>
-                <ul className="space-y-3 text-slate-600 text-sm ">
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-[var(--brand-blue)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>
-                      P-Shot® (Priapus Shot) for erectile dysfunction &
-                      Peyronie&apos;s
-                    </span>
-                  </li>
-                  <div className="h-px bg-slate-200"></div>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-[var(--brand-blue)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Exomine® P-Shot — premium, exosome-enhanced PRP</span>
-                  </li>
-                  <div className="h-px bg-slate-200"></div>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-[var(--brand-blue)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>O-Shot® for female sexual wellness</span>
-                  </li>
-                  <div className="h-px bg-slate-200"></div>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-[var(--brand-blue)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Shockwave Therapy for ED & Peyronie&apos;s</span>
-                  </li>
-                  <div className="h-px bg-slate-200"></div>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-[var(--brand-blue)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>PRP Hair Restoration for thinning hair</span>
-                  </li>
-                  <div className="h-px bg-slate-200"></div>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-[var(--brand-blue)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Polynucleotides & Botox aesthetics</span>
-                  </li>
-                  <div className="h-px bg-slate-200"></div>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-[var(--brand-blue)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Joint Injections — PRP & Steroid</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+              <FaWhatsapp className="w-5 h-5" />
+              Book on WhatsApp
+            </button>
+          ) : (
+            <a
+              href="https://wa.me/447990364147"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg"
+            >
+              <FaWhatsapp className="w-5 h-5" />
+              Book on WhatsApp
+            </a>
+          )}
+          <Link
+            href="/contact"
+            className="px-8 py-3 hidden md:inline-flex gap-2 items-center justify-center cursor-pointer text-sm border-2 border-white/30 backdrop-blur-md bg-white/10 rounded-lg text-white font-medium transition-all duration-300 hover:bg-white/20 hover:border-white/40"
+          >
+            <FaEnvelope className="w-5 h-5" />
+            Contact Us
+          </Link>
         </div>
       </div>
 
       {/* Feature Banner at Bottom */}
       <div
-        className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[var(--brand-blue)] transition-opacity transition-transform duration-1000 delay-1100 ${
+        className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[var(--brand-blue)]/90 backdrop-blur-sm transition-opacity transition-transform duration-1000 delay-1100 ${
           isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
         <div className="px-4 sm:px-6 lg:px-8 py-5">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center border-r border-[var(--brand-blue-100)]">
+              <div className="text-center border-r border-[var(--brand-blue-100)]/30">
                 <div className="text-white font-semibold text-xs">
                   GMC-registered doctor
                 </div>
@@ -261,7 +180,7 @@ export default function Hero() {
                   Over 10 years experience
                 </div>
               </div>
-              <div className="text-center border-r border-[var(--brand-blue-100)]">
+              <div className="text-center border-r border-[var(--brand-blue-100)]/30">
                 <div className="text-white font-semibold text-xs">
                   Drug-free options
                 </div>
@@ -269,7 +188,7 @@ export default function Hero() {
                   Your own PRP — no hormones
                 </div>
               </div>
-              <div className="text-center border-r border-[var(--brand-blue-100)]">
+              <div className="text-center border-r border-[var(--brand-blue-100)]/30">
                 <div className="text-white font-semibold text-xs">
                   Discreet location
                 </div>
