@@ -1,14 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaArrowRight, FaMars, FaVenus, FaSyringe, FaRunning, FaSmile } from "react-icons/fa";
+import { FaArrowRight, FaVenus, FaSyringe, FaRunning, FaSmile } from "react-icons/fa";
 
-// Using separate icons for visual variety if specific combined icons aren't available
 const services = [
   {
     title: "Sexual Rejuvenation",
     description: "Specialist P-Shot® and O-Shot® treatments to restore intimacy, sensitivity, and function.",
-    icon: FaVenus, // Represents sexual health generally here
+    icon: FaVenus, 
     link: "/sexual-rejuvenation",
     color: "bg-blue-50 text-blue-600",
   },
@@ -44,7 +43,7 @@ export default function ServiceOverview() {
             Our Core Treatments
           </h2>
           <p className="text-slate-600 text-lg">
-            We specialize in regenerative medicine, using your body's natural healing abilities 
+            We specialize in regenerative medicine, using your body&apos;s natural healing abilities 
             alongside medically proven aesthetic and pain-relief protocols.
           </p>
         </div>
