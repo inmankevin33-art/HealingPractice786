@@ -249,21 +249,24 @@ export default function FacialAestheticsPage() {
                 <motion.div
                   className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
                   variants={itemVariants}
-                >
+               > 
                   GMC‑registered | CE‑marked | Natural Results
                 </motion.div>
 
                 <motion.h1
                   className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
-                >
-                  Hair Restoration & Regenerative Hair Treatments in St Albans | Healing-PRP Clinics
+               >
+                  Hair Restoration & Regenerative Hair Treatments in St Albans  
+                  <span className="block text-lg lg:text-xl text-gray-500 font-medium mt-1">
+                    Healing-PRP Clinics
+                  </span>
                 </motion.h1>
 
                 <motion.p
                   className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
-                >
+              >
                   At Healing-PRP Clinics in St Albans, we provide doctor-led regenerative hair treatments for 
                   men and women experiencing hair thinning or hair loss. Our approach focuses on evidence-based 
                   treatments such as PRP and regenerative protocols, 
