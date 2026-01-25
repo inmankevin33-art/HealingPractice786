@@ -106,7 +106,7 @@ export default function JointInjectionsClient({
   const treatments = [
     {
       name: "PRP (Platelet‑Rich Plasma) Joint Injections",
-      price: "From £400",
+      price: "",
       description: "Natural healing using your own platelet-rich plasma",
       benefits: [
         "Encourages cartilage & soft‑tissue repair",
@@ -147,7 +147,7 @@ export default function JointInjectionsClient({
     },
     {
       name: "Steroid Joint Injections",
-      price: "From £200",
+      price: "",
       description: "Fast-acting anti-inflammatory pain relief",
       benefits: [
         "Fast pain relief",
@@ -755,6 +755,18 @@ export default function JointInjectionsClient({
               </motion.p>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* CTA: Prices (after treatments) */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+          <Link
+            href="/prices"
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+          >
+            View Treatment Prices
+          </Link>
         </div>
       </section>
 
