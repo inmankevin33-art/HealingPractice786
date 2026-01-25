@@ -2,13 +2,9 @@
 
 import { useEffect } from "react";
 import Hero from "@/components/Hero";
-import TreatmentsSection from "@/components/TreatmentsSection";
-import AestheticSection from "@/components/AestheticSection";
-import JointInjectionsSection from "@/components/JointInjectionsSection";
+import ServiceOverview from "@/components/ServiceOverview"; // The new component you just created
 import PRPExplanationSection from "@/components/PRPExplanationSection";
-import CTASection from "@/components/CTASection";
 import LocationSection from "@/components/LocationSection";
-import LocationsCTASection from "@/components/LocationsCTASection";
 import FAQSection from "@/components/FAQSection";
 import ContactCTASection from "@/components/ContactCTASection";
 import Footer from "@/components/Footer";
@@ -36,14 +32,17 @@ export default function Home() {
   return (
     <>
       <main>
+        {/* Your existing Hero - make sure it says "St Albans" in the text if possible */}
         <Hero />
-        <TreatmentsSection />
-        <AestheticSection />
-        <JointInjectionsSection />
+        
+        {/* New Consolidated Services Hub */}
+        <ServiceOverview />
+        
+        {/* Supporting Info */}
         <PRPExplanationSection />
-        <CTASection />
+        
+        {/* Location & Contact */}
         <LocationSection />
-        <LocationsCTASection />
         <FAQSection />
         <ContactCTASection />
       </main>
