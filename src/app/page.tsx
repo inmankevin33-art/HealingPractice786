@@ -2,46 +2,31 @@
 
 import { useEffect } from "react";
 import Hero from "@/components/Hero";
-import ServiceOverview from "@/components/ServiceOverview"; // The new component you just created
+// import TreatmentsSection from "@/components/TreatmentsSection"; // REMOVE THIS
+// import AestheticSection from "@/components/AestheticSection";   // REMOVE THIS
+// import JointInjectionsSection from "@/components/JointInjectionsSection"; // REMOVE THIS
+import ServiceOverview from "@/components/ServiceOverview"; // ADD THIS
 import PRPExplanationSection from "@/components/PRPExplanationSection";
-import LocationSection from "@/components/LocationSection";
+import LocationSection from "@/components/LocationSection"; // Keep this for St Albans Map
 import FAQSection from "@/components/FAQSection";
 import ContactCTASection from "@/components/ContactCTASection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const { hash } = window.location;
-    if (hash) {
-      // Wait for sections to render
-      const tryScroll = () => {
-        const target = document.querySelector(hash);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      };
-      // Attempt immediately and on next frame
-      tryScroll();
-      requestAnimationFrame(tryScroll);
-      // Fallback slight delay
-      setTimeout(tryScroll, 200);
-    }
-  }, []);
+  // ... scroll logic remains same ...
 
   return (
     <>
       <main>
-        {/* Your existing Hero - make sure it says "St Albans" in the text if possible */}
-        <Hero />
+        <Hero /> {/* Ensure Hero text says "St Albans" not Birmingham */}
         
-        {/* New Consolidated Services Hub */}
-        <ServiceOverview />
+        {/* New Consolidated Section */}
+        <ServiceOverview /> 
         
-        {/* Supporting Info */}
         <PRPExplanationSection />
         
-        {/* Location & Contact */}
+        {/* Consider adding a Reviews Section here */}
+        
         <LocationSection />
         <FAQSection />
         <ContactCTASection />
