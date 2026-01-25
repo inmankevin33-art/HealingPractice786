@@ -5,7 +5,7 @@ import SexualRejuvenationClient from "@/components/pages/SexualRejuvenationClien
 export const metadata: Metadata = {
   title: "Sexual Rejuvenation in St Albans | Healing-PRP Clinics",
   description:
-    "Doctor-led P-Shot and O-Shot treatments in St Albans. Non-surgical solutions for erectile dysfunction and sexual wellness.",
+    "Patient-centred, non-surgical solutions to support confidence, sensitivity and intimacy — delivered by a fully insured, GMC-registered doctor in St Albans.",
 };
 
 export default function SexualRejuvenationPage() {
