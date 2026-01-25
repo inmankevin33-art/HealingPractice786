@@ -257,7 +257,7 @@ export default function JointInjectionsClient({
                 </motion.div>
 
                 <motion.h1
-                  className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
+                  className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
                   Private Joint Injections in {locationName} | Healing-PRP Clinics
