@@ -258,7 +258,7 @@ export default function FacialAestheticsPage() {
                   variants={itemVariants}
                >
                   Hair Restoration & Regenerative Hair Treatments in St Albans  
-                  <span className="block text-lg lg:text-xl text-gray-500 font-medium mt-1">
+                  <span className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2">
                     Healing-PRP Clinics
                   </span>
                 </motion.h1>
