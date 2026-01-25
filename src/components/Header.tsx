@@ -114,7 +114,7 @@ const Header = () => {
             <div className="flex-shrink-0">
               <Link href={isBirmingham ? "/birmingham" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-2">
-                  {/* The Icon Image (favicon.png) */}
+                  {/* The Icon Image (Logo1.png) */}
                   <div className="relative h-8 w-8 md:h-9 md:w-9 flex-shrink-0">
                     <Image
                       src="/favicon.png" 
