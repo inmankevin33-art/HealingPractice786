@@ -117,7 +117,7 @@ const Header = () => {
                   {/* The Icon Image (Logo1.png) */}
                   <div className="relative h-8 w-8 md:h-9 md:w-9 flex-shrink-0">
                     <Image
-                      src="/favicon.png" 
+                      src="/Logo1.png" 
                       alt="Healing-PRP Logo"
                       fill
                       className="object-contain"
