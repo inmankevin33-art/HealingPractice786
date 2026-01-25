@@ -353,10 +353,10 @@ export default function SexualHealthClient({
                 </motion.div>
 
                 <motion.h1
-                  className="text-2xl lg:text-3xl md:max-w-2xl text-gray-700 font-raleway leading-tight mb-2"
+                  className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
-                  Sexual Rejuvenation & Natural Regeneration in {locationName}
+                  Sexual Rejuvenation & Natural Regeneration in {locationName} | Healing-PRP Clinics
                 </motion.h1>
 
                 <motion.p
