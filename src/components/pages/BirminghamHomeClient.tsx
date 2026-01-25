@@ -1,12 +1,3 @@
-This is a common React syntax error. In JSX, you cannot use a single quote/apostrophe directly in the text because the code reader gets confused about where the string ends.
-
-You need to change `body's` to `body&apos;s`.
-
-Here is the **corrected, fully error-free code** for `src/components/pages/BirminghamHomeClient.tsx`.
-
-**(Replace the entire file with this):**
-
-```tsx
 "use client";
 
 import { motion } from "framer-motion";
