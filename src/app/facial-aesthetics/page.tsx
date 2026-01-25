@@ -100,7 +100,7 @@ export default function FacialAestheticsPage() {
   const treatments = [
     {
       name: "Polynucleotide Treatments",
-      price: "From £300",
+      price: "",
       description:
         "Advanced skin boosters that repair, hydrate, and rejuvenate at a cellular level",
       benefits: [
@@ -143,7 +143,7 @@ export default function FacialAestheticsPage() {
     },
     {
       name: "Non‑Crosslinked Hyaluronic Acid (HA) Skin Boosters",
-      price: "From £300",
+      price: "",
       description:
         "Light, hydrating injections designed to deeply rehydrate and plump the skin",
       benefits: [
@@ -185,7 +185,7 @@ export default function FacialAestheticsPage() {
     },
     {
       name: "Platelet‑Rich Plasma (PRP) Microneedling",
-      price: "From £120",
+      price: "",
       description:
         "Natural rejuvenation using your body's own PRP combined with microneedling",
       benefits: [
@@ -229,7 +229,7 @@ export default function FacialAestheticsPage() {
     },
     {
       name: "Collagen Stimulating Threads",
-      price: "From £200",
+      price: "",
       description:
         "Non‑surgical treatment using biodegradable threads to lift and tighten while stimulating collagen",
       benefits: [
@@ -271,7 +271,7 @@ export default function FacialAestheticsPage() {
     },
     {
       name: "Botox Anti‑Wrinkle Injections",
-      price: "3 Areas £200",
+      price: "",
       description:
         "Targeted muscle relaxation to smooth lines and prevent new wrinkles",
       benefits: [
@@ -381,7 +381,7 @@ export default function FacialAestheticsPage() {
                   className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
-                  Facial Aesthetics Treatments in St Albans, Hertfordshire
+                  Facial Aesthetics Treatments in St Albans | Healing-PRP Clinics
                 </motion.h1>
 
                 <motion.p
