@@ -31,7 +31,6 @@ export default function BirminghamHomeClient() {
       title: "Hair Restoration",
       desc: "Advanced PRP & Exosome treatments to stop hair loss and stimulate natural regrowth.",
       link: "/birmingham/hair-restoration",
-      // image: "/hair-restoration.jpg", // Ensure you have images or remove this line if strictly text
     },
     {
       title: "Sexual Rejuvenation",
@@ -54,7 +53,7 @@ export default function BirminghamHomeClient() {
     <>
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-        {/* Background - Reusing your main hero image for consistency */}
+        {/* Background - Using hero_img.png which exists */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/20 z-10" />
           <img
@@ -130,7 +129,6 @@ export default function BirminghamHomeClient() {
                   that established our reputation.
                 </p>
                 <p>
-                  {/* Fixed: changed body's to body&apos;s */}
                   We focus on regenerative medicine—using the body&apos;s own ability to heal (via PRP and Exosomes) 
                   to treat conditions ranging from hair loss and erectile dysfunction to arthritis and skin aging.
                 </p>
@@ -149,11 +147,11 @@ export default function BirminghamHomeClient() {
                 ))}
               </div>
             </div>
-            {/* Image Placeholder - Replace with doctor photo or clinic interior later */}
+            {/* Image Placeholder - Using Pic1.jpg (Doctor consultation) */}
             <div className="relative h-[400px] bg-slate-100 rounded-2xl overflow-hidden shadow-xl">
                <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 to-transparent pointer-events-none" />
                <img 
-                 src="/herobg.jpg" 
+                 src="/Pic1.jpg" 
                  alt="Doctor consultation" 
                  className="w-full h-full object-cover"
                />
@@ -196,8 +194,39 @@ export default function BirminghamHomeClient() {
         </div>
       </section>
 
-      {/* Location Details */}
+      {/* Joint Injections Preview (Matches Home Page Style) */}
       <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Using joint-injections.jpg */}
+              <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl order-last lg:order-first">
+                 <img 
+                   src="/joint-injections.jpg" 
+                   alt="Joint Injection Therapy" 
+                   className="w-full h-full object-cover"
+                 />
+              </div>
+              <div>
+                 <h2 className="text-3xl lg:text-4xl font-raleway text-slate-900 mb-6">
+                    Joint Injections in Birmingham
+                 </h2>
+                 <p className="text-slate-600 font-inter leading-relaxed mb-6">
+                    Doctor-delivered injections for pain relief and mobility in arthritis, tendon, and sports-related conditions.
+                    We offer both PRP (Platelet-Rich Plasma) for regeneration and Steroid injections for rapid inflammation relief.
+                 </p>
+                 <Link
+                    href="/birmingham/joint-injections"
+                    className="inline-flex items-center text-[var(--brand-blue)] font-semibold hover:gap-2 transition-all duration-300"
+                 >
+                    View Joint Treatments <FaArrowRight className="ml-2 w-4 h-4" />
+                 </Link>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* Location Details */}
+      <section className="py-20 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-[var(--brand-blue)] rounded-3xl overflow-hidden shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -238,7 +267,6 @@ export default function BirminghamHomeClient() {
               
               {/* Map Placeholder */}
               <div className="relative h-[400px] lg:h-auto bg-slate-200">
-                 {/* Replace this iframe with your actual Google Maps Embed link for Birmingham */}
                  <div className="w-full h-full flex items-center justify-center text-slate-500 font-medium">
                     <iframe 
                       width="100%" 
@@ -246,7 +274,7 @@ export default function BirminghamHomeClient() {
                       style={{ border: 0 }}
                       loading="lazy"
                       allowFullScreen
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.6200223727823!2d-1.9025!3d52.4862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870000000000000%3A0x0000000000000000!2sBirmingham!5e0!3m2!1sen!2suk!4v1"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.584347700076!2d-1.9026!3d52.4862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAwJzAwLjAiTiAxwrA1NCswMC4wIlc!5e0!3m2!1sen!2suk!4v1600000000000!5m2!1sen!2suk"
                     ></iframe>
                  </div>
               </div>
