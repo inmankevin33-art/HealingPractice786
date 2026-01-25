@@ -1,16 +1,50 @@
+Yes, definitely. Here is the fully SEO-optimized code for your **St Albans** page.
+
+I have updated the title tags, keywords, and Open Graph settings to target St Albans and Hertfordshire specifically, matching the high standard of your new Birmingham page.
+
+**File:** `src/app/sexual-rejuvenation/page.tsx`
+*(Delete everything in the file and paste this)*
+
+```tsx
 import type { Metadata } from "next";
-// FIX: Update the import to match your new filename
 import SexualRejuvenationClient from "@/components/pages/SexualRejuvenationClient";
 
 export const metadata: Metadata = {
-  title: "Sexual Rejuvenation in St Albans | Healing-PRP Clinics",
+  // Clean title targeting high-intent local keywords
+  title: "P-Shot, O-Shot & Sexual Rejuvenation St Albans",
+  
   description:
-    "Patient-centred, non-surgical solutions to support confidence, sensitivity and intimacy — delivered by a fully insured, GMC-registered doctor in St Albans.",
+    "Doctor-led sexual rejuvenation in St Albans. Specialist P-Shot® (Erectile Dysfunction) & O-Shot® treatments using advanced PRP therapy. Confidential & non-surgical.",
+  
+  keywords: [
+    "P-Shot St Albans",
+    "O-Shot St Albans",
+    "PRP for ED St Albans",
+    "Erectile Dysfunction treatment Hertfordshire",
+    "Sexual rejuvenation St Albans",
+    "Vaginal rejuvenation Hertfordshire",
+    "Priapus Shot St Albans",
+  ],
+
+  openGraph: {
+    title: "P-Shot & Sexual Rejuvenation Clinic in St Albans",
+    description:
+      "Doctor-led PRP treatments for sexual wellness. Non-surgical solutions for ED and intimacy.",
+    url: "https://www.healing-prp.co.uk/sexual-rejuvenation",
+    siteName: "Healing-PRP Clinics",
+    locale: "en_GB",
+    type: "website",
+  },
 };
 
 export default function SexualRejuvenationPage() {
   return (
-    // FIX: Update the component name here too
+    // We pass "St Albans" explicitly here
     <SexualRejuvenationClient locationName="St Albans" />
   );
 }
+
+```
+
+**Next Step:**
+Would you like to move on to the **Hair Restoration** page (`src/app/hair-restoration/page.tsx`) to complete the set?
