@@ -16,7 +16,7 @@ import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
 
-export default function FacialAestheticsPage() {
+export default function FacialAestheticsClient() {
   const [expandedTreatment, setExpandedTreatment] = useState<string | null>(
     null
   );
