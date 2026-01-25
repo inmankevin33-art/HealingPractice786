@@ -1,29 +1,33 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Flower } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import Image from "next/image"; // <--- Added this import for the logo
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  
+  // Get current path to determine location context
+  const pathname = usePathname();
+  const isBirmingham = pathname?.startsWith("/birmingham");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    setActiveSubmenu(null); // Reset submenu when closing/opening
+    setActiveSubmenu(null);
   };
 
   const toggleSubmenu = (name: string) => {
     setActiveSubmenu(activeSubmenu === name ? null : name);
   };
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       const scrollY = window.scrollY;
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
@@ -38,7 +42,6 @@ const Header = () => {
       document.body.style.paddingRight = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
-
     return () => {
       document.body.style.overflow = "";
       document.body.style.position = "";
@@ -48,25 +51,26 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
+  // Dynamic Menu Items based on Location
   const menuItems = [
     {
       name: "Hair Restoration",
-      href: "/hair-restoration",
+      href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration",
       hasDropdown: false,
     },
     {
       name: "Sexual Rejuvenation",
-      href: "/sexual-rejuvenation",
+      href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation",
       hasDropdown: false,
     },
     {
       name: "Joint Injections",
-      href: "/joint-injections",
+      href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections",
       hasDropdown: false,
     },
     {
       name: "Facial Aesthetics",
-      href: "/facial-aesthetics",
+      href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics",
       hasDropdown: false,
     },
     {
@@ -80,7 +84,7 @@ const Header = () => {
       hasDropdown: true,
       subItems: [
         { name: "St Albans (Main Clinic)", href: "/" },
-        { name: "Birmingham Clinic", href: "/birmingham/hair-restoration" },
+        { name: "Birmingham Clinic", href: "/birmingham" },
       ],
     },
     { name: "Blog", hasDropdown: false, href: "/blog" },
@@ -91,24 +95,13 @@ const Header = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-      filter: "blur(4px)",
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-    },
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
   };
 
   return (
@@ -116,17 +109,36 @@ const Header = () => {
       <header className="sticky top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
+            
+            {/* Logo Section */}
             <div className="flex-shrink-0">
-              <Link href="/" onClick={() => setIsMenuOpen(false)}>
-                <div className="text-base inline-flex items-center gap-1 tracking-tight font-medium text-black">
-                  <Flower className="w-5 h-5 text-blue-700" /> Healing-PRP
-                  Clinics
+              <Link href={isBirmingham ? "/birmingham" : "/"} onClick={() => setIsMenuOpen(false)}>
+                <div className="flex items-center gap-2">
+                  {/* The Icon Image (favicon.png) */}
+                  <div className="relative h-8 w-8 md:h-9 md:w-9 flex-shrink-0">
+                    <Image
+                      src="/favicon.png" 
+                      alt="Healing-PRP Logo"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                  
+                  {/* The Text Name */}
+                  <div className="text-base md:text-lg tracking-tight font-medium text-black">
+                    Healing-PRP Clinics
+                    {/* Badge if on Birmingham page */}
+                    {isBirmingham && (
+                      <span className="hidden sm:inline-block ml-2 text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full align-middle uppercase tracking-wide">
+                        Birmingham
+                      </span>
+                    )}
+                  </div>
                 </div>
               </Link>
             </div>
 
-            {/* Phone number and Menu */}
             <div className="flex items-center space-x-2">
               <span className="hidden md:inline text-[13px] font-medium font-raleway text-slate-800">
                 MENU
@@ -146,7 +158,6 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Full Screen Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -195,29 +206,26 @@ const Header = () => {
                         )}
                       </div>
 
-                      {/* Dropdown / Sub-items */}
                       <AnimatePresence>
-                        {item.hasDropdown &&
-                          activeSubmenu === item.name &&
-                          item.subItems && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden pl-4 mt-2 space-y-3 border-l-2 border-gray-100 ml-2"
-                            >
-                              {item.subItems.map((subItem, subIndex) => (
-                                <Link
-                                  key={subIndex}
-                                  href={subItem.href}
-                                  onClick={() => setIsMenuOpen(false)}
-                                  className="block text-lg lg:text-xl font-inter text-slate-600 hover:text-[var(--brand-blue)] py-1"
-                                >
-                                  {subItem.name}
-                                </Link>
-                              ))}
-                            </motion.div>
-                          )}
+                        {item.hasDropdown && activeSubmenu === item.name && item.subItems && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden pl-4 mt-2 space-y-3 border-l-2 border-gray-100 ml-2"
+                          >
+                            {item.subItems.map((subItem, subIndex) => (
+                              <Link
+                                key={subIndex}
+                                href={subItem.href}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block text-lg lg:text-xl font-inter text-slate-600 hover:text-[var(--brand-blue)] py-1"
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
                       </AnimatePresence>
                     </motion.div>
                   ))}
