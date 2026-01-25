@@ -7,27 +7,29 @@ import Link from "next/link";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setActiveSubmenu(null); // Reset submenu when closing/opening
+  };
+
+  const toggleSubmenu = (name: string) => {
+    setActiveSubmenu(activeSubmenu === name ? null : name);
   };
 
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
-      // Store the current scroll position
       const scrollY = window.scrollY;
-      // Calculate scrollbar width
       const scrollbarWidth =
         window.innerWidth - document.documentElement.clientWidth;
-      // Apply styles to prevent scroll but maintain scrollbar space
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = "100%";
       document.body.style.paddingRight = `${scrollbarWidth}px`;
     } else {
-      // Restore scroll position
       const scrollY = document.body.style.top;
       document.body.style.overflow = "";
       document.body.style.position = "";
@@ -37,7 +39,6 @@ const Header = () => {
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
 
-    // Cleanup on component unmount
     return () => {
       document.body.style.overflow = "";
       document.body.style.position = "";
@@ -47,33 +48,44 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
-  // No theme initialization; dark mode removed
-
   const menuItems = [
-  // { name: "About", hasDropdown: false, href: "/about" },
-  {
-    name: "Sexual Rejuvenation",
-    hasDropdown: false,
-    href: "/sexual-rejuvenation",
-  },
-  {
-    name: "Joint Injections",
-    hasDropdown: false,
-    href: "/joint-injections",
-  },
-  {
-    name: "Facial Aesthetics",
-    hasDropdown: false,
-    href: "/facial-aesthetics",
-  },
-  {
-    name: "Prices",
-    hasDropdown: false,
-    href: "/prices",
-  },
-  { name: "Blog", hasDropdown: false, href: "/blog" },
-  { name: "Contact", hasDropdown: false, href: "/contact" },
-];
+    {
+      name: "Hair Restoration",
+      href: "/hair-restoration",
+      hasDropdown: false,
+    },
+    {
+      name: "Sexual Rejuvenation",
+      href: "/sexual-rejuvenation",
+      hasDropdown: false,
+    },
+    {
+      name: "Joint Injections",
+      href: "/joint-injections",
+      hasDropdown: false,
+    },
+    {
+      name: "Facial Aesthetics",
+      href: "/facial-aesthetics",
+      hasDropdown: false,
+    },
+    {
+      name: "Prices",
+      href: "/prices",
+      hasDropdown: false,
+    },
+    {
+      name: "Locations",
+      href: "#",
+      hasDropdown: true,
+      subItems: [
+        { name: "St Albans (Main Clinic)", href: "/" },
+        { name: "Birmingham Clinic", href: "/birmingham/hair-restoration" },
+      ],
+    },
+    { name: "Blog", hasDropdown: false, href: "/blog" },
+    { name: "Contact", hasDropdown: false, href: "/contact" },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -142,9 +154,9 @@ const Header = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white top-16 lg:top-20"
+            className="fixed inset-0 z-40 bg-white top-16 lg:top-20 overflow-y-auto"
           >
-            <div className="flex flex-col justify-center items-start min-h-full py-12">
+            <div className="flex flex-col justify-start items-start min-h-full py-8 md:py-12">
               <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.nav
                   variants={containerVariants}
@@ -157,18 +169,56 @@ const Header = () => {
                       key={index}
                       variants={itemVariants}
                       transition={{ duration: 0.6, ease: "easeOut" }}
-                      className="flex items-center space-x-3"
+                      className="flex flex-col"
                     >
-                      <Link
-                        href={item.href}
-                        className="text-2xl lg:text-3xl font-raleway text-slate-900 hover:text-[var(--brand-blue)] transition-colors duration-300"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                      {item.hasDropdown && (
-                        <ChevronDown className="h-5 w-5 lg:h-6 lg:w-6 text-slate-500" />
-                      )}
+                      <div className="flex items-center space-x-3">
+                        {item.hasDropdown ? (
+                          <button
+                            onClick={() => toggleSubmenu(item.name)}
+                            className="flex items-center gap-3 text-2xl lg:text-3xl font-raleway text-slate-900 hover:text-[var(--brand-blue)] transition-colors duration-300"
+                          >
+                            {item.name}
+                            <ChevronDown
+                              className={`h-5 w-5 lg:h-6 lg:w-6 text-slate-500 transition-transform duration-300 ${
+                                activeSubmenu === item.name ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+                        ) : (
+                          <Link
+                            href={item.href}
+                            className="text-2xl lg:text-3xl font-raleway text-slate-900 hover:text-[var(--brand-blue)] transition-colors duration-300"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {item.name}
+                          </Link>
+                        )}
+                      </div>
+
+                      {/* Dropdown / Sub-items */}
+                      <AnimatePresence>
+                        {item.hasDropdown &&
+                          activeSubmenu === item.name &&
+                          item.subItems && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden pl-4 mt-2 space-y-3 border-l-2 border-gray-100 ml-2"
+                            >
+                              {item.subItems.map((subItem, subIndex) => (
+                                <Link
+                                  key={subIndex}
+                                  href={subItem.href}
+                                  onClick={() => setIsMenuOpen(false)}
+                                  className="block text-lg lg:text-xl font-inter text-slate-600 hover:text-[var(--brand-blue)] py-1"
+                                >
+                                  {subItem.name}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                      </AnimatePresence>
                     </motion.div>
                   ))}
                 </motion.nav>
