@@ -16,13 +16,25 @@ import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
 
-export default function FacialAestheticsClient() {
+type FacialAestheticsClientProps = {
+  locationName?: string;
+};
+
+export default function FacialAestheticsClient({
+  locationName = "St Albans",
+}: FacialAestheticsClientProps) {
   const [expandedTreatment, setExpandedTreatment] = useState<string | null>(
     null
   );
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+
+  // Determine nearby areas text based on location
+  const nearbyAreas =
+    locationName === "Birmingham"
+      ? "Solihull, Edgbaston, Sutton Coldfield, and the West Midlands"
+      : "Harpenden, Luton, Watford, Welwyn, Hertford, and London";
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
@@ -252,9 +264,8 @@ export default function FacialAestheticsClient() {
         ],
         commonQuestions: [
           {
-            question: "How much does a Vampire Facial cost in Hertfordshire?",
-            answer:
-              "Our Vampire Facial treatments start from £250 per session at Healing‑PRP Clinics in St Albans. Packages are available for courses of 3.",
+            question: `How much does a Vampire Facial cost in ${locationName}?`,
+            answer: `Our Vampire Facial treatments start from £250 per session at Healing‑PRP Clinics in ${locationName}. Packages are available for courses of 3.`,
           },
           {
             question: "Is the treatment painful?",
@@ -336,9 +347,8 @@ export default function FacialAestheticsClient() {
         ],
         commonQuestions: [
           {
-            question: "How much does Botox cost in Hertfordshire?",
-            answer:
-              "Our anti‑wrinkle Botox injections are £200 for 3 areas at Healing‑PRP Clinics in St Albans.",
+            question: `How much does Botox cost in ${locationName}?`,
+            answer: `Our anti‑wrinkle Botox injections are £200 for 3 areas at Healing‑PRP Clinics in ${locationName}.`,
           },
           {
             question: "How long do Botox results last?",
@@ -357,10 +367,8 @@ export default function FacialAestheticsClient() {
 
   const faqs = [
     {
-      question:
-        "Where can I get polynucleotide skin booster treatments in St Albans, Hertfordshire?",
-      answer:
-        "At Healing‑PRP Clinics in St Albans, we offer advanced polynucleotide skin booster injections. Many of our patients travel from Harpenden, Watford, Luton, Welwyn, and Hertford.",
+      question: `Where can I get polynucleotide skin booster treatments in ${locationName}?`,
+      answer: `At Healing‑PRP Clinics in ${locationName}, we offer advanced polynucleotide skin booster injections. Many of our patients travel from ${nearbyAreas}.`,
     },
     {
       question: "How long do results from PRP microneedling last?",
@@ -373,9 +381,8 @@ export default function FacialAestheticsClient() {
         "No — threads are quick to insert (around 10–15 minutes) and essentially pain‑free with numbing, with no downtime.",
     },
     {
-      question: "How much does Botox cost in Hertfordshire?",
-      answer:
-        "Our anti‑wrinkle Botox injections are £200 for 3 areas at Healing‑PRP Clinics in St Albans.",
+      question: `How much does Botox cost in ${locationName}?`,
+      answer: `Our anti‑wrinkle Botox injections are £200 for 3 areas at Healing‑PRP Clinics in ${locationName}.`,
     },
     {
       question: "Is there any downtime with your facial aesthetics treatments?",
@@ -423,7 +430,8 @@ export default function FacialAestheticsClient() {
                   className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
-                  Facial Aesthetics Treatments | Healing-PRP Clinics
+                  Facial Aesthetics Treatments in {locationName} | Healing-PRP
+                  Clinics
                 </motion.h1>
 
                 <motion.p
@@ -495,13 +503,6 @@ export default function FacialAestheticsClient() {
                 {treatment.name}
               </motion.a>
             ))}
-            <motion.a
-              href="#prp-vampire"
-              className="px-4 py-2 text-sm border border-gray-100 shadow-xs bg-white text-[var(--brand-blue)] rounded-lg font-inter font-medium hover:bg-[var(--brand-blue-50)] transition-colors duration-300"
-              variants={itemVariants}
-            >
-              Vampire Facial
-            </motion.a>
           </motion.div>
         </div>
       </section>
@@ -556,8 +557,7 @@ export default function FacialAestheticsClient() {
               className="text-sm font-inter text-slate-600"
               variants={itemVariants}
             >
-              Serving St Albans and nearby: Harpenden, Luton, Watford, Welwyn,
-              Hertford, and London.
+              Serving {locationName} and nearby: {nearbyAreas}.
             </motion.p>
           </motion.div>
         </div>
@@ -582,7 +582,9 @@ export default function FacialAestheticsClient() {
               {treatments.map((treatment, index) => (
                 <motion.div
                   key={index}
-                  id={treatment.name.toLowerCase().replace(/[^a-z0-9]/g, "-")}
+                  id={treatment.name
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]/g, "-")}
                   className="bg-slate-50 rounded-2xl p-8 lg:p-12"
                   variants={itemVariants}
                 >
@@ -595,9 +597,6 @@ export default function FacialAestheticsClient() {
                             {treatment.price}
                           </span>
                         </h3>
-                        {/* <span className="text-xl font-inter font-semibold text-[var(--brand-blue)]">
-                          {treatment.price}
-                        </span> */}
                       </div>
                       <p className="text-sm font-inter text-slate-600 mb-6">
                         {treatment.description}
@@ -796,7 +795,7 @@ export default function FacialAestheticsClient() {
               variants={itemVariants}
             >
               Find answers to the most frequently asked questions about our
-              facial aesthetics treatments and services in St Albans.
+              facial aesthetics treatments and services in {locationName}.
             </motion.p>
             <motion.div
               className="space-y-4 mt-4"
