@@ -112,7 +112,7 @@ export default function FacialAestheticsClient({
   const treatments = [
     {
       name: "Polynucleotide Treatments",
-      price: "",
+      price: "From £175",
       description:
         "Advanced skin boosters that repair, hydrate, and rejuvenate at a cellular level",
       benefits: [
@@ -155,7 +155,7 @@ export default function FacialAestheticsClient({
     },
     {
       name: "Non‑Crosslinked Hyaluronic Acid (HA) Skin Boosters",
-      price: "",
+      price: "From £150",
       description:
         "Light, hydrating injections designed to deeply rehydrate and plump the skin",
       benefits: [
@@ -283,7 +283,7 @@ export default function FacialAestheticsClient({
     },
     {
       name: "Vampire Facial (PRP Microneedling)",
-      price: "",
+      price: "From £250",
       description:
         "Advanced skin rejuvenation using your body's own growth factors to stimulate collagen and restore radiance",
       benefits: [
@@ -366,7 +366,7 @@ export default function FacialAestheticsClient({
     },
     {
       name: "Botox Anti‑Wrinkle Injections",
-      price: "",
+      price: "£200 (3 areas)",
       description:
         "Targeted muscle relaxation to smooth lines and prevent new wrinkles",
       benefits: [
@@ -447,7 +447,7 @@ export default function FacialAestheticsClient({
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
             src="/hero_img.png"
-            alt="Projects background"
+            alt="Facial Aesthetics treatment"
             className="w-full h-full object-cover"
           />
         </div>
@@ -472,8 +472,8 @@ export default function FacialAestheticsClient({
                   className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
-                  Facial Aesthetics Treatments in {locationName} | Healing-PRP
-                  Clinics
+                  Facial Aesthetics Treatments in {locationName}
+                  <span className="block mt-1">Healing-PRP Clinics</span>
                 </motion.h1>
 
                 <motion.p
@@ -851,7 +851,6 @@ export default function FacialAestheticsClient({
                   className="bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200/50 overflow-hidden"
                   variants={itemVariants}
                 >
-                  {/* Question */}
                   <motion.button
                     className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50/50 transition-colors duration-300"
                     onClick={() => toggleFAQ(index)}
@@ -886,8 +885,6 @@ export default function FacialAestheticsClient({
                       </motion.div>
                     </motion.div>
                   </motion.button>
-
-                  {/* Answer */}
                   <AnimatePresence>
                     {openFAQIndex === index && (
                       <motion.div
