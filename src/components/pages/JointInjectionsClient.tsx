@@ -260,9 +260,10 @@ export default function JointInjectionsClient({
                   className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
-                  Private Joint Injections in {locationName} | Healing-PRP Clinics
+                  Private Joint Injections in {locationName}
+                  <span className="block mt-1">Healing-PRP Clinics</span>
                 </motion.h1>
-
+                
                 <motion.p
                   className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
