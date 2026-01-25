@@ -256,11 +256,8 @@ export default function FacialAestheticsPage() {
                 <motion.h1
                   className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
-               >
-                  Hair Restoration & Regenerative Hair Treatments in St Albans  
-                  <span className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2">
-                        Healing-PRP Clinics
-                  </span>
+                >
+                  Hair Restoration & Regenerative Hair Treatments | Healing-PRP Clinics
                 </motion.h1>
 
                 <motion.p
