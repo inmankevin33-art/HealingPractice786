@@ -1,11 +1,3 @@
-Yes, definitely. Here is the fully SEO-optimized code for your **St Albans** page.
-
-I have updated the title tags, keywords, and Open Graph settings to target St Albans and Hertfordshire specifically, matching the high standard of your new Birmingham page.
-
-**File:** `src/app/sexual-rejuvenation/page.tsx`
-*(Delete everything in the file and paste this)*
-
-```tsx
 import type { Metadata } from "next";
 import SexualRejuvenationClient from "@/components/pages/SexualRejuvenationClient";
 
@@ -43,8 +35,3 @@ export default function SexualRejuvenationPage() {
     <SexualRejuvenationClient locationName="St Albans" />
   );
 }
-
-```
-
-**Next Step:**
-Would you like to move on to the **Hair Restoration** page (`src/app/hair-restoration/page.tsx`) to complete the set?
