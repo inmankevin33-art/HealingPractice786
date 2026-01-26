@@ -6,6 +6,10 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "PRP Treatment FAQs | St Albans & Hertfordshire | Healing-PRP", 
   description: "Expert answers on PRP Hair Restoration, Joint Injections, and Sexual Rejuvenation. Find information on parking and specialist doctor-led treatments in St Albans.",
+  // ADDED CANONICAL TAG HERE
+  alternates: {
+    canonical: "https://healing-prp.co.uk/faq",
+  },
 };
 
 export default function MainFaqPage() {
