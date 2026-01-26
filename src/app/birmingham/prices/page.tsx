@@ -2,15 +2,30 @@ import type { Metadata } from "next";
 import PricesClient from "@/components/pages/PricesClient";
 
 export const metadata: Metadata = {
-  title: "Clinic Prices & Packages | Birmingham Clinic", 
+  // 1. Optimized Title: Result will be "Treatment Prices & Packages | Birmingham Clinic"
+  title: "Treatment Prices & Packages", 
+  
   description: "View competitive pricing for P-Shot, O-Shot, and PRP therapy in Birmingham. Doctor-led treatments in Edgbaston, Solihull, and the West Midlands.",
-  // ADDED CANONICAL TAG HERE
+  
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/prices",
   },
+
+  // 2. Expanded Local Keywords
+  keywords: [
+    "PRP treatment cost Birmingham",
+    "P-Shot price West Midlands",
+    "O-Shot cost Solihull",
+    "Affordable PRP hair loss Sutton Coldfield",
+    "Joint injection prices Wolverhampton",
+    "Vampire Facial cost Harborne",
+    "Polynucleotides price Birmingham",
+    "Private clinic prices Edgbaston",
+  ],
+
   openGraph: {
     title: "Healing-PRP Clinics | Birmingham Price List",
-    description: "Transparent pricing for specialist regenerative medicine in Birmingham. GMC-registered doctors.",
+    description: "Transparent pricing for specialist regenerative medicine in Birmingham. Serving Solihull, Sutton Coldfield & Harborne.",
     url: "https://www.healing-prp.co.uk/birmingham/prices",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
