@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import FacialAestheticsClient from "@/components/pages/FacialAestheticsClient";
 
 export const metadata: Metadata = {
-  title: "Facial Aesthetics in Birmingham | Healing-PRP Clinics",
+  // 1. Optimized Title: Result will be "Vampire Facial & Polynucleotides | Birmingham Clinic"
+  title: "Vampire Facial & Polynucleotides", 
+  
   description:
     "Doctor-led facial aesthetics in Birmingham Edgbaston. Specialist treatments including Vampire Facials, Botox, Polynucleotides, and Skin Boosters.",
-  // ADDED CANONICAL TAG HERE
+  
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/facial-aesthetics",
   },
+  
   keywords: [
     "Facial Aesthetics Birmingham",
     "Vampire Facial Birmingham",
@@ -17,6 +20,7 @@ export const metadata: Metadata = {
     "Skin Boosters Birmingham",
     "PRP Facial West Midlands",
   ],
+  
   openGraph: {
     title: "Facial Aesthetics & Skin Rejuvenation | Birmingham",
     description:
@@ -30,7 +34,6 @@ export const metadata: Metadata = {
 
 export default function BirminghamFacialPage() {
   return (
-    // We pass "Birmingham" explicitly here
     <FacialAestheticsClient locationName="Birmingham" />
   );
 }
