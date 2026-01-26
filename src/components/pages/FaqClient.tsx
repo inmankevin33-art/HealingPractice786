@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { FaWhatsapp, FaPlus, FaMinus, FaEnvelope, FaTimes } from "react-icons/fa";
+import { FaWhatsapp, FaPlus, FaMinus, FaEnvelope } from "react-icons/fa";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
 
@@ -20,7 +20,6 @@ interface FaqClientProps {
 
 export default function FaqClient({ title, description, faqs, locationBadge }: FaqClientProps) {
   const [openFAQKey, setOpenFAQKey] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
   const toggleFAQ = (key: string) => {
@@ -33,13 +32,6 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
     window.addEventListener("resize", checkDesktop);
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
-
-  const handleWhatsAppClick = (e: React.MouseEvent) => {
-    if (isDesktop) {
-      e.preventDefault();
-      setIsModalOpen(true);
-    }
-  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -56,8 +48,8 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
 
   return (
     <>
-      {/* Hero Section - Image Restored and Font Sizes Aligned */}
-      <section className="relative min-h-[55vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Single Line Description & Clinic Branding */}
+      <section className="relative min-h-[50vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
@@ -78,29 +70,31 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
               </motion.div>
             )}
 
-            {/* Adjusted Font and Added Clinic Name to match treatment pages */}
             <motion.h1
-              className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight max-w-4xl mx-auto"
+              className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight max-w-5xl mx-auto"
               variants={itemVariants}
             >
-              {title} <br className="hidden md:block" />
+              {title} <br />
               <span className="text-slate-700">Healing-PRP Clinics</span>
             </motion.h1>
 
+            {/* Forced to single line on desktop using max-w-none and whitespace-nowrap */}
             <motion.p
-              className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-inter mb-10"
+              className="text-sm md:text-base text-slate-600 font-inter mb-10 max-w-none md:whitespace-nowrap overflow-hidden text-ellipsis"
               variants={itemVariants}
             >
               {description}
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={handleWhatsAppClick}
+              <a
+                href="https://wa.me/447990364147"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-3 bg-[var(--brand-blue)] hover:bg-blue-700 text-white rounded-lg font-semibold flex gap-2 items-center transition-all shadow-md"
               >
                 <FaWhatsapp className="w-5 h-5" /> Book on WhatsApp
-              </button>
+              </a>
 
               <Link
                 href="/contact"
@@ -113,8 +107,8 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      {/* FAQ Accordion Section */}
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           {faqs.map((faq, index) => {
             const key = `faq-${index}`;
@@ -156,8 +150,7 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
       </section>
 
       <ContactCTASection />
-      
-      {/* WhatsApp QR Modal Logic stays here */}
+      <Footer />
     </>
   );
 }
