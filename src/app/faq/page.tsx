@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "PRP Treatment FAQs | St Albans & Hertfordshire | Healing-PRP", 
+  title: "Treatment FAQs | St Albans & Hertfordshire | Healing-PRP Clinics", 
   description: "Expert answers on PRP Hair Restoration, Joint Injections, and Sexual Rejuvenation. Find information on parking and specialist doctor-led treatments in St Albans.",
 };
 
