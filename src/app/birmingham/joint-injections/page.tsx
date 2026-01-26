@@ -1,37 +1,40 @@
 import type { Metadata } from "next";
-import JointInjectionsClient from "@/components/pages/JointInjectionsClient";
+import BirminghamHomeClient from "@/components/pages/BirminghamHomeClient";
 
 export const metadata: Metadata = {
-  // 1. Optimized Title: Result will be "PRP & Steroid Joint Injections | Birmingham Clinic"
-  title: "PRP & Steroid Joint Injections",
-  
+  title: "Healing-PRP Clinics Birmingham | Private Doctor-Led Clinic",
   description:
-    "Doctor-led joint injections in Birmingham. Specialist PRP therapy and Corticosteroid injections for arthritis, sports injuries, and joint pain.",
-  
+    "Leading private clinic in Birmingham for PRP Hair Restoration, Joint Injections & Sexual Rejuvenation. Serving Solihull, Sutton Coldfield, West Bromwich & Dudley.",
   alternates: {
-    canonical: "https://www.healing-prp.co.uk/birmingham/joint-injections",
+    canonical: "https://www.healing-prp.co.uk/birmingham",
   },
-  
   keywords: [
-    "Joint injections Birmingham",
-    "PRP knee injection Birmingham",
-    "Private steroid injection Birmingham",
-    "Arthritis pain relief Birmingham",
-    "Sports injury clinic Birmingham",
-    "Frozen shoulder injection Birmingham",
+    "PRP Clinic Birmingham",
+    "Private Doctor Edgbaston",
+    "Regenerative Medicine West Midlands",
+    "Hair Loss Treatment Solihull",
+    "Joint Pain Clinic Sutton Coldfield",
+    "P-Shot Wolverhampton",
+    "Erectile Dysfunction treatment Stourbridge", 
+    "ED clinic Halesowen",                    
+    "PRP therapy Bromsgrove",                      
+    "Joint injections Walsall",         
+    "Hair restoration West Bromwich",             
+    "Vampire Facial Dudley",
+    "Sports injury clinic Harborne",
+    "Arthritis treatment Moseley",                   
   ],
-  
   openGraph: {
-    title: "Joint Pain Relief Clinic | Birmingham",
+    title: "Healing-PRP Clinics | Birmingham & West Midlands",
     description:
-      "Doctor-led PRP and Steroid injections for arthritis and pain relief. Book a consultation in Birmingham.",
-    url: "https://www.healing-prp.co.uk/birmingham/joint-injections",
-    siteName: "Healing-PRP Clinics",
+      "Doctor-led regenerative treatments in Birmingham. Serving patients across Solihull, Sutton Coldfield, and the wider West Midlands area.",
+    url: "https://www.healing-prp.co.uk/birmingham",
+    siteName: "Healing-PRP Clinics Birmingham",
     locale: "en_GB",
     type: "website",
   },
 };
 
-export default function BirminghamJointInjectionsPage() {
-  return <JointInjectionsClient locationName="Birmingham" />;
+export default function BirminghamPage() {
+  return <BirminghamHomeClient />;
 }
