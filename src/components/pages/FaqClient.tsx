@@ -45,102 +45,94 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
   return (
     <>
-      {/* Hero Section - Restored Image and Smaller Fonts */}
-      <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Image Restored and Font Sizes Aligned */}
+      <section className="relative min-h-[55vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
             src="/hero_img.png"
-            alt="FAQ background"
+            alt="Healing-PRP FAQ Background"
             className="w-full h-full object-cover"
           />
         </div>
 
-        <div className="relative w-full z-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="max-w-3xl">
-              <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-                {locationBadge && (
-                  <motion.div
-                    className="inline-block px-4 py-2 bg-blue-100 text-[var(--brand-blue)] rounded-full text-xs font-medium mb-6 uppercase tracking-wider"
-                    variants={itemVariants}
-                  >
-                    {locationBadge}
-                  </motion.div>
-                )}
-
-                {/* Font size reduced to match Treatment pages (text-2xl to 4xl) */}
-                <motion.h1
-                  className="text-2xl lg:text-4xl font-raleway font-bold text-slate-800 mb-6 leading-tight"
-                  variants={itemVariants}
-                >
-                  {title}
-                </motion.h1>
-
-                <motion.p
-                  className="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl font-inter mb-8"
-                  variants={itemVariants}
-                >
-                  {description}
-                </motion.p>
-
-                <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-                    <button
-                      onClick={handleWhatsAppClick}
-                      className="px-8 py-3 bg-[var(--brand-blue)] hover:bg-blue-700 text-white rounded-lg font-semibold flex gap-2 items-center transition-colors shadow-lg"
-                    >
-                      <FaWhatsapp className="w-5 h-5" /> Book on WhatsApp
-                    </button>
-
-                  <Link
-                    href="/contact"
-                    className="px-8 py-3 bg-white border border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-slate-50 rounded-lg font-semibold flex gap-2 items-center transition-colors"
-                  >
-                    <FaEnvelope className="w-4 h-4" /> Contact Us
-                  </Link>
-                </motion.div>
+        <div className="relative w-full z-20 text-center px-4">
+          <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+            {locationBadge && (
+              <motion.div
+                className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4"
+                variants={itemVariants}
+              >
+                {locationBadge}
               </motion.div>
-            </div>
-          </div>
+            )}
+
+            {/* Adjusted Font and Added Clinic Name to match treatment pages */}
+            <motion.h1
+              className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight max-w-4xl mx-auto"
+              variants={itemVariants}
+            >
+              {title} <br className="hidden md:block" />
+              <span className="text-slate-700">Healing-PRP Clinics</span>
+            </motion.h1>
+
+            <motion.p
+              className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-inter mb-10"
+              variants={itemVariants}
+            >
+              {description}
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
+              <button
+                onClick={handleWhatsAppClick}
+                className="px-8 py-3 bg-[var(--brand-blue)] hover:bg-blue-700 text-white rounded-lg font-semibold flex gap-2 items-center transition-all shadow-md"
+              >
+                <FaWhatsapp className="w-5 h-5" /> Book on WhatsApp
+              </button>
+
+              <Link
+                href="/contact"
+                className="px-8 py-3 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 rounded-lg font-semibold flex gap-2 items-center transition-all shadow-sm"
+              >
+                <FaEnvelope className="w-4 h-4" /> Contact Us
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* FAQs List */}
-      <section className="py-20 bg-slate-50">
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           {faqs.map((faq, index) => {
             const key = `faq-${index}`;
             return (
               <div
                 key={key}
-                className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                className="bg-slate-50 rounded-xl border border-slate-100 overflow-hidden transition-all"
               >
                 <button
                   onClick={() => toggleFAQ(key)}
-                  className="w-full p-6 flex justify-between items-center text-left"
+                  className="w-full p-6 flex justify-between items-center text-left hover:bg-slate-100/50 transition-colors"
                 >
-                  <span className="font-raleway font-semibold text-lg text-slate-900 pr-8">
+                  <span className="font-raleway font-bold text-slate-900 text-lg">
                     {faq.question}
                   </span>
-
-                  <motion.span
-                    animate={{ rotate: openFAQKey === key ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex-shrink-0 text-[var(--brand-blue)]"
-                  >
+                  <span className="text-blue-600">
                     {openFAQKey === key ? <FaMinus /> : <FaPlus />}
-                  </motion.span>
+                  </span>
                 </button>
 
                 <AnimatePresence>
@@ -149,9 +141,9 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 text-slate-600 leading-relaxed font-inter border-t border-slate-100 pt-4">
+                      <div className="px-6 pb-6 text-slate-600 font-inter text-sm border-t border-slate-200/50 pt-4">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -165,7 +157,7 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
 
       <ContactCTASection />
       
-      {/* WhatsApp Modal logic remains unchanged */}
+      {/* WhatsApp QR Modal Logic stays here */}
     </>
   );
 }
