@@ -5,13 +5,12 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image"; // <--- Added this import for the logo
+import Image from "next/image";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   
-  // Get current path to determine location context
   const pathname = usePathname();
   const isBirmingham = pathname?.startsWith("/birmingham");
 
@@ -53,48 +52,48 @@ const Header = () => {
 
   // Dynamic Menu Items based on Location
   const menuItems = [
-      {
-        name: "Facial Aesthetics",
-        href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics",
-        hasDropdown: false,
-      },
-      {
-        name: "Joint Injections",
-        href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections",
-        hasDropdown: false,
-      },
-      {
-        name: "Hair Restoration",
-        href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration",
-        hasDropdown: false,
-      },
-      {
-        name: "Sexual Rejuvenation",
-        href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation",
-        hasDropdown: false,
-      },
-      {
-        name: "Prices",
-        href: "/prices",
-        hasDropdown: false,
-      },
-      {
-        name: "Locations",
-        href: "#",
-        hasDropdown: true,
-        subItems: [
-          { name: "St Albans (Main Clinic)", href: "/" },
-          { name: "Birmingham Clinic", href: "/birmingham" },
-        ],
-      },
-      { 
-        name: "FAQs", // Added per your previous request
-        href: "/faq", 
-        hasDropdown: false 
-      },
-      { name: "Blog", hasDropdown: false, href: "/blog" },
-      { name: "Contact", hasDropdown: false, href: "/contact" },
-    ];
+    {
+      name: "Facial Aesthetics",
+      href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics",
+      hasDropdown: false,
+    },
+    {
+      name: "Joint Injections",
+      href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections",
+      hasDropdown: false,
+    },
+    {
+      name: "Hair Restoration",
+      href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration",
+      hasDropdown: false,
+    },
+    {
+      name: "Sexual Rejuvenation",
+      href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation",
+      hasDropdown: false,
+    },
+    {
+      name: "Prices",
+      href: isBirmingham ? "/birmingham/prices" : "/prices", // Dynamic path for prices
+      hasDropdown: false,
+    },
+    {
+      name: "Locations",
+      href: "#",
+      hasDropdown: true,
+      subItems: [
+        { name: "St Albans (Main Clinic)", href: "/" },
+        { name: "Birmingham Clinic", href: "/birmingham" },
+      ],
+    },
+    { 
+      name: "FAQs", 
+      href: isBirmingham ? "/birmingham/faq" : "/faq", // FIXED: Now switches dynamically
+      hasDropdown: false 
+    },
+    { name: "Blog", hasDropdown: false, href: "/blog" },
+    { name: "Contact", hasDropdown: false, href: "/contact" },
+  ];
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -115,11 +114,9 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             
-            {/* Logo Section */}
             <div className="flex-shrink-0">
               <Link href={isBirmingham ? "/birmingham" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-2">
-                  {/* The Icon Image (Logo2.png) */}
                   <div className="relative h-8 w-8 md:h-9 md:w-9 flex-shrink-0">
                     <Image
                       src="/Logo2.png" 
@@ -130,10 +127,8 @@ const Header = () => {
                     />
                   </div>
                   
-                  {/* The Text Name */}
                   <div className="text-base md:text-lg tracking-tight font-medium text-black">
                     Healing-PRP Clinics
-                    {/* Badge if on Birmingham page */}
                     {isBirmingham && (
                       <span className="hidden sm:inline-block ml-2 text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full align-middle uppercase tracking-wide">
                         Birmingham
