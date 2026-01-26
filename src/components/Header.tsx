@@ -19,7 +19,37 @@ const Header = () => {
     setActiveSubmenu(null);
   };
 
-  // Dynamic Menu Items based on Location
+  const toggleSubmenu = (name: string) => {
+    setActiveSubmenu(activeSubmenu === name ? null : name);
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      const scrollY = window.scrollY;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.paddingRight = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.paddingRight = "";
+    };
+  }, [isMenuOpen]);
+
   const menuItems = [
     {
       name: "Facial Aesthetics",
@@ -41,45 +71,63 @@ const Header = () => {
       name: "Prices",
       href: isBirmingham ? "/birmingham/prices" : "/prices",
     },
-    {
-      name: "FAQs",
-      href: isBirmingham ? "/birmingham/faq" : "/faq",
+    { 
+      name: "FAQs", 
+      href: isBirmingham ? "/birmingham/faq" : "/faq", 
     },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
+  
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
     <>
       <header className="sticky top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            
-            {/* Logo */}
             <div className="flex-shrink-0">
               <Link href={isBirmingham ? "/birmingham" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-2">
                   <div className="relative h-8 w-8 md:h-9 md:w-9 flex-shrink-0">
                     <Image src="/Logo2.png" alt="Healing-PRP Logo" fill className="object-contain" priority />
                   </div>
-                  <div className="text-base md:text-lg tracking-tight font-medium text-black font-raleway">
+                  <div className="text-base md:text-lg tracking-tight font-medium text-black">
                     Healing-PRP Clinics
+                    {isBirmingham && (
+                      <span className="hidden sm:inline-block ml-2 text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full align-middle uppercase tracking-wide">
+                        Birmingham
+                      </span>
+                    )}
                   </div>
                 </div>
               </Link>
             </div>
 
-            {/* Menu Button */}
-            <div className="flex items-center space-x-4">
-               {/* Subtle Location Indicator for Desktop */}
-               <div className="hidden md:flex items-center text-[11px] font-bold text-slate-400 uppercase tracking-widest gap-1">
+            <div className="flex items-center space-x-2">
+              <div className="hidden md:flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1 mr-4">
                  <MapPin className="w-3 h-3" />
                  {isBirmingham ? "Birmingham Clinic" : "St Albans Clinic"}
-               </div>
-               
-              <button onClick={toggleMenu} className="p-2 hover:bg-slate-50 rounded-md transition-colors flex items-center gap-2 group">
-                <span className="text-[13px] font-bold font-raleway text-slate-800 group-hover:text-blue-600 transition-colors">MENU</span>
-                {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </div>
+              <span className="hidden md:inline text-[13px] font-medium font-raleway text-slate-800">
+                MENU
+              </span>
+              <button
+                onClick={toggleMenu}
+                className="p-2 cursor-pointer hover:bg-slate-50 rounded-md transition-colors"
+              >
+                {isMenuOpen ? <X className="h-5 w-5 text-slate-700" /> : <Menu className="h-5 w-5 text-slate-700" />}
               </button>
             </div>
           </div>
@@ -88,26 +136,28 @@ const Header = () => {
 
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            exit={{ opacity: 0, y: -10 }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 bg-white top-16 lg:top-20 overflow-y-auto"
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
               
               {/* --- 1. LOCATION TOGGLE AT THE TOP --- */}
-              <div className="mb-12 pb-8 border-b border-slate-100">
-                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Select Clinic Location</p>
-                <div className="flex flex-col sm:flex-row gap-3">
+              <div className="max-w-2xl mx-auto mb-12 pb-8 border-b border-slate-100">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mb-6 text-center">
+                  Select Clinic Location
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Link 
                     href="/" 
                     onClick={() => setIsMenuOpen(false)}
-                    className={`flex-1 flex items-center justify-between p-4 rounded-xl border-2 transition-all ${!isBirmingham ? 'border-blue-600 bg-blue-50/50' : 'border-slate-100 hover:border-slate-300'}`}
+                    className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${!isBirmingham ? 'border-blue-600 bg-blue-50/50' : 'border-slate-100 hover:border-slate-300'}`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg ${!isBirmingham ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'}`}><MapPin className="w-4 h-4" /></div>
-                      <span className={`font-raleway font-bold ${!isBirmingham ? 'text-blue-900' : 'text-slate-600'}`}>St Albans</span>
+                      <MapPin className={`w-4 h-4 ${!isBirmingham ? 'text-blue-600' : 'text-slate-400'}`} />
+                      <span className={`font-raleway font-bold text-sm ${!isBirmingham ? 'text-blue-900' : 'text-slate-600'}`}>St Albans</span>
                     </div>
                     {!isBirmingham && <div className="w-2 h-2 rounded-full bg-blue-600" />}
                   </Link>
@@ -115,36 +165,36 @@ const Header = () => {
                   <Link 
                     href="/birmingham" 
                     onClick={() => setIsMenuOpen(false)}
-                    className={`flex-1 flex items-center justify-between p-4 rounded-xl border-2 transition-all ${isBirmingham ? 'border-blue-600 bg-blue-50/50' : 'border-slate-100 hover:border-slate-300'}`}
+                    className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${isBirmingham ? 'border-blue-600 bg-blue-50/50' : 'border-slate-100 hover:border-slate-300'}`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg ${isBirmingham ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'}`}><MapPin className="w-4 h-4" /></div>
-                      <span className={`font-raleway font-bold ${isBirmingham ? 'text-blue-900' : 'text-slate-600'}`}>Birmingham</span>
+                      <MapPin className={`w-4 h-4 ${isBirmingham ? 'text-blue-600' : 'text-slate-400'}`} />
+                      <span className={`font-raleway font-bold text-sm ${isBirmingham ? 'text-blue-900' : 'text-slate-600'}`}>Birmingham</span>
                     </div>
                     {isBirmingham && <div className="w-2 h-2 rounded-full bg-blue-600" />}
                   </Link>
                 </div>
               </div>
 
-              {/* --- 2. REORGANIZED MENU ITEMS --- */}
-              <nav className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+              {/* --- 2. VERTICAL MENU LINKS --- */}
+              <motion.nav
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-col items-center space-y-6 md:space-y-8"
+              >
                 {menuItems.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
+                  <motion.div key={index} variants={itemVariants}>
                     <Link
                       href={item.href}
-                      className="text-2xl md:text-3xl font-raleway font-medium text-slate-900 hover:text-blue-600 transition-colors"
+                      className="text-2xl md:text-4xl font-raleway font-light text-slate-900 hover:text-blue-600 transition-colors tracking-tight text-center block"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}
                     </Link>
                   </motion.div>
                 ))}
-              </nav>
+              </motion.nav>
             </div>
           </motion.div>
         )}
