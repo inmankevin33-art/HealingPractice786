@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Treatment Prices in St Albans | Healing-PRP Clinics",
-  description:
-    "Clear, transparent pricing for doctor-led regenerative treatments available at our St Albans clinic, serving patients across Hertfordshire.",
+  title: {
+    default: "Clinic Price List",
+    template: "%s | Healing-PRP St Albans",
+  },
+  description: "View our full range of regenerative treatment costs for our St Albans clinic.",
 };
 
-export default function PricesLayout({
+export default function StAlbansPricesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+    </>
+  );
 }
