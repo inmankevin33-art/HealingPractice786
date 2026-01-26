@@ -110,7 +110,7 @@ export default function Hero() {
         </h1>
 
         <h2
-          className={`mt-2 md:text-xl text-lg text-blue-100 font-semibold leading-relaxed transition-opacity transition-transform duration-1000 delay-500 ${
+          className={`mt-2 md:text-xl text-lg text-white font-semibold leading-relaxed transition-opacity transition-transform duration-1000 delay-500 ${
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -119,7 +119,7 @@ export default function Hero() {
 
         {/* Description */}
         <p
-          className={`mt-4 text-sm md:text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto mb-8 transition-opacity transition-transform duration-1000 delay-500 ${
+          className={`mt-4 text-sm md:text-base text-white leading-relaxed max-w-2xl mx-auto mb-8 transition-opacity transition-transform duration-1000 delay-500 ${
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -137,7 +137,7 @@ export default function Hero() {
           {isDesktop ? (
             <button
               onClick={handleWhatsAppClick}
-              className="px-8 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg"
+              className="px-8 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
             >
               <FaWhatsapp className="w-5 h-5" />
               Book on WhatsApp
@@ -147,7 +147,7 @@ export default function Hero() {
               href="https://wa.me/447990364147"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg"
+              className="px-8 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
             >
               <FaWhatsapp className="w-5 h-5" />
               Book on WhatsApp
@@ -213,7 +213,6 @@ export default function Hero() {
       <AnimatePresence>
         {isModalOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -222,7 +221,6 @@ export default function Hero() {
               className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
               onClick={() => setIsModalOpen(false)}
             />
-            {/* Modal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -232,7 +230,6 @@ export default function Hero() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
-                {/* Close Button */}
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors"
@@ -240,8 +237,6 @@ export default function Hero() {
                 >
                   <FaTimes className="w-5 h-5 text-slate-600" />
                 </button>
-
-                {/* Modal Content */}
                 <div className="text-center">
                   <h3 className="text-2xl font-raleway font-semibold text-slate-900 mb-2">
                     Scan to Chat on WhatsApp
@@ -249,8 +244,6 @@ export default function Hero() {
                   <p className="text-sm text-slate-600 mb-6">
                     Use your phone camera to scan the QR code
                   </p>
-
-                  {/* QR Code */}
                   <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
                     <img
                       src="/qrcode.png"
@@ -258,8 +251,6 @@ export default function Hero() {
                       className="w-64 h-64"
                     />
                   </div>
-
-                  {/* WhatsApp Web Button */}
                   <a
                     href="https://web.whatsapp.com"
                     target="_blank"
