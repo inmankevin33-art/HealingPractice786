@@ -4,7 +4,28 @@ import FacialAestheticsClient from "@/components/pages/FacialAestheticsClient";
 export const metadata: Metadata = {
   title: "Facial Aesthetics in Birmingham | Healing-PRP Clinics",
   description:
-    "Doctor-led facial aesthetics in Birmingham. Treatments include Vampire Facials, Botox, Polynucleotides, and Skin Boosters.",
+    "Doctor-led facial aesthetics in Birmingham Edgbaston. Specialist treatments including Vampire Facials, Botox, Polynucleotides, and Skin Boosters.",
+  // ADDED CANONICAL TAG HERE
+  alternates: {
+    canonical: "https://www.healing-prp.co.uk/birmingham/facial-aesthetics",
+  },
+  keywords: [
+    "Facial Aesthetics Birmingham",
+    "Vampire Facial Birmingham",
+    "Polynucleotides Birmingham",
+    "Exosomes Birmingham",
+    "Skin Boosters Birmingham",
+    "PRP Facial West Midlands",
+  ],
+  openGraph: {
+    title: "Facial Aesthetics & Skin Rejuvenation | Birmingham",
+    description:
+      "Restore youthful skin with doctor-led aesthetics in Birmingham. Specialist in Polynucleotides and PRP.",
+    url: "https://www.healing-prp.co.uk/birmingham/facial-aesthetics",
+    siteName: "Healing-PRP Clinics",
+    locale: "en_GB",
+    type: "website",
+  },
 };
 
 export default function BirminghamFacialPage() {
