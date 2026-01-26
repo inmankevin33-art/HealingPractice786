@@ -1,70 +1,31 @@
 import type { Metadata } from "next";
-import Script from "next/script";
-import {
-  Geist,
-  Geist_Mono,
-  Playfair_Display,
-  Inter,
-  DM_Sans,
-  Raleway,
-  Merriweather,
-  Manrope,
-} from "next/font/google";
+import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import MobileMotionProvider from "@/components/MobileMotionProvider";
+// Footer is usually here, or inside specific pages. 
+// If your Footer is not in 'page.tsx', it should be here.
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway" });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-});
-
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const raleway = Raleway({
-  variable: "--font-raleway",
-  subsets: ["latin"],
-});
-
-const merriweather = Merriweather({
-  variable: "--font-merriweather",
-  subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
-
+// --- GLOBAL SEO DEFAULTS ---
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.healing-prp.co.uk"), // Fixes social sharing image issues
   title: {
-    default: "Natural Regeneration Treatment with PRP | Healing-PRP Clinics",
-    template: "%s | Healing-PRP Clinics",
+    default: "Healing-PRP Clinics | Doctor-Led Regenerative Medicine",
+    template: "%s | Healing-PRP Clinics", // Adds your brand to every page title automatically
   },
-  description:
-    "Doctor-led natural regeneration treatments using PRP (Platelet-Rich Plasma). Evidence-based, non-surgical care for skin, hair, joints and sexual wellbeing in St Albans and Birmingham.",
+  description: "Specialist private clinic in St Albans & Birmingham. PRP Hair Restoration, Joint Injections, P-Shot & O-Shot treatments by GMC-registered doctors.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.png", // <--- Ensures your Blue Flower shows in the browser tab
+    shortcut: "/favicon.png",
+    apple: "/favicon.png", // For iPhone home screen
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    url: "https://www.healing-prp.co.uk",
+    siteName: "Healing-PRP Clinics",
   },
 };
 
@@ -74,25 +35,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${inter.variable} ${dmSans.variable} ${raleway.variable} ${merriweather.variable} ${manrope.variable} antialiased`}
-      >
-        <MobileMotionProvider>
-          <Header />
-          {children}
-        </MobileMotionProvider>
-
-        {/* Chatbase Chatbot */}
-        <Script
-          id="chatbase-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="n3slRY64tFnc_StlJzVba";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-            `,
-          }}
-        />
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} ${raleway.variable} font-sans antialiased bg-slate-50 text-slate-900`}>
+        {/* Header appears on ALL pages */}
+        <Header /> 
+        
+        {/* This renders the content of page.tsx */}
+        {children}
+        
+        {/* Note: If you removed Footer from page.tsx to put it here, uncomment below: */}
+        {/* <Footer /> */} 
       </body>
     </html>
   );
