@@ -53,44 +53,51 @@ const Header = () => {
 
   // Dynamic Menu Items based on Location
   const menuItems = [
-    {
-      name: "Hair Restoration",
-      href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration",
-      hasDropdown: false,
-    },
-    {
-      name: "Sexual Rejuvenation",
-      href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation",
-      hasDropdown: false,
-    },
-    {
-      name: "Joint Injections",
-      href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections",
-      hasDropdown: false,
-    },
-    {
-      name: "Facial Aesthetics",
-      href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics",
-      hasDropdown: false,
-    },
-    {
-      name: "Prices",
-      href: "/prices",
-      hasDropdown: false,
-    },
-    {
-      name: "Locations",
-      href: "#",
-      hasDropdown: true,
-      subItems: [
-        { name: "St Albans (Main Clinic)", href: "/" },
-        { name: "Birmingham Clinic", href: "/birmingham" },
-      ],
-    },
-    { name: "Blog", hasDropdown: false, href: "/blog" },
-    { name: "Contact", hasDropdown: false, href: "/contact" },
-  ];
-
+    // Dynamic Menu Items based on Location
+    const menuItems = [
+      {
+        name: "Facial Aesthetics",
+        href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics",
+        hasDropdown: false,
+      },
+      {
+        name: "Joint Injections",
+        href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections",
+        hasDropdown: false,
+      },
+      {
+        name: "Hair Restoration",
+        href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration",
+        hasDropdown: false,
+      },
+      {
+        name: "Sexual Rejuvenation",
+        href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation",
+        hasDropdown: false,
+      },
+      {
+        name: "Prices",
+        href: "/prices",
+        hasDropdown: false,
+      },
+      {
+        name: "Locations",
+        href: "#",
+        hasDropdown: true,
+        subItems: [
+          { name: "St Albans (Main Clinic)", href: "/" },
+          { name: "Birmingham Clinic", href: "/birmingham" },
+        ],
+      },
+      { 
+        name: "FAQs", // Added per your previous request
+        href: "/faq", 
+        hasDropdown: false 
+      },
+      { name: "Blog", hasDropdown: false, href: "/blog" },
+      { name: "Contact", hasDropdown: false, href: "/contact" },
+    ];
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
