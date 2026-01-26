@@ -2,20 +2,33 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    // 1. The Default Title (if a page doesn't have one)
+    // This is the fallback if a sub-page is missing a title
     default: "Healing-PRP Clinics | Birmingham",
     
-    // 2. The Template (Automatically adds this suffix to sub-pages)
-    // Example: If a page is named "Hair Restoration", it becomes:
-    // "Hair Restoration | Birmingham Clinic"
+    // This automatically formats sub-pages. 
+    // e.g. "P-Shot" becomes "P-Shot | Birmingham Clinic"
     template: "%s | Birmingham Clinic",
   },
   description: "Doctor-led regenerative medicine clinic in Birmingham. Specialist treatments for Hair, Joints & Sexual Wellness in the West Midlands.",
+  
+  // Base metadata for all Birmingham pages
+  alternates: {
+    canonical: "https://www.healing-prp.co.uk/birmingham",
+  },
+  
   openGraph: {
     title: "Healing-PRP Clinics | Birmingham",
-    description: "Expert PRP & Regenerative treatments in Edgbaston & Birmingham.",
+    description: "Expert PRP & Regenerative treatments in Edgbaston & Birmingham. Specialist care for Hair, Skin & Joints.",
     url: "https://www.healing-prp.co.uk/birmingham",
     siteName: "Healing-PRP Clinics Birmingham",
+    images: [
+      {
+        url: "/images/og-birmingham.jpg", // Suggested: A specific Birmingham clinic photo
+        width: 1200,
+        height: 630,
+        alt: "Healing-PRP Birmingham Clinic",
+      },
+    ],
     locale: "en_GB",
     type: "website",
   },
@@ -27,13 +40,11 @@ export default function BirminghamLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      {/* Since the RootLayout (src/app/layout.tsx) already has the Header and Body tags,
-         we simply render the children here. 
-         
-         This file acts purely as an SEO Container for the Birmingham section.
+    <div className="birmingham-region-wrapper">
+      {/* This layout ensures all pages in /birmingham/ inherit 
+          the location-specific metadata template.
       */}
       {children}
-    </>
+    </div>
   );
 }
