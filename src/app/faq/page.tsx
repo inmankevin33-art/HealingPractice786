@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Treatment FAQs | St Albans & Hertfordshire | Healing-PRP Clinics", 
+  title: "PRP Treatment FAQs | St Albans & Hertfordshire | Healing-PRP", 
   description: "Expert answers on PRP Hair Restoration, Joint Injections, and Sexual Rejuvenation. Find information on parking and specialist doctor-led treatments in St Albans.",
 };
 
@@ -12,35 +12,31 @@ export default function MainFaqPage() {
   const mainFaqs = [
     {
       question: "Are the results of the P-Shot® permanent?",
-      answer: "While results are long-lasting, they are not permanent as the natural aging process continues. The P-Shot® stimulates natural tissue and blood vessel growth that typically lasts 12-18 months, with many St Albans patients opting for annual maintenance to sustain peak performance."
+      answer: "While results are long-lasting, they are not permanent as the natural aging process continues. The P-Shot® stimulates natural tissue growth that typically lasts 12-18 months; you can learn more on our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) page."
     },
     {
       question: "Is PRP better than a steroid injection for knee pain?",
-      answer: "Steroids provide fast, temporary anti-inflammatory relief but can weaken tendons over time. PRP is a regenerative therapy at our St Albans clinic that uses your own growth factors to promote long-term healing and lasting pain relief. View our [Joint Injection prices](/prices) for more details."
+      answer: "Steroids provide fast relief but can weaken tendons over time. PRP is a regenerative therapy at our St Albans clinic that promotes long-term healing. View full details on our [Joint Injections](/treatments/joint-injections) page."
+    },
+    {
+      question: "Can I get PRP Hair Restoration in Hertfordshire?",
+      answer: "Yes, we offer advanced PRP and Exosome therapy at our St Albans branch. This treatment stimulates natural follicle growth for both men and women. Read about our protocols on the [Hair Restoration](/treatments/hair-restoration) page."
     },
     {
       question: "Does PRP work for advanced 'bone-on-bone' arthritis?",
-      answer: "PRP is most effective for early to moderate osteoarthritis. For advanced 'bone-on-bone' cases, our St Albans-based doctor will assess your joint during a consultation to see if regenerative therapy can still provide meaningful pain management for you."
+      answer: "PRP is most effective for early to moderate osteoarthritis. For advanced cases, our St Albans-based doctor will assess if regenerative therapy can still provide meaningful pain management. See our [Joint Injections](/treatments/joint-injections) section for more."
     },
     {
       question: "How long do the results of a P-Shot® or O-Shot® last?",
-      answer: "Most patients enjoy improved sensitivity and performance for 12 to 18 months. The regenerative effects are cumulative, and many of our Hertfordshire patients choose a single annual top-up to maintain optimal results."
+      answer: "Most patients enjoy improved sensitivity and performance for 12 to 18 months. To see how these treatments work, visit our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) section."
+    },
+    {
+      question: "Is there any downtime after Hair Restoration?",
+      answer: "There is minimal downtime; you can return to work in St Albans immediately. We simply advise waiting 24 hours before washing your hair or performing intense exercise. Detailed recovery tips are on our [Hair Restoration](/treatments/hair-restoration) page."
     },
     {
       question: "Do you offer a consultation before treatment?",
-      answer: "Yes — every client receives a personal consultation with our GMC-registered doctor in St Albans to tailor a safe, effective plan specifically for your medical needs."
-    },
-    {
-      question: "Can treatments be combined?",
-      answer: "Yes. Many regenerative treatments, such as Microneedling and Skin Boosters, can be safely combined or staged to achieve superior aesthetic results."
-    },
-    {
-      question: "Is there any downtime after treatment?",
-      answer: "Most treatments involve minimal downtime. For sexual rejuvenation, we recommend 2-3 days of rest; for facial aesthetics, mild redness usually settles within 24–48 hours."
-    },
-    {
-      question: "How many sessions will I need?",
-      answer: "This depends on the condition. Hair restoration usually requires a course of 3-6 sessions, while joint injections may provide relief in 1-3 sessions. Visit our [Prices page](/prices) to see session bundles."
+      answer: "Yes — every client receives a personal consultation with our GMC-registered doctor in St Albans to tailor a safe, effective plan."
     },
     {
       question: "Are your products safe and approved?",
@@ -48,11 +44,7 @@ export default function MainFaqPage() {
     },
     {
       question: "Can I drive home after a PRP joint injection?",
-      answer: "Yes, you can drive home to Watford, Harpenden, or surrounding Hertfordshire areas immediately. You may feel slight stiffness for 24 hours, but it does not interfere with operating a vehicle."
-    },
-    {
-      question: "Are clinical results guaranteed?",
-      answer: "No medical procedure can guarantee results. Regenerative medicine relies on your body’s unique healing response; factors like age and lifestyle influence the outcome, which we discuss during your St Albans consultation."
+      answer: "Yes, you can drive home to Watford, Harpenden, or surrounding Hertfordshire areas immediately. Any mild stiffness usually subsides within 24 hours. Check our [Joint Injections](/treatments/joint-injections) FAQ for post-care."
     },
     {
       question: "Where exactly is the St Albans clinic located?",
@@ -60,7 +52,7 @@ export default function MainFaqPage() {
     },
     {
       question: "Is there parking available at the St Albans location?",
-      answer: "Yes, there is convenient parking available for patients. We provide specific parking directions and arrival instructions when your appointment is confirmed via WhatsApp."
+      answer: "Yes, there is convenient parking available for patients. We provide specific parking directions via WhatsApp once your appointment is confirmed."
     }
   ];
 
