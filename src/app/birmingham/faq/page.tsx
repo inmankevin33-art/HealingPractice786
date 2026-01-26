@@ -12,7 +12,7 @@ export default function BirminghamFaqPage() {
   const birminghamFaqs = [
     {
       question: "Are P-Shot® results permanent?",
-      answer: "Results are long-lasting but not permanent as the body continues to age naturally. At our Birmingham clinic, patients enjoy improvements for 12-18 months; you can find full details on our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) page."
+      answer: "Results are long-lasting but not permanent as the body continues to age naturally. At our Birmingham clinic, patients enjoy improvements for months; you can find full details on our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) page."
     },
     {
       question: "Is PRP better than a steroid injection for knee pain?",
@@ -28,7 +28,7 @@ export default function BirminghamFaqPage() {
     },
     {
       question: "How long do the results of a P-Shot® or O-Shot® last?",
-      answer: "Most patients experience improved sensitivity and performance for 12 to 18 months. To see how these treatments work, visit our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) section."
+      answer: "Most patients experience improved sensitivity and performance for months or more depending upon indiviual case. To see how these treatments work, visit our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) section."
     },
     {
       question: "Where exactly is the Birmingham clinic located?",
