@@ -12,7 +12,7 @@ export default function BirminghamFaqPage() {
   const birminghamFaqs = [
     {
       question: "Are the results of the P-Shot® permanent?",
-      answer: "While many of our Birmingham patients report sustained improvements for 12 to 18 months, results are not permanent as the natural aging process continues. Individual response varies, and periodic maintenance sessions are typically recommended to help sustain the desired effects."
+      answer: "While many of our Birmingham patients report sustained improvements for months, results are not permanent as the natural aging process continues. Individual response varies, and periodic maintenance sessions are typically recommended in some cases."
     },
     {
       question: "Is PRP better than a steroid injection for knee pain?",
