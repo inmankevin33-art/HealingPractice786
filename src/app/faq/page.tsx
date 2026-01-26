@@ -4,11 +4,33 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "PRP Treatment FAQs | St Albans & Hertfordshire | Healing-PRP", 
+  // 1. Optimized Title: Result will be "Treatment & Clinic FAQs | St Albans Clinic" 
+  title: "Treatment & Clinic FAQs", 
   description: "Expert answers on PRP Hair Restoration, Joint Injections, and Sexual Rejuvenation. Find information on parking and specialist doctor-led treatments in St Albans.",
-  // ADDED CANONICAL TAG HERE
   alternates: {
-    canonical: "https://healing-prp.co.uk/faq",
+    canonical: "https://www.healing-prp.co.uk/faq",
+  },
+  // 2. Comprehensive Local & Treatment Keywords
+  keywords: [
+    "PRP treatment FAQ St Albans",
+    "Is PRP therapy safe",
+    "P-Shot results Hertfordshire",
+    "O-Shot recovery time",
+    "PRP for hair loss Watford",
+    "Joint injection specialist Harpenden",
+    "Vampire Facial downtime St Albans",
+    "Regenerative medicine North London",
+    "GMC registered doctor PRP",
+    "Exosome therapy Hertfordshire",
+    "Private medical clinic St Albans parking",
+  ],
+  openGraph: {
+    title: "PRP & Regenerative Medicine FAQs | St Albans",
+    description: "Doctor-led answers for Hair, Joints, and Sexual Wellness treatments in St Albans and Hertfordshire.",
+    url: "https://www.healing-prp.co.uk/faq",
+    siteName: "Healing-PRP Clinics",
+    locale: "en_GB",
+    type: "website",
   },
 };
 
@@ -16,27 +38,27 @@ export default function MainFaqPage() {
   const mainFaqs = [
     {
       question: "Are the results of the P-Shot® permanent?",
-      answer: "While results are long-lasting, they are not permanent as the natural aging process continues. The P-Shot® stimulates natural tissue growth that typically lasts 12-18 months; you can learn more on our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) page."
+      answer: "While results are long-lasting, they are not permanent as the natural aging process continues. The P-Shot® stimulates natural tissue growth typically lasting 12-18 months; details are on our [Sexual Rejuvenation](/sexual-rejuvenation) page."
     },
     {
       question: "Is PRP better than a steroid injection for knee pain?",
-      answer: "Steroids provide fast relief but can weaken tendons over time. PRP is a regenerative therapy at our St Albans clinic that promotes long-term healing. View full details on our [Joint Injections](/treatments/joint-injections) page."
+      answer: "Steroids provide fast relief but can weaken tendons over time. PRP is a regenerative therapy at our St Albans clinic that promotes long-term healing. View details on our [Joint Injections](/joint-injections) page."
     },
     {
       question: "Can I get PRP Hair Restoration in Hertfordshire?",
-      answer: "Yes, we offer advanced PRP and Exosome therapy at our St Albans branch. This treatment stimulates natural follicle growth for both men and women. Read about our protocols on the [Hair Restoration](/treatments/hair-restoration) page."
+      answer: "Yes, we offer advanced PRP and Exosome therapy at our St Albans branch. This treatment stimulates natural follicle growth. Read about our protocols on the [Hair Restoration](/hair-restoration) page."
     },
     {
       question: "Does PRP work for advanced 'bone-on-bone' arthritis?",
-      answer: "PRP is most effective for early to moderate osteoarthritis. For advanced cases, our St Albans-based doctor will assess if regenerative therapy can still provide meaningful pain management. See our [Joint Injections](/treatments/joint-injections) section for more."
+      answer: "PRP is most effective for early to moderate osteoarthritis. For advanced cases, our St Albans-based doctor will assess if regenerative therapy can still provide relief. See our [Joint Injections](/joint-injections) section for more."
     },
     {
       question: "How long do the results of a P-Shot® or O-Shot® last?",
-      answer: "Most patients enjoy improved sensitivity and performance for 12 to 18 months. To see how these treatments work, visit our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) section."
+      answer: "Most patients enjoy improved sensitivity and performance for 12 to 18 months. To see how these treatments work, visit our [Sexual Rejuvenation](/sexual-rejuvenation) section."
     },
     {
       question: "Is there any downtime after Hair Restoration?",
-      answer: "There is minimal downtime; you can return to work in St Albans immediately. We simply advise waiting 24 hours before washing your hair or performing intense exercise. Detailed recovery tips are on our [Hair Restoration](/treatments/hair-restoration) page."
+      answer: "There is minimal downtime; you can return to work in St Albans immediately. We advise waiting 24 hours before washing hair. Recovery tips are on our [Hair Restoration](/hair-restoration) page."
     },
     {
       question: "Do you offer a consultation before treatment?",
@@ -48,7 +70,7 @@ export default function MainFaqPage() {
     },
     {
       question: "Can I drive home after a PRP joint injection?",
-      answer: "Yes, you can drive home to Watford, Harpenden, or surrounding Hertfordshire areas immediately. Any mild stiffness usually subsides within 24 hours. Check our [Joint Injections](/treatments/joint-injections) FAQ for post-care."
+      answer: "Yes, you can drive home to Watford, Harpenden, or surrounding Hertfordshire areas immediately. Check our [Joint Injections](/joint-injections) FAQ for post-care."
     },
     {
       question: "Where exactly is the St Albans clinic located?",
