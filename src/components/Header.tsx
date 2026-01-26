@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,94 +19,35 @@ const Header = () => {
     setActiveSubmenu(null);
   };
 
-  const toggleSubmenu = (name: string) => {
-    setActiveSubmenu(activeSubmenu === name ? null : name);
-  };
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      const scrollY = window.scrollY;
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.paddingRight = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
-    }
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.paddingRight = "";
-    };
-  }, [isMenuOpen]);
-
   // Dynamic Menu Items based on Location
   const menuItems = [
     {
       name: "Facial Aesthetics",
       href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics",
-      hasDropdown: false,
     },
     {
       name: "Joint Injections",
       href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections",
-      hasDropdown: false,
     },
     {
       name: "Hair Restoration",
       href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration",
-      hasDropdown: false,
     },
     {
       name: "Sexual Rejuvenation",
       href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation",
-      hasDropdown: false,
     },
     {
       name: "Prices",
-      href: isBirmingham ? "/birmingham/prices" : "/prices", // Dynamic path for prices
-      hasDropdown: false,
+      href: isBirmingham ? "/birmingham/prices" : "/prices",
     },
     {
-      name: "Locations",
-      href: "#",
-      hasDropdown: true,
-      subItems: [
-        { name: "St Albans (Main Clinic)", href: "/" },
-        { name: "Birmingham Clinic", href: "/birmingham" },
-      ],
+      name: "FAQs",
+      href: isBirmingham ? "/birmingham/faq" : "/faq",
     },
-    { 
-      name: "FAQs", 
-      href: isBirmingham ? "/birmingham/faq" : "/faq", // FIXED: Now switches dynamically
-      hasDropdown: false 
-    },
-    { name: "Blog", hasDropdown: false, href: "/blog" },
-    { name: "Contact", hasDropdown: false, href: "/contact" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
   ];
-  
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-  };
 
   return (
     <>
@@ -114,44 +55,31 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             
+            {/* Logo */}
             <div className="flex-shrink-0">
               <Link href={isBirmingham ? "/birmingham" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-2">
                   <div className="relative h-8 w-8 md:h-9 md:w-9 flex-shrink-0">
-                    <Image
-                      src="/Logo2.png" 
-                      alt="Healing-PRP Logo"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
+                    <Image src="/Logo2.png" alt="Healing-PRP Logo" fill className="object-contain" priority />
                   </div>
-                  
-                  <div className="text-base md:text-lg tracking-tight font-medium text-black">
+                  <div className="text-base md:text-lg tracking-tight font-medium text-black font-raleway">
                     Healing-PRP Clinics
-                    {isBirmingham && (
-                      <span className="hidden sm:inline-block ml-2 text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full align-middle uppercase tracking-wide">
-                        Birmingham
-                      </span>
-                    )}
                   </div>
                 </div>
               </Link>
             </div>
 
-            <div className="flex items-center space-x-2">
-              <span className="hidden md:inline text-[13px] font-medium font-raleway text-slate-800">
-                MENU
-              </span>
-              <button
-                onClick={toggleMenu}
-                className="p-2 cursor-pointer hover:bg-[var(--brand-blue-50)] rounded-md transition-colors"
-              >
-                {isMenuOpen ? (
-                  <X className="h-5 w-5 text-slate-700" />
-                ) : (
-                  <Menu className="h-5 w-5 text-slate-700" />
-                )}
+            {/* Menu Button */}
+            <div className="flex items-center space-x-4">
+               {/* Subtle Location Indicator for Desktop */}
+               <div className="hidden md:flex items-center text-[11px] font-bold text-slate-400 uppercase tracking-widest gap-1">
+                 <MapPin className="w-3 h-3" />
+                 {isBirmingham ? "Birmingham Clinic" : "St Albans Clinic"}
+               </div>
+               
+              <button onClick={toggleMenu} className="p-2 hover:bg-slate-50 rounded-md transition-colors flex items-center gap-2 group">
+                <span className="text-[13px] font-bold font-raleway text-slate-800 group-hover:text-blue-600 transition-colors">MENU</span>
+                {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
             </div>
           </div>
@@ -160,77 +88,63 @@ const Header = () => {
 
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            exit={{ opacity: 0, y: -10 }}
             className="fixed inset-0 z-40 bg-white top-16 lg:top-20 overflow-y-auto"
           >
-            <div className="flex flex-col justify-start items-start min-h-full py-8 md:py-12">
-              <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.nav
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="space-y-6"
-                >
-                  {menuItems.map((item, index) => (
-                    <motion.div
-                      key={index}
-                      variants={itemVariants}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                      className="flex flex-col"
-                    >
-                      <div className="flex items-center space-x-3">
-                        {item.hasDropdown ? (
-                          <button
-                            onClick={() => toggleSubmenu(item.name)}
-                            className="flex items-center gap-3 text-2xl lg:text-3xl font-raleway text-slate-900 hover:text-[var(--brand-blue)] transition-colors duration-300"
-                          >
-                            {item.name}
-                            <ChevronDown
-                              className={`h-5 w-5 lg:h-6 lg:w-6 text-slate-500 transition-transform duration-300 ${
-                                activeSubmenu === item.name ? "rotate-180" : ""
-                              }`}
-                            />
-                          </button>
-                        ) : (
-                          <Link
-                            href={item.href}
-                            className="text-2xl lg:text-3xl font-raleway text-slate-900 hover:text-[var(--brand-blue)] transition-colors duration-300"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {item.name}
-                          </Link>
-                        )}
-                      </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+              
+              {/* --- 1. LOCATION TOGGLE AT THE TOP --- */}
+              <div className="mb-12 pb-8 border-b border-slate-100">
+                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Select Clinic Location</p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link 
+                    href="/" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`flex-1 flex items-center justify-between p-4 rounded-xl border-2 transition-all ${!isBirmingham ? 'border-blue-600 bg-blue-50/50' : 'border-slate-100 hover:border-slate-300'}`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 rounded-lg ${!isBirmingham ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'}`}><MapPin className="w-4 h-4" /></div>
+                      <span className={`font-raleway font-bold ${!isBirmingham ? 'text-blue-900' : 'text-slate-600'}`}>St Albans</span>
+                    </div>
+                    {!isBirmingham && <div className="w-2 h-2 rounded-full bg-blue-600" />}
+                  </Link>
 
-                      <AnimatePresence>
-                        {item.hasDropdown && activeSubmenu === item.name && item.subItems && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden pl-4 mt-2 space-y-3 border-l-2 border-gray-100 ml-2"
-                          >
-                            {item.subItems.map((subItem, subIndex) => (
-                              <Link
-                                key={subIndex}
-                                href={subItem.href}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="block text-lg lg:text-xl font-inter text-slate-600 hover:text-[var(--brand-blue)] py-1"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  ))}
-                </motion.nav>
+                  <Link 
+                    href="/birmingham" 
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`flex-1 flex items-center justify-between p-4 rounded-xl border-2 transition-all ${isBirmingham ? 'border-blue-600 bg-blue-50/50' : 'border-slate-100 hover:border-slate-300'}`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 rounded-lg ${isBirmingham ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'}`}><MapPin className="w-4 h-4" /></div>
+                      <span className={`font-raleway font-bold ${isBirmingham ? 'text-blue-900' : 'text-slate-600'}`}>Birmingham</span>
+                    </div>
+                    {isBirmingham && <div className="w-2 h-2 rounded-full bg-blue-600" />}
+                  </Link>
+                </div>
               </div>
+
+              {/* --- 2. REORGANIZED MENU ITEMS --- */}
+              <nav className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+                {menuItems.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    <Link
+                      href={item.href}
+                      className="text-2xl md:text-3xl font-raleway font-medium text-slate-900 hover:text-blue-600 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
             </div>
           </motion.div>
         )}
