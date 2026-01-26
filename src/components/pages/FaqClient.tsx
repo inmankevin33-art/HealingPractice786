@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FaWhatsapp, FaPlus, FaMinus, FaEnvelope, FaTimes } from "react-icons/fa";
 import ContactCTASection from "@/components/ContactCTASection";
-// REMOVED: import Footer from "@/components/Footer";
 import Link from "next/link";
 
 interface FAQItem {
@@ -22,7 +21,7 @@ interface FaqClientProps {
 export default function FaqClient({ title, description, faqs, locationBadge }: FaqClientProps) {
   const [openFAQKey, setOpenFAQKey] = useState<string | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleFAQ = (key: string) => {
     setOpenFAQKey(openFAQKey === key ? null : key);
@@ -40,6 +39,15 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
       e.preventDefault();
       setIsModalOpen(true);
     }
+  };
+
+  // Helper function to turn [Text](URL) into clickable HTML links
+  const formatAnswer = (text: string) => {
+    const markdownLinkRegex = /\[(.*?)\]\((.*?)\)/g;
+    return text.replace(
+      markdownLinkRegex,
+      '<a href="$2" class="text-blue-600 font-bold hover:underline">$1</a>'
+    );
   };
 
   const containerVariants = {
@@ -147,7 +155,11 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-6 text-slate-600 font-inter text-sm border-t border-slate-200/50 pt-4">
-                        {faq.answer}
+                        {/* FIXED: This allows HTML links to be clickable */}
+                        <div 
+                          className="faq-answer-content"
+                          dangerouslySetInnerHTML={{ __html: formatAnswer(faq.answer) }} 
+                        />
                       </div>
                     </motion.div>
                   )}
@@ -159,7 +171,6 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
       </section>
 
       <ContactCTASection />
-      {/* REMOVED: <Footer /> */}
 
       {/* WhatsApp QR Modal */}
       <AnimatePresence>
