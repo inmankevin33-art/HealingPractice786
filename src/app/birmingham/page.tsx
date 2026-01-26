@@ -4,7 +4,10 @@ import BirminghamHomeClient from "@/components/pages/BirminghamHomeClient";
 export const metadata: Metadata = {
   title: "Healing-PRP Clinics Birmingham | Private Doctor-Led Clinic",
   description:
-    "Leading private clinic in Birmingham for PRP Hair Restoration, Joint Injections & Sexual Rejuvenation. Doctor-led, CQC-compliant & non-surgical.",
+    "Leading private clinic in Birmingham for PRP Hair Restoration, Joint Injections & Sexual Rejuvenation. Specialist Erectile Dysfunction (ED) solutions and P-Shot® therapy. Doctor-led care serving Birmingham, Solihull & Sutton Coldfield.",
+  alternates: {
+    canonical: "https://www.healing-prp.co.uk/birmingham",
+  },
   keywords: [
     "PRP Clinic Birmingham",
     "Private Doctor Birmingham",
@@ -12,11 +15,17 @@ export const metadata: Metadata = {
     "Hair Loss Treatment Birmingham",
     "Joint Pain Clinic Birmingham",
     "P-Shot Birmingham",
+    "Erectile Dysfunction treatment Birmingham", 
+    "ED clinic West Midlands",                    
+    "PRP therapy Solihull",                      
+    "Joint injections Sutton Coldfield",         
+    "Hair restoration Wolverhampton",             
+    "Vampire Facial Dudley",                     
   ],
   openGraph: {
     title: "Healing-PRP Clinics | Birmingham Location",
     description:
-      "Doctor-led regenerative treatments in Birmingham. Hair, Skin, Joints & Sexual Health.",
+      "Doctor-led regenerative treatments and Erectile Dysfunction (ED) solutions in Birmingham. Serving Solihull, Sutton Coldfield & West Midlands.",
     url: "https://www.healing-prp.co.uk/birmingham",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
