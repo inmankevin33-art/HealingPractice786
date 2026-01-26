@@ -4,11 +4,11 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "PRP Treatment FAQs Birmingham | Edgbaston Clinic | Healing-PRP", 
+  // 1. Optimized Title: Result will be "Treatment & Clinic FAQs | Birmingham Clinic"
+  title: "Treatment & Clinic FAQs", 
   description: "Patient FAQs for our Birmingham Edgbaston clinic. Specialist answers on PRP for joint pain, hair loss, and sexual health. Expert doctor-led care in the West Midlands.",
-  // ADDED CANONICAL TAG HERE
   alternates: {
-    canonical: "https://healing-prp.co.uk/birmingham/faq",
+    canonical: "https://www.healing-prp.co.uk/birmingham/faq",
   },
 };
 
@@ -16,23 +16,26 @@ export default function BirminghamFaqPage() {
   const birminghamFaqs = [
     {
       question: "Are P-Shot® results permanent?",
-      answer: "Results are long-lasting but not permanent as the body continues to age naturally. At our Birmingham clinic, patients enjoy improvements for months; you can find full details on our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) page."
+      // Updated link to Birmingham-specific path
+      answer: "Results are long-lasting but not permanent as the body continues to age naturally. At our Birmingham clinic, patients enjoy improvements for months; you can find full details on our [Sexual Rejuvenation](/birmingham/sexual-rejuvenation) page."
     },
     {
       question: "Is PRP better than a steroid injection for knee pain?",
-      answer: "Steroids offer fast, temporary relief but can weaken joint tissue over time. PRP is a regenerative therapy at our Edgbaston clinic that promotes long-term healing. View full details on our [Joint Injections](/treatments/joint-injections) page."
+      // Updated link to Birmingham-specific path
+      answer: "Steroids offer fast, temporary relief but can weaken joint tissue over time. PRP is a regenerative therapy at our Edgbaston clinic that promotes long-term healing. View full details on our [Joint Injections](/birmingham/joint-injections) page."
     },
     {
       question: "Can I get PRP Hair Restoration in the West Midlands?",
-      answer: "Absolutely. We offer advanced PRP and Exosome therapy at our Birmingham clinic for both men and women. Read about our specialized protocols on the [Hair Restoration](/treatments/hair-restoration) page."
+      // Updated link to Birmingham-specific path
+      answer: "Absolutely. We offer advanced PRP and Exosome therapy at our Birmingham clinic for both men and women. Read about our specialized protocols on the [Hair Restoration](/birmingham/hair-restoration) page."
     },
     {
       question: "Does PRP work for advanced 'bone-on-bone' arthritis?",
-      answer: "PRP is most effective for early to moderate osteoarthritis. For advanced cases, our Birmingham-based doctor will assess if regenerative therapy is still a viable option. See our [Joint Injections](/treatments/joint-injections) section for more."
+      answer: "PRP is most effective for early to moderate osteoarthritis. For advanced cases, our Birmingham-based doctor will assess if regenerative therapy is still a viable option. See our [Joint Injections](/birmingham/joint-injections) section for more."
     },
     {
       question: "How long do the results of a P-Shot® or O-Shot® last?",
-      answer: "Most patients experience improved sensitivity and performance for months or more depending upon individual case. To see how these treatments work, visit our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) section."
+      answer: "Most patients experience improved sensitivity and performance for months or more depending upon individual case. To see how these treatments work, visit our [Sexual Rejuvenation](/birmingham/sexual-rejuvenation) section."
     },
     {
       question: "Where exactly is the Birmingham clinic located?",
@@ -44,11 +47,11 @@ export default function BirminghamFaqPage() {
     },
     {
       question: "Is there any downtime after Sexual Rejuvenation treatments?",
-      answer: "There is virtually no downtime; you can return to your Birmingham routine immediately. We recommend 2-3 days of rest before resuming sexual activity; see more recovery tips on our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) page."
+      answer: "There is virtually no downtime; you can return to your Birmingham routine immediately. We recommend 2-3 days of rest before resuming sexual activity; see more recovery tips on our [Sexual Rejuvenation](/birmingham/sexual-rejuvenation) page."
     },
     {
       question: "Can I drive home after a PRP joint injection?",
-      answer: "Yes, you can drive home to Solihull, Wolverhampton, or beyond immediately after treatment. Any mild stiffness usually subsides within 24 hours. Check our [Joint Injections](/treatments/joint-injections) FAQ for post-care."
+      answer: "Yes, you can drive home to Solihull, Wolverhampton, or beyond immediately after treatment. Any mild stiffness usually subsides within 24 hours. Check our [Joint Injections](/birmingham/joint-injections) FAQ for post-care."
     },
     {
       question: "Are your doctors GMC-registered?",
