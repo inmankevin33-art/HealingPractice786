@@ -2,8 +2,9 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { FaWhatsapp, FaPlus, FaMinus, FaEnvelope } from "react-icons/fa";
+import { FaWhatsapp, FaPlus, FaMinus, FaEnvelope, FaTimes } from "react-icons/fa";
 import ContactCTASection from "@/components/ContactCTASection";
+import Footer from "@/components/Footer"; // FIXED: Added missing import
 import Link from "next/link";
 
 interface FAQItem {
@@ -21,6 +22,7 @@ interface FaqClientProps {
 export default function FaqClient({ title, description, faqs, locationBadge }: FaqClientProps) {
   const [openFAQKey, setOpenFAQKey] = useState<string | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Added for WhatsApp Modal
 
   const toggleFAQ = (key: string) => {
     setOpenFAQKey(openFAQKey === key ? null : key);
@@ -32,6 +34,14 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
     window.addEventListener("resize", checkDesktop);
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
+
+  // Added logic for WhatsApp modal on desktop
+  const handleWhatsAppClick = (e: React.MouseEvent) => {
+    if (isDesktop) {
+      e.preventDefault();
+      setIsModalOpen(true);
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -48,7 +58,7 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
 
   return (
     <>
-      {/* Hero Section - Single Line Description & Clinic Branding */}
+      {/* Hero Section */}
       <section className="relative min-h-[50vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
@@ -78,7 +88,6 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
               <span className="text-slate-700">Healing-PRP Clinics</span>
             </motion.h1>
 
-            {/* Forced to single line on desktop using max-w-none and whitespace-nowrap */}
             <motion.p
               className="text-sm md:text-base text-slate-600 font-inter mb-10 max-w-none md:whitespace-nowrap overflow-hidden text-ellipsis"
               variants={itemVariants}
@@ -87,11 +96,13 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
+              {/* WhatsApp Button with Desktop Modal Logic */}
               <a
                 href="https://wa.me/447990364147"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3 bg-[var(--brand-blue)] hover:bg-blue-700 text-white rounded-lg font-semibold flex gap-2 items-center transition-all shadow-md"
+                onClick={handleWhatsAppClick}
+                className="px-8 py-3 bg-[var(--brand-blue)] hover:bg-blue-700 text-white rounded-lg font-semibold flex gap-2 items-center transition-all shadow-md cursor-pointer"
               >
                 <FaWhatsapp className="w-5 h-5" /> Book on WhatsApp
               </a>
@@ -151,6 +162,50 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
 
       <ContactCTASection />
       <Footer />
+
+      {/* WhatsApp QR Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }} 
+              className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm" 
+              onClick={() => setIsModalOpen(false)} 
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }} 
+              animate={{ opacity: 1, scale: 1, y: 0 }} 
+              exit={{ opacity: 0, scale: 0.9, y: 20 }} 
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative text-center">
+                <button 
+                  onClick={() => setIsModalOpen(false)} 
+                  className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors"
+                >
+                  <FaTimes className="w-5 h-5 text-slate-600" />
+                </button>
+                <h3 className="text-2xl font-raleway font-semibold text-slate-900 mb-2">Scan to Chat</h3>
+                <p className="text-sm text-slate-600 mb-6">Use your phone camera to scan the QR code</p>
+                <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
+                  <img src="/qrcode.png" alt="WhatsApp QR Code" className="w-64 h-64" />
+                </div>
+                <a 
+                  href="https://wa.me/447990364147" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-medium transition-all"
+                >
+                  <FaWhatsapp className="w-5 h-5" /> Open WhatsApp
+                </a>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }
