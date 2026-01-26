@@ -8,15 +8,14 @@ import {
   FaEnvelope,
   FaTimes,
 } from "react-icons/fa";
-import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
+// REMOVED: import Footer from "@/components/Footer"; 
 import Link from "next/link";
 import Script from "next/script";
 
 export default function PricesClient({ isBirmingham = false }: { isBirmingham?: boolean }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
@@ -25,7 +24,6 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
-  // Fixes the "handleWhatsAppClick" error
   const handleWhatsAppClick = (e: React.MouseEvent) => {
     if (isDesktop) {
       e.preventDefault();
@@ -33,7 +31,6 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
     }
   };
 
-  // Prevent body scroll when modal is open
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
@@ -55,19 +52,19 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
       ]
     },
     {
+      id: "joint",
+      title: "Joint Injections",
+      items: [
+        { name: "PRP Joint Injection", price: "From £250", sessions: "1-3 sessions", details: "Regenerative pain relief" },
+        { name: "Steroid Injection", price: "£120", sessions: "Single", details: "Anti-inflammatory relief" },
+      ]
+    },
+    {
       id: "hair",
       title: "Hair Restoration",
       items: [
         { name: "PRP Hair Treatment", price: "£200", sessions: "Course of 3: £500", details: "Natural follicle stimulation" },
         { name: "Hair Exosomes", price: "From £400", sessions: "Tailored plan", details: "Advanced scalp regeneration" },
-      ]
-    },
-    {
-      id: "joints",
-      title: "Joint Injections",
-      items: [
-        { name: "PRP Joint Injection", price: "From £250", sessions: "1-3 sessions", details: "Regenerative pain relief" },
-        { name: "Steroid Injection", price: "£120", sessions: "Single", details: "Anti-inflammatory relief" },
       ]
     },
     {
@@ -81,7 +78,6 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
     }
   ];
 
-  // Price Schema for Google
   const priceSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
@@ -99,7 +95,6 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(priceSchema) }}
       />
 
-      {/* Hero Section */}
       <section className="pt-32 pb-16 bg-slate-50 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
@@ -122,7 +117,6 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
         </div>
       </section>
 
-      {/* Pricing Tables */}
       {categories.map((cat) => (
         <section key={cat.id} id={cat.id} className="py-16 bg-white border-b border-slate-50 scroll-mt-24">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -167,9 +161,8 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
       ))}
 
       <ContactCTASection />
-      <Footer />
+      {/* REMOVED: <Footer /> - Managed by parent page.tsx */}
 
-      {/* WhatsApp Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <>
