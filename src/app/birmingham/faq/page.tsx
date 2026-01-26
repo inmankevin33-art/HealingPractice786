@@ -3,7 +3,6 @@ import FaqClient from "@/components/pages/FaqClient";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 
-// SEO: This will show as "Patient FAQs & Parking | Birmingham Clinic"
 export const metadata: Metadata = {
   title: "Patient FAQs & Parking", 
   description: "Visiting our Birmingham clinic? Find answers about parking in Edgbaston, directions from Solihull, and specialist PRP treatments in the West Midlands.",
@@ -29,7 +28,7 @@ export default function BirminghamFaqPage() {
     },
     {
       question: "How do I book an appointment for the Birmingham clinic?",
-      answer: "You can book by clicking the 'Book on WhatsApp' button on this page to chat with our team, or by filling out the contact form. We offer flexible scheduling to suit your needs.",
+      answer: "You can book by clicking the 'Book on WhatsApp' button on this page to chat with our team, or by filling out the contact form.",
     },
     {
       question: "Are your doctors GMC-registered?",
@@ -41,7 +40,6 @@ export default function BirminghamFaqPage() {
     },
   ];
 
-  // Schema: Tells Google this content belongs to the Birmingham entity
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
