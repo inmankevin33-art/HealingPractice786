@@ -53,8 +53,6 @@ const Header = () => {
 
   // Dynamic Menu Items based on Location
   const menuItems = [
-    // Dynamic Menu Items based on Location
-    const menuItems = [
       {
         name: "Facial Aesthetics",
         href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics",
