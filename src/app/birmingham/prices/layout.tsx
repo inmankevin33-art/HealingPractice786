@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Treatment Prices in Birmingham | Healing-PRP Clinics",
-  description:
-    "Transparent prices for PRP, facial aesthetics, hair restoration, joint injections and sexual rejuvenation in Birmingham. Doctor-led, private care.",
+  title: {
+    default: "Treatment Prices",
+    template: "%s | Birmingham Clinic", // Automatically appends location to sub-pages
+  },
+  description: "Transparent pricing for doctor-led PRP, Joint Injections, and Sexual Health treatments in Birmingham.",
 };
 
-export default function PricesLayout({
+export default function BirminghamPricesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      {/* This wraps your Birmingham PricesClient */}
+      {children}
+    </>
+  );
 }
