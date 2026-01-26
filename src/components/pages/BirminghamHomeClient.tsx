@@ -42,32 +42,33 @@ export default function BirminghamHomeClient() {
     }
   };
 
+  // SEO TWEAK: I slightly reworded these services to be distinct from the main home page
   const services = [
     {
       title: "Hair Restoration",
-      desc: "Advanced PRP & Exosome treatments to stop hair loss and stimulate natural regrowth.",
+      desc: "West Midlands' leading clinic for PRP & Exosome hair therapy. Stimulate regrowth without surgery.",
       link: "/birmingham/hair-restoration",
     },
     {
       title: "Sexual Rejuvenation",
-      desc: "P-Shot® & O-Shot® therapies for function, sensitivity, and confidence.",
+      desc: "Confidential P-Shot® & O-Shot® treatments in Birmingham to restore function and sensitivity.",
       link: "/birmingham/sexual-rejuvenation",
     },
     {
       title: "Joint Injections",
-      desc: "Non-surgical pain relief for arthritis and sports injuries (PRP & Steroid).",
+      desc: "Expert joint pain relief for arthritis and sports injuries using regenerative PRP therapy.",
       link: "/birmingham/joint-injections",
     },
     {
       title: "Facial Aesthetics",
-      desc: "Natural skin rejuvenation using Polynucleotides and Vampire Facials.",
+      desc: "Vampire Facials & Polynucleotides for natural skin rejuvenation in the heart of the Midlands.",
       link: "/birmingham/facial-aesthetics",
     },
   ];
 
   return (
     <>
-      {/* --- NEW HERO SECTION (Matches St Albans Style) --- */}
+      {/* --- HERO SECTION --- */}
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -84,7 +85,7 @@ export default function BirminghamHomeClient() {
             <FaMapMarkerAlt className="inline-block mr-2 mb-0.5" /> Birmingham Clinic
           </div>
 
-          {/* Headline - Large Style */}
+          {/* Headline - Specific to Birmingham */}
           <h1 className={`md:text-5xl text-3xl font-medium font-raleway text-white leading-tight mb-4 transition-opacity transition-transform duration-1000 delay-300 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             Natural Regeneration Treatments <br /> in Birmingham
           </h1>
@@ -93,9 +94,10 @@ export default function BirminghamHomeClient() {
             Confidential Care by a GMC Registered Experienced Doctor
           </h2>
 
+          {/* SEO TWEAK: Rewritten paragraph to mention local areas */}
           <p className={`mt-4 text-sm md:text-base text-white leading-relaxed max-w-2xl mx-auto mb-8 transition-opacity transition-transform duration-1000 delay-500 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            Specialist treatments for Hair Restoration, Sexual Wellness, and Joint Pain. 
-            Safe, effective, and non-surgical care in the West Midlands.
+            Specialist regenerative treatments for Hair Loss, Sexual Wellness, and Joint Pain. 
+            Proudly serving Edgbaston, Solihull, and the wider West Midlands.
           </p>
 
           {/* Buttons */}
@@ -115,7 +117,7 @@ export default function BirminghamHomeClient() {
           </div>
         </div>
 
-        {/* Feature Banner at Bottom (Matches St Albans) */}
+        {/* Feature Banner */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[var(--brand-blue)]/90 backdrop-blur-sm transition-opacity transition-transform duration-1000 delay-1100 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-4 sm:px-6 lg:px-8 py-5">
             <div className="max-w-7xl mx-auto">
@@ -141,17 +143,16 @@ export default function BirminghamHomeClient() {
           </div>
         </div>
       </div>
-      {/* --- END NEW HERO --- */}
 
-      {/* Services Grid (Rest of page content) */}
+      {/* Services Grid */}
       <section id="services" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-raleway text-slate-900 mt-2">
-              Available Treatments in Birmingham
+              Our Birmingham Treatments
             </h2>
             <p className="text-slate-600 text-lg mt-4 max-w-3xl mx-auto">
-              We specialize in regenerative medicine, bringing Harley Street expertise to the West Midlands.
+              Regenerative medicine treatments delivered by an experienced doctor in our West Midlands clinic.
             </p>
           </div>
 
@@ -165,7 +166,7 @@ export default function BirminghamHomeClient() {
                   {service.desc}
                 </p>
                 <Link href={service.link} className="inline-flex items-center text-[var(--brand-blue)] font-semibold group-hover:gap-2 transition-all duration-300">
-                  View Treatments <FaArrowRight className="ml-2 w-3 h-3" />
+                  View Details <FaArrowRight className="ml-2 w-3 h-3" />
                 </Link>
               </div>
             ))}
@@ -173,20 +174,20 @@ export default function BirminghamHomeClient() {
         </div>
       </section>
 
-      {/* Joint Injections Preview */}
+      {/* Joint Injections Preview - SEO TWEAK: Added 'Birmingham' to text */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl order-last lg:order-first">
-                 <img src="/joint-injections.jpg" alt="Joint Injection Therapy" className="w-full h-full object-cover" />
+                 <img src="/joint-injections.jpg" alt="Joint Injection Therapy Birmingham" className="w-full h-full object-cover" />
               </div>
               <div>
                  <h2 className="text-3xl lg:text-4xl font-raleway text-slate-900 mb-6">
-                    Joint Injections in Birmingham
+                    Joint Pain Relief in Birmingham
                  </h2>
                  <p className="text-slate-600 font-inter leading-relaxed mb-6">
-                    Doctor-delivered injections for pain relief and mobility in arthritis, tendon, and sports-related conditions.
-                    We offer both PRP (Platelet-Rich Plasma) for regeneration and Steroid injections for rapid inflammation relief.
+                    We offer doctor-delivered PRP and Steroid injections for arthritis and sports injuries at our Birmingham clinic. 
+                    Ideal for patients seeking non-surgical options for knee, shoulder, and hip pain.
                  </p>
                  <Link href="/birmingham/joint-injections" className="inline-flex items-center text-[var(--brand-blue)] font-semibold hover:gap-2 transition-all duration-300">
                     View Joint Treatments <FaArrowRight className="ml-2 w-4 h-4" />
