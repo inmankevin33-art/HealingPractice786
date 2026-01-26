@@ -12,19 +12,23 @@ export default function BirminghamFaqPage() {
   const birminghamFaqs = [
     {
       question: "Are P-Shot® results permanent?",
-      answer: "Results are long-lasting but not permanent as the body continues to age naturally. At our Birmingham clinic, patients typically enjoy improvements for 12-18 months, with many opting for annual maintenance to sustain peak performance."
+      answer: "Results are long-lasting but not permanent as the body continues to age naturally. At our Birmingham clinic, patients enjoy improvements for 12-18 months; you can find full details on our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) page."
     },
     {
       question: "Is PRP better than a steroid injection for knee pain?",
-      answer: "Steroids offer fast, temporary relief but can weaken joint tissue over time. PRP is a regenerative therapy used at our Edgbaston clinic to promote long-term healing using your own growth factors. View our [Birmingham treatment prices](/prices) for more details."
+      answer: "Steroids offer fast, temporary relief but can weaken joint tissue over time. PRP is a regenerative therapy at our Edgbaston clinic that promotes long-term healing. View full details on our [Joint Injections](/treatments/joint-injections) page."
+    },
+    {
+      question: "Can I get PRP Hair Restoration in the West Midlands?",
+      answer: "Absolutely. We offer advanced PRP and Exosome therapy at our Birmingham clinic for both men and women. Read about our specialized protocols on the [Hair Restoration](/treatments/hair-restoration) page."
     },
     {
       question: "Does PRP work for advanced 'bone-on-bone' arthritis?",
-      answer: "PRP is most effective for early to moderate osteoarthritis. For advanced cases, our Birmingham-based doctor will assess your joint during a consultation to determine if PRP can still provide meaningful pain management for you."
+      answer: "PRP is most effective for early to moderate osteoarthritis. For advanced cases, our Birmingham-based doctor will assess if regenerative therapy is still a viable option. See our [Joint Injections](/treatments/joint-injections) section for more."
     },
     {
       question: "How long do the results of a P-Shot® or O-Shot® last?",
-      answer: "Most patients experience improved sensitivity and performance for 12 to 18 months. The effects are cumulative, and many of our West Midlands patients choose a single annual top-up to maintain optimal results."
+      answer: "Most patients experience improved sensitivity and performance for 12 to 18 months. To see how these treatments work, visit our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) section."
     },
     {
       question: "Where exactly is the Birmingham clinic located?",
@@ -36,19 +40,15 @@ export default function BirminghamFaqPage() {
     },
     {
       question: "Is there any downtime after Sexual Rejuvenation treatments?",
-      answer: "There is virtually no downtime; you can return to your daily routine in Birmingham immediately. We recommend 2-3 days of pelvic rest before resuming sexual activity to ensure injection sites heal perfectly."
+      answer: "There is virtually no downtime; you can return to your Birmingham routine immediately. We recommend 2-3 days of rest before resuming sexual activity; see more recovery tips on our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) page."
     },
     {
       question: "Can I drive home after a PRP joint injection?",
-      answer: "Yes, you can drive home to Solihull, Wolverhampton, or beyond immediately after treatment. You may feel slight stiffness for 24 hours, but it does not typically interfere with operating a vehicle."
+      answer: "Yes, you can drive home to Solihull, Wolverhampton, or beyond immediately after treatment. Any mild stiffness usually subsides within 24 hours. Check our [Joint Injections](/treatments/joint-injections) FAQ for post-care."
     },
     {
       question: "Are your doctors GMC-registered?",
-      answer: "Yes, all treatments at Healing-PRP Clinics are delivered by a GMC-registered doctor with over 10 years of medical experience, ensuring the highest standards of safety and care."
-    },
-    {
-      question: "Can I combine different PRP treatments?",
-      answer: "Absolutely. Many patients combine hair restoration with facial aesthetics or joint treatments. Visit our [Prices page](/prices) to see our range of regenerative services."
+      answer: "Yes, all treatments at Healing-PRP Clinics are delivered by a GMC-registered doctor with over 10 years of medical experience. This ensures the highest standards of safety for our West Midlands patients."
     }
   ];
 
