@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: "PRP Hair Loss Treatment St Albans | Healing-PRP Clinics",
   description:
     "Doctor-led PRP and Exosome hair restoration in St Albans. Non-surgical treatment for hair thinning and regrowth. Book a consultation.",
+  // FIXED: Matches your actual folder path
+  alternates: {
+    canonical: "https://www.healing-prp.co.uk/hair-restoration",
+  },
   keywords: [
     "PRP hair treatment St Albans",
     "Hair loss treatment St Albans",
@@ -17,6 +21,7 @@ export const metadata: Metadata = {
     title: "PRP Hair Restoration Clinic in St Albans",
     description:
       "Effective, non-surgical hair regrowth treatments using PRP and Exosomes. Doctor-led clinic in St Albans.",
+    // FIXED: Matches your actual folder path
     url: "https://www.healing-prp.co.uk/hair-restoration",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
