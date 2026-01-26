@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FaWhatsapp, FaPlus, FaMinus, FaEnvelope, FaTimes } from "react-icons/fa";
 import ContactCTASection from "@/components/ContactCTASection";
-import Footer from "@/components/Footer"; // FIXED: Added missing import
+// REMOVED: import Footer from "@/components/Footer";
 import Link from "next/link";
 
 interface FAQItem {
@@ -22,7 +22,7 @@ interface FaqClientProps {
 export default function FaqClient({ title, description, faqs, locationBadge }: FaqClientProps) {
   const [openFAQKey, setOpenFAQKey] = useState<string | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Added for WhatsApp Modal
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const toggleFAQ = (key: string) => {
     setOpenFAQKey(openFAQKey === key ? null : key);
@@ -35,7 +35,6 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
-  // Added logic for WhatsApp modal on desktop
   const handleWhatsAppClick = (e: React.MouseEvent) => {
     if (isDesktop) {
       e.preventDefault();
@@ -96,7 +95,6 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
-              {/* WhatsApp Button with Desktop Modal Logic */}
               <a
                 href="https://wa.me/447990364147"
                 target="_blank"
@@ -161,7 +159,7 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
       </section>
 
       <ContactCTASection />
-      <Footer />
+      {/* REMOVED: <Footer /> */}
 
       {/* WhatsApp QR Modal */}
       <AnimatePresence>
