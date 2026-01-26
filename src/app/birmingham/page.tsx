@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import BirminghamHomeClient from "@/components/pages/BirminghamHomeClient";
 
 export const metadata: Metadata = {
-  title: "Healing-PRP Clinics Birmingham | Private Doctor-Led Clinic",
+  // REDUCED TITLE: The layout will now add " | Birmingham Clinic" automatically
+  title: "Healing-PRP Clinics", 
   description:
     "Leading private clinic in Birmingham for PRP Hair Restoration, Joint Injections & Sexual Rejuvenation. Specialist Erectile Dysfunction (ED) solutions and P-Shot® therapy. Doctor-led care serving Birmingham, Solihull & Sutton Coldfield.",
   alternates: {
