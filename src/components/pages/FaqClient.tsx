@@ -68,9 +68,9 @@ export default function FaqClient({ title, description, faqs, locationBadge = "G
 
   return (
     <>
-      {/* --- NEW LIGHT HERO SECTION --- */}
+      {/* --- LIGHT HERO SECTION --- */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-slate-50 overflow-hidden">
-        {/* Decorative background element (optional subtle gradient) */}
+        {/* Decorative background element */}
         <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30" />
         
         <div className="relative w-full z-20">
@@ -78,7 +78,7 @@ export default function FaqClient({ title, description, faqs, locationBadge = "G
             <div className="max-w-4xl mx-auto">
               <motion.div initial="hidden" animate="visible" variants={containerVariants}>
                 
-                {/* Badge - Blue Style */}
+                {/* Badge */}
                 <motion.div
                   className="inline-block px-4 py-2 bg-blue-100 text-[var(--brand-blue)] rounded-full text-xs font-inter font-semibold mb-6 uppercase tracking-wider"
                   variants={itemVariants}
@@ -86,7 +86,7 @@ export default function FaqClient({ title, description, faqs, locationBadge = "G
                   {locationBadge}
                 </motion.div>
 
-                {/* Heading - Dark Text */}
+                {/* Heading */}
                 <motion.h1
                   className="text-4xl md:text-6xl font-raleway font-bold text-slate-900 mb-6 leading-tight"
                   variants={itemVariants}
@@ -94,7 +94,7 @@ export default function FaqClient({ title, description, faqs, locationBadge = "G
                   {title}
                 </motion.h1>
 
-                {/* Description - Slate Text */}
+                {/* Description */}
                 <motion.p
                   className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-inter mb-10"
                   variants={itemVariants}
@@ -102,7 +102,7 @@ export default function FaqClient({ title, description, faqs, locationBadge = "G
                   {description}
                 </motion.p>
 
-                {/* Buttons - Clean Style */}
+                {/* Buttons */}
                 <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center gap-4">
                   {isDesktop ? (
                     <button
