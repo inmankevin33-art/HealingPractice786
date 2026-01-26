@@ -5,32 +5,43 @@ import { useState, useEffect } from "react";
 import {
   FaWhatsapp,
   FaCheck,
-  FaChevronDown,
-  FaChevronUp,
-  FaPlus,
-  FaMinus,
   FaEnvelope,
   FaTimes,
-  FaInfoCircle,
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
 import Script from "next/script";
 
-// ... (Keep your types: QA, Treatment, Category, and slugify function)
-
 export default function PricesClient({ isBirmingham = false }: { isBirmingham?: boolean }) {
-  const [expandedTreatment, setExpandedTreatment] = useState<string | null>(null);
-  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
 
-  // ... (Keep your useEffects for Desktop check and Modal scroll lock)
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
 
-  // --- PRICING DATA (RESTRUCTURED FOR SCANNABILITY) ---
-  // Note: I suggest keeping the descriptions short in the main view.
-  
+  // Fixes the "handleWhatsAppClick" error
+  const handleWhatsAppClick = (e: React.MouseEvent) => {
+    if (isDesktop) {
+      e.preventDefault();
+      setIsModalOpen(true);
+    }
+  };
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isModalOpen]);
+
   const categories = [
     {
       id: "facial",
@@ -40,26 +51,44 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
         { name: "HA Skin Boosters", price: "£250", sessions: "2-3 sessions", details: "Deep hydration & glow" },
         { name: "PRP Microneedling", price: "£150", sessions: "2-3 sessions", details: "Texture & acne scar support" },
         { name: "Vampire Facial", price: "£550", sessions: "Course of 3: £1500", details: "Full face regeneration" },
+        { name: "Botox (3 Areas)", price: "£200", sessions: "Single", details: "Anti-wrinkle injections" },
       ]
     },
     {
-        id: "hair",
-        title: "Hair Restoration",
-        items: [
-          { name: "PRP Hair Treatment", price: "£200", sessions: "Course of 3: £500", details: "Natural follicle stimulation" },
-          { name: "Hair Exosomes", price: "From £400", sessions: "Tailored plan", details: "Advanced scalp regeneration" },
-        ]
-      },
-    // ... Add other categories similarly
+      id: "hair",
+      title: "Hair Restoration",
+      items: [
+        { name: "PRP Hair Treatment", price: "£200", sessions: "Course of 3: £500", details: "Natural follicle stimulation" },
+        { name: "Hair Exosomes", price: "From £400", sessions: "Tailored plan", details: "Advanced scalp regeneration" },
+      ]
+    },
+    {
+      id: "joints",
+      title: "Joint Injections",
+      items: [
+        { name: "PRP Joint Injection", price: "From £250", sessions: "1-3 sessions", details: "Regenerative pain relief" },
+        { name: "Steroid Injection", price: "£120", sessions: "Single", details: "Anti-inflammatory relief" },
+      ]
+    },
+    {
+      id: "sexual",
+      title: "Sexual Rejuvenation",
+      items: [
+        { name: "P-Shot® (PRP)", price: "£650", sessions: "Course of 3: £1800", details: "Male performance & repair" },
+        { name: "O-Shot® (PRP)", price: "£700", sessions: "1-3 sessions", details: "Female health & sensitivity" },
+        { name: "EXO P-Shot®", price: "£1200", sessions: "Enhanced", details: "Advanced exosome protocol" },
+      ]
+    }
   ];
 
-  // Schema.org Price Data for Google
+  // Price Schema for Google
   const priceSchema = {
     "@context": "https://schema.org",
-    "@type": "PriceSpecification",
-    "priceCurrency": "GBP",
-    "name": "Healing-PRP Treatment Prices",
-    "description": "Doctor-led regenerative medicine pricing for St Albans and Birmingham."
+    "@type": "MedicalBusiness",
+    "name": "Healing-PRP Clinics",
+    "priceRange": "£120 - £1800",
+    "image": "https://www.healing-prp.co.uk/Logo2.png",
+    "description": "Doctor-led regenerative medicine prices for St Albans and Birmingham."
   };
 
   return (
@@ -70,7 +99,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(priceSchema) }}
       />
 
-      {/* --- HERO: CLEAN & PROFESSIONAL --- */}
+      {/* Hero Section */}
       <section className="pt-32 pb-16 bg-slate-50 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
@@ -93,9 +122,9 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
         </div>
       </section>
 
-      {/* --- PRICE TABLES: THE SCANNABLE LAYOUT --- */}
+      {/* Pricing Tables */}
       {categories.map((cat) => (
-        <section key={cat.id} id={cat.id} className="py-16 bg-white border-b border-slate-50">
+        <section key={cat.id} id={cat.id} className="py-16 bg-white border-b border-slate-50 scroll-mt-24">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-8 flex items-center gap-3">
               <span className="w-8 h-1 bg-blue-600 rounded-full"></span>
@@ -127,7 +156,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                       onClick={handleWhatsAppClick}
                       className="text-sm font-bold text-blue-600 hover:text-blue-800 underline underline-offset-4"
                     >
-                      Book Now
+                      Book on WhatsApp
                     </button>
                   </div>
                 </div>
@@ -137,14 +166,30 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
         </section>
       ))}
 
-      {/* --- FAQ SECTION: TRUST BUILDING --- */}
-      <section className="py-24 bg-slate-50">
-          {/* ... Keep your existing FAQ logic here, it is good for SEO ... */}
-      </section>
-
       <ContactCTASection />
       <Footer />
-      {/* ... Keep your Modal logic ... */}
+
+      {/* WhatsApp Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
+            <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className="fixed inset-0 z-50 flex items-center justify-center p-4">
+              <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative text-center">
+                <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors"><FaTimes className="w-5 h-5 text-slate-600" /></button>
+                <h3 className="text-2xl font-raleway font-semibold text-slate-900 mb-2">Scan to Chat</h3>
+                <p className="text-sm text-slate-600 mb-6">Use your phone camera to scan the QR code</p>
+                <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
+                  <img src="/qrcode.png" alt="WhatsApp QR Code" className="w-64 h-64" />
+                </div>
+                <a href="https://wa.me/447990364147" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-medium transition-all">
+                  <FaWhatsapp className="w-5 h-5" /> Open WhatsApp
+                </a>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }
