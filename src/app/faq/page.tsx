@@ -3,49 +3,57 @@ import FaqClient from "@/components/pages/FaqClient";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 
-// SEO: Title matches "Birmingham Clinic" layout suffix automatically
 export const metadata: Metadata = {
-  title: "Patient FAQs & Parking", 
-  description: "Visiting our Birmingham clinic? Find answers about parking in Edgbaston, directions from Solihull, and treatment availability in the West Midlands.",
+  title: "PRP & Treatment FAQs", 
+  description: "Expert answers on PRP Hair Restoration, Joint Injections, and Sexual Rejuvenation. Consultation details, pricing, and safety for St Albans & Hertfordshire patients.",
 };
 
-export default function BirminghamFaqPage() {
-  const birminghamFaqs = [
+export default function MainFaqPage() {
+  const mainFaqs = [
     {
-      question: "Where exactly is the Birmingham clinic located?",
-      answer: "We are located in the Edgbaston Medical Quarter, easily accessible from Birmingham City Centre. Full address details are provided upon booking confirmation.",
+      question: "Do you offer a consultation before treatment?",
+      answer: "Yes — every client receives a personal consultation with our GMC-registered doctor to tailor a safe, effective plan.",
     },
     {
-      question: "Is there parking available at the Birmingham clinic?",
-      answer: "Yes, we have private parking available for patients. There is also ample street parking in the surrounding Edgbaston area.",
+      question: "Can treatments be combined?",
+      answer: "Yes. Many regenerative treatments can be safely combined or staged to suit your goals and individual needs.",
     },
     {
-      question: "Do you serve patients from outside Birmingham?",
-      answer: "Yes, we frequently see patients from Solihull, Sutton Coldfield, Wolverhampton, and across the West Midlands due to our specialist regenerative treatments.",
+      question: "Is there any downtime after treatment?",
+      answer: "Most treatments involve minimal downtime, with mild redness or injection marks settling within 24–48 hours.",
     },
     {
-      question: "Is the P-Shot® available in Birmingham?",
-      answer: "Yes, we are a fully certified provider of the P-Shot® (Priapus Shot) at our Birmingham location. All treatments are performed by a GMC-registered doctor.",
+      question: "How many sessions will I need?",
+      answer: "This depends on the treatment and your skin condition. Some treatments are one-off, others work best as a short course.",
     },
     {
-      question: "Can I book a consultation specifically for Hair Loss?",
-      answer: "Absolutely. Our Birmingham clinic specializes in PRP Hair Restoration and Exosome therapy. We can assess your hair thinning and create a tailored plan.",
+      question: "Are your products safe and approved?",
+      answer: "We use high-quality products and follow strict medical hygiene and sterility protocols.",
     },
     {
-      question: "How quickly can I get an appointment in Birmingham?",
-      answer: "We offer flexible appointment times, including some evening slots. You can check current availability by clicking 'Book on WhatsApp' or contacting us directly.",
+      question: "Where are you based?",
+      answer: "Our main clinic is in St Albans (Hertfordshire), serving Watford, Harpenden, and London. We also have a clinic in Birmingham.",
     },
     {
-      question: "Is the Birmingham clinic fully private?",
-      answer: "Yes, we are a private medical clinic. Your consultation and treatment are strictly confidential, and we operate with high discretion.",
+      question: "Is PRP better than medication?",
+      answer: "PRP is not a replacement for medication but works differently by stimulating natural healing. We discuss whether it is appropriate for you during consultation.",
     },
+    {
+      question: "What happens if PRP doesn’t work?",
+      answer: "Not everyone responds to PRP. If improvement is limited, we review factors like health and lifestyle and discuss alternative options.",
+    },
+    {
+      question: "Where can I get PRP treatment in St Albans?",
+      answer: "PRP treatments are available at Healing-PRP Clinics in St Albans. We see patients from surrounding areas including Harpenden, Watford, Luton, and Hertford.",
+    },
+    // REMOVED the Birmingham P-Shot question from here
   ];
 
-  // Schema: Specific to Birmingham FAQs for Google Rich Snippets
+  // Schema Markup
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: birminghamFaqs.map((faq) => ({
+    mainEntity: mainFaqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
@@ -57,18 +65,17 @@ export default function BirminghamFaqPage() {
 
   return (
     <>
-      {/* Inject Structured Data */}
       <Script
-        id="faq-schema-birmingham"
+        id="faq-schema-main"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       
       <FaqClient 
-        title="Birmingham Clinic FAQs"
-        description="Information about our Edgbaston location, parking facilities, and specific treatments available in the West Midlands."
-        locationBadge="Birmingham • Edgbaston • West Midlands"
-        faqs={birminghamFaqs}
+        title="Frequently Asked Questions"
+        description="Clear answers about consultations, treatments, and what to expect at our St Albans clinic."
+        locationBadge="GMC-Registered | CE-Marked | St Albans & Hertfordshire"
+        faqs={mainFaqs}
       />
       <Footer />
     </>
