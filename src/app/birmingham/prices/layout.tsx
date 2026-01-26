@@ -1,22 +1,22 @@
-import type { Metadata } from "next";
+import React from "react";
 
-export const metadata: Metadata = {
-  title: {
-    default: "Treatment Prices",
-    template: "%s | Birmingham Clinic", // Automatically appends location to sub-pages
-  },
-  description: "Transparent pricing for doctor-led PRP, Joint Injections, and Sexual Health treatments in Birmingham.",
-};
-
+/**
+ * Layout for the Birmingham Pricing section.
+ * This wrapper ensures the pricing table renders within a consistent
+ * container without interfering with the page-level SEO metadata.
+ */
 export default function BirminghamPricesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <>
-      {/* This wraps your Birmingham PricesClient */}
+    <main className="birmingham-prices-wrapper">
+      {/* This structural element can be used for CSS scoping 
+          if the Birmingham price list requires specific styling 
+          different from the St Albans branch.
+      */}
       {children}
-    </>
+    </main>
   );
 }
