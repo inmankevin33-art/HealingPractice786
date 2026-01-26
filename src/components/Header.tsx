@@ -53,6 +53,15 @@ const Header = () => {
   // Dynamic Menu Items based on Location
   const menuItems = [
     {
+      name: "Locations",
+      href: "#",
+      hasDropdown: true,
+      subItems: [
+        { name: "St Albans (Main Clinic)", href: "/" },
+        { name: "Birmingham Clinic", href: "/birmingham" },
+      ],
+    },
+    {
       name: "Facial Aesthetics",
       href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics",
       hasDropdown: false,
@@ -76,15 +85,6 @@ const Header = () => {
       name: "Prices",
       href: isBirmingham ? "/birmingham/prices" : "/prices", // Dynamic path for prices
       hasDropdown: false,
-    },
-    {
-      name: "Locations",
-      href: "#",
-      hasDropdown: true,
-      subItems: [
-        { name: "St Albans (Main Clinic)", href: "/" },
-        { name: "Birmingham Clinic", href: "/birmingham" },
-      ],
     },
     { 
       name: "FAQs", 
