@@ -6,6 +6,10 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "PRP Treatment FAQs Birmingham | Edgbaston Clinic | Healing-PRP", 
   description: "Patient FAQs for our Birmingham Edgbaston clinic. Specialist answers on PRP for joint pain, hair loss, and sexual health. Expert doctor-led care in the West Midlands.",
+  // ADDED CANONICAL TAG HERE
+  alternates: {
+    canonical: "https://healing-prp.co.uk/birmingham/faq",
+  },
 };
 
 export default function BirminghamFaqPage() {
@@ -28,7 +32,7 @@ export default function BirminghamFaqPage() {
     },
     {
       question: "How long do the results of a P-Shot® or O-Shot® last?",
-      answer: "Most patients experience improved sensitivity and performance for months or more depending upon indiviual case. To see how these treatments work, visit our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) section."
+      answer: "Most patients experience improved sensitivity and performance for months or more depending upon individual case. To see how these treatments work, visit our [Sexual Rejuvenation](/treatments/sexual-rejuvenation) section."
     },
     {
       question: "Where exactly is the Birmingham clinic located?",
