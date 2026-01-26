@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import SexualRejuvenationClient from "@/components/pages/SexualRejuvenationClient";
 
 export const metadata: Metadata = {
-  // Clean title that lets your Layout add the brand name automatically
   title: "P-Shot, O-Shot & Sexual Rejuvenation Birmingham",
   
   description:
     "Doctor-led sexual rejuvenation in Birmingham. Specialist P-Shot® (Erectile Dysfunction) & O-Shot® treatments using advanced PRP therapy. Confidential & non-surgical.",
   
+  // ADDED CANONICAL TAG HERE
+  alternates: {
+    canonical: "https://www.healing-prp.co.uk/birmingham/sexual-rejuvenation",
+  },
+
   keywords: [
     "P-Shot Birmingham",
     "O-Shot Birmingham",
