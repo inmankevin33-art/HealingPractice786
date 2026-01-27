@@ -137,51 +137,32 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          {faqs.map((faq, index) => {
-            const key = `faq-${index}`;
-            return (
-              <div
-                key={key}
-                className="bg-slate-50 rounded-xl border border-slate-100 overflow-hidden transition-all"
-              >
-                <button
-                  onClick={() => toggleFAQ(key)}
-                  className="w-full p-6 flex justify-between items-center text-left hover:bg-slate-100/50 transition-colors"
-                >
-                  {/* QUESTION: Matches JointInjectionsClient styling */}
-                  <span className="font-raleway font-bold text-slate-900 md:text-lg text-base leading-relaxed">
-                    {faq.question}
-                  </span>
-                  <span className="text-[var(--brand-blue)] ml-4">
-                    {openFAQKey === key ? <FaMinus /> : <FaPlus />}
-                  </span>
-                </button>
-
-                <AnimatePresence>
-                  {openFAQKey === key && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6 border-t border-slate-200/50 pt-4">
-                        {/* ANSWER: Using Inter Regular, Slate-600, and relaxed leading */}
-                        <div 
-                          className="faq-answer-content font-inter text-sm md:text-base text-slate-600 leading-relaxed"
-                          dangerouslySetInnerHTML={{ __html: formatAnswer(faq.answer) }} 
-                        />
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+<section className="py-16 bg-white">
+  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+    {faqs.map((faq, index) => {
+      const key = `faq-${index}`;
+      return (
+        <div key={key} className="bg-white rounded-xl border border-slate-100 overflow-hidden shadow-sm">
+          <button
+            onClick={() => toggleFAQ(key)}
+            className="w-full p-6 flex justify-between items-center text-left hover:bg-slate-50 transition-colors"
+          >
+            {/* THIS IS THE UPDATED LINE TO MATCH JOINT INJECTIONS */}
+            <span className="font-raleway font-semibold text-slate-900 text-base md:text-lg leading-relaxed">
+              {faq.question}
+            </span>
+            
+            <span className="text-[var(--brand-blue)] ml-4">
+              {openFAQKey === key ? <FaMinus /> : <FaPlus />}
+            </span>
+          </button>
+          
+          {/* ... Answer section below ... */}
         </div>
-      </section>
+      );
+    })}
+  </div>
+</section>
       
       <ContactCTASection />
 
