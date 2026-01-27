@@ -67,75 +67,92 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image & Gradient matching Joint Injections */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
             src="/hero_img.png"
-            alt="Healing-PRP FAQ Background"
+            alt="Healing-PRP FAQ background"
             className="w-full h-full object-cover"
           />
         </div>
 
-        <div className="relative w-full z-20 text-center px-4">
-          <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-            {locationBadge && (
+        {/* Hero Content */}
+        <div className="relative w-full z-20 flex h-full">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+            {/* Added justify-center to center the FAQ text like your screenshot */}
+            <div className="text-center"> 
               <motion.div
-                className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4"
-                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
               >
-                {locationBadge}
+                {/* 1. Pill Badge Style */}
+                <motion.div
+                  className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
+                  variants={itemVariants}
+                >
+                  Frequently Asked Questions
+                </motion.div>
+
+                {/* 2. MATCHED SCALE: Using 2xl to 4xl and font-semibold (not bold) */}
+                <motion.h1
+                  className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
+                  variants={itemVariants}
+                >
+                  {title}
+                  <span className="block mt-1">Healing-PRP Clinics</span>
+                </motion.h1>
+                
+                {/* 3. MATCHED SCALE: Added max-w-3xl to stop text stretching too wide */}
+                <motion.p
+                  className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl mx-auto"
+                  variants={itemVariants}
+                >
+                  {description}
+                </motion.p>
+
+                {/* 4. Action Buttons (Extracted logic) */}
+                <motion.div
+                  variants={itemVariants}
+                  className="flex flex-col mt-6 sm:flex-row gap-4 justify-center"
+                >
+                  {/* WhatsApp Primary */}
+                  <a
+                    href="https://wa.me/447990364147"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleWhatsAppClick}
+                    className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 gap-2"
+                  >
+                    <FaWhatsapp className="w-5 h-5" />
+                    Book on WhatsApp
+                  </a>
+
+                  {/* Secondary Price Link */}
+                  <Link
+                    href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
+                    className="px-6 w-full md:w-max inline-flex items-center justify-center md:text-sm text-xs gap-2 py-3 cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] rounded-lg font-inter bg-white font-medium transition-all duration-300 hover:bg-[var(--brand-blue-50)]"
+                  >
+                    View Prices
+                  </Link>
+
+                  {/* Secondary Contact Link */}
+                  <Link 
+                    href="/contact"
+                    className="px-6 w-full md:w-max inline-flex items-center justify-center md:text-sm text-xs gap-2 py-3 cursor-pointer border border-gray-200 text-gray-600 rounded-lg font-inter bg-white font-medium transition-all duration-300 hover:bg-gray-50"
+                  >
+                    <FaEnvelope className="w-4 h-4" />
+                    Contact Us
+                  </Link>
+                </motion.div>
               </motion.div>
-            )}
-
-            <motion.h1
-              className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight max-w-5xl mx-auto"
-              variants={itemVariants}
-            >
-              {title} <br />
-              <span className="text-slate-700">Healing-PRP Clinics</span>
-            </motion.h1>
-
-            <motion.p
-              className="text-sm md:text-base text-slate-600 font-inter mb-10 max-w-none md:whitespace-nowrap overflow-hidden text-ellipsis"
-              variants={itemVariants}
-            >
-              {description}
-            </motion.p>
-
-            {/* UPDATED: Applied extracted button styles and internal navigation */}
-            <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
-              {/* Primary: WhatsApp */}
-              <a
-                href="https://wa.me/447990364147"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleWhatsAppClick}
-                className="px-8 py-3 bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium flex gap-2 items-center transition-all shadow-md cursor-pointer"
-              >
-                <FaWhatsapp className="w-5 h-5" /> Book on WhatsApp
-              </a>
-
-              {/* Secondary Action: Prices */}
-              <Link
-                href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
-                className="px-8 py-3 bg-white border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue-50)] rounded-lg font-inter font-medium flex gap-2 items-center transition-all shadow-sm"
-              >
-                View Treatment Prices
-              </Link>
-              
-              {/* Secondary Action: Contact */}
-              <Link
-                href="/contact"
-                className="px-8 py-3 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 rounded-lg font-inter font-medium flex gap-2 items-center transition-all shadow-sm"
-              >
-                <FaEnvelope className="w-4 h-4" /> Contact Us
-              </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
-
+      
    {/* FAQ Accordion Section */}
       <section className="py-16 bg-white">
         {/* Adjusted width to max-w-3xl to prevent the 'zoomed' look */}
