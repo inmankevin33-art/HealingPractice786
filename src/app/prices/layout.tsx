@@ -2,10 +2,18 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    default: "Clinic Price List",
-    template: "%s | Healing-PRP St Albans",
+    // Fallback if the page title is missing
+    default: "Treatment Prices & Packages",
+    
+    // This appends the location branding to the page title
+    // Result: "PRP & Aesthetics Pricing | St Albans Clinic"
+    template: "%s | St Albans Clinic",
   },
-  description: "View our full range of regenerative treatment costs for our St Albans clinic.",
+  description: 
+    "Transparent pricing for PRP Hair Restoration, Joint Injections, and Sexual Rejuvenation in St Albans. View our treatment packages and clinic costs.",
+  alternates: {
+    canonical: "https://www.healing-prp.co.uk/prices",
+  },
 };
 
 export default function StAlbansPricesLayout({
@@ -14,8 +22,9 @@ export default function StAlbansPricesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="stalbans-prices-wrapper">
+      {/* Structural wrapper for pricing content */}
       {children}
-    </>
+    </div>
   );
 }
