@@ -13,21 +13,26 @@ export const metadata: Metadata = {
   },
 
   // 2. Expanded Local & Clinical Keywords
-  keywords: [
+ keywords: [
+    // Core Clinical Terms
     "P-Shot St Albans",
     "O-Shot St Albans",
     "PRP for ED Hertfordshire",
     "Erectile Dysfunction treatment Watford",
-    "Sexual rejuvenation Harpenden",
-    "Vaginal rejuvenation Radlett",
-    "Priapus Shot Hemel Hempstead",
-    "Male enhancement clinic Berkhamsted",
-    "ED doctor North London",
-    "Confidential sexual wellness St Albans",
-    "PRP for intimacy London Colney",
-    "O-Shot cost Hertfordshire"
+    "ED clinic Hemel Hempstead",
+    "Erectile dysfunction help Harpenden",
+    "P-Shot doctor Radlett",
+    "ED specialist Welwyn Garden City",
+    "Erectile dysfunction clinic Berkhamsted",
+    "PRP for ED Borehamwood",
+    "Sexual wellness clinic Hatfield",
+    "Private ED treatment North London",
+    "Shockwave therapy alternative St Albans",
+    "P-Shot cost Hertfordshire",
+    "Confidential ED clinic Potters Bar",
+    "GMC registered ED doctor Bushey"
   ],
-
+  
   openGraph: {
     title: "P-Shot & Sexual Rejuvenation Clinic | St Albans",
     description:
