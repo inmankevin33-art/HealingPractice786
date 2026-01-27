@@ -2,34 +2,37 @@ import type { Metadata } from "next";
 import SexualRejuvenationClient from "@/components/pages/SexualRejuvenationClient";
 
 export const metadata: Metadata = {
-  // 1. Optimized Title: Result will be "P-Shot, O-Shot & ED Treatments | Birmingham Clinic"
-  title: "P-Shot, O-Shot & ED Treatments",
+  // 1. Short Clean Title: Template will add "| Birmingham Clinic"
+  title: "Erectile Dysfunction & P-Shot",
   
   description:
-    "Doctor-led sexual rejuvenation in Birmingham. Specialist P-Shot® (Erectile Dysfunction) & O-Shot® treatments using advanced PRP therapy. Serving Solihull, Sutton Coldfield & Wolverhampton.",
+    "Confidential, doctor-led Erectile Dysfunction (ED) treatments in Birmingham Edgbaston. Specialist P-Shot® and O-Shot® PRP therapy for patients in Solihull, Sutton Coldfield, and the West Midlands.",
   
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/sexual-rejuvenation",
   },
 
-  // 2. Expanded Keywords with Clinical Terms & Local Areas
+  // 2. High-Density ED & Local West Midlands Keywords
   keywords: [
+    "Erectile Dysfunction treatment Birmingham",
+    "ED clinic Birmingham",
     "P-Shot Birmingham",
-    "O-Shot Birmingham",
+    "O-Shot West Midlands",
+    "Private ED doctor Edgbaston",
+    "Help for erectile dysfunction Solihull",
     "PRP for ED Birmingham",
-    "Erectile Dysfunction treatment West Midlands",
-    "Sexual rejuvenation Solihull",
-    "Vaginal rejuvenation Sutton Coldfield",
-    "Priapus Shot Wolverhampton",
-    "Shockwave therapy alternative Birmingham",
+    "Priapus Shot Sutton Coldfield",
     "Male enhancement clinic Harborne",
+    "Sexual wellness clinic Wolverhampton",
+    "ED specialist Halesowen",
+    "Confidential ED help Dudley",
+    "Shockwave therapy alternative West Midlands",
     "P-Shot cost Stourbridge",
-    "ED doctor Halesowen",
-    "Confidential sexual wellness Dudley",
+    "Vaginal rejuvenation Birmingham"
   ],
 
   openGraph: {
-    title: "P-Shot & Sexual Rejuvenation Clinic | Birmingham",
+    title: "Erectile Dysfunction & P-Shot Clinic | Birmingham",
     description:
       "Confidential, doctor-led PRP treatments for ED and sexual wellness. Serving patients in Birmingham, Solihull, and the West Midlands.",
     url: "https://www.healing-prp.co.uk/birmingham/sexual-rejuvenation",
