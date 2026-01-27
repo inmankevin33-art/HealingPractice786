@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://www.healing-prp.co.uk/birmingham/prices",
   },
 
-  // 2. Expanded Local Keywords
+  // 2. Expanded Local & Intent-Based Keywords
   keywords: [
     "PRP treatment cost Birmingham",
     "P-Shot price West Midlands",
@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     "Vampire Facial cost Harborne",
     "Polynucleotides price Birmingham",
     "Private clinic prices Edgbaston",
+    "PRP treatment packages Birmingham", // Added: targets users looking for courses
+    "Hair regrowth course price West Midlands", // Added
+    "Joint pain therapy cost Dudley" // Added
   ],
 
   openGraph: {
