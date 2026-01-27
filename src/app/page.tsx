@@ -17,11 +17,9 @@ export const metadata: Metadata = {
     "Private specialist clinic in St Albans. Expert doctor-led treatments for PRP Hair Restoration, Joint Pain injections, P-Shot®, O-Shot® & ED solutions. Serving Hertfordshire, London, Watford & Harpenden.",
   
   keywords: [
-    // Brand & Clinical
     "PRP Clinic St Albans",
     "Private Doctor Hertfordshire",
     "Regenerative Medicine UK",
-    // Expanded ED & Sexual Wellness
     "Erectile Dysfunction Treatment St Albans",
     "ED clinic Hertfordshire",
     "P-Shot London",
@@ -29,7 +27,6 @@ export const metadata: Metadata = {
     "Erectile dysfunction help Harpenden",
     "O-Shot treatment Radlett",
     "Sexual health clinic St Albans",
-    // Core Services
     "Hair Loss Treatment St Albans",
     "Joint Injection Clinic Hemel Hempstead",
     "Vampire Facial Hertfordshire",
@@ -55,13 +52,14 @@ export const metadata: Metadata = {
     ],
   },
   
+  // FIXED CANONICAL LOGIC FOR MAIN HOME PAGE
   alternates: {
     canonical: "https://www.healing-prp.co.uk",
   },
 };
 
 export default function Home() {
-  // Enhanced JSON-LD Schema including MedicalSpecialty for ED/Urology context
+  // Enhanced JSON-LD Schema
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalClinic",
@@ -74,7 +72,7 @@ export default function Home() {
       "@type": "PostalAddress",
       "addressLocality": "St Albans",
       "addressRegion": "Hertfordshire",
-      "postalCode": "AL1", // Add your specific postal code if known
+      "postalCode": "AL1", 
       "addressCountry": "GB"
     },
     "geo": {
