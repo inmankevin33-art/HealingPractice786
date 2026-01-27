@@ -19,7 +19,13 @@ interface FaqClientProps {
   locationName?: string; 
 }
 
-export default function FaqClient({ title, description, faqs, locationBadge, locationName = "St Albans" }: FaqClientProps) {
+export default function FaqClient({ 
+  title, 
+  description, 
+  faqs, 
+  locationBadge, 
+  locationName = "St Albans" 
+}: FaqClientProps) {
   const [openFAQKey, setOpenFAQKey] = useState<string | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -82,16 +88,16 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
                   Frequently Asked Questions
                 </motion.div>
 
-                {/* MATCHING JOINT INJECTIONS: md:text-3xl and natural weight */}
+                {/* Main Heading: Fixed Weight and Responsive Size */}
                 <motion.h1
-                  className="md:text-3xl text-2xl font-raleway text-slate-900 leading-tight"
+                  className="md:text-3xl text-2xl font-raleway font-semibold text-slate-900 leading-tight"
                   variants={itemVariants}
                 >
                   {title}
-                  <span className="block mt-1">Healing-PRP Clinics</span>
+                  <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
                 </motion.h1>
 
-                {/* MATCHING JOINT INJECTIONS: mt-2 and max-width constraint */}
+                {/* Subtext: Constraint to max-w-2xl prevents the zoomed look */}
                 <motion.p
                   className="text-base mt-2 text-slate-600 leading-relaxed max-w-2xl mx-auto"
                   variants={itemVariants}
@@ -99,22 +105,30 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
                   {description}
                 </motion.p>
 
-                <motion.div variants={itemVariants} className="flex flex-col mt-6 sm:flex-row gap-4 justify-center">
+                {/* Navigation Buttons */}
+                <motion.div variants={itemVariants} className="flex flex-col mt-8 sm:flex-row gap-4 justify-center items-center">
                   <a
                     href="https://wa.me/447990364147"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={handleWhatsAppClick}
-                    className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 gap-2"
+                    className="px-6 py-3 w-full sm:w-max flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 gap-2 shadow-sm"
                   >
                     <FaWhatsapp className="w-5 h-5" /> Book on WhatsApp
                   </a>
 
                   <Link
                     href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
-                    className="px-6 w-full md:w-max inline-flex items-center justify-center md:text-sm text-xs gap-2 py-3 cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] rounded-lg font-inter bg-white font-medium transition-all duration-300 hover:bg-[var(--brand-blue-50)]"
+                    className="px-6 py-3 w-full sm:w-max flex items-center justify-center text-sm cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue-50)] rounded-lg font-inter bg-white font-medium transition-all duration-300"
                   >
                     View Treatment Prices
+                  </Link>
+                  
+                  <Link
+                    href="/contact"
+                    className="px-6 py-3 w-full sm:w-max flex items-center justify-center text-sm cursor-pointer border border-slate-200 text-slate-600 hover:bg-slate-50 rounded-lg font-inter bg-white font-medium transition-all duration-300 gap-2 shadow-sm"
+                  >
+                    <FaEnvelope className="w-4 h-4" /> Contact Us
                   </Link>
                 </motion.div>
               </motion.div>
@@ -125,6 +139,7 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
 
       {/* FAQ Accordion Section */}
       <section className="py-16 bg-white">
+        {/* max-w-3xl prevents questions from stretching too wide on desktop */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           {faqs.map((faq, index) => {
             const itemKey = `faq-${index}`;
@@ -134,10 +149,11 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
                   onClick={() => toggleFAQ(itemKey)}
                   className="w-full p-5 md:p-6 flex justify-between items-start text-left hover:bg-slate-50 transition-colors gap-4"
                 >
-                  <span className="font-raleway text-slate-900 text-base md:text-lg leading-snug">
+                  {/* Matching the natural Raleway style from Service H2s */}
+                  <span className="font-raleway text-slate-900 text-base md:text-lg leading-snug pr-2">
                     {faq.question}
                   </span>
-                  <span className="text-[var(--brand-blue)] mt-1 flex-shrink-0 text-sm">
+                  <span className="text-[var(--brand-blue)] mt-1.5 flex-shrink-0 text-sm">
                     {openFAQKey === itemKey ? <FaMinus /> : <FaPlus />}
                   </span>
                 </button>
@@ -148,7 +164,7 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
                       <div className="px-5 pb-6 md:px-6 text-slate-600 font-inter text-sm md:text-base border-t border-slate-50 pt-4 leading-relaxed">
@@ -165,7 +181,7 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
 
       <ContactCTASection />
 
-      {/* WhatsApp Modal */}
+      {/* WhatsApp QR Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <>
@@ -174,10 +190,11 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
               <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative text-center">
                 <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors"><FaTimes className="w-5 h-5 text-slate-600" /></button>
                 <h3 className="text-2xl font-raleway font-semibold text-slate-900 mb-2">Scan to Chat</h3>
-                <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
+                <p className="text-sm text-slate-600 mb-6 font-inter">Use your phone camera to scan the QR code</p>
+                <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6 shadow-inner">
                   <img src="/qrcode.png" alt="WhatsApp QR" className="w-64 h-64" />
                 </div>
-                <a href="https://wa.me/447990364147" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-medium transition-all">
+                <a href="https://wa.me/447990364147" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-medium transition-all font-inter">
                   <FaWhatsapp className="w-5 h-5" /> Open WhatsApp
                 </a>
               </div>
