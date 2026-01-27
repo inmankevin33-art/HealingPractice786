@@ -22,7 +22,6 @@ export default function BlogPage() {
 
     fetchPosts();
 
-    // Set loaded state after a short delay for smooth animation
     const timer = setTimeout(() => {
       setIsLoaded(true);
     }, 300);
@@ -89,6 +88,7 @@ export default function BlogPage() {
             animate={isLoaded ? "visible" : "hidden"}
             variants={containerVariants}
           >
+            {/* Pill Style Badge - Consistent with Service Pages */}
             <motion.div
               className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
               variants={itemVariants}
@@ -96,15 +96,18 @@ export default function BlogPage() {
               Health & Wellness Blog
             </motion.div>
 
+            {/* MATCHED STYLE: md:text-3xl and font-semibold */}
             <motion.h1
-              className="text-2xl sm:text-3xl font-raleway text-slate-900 mb-4 sm:mb-6"
+              className="text-2xl md:text-3xl font-raleway font-semibold text-slate-900 mb-4"
               variants={itemVariants}
             >
               Latest Insights on PRP & Regenerative Medicine
+              <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
             </motion.h1>
 
+            {/* MATCHED STYLE: max-w-3xl prevents zoomed look */}
             <motion.p
-              className="text-sm sm:text-base text-slate-600 max-w-3xl mx-auto leading-relaxed"
+              className="text-base font-inter text-slate-600 max-w-3xl mx-auto leading-relaxed"
               variants={itemVariants}
             >
               Stay informed about the latest developments in Platelet-Rich
@@ -113,8 +116,8 @@ export default function BlogPage() {
             </motion.p>
           </motion.div>
         </div>
-        {/* <hr className="mt-20 mx-36 border-slate-300" /> */}
       </section>
+
       {/* Blog Posts Section */}
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -125,16 +128,16 @@ export default function BlogPage() {
               animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h3 className="text-xl font-raleway text-slate-900 mb-4">
+              <h3 className="text-xl font-raleway font-semibold text-slate-900 mb-4">
                 No blog posts yet
               </h3>
-              <p className="text-slate-600">
+              <p className="text-slate-600 font-inter">
                 Check back soon for the latest insights on PRP treatments.
               </p>
             </motion.div>
           ) : (
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
               initial="hidden"
               animate={isLoaded ? "visible" : "hidden"}
               variants={containerVariants}
@@ -142,11 +145,11 @@ export default function BlogPage() {
               {posts.map((post) => (
                 <motion.article
                   key={post.slug}
-                  className="bg-white rounded-sm shadow overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                  className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                   variants={itemVariants}
                 >
                   {post.coverImage && (
-                    <div className="aspect-video overflow-hidden">
+                    <div className="aspect-video overflow-hidden border-b border-slate-50">
                       <img
                         src={post.coverImage.url}
                         alt={post.coverImage.title}
@@ -155,47 +158,31 @@ export default function BlogPage() {
                     </div>
                   )}
 
-                  <div className="p-4 sm:p-6">
-                    <div className="flex items-center gap-2 sm:gap-4 text-xs text-slate-500 mb-2 sm:mb-3">
+                  <div className="p-6">
+                    <div className="flex items-center text-xs font-inter font-medium text-[var(--brand-blue)] mb-3 uppercase tracking-wider">
                       {post.date && (
-                        <div className="flex items-center gap-1">
-                          {/* <Calendar className="w-3 h-3 sm:w-4 sm:h-4" /> */}
-                          <span>{formatDate(post.date)}</span>
-                        </div>
+                        <span>{formatDate(post.date)}</span>
                       )}
                     </div>
 
-                    <h2 className="text-lg sm:text-xl font-raleway text-slate-900 mb-2 sm:mb-3 line-clamp-2">
+                    <h2 className="text-xl font-raleway font-semibold text-slate-900 mb-3 line-clamp-2 leading-snug">
                       {post.title}
                     </h2>
 
                     {post.excerpt && (
-                      <p className="text-sm text-slate-600 mb-3 sm:mb-4 line-clamp-3">
+                      <p className="text-sm font-inter text-slate-600 mb-6 line-clamp-3 leading-relaxed">
                         {post.excerpt}
                       </p>
                     )}
 
-                    {/* {post.type && post.type.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {post.type.slice(0, 3).map((type, typeIndex) => (
-                          <span
-                            key={typeIndex}
-                            className="inline-flex items-center gap-1 px-2 py-1 bg-slate-100 text-slate-600 rounded-full text-xs"
-                          >
-                            <Tag className="w-3 h-3" />
-                            {type}
-                          </span>
-                        ))}
-                      </div>
-                    )} */}
-
+                    {/* Button Style: Matched to extracted Medium Blue typography */}
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="inline-flex items-center text-xs text-[var(--brand-blue)] hover:text-[var(--brand-blue-dark)] transition-colors duration-300"
+                      className="inline-flex items-center px-4 py-2 bg-[var(--brand-blue-50)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue)] hover:text-white rounded-lg text-xs font-inter font-semibold transition-all duration-300"
                     >
-                      Read More
+                      Read Article
                       <svg
-                        className="w-3 h-3 mt-[0.2rem] ml-1"
+                        className="w-3 h-3 ml-2"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -203,7 +190,7 @@ export default function BlogPage() {
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          strokeWidth={2}
+                          strokeWidth={2.5}
                           d="M9 5l7 7-7 7"
                         />
                       </svg>
