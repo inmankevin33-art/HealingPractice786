@@ -4,8 +4,20 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Dot, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image"; // Improved for performance
 import { BlogPost, getBlogPostBySlug, getBlogPostNavigation } from "@/lib/contentful";
 import Footer from "@/components/Footer";
+
+// Specific types to replace 'any'
+interface RichTextNode {
+  nodeType: string;
+  value?: string;
+  content?: RichTextNode[];
+}
+
+interface RichTextContent {
+  content: RichTextNode[];
+}
 
 export default function BlogPostClient({ slug }: { slug: string }) {
   const [post, setPost] = useState<BlogPost | null>(null);
@@ -57,20 +69,22 @@ export default function BlogPostClient({ slug }: { slug: string }) {
     });
   };
 
-  const renderRichText = (content: any) => {
-    if (!content || !content.content) return null;
-    return content.content.map((node: any, index: number) => {
+  const renderRichText = (content: unknown) => {
+    const richContent = content as RichTextContent;
+    if (!richContent || !richContent.content) return null;
+
+    return richContent.content.map((node, index) => {
       if (node.nodeType === "paragraph") {
         return (
           <p key={index} className="mb-6 text-base md:text-lg text-slate-600 font-inter leading-relaxed">
-            {node.content?.map((textNode: any) => textNode.value)}
+            {node.content?.map((textNode) => textNode.value).join("")}
           </p>
         );
       }
       if (node.nodeType.startsWith("heading-")) {
         return (
           <h2 key={index} className="text-2xl md:text-3xl font-raleway font-semibold text-slate-900 mt-12 mb-6 leading-tight">
-            {node.content?.map((textNode: any) => textNode.value)}
+            {node.content?.map((textNode) => textNode.value).join("")}
           </h2>
         );
       }
@@ -85,7 +99,6 @@ export default function BlogPostClient({ slug }: { slug: string }) {
       <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.05)_0,rgba(0,163,255,0)_50%)]"></div>
 
       <header className="pt-16 md:pt-24 pb-8">
-        {/* Constrained to max-w-3xl for the 'Premium' look */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
             <motion.div variants={itemVariants} className="flex items-center justify-between mb-8 border-b border-slate-100 pb-4">
@@ -123,15 +136,20 @@ export default function BlogPostClient({ slug }: { slug: string }) {
       {post.coverImage && (
         <section className="pb-12">
           <div className="max-w-4xl mx-auto px-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
-              <img src={post.coverImage.url} alt={post.coverImage.title} className="w-full h-[300px] md:h-[500px] object-cover" />
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 aspect-video md:aspect-[21/9]">
+              <Image 
+                src={post.coverImage.url} 
+                alt={post.coverImage.title} 
+                fill
+                priority
+                className="object-cover" 
+              />
             </motion.div>
           </div>
         </section>
       )}
 
       <section className="pb-24">
-        {/* Reading column restricted to max-w-3xl */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.article variants={containerVariants} initial="hidden" animate="visible">
             <motion.div variants={itemVariants} className="prose prose-slate max-w-none">
