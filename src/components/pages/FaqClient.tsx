@@ -136,28 +136,50 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
         </div>
       </section>
 
-      {/* FAQ Accordion Section */}
+     {/* FAQ Accordion Section */}
 <section className="py-16 bg-white">
   <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
     {faqs.map((faq, index) => {
-      const key = `faq-${index}`;
+      // Create a unique string key for this item
+      const itemKey = `faq-${index}`;
+      
       return (
-        <div key={key} className="bg-white rounded-xl border border-slate-100 overflow-hidden shadow-sm">
+        <div
+          key={itemKey}
+          className="bg-white rounded-xl border border-slate-100 overflow-hidden shadow-sm transition-all"
+        >
           <button
-            onClick={() => toggleFAQ(key)}
+            onClick={() => toggleFAQ(itemKey)}
             className="w-full p-6 flex justify-between items-center text-left hover:bg-slate-50 transition-colors"
           >
-            {/* THIS IS THE UPDATED LINE TO MATCH JOINT INJECTIONS */}
-            <span className="font-raleway font-semibold text-slate-900 text-base md:text-lg leading-relaxed">
+            {/* MATCHING JOINT INJECTIONS: Removed font-bold, using text-slate-900 & leading-tight */}
+            <span className="font-raleway text-slate-900 md:text-2xl text-lg leading-tight pr-4">
               {faq.question}
             </span>
-            
-            <span className="text-[var(--brand-blue)] ml-4">
-              {openFAQKey === key ? <FaMinus /> : <FaPlus />}
+            <span className="text-[var(--brand-blue)] flex-shrink-0">
+              {openFAQKey === itemKey ? <FaMinus /> : <FaPlus />}
             </span>
           </button>
-          
-          {/* ... Answer section below ... */}
+
+          <AnimatePresence>
+            {/* Logic Fix: Compare against itemKey exactly */}
+            {openFAQKey === itemKey && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <div className="px-6 pb-6 text-slate-600 font-inter text-sm md:text-base border-t border-slate-50 pt-4 leading-relaxed">
+                  <div 
+                    className="faq-answer-content"
+                    dangerouslySetInnerHTML={{ __html: formatAnswer(faq.answer) }} 
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       );
     })}
