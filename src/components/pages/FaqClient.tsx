@@ -16,9 +16,11 @@ interface FaqClientProps {
   description: string;
   faqs: FAQItem[];
   locationBadge?: string;
+  // Added locationName prop to handle dynamic routing
+  locationName?: string; 
 }
 
-export default function FaqClient({ title, description, faqs, locationBadge }: FaqClientProps) {
+export default function FaqClient({ title, description, faqs, locationBadge, locationName = "St Albans" }: FaqClientProps) {
   const [openFAQKey, setOpenFAQKey] = useState<string | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,7 +43,6 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
     }
   };
 
-  // Helper function to turn [Text](URL) into clickable HTML links
   const formatAnswer = (text: string) => {
     const markdownLinkRegex = /\[(.*?)\]\((.*?)\)/g;
     return text.replace(
@@ -66,7 +67,7 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
@@ -102,20 +103,31 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
               {description}
             </motion.p>
 
+            {/* UPDATED: Applied extracted button styles and internal navigation */}
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
+              {/* Primary: WhatsApp */}
               <a
                 href="https://wa.me/447990364147"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleWhatsAppClick}
-                className="px-8 py-3 bg-[var(--brand-blue)] hover:bg-blue-700 text-white rounded-lg font-semibold flex gap-2 items-center transition-all shadow-md cursor-pointer"
+                className="px-8 py-3 bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium flex gap-2 items-center transition-all shadow-md cursor-pointer"
               >
                 <FaWhatsapp className="w-5 h-5" /> Book on WhatsApp
               </a>
 
+              {/* Secondary Action: Prices */}
+              <Link
+                href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
+                className="px-8 py-3 bg-white border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue-50)] rounded-lg font-inter font-medium flex gap-2 items-center transition-all shadow-sm"
+              >
+                View Treatment Prices
+              </Link>
+              
+              {/* Secondary Action: Contact */}
               <Link
                 href="/contact"
-                className="px-8 py-3 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 rounded-lg font-semibold flex gap-2 items-center transition-all shadow-sm"
+                className="px-8 py-3 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 rounded-lg font-inter font-medium flex gap-2 items-center transition-all shadow-sm"
               >
                 <FaEnvelope className="w-4 h-4" /> Contact Us
               </Link>
@@ -155,7 +167,6 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-6 text-slate-600 font-inter text-sm border-t border-slate-200/50 pt-4">
-                        {/* FIXED: This allows HTML links to be clickable */}
                         <div 
                           className="faq-answer-content"
                           dangerouslySetInnerHTML={{ __html: formatAnswer(faq.answer) }} 
@@ -172,7 +183,7 @@ export default function FaqClient({ title, description, faqs, locationBadge }: F
 
       <ContactCTASection />
 
-      {/* WhatsApp QR Modal */}
+      {/* WhatsApp Modal logic remains unchanged */}
       <AnimatePresence>
         {isModalOpen && (
           <>
