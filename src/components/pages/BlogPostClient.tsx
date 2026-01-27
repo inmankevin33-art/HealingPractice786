@@ -57,33 +57,25 @@ export default function BlogPostClient({ slug }: { slug: string }) {
     });
   };
 
-  const renderRichText = (content: unknown) => {
-    if (!content) return null;
-    if (typeof content === "string") {
-      return <div dangerouslySetInnerHTML={{ __html: content }} />;
-    }
-
-    if (content && typeof content === "object" && "content" in content) {
-      const richContent = content as { content: unknown[] };
-      return richContent.content.map((node: any, index: number) => {
-        if (node.nodeType === "paragraph") {
-          return (
-            <p key={index} className="mb-6 text-base md:text-lg text-slate-600 font-inter leading-relaxed">
-              {node.content?.map((textNode: any) => textNode.value)}
-            </p>
-          );
-        }
-        if (node.nodeType === "heading-2") {
-          return (
-            <h2 key={index} className="text-2xl md:text-3xl font-raleway font-semibold text-slate-900 mt-12 mb-6 leading-tight">
-              {node.content?.map((textNode: any) => textNode.value)}
-            </h2>
-          );
-        }
-        return null;
-      });
-    }
-    return null;
+  const renderRichText = (content: any) => {
+    if (!content || !content.content) return null;
+    return content.content.map((node: any, index: number) => {
+      if (node.nodeType === "paragraph") {
+        return (
+          <p key={index} className="mb-6 text-base md:text-lg text-slate-600 font-inter leading-relaxed">
+            {node.content?.map((textNode: any) => textNode.value)}
+          </p>
+        );
+      }
+      if (node.nodeType.startsWith("heading-")) {
+        return (
+          <h2 key={index} className="text-2xl md:text-3xl font-raleway font-semibold text-slate-900 mt-12 mb-6 leading-tight">
+            {node.content?.map((textNode: any) => textNode.value)}
+          </h2>
+        );
+      }
+      return null;
+    });
   };
 
   if (notFound || !post) return <div className="min-h-screen bg-white" />;
@@ -93,6 +85,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
       <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.05)_0,rgba(0,163,255,0)_50%)]"></div>
 
       <header className="pt-16 md:pt-24 pb-8">
+        {/* Constrained to max-w-3xl for the 'Premium' look */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
             <motion.div variants={itemVariants} className="flex items-center justify-between mb-8 border-b border-slate-100 pb-4">
@@ -114,12 +107,12 @@ export default function BlogPostClient({ slug }: { slug: string }) {
               <span className="text-xs font-inter text-slate-500">{formatDate(post.date)}</span>
             </motion.div>
 
-            <motion.h1 variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-raleway font-semibold text-slate-900 mb-6 leading-tight tracking-tight">
+            <motion.h1 variants={itemVariants} className="text-3xl md:text-4xl font-raleway font-semibold text-slate-900 mb-6 leading-tight">
               {post.title}
             </motion.h1>
 
             {post.excerpt && (
-              <motion.p variants={itemVariants} className="text-lg md:text-xl text-slate-500 font-inter leading-relaxed italic border-l-4 border-[var(--brand-blue-100)] pl-6">
+              <motion.p variants={itemVariants} className="text-lg text-slate-500 font-inter leading-relaxed italic border-l-4 border-[var(--brand-blue-100)] pl-6">
                 {post.excerpt}
               </motion.p>
             )}
@@ -129,7 +122,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
 
       {post.coverImage && (
         <section className="pb-12">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto px-4">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
               <img src={post.coverImage.url} alt={post.coverImage.title} className="w-full h-[300px] md:h-[500px] object-cover" />
             </motion.div>
@@ -138,16 +131,17 @@ export default function BlogPostClient({ slug }: { slug: string }) {
       )}
 
       <section className="pb-24">
+        {/* Reading column restricted to max-w-3xl */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <motion.article variants={containerVariants} initial="hidden" animate="visible" className="prose prose-slate max-w-none">
-            <motion.div variants={itemVariants}>
+          <motion.article variants={containerVariants} initial="hidden" animate="visible">
+            <motion.div variants={itemVariants} className="prose prose-slate max-w-none">
               {renderRichText(post.content)}
             </motion.div>
           </motion.article>
           
           <motion.div variants={itemVariants} className="mt-16 pt-8 border-t border-slate-100 text-center">
-            <p className="text-slate-600 font-inter mb-6">Interested in learning more about this treatment?</p>
-            <Link href="/contact" className="inline-flex px-8 py-3 bg-[var(--brand-blue)] text-white rounded-lg font-inter font-medium hover:bg-[var(--brand-blue-dark)] transition-all shadow-lg">
+            <p className="text-slate-600 font-inter mb-6 font-medium">Want to discuss this treatment with a specialist?</p>
+            <Link href="/contact" className="inline-flex px-8 py-3 bg-[var(--brand-blue)] text-white rounded-lg font-inter font-semibold hover:bg-[var(--brand-blue-dark)] transition-all shadow-md">
               Book a Consultation
             </Link>
           </motion.div>
