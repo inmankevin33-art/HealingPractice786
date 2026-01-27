@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     "Joint Pain Injections"
   ],
   icons: {
-    icon: "/favicon.png", 
-    shortcut: "/favicon.png",
-    apple: "/favicon.png", 
+    icon: "/Logo2.png", 
+    shortcut: "/Logo2.png",
+    apple: "/Logo2.png", 
   },
   openGraph: {
     type: "website",
