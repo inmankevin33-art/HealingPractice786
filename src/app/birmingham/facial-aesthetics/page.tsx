@@ -6,25 +6,32 @@ export const metadata: Metadata = {
   title: "Vampire Facial & Polynucleotides", 
   
   description:
-    "Doctor-led facial aesthetics in Birmingham Edgbaston. Specialist treatments including Vampire Facials, Botox, Polynucleotides, and Skin Boosters.",
+    "Doctor-led facial aesthetics in Birmingham Edgbaston. Specialist treatments including Vampire Facials, Polynucleotides, and HA Skin Boosters. Serving Solihull, Sutton Coldfield & Harborne.",
   
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/facial-aesthetics",
   },
   
+  // 2. Expanded Satellite Town & Treatment Keywords
   keywords: [
     "Facial Aesthetics Birmingham",
     "Vampire Facial Birmingham",
-    "Polynucleotides Birmingham",
-    "Exosomes Birmingham",
-    "Skin Boosters Birmingham",
+    "Polynucleotides Solihull",
+    "Skin Boosters Sutton Coldfield",
     "PRP Facial West Midlands",
+    "Profhilo Birmingham",
+    "Seventy Hyal Harborne",
+    "Aesthetics clinic Wolverhampton",
+    "Exosomes treatment Dudley",
+    "Skin rejuvenation Walsall",
+    "Microneedling with PRP Birmingham",
+    "Anti-ageing injections Halesowen"
   ],
   
   openGraph: {
     title: "Facial Aesthetics & Skin Rejuvenation | Birmingham",
     description:
-      "Restore youthful skin with doctor-led aesthetics in Birmingham. Specialist in Polynucleotides and PRP.",
+      "Restore youthful skin with doctor-led aesthetics in Birmingham. Specialist in Polynucleotides and PRP. Serving Solihull & Sutton Coldfield.",
     url: "https://www.healing-prp.co.uk/birmingham/facial-aesthetics",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
