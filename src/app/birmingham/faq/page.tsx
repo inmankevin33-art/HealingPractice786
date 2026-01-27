@@ -6,27 +6,40 @@ import Script from "next/script";
 export const metadata: Metadata = {
   // 1. Optimized Title: Result will be "Treatment & Clinic FAQs | Birmingham Clinic"
   title: "Treatment & Clinic FAQs", 
+  
   description: "Patient FAQs for our Birmingham Edgbaston clinic. Specialist answers on PRP for joint pain, hair loss, and sexual health. Expert doctor-led care in the West Midlands.",
+  
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/faq",
   },
+
+  // 2. Added Regional Keywords
+  keywords: [
+    "PRP treatment FAQ Birmingham",
+    "Is PRP safe for joints",
+    "P-Shot results Birmingham",
+    "PRP hair loss questions West Midlands",
+    "Edgbaston medical quarter PRP clinic",
+    "Joint injection recovery time Solihull",
+    "Private PRP doctor Wolverhampton",
+    "O-Shot safety Sutton Coldfield",
+    "Healing-PRP Birmingham parking",
+    "GMC registered doctor Edgbaston"
+  ],
 };
 
 export default function BirminghamFaqPage() {
   const birminghamFaqs = [
     {
       question: "Are P-Shot® results permanent?",
-      // Updated link to Birmingham-specific path
       answer: "Results are long-lasting but not permanent as the body continues to age naturally. At our Birmingham clinic, patients enjoy improvements for months; you can find full details on our [Sexual Rejuvenation](/birmingham/sexual-rejuvenation) page."
     },
     {
       question: "Is PRP better than a steroid injection for knee pain?",
-      // Updated link to Birmingham-specific path
       answer: "Steroids offer fast, temporary relief but can weaken joint tissue over time. PRP is a regenerative therapy at our Edgbaston clinic that promotes long-term healing. View full details on our [Joint Injections](/birmingham/joint-injections) page."
     },
     {
       question: "Can I get PRP Hair Restoration in the West Midlands?",
-      // Updated link to Birmingham-specific path
       answer: "Absolutely. We offer advanced PRP and Exosome therapy at our Birmingham clinic for both men and women. Read about our specialized protocols on the [Hair Restoration](/birmingham/hair-restoration) page."
     },
     {
