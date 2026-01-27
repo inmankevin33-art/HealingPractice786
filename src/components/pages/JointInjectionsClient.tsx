@@ -769,18 +769,23 @@ export default function JointInjectionsClient({
         </div>
       </section>
 
-      {/* CTA: Prices (after treatments) */}
+    {/* CTA: Prices & FAQs (before FAQ section) */}
       <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
           <Link
-            href="/prices"
+            href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
             className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
           >
             View Treatment Prices
           </Link>
+          <Link
+            href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue-50)] bg-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+          >
+            View Clinic FAQs
+          </Link>
         </div>
       </section>
-
       {/* FAQs Section */}
       <section id="faqs" className="py-20 lg:py-32 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
