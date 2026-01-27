@@ -40,22 +40,10 @@ export default function BlogClient({ initialPosts }: { initialPosts: BlogPost[] 
 
       {/* Hero Section */}
       <section className="relative py-12 border-b border-slate-100 sm:py-16 lg:py-20">
+      {/* Add this div wrapper to constrain the width */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center" variants={containerVariants}>
-            <motion.div className="inline-block px-4 py-2 bg-[var(--brand-blue-50)] text-[var(--brand-blue)] rounded-full text-xs font-inter font-semibold mb-4 uppercase tracking-wider" variants={itemVariants}>
-              Health & Wellness Blog
-            </motion.div>
-
-            {/* MATCHED STYLE: md:text-3xl and font-semibold */}
-            <motion.h1 className="text-2xl md:text-3xl font-raleway font-semibold text-slate-900 mb-4" variants={itemVariants}>
-              Latest Insights on PRP & Regenerative Medicine
-              <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
-            </motion.h1>
-
-            {/* MATCHED STYLE: max-w-3xl constraint prevents the "zoomed" look */}
-            <motion.p className="text-base font-inter text-slate-600 max-w-3xl mx-auto leading-relaxed" variants={itemVariants}>
-              Stay informed about the latest developments in Platelet-Rich Plasma treatments, sexual wellness, joint health, and aesthetic medicine from our medical experts.
-            </motion.p>
+             {/* ... your H1 and P tags go here ... */}
           </motion.div>
         </div>
       </section>
