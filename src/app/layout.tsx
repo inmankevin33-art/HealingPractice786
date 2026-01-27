@@ -2,30 +2,41 @@ import type { Metadata } from "next";
 import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-// Footer is usually here, or inside specific pages. 
-// If your Footer is not in 'page.tsx', it should be here.
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway" });
 
 // --- GLOBAL SEO DEFAULTS ---
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.healing-prp.co.uk"), // Fixes social sharing image issues
+  metadataBase: new URL("https://www.healing-prp.co.uk"),
   title: {
+    // This is the default title if a page doesn't have one
     default: "Healing-PRP Clinics | Doctor-Led Regenerative Medicine",
-    template: "%s | Healing-PRP Clinics", // Adds your brand to every page title automatically
+    // General brand template for top-level pages (Home, About, Contact)
+    template: "%s | Healing-PRP Clinics", 
   },
   description: "Specialist private clinic in St Albans & Birmingham. PRP Hair Restoration, Joint Injections, P-Shot & O-Shot treatments by GMC-registered doctors.",
+  keywords: [
+    "PRP Clinic UK",
+    "Private Doctor St Albans",
+    "Private Doctor Birmingham",
+    "Regenerative Medicine",
+    "Erectile Dysfunction Treatment",
+    "Hair Loss Clinic",
+    "Joint Pain Injections"
+  ],
   icons: {
-    icon: "/favicon.png", // <--- Ensures your Blue Flower shows in the browser tab
+    icon: "/favicon.png", 
     shortcut: "/favicon.png",
-    apple: "/favicon.png", // For iPhone home screen
+    apple: "/favicon.png", 
   },
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: "https://www.healing-prp.co.uk",
     siteName: "Healing-PRP Clinics",
+    title: "Healing-PRP Clinics | Specialist Regenerative Medicine",
+    description: "Doctor-led PRP treatments in St Albans and Birmingham for hair, joints, and sexual wellness.",
   },
 };
 
@@ -40,11 +51,14 @@ export default function RootLayout({
         {/* Header appears on ALL pages */}
         <Header /> 
         
-        {/* This renders the content of page.tsx */}
-        {children}
+        {/* Main Content Area */}
+        <main>
+          {children}
+        </main>
         
-        {/* Note: If you removed Footer from page.tsx to put it here, uncomment below: */}
-        {/* <Footer /> */} 
+        {/* Footer is typically called within page.tsx to allow for 
+            location-specific footer details, but can be added here 
+            if you want a universal one. */}
       </body>
     </html>
   );
