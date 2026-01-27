@@ -1,10 +1,26 @@
+import type { Metadata } from "next";
 import React from "react";
 
 /**
  * Layout for the Birmingham Joint Injections section.
- * This structural wrapper isolates joint treatment pages.
- * It inherits the " | Birmingham Clinic" title template from the parent.
+ * Uses a Metadata Template to ensure consistent Birmingham branding.
  */
+export const metadata: Metadata = {
+  title: {
+    // Fallback if the page title is missing
+    default: "PRP & Steroid Joint Injections",
+    
+    // Automatically appends location to child page titles
+    // Result: "Knee Pain Treatments | Birmingham Clinic"
+    template: "%s | Birmingham Clinic",
+  },
+  description:
+    "Doctor-led joint injections in Birmingham Edgbaston. Specialist PRP therapy and steroid injections for arthritis, sports injuries, and joint pain.",
+  alternates: {
+    canonical: "https://www.healing-prp.co.uk/birmingham/joint-injections",
+  },
+};
+
 export default function BirminghamJointInjectionsLayout({
   children,
 }: {
@@ -12,10 +28,7 @@ export default function BirminghamJointInjectionsLayout({
 }) {
   return (
     <section className="birmingham-joint-injections-container">
-      {/* This wrapper allows for section-specific styling 
-          or local Edgbaston medical quarter badges 
-          without affecting the Aesthetics or Hair pages.
-      */}
+      {/* Structural wrapper for West Midlands joint treatments */}
       {children}
     </section>
   );
