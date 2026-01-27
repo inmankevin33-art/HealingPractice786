@@ -150,10 +150,11 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
                   onClick={() => toggleFAQ(key)}
                   className="w-full p-6 flex justify-between items-center text-left hover:bg-slate-100/50 transition-colors"
                 >
-                  <span className="font-raleway font-bold text-slate-900 text-lg">
+                  {/* QUESTION: Matches JointInjectionsClient styling */}
+                  <span className="font-raleway font-bold text-slate-900 md:text-lg text-base leading-relaxed">
                     {faq.question}
                   </span>
-                  <span className="text-blue-600">
+                  <span className="text-[var(--brand-blue)] ml-4">
                     {openFAQKey === key ? <FaMinus /> : <FaPlus />}
                   </span>
                 </button>
@@ -166,9 +167,10 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 text-slate-600 font-inter text-sm border-t border-slate-200/50 pt-4">
+                      <div className="px-6 pb-6 border-t border-slate-200/50 pt-4">
+                        {/* ANSWER: Using Inter Regular, Slate-600, and relaxed leading */}
                         <div 
-                          className="faq-answer-content"
+                          className="faq-answer-content font-inter text-sm md:text-base text-slate-600 leading-relaxed"
                           dangerouslySetInnerHTML={{ __html: formatAnswer(faq.answer) }} 
                         />
                       </div>
@@ -180,7 +182,7 @@ export default function FaqClient({ title, description, faqs, locationBadge, loc
           })}
         </div>
       </section>
-
+      
       <ContactCTASection />
 
       {/* WhatsApp Modal logic remains unchanged */}
