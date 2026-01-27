@@ -30,7 +30,12 @@ export const metadata: Metadata = {
     "Shockwave therapy alternative St Albans",
     "P-Shot cost Hertfordshire",
     "Confidential ED clinic Potters Bar",
-    "GMC registered ED doctor Bushey"
+    "GMC registered ED doctor Bushey",
+    
+    // Luton Additions (Bedfordshire Reach)
+    "Erectile Dysfunction treatment Luton",
+    "P-Shot clinic Luton",
+    "Private ED doctor Bedfordshire"
   ],
   
   openGraph: {
