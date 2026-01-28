@@ -1,22 +1,20 @@
 "use client";
 
+import { useState, useEffect } from "react"; // Ensure this line is present and correct
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import Image from "next/image"; 
-// ... keep all your other existing imports exactly as they are
-import {
-  FaWhatsapp,
-  FaCheck,
-  FaChevronDown,
-  FaChevronUp,
-  FaPlus,
-  FaMinus,
-  FaEnvelope,
-  FaTimes,
+import { 
+  FaWhatsapp, 
+  FaCheck, 
+  FaChevronDown, 
+  FaChevronUp, 
+  FaPlus, 
+  FaMinus, 
+  FaEnvelope, 
+  FaTimes 
 } from "react-icons/fa";
-import Footer from "@/components/Footer";
-import ContactCTASection from "@/components/ContactCTASection";
+import Image from "next/image"; // Required to fix the other warnings
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+// ... other imports
 
 type SexualHealthClientProps = {
   locationName?: string;
