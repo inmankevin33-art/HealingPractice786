@@ -329,12 +329,14 @@ export default function SexualHealthClient({
       {/* Hero Section */}
       <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0"> {/* This container must be relative or absolute */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
-          <img
+          <Image
             src="/hero_img.png"
-            alt="Projects background"
-            className="w-full h-full object-cover"
+            alt="Sexual Rejuvenation Hero"
+            fill
+            className="object-cover"
+            priority
           />
         </div>
 
@@ -1466,9 +1468,11 @@ export default function SexualHealthClient({
 
                   {/* QR Code */}
                   <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
-                    <img
+                    <Image
                       src="/qrcode.png"
                       alt="WhatsApp QR Code"
+                      width={256}
+                      height={256}
                       className="w-64 h-64"
                     />
                   </div>
