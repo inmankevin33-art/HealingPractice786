@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion"; // Added Variants type
 import { usePathname } from "next/navigation";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
@@ -8,7 +8,8 @@ export default function LocationSection() {
   const pathname = usePathname();
   const isBirminghamPage = pathname?.startsWith("/birmingham");
 
-  const containerVariants = {
+  // Explicitly typing the variants fixes the "Type 'string' is not assignable" error
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -19,16 +20,18 @@ export default function LocationSection() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { 
+        duration: 0.6, 
+        ease: "easeOut" // TypeScript now recognizes this as a valid Easing value
+      },
     },
   };
 
-  // Data objects for dynamic rendering
   const locationData = {
     stAlbans: {
       badge: "St Albans Location",
@@ -38,7 +41,7 @@ export default function LocationSection() {
       street: "21 Victoria Street, St Albans, AL1 3JJ",
       nearby: ["Watford", "Harpenden", "Luton", "Hertford", "Welwyn Garden City"],
       access: "Short walk from St Albans City station (fast trains to London St Pancras).",
-      mapUrl: "http://googleusercontent.com/maps.google.com/4"
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2466.820247657989!2d-0.3419!3d51.7527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDQ1JzA5LjciTiAwwrAyMCcyNi44Ilc!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
     },
     birmingham: {
       badge: "Midlands Location",
@@ -48,22 +51,19 @@ export default function LocationSection() {
       street: "Consulting Rooms 38 LTD, 38 Harborne Rd, Edgbaston, B15 3EB",
       nearby: ["Edgbaston", "Harborne", "Moseley", "Selly Oak", "City Centre"],
       access: "Conveniently located in the Edgbaston Medical Quarter with easy access via public transport.",
-      mapUrl: "http://googleusercontent.com/maps.google.com/5"
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.3467362377313!2d-1.9213!3d52.4716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDI4JzE3LjgiTiAxwrA1NScxNi43Ilc!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
     }
   };
 
-  // Select active data based on route
   const active = isBirminghamPage ? locationData.birmingham : locationData.stAlbans;
 
   return (
     <section className="relative py-24 lg:py-32 bg-slate-50 overflow-hidden font-inter">
-      {/* Background Polish */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(0,163,255,0.05),transparent)]"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           className="text-center mb-16"
           initial="hidden"
@@ -93,7 +93,6 @@ export default function LocationSection() {
           </motion.p>
         </motion.div>
 
-        {/* Content Grid */}
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch"
           initial="hidden"
@@ -101,7 +100,6 @@ export default function LocationSection() {
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
-          {/* Info Card */}
           <motion.div variants={itemVariants}>
             <div className="p-10 bg-white rounded-3xl border border-slate-100 shadow-sm h-full flex flex-col justify-center">
               <div className="mb-10">
@@ -152,7 +150,6 @@ export default function LocationSection() {
             </div>
           </motion.div>
 
-          {/* Map Card */}
           <motion.div className="relative min-h-[450px]" variants={itemVariants}>
             <div className="relative rounded-[2rem] overflow-hidden shadow-2xl h-full border-4 border-white">
               <iframe
