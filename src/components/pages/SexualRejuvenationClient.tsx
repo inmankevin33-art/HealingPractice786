@@ -1215,15 +1215,15 @@ export default function SexualHealthClient({
       </section>
 
       {/* Shockwave Therapy Section */}
-      <section className="py-12 lg:py-16 bg-slate-50 relative">
-        {/* Background Image with Overlay */}
+      <section className="py-12 lg:py-16 bg-slate-50 relative overflow-hidden">
+        {/* Background Image with Overlay - OPTIMIZED */}
         <div className="absolute inset-0 z-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: "url('/Pic3.jpg')",
-            }}
-          ></div>
+          <Image
+            src="/Pic3.jpg"
+            alt="Shockwave Therapy treatment background"
+            fill
+            className="object-cover"
+          />
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
