@@ -1,51 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function LocationSection() {
+  const pathname = usePathname();
+  const isBirminghamPage = pathname?.startsWith("/birmingham");
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
         delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-      },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
-  const nearbyAreas = [
-    "Watford",
-    "Harpenden",
-    "Luton",
-    "Hertford",
-    "Welwyn Garden City",
-  ];
+  // Data objects for dynamic rendering
+  const locationData = {
+    stAlbans: {
+      badge: "St Albans Location",
+      title: "Visit Us in St Albans",
+      desc: "Conveniently located minutes from London with easy access from Hertfordshire and North London.",
+      addressTitle: "St Albans Clinic",
+      street: "21 Victoria Street, St Albans, AL1 3JJ",
+      nearby: ["Watford", "Harpenden", "Luton", "Hertford", "Welwyn Garden City"],
+      access: "Short walk from St Albans City station (fast trains to London St Pancras).",
+      mapUrl: "http://googleusercontent.com/maps.google.com/4"
+    },
+    birmingham: {
+      badge: "Midlands Location",
+      title: "Visit Us in Birmingham",
+      desc: "Serving patients across the West Midlands from our private consulting hub in Edgbaston.",
+      addressTitle: "Birmingham Clinic",
+      street: "Consulting Rooms 38 LTD, 38 Harborne Rd, Edgbaston, B15 3EB",
+      nearby: ["Edgbaston", "Harborne", "Moseley", "Selly Oak", "City Centre"],
+      access: "Conveniently located in the Edgbaston Medical Quarter with easy access via public transport.",
+      mapUrl: "http://googleusercontent.com/maps.google.com/5"
+    }
+  };
 
-  const birminghamNearbyAreas = [
-    "Edgbaston",
-    "Harborne",
-    "Moseley",
-    "Selly Oak",
-    "City Centre",
-  ];
+  // Select active data based on route
+  const active = isBirminghamPage ? locationData.birmingham : locationData.stAlbans;
 
   return (
-    <section className="relative py-20 lg:py-32 overflow-hidden">
-      {/* Seamless Gradient Background - continues from previous component */}
+    <section className="relative py-24 lg:py-32 bg-slate-50 overflow-hidden font-inter">
+      {/* Background Polish */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-r from-[#f6f7ff] to-transparent"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(0,163,255,0.05),transparent)]"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,62 +72,66 @@ export default function LocationSection() {
           variants={containerVariants}
         >
           <motion.div
-            className="inline-block mb-2 font-inter md:px-4 px-3 md:py-2 py-1 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs"
+            className="inline-block mb-4 md:px-4 px-3 md:py-2 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold uppercase tracking-widest"
             variants={itemVariants}
           >
-            St Albans Location
+            {active.badge}
           </motion.div>
 
           <motion.h2
-            className="md:text-3xl text-2xl font-raleway text-slate-900 leading-tight"
+            className="md:text-4xl text-3xl font-raleway font-semibold text-slate-900 leading-tight mb-4"
             variants={itemVariants}
           >
-            Visit Us in St Albans
+            {active.title}
           </motion.h2>
+          
           <motion.p
-            className="text-sm text-slate-600 md:max-w-2xl max-w-xl mx-auto leading-relaxed"
+            className="text-base text-slate-500 md:max-w-2xl max-w-xl mx-auto leading-relaxed font-inter"
             variants={itemVariants}
           >
-            Conveniently located minutes from London with easy access from
-            surrounding areas.
+            {active.desc}
           </motion.p>
         </motion.div>
 
         {/* Content Grid */}
         <motion.div
-          className="grid grid-cols-1 -mt-6 md:mt-0 lg:grid-cols-2 gap-12 items-stretch"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
-          {/* Left Side - Combined Info */}
+          {/* Info Card */}
           <motion.div variants={itemVariants}>
-            <div className="p-8 bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200/50 h-full flex flex-col">
-              {/* Address Section */}
-              <div className="mb-8">
-                <h3 className="text-xl font-raleway text-navy-600 mb-2">
-                  Our Location
+            <div className="p-10 bg-white rounded-3xl border border-slate-100 shadow-sm h-full flex flex-col justify-center">
+              <div className="mb-10">
+                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">
+                  Clinical Address
                 </h3>
-                <p className="text-sm text-slate-600">
-                  21 Victoria Street, St Albans, AL1 3JJ
-                </p>
+                <div className="flex items-start gap-4">
+                  <FaMapMarkerAlt className="w-5 h-5 text-blue-600 mt-1" />
+                  <div>
+                    <p className="font-raleway font-bold text-slate-900 text-xl mb-1">
+                      {active.addressTitle}
+                    </p>
+                    <p className="text-slate-500 leading-relaxed font-inter">
+                      {active.street}
+                    </p>
+                  </div>
+                </div>
               </div>
 
-              {/* Subtle Separator */}
-              <div className="border-t border-slate-200/50 mb-8"></div>
+              <div className="border-t border-slate-100 mb-10"></div>
 
-              {/* Nearby Areas Section */}
-              <div className="mb-8">
-                <h3 className="text-xl font-raleway text-navy-600 mb-3">
+              <div className="mb-10">
+                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">
                   Conveniently Located
                 </h3>
-                <p className="text-sm text-slate-600 mb-2">Close to:</p>
                 <div className="flex flex-wrap gap-2">
-                  {nearbyAreas.map((area, index) => (
+                  {active.nearby.map((area, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs"
+                      className="px-3 py-1 bg-slate-50 text-slate-600 border border-slate-100 rounded-lg text-xs font-medium"
                     >
                       {area}
                     </span>
@@ -121,175 +139,31 @@ export default function LocationSection() {
                 </div>
               </div>
 
-              {/* Subtle Separator */}
-              <div className="border-t border-slate-200/50 mb-8"></div>
+              <div className="border-t border-slate-100 mb-10"></div>
 
-              {/* Transport Info Section */}
-              <div className="flex-1">
-                <h3 className="text-xl font-raleway text-navy-600 mb-3">
-                  Easy Access
+              <div>
+                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">
+                  Accessibility
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Short walk from St Albans City station (fast trains to
-                  London).
+                <p className="text-slate-500 leading-relaxed text-sm font-inter">
+                  {active.access}
                 </p>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Side - Map */}
-          <motion.div className="relative h-full" variants={itemVariants}>
-            <div className="relative rounded-xl overflow-hidden shadow-xl h-full">
+          {/* Map Card */}
+          <motion.div className="relative min-h-[450px]" variants={itemVariants}>
+            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl h-full border-4 border-white">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d39523.58522865622!2d-0.314299!3d51.747226!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487638a0e793c909%3A0x71ec848046a64059!2sSt%20Albans%2C%20UK!5e0!3m2!1sen!2sus!4v1757801875339!5m2!1sen!2sus"
+                src={active.mapUrl}
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                style={{ border: 0, filter: 'grayscale(0.1)' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="rounded-xl"
-              ></iframe>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Bottom CTA */}
-        {/* <motion.div
-          className="text-center mt-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={containerVariants}
-        >
-          <motion.div
-            className="inline-flex flex-col sm:flex-row gap-4"
-            variants={itemVariants}
-          >
-            <motion.button
-              className="px-8 py-4 bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center justify-center gap-3"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaMapMarkerAlt className="w-5 h-5" />
-              Get Directions
-            </motion.button>
-            <motion.button
-              className="px-8 py-4 border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] bg-white/80 hover:bg-[var(--brand-blue-50)] rounded-lg font-inter font-medium transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Contact Us
-            </motion.button>
-          </motion.div>
-        </motion.div> */}
-      </div>
-
-      {/* Birmingham Section */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-40">
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={containerVariants}
-        >
-          <motion.div
-            className="inline-block mb-2 font-inter md:px-4 px-3 md:py-2 py-1 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs"
-            variants={itemVariants}
-          >
-            Midlands Location
-          </motion.div>
-
-          <motion.h2
-            className="md:text-3xl text-2xl font-raleway text-slate-900 leading-tight"
-            variants={itemVariants}
-          >
-            Visit Us in Birmingham
-          </motion.h2>
-          <motion.p
-            className="text-sm text-slate-600 md:max-w-2xl max-w-xl mx-auto leading-relaxed"
-            variants={itemVariants}
-          >
-            Serving patients across the West Midlands with convenient access
-            from surrounding areas.
-          </motion.p>
-        </motion.div>
-
-        {/* Content Grid */}
-        <motion.div
-          className="grid grid-cols-1 -mt-6 md:mt-0 lg:grid-cols-2 gap-12 items-stretch"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-        >
-          {/* Left Side - Combined Info */}
-          <motion.div variants={itemVariants}>
-            <div className="p-8 bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200/50 h-full flex flex-col">
-              {/* Address Section */}
-              <div className="mb-8">
-                <h3 className="text-xl font-raleway text-navy-600 mb-2">
-                  Our Location
-                </h3>
-                <p className="text-sm text-slate-600">
-                  Consulting Rooms 38 LTD
-                </p>
-                <p className="text-sm text-slate-600">
-                  38 Harborne Rd, Edgbaston, Birmingham, B15 3EB
-                </p>
-              </div>
-
-              {/* Subtle Separator */}
-              <div className="border-t border-slate-200/50 mb-8"></div>
-
-              {/* Nearby Areas Section */}
-              <div className="mb-8">
-                <h3 className="text-xl font-raleway text-navy-600 mb-3">
-                  Conveniently Located
-                </h3>
-                <p className="text-sm text-slate-600 mb-2">Close to:</p>
-                <div className="flex flex-wrap gap-2">
-                  {birminghamNearbyAreas.map((area, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs"
-                    >
-                      {area}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Subtle Separator */}
-              <div className="border-t border-slate-200/50 mb-8"></div>
-
-              {/* Transport Info Section */}
-              <div className="flex-1">
-                <h3 className="text-xl font-raleway text-navy-600 mb-3">
-                  Easy Access
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Conveniently located in Edgbaston with easy access via public
-                  transport.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Side - Map */}
-          <motion.div className="relative h-full" variants={itemVariants}>
-            <div className="relative rounded-xl overflow-hidden shadow-xl h-full">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.4929728157417!2d-1.9274453233218645!3d52.47020937204814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc54343bc8ad%3A0xc94d1b9b140259f!2sConsulting%20Rooms%20Birmingham%20(Consulting%20Rooms%2038%20Ltd)!5e0!3m2!1sen!2suk!4v1763228247952!5m2!1sen!2suk"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="rounded-xl"
+                className="h-full w-full"
               ></iframe>
             </div>
           </motion.div>
