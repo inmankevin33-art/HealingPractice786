@@ -70,7 +70,7 @@ export default function Hero() {
           className="inline-block px-4 py-2 bg-blue-600 text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em]"
         >
           <FaMapMarkerAlt className="inline-block mr-2 mb-0.5 text-blue-200" />
-          St Albans • Harpendon • Luton • London
+          St Albans • Harpenden • Luton • London
         </motion.div>
 
         {/* Headline */}
@@ -81,7 +81,7 @@ export default function Hero() {
           variants={fadeUpVariants}
           className="md:text-6xl text-4xl font-semibold font-raleway text-white leading-tight mb-4 tracking-tight"
         >
-          Natural Regeneration Treatments with PRP <br /> Healing-PRP Clinics
+          Natural Regeneration Treatments <br /> Healing-PRP Clinics
         </motion.h1>
 
         <motion.h2 
