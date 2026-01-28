@@ -1,22 +1,20 @@
 "use client";
 
-import { motion, AnimatePresence, Variants } from "framer-motion"; // Added Variants for TS safety
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { MoveRight } from "lucide-react";
 import { useState } from "react";
 import { FaSyringe, FaSync, FaGem, FaStar } from "react-icons/fa";
+import Image from "next/image"; // Added for optimization
+import Link from "next/link";
 
 export default function PRPExplanationSection() {
   const [activeStep, setActiveStep] = useState(0);
 
-  // TypeScript safe variants to prevent Next.js build crash
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
     },
   };
 
@@ -64,18 +62,10 @@ export default function PRPExplanationSection() {
     },
   ];
 
-  const benefits = [
-    "Stimulates natural healing and regeneration",
-    "Improves blood circulation",
-    "Reduces inflammation and pain",
-    "Promotes new tissue growth",
-  ];
-
   return (
     <section id="prp-explanation" className="relative py-24 lg:py-32 bg-white overflow-hidden font-inter">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header - Upgraded to Raleway */}
         <motion.div
           className="text-center mb-16"
           initial="hidden"
@@ -106,7 +96,7 @@ export default function PRPExplanationSection() {
           </motion.p>
         </motion.div>
 
-        {/* Interactive Trail Section */}
+        {/* Steps Grid */}
         <motion.div
           className="mb-24"
           initial="hidden"
@@ -115,7 +105,6 @@ export default function PRPExplanationSection() {
           variants={containerVariants}
         >
           <div className="max-w-6xl mx-auto">
-            {/* Active Step Indicator - Synced to Dark Theme */}
             <div className="text-center mb-12">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -125,7 +114,7 @@ export default function PRPExplanationSection() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   className="inline-flex items-center gap-3 px-8 py-3 bg-slate-900 rounded-full shadow-xl"
                 >
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                   <span className="text-xs font-bold text-white uppercase tracking-widest">
                     Step {steps[activeStep].number}: {steps[activeStep].title}
                   </span>
@@ -133,7 +122,6 @@ export default function PRPExplanationSection() {
               </AnimatePresence>
             </div>
 
-            {/* Steps Grid - Upgraded to Rounded-[2rem] */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {steps.map((step, index) => {
                 const IconComponent = step.icon;
@@ -163,7 +151,7 @@ export default function PRPExplanationSection() {
                       <h3 className="font-raleway font-bold text-slate-900 mb-3 text-lg">
                         {step.title}
                       </h3>
-                      <p className="text-sm text-slate-500 leading-relaxed font-inter">
+                      <p className="text-sm text-slate-500 leading-relaxed">
                         {step.description}
                       </p>
                     </div>
@@ -172,45 +160,6 @@ export default function PRPExplanationSection() {
               })}
             </div>
           </div>
-        </motion.div>
-
-        {/* Benefits Section */}
-        <motion.div
-          className="text-center pt-20 border-t border-slate-100"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          <motion.h3
-            className="text-2xl font-raleway font-bold text-slate-900 mb-12"
-            variants={itemVariants}
-          >
-            Why PRP Works?
-          </motion.h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-16">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-slate-100 shadow-sm"
-                variants={itemVariants}
-              >
-                <div className="w-2 h-2 bg-blue-600 rounded-full shrink-0"></div>
-                <span className="text-slate-600 text-sm font-medium text-left">{benefit}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div variants={itemVariants}>
-            <Link
-              href="/sexual-rejuvenation"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-600 hover:gap-4 transition-all group"
-            >
-              <span>Learn more on our Sexual Rejuvenation page</span>
-              <MoveRight className="w-4 h-4" />
-            </Link>
-          </motion.div>
         </motion.div>
       </div>
     </section>
