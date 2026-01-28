@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   FaWhatsapp,
   FaCheck,
@@ -11,7 +12,7 @@ import {
   FaMinus,
   FaEnvelope,
   FaTimes,
-} from "react-icons/fa";
+} from "react-icons/fa"; // Fixed: Removed duplicate import and extra brace
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
@@ -85,10 +86,7 @@ export default function JointInjectionsClient({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 }      
     },
   };
 
@@ -97,9 +95,7 @@ export default function JointInjectionsClient({
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-      },
+      transition: { duration: 0.6, ease: "easeOut" }, // easeOut is now safe
     },
   };
 
@@ -233,10 +229,13 @@ export default function JointInjectionsClient({
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
-          <img
+          <Image
             src="/hero_img.png"
-            alt="Projects background"
-            className="w-full h-full object-cover"
+            alt="Joint Injections treatment background"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
           />
         </div>
 
@@ -420,13 +419,14 @@ export default function JointInjectionsClient({
               className="relative flex justify-center lg:justify-end"
             >
               <motion.div
-                className="relative rounded-lg overflow-hidden shadow-lg max-w-md w-full"
+                className="relative rounded-lg overflow-hidden shadow-lg max-w-md w-full h-[300px]" // Added fixed height
                 variants={itemVariants}
               >
-                <img
+                <Image
                   src="/joint-injections.jpg"
                   alt="Joint injection treatment"
-                  className="w-full h-auto object-cover rounded-lg"
+                  fill
+                  className="object-cover"
                 />
               </motion.div>
             </motion.div>
@@ -936,11 +936,12 @@ export default function JointInjectionsClient({
                   </p>
 
                   {/* QR Code */}
-                  <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
-                    <img
+                 <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6 relative w-64 h-64 mx-auto flex items-center justify-center">
+                    <Image
                       src="/qrcode.png"
                       alt="WhatsApp QR Code"
-                      className="w-64 h-64"
+                      fill 
+                      className="object-contain p-4" // Added padding so it doesn't touch the borders
                     />
                   </div>
 
