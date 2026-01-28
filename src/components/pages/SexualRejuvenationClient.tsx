@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import Image from "next/image"; 
+// ... keep all your other existing imports exactly as they are
 import {
   FaWhatsapp,
   FaCheck,
@@ -88,7 +89,7 @@ export default function SexualHealthClient({
     // On mobile, let the default link behavior work
   };
 
-  const containerVariants = {
+ const containerVariants: Variants = { // Added : Variants
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -99,12 +100,14 @@ export default function SexualHealthClient({
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0 },
+  const itemVariants: Variants = { // Added : Variants
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
         duration: 0.6,
+        ease: "easeOut",
       },
     },
   };
