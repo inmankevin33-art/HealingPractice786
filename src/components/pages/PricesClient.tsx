@@ -4,10 +4,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
   FaWhatsapp,
+  FaCheck,
+  FaEnvelope,
   FaTimes,
-} from "react-icons/fa"; // Removed: FaCheck, FaEnvelope (unused)
+} from "react-icons/fa";
 import ContactCTASection from "@/components/ContactCTASection";
-import Image from "next/image"; // Added for optimization
+// REMOVED: import Footer from "@/components/Footer"; 
+import Link from "next/link";
 import Script from "next/script";
 
 export default function PricesClient({ isBirmingham = false }: { isBirmingham?: boolean }) {
@@ -158,6 +161,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
       ))}
 
       <ContactCTASection />
+      {/* REMOVED: <Footer /> - Managed by parent page.tsx */}
 
       <AnimatePresence>
         {isModalOpen && (
@@ -168,19 +172,11 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                 <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors"><FaTimes className="w-5 h-5 text-slate-600" /></button>
                 <h3 className="text-2xl font-raleway font-semibold text-slate-900 mb-2">Scan to Chat</h3>
                 <p className="text-sm text-slate-600 mb-6">Use your phone camera to scan the QR code</p>
-                <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6 relative w-64 h-64 mx-auto">
-                  {/* Optimized Next.js Image */}
-                  <Image 
-                    src="/qrcode.png" 
-                    alt="WhatsApp QR Code" 
-                    fill 
-                    className="object-contain" 
-                    sizes="256px"
-                  />
+                <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
+                  <img src="/qrcode.png" alt="WhatsApp QR Code" className="w-64 h-64" />
                 </div>
                 <a href="https://wa.me/447990364147" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-medium transition-all">
-                  <FaWhatsapp className="w-5 h-5" /> 
-                  Open WhatsApp
+                  <FaWhatsapp className="w-5 h-5" /> Open WhatsApp
                 </a>
               </div>
             </motion.div>
