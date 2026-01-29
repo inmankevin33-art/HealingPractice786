@@ -1,25 +1,21 @@
 "use client";
 
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import { 
-  FaWhatsapp, 
-  FaCheck, 
-  FaChevronDown, 
-  FaChevronUp, 
-  FaPlus, 
-  FaMinus, 
-  FaEnvelope, 
-  FaTimes, // Added comma here
-  FaBookOpen as BookOpen // Renamed to match your code usage
+import {
+  FaWhatsapp,
+  FaCheck,
+  FaChevronDown,
+  FaChevronUp,
+  FaPlus,
+  FaMinus,
+  FaEnvelope,
+  FaTimes,
 } from "react-icons/fa";
-
-// These two imports solve the 1422:8 and 1424:8 errors
-import ContactCTASection from "@/components/ContactCTASection";
 import Footer from "@/components/Footer";
-
-import Image from "next/image";
+import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
+import { BookOpen } from "lucide-react";
 
 type SexualHealthClientProps = {
   locationName?: string;
@@ -92,7 +88,7 @@ export default function SexualHealthClient({
     // On mobile, let the default link behavior work
   };
 
- const containerVariants: Variants = { // Added : Variants
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -103,14 +99,12 @@ export default function SexualHealthClient({
     },
   };
 
-  const itemVariants: Variants = { // Added : Variants
-    hidden: { opacity: 0, y: 20 },
+  const itemVariants = {
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
       },
     },
   };
@@ -332,14 +326,12 @@ export default function SexualHealthClient({
       {/* Hero Section */}
       <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0"> {/* This container must be relative or absolute */}
+        <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
-          <Image
+          <img
             src="/hero_img.png"
-            alt="Sexual Rejuvenation Hero"
-            fill
-            className="object-cover"
-            priority
+            alt="Projects background"
+            className="w-full h-full object-cover"
           />
         </div>
 
@@ -1220,15 +1212,15 @@ export default function SexualHealthClient({
       </section>
 
       {/* Shockwave Therapy Section */}
-      <section className="py-12 lg:py-16 bg-slate-50 relative overflow-hidden">
-        {/* Background Image with Overlay - OPTIMIZED */}
+      <section className="py-12 lg:py-16 bg-slate-50 relative">
+        {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/Pic3.jpg"
-            alt="Shockwave Therapy treatment background"
-            fill
-            className="object-cover"
-          />
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/Pic3.jpg')",
+            }}
+          ></div>
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
@@ -1471,11 +1463,9 @@ export default function SexualHealthClient({
 
                   {/* QR Code */}
                   <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
-                    <Image
+                    <img
                       src="/qrcode.png"
                       alt="WhatsApp QR Code"
-                      width={256}
-                      height={256}
                       className="w-64 h-64"
                     />
                   </div>
