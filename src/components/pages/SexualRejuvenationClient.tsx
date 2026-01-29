@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react"; // Ensure this line is present and correct
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { 
   FaWhatsapp, 
@@ -10,14 +10,16 @@ import {
   FaPlus, 
   FaMinus, 
   FaEnvelope, 
-  FaTimes,
-  FaBookOpen as BookOpen // Add this line!
+  FaTimes, // Added comma here
+  FaBookOpen as BookOpen // Renamed to match your code usage
 } from "react-icons/fa";
-import ContactCTASection from "@/components/ContactCTASection"; // Add this!
-import Footer from "@/components/Footer"; // Add this!
-import Image from "next/image"; // Required to fix the other warnings
+
+// These two imports solve the 1422:8 and 1424:8 errors
+import ContactCTASection from "@/components/ContactCTASection";
+import Footer from "@/components/Footer";
+
+import Image from "next/image";
 import Link from "next/link";
-// ... other imports
 
 type SexualHealthClientProps = {
   locationName?: string;
