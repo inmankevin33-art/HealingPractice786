@@ -10,8 +10,11 @@ import {
   FaPlus, 
   FaMinus, 
   FaEnvelope, 
-  FaTimes 
+  FaTimes,
+  FaBookOpen as BookOpen // Add this line!
 } from "react-icons/fa";
+import ContactCTASection from "@/components/ContactCTASection"; // Add this!
+import Footer from "@/components/Footer"; // Add this!
 import Image from "next/image"; // Required to fix the other warnings
 import Link from "next/link";
 // ... other imports
