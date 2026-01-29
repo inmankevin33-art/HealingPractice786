@@ -16,7 +16,13 @@ import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
 
-export default function JointInjectionsClient() {
+type JointInjectionsClientProps = {
+  locationName?: string;
+};
+
+export default function JointInjectionsClient({
+  locationName = "St Albans",
+}: JointInjectionsClientProps) {
   const [expandedTreatment, setExpandedTreatment] = useState<string | null>(
     null
   );
@@ -93,7 +99,6 @@ export default function JointInjectionsClient() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
       },
     },
   };
