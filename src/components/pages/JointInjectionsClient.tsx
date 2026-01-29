@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import {
   FaWhatsapp,
   FaCheck,
@@ -12,18 +11,12 @@ import {
   FaMinus,
   FaEnvelope,
   FaTimes,
-} from "react-icons/fa"; // Fixed: Removed duplicate import and extra brace
+} from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
 
-type JointInjectionsClientProps = {
-  locationName?: string;
-};
-
-export default function JointInjectionsClient({
-  locationName = "St Albans",
-}: JointInjectionsClientProps) {
+export default function JointInjectionsClient() {
   const [expandedTreatment, setExpandedTreatment] = useState<string | null>(
     null
   );
@@ -86,7 +79,10 @@ export default function JointInjectionsClient({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 }      
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
     },
   };
 
@@ -95,14 +91,16 @@ export default function JointInjectionsClient({
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }, // easeOut is now safe
+      transition: {
+        duration: 0.6,
+      },
     },
   };
 
   const treatments = [
     {
       name: "PRP (Platelet‑Rich Plasma) Joint Injections",
-      price: "",
+      price: "From £400",
       description: "Natural healing using your own platelet-rich plasma",
       benefits: [
         "Encourages cartilage & soft‑tissue repair",
@@ -143,7 +141,7 @@ export default function JointInjectionsClient({
     },
     {
       name: "Steroid Joint Injections",
-      price: "",
+      price: "From £200",
       description: "Fast-acting anti-inflammatory pain relief",
       benefits: [
         "Fast pain relief",
@@ -186,16 +184,6 @@ export default function JointInjectionsClient({
 
   const faqs = [
     {
-      question: "Is the PRP treatment guaranteed to work?",
-      answer:
-        "As with all medical procedures, results cannot be 100% guaranteed. While PRP is highly effective for many patients with mild-to-moderate osteoarthritis and tendon injuries, individual responses vary based on age, severity of the condition, and overall health. We assess every patient thoroughly to ensure they have the best chance of a successful outcome.",
-    },
-    {
-      question: "Who is not suitable for PRP injections?",
-      answer:
-        "PRP may not be suitable if you have active infections, low platelet count (thrombocytopenia), severe anemia, or certain blood cancers. Patients with advanced 'bone-on-bone' arthritis may also see limited benefits compared to those with early-stage conditions. We will review your medical history during your consultation to confirm your suitability.",
-    },
-    {
       question: "How long do PRP joint injections last?",
       answer:
         "Initial improvements typically begin at 4-6 weeks, with continued benefits lasting 3-6 months. Best results are achieved with a planned course of treatments.",
@@ -229,13 +217,10 @@ export default function JointInjectionsClient({
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
-          <Image
+          <img
             src="/hero_img.png"
-            alt="Joint Injections treatment background"
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
+            alt="Projects background"
+            className="w-full h-full object-cover"
           />
         </div>
 
@@ -256,19 +241,18 @@ export default function JointInjectionsClient({
                 </motion.div>
 
                 <motion.h1
-                  className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
+                  className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
                   variants={itemVariants}
                 >
-                  Private Joint Injections in {locationName}
-                  <span className="block mt-1">Healing-PRP Clinics</span>
+                  Private Joint Injections in St Albans | Healing-PRP Clinics
                 </motion.h1>
-                
+
                 <motion.p
                   className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
                 >
                   GP-led pain relief for arthritis, sports injuries & joint
-                  conditions in a discreet, CQC‑compliant setting.
+                  conditions in a discreet, CQC‑compliant setting. Serving patients across Hertfordshire.
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
@@ -419,14 +403,13 @@ export default function JointInjectionsClient({
               className="relative flex justify-center lg:justify-end"
             >
               <motion.div
-                className="relative rounded-lg overflow-hidden shadow-lg max-w-md w-full h-[300px]" // Added fixed height
+                className="relative rounded-lg overflow-hidden shadow-lg max-w-md w-full"
                 variants={itemVariants}
               >
-                <Image
+                <img
                   src="/joint-injections.jpg"
                   alt="Joint injection treatment"
-                  fill
-                  className="object-cover"
+                  className="w-full h-auto object-cover rounded-lg"
                 />
               </motion.div>
             </motion.div>
@@ -769,23 +752,6 @@ export default function JointInjectionsClient({
         </div>
       </section>
 
-    {/* CTA: Prices & FAQs (before FAQ section) */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
-          <Link
-            href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
-          >
-            View Treatment Prices
-          </Link>
-          <Link
-            href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue-50)] bg-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
-          >
-            View Clinic FAQs
-          </Link>
-        </div>
-      </section>
       {/* FAQs Section */}
       <section id="faqs" className="py-20 lg:py-32 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -814,7 +780,7 @@ export default function JointInjectionsClient({
               variants={itemVariants}
             >
               Find answers to the most frequently asked questions about our
-              joint injection treatments and services in {locationName}.        
+              joint injection treatments and services in St Albans.
             </motion.p>
             <motion.div
               className="space-y-4 mt-4"
@@ -936,12 +902,11 @@ export default function JointInjectionsClient({
                   </p>
 
                   {/* QR Code */}
-                 <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6 relative w-64 h-64 mx-auto flex items-center justify-center">
-                    <Image
+                  <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
+                    <img
                       src="/qrcode.png"
                       alt="WhatsApp QR Code"
-                      fill 
-                      className="object-contain p-4" // Added padding so it doesn't touch the borders
+                      className="w-64 h-64"
                     />
                   </div>
 
