@@ -366,61 +366,72 @@ export default function JointInjectionsClient({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side: Content */}
             <div>
-              {/* Section 1: What is a Joint Injection */}
               <motion.div
                 initial="hidden"
-                animate="visible"
+                whileInView="visible"
+                viewport={{ once: true }}
                 variants={containerVariants}
                 className="mb-8"
               >
                 <motion.h2
-                  className="text-2xl lg:text-3xl font-raleway text-slate-900 mb-3"
+                  className="text-2xl lg:text-3xl font-raleway text-slate-900 mb-4"
                   variants={itemVariants}
                 >
                   What is a Joint Injection?
                 </motion.h2>
                 <motion.p
-                  className="text-sm font-inter text-slate-600"
+                  className="text-sm font-inter text-slate-600 mb-4 leading-relaxed"
                   variants={itemVariants}
                 >
-                  A joint injection delivers targeted therapy into a joint or
-                  surrounding soft tissue to reduce inflammation, relieve pain,
-                  improve mobility, and support recovery.
+                  A joint injection delivers targeted therapy directly into a joint or surrounding soft tissue to reduce inflammation, relieve pain, improve mobility, and support long-term recovery. This clinical approach is commonly used for osteoarthritis (knee, hip, shoulder, hand), tendonitis, bursitis, frozen shoulder, and sports-related injuries.
                 </motion.p>
-              </motion.div>
-
-              {/* Section 2: Common Uses */}
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={containerVariants}
-              >
+                
                 <motion.p
-                  className="text-sm font-inter text-slate-600"
+                  className="text-sm font-inter text-slate-600 mb-6 leading-relaxed"
                   variants={itemVariants}
                 >
-                  Common uses: osteoarthritis (knee, hip, shoulder, hand),
-                  tendonitis, bursitis, frozen shoulder, sports & overuse
-                  injuries.
+                  Our GP-led service ensures that every procedure is carried out by a GMC-registered doctor in a discreet, CQC-compliant setting. By placing treatment exactly where it's needed, we can help restore function and reduce the chronic inflammation that prevents you from staying active.
                 </motion.p>
+
+                {/* Who Is It Not For - Fills the visual gap seen in your screenshot */}
+                <motion.div variants={itemVariants} className="bg-blue-50/50 p-5 rounded-xl border border-blue-100">
+                  <h3 className="text-md font-raleway font-bold text-slate-900 mb-3">
+                    Who is this treatment not suitable for?
+                  </h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3 text-xs font-inter text-slate-700">
+                      <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
+                      <span><strong>Severe Degeneration:</strong> Individuals with Grade 4 &quot;bone-on-bone&quot; arthritis may see limited results and may require surgical consultation.</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-xs font-inter text-slate-700">
+                      <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
+                      <span><strong>Active Infection:</strong> Treatment cannot be performed if there is a systemic infection or an active skin infection at the injection site.</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-xs font-inter text-slate-700">
+                      <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
+                      <span><strong>Medical Pre-conditions:</strong> Certain blood or platelet disorders (thrombocytopenia), as well as active malignancies, may preclude regenerative PRP therapy.</span>
+                    </li>
+                  </ul>
+                </motion.div>
               </motion.div>
             </div>
 
             {/* Right Side: Image */}
             <motion.div
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true }}
               variants={containerVariants}
               className="relative flex justify-center lg:justify-end"
             >
               <motion.div
-                className="relative rounded-lg overflow-hidden shadow-lg max-w-md w-full"
+                className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md w-full border-4 border-white"
                 variants={itemVariants}
               >
                 <img
                   src="/joint-injections.jpg"
-                  alt="Joint injection treatment"
-                  className="w-full h-auto object-cover rounded-lg"
+                  alt="Clinical joint injection procedure"
+                  className="w-full h-auto object-cover"
                 />
               </motion.div>
             </motion.div>
