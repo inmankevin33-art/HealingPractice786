@@ -224,12 +224,13 @@ export default function JointInjectionsClient({
      {/* Hero Section */}
       <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-[var(--brand-blue-dark)]">
+          {/* The white gradient helps transition the hero into the next white section */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
             src="/hero_img.png"
-            alt="Projects background"
-            className="w-full h-full object-cover opacity-60 brightness-90 contrast-110" 
+            alt="Joint Injection Background"
+            className="w-full h-full object-cover opacity-40 mix-blend-overlay"
           />
         </div>
 
