@@ -228,8 +228,8 @@ export default function JointInjectionsClient({
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
             src="/hero_img.png"
-            alt="Facial Aesthetics treatment"
-            className="w-full h-full object-cover"
+            alt="Projects background"
+            className="w-full h-full object-cover opacity-60 brightness-90 contrast-110" 
           />
         </div>
 
