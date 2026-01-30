@@ -253,7 +253,7 @@ export default function JointInjectionsClient({
                   className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
-                  Facial Aesthetics Treatments in {locationName}
+                  Joint Injections Treatments in {locationName}
                   <span className="block mt-1">Healing-PRP Clinics</span>
                 </motion.h1>
 
@@ -261,9 +261,9 @@ export default function JointInjectionsClient({
                   className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
                 >
-                  Safe, natural, and effective treatments to restore youthful
-                  skin, reduce fine lines, and improve overall skin health. All
-                  procedures are carried out by a GMC‑registered doctor.
+                  GP-led pain relief for arthritis, sports injuries & joint conditions in a 
+                  discreet, CQC‑compliant setting. All procedures are carried out by a 
+                  GMC‑registered doctor to improve mobility and reduce inflammation.
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
