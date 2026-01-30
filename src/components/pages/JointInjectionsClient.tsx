@@ -104,7 +104,7 @@ export default function JointInjectionsClient({
   const treatments = [
     {
       name: "PRP (Platelet‑Rich Plasma) Joint Injections",
-      price: "From £400",
+      price: "",
       description: "Natural healing using your own platelet-rich plasma",
       benefits: [
         "Encourages cartilage & soft‑tissue repair",
@@ -145,7 +145,7 @@ export default function JointInjectionsClient({
     },
     {
       name: "Steroid Joint Injections",
-      price: "From £200",
+      price: "",
       description: "Fast-acting anti-inflammatory pain relief",
       benefits: [
         "Fast pain relief",
@@ -188,6 +188,11 @@ export default function JointInjectionsClient({
 
   const faqs = [
     {
+      question: "Who is PRP joint injection not suitable for?",
+      answer: 
+        "PRP may not be suitable for those with severe 'bone-on-bone' arthritis (Grade 4), active infections, or low platelet counts. It is also generally avoided in patients with active malignancy or those currently experiencing a severe inflammatory flare-up where a steroid injection might be more appropriate first.",
+    }
+    {
       question: "How long do PRP joint injections last?",
       answer:
         "Initial improvements typically begin at 4-6 weeks, with continued benefits lasting 3-6 months. Best results are achieved with a planned course of treatments.",
@@ -216,21 +221,21 @@ export default function JointInjectionsClient({
 
   return (
     <>
-      {/* Hero Section */}
+     {/* Hero Section */}
       <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
             src="/hero_img.png"
-            alt="Projects background"
+            alt="Facial Aesthetics treatment"
             className="w-full h-full object-cover"
           />
         </div>
 
         {/* Hero Content */}
         <div className="relative w-full z-20 flex h-full">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+          <div className="w-full max-w-7xl mt-10 md:mt-0 mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
             <div className="text-white">
               <motion.div
                 initial="hidden"
@@ -241,22 +246,24 @@ export default function JointInjectionsClient({
                   className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
                   variants={itemVariants}
                 >
-                  GMC‑registered | CQC‑compliant | Private
+                  GMC‑registered | CE‑marked | Natural Results
                 </motion.div>
 
                 <motion.h1
-                  className="text-2xl lg:text-4xl text-gray-700 font-raleway leading-tight mb-2"
+                  className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
-                  Private Joint Injections in St Albans & Hertfordshire
+                  Facial Aesthetics Treatments in {locationName}
+                  <span className="block mt-1">Healing-PRP Clinics</span>
                 </motion.h1>
 
                 <motion.p
                   className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
                   variants={itemVariants}
                 >
-                  GP-led pain relief for arthritis, sports injuries & joint
-                  conditions in a discreet, CQC‑compliant setting.
+                  Safe, natural, and effective treatments to restore youthful
+                  skin, reduce fine lines, and improve overall skin health. All
+                  procedures are carried out by a GMC‑registered doctor.
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
