@@ -368,77 +368,85 @@ export default function JointInjectionsClient({
             <div>
               <motion.div
                 initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                animate="visible"
                 variants={containerVariants}
                 className="mb-8"
               >
                 <motion.h2
-                  className="text-2xl lg:text-3xl font-raleway text-slate-900 mb-4"
+                  className="text-2xl lg:text-3xl font-raleway text-slate-900 mb-3"
                   variants={itemVariants}
                 >
                   What is a Joint Injection?
                 </motion.h2>
                 <motion.p
-                  className="text-sm font-inter text-slate-600 mb-4 leading-relaxed"
+                  className="text-sm font-inter text-slate-600 mb-4"
                   variants={itemVariants}
                 >
-                  A joint injection delivers targeted therapy directly into a joint or surrounding soft tissue to reduce inflammation, relieve pain, improve mobility, and support long-term recovery. This clinical approach is commonly used for osteoarthritis (knee, hip, shoulder, hand), tendonitis, bursitis, frozen shoulder, and sports-related injuries.
+                  A joint injection delivers targeted therapy into a joint or
+                  surrounding soft tissue to reduce inflammation, relieve pain,
+                  improve mobility, and support recovery.
                 </motion.p>
-                
                 <motion.p
-                  className="text-sm font-inter text-slate-600 mb-6 leading-relaxed"
+                  className="text-sm font-inter text-slate-600"
                   variants={itemVariants}
                 >
-                  Our GP-led service ensures that every procedure is carried out by a GMC-registered doctor in a discreet, CQC-compliant setting. By placing treatment exactly where it's needed, we can help restore function and reduce the chronic inflammation that prevents you from staying active.
+                  Common uses: osteoarthritis (knee, hip, shoulder, hand),
+                  tendonitis, bursitis, frozen shoulder, sports &amp; overuse
+                  injuries.
                 </motion.p>
+              </motion.div>
 
-                {/* Who Is It Not For - Fills the visual gap seen in your screenshot */}
-                <motion.div variants={itemVariants} className="bg-blue-50/50 p-5 rounded-xl border border-blue-100">
-                  <h3 className="text-md font-raleway font-bold text-slate-900 mb-3">
-                    Who is this treatment not suitable for?
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3 text-xs font-inter text-slate-700">
-                      <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
-                      <span><strong>Severe Degeneration:</strong> Individuals with Grade 4 &quot;bone-on-bone&quot; arthritis may see limited results and may require surgical consultation.</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-xs font-inter text-slate-700">
-                      <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
-                      <span><strong>Active Infection:</strong> Treatment cannot be performed if there is a systemic infection or an active skin infection at the injection site.</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-xs font-inter text-slate-700">
-                      <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
-                      <span><strong>Medical Pre-conditions:</strong> Certain blood or platelet disorders (thrombocytopenia), as well as active malignancies, may preclude regenerative PRP therapy.</span>
-                    </li>
-                  </ul>
-                </motion.div>
+              {/* Added: Who is it not for section to fill the empty space */}
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+                className="bg-blue-50/50 p-5 rounded-xl border border-blue-100"
+              >
+                <motion.h3 
+                  className="text-md font-raleway font-bold text-slate-900 mb-3"
+                  variants={itemVariants}
+                >
+                  Who is this treatment not suitable for?
+                </motion.h3>
+                <ul className="space-y-3">
+                  <motion.li variants={itemVariants} className="flex items-start gap-3 text-xs font-inter text-slate-700">
+                    <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
+                    <span><strong>Severe Degeneration:</strong> Individuals with Grade 4 &quot;bone-on-bone&quot; arthritis may see limited results and may require surgical consultation.</span>
+                  </motion.li>
+                  <motion.li variants={itemVariants} className="flex items-start gap-3 text-xs font-inter text-slate-700">
+                    <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
+                    <span><strong>Active Infection:</strong> Treatment cannot be performed if there is a systemic infection or an active skin infection at the injection site.</span>
+                  </motion.li>
+                  <motion.li variants={itemVariants} className="flex items-start gap-3 text-xs font-inter text-slate-700">
+                    <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
+                    <span><strong>Medical Pre-conditions:</strong> Certain blood or platelet disorders (thrombocytopenia), as well as active malignancies, may preclude regenerative PRP therapy.</span>
+                  </motion.li>
+                </ul>
               </motion.div>
             </div>
 
             {/* Right Side: Image */}
             <motion.div
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              animate="visible"
               variants={containerVariants}
               className="relative flex justify-center lg:justify-end"
             >
               <motion.div
-                className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md w-full border-4 border-white"
+                className="relative rounded-lg overflow-hidden shadow-lg max-w-md w-full"
                 variants={itemVariants}
               >
                 <img
                   src="/joint-injections.jpg"
-                  alt="Clinical joint injection procedure"
-                  className="w-full h-auto object-cover"
+                  alt="Joint injection treatment"
+                  className="w-full h-auto object-cover rounded-lg"
                 />
               </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
-
       {/* Treatments Section */}
       <section id="treatments" className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
