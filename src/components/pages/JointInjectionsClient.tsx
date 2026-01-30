@@ -191,7 +191,7 @@ export default function JointInjectionsClient({
       question: "Who is PRP joint injection not suitable for?",
       answer: 
         "PRP may not be suitable for those with severe 'bone-on-bone' arthritis (Grade 4), active infections, or low platelet counts. It is also generally avoided in patients with active malignancy or those currently experiencing a severe inflammatory flare-up where a steroid injection might be more appropriate first.",
-    }
+    },
     {
       question: "How long do PRP joint injections last?",
       answer:
