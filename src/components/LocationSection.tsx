@@ -152,7 +152,7 @@ export default function LocationSection() {
                 </div>
               </div>
 
-              <button className="mt-12 w-full py-4 bg-[#0A1128] text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors shadow-xl shadow-blue-900/10">
+              <button className="mt-12 w-full py-4 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-xl shadow-blue-600/20">
                 <FaCompass className="w-4 h-4" />
                 Get Directions
               </button>
