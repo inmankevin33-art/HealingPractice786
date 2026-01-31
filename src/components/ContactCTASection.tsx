@@ -101,7 +101,7 @@ export default function ContactCTASection() {
                 <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Your Message</label>
                 <textarea rows={4} className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-white placeholder:text-slate-300" placeholder="How can we help you?"></textarea>
               </div>
-              <button className="md:col-span-2 w-full py-5 bg-[#0A1128] text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-blue-600 transition-all shadow-xl shadow-blue-900/10 active:scale-[0.98]">
+              <button className="md:col-span-2 w-full py-5 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 active:scale-[0.98]">
                 <FaPaperPlane className="w-4 h-4" />
                 Send My Enquiry
               </button>
