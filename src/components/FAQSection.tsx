@@ -19,37 +19,36 @@ export default function FAQSection() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 }, // Reduced y for a smoother entrance
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut" as const, // Add 'as const' here
+        duration: 0.5,
       },
     },
   };
 
   const faqs = [
     {
+      question: "Who is not suitable for PRP treatments?",
+      answer: "Your safety is our priority. PRP may not be suitable for individuals with active infections, certain blood disorders, or those undergoing specific cancer treatments. During our medical consultation, we take a patient-centered approach to review your health history and ensure PRP is the safest, most effective path for your unique needs.",
+    },
+    {
+      question: "Are the results from PRP treatments permanent?",
+      answer: "PRP works by stimulating your body’s natural regenerative processes, and while results are long-lasting, they are not permanent as the natural aging process continues. We work closely with you to develop a tailored maintenance plan, ensuring you enjoy your rejuvenated results for as long as possible.",
+    },
+    {
+      question: "Do you offer consultations before treatment?",
+      answer: "Absolutely. We believe every successful journey starts with a conversation. We offer a comprehensive medical consultation to listen to your concerns, answer your questions, and determine if PRP is the right fit for you. This ensures a transparent, no-pressure environment focused entirely on your wellbeing.",
+    },
+    {
       question: "What is the P‑Shot and how does it help erectile dysfunction?",
-      answer: "The P‑Shot (Priapus Shot) is a natural, non‑surgical treatment that uses your own platelet‑rich plasma (PRP) to stimulate blood flow, enhance sensitivity, and improve erectile function. This is a brief overview — further details can be found on our Sexual Rejuvenation page.",
-    },
-    {
-      question: "Can the P‑Shot and Shockwave Therapy treat Peyronie's disease?",
-      answer: "Yes. Both the P‑Shot and Shockwave Therapy are effective non‑surgical options for managing Peyronie's disease. These treatments can help reduce penile curvature, soften scar tissue, and improve erectile function.",
-    },
-    {
-      question: "What is Platelet‑Rich Plasma (PRP)?",
-      answer: "PRP is derived from your own blood and contains growth factors and proteins that support natural healing, regeneration, and improved circulation. It is the foundation of our regenerative treatments.",
-    },
-    {
-      question: "What is PRP hair restoration?",
-      answer: "PRP Hair Restoration treats thinning hair and early hair loss by stimulating follicles to improve thickness and promote natural regrowth. It is a minimally invasive alternative to surgical options.",
+      answer: "The P‑Shot (Priapus Shot) is a natural, non‑surgical treatment that uses your own platelet‑rich plasma (PRP) to stimulate blood flow, enhance sensitivity, and improve erectile function.",
     },
     {
       question: "What's the difference between PRP and steroid joint injections?",
-      answer: "PRP injections use your body's own healing cells for long‑term regeneration and tissue repair. Steroid injections provide rapid, temporary relief from inflammation. We offer both depending on your specific clinical needs.",
+      answer: "PRP injections use your body's own healing cells for long‑term regeneration. Steroid injections provide rapid relief from inflammation and pain. Both options are available depending on your condition.",
     },
   ];
 
@@ -58,106 +57,71 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="relative py-24 lg:py-32 bg-white overflow-hidden font-inter">
-      {/* Background Glow to match Location/PRP light sections */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-30 pointer-events-none">
-        <div className="absolute bottom-0 left-0 w-full h-96 bg-blue-50 blur-[120px] rounded-full" />
-      </div>
-
+    <section className="relative py-20 lg:py-32 overflow-hidden bg-[#f8fafc]">
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           variants={containerVariants}
         >
-          {/* Badge: Matches 'Scientific Excellence' styling */}
-          <motion.div
-            className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] mb-6 border border-blue-100"
-            variants={itemVariants}
-          >
+          <div className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
             Frequently Asked Questions
-          </motion.div>
+          </div>
 
-          {/* Header: Matches PRP Section Heading */}
-          <motion.h2
-            className="text-4xl md:text-5xl font-raleway font-bold text-slate-900 leading-tight mb-6 tracking-tight"
-            variants={itemVariants}
-          >
+          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4 tracking-tight">
             Common Questions About PRP
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            className="text-lg text-slate-600 mx-auto leading-relaxed max-w-2xl"
-            variants={itemVariants}
-          >
-            Find answers to the most frequently asked questions about our regenerative
-            treatments and services in St Albans.
-          </motion.p>
+          <p className="text-slate-600 max-w-2xl mx-auto">
+            Find answers to the most frequently asked questions about our treatments.
+          </p>
         </motion.div>
 
         {/* FAQ Items */}
         <motion.div
-          className="space-y-4"
+          className="space-y-3"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true }}
           variants={containerVariants}
         >
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <motion.div
-                key={index}
-                className={`transition-all duration-300 rounded-[1.5rem] border ${
-                  isOpen 
-                    ? "bg-white border-blue-200 shadow-xl shadow-blue-900/5" 
-                    : "bg-slate-50/50 border-slate-100 hover:border-blue-100"
-                }`}
-                variants={itemVariants}
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              className="bg-white rounded-xl border border-slate-200 overflow-hidden"
+              variants={itemVariants}
+            >
+              <button
+                className="w-full p-5 text-left flex items-center justify-between hover:bg-slate-50 transition-colors"
+                onClick={() => toggleFAQ(index)}
               >
-                {/* Question */}
-                <button
-                  className="w-full p-6 text-left flex items-center justify-between group"
-                  onClick={() => toggleFAQ(index)}
-                >
-                  <h3 className={`font-raleway font-bold text-lg pr-4 leading-snug transition-colors ${
-                    isOpen ? "text-blue-600" : "text-slate-900"
-                  }`}>
-                    {faq.question}
-                  </h3>
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                    isOpen ? "bg-blue-600 text-white" : "bg-white text-blue-600 shadow-sm"
-                  }`}>
-                    {isOpen ? <FaMinus className="w-3 h-3" /> : <FaPlus className="w-3 h-3" />}
-                  </div>
-                </button>
+                <h3 className="font-raleway font-semibold text-slate-900 pr-4">
+                  {faq.question}
+                </h3>
+                <div className="text-blue-600 flex-shrink-0">
+                  {openIndex === index ? <FaMinus /> : <FaPlus />}
+                </div>
+              </button>
 
-                {/* Answer */}
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-8">
-                        <div className="border-t border-slate-100 pt-6">
-                          <p className="text-slate-600 leading-relaxed text-base font-medium">
-                            {faq.answer}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="px-5 pb-5 pt-2 text-slate-600 text-sm leading-relaxed border-t border-slate-100">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
