@@ -88,6 +88,26 @@ export default function ContactCTASection() {
                 <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Last Name</label>
                 <input type="text" className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-white" placeholder="Doe" />
               </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Email Address</label>
+                <input 
+                  type="email" 
+                  required
+                  className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-white" 
+                  placeholder="email@example.com" 
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Phone Number</label>
+                <input 
+                  type="tel" 
+                  required
+                  className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-white" 
+                  placeholder="07123 456789" 
+                />
+              </div>
+
               <div className="md:col-span-2 space-y-2">
                 <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Treatment Interest</label>
                 <select className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-white text-slate-600 appearance-none">
