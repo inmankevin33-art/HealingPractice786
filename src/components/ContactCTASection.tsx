@@ -30,16 +30,29 @@ export default function ContactCTASection() {
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
-  // Form Handling Logic
+  // Optimized Form Handling Logic
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (submitStatus.type) setSubmitStatus({ type: null, message: "" });
+
+    // Performance Optimization: Only update state if value changed
+    setFormData((prev) => {
+      if (prev[name as keyof typeof prev] === value) return prev;
+      return { ...prev, [name]: value };
+    });
+
+    // Clear status only if it's currently showing to avoid extra renders
+    if (submitStatus.type) {
+      setSubmitStatus({ type: null, message: "" });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Prevent double submissions
+    if (isSubmitting) return; 
+  
     setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
     
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
