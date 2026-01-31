@@ -25,37 +25,23 @@ export default function PRPExplanationSection() {
   };
 
   const steps = [
-    {
-      number: 1,
-      icon: FaSyringe,
-      title: "Blood Collection",
-      description: "A small amount of blood is taken from your arm, similar to a standard test.",
-    },
-    {
-      number: 2,
-      icon: FaSync,
-      title: "Centrifuge Process",
-      description: "It's spun in a medical centrifuge to isolate the concentrated PRP layer.",
-    },
-    {
-      number: 3,
-      icon: FaGem,
-      title: "PRP Concentration",
-      description: "Pure Platelet-Rich Plasma—dense with growth factors—is carefully collected.",
-    },
-    {
-      number: 4,
-      icon: FaStar,
-      title: "Injection & Healing",
-      description: "PRP is injected into the target area to stimulate natural repair and regeneration.",
-    },
+    { number: 1, icon: FaSyringe, title: "Blood Collection", description: "A small amount of blood is taken from your arm, similar to a standard test." },
+    { number: 2, icon: FaSync, title: "Centrifuge Process", description: "It's spun in a medical centrifuge to isolate the concentrated PRP layer." },
+    { number: 3, icon: FaGem, title: "PRP Concentration", description: "Pure Platelet-Rich Plasma—dense with growth factors—is carefully collected." },
+    { number: 4, icon: FaStar, title: "Injection & Healing", description: "PRP is injected into the target area to stimulate natural repair and regeneration." },
   ];
 
   return (
-    <section id="prp-explanation" className="relative py-24 lg:py-32 bg-white overflow-hidden font-inter">
+    /* SECTION: Using the Dark Navy from your Header */
+    <section id="prp-explanation" className="relative py-24 lg:py-32 bg-[#0A1128] overflow-hidden font-inter">
+      
+      {/* Subtle Glow to prevent the dark background from feeling flat */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-20 pointer-events-none">
+         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-500 blur-[120px] rounded-full" />
+      </div>
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header Section */}
         <motion.div
           className="text-center mb-16"
           initial="hidden"
@@ -64,21 +50,21 @@ export default function PRPExplanationSection() {
           variants={containerVariants}
         >
           <motion.div
-            className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] mb-6 border border-blue-100"
+            className="inline-block px-4 py-1.5 bg-blue-500/10 text-blue-300 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] mb-6 border border-blue-500/20"
             variants={itemVariants}
           >
-            The Science of Healing
+            Scientific Excellence
           </motion.div>
 
           <motion.h2
-            className="md:text-5xl text-3xl font-raleway font-bold text-slate-900 leading-tight mb-6 tracking-tight"
+            className="md:text-5xl text-3xl font-raleway font-bold text-white leading-tight mb-6 tracking-tight"
             variants={itemVariants}
           >
             What is Platelet-Rich Plasma?
           </motion.h2>
 
           <motion.p
-            className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium"
+            className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
             PRP is a natural therapy using your own blood to concentrate growth factors, 
@@ -86,10 +72,9 @@ export default function PRPExplanationSection() {
           </motion.p>
         </motion.div>
 
-        {/* Steps Section */}
         <div className="max-w-6xl mx-auto relative">
           
-          {/* Progress Indicator Badge */}
+          {/* Phase Badge: Matches your "Book on WhatsApp" button vibe */}
           <div className="text-center mb-16">
             <AnimatePresence mode="wait">
               <motion.div
@@ -97,7 +82,7 @@ export default function PRPExplanationSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="inline-flex items-center gap-3 px-6 py-2 bg-slate-900 rounded-full shadow-lg"
+                className="inline-flex items-center gap-3 px-6 py-2 bg-white/10 border border-white/20 rounded-full backdrop-blur-md shadow-lg"
               >
                 <span className="flex h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
                 <span className="text-[10px] font-bold text-white uppercase tracking-widest">
@@ -115,8 +100,8 @@ export default function PRPExplanationSection() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {/* Visual Connecting Line (Desktop Only) */}
-            <div className="hidden lg:block absolute top-1/3 left-0 w-full h-[2px] bg-slate-100 -z-10" />
+            {/* Connecting Line: Faint white for dark mode */}
+            <div className="hidden lg:block absolute top-1/3 left-0 w-full h-[1px] bg-white/10 -z-10" />
 
             {steps.map((step, index) => {
               const IconComponent = step.icon;
@@ -130,19 +115,19 @@ export default function PRPExplanationSection() {
                   variants={itemVariants}
                 >
                   <div
-                    className={`p-8 rounded-[2.5rem] border-2 transition-all duration-500 cursor-pointer h-full flex flex-col ${
+                    className={`p-8 rounded-[2rem] border transition-all duration-500 cursor-pointer h-full flex flex-col ${
                       isActive
-                        ? "border-blue-600 bg-white shadow-2xl shadow-blue-100 scale-105 z-20"
-                        : "border-transparent bg-slate-50/50 hover:bg-white hover:border-slate-200 opacity-60 grayscale-[0.5] hover:opacity-100 hover:grayscale-0"
+                        ? "border-blue-500 bg-white shadow-2xl shadow-blue-500/20 scale-105 z-20"
+                        : "border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 opacity-60 hover:opacity-100"
                     }`}
                   >
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 ${
-                      isActive ? "bg-blue-600 text-white rotate-3" : "bg-white text-slate-400 shadow-sm group-hover:text-blue-500"
+                      isActive ? "bg-blue-600 text-white shadow-lg" : "bg-white/10 text-slate-300 group-hover:text-blue-400"
                     }`}>
                       <IconComponent className="w-6 h-6" />
                     </div>
 
-                    <h3 className={`font-raleway font-bold mb-3 text-lg transition-colors ${isActive ? "text-slate-900" : "text-slate-500"}`}>
+                    <h3 className={`font-raleway font-bold mb-3 text-lg transition-colors ${isActive ? "text-slate-900" : "text-white"}`}>
                       {step.title}
                     </h3>
                     <p className={`text-sm leading-relaxed transition-colors ${isActive ? "text-slate-600" : "text-slate-400"}`}>
