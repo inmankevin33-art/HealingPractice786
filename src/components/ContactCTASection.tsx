@@ -17,6 +17,7 @@ export default function ContactCTASection() {
     treatment: "Sexual Rejuvenation (P-Shot/O-Shot)",
     message: "",
   });
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
@@ -30,17 +31,15 @@ export default function ContactCTASection() {
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
-  // Optimized Form Handling Logic
+  // Optimized Form Handling Logic: Minimal processing during typing
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
 
-    // Performance Optimization: Only update state if value changed
     setFormData((prev) => {
       if (prev[name as keyof typeof prev] === value) return prev;
       return { ...prev, [name]: value };
     });
 
-    // Clear status only if it's currently showing to avoid extra renders
     if (submitStatus.type) {
       setSubmitStatus({ type: null, message: "" });
     }
@@ -48,7 +47,6 @@ export default function ContactCTASection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Prevent double submissions
     if (isSubmitting) return; 
   
     setIsSubmitting(true);
@@ -74,7 +72,11 @@ export default function ContactCTASection() {
         message: formData.message,
       });
 
-      setSubmitStatus({ type: "success", message: "Enquiry sent successfully!" });
+      setSubmitStatus({ 
+        type: "success", 
+        message: "Thank you! Your enquiry has been received. Our clinical team will review your details and get back to you within 24 hours." 
+      });
+      
       setFormData({ name: "", email: "", phone: "", treatment: "Sexual Rejuvenation (P-Shot/O-Shot)", message: "" });
     } catch (error) {
       setSubmitStatus({ type: "error", message: "Failed to send. Please try WhatsApp." });
@@ -113,24 +115,59 @@ export default function ContactCTASection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Form Section */}
-          <motion.div className="lg:col-span-7 bg-slate-50 p-8 md:p-10 rounded-[2.5rem] border border-slate-100" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+          {/* Form Section - Hardware Accelerated */}
+          <motion.div 
+            className="lg:col-span-7 bg-slate-50 p-8 md:p-10 rounded-[2.5rem] border border-slate-100 will-change-transform" 
+            style={{ transform: 'translateZ(0)' }}
+            initial={{ opacity: 0, x: -20 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            viewport={{ once: true }}
+          >
             <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
               <div className="md:col-span-2 space-y-2">
                 <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Full Name</label>
-                <input type="text" name="name" required value={formData.name} onChange={handleInputChange} className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-all bg-white" placeholder="Full Name" />
+                <input 
+                  type="text" 
+                  name="name" 
+                  required 
+                  defaultValue={formData.name} 
+                  onChange={handleInputChange} 
+                  className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-shadow bg-white" 
+                  placeholder="Full Name" 
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Email Address</label>
-                <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-all bg-white" placeholder="email@example.com" />
+                <input 
+                  type="email" 
+                  name="email" 
+                  required 
+                  defaultValue={formData.email} 
+                  onChange={handleInputChange} 
+                  className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-shadow bg-white" 
+                  placeholder="email@example.com" 
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Phone Number</label>
-                <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-all bg-white" placeholder="07xxx xxxxxx" />
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  required 
+                  defaultValue={formData.phone} 
+                  onChange={handleInputChange} 
+                  className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-shadow bg-white" 
+                  placeholder="07xxx xxxxxx" 
+                />
               </div>
               <div className="md:col-span-2 space-y-2">
                 <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Treatment Interest</label>
-                <select name="treatment" value={formData.treatment} onChange={handleInputChange} className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-all bg-white text-slate-600 appearance-none">
+                <select 
+                  name="treatment" 
+                  value={formData.treatment} 
+                  onChange={handleInputChange} 
+                  className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-shadow bg-white text-slate-600 appearance-none"
+                >
                   <option>Sexual Rejuvenation (P-Shot/O-Shot)</option>
                   <option>Hair Restoration</option>
                   <option>Joint Pain Relief</option>
@@ -139,30 +176,37 @@ export default function ContactCTASection() {
               </div>
               <div className="md:col-span-2 space-y-2">
                 <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Your Message</label>
-                <textarea name="message" required rows={4} value={formData.message} onChange={handleInputChange} className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-all bg-white placeholder:text-slate-300" placeholder="How can we help you?"></textarea>
+                <textarea 
+                  name="message" 
+                  required 
+                  rows={4} 
+                  defaultValue={formData.message} 
+                  onChange={handleInputChange} 
+                  className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-shadow bg-white placeholder:text-slate-300" 
+                  placeholder="How can we help you?"
+                ></textarea>
               </div>
 
-              {/* Success Message Block */}
-              {submitStatus.type === "success" && (
+              {submitStatus.type && (
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="md:col-span-2 p-6 bg-green-50 rounded-2xl border border-green-100 shadow-sm mb-6"
+                  className={`md:col-span-2 p-6 rounded-2xl border mb-2 ${submitStatus.type === "success" ? "bg-green-50 border-green-100" : "bg-red-50 border-red-100"}`}
                 >
                   <div className="flex items-start gap-3">
-                    <FaCheckCircle className="text-green-500 mt-1 shrink-0" />
+                    <FaCheckCircle className={`mt-1 shrink-0 ${submitStatus.type === "success" ? "text-green-500" : "text-red-500"}`} />
                     <div>
-                      <p className="text-green-800 font-bold mb-1">Enquiry Received Successfully</p>
-                      <p className="text-green-700 text-sm leading-relaxed">
-                        Thank you for reaching out. A member of our clinical team will contact you shortly via your preferred method (phone/email) to arrange your consultation. 
-                        <span className="block mt-2 font-semibold italic">We typically respond within 24 hours.</span>
+                      <p className={`font-bold mb-1 ${submitStatus.type === "success" ? "text-green-800" : "text-red-800"}`}>
+                        {submitStatus.type === "success" ? "Enquiry Received" : "Error"}
+                      </p>
+                      <p className={`text-sm leading-relaxed ${submitStatus.type === "success" ? "text-green-700" : "text-red-700"}`}>
+                        {submitStatus.message}
                       </p>
                     </div>
                   </div>
                 </motion.div>
               )}
 
-              {/* Submit Button */}
               <button 
                 disabled={isSubmitting} 
                 className="md:col-span-2 w-full py-5 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 active:scale-[0.98] disabled:bg-slate-300"
@@ -206,7 +250,6 @@ export default function ContactCTASection() {
         </div>
       </div>
 
-      {/* WhatsApp Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <>
