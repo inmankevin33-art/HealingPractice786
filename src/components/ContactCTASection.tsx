@@ -129,18 +129,36 @@ export default function ContactCTASection() {
                 <textarea name="message" required rows={4} value={formData.message} onChange={handleInputChange} className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-all bg-white placeholder:text-slate-300" placeholder="How can we help you?"></textarea>
               </div>
 
-              {submitStatus.type && (
-                <div className={`md:col-span-2 p-4 rounded-xl text-sm ${submitStatus.type === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
-                  {submitStatus.message}
-                </div>
+              {/* Success Message Block */}
+              {submitStatus.type === "success" && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="md:col-span-2 p-6 bg-green-50 rounded-2xl border border-green-100 shadow-sm mb-6"
+                >
+                  <div className="flex items-start gap-3">
+                    <FaCheckCircle className="text-green-500 mt-1 shrink-0" />
+                    <div>
+                      <p className="text-green-800 font-bold mb-1">Enquiry Received Successfully</p>
+                      <p className="text-green-700 text-sm leading-relaxed">
+                        Thank you for reaching out. A member of our clinical team will contact you shortly via your preferred method (phone/email) to arrange your consultation. 
+                        <span className="block mt-2 font-semibold italic">We typically respond within 24 hours.</span>
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               )}
 
-              <button disabled={isSubmitting} className="md:col-span-2 w-full py-5 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 active:scale-[0.98] disabled:bg-slate-300">
+              {/* Submit Button */}
+              <button 
+                disabled={isSubmitting} 
+                className="md:col-span-2 w-full py-5 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 active:scale-[0.98] disabled:bg-slate-300"
+              >
                 {isSubmitting ? "Sending..." : <><FaPaperPlane className="w-4 h-4" /> Send My Enquiry</>}
               </button>
             </form>
           </motion.div>
-
+          
           {/* Right Side Cards */}
           <motion.div className="lg:col-span-5 space-y-6" initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <button onClick={() => isDesktop ? setIsModalOpen(true) : window.open('https://wa.me/447990364147', '_blank')} className="w-full group p-6 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300 text-left">
