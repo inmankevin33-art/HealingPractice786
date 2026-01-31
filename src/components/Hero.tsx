@@ -141,8 +141,8 @@ export default function Hero() {
                 { label: "Private consultations", sub: "Strictly 1:1 Care" }
               ].map((item, idx) => (
                 <div key={idx} className={`text-center ${idx !== 3 ? 'border-r border-white/10' : ''}`}>
-                  <div className="text-white font-bold text-[10px] uppercase tracking-wider mb-1 font-inter">{item.label}</div>
-                  <div className="text-blue-400 text-[10px] font-medium font-inter">{item.sub}</div>
+                  <div className="text-white font-bold text-xs md:text-sm uppercase tracking-widest mb-1.5 font-inter">{item.label}</div>
+                  <div className="text-blue-400 text-[11px] md:text-xs font-semibold font-inter">{item.sub}</div>
                 </div>
               ))}
             </div>
