@@ -67,8 +67,9 @@ export default function PRPExplanationSection() {
             className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
-            PRP is a natural therapy using your own blood to concentrate growth factors, 
-            accelerating the body&apos;s internal repair mechanisms.
+            Platelet-Rich Plasma (PRP) is prepared using a small sample of your own blood, which is carefully processed to concentrate platelets, growth factors, and healing proteins. These naturally occurring components play a key role in supporting tissue repair, regeneration, and collagen production.
+            PRP is commonly used in areas such as the scalp to support hair restoration, the face and neck to improve skin quality and texture, joints and soft tissues to aid recovery and reduce discomfort, and in sexual wellness treatments to support tissue health and blood flow.
+            Because PRP is derived from your own blood, it is biocompatible and tailored to your body’s natural healing processes. All treatments are performed following a medical consultation to assess suitability.
           </motion.p>
         </motion.div>
 
