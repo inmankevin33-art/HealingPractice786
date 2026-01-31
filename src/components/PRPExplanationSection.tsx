@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";
-import { FaSyringe, FaSync, FaGem, FaStar } from "react-icons/fa";
+import { FaSyringe, FaSync, FaGem, FaStar, FaCheckCircle } from "react-icons/fa";
 
 export default function PRPExplanationSection() {
   const [activeStep, setActiveStep] = useState(0);
@@ -31,11 +31,16 @@ export default function PRPExplanationSection() {
     { number: 4, icon: FaStar, title: "Injection & Healing", description: "PRP is injected into the target area to stimulate natural repair and regeneration." },
   ];
 
+  const applications = [
+    { title: "Hair Restoration", desc: "Supports scalp health and follicle density." },
+    { title: "Facial Aesthetics", desc: "Improves skin quality, texture, and collagen." },
+    { title: "Joint & Soft Tissue", desc: "Aids recovery and reduces discomfort." },
+    { title: "Sexual Wellness", desc: "Supports tissue health and blood flow." },
+  ];
+
   return (
-    /* SECTION: Using the Dark Navy from your Header */
     <section id="prp-explanation" className="relative py-24 lg:py-32 bg-[#0A1128] overflow-hidden font-inter">
       
-      {/* Subtle Glow to prevent the dark background from feeling flat */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-20 pointer-events-none">
          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-500 blur-[120px] rounded-full" />
       </div>
@@ -57,25 +62,49 @@ export default function PRPExplanationSection() {
           </motion.div>
 
           <motion.h2
-            className="md:text-5xl text-3xl font-raleway font-bold text-white leading-tight mb-6 tracking-tight"
+            className="md:text-5xl text-3xl font-raleway font-bold text-white leading-tight mb-8 tracking-tight"
             variants={itemVariants}
           >
             What is Platelet-Rich Plasma?
           </motion.h2>
 
-          <motion.p
-            className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed"
-            variants={itemVariants}
-          >
-            Platelet-Rich Plasma (PRP) is prepared using a small sample of your own blood, which is carefully processed to concentrate platelets, growth factors, and healing proteins. These naturally occurring components play a key role in supporting tissue repair, regeneration, and collagen production.
-            PRP is commonly used in areas such as the scalp to support hair restoration, the face and neck to improve skin quality and texture, joints and soft tissues to aid recovery and reduce discomfort, and in sexual wellness treatments to support tissue health and blood flow.
-            Because PRP is derived from your own blood, it is biocompatible and tailored to your body’s natural healing processes. All treatments are performed following a medical consultation to assess suitability.
-          </motion.p>
+          {/* Optimized Text Section */}
+          <div className="max-w-4xl mx-auto space-y-10">
+            <motion.p
+              className="text-lg text-slate-200 leading-relaxed font-medium"
+              variants={itemVariants}
+            >
+              Platelet-Rich Plasma (PRP) is prepared using a small sample of your own blood, 
+              carefully processed to concentrate platelets, growth factors, and healing proteins. 
+              These components play a key role in supporting tissue repair and collagen production.
+            </motion.p>
+
+            {/* Scannable Applications Grid */}
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left"
+              variants={itemVariants}
+            >
+              {applications.map((app, i) => (
+                <div key={i} className="flex items-start gap-3 p-4 bg-white/5 rounded-2xl border border-white/10">
+                  <FaCheckCircle className="text-blue-400 mt-1 shrink-0" />
+                  <div>
+                    <span className="text-white font-bold block">{app.title}</span>
+                    <span className="text-slate-400 text-sm">{app.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.p
+              className="text-sm text-slate-400 italic"
+              variants={itemVariants}
+            >
+              Because PRP is derived from your own blood, it is biocompatible and tailored to your body’s natural healing processes.
+            </motion.p>
+          </div>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto relative">
-          
-          {/* Phase Badge: Matches your "Book on WhatsApp" button vibe */}
+        <div className="max-w-6xl mx-auto mt-20 relative">
           <div className="text-center mb-16">
             <AnimatePresence mode="wait">
               <motion.div
@@ -93,7 +122,6 @@ export default function PRPExplanationSection() {
             </AnimatePresence>
           </div>
 
-          {/* Cards Grid */}
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative"
             variants={containerVariants}
@@ -101,7 +129,6 @@ export default function PRPExplanationSection() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {/* Connecting Line: Faint white for dark mode */}
             <div className="hidden lg:block absolute top-1/3 left-0 w-full h-[1px] bg-white/10 -z-10" />
 
             {steps.map((step, index) => {
