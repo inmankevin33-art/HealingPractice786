@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState, useMemo } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
@@ -31,25 +31,26 @@ export default function FAQSection() {
     },
   ], []);
 
-  const containerVariants = {
+  // Explicitly typing variants to fix the TypeScript 'index signature' build error
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08, // Slightly faster stagger for snappier feel
+        staggerChildren: 0.08,
         delayChildren: 0.1,
       },
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 }, // Reduced y distance for efficiency
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.4,
-        ease: "easeOut"
+        ease: "easeOut",
       },
     },
   };
@@ -61,6 +62,7 @@ export default function FAQSection() {
   return (
     <section className="relative py-20 lg:py-32 overflow-hidden bg-[#f8fafc] will-change-transform">
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <motion.div
           className="text-center mb-12"
           initial="hidden"
@@ -81,6 +83,7 @@ export default function FAQSection() {
           </p>
         </motion.div>
 
+        {/* FAQ Items */}
         <motion.div
           className="space-y-3"
           initial="hidden"
@@ -91,7 +94,7 @@ export default function FAQSection() {
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-xl border border-slate-200 overflow-hidden transform-gpu" // transform-gpu improves rendering
+              className="bg-white rounded-xl border border-slate-200 overflow-hidden transform-gpu"
               variants={itemVariants}
             >
               <button
@@ -112,7 +115,7 @@ export default function FAQSection() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }} // Optimized easing curve
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
                     <div className="px-5 pb-5 pt-2 text-slate-600 text-sm leading-relaxed border-t border-slate-100">
                       {faq.answer}
