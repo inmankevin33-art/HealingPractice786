@@ -5,18 +5,11 @@ import { FaArrowRight, FaVenus, FaSyringe, FaRunning, FaSmile } from "react-icon
 
 const services = [
   {
-    title: "Sexual Rejuvenation",
-    description: "Specialist P-Shot® and O-Shot® treatments to restore intimacy, sensitivity, and function.",
-    icon: FaVenus, 
-    link: "/sexual-rejuvenation",
-    color: "bg-blue-50 text-blue-600",
-  },
-  {
-    title: "Hair Restoration",
-    description: "Stop hair loss and stimulate regrowth with advanced PRP and Exosome therapies.",
-    icon: FaSyringe, 
-    link: "/hair-restoration",
-    color: "bg-teal-50 text-teal-600",
+    title: "Facial Aesthetics",
+    description: "Natural skin rejuvenation using Polynucleotides, Vampire Facials, and Botox.",
+    icon: FaSmile,
+    link: "/facial-aesthetics",
+    color: "bg-rose-50 text-rose-600",
   },
   {
     title: "Joint Pain Relief",
@@ -26,11 +19,18 @@ const services = [
     color: "bg-indigo-50 text-indigo-600",
   },
   {
-    title: "Facial Aesthetics",
-    description: "Natural skin rejuvenation using Polynucleotides, Vampire Facials, and Botox.",
-    icon: FaSmile,
-    link: "/facial-aesthetics",
-    color: "bg-rose-50 text-rose-600",
+    title: "Hair Restoration",
+    description: "Stop hair loss and stimulate regrowth with advanced PRP and Exosome therapies.",
+    icon: FaSyringe, 
+    link: "/hair-restoration",
+    color: "bg-teal-50 text-teal-600",
+  },
+  {
+    title: "Sexual Rejuvenation",
+    description: "Specialist P-Shot® and O-Shot® treatments to restore intimacy, sensitivity, and function.",
+    icon: FaVenus, 
+    link: "/sexual-rejuvenation",
+    color: "bg-blue-50 text-blue-600",
   },
 ];
 
