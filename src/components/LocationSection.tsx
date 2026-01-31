@@ -1,14 +1,13 @@
 "use client";
 
-import { motion, Variants } from "framer-motion"; // Added Variants type
+import { motion, Variants } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaTrain, FaCompass } from "react-icons/fa";
 
 export default function LocationSection() {
   const pathname = usePathname();
   const isBirminghamPage = pathname?.startsWith("/birmingham");
 
-  // Explicitly typing the variants fixes the "Type 'string' is not assignable" error
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -27,7 +26,7 @@ export default function LocationSection() {
       y: 0,
       transition: { 
         duration: 0.6, 
-        ease: "easeOut" // TypeScript now recognizes this as a valid Easing value
+        ease: "easeOut" 
       },
     },
   };
@@ -58,9 +57,10 @@ export default function LocationSection() {
   const active = isBirminghamPage ? locationData.birmingham : locationData.stAlbans;
 
   return (
-    <section className="relative py-24 lg:py-32 bg-slate-50 overflow-hidden font-inter">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(0,163,255,0.05),transparent)]"></div>
+    <section className="relative py-24 lg:py-32 bg-white overflow-hidden font-inter">
+      {/* Background Decorative Element */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-30 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-96 bg-blue-50 blur-[120px] rounded-full" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,22 +71,24 @@ export default function LocationSection() {
           viewport={{ once: true, amount: 0.3 }}
           variants={containerVariants}
         >
+          {/* Badge styled like the PRP 'Scientific Excellence' badge */}
           <motion.div
-            className="inline-block mb-4 md:px-4 px-3 md:py-2 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold uppercase tracking-widest"
+            className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] mb-6 border border-blue-100"
             variants={itemVariants}
           >
             {active.badge}
           </motion.div>
 
+          {/* Header styled like PRP 'What is Platelet-Rich Plasma?' */}
           <motion.h2
-            className="md:text-4xl text-3xl font-raleway font-semibold text-slate-900 leading-tight mb-4"
+            className="text-4xl md:text-5xl font-raleway font-bold text-slate-900 leading-tight mb-6 tracking-tight"
             variants={itemVariants}
           >
             {active.title}
           </motion.h2>
           
           <motion.p
-            className="text-base text-slate-500 md:max-w-2xl max-w-xl mx-auto leading-relaxed font-inter"
+            className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
             {active.desc}
@@ -94,73 +96,83 @@ export default function LocationSection() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
           <motion.div variants={itemVariants}>
-            <div className="p-10 bg-white rounded-3xl border border-slate-100 shadow-sm h-full flex flex-col justify-center">
-              <div className="mb-10">
-                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">
-                  Clinical Address
-                </h3>
-                <div className="flex items-start gap-4">
-                  <FaMapMarkerAlt className="w-5 h-5 text-blue-600 mt-1" />
+            <div className="p-10 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm h-full flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                    <FaMapMarkerAlt className="w-5 h-5" />
+                  </div>
                   <div>
-                    <p className="font-raleway font-bold text-slate-900 text-xl mb-1">
+                    <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">
+                      Clinical Address
+                    </h3>
+                    <p className="font-raleway font-bold text-slate-900 text-2xl">
                       {active.addressTitle}
                     </p>
-                    <p className="text-slate-500 leading-relaxed font-inter">
-                      {active.street}
-                    </p>
+                  </div>
+                </div>
+
+                <p className="text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+                  {active.street}
+                </p>
+
+                <div className="space-y-8">
+                  <div>
+                    <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">
+                      Conveniently Located
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {active.nearby.map((area, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 bg-slate-50 text-slate-600 border border-slate-100 rounded-lg text-xs font-semibold"
+                        >
+                          {area}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-8 border-t border-slate-100 flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center shrink-0">
+                      <FaTrain className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900 mb-1">Accessibility</h4>
+                      <p className="text-slate-500 leading-relaxed text-sm">
+                        {active.access}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="border-t border-slate-100 mb-10"></div>
-
-              <div className="mb-10">
-                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">
-                  Conveniently Located
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {active.nearby.map((area, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-slate-50 text-slate-600 border border-slate-100 rounded-lg text-xs font-medium"
-                    >
-                      {area}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="border-t border-slate-100 mb-10"></div>
-
-              <div>
-                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">
-                  Accessibility
-                </h3>
-                <p className="text-slate-500 leading-relaxed text-sm font-inter">
-                  {active.access}
-                </p>
-              </div>
+              {/* Call to Action Button */}
+              <button className="mt-12 w-full py-4 bg-[#0A1128] text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors shadow-xl shadow-blue-900/10">
+                <FaCompass className="w-4 h-4" />
+                Get Directions
+              </button>
             </div>
           </motion.div>
 
           <motion.div className="relative min-h-[450px]" variants={itemVariants}>
-            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl h-full border-4 border-white">
+            <div className="relative rounded-[2.5rem] overflow-hidden shadow-sm h-full border border-slate-100">
               <iframe
                 src={active.mapUrl}
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: 'grayscale(0.1)' }}
+                style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="h-full w-full"
+                className="h-full w-full grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
               ></iframe>
             </div>
           </motion.div>
