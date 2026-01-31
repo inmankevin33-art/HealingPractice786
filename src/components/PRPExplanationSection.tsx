@@ -129,7 +129,8 @@ export default function PRPExplanationSection() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <div className="hidden lg:block absolute top-1/3 left-0 w-full h-[1px] bg-white/10 -z-10" />
+            {/* Visual Connecting Line: Aligned with Icons */}
+            <div className="hidden lg:block absolute top-[110px] left-0 w-full h-[2px] border-t-2 border-dashed border-white/10 -z-10" />
 
             {steps.map((step, index) => {
               const IconComponent = step.icon;
