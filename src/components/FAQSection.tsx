@@ -40,11 +40,11 @@ export default function FAQSection() {
     },
     {
       question: "Do you offer consultations before treatment?",
-      answer: "Absolutely. We believe every successful journey starts with a conversation. We offer a comprehensive medical consultation to listen to your concerns, answer your questions, and determine if PRP is the right fit for you. This ensures a transparent, no-pressure environment focused entirely on your wellbeing.",
+      answer: "Absolutely. We believe every successful journey starts with a conversation. We offer a comprehensive medical consultation to listen to your concerns, answer your questions, and determine the right treatment for you. This ensures a transparent, no-pressure environment focused entirely on your wellbeing.",
     },
     {
-      question: "What is the P‑Shot and how does it help erectile dysfunction?",
-      answer: "The P‑Shot (Priapus Shot) is a natural, non‑surgical treatment that uses your own platelet‑rich plasma (PRP) to stimulate blood flow, enhance sensitivity, and improve erectile function.",
+      question: "What makes PRP at Healing‑PRP Clinics different?",
+      answer:  "Our treatments are doctor-led and patient-focused, guided by thorough medical assessment rather than a one-size-fits-all approach. We don’t simply perform a procedure — we develop a personalised medical protocol tailored to your individual biology and treatment goals."
     },
     {
       question: "What's the difference between PRP and steroid joint injections?",
