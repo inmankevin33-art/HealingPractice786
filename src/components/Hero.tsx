@@ -91,7 +91,7 @@ export default function Hero() {
           variants={fadeUpVariants}
           className="mt-2 md:text-xl text-lg text-blue-100 font-medium font-raleway leading-relaxed"
         >
-          Confidential Care by a GMC Registered Experienced Doctor
+          Doctor-led. Patient-focused. Regenerative care
         </motion.h2>
 
         {/* Description */}
