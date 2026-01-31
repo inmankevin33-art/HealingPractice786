@@ -1,35 +1,14 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
-  const faqs = [
+  // Memoizing the FAQ data to prevent recreation on every re-render
+  const faqs = useMemo(() => [
     {
       question: "Who is not suitable for PRP treatments?",
       answer: "Your safety is our priority. PRP may not be suitable for individuals with active infections, certain blood disorders, or those undergoing specific cancer treatments. During our medical consultation, we take a patient-centered approach to review your health history and ensure PRP is the safest, most effective path for your unique needs.",
@@ -50,21 +29,43 @@ export default function FAQSection() {
       question: "What's the difference between PRP and steroid joint injections?",
       answer: "PRP injections use your body's own healing cells for long‑term regeneration. Steroid injections provide rapid relief from inflammation and pain. Both options are available depending on your condition.",
     },
-  ];
+  ], []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08, // Slightly faster stagger for snappier feel
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 }, // Reduced y distance for efficiency
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      },
+    },
+  };
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="relative py-20 lg:py-32 overflow-hidden bg-[#f8fafc]">
+    <section className="relative py-20 lg:py-32 overflow-hidden bg-[#f8fafc] will-change-transform">
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           className="text-center mb-12"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
           <div className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
@@ -80,7 +81,6 @@ export default function FAQSection() {
           </p>
         </motion.div>
 
-        {/* FAQ Items */}
         <motion.div
           className="space-y-3"
           initial="hidden"
@@ -91,11 +91,11 @@ export default function FAQSection() {
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-xl border border-slate-200 overflow-hidden"
+              className="bg-white rounded-xl border border-slate-200 overflow-hidden transform-gpu" // transform-gpu improves rendering
               variants={itemVariants}
             >
               <button
-                className="w-full p-5 text-left flex items-center justify-between hover:bg-slate-50 transition-colors"
+                className="w-full p-5 text-left flex items-center justify-between hover:bg-slate-50 transition-colors focus:outline-none"
                 onClick={() => toggleFAQ(index)}
               >
                 <h3 className="font-raleway font-semibold text-slate-900 pr-4">
@@ -106,13 +106,13 @@ export default function FAQSection() {
                 </div>
               </button>
 
-              <AnimatePresence>
+              <AnimatePresence initial={false}>
                 {openIndex === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }} // Optimized easing curve
                   >
                     <div className="px-5 pb-5 pt-2 text-slate-600 text-sm leading-relaxed border-t border-slate-100">
                       {faq.answer}
