@@ -78,7 +78,7 @@ export default function LocationSection() {
                 href={clinic.mapLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#0a1128] text-white rounded-xl font-bold text-xs hover:bg-blue-600 transition-all shadow-lg shadow-slate-200 group w-full sm:w-fit"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 text-white rounded-xl font-bold text-xs hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 group w-full sm:w-fit"              
               >
                 <FaDirections className="group-hover:rotate-12 transition-transform" />
                 Get Directions
