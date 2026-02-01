@@ -5,6 +5,7 @@ import ServiceOverview from "@/components/ServiceOverview";
 import PRPExplanationSection from "@/components/PRPExplanationSection";
 import FAQSection from "@/components/FAQSection";
 import ContactCTASection from "@/components/ContactCTASection";
+import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 
 // --- SEO OPTIMISATION ---
@@ -105,6 +106,7 @@ export default function Home() {
         <PRPExplanationSection />
         <FAQSection />
         <ContactCTASection />
+        <LocationSection />
       </main>
       <Footer />
     </>
