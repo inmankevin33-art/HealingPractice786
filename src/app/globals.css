@@ -36,14 +36,22 @@
 
 /* Removed class-based dark mode */
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Refined scaling for 100% zoom */
+  font-size: 15px; 
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+  /* Clinical feel: slight reduction in line-height for better density */
+  line-height: 1.5; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom animations for hero section */
