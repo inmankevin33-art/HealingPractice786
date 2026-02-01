@@ -70,12 +70,28 @@ export default function BirminghamHomeClient() {
   ];
 
   return (
-    <main className="transform-gpu"> {/* Hardware acceleration for the whole page */}
+    <main className="transform-gpu selection:bg-blue-100">
       {/* --- HERO SECTION --- */}
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-[#0a1128]">
+        
+        {/* OPTIMIZED IMAGE LOADING */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat sm:hidden opacity-60" style={{ backgroundImage: "url('/mobilehero.png')" }}></div>
-          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden sm:block opacity-60" style={{ backgroundImage: "url('/herobg.jpg')" }}></div>
+          {/* Mobile Hero - Prioritized */}
+          <img 
+            src="/mobilehero.png" 
+            alt="Birmingham Clinic Hero" 
+            className="absolute inset-0 w-full h-full object-cover sm:hidden opacity-60"
+            // @ts-ignore
+            fetchpriority="high"
+          />
+          {/* Desktop Hero - Prioritized */}
+          <img 
+            src="/herobg.jpg" 
+            alt="Birmingham Clinic Hero" 
+            className="absolute inset-0 w-full h-full object-cover hidden sm:block opacity-60"
+            // @ts-ignore
+            fetchpriority="high"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
         </div>
 
@@ -115,7 +131,7 @@ export default function BirminghamHomeClient() {
           </div>
         </div>
 
-        {/* Feature Banner - Only visible on desktop for performance */}
+        {/* Feature Banner */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[var(--brand-blue)]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
           <div className="px-4 py-5 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-4">
@@ -142,7 +158,7 @@ export default function BirminghamHomeClient() {
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 tracking-tight">
               Our Birmingham Treatments
             </h2>
-            <p className="text-slate-600 text-base mt-4 max-w-3xl mx-auto">
+            <p className="text-slate-600 text-base mt-4 max-w-3xl mx-auto leading-relaxed">
               Regenerative medicine treatments delivered by an experienced doctor in our West Midlands clinic.
             </p>
           </div>
@@ -179,7 +195,7 @@ export default function BirminghamHomeClient() {
       <PRPExplanationSection />
 
       {/* --- CONTACT & LOCATION SECTION --- */}
-      <div id="contact-form-section" className="contain-paint">
+      <div id="contact-form-section" className="contain-layout">
         <ContactCTASection />
         <LocationSection />
       </div>
@@ -195,7 +211,7 @@ export default function BirminghamHomeClient() {
               <div className="bg-white rounded-[2.5rem] p-8 max-w-sm w-full shadow-2xl relative text-center" onClick={e => e.stopPropagation()}>
                 <button onClick={() => setIsModalOpen(false)} className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-900"><FaTimes className="w-4 h-4" /></button>
                 <h3 className="text-xl font-raleway font-bold text-slate-900 mb-2">Connect Instantly</h3>
-                <p className="text-xs text-slate-500 mb-6">Scan with your phone camera to chat with our medical team</p>
+                <p className="text-xs text-slate-500 mb-6 font-inter leading-relaxed">Scan with your phone camera to chat with our medical team</p>
                 <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 inline-block mb-6"><img src="/qrcode.png" alt="WhatsApp QR" className="w-40 h-40" /></div>
                 <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full py-3.5 bg-[#25D366] text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all"><FaWhatsapp className="w-5 h-5" /> Open WhatsApp Web</a>
               </div>
