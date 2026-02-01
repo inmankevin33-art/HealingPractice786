@@ -88,15 +88,18 @@ const Header = () => {
                     {isBirmingham ? "Birmingham Clinic" : "St Albans Clinic"}
                   </span>
                 </div>
+                
+                {/* Clickable Phone Number with Icon */}
                 <a 
                   href="tel:07990364147" 
-                  className="text-sm font-bold text-blue-400 hover:text-white transition-colors tracking-wider"
+                  className="flex items-center gap-1.5 text-sm font-bold text-blue-400 hover:text-white transition-colors tracking-wider group"
                 >
-                  07990364147
+                  <Phone className="w-3.5 h-3.5 fill-current group-hover:scale-110 transition-transform" />
+                  <span>07990 364 147</span>
                 </a>
               </div>
 
-              {/* Mobile Phone Link */}
+              {/* Mobile Phone Link (Visible icon only) */}
               <a 
                 href="tel:07990364147" 
                 className="lg:hidden p-2.5 bg-blue-600 rounded-full text-white shadow-lg shadow-blue-500/20"
