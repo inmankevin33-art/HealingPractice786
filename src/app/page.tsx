@@ -3,7 +3,6 @@ import Script from "next/script";
 import Hero from "@/components/Hero";
 import ServiceOverview from "@/components/ServiceOverview";
 import PRPExplanationSection from "@/components/PRPExplanationSection";
-import LocationSection from "@/components/LocationSection";
 import FAQSection from "@/components/FAQSection";
 import ContactCTASection from "@/components/ContactCTASection";
 import Footer from "@/components/Footer";
@@ -104,7 +103,6 @@ export default function Home() {
         <Hero />
         <ServiceOverview />
         <PRPExplanationSection />
-        <LocationSection />
         <FAQSection />
         <ContactCTASection />
       </main>
