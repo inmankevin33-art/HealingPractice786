@@ -1,11 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, MapPin } from "lucide-react";
+import { Menu, X, MapPin, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+
+// Define the Interface to fix the TypeScript 'isContact' error
+interface MenuItem {
+  name: string;
+  href: string;
+  isContact?: boolean;
+}
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +29,21 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
-  const menuItems = [
+  // Unified Scroll/Navigate Function
+  const handleContactClick = (e: React.MouseEvent) => {
+    setIsMenuOpen(false);
+    
+    // Smooth scroll if on the relevant homepage
+    if (pathname === "/" || pathname === "/birmingham") {
+      e.preventDefault();
+      const section = document.getElementById("contact-form-section");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  const menuItems: MenuItem[] = [
     { name: "Facial Aesthetics", href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics" },
     { name: "Joint Injections", href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections" },
     { name: "Hair Restoration", href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration" },
@@ -30,17 +51,20 @@ const Header = () => {
     { name: "Prices", href: isBirmingham ? "/birmingham/prices" : "/prices" },
     { name: "FAQs", href: isBirmingham ? "/birmingham/faq" : "/faq" },
     { name: "Health Blog", href: "/blog" },
-    { name: "Contact Us", href: "/contact" },
+    { 
+      name: "Contact Us", 
+      href: isBirmingham ? "/birmingham/contact" : "/contact", 
+      isContact: true 
+    },
   ];
 
   return (
     <>
-      {/* Dark Header synced with Footer background color */}
       <header className="sticky top-0 left-0 right-0 z-50 bg-[#0f172a] border-b border-white/10 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             
-            {/* Logo Section - White text for dark background */}
+            {/* Logo Section */}
             <div className="flex-shrink-0">
               <Link href={isBirmingham ? "/birmingham" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-3">
@@ -55,16 +79,33 @@ const Header = () => {
             </div>
 
             {/* Header Right Side */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 md:gap-8">
+              {/* Desktop Clinic Info + Phone */}
               <div className="hidden lg:flex flex-col items-end">
-                <div className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5">
+                <div className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5 mb-1">
                   <MapPin className="w-3 h-3 text-blue-400" />
                   <span className="text-slate-300">
                     {isBirmingham ? "Birmingham Clinic" : "St Albans Clinic"}
                   </span>
                 </div>
+                <a 
+                  href="tel:01234567890" 
+                  className="text-sm font-bold text-blue-400 hover:text-white transition-colors tracking-wider"
+                >
+                  01234 567 890
+                </a>
               </div>
 
+              {/* Mobile Phone Link */}
+              <a 
+                href="tel:01234567890" 
+                className="lg:hidden p-2.5 bg-blue-600 rounded-full text-white shadow-lg shadow-blue-500/20"
+                aria-label="Call Clinic"
+              >
+                <Phone className="w-4 h-4 fill-current" />
+              </a>
+
+              {/* Menu Toggle */}
               <button 
                 onClick={toggleMenu} 
                 className="flex items-center gap-3 group px-3 py-2 hover:bg-white/5 rounded-lg transition-all"
@@ -89,7 +130,7 @@ const Header = () => {
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
               
-              {/* Location Selectors - Updated for dark theme */}
+              {/* Location Selectors */}
               <div className="mb-12 border-b border-white/10 pb-12">
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-6">Select Your Location</p>
                 <div className="flex flex-col sm:flex-row gap-4 max-w-xl">
@@ -102,7 +143,7 @@ const Header = () => {
                 </div>
               </div>
 
-              {/* Navigation Items - Arranged in a single vertical list on the left */}
+              {/* Navigation Items */}
               <nav className="flex flex-col space-y-4 md:space-y-6">
                 {menuItems.map((item, idx) => (
                   <motion.div
@@ -113,8 +154,12 @@ const Header = () => {
                   >
                     <Link 
                       href={item.href} 
-                      className="text-2xl md:text-4xl font-raleway font-medium text-white hover:text-blue-400 transition-colors inline-block"
-                      onClick={() => setIsMenuOpen(false)}
+                      className={`text-2xl md:text-4xl font-raleway transition-colors inline-block ${
+                        item.isContact 
+                          ? "text-blue-400 font-bold border-b-2 border-blue-400/30 pb-1" 
+                          : "font-medium text-white hover:text-blue-400"
+                      }`}
+                      onClick={item.isContact ? handleContactClick : () => setIsMenuOpen(false)}
                     >
                       {item.name}
                     </Link>
@@ -128,4 +173,5 @@ const Header = () => {
     </>
   );
 };
+
 export default Header;
