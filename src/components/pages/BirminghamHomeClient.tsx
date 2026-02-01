@@ -144,7 +144,7 @@ export default function BirminghamHomeClient() {
         </div>
       </div>
 
-      {/* Services Grid - py-16 refinement */}
+      {/* Services Grid - Performance Optimized & Aligned */}
       <section id="services" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -158,45 +158,68 @@ export default function BirminghamHomeClient() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <div key={index} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col">
+              <motion.div 
+                key={index} 
+                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col transform-gpu will-change-transform"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+              >
                 <h3 className="text-lg font-raleway font-bold text-slate-900 mb-3 group-hover:text-[var(--brand-blue)] transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-slate-600 mb-6 font-inter text-xs leading-relaxed flex-grow">
                   {service.desc}
                 </p>
-                <Link href={service.link} className="inline-flex items-center text-[var(--brand-blue)] text-xs font-bold group-hover:gap-2 transition-all duration-300">
+                <Link 
+                  href={service.link} 
+                  className="inline-flex items-center text-[var(--brand-blue)] text-xs font-bold group-hover:gap-2 transition-all duration-300"
+                >
                   View Details <FaArrowRight className="ml-2 w-3 h-3" />
                 </Link>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Joint Injections Preview - py-16 refinement */}
+      {/* PRP Science Section - Replacing Joint Injections */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="relative h-[350px] rounded-3xl overflow-hidden shadow-xl order-last lg:order-first">
-                 <img src="/joint-injections.jpg" alt="Joint Injection Therapy Birmingham" className="w-full h-full object-cover" />
+              <div className="relative h-[350px] rounded-3xl overflow-hidden shadow-xl order-last lg:order-first transform-gpu">
+                 <img src="/prp-science.jpg" alt="The Science of PRP" className="w-full h-full object-cover" />
+                 <div className="absolute inset-0 bg-blue-900/10"></div>
               </div>
               <div className="lg:pl-6">
+                 <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4">
+                    The Science of Healing
+                 </div>
                  <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4 tracking-tight">
-                    Joint Pain Relief in Birmingham
+                    What is Platelet-Rich Plasma (PRP)?
                  </h2>
-                 <p className="text-slate-600 text-sm font-inter leading-relaxed mb-6">
-                    We offer doctor-delivered PRP and Steroid injections for arthritis and sports injuries at our Birmingham clinic. 
-                    Ideal for patients seeking non-surgical options for knee, shoulder, and hip pain.
+                 <p className="text-slate-600 text-sm font-inter leading-relaxed mb-4">
+                    PRP therapy is a revolutionary regenerative treatment that uses a concentrated dose of your own blood platelets to accelerate natural healing. Platelets are rich in growth factors that trigger cell renewal and tissue repair.
                  </p>
-                 <Link href="/birmingham/joint-injections" className="inline-flex items-center text-[var(--brand-blue)] text-sm font-bold hover:gap-2 transition-all duration-300">
-                    View Joint Treatments <FaArrowRight className="ml-2 w-4 h-4" />
-                 </Link>
+                 <ul className="space-y-3 mb-6">
+                    {["100% Natural - Uses your own biology", "Minimal downtime & non-surgical", "Rich in bioactive growth factors"].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-xs font-semibold text-slate-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" /> {item}
+                      </li>
+                    ))}
+                 </ul>
+                 <button 
+                   onClick={() => document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' })}
+                   className="inline-flex items-center text-[var(--brand-blue)] text-sm font-bold hover:gap-2 transition-all duration-300"
+                 >
+                    Learn More About Our Process <FaArrowRight className="ml-2 w-4 h-4" />
+                 </button>
               </div>
            </div>
         </div>
       </section>
-
+      
       {/* Location Details - py-16 refinement */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
