@@ -186,81 +186,16 @@ export default function BirminghamHomeClient() {
         </div>
       </section>
 
-      {/* PRP Science Section - Replacing Joint Injections */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <div className="relative h-[350px] rounded-3xl overflow-hidden shadow-xl order-last lg:order-first transform-gpu">
-                 <img src="/prp-science.jpg" alt="The Science of PRP" className="w-full h-full object-cover" />
-                 <div className="absolute inset-0 bg-blue-900/10"></div>
-              </div>
-              <div className="lg:pl-6">
-                 <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4">
-                    The Science of Healing
-                 </div>
-                 <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4 tracking-tight">
-                    What is Platelet-Rich Plasma (PRP)?
-                 </h2>
-                 <p className="text-slate-600 text-sm font-inter leading-relaxed mb-4">
-                    PRP therapy is a revolutionary regenerative treatment that uses a concentrated dose of your own blood platelets to accelerate natural healing. Platelets are rich in growth factors that trigger cell renewal and tissue repair.
-                 </p>
-                 <ul className="space-y-3 mb-6">
-                    {["100% Natural - Uses your own biology", "Minimal downtime & non-surgical", "Rich in bioactive growth factors"].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-xs font-semibold text-slate-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" /> {item}
-                      </li>
-                    ))}
-                 </ul>
-                 <button 
-                   onClick={() => document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' })}
-                   className="inline-flex items-center text-[var(--brand-blue)] text-sm font-bold hover:gap-2 transition-all duration-300"
-                 >
-                    Learn More About Our Process <FaArrowRight className="ml-2 w-4 h-4" />
-                 </button>
-              </div>
-           </div>
-        </div>
+      {/* Services Grid remains at the top */}
+      <section id="services" className="py-16 bg-white">
+        {/* ... existing services code ... */}
       </section>
-      
-      {/* Location Details - py-16 refinement */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[var(--brand-blue)] rounded-[2.5rem] overflow-hidden shadow-2xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="p-8 lg:p-14 text-white flex flex-col justify-center">
-                <h2 className="text-3xl font-raleway font-bold mb-4 tracking-tight">Visit Our Birmingham Clinic</h2>
-                <p className="text-blue-100 mb-8 text-sm font-inter leading-relaxed">
-                  Conveniently located for patients across the West Midlands, including Solihull, Edgbaston, and Sutton Coldfield.
-                </p>
-                <div className="flex items-start gap-4 mb-10">
-                  <div className="p-3 bg-white/10 rounded-xl">
-                    <FaMapMarkerAlt className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-base mb-1">Address</h4>
-                    <p className="text-blue-100 text-xs leading-relaxed">
-                      Healing-PRP Clinics Birmingham<br />
-                      [Insert Full Street Address]<br />
-                      Birmingham, West Midlands<br />
-                      [Postcode]
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <Link href="/contact" className="inline-block px-8 py-3 bg-white text-[var(--brand-blue)] rounded-xl font-bold text-sm hover:bg-gray-100 transition-all active:scale-95">
-                    Get Directions
-                  </Link>
-                </div>
-              </div>
-              <div className="relative h-[350px] lg:h-auto bg-slate-200">
-                 <div className="w-full h-full flex items-center justify-center text-slate-500 font-medium">
-                    <iframe width="100%" height="100%" style={{ border: 0 }} loading="lazy" allowFullScreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.6200223727823!2d-1.9025!3d52.4862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870000000000000%3A0x0000000000000000!2sBirmingham!5e0!3m2!1sen!2suk!4v1"></iframe>
-                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
+      {/* NEW: Scientific PRP Breakdown replaces the static Joint section */}
+      <PRPExplanationSection />
+
+      {/* Localized Location Section */}
+      <LocationSection />
 
       {/* WhatsApp Modal - Refined sizing */}
       <AnimatePresence>
