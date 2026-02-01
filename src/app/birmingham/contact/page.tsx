@@ -1,4 +1,5 @@
 import ContactClient from "@/components/pages/ContactClient";
+import { Metadata } from "next";
 
 export const metadata = {
   title: "Erectile Dysfunction & P-Shot Clinic Birmingham | Contact Us",
