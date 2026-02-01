@@ -8,25 +8,24 @@ export default function LocationSection() {
   const pathname = usePathname();
   const isBirminghamPage = pathname?.startsWith("/birmingham");
 
-  // Simplified variants for faster rendering
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05, // Faster stagger
+        staggerChildren: 0.05,
         delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 15 }, // Reduced y distance
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
       transition: { 
-        duration: 0.4, // Faster transition
+        duration: 0.4, 
         ease: "easeOut" 
       },
     },
@@ -46,11 +45,11 @@ export default function LocationSection() {
     birmingham: {
       badge: "Midlands Location",
       title: "Visit Us in Birmingham",
-      desc: "Serving patients across the West Midlands from our private consulting hub in Edgbaston.",
+      desc: "Serving patients across the West Midlands from our private consulting hub in Edgbaston Medical Quarter.",
       addressTitle: "Birmingham Clinic",
       street: "Consulting Rooms 38 LTD, 38 Harborne Rd, Edgbaston, B15 3EB",
       nearby: ["Edgbaston", "Harborne", "Moseley", "Selly Oak", "City Centre"],
-      access: "Conveniently located in the Edgbaston Medical Quarter with easy access via public transport.",
+      access: "Conveniently located in Edgbaston with easy access via public transport and local parking.",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.435756475654!2d-1.9213456!3d52.4695423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bd0000000000%3A0x0!2zMzg!5e0!3m2!1sen!2suk!4v1700000000000"
     }
   };
@@ -59,34 +58,33 @@ export default function LocationSection() {
 
   return (
     <section 
-      className="relative py-24 lg:py-32 bg-white overflow-hidden font-inter"
-      // Performance optimization: Using radial-gradient instead of a blur filter div
+      className="relative py-20 lg:py-28 bg-white overflow-hidden font-inter"
       style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 60%)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }} // Faster trigger
+          viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
           <motion.div
-            className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] mb-6 border border-blue-100"
+            className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] mb-4 border border-blue-100"
             variants={itemVariants}
           >
             {active.badge}
           </motion.div>
 
           <motion.h2
-            className="text-4xl md:text-5xl font-raleway font-bold text-slate-900 leading-tight mb-6 tracking-tight"
+            className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 leading-tight mb-4 tracking-tight"
             variants={itemVariants}
           >
             {active.title}
           </motion.h2>
           
           <motion.p
-            className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
             {active.desc}
@@ -100,37 +98,37 @@ export default function LocationSection() {
           viewport={{ once: true, amount: 0.1 }}
           variants={containerVariants}
         >
-          <motion.div variants={itemVariants} className="will-change-transform">
-            <div className="p-10 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm h-full flex flex-col justify-between transition-shadow hover:shadow-md duration-300">
+          <motion.div variants={itemVariants} className="will-change-transform transform-gpu">
+            <div className="p-8 bg-white rounded-[2rem] border border-slate-100 shadow-sm h-full flex flex-col justify-between transition-shadow hover:shadow-md duration-300">
               <div>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
-                    <FaMapMarkerAlt className="w-5 h-5" />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                    <FaMapMarkerAlt className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">
+                    <h3 className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">
                       Clinical Address
                     </h3>
-                    <p className="font-raleway font-bold text-slate-900 text-2xl">
+                    <p className="font-raleway font-bold text-slate-900 text-xl">
                       {active.addressTitle}
                     </p>
                   </div>
                 </div>
 
-                <p className="text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+                <p className="text-base text-slate-600 mb-8 leading-relaxed font-medium">
                   {active.street}
                 </p>
 
-                <div className="space-y-8">
+                <div className="space-y-6">
                   <div>
-                    <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">
-                      Conveniently Located
+                    <h3 className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+                      Nearby Areas
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {active.nearby.map((area, index) => (
                         <span
                           key={index}
-                          className="px-4 py-2 bg-slate-50 text-slate-600 border border-slate-100 rounded-lg text-xs font-semibold"
+                          className="px-3 py-1.5 bg-slate-50 text-slate-600 border border-slate-100 rounded-lg text-[11px] font-semibold"
                         >
                           {area}
                         </span>
@@ -138,13 +136,13 @@ export default function LocationSection() {
                     </div>
                   </div>
 
-                  <div className="pt-8 border-t border-slate-100 flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center shrink-0">
-                      <FaTrain className="w-4 h-4 text-blue-600" />
+                  <div className="pt-6 border-t border-slate-100 flex items-start gap-4">
+                    <div className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center shrink-0">
+                      <FaTrain className="w-3.5 h-3.5 text-blue-600" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-slate-900 mb-1">Accessibility</h4>
-                      <p className="text-slate-500 leading-relaxed text-sm">
+                      <h4 className="text-xs font-bold text-slate-900 mb-0.5">Accessibility</h4>
+                      <p className="text-slate-500 leading-relaxed text-xs">
                         {active.access}
                       </p>
                     </div>
@@ -152,16 +150,15 @@ export default function LocationSection() {
                 </div>
               </div>
 
-              <button className="mt-12 w-full py-4 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-xl shadow-blue-600/20">
+              <button className="mt-8 w-full py-3.5 bg-blue-600 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-blue-700 transition-all active:scale-95 shadow-lg shadow-blue-600/15">
                 <FaCompass className="w-4 h-4" />
                 Get Directions
               </button>
             </div>
           </motion.div>
 
-          <motion.div className="relative min-h-[450px] will-change-transform" variants={itemVariants}>
-            <div className="relative rounded-[2.5rem] overflow-hidden shadow-sm h-full border border-slate-100 bg-slate-100">
-              {/* Added loading="lazy" and performance classes */}
+          <motion.div className="relative min-h-[350px] transform-gpu will-change-transform" variants={itemVariants}>
+            <div className="relative rounded-[2rem] overflow-hidden shadow-sm h-full border border-slate-100 bg-slate-100">
               <iframe
                 src={active.mapUrl}
                 width="100%"
@@ -170,7 +167,7 @@ export default function LocationSection() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="h-full w-full grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+                className="h-full w-full grayscale-[0.1] hover:grayscale-0 transition-all duration-700"
               ></iframe>
             </div>
           </motion.div>
