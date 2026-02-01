@@ -14,7 +14,7 @@ export const metadata = {
     "Private urology consultation Birmingham"
   ],
   alternates: {
-    canonical: "https://yourdomain.com/birmingham/contact", 
+    canonical: "https://www.healing-prp.co.uk/birmingham/contact", 
   },
 };
 
