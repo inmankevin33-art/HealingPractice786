@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { FaWhatsapp, FaEnvelope, FaTimes, FaCheckCircle, FaPaperPlane, FaInfoCircle } from "react-icons/fa";
+import { FaWhatsapp, FaTimes, FaCheckCircle, FaPaperPlane, FaInfoCircle } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import Link from "next/link"; // Integrated for navigation
 import emailjs from "@emailjs/browser";
 
 export default function ContactCTASection() {
@@ -128,7 +129,6 @@ export default function ContactCTASection() {
           >
             <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
               
-              {/* NEW: CLINIC TOGGLE PILL */}
               <div className="md:col-span-2 mb-4">
                 <div className="flex p-1 bg-slate-200/50 rounded-2xl w-fit">
                   {(["st-albans", "birmingham"] as const).map((clinic) => (
@@ -250,13 +250,23 @@ export default function ContactCTASection() {
                 </div>
               </div>
             </button>
-            <div className="w-full group p-4 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4">
-              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl"><FaInfoCircle /></div>
-              <div>
-                <h3 className="font-raleway font-bold text-slate-900 text-base">Full Contact Details</h3>
-                <p className="text-xs text-slate-500">View maps & clinic hours</p>
+
+            {/* UPDATED: Full Contact Details Card with Link to /contact */}
+            <Link 
+              href="/contact" 
+              className="block w-full group p-4 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                  <FaInfoCircle />
+                </div>
+                <div>
+                  <h3 className="font-raleway font-bold text-slate-900 text-base">Full Contact Details</h3>
+                  <p className="text-xs text-slate-500">View maps & clinic hours</p>
+                </div>
               </div>
-            </div>
+            </Link>
+
             <div className="p-6 bg-blue-50/50 rounded-[2rem] border border-blue-100/50">
               <h4 className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-4">Patient Standards</h4>
               <ul className="space-y-3">
