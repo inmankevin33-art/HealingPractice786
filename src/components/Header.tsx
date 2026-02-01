@@ -7,6 +7,13 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 
+// Define the Interface to fix the TypeScript 'isContact' error
+interface MenuItem {
+  name: string;
+  href: string;
+  isContact?: boolean;
+}
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -27,7 +34,7 @@ const Header = () => {
   const handleContactClick = (e: React.MouseEvent) => {
     setIsMenuOpen(false);
     
-    // If we are on the homepage, scroll. Otherwise, let Link handle navigation.
+    // If we are on the homepage or birmingham home, scroll to the form
     if (pathname === "/" || pathname === "/birmingham") {
       e.preventDefault();
       const section = document.getElementById("contact-form-section");
@@ -35,9 +42,11 @@ const Header = () => {
         section.scrollIntoView({ behavior: "smooth" });
       }
     }
+    // If we are on a sub-page (like /prices), the Link component will 
+    // naturally navigate to the /contact page instead of scrolling.
   };
 
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     { name: "Facial Aesthetics", href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics" },
     { name: "Joint Injections", href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections" },
     { name: "Hair Restoration", href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration" },
@@ -45,25 +54,26 @@ const Header = () => {
     { name: "Prices", href: isBirmingham ? "/birmingham/prices" : "/prices" },
     { name: "FAQs", href: isBirmingham ? "/birmingham/faq" : "/faq" },
     { name: "Health Blog", href: "/blog" },
+    { 
+      name: "Contact Us", 
+      href: isBirmingham ? "/birmingham/contact" : "/contact", 
+      isContact: true 
+    },
   ];
 
   return (
     <>
       <header className="sticky top-0 left-0 right-0 z-50 bg-[#0f172a] border-b border-white/10 shadow-lg">
-        {/* Tightened horizontal padding: px-4 lg:px-6 */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
-          {/* Reduced height: h-14 lg:h-16 (was 16/20) */}
           <div className="flex items-center justify-between h-14 lg:h-16">
             
             {/* Logo Section */}
             <div className="flex-shrink-0">
               <Link href={isBirmingham ? "/birmingham" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-2.5">
-                  {/* Reduced logo size: h-8 w-8 */}
                   <div className="relative h-8 w-8 md:h-9 md:w-9 flex-shrink-0">
                     <Image src="/Logo2.png" alt="Healing-PRP Logo" fill className="object-contain" priority />
                   </div>
-                  {/* Reduced text size: text-lg md:text-xl */}
                   <h1 className="text-lg md:text-xl font-raleway font-semibold text-white tracking-tight whitespace-nowrap">
                     Healing-PRP Clinics
                   </h1>
@@ -130,7 +140,11 @@ const Header = () => {
                   >
                     <Link 
                       href={item.href} 
-                      className="text-xl md:text-3xl font-raleway font-medium text-white hover:text-blue-400 transition-colors inline-block"
+                      className={`text-xl md:text-3xl font-raleway transition-colors inline-block ${
+                        item.isContact 
+                          ? "text-blue-400 font-bold border-b-2 border-blue-400/30 pb-1" 
+                          : "font-medium text-white hover:text-blue-400"
+                      }`}
                       onClick={item.isContact ? handleContactClick : () => setIsMenuOpen(false)}
                     >
                       {item.name}
