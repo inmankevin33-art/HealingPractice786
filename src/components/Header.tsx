@@ -89,16 +89,16 @@ const Header = () => {
                   </span>
                 </div>
                 <a 
-                  href="tel:01234567890" 
+                  href="tel:07990364147" 
                   className="text-sm font-bold text-blue-400 hover:text-white transition-colors tracking-wider"
                 >
-                  01234 567 890
+                  07990364147
                 </a>
               </div>
 
               {/* Mobile Phone Link */}
               <a 
-                href="tel:01234567890" 
+                href="tel:07990364147" 
                 className="lg:hidden p-2.5 bg-blue-600 rounded-full text-white shadow-lg shadow-blue-500/20"
                 aria-label="Call Clinic"
               >
