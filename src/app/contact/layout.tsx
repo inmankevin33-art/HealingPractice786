@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Healing-PRP Clinics | St Albans",
+  title: {
+    default: "Contact & Appointments",
+    template: "%s | St Albans Clinic",
+  },
   description:
-    "Get in touch with Healing-PRP Clinics in St Albans. Book a confidential consultation with our GMC-registered doctor for PRP treatments. Contact us via phone, email, or WhatsApp.",
+    "Contact our St Albans clinic for private PRP treatments. Specialist care for Erectile Dysfunction (ED) and Hair Loss serving St Albans, Luton, and Hertfordshire.",
+  alternates: {
+    canonical: "https://healing-prp.co.uk/contact",
+  },
 };
 
-export default function ContactLayout({
+export default function StAlbansContactLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <div className="stalbans-contact-wrapper">
+      {children}
+    </div>
+  );
 }
