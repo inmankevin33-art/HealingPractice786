@@ -2,21 +2,10 @@
 
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";
-import { usePathname } from "next/navigation"; // Added for path detection
 import { FaSyringe, FaSync, FaGem, FaStar, FaCheckCircle } from "react-icons/fa";
 
 export default function PRPExplanationSection() {
   const [activeStep, setActiveStep] = useState(0);
-  const pathname = usePathname();
-  
-  // Logic: Only use Hero Blue if the URL contains /birmingham
-  const isBirmingham = pathname?.startsWith("/birmingham");
-
-  // Dynamic Background: Birmingham gets the Hero Blue, Main site stays Dark
-  const bgColor = isBirmingham ? "bg-[#0A1128]" : "bg-[#0f172a]"; 
-  const gradientColor = isBirmingham 
-    ? "radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)" 
-    : "radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.08) 0%, transparent 40%)";
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -52,9 +41,9 @@ export default function PRPExplanationSection() {
   return (
     <section 
       id="prp-explanation" 
-      // Dynamic bgColor used here
-      className={`relative py-20 lg:py-28 ${bgColor} overflow-hidden font-inter transition-colors duration-500`}
-      style={{ backgroundImage: gradientColor }}
+      // 1. Adjusted padding: py-20 lg:py-28 (Refining vertical space)
+      className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter"
+      style={{ backgroundImage: 'radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.08) 0%, transparent 40%)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -72,6 +61,7 @@ export default function PRPExplanationSection() {
           </motion.div>
 
           <motion.h2
+            // 2. Reduced heading: text-3xl md:text-4xl (Refining clinical look)
             className="text-3xl md:text-4xl font-raleway font-bold text-white leading-tight mb-6 tracking-tight"
             variants={itemVariants}
           >
@@ -80,6 +70,7 @@ export default function PRPExplanationSection() {
 
           <div className="max-w-4xl mx-auto space-y-8">
             <motion.p
+              // 3. Adjusted text: text-base (was text-lg)
               className="text-base text-slate-200 leading-relaxed font-medium"
               variants={itemVariants}
             >
@@ -93,7 +84,7 @@ export default function PRPExplanationSection() {
               variants={itemVariants}
             >
               {applications.map((app, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 bg-white/[0.03] rounded-2xl border border-white/10 transform-gpu">
+                <div key={i} className="flex items-start gap-3 p-4 bg-white/[0.03] rounded-2xl border border-white/10">
                   <FaCheckCircle className="text-blue-400 mt-1 shrink-0 w-3.5 h-3.5" />
                   <div>
                     <span className="text-white font-bold block text-sm">{app.title}</span>
@@ -102,6 +93,13 @@ export default function PRPExplanationSection() {
                 </div>
               ))}
             </motion.div>
+
+            <motion.p
+              className="text-xs text-slate-400 italic"
+              variants={itemVariants}
+            >
+              Because PRP is derived from your own blood, it is biocompatible and tailored to your body’s natural healing processes.
+            </motion.p>
           </div>
         </motion.div>
 
@@ -146,6 +144,7 @@ export default function PRPExplanationSection() {
                   variants={itemVariants}
                 >
                   <div
+                    // 4. Tightened card padding: p-6 (was p-8)
                     className={`p-6 rounded-[2rem] border transition-all duration-300 cursor-pointer h-full flex flex-col ${
                       isActive
                         ? "border-blue-500 bg-white shadow-xl scale-105 z-20"
