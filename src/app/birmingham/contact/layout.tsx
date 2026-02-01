@@ -1,25 +1,25 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  // Base title that pages can extend
   title: {
-    default: "Contact Our Birmingham Clinic",
-    template: "%s | Birmingham Clinic"
+    default: "Contact & Appointments",
+    template: "%s | Birmingham Clinic",
   },
-  description: "Specialist medical clinic in Edgbaston, Birmingham. Contact us for private PRP treatments, Erectile Dysfunction (ED) protocols, and hair restoration.",
+  description:
+    "Book your private consultation at our Edgbaston clinic. Specialist medical protocols for Erectile Dysfunction (ED), P-Shot, and Hair Restoration in Birmingham.",
   alternates: {
-    canonical: "https://www.healing-prp.co.uk/birmingham/contact",
+    canonical: "https://healing-prp.co.uk/birmingham/contact",
   },
 };
 
-export default function ContactLayout({
+export default function BirminghamContactLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="birmingham-contact-wrapper">
       {children}
-    </>
+    </div>
   );
 }
