@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   },
   description:
     "Confidential, doctor-led sexual rejuvenation in Birmingham. Specialist P-Shot and O-Shot PRP treatments for ED and wellness in the Edgbaston Medical Quarter.",
+
+  // ADDED CANONICAL:
+  alternates: {
+    canonical: "https://www.healing-prp.co.uk/birmingham/sexual-rejuvenation",
+  },
 };
 
 export default function BirminghamSexualLayout({
