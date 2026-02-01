@@ -45,7 +45,6 @@ const Header = () => {
     { name: "Prices", href: isBirmingham ? "/birmingham/prices" : "/prices" },
     { name: "FAQs", href: isBirmingham ? "/birmingham/faq" : "/faq" },
     { name: "Health Blog", href: "/blog" },
-    { name: "Contact Us", href: isBirmingham ? "/birmingham/contact" : "/contact" },
   ];
 
   return (
