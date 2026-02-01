@@ -26,7 +26,6 @@ export default function BirminghamHomeClient() {
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
-  // Scroll lock for modal
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
@@ -42,7 +41,13 @@ export default function BirminghamHomeClient() {
     }
   };
 
-  // SEO TWEAK: I slightly reworded these services to be distinct from the main home page
+  const scrollToContact = () => {
+    const section = document.getElementById("contact-form-section");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const services = [
     {
       title: "Hair Restoration",
@@ -70,102 +75,97 @@ export default function BirminghamHomeClient() {
     <>
       {/* --- HERO SECTION --- */}
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-cover bg-center bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.png')" }}></div>
           <div className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden sm:block" style={{ backgroundImage: "url('/herobg.jpg')" }}></div>
           <div className="absolute inset-0 bg-black/55"></div>
         </div>
 
-        {/* Main Content - Centered */}
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-[-5vh]">
+        {/* Main Content - Centered mt refinement */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-[-4vh]">
           
-          {/* Badge */}
-          <div className={`inline-block md:px-4 px-2 md:py-2 py-1 bg-[var(--brand-blue)] text-white rounded-full text-xs mb-6 font-medium uppercase tracking-wider transition-opacity transition-transform duration-1000 delay-200 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {/* Aligned Badge */}
+          <div className={`inline-block px-4 py-1.5 bg-[var(--brand-blue)] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] transition-all duration-1000 delay-200 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <FaMapMarkerAlt className="inline-block mr-2 mb-0.5" /> Birmingham Clinic
           </div>
 
-          {/* Headline - Specific to Birmingham */}
-          <h1 className={`md:text-5xl text-3xl font-medium font-raleway text-white leading-tight mb-4 transition-opacity transition-transform duration-1000 delay-300 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {/* Headline - Refined to text-5xl/text-3xl */}
+          <h1 className={`md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight transition-all duration-1000 delay-300 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             Natural Regeneration Treatments <br /> in Birmingham
           </h1>
 
-          <h2 className={`mt-2 md:text-xl text-lg text-blue-100 font-semibold leading-relaxed transition-opacity transition-transform duration-1000 delay-500 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {/* Subheading - Refined to text-lg/text-base */}
+          <h2 className={`mt-1 md:text-lg text-base text-blue-100 font-medium leading-relaxed transition-all duration-1000 delay-500 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             Confidential Care by a GMC Registered Experienced Doctor
           </h2>
 
-          {/* SEO TWEAK: Rewritten paragraph to mention local areas */}
-          <p className={`mt-4 text-sm md:text-base text-white leading-relaxed max-w-2xl mx-auto mb-8 transition-opacity transition-transform duration-1000 delay-500 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className={`mt-3 text-sm md:text-base text-white/90 leading-relaxed max-w-2xl mx-auto mb-8 transition-all duration-1000 delay-500 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             Specialist regenerative treatments for Hair Loss, Sexual Wellness, and Joint Pain. 
             Proudly serving Edgbaston, Solihull, and the wider West Midlands.
           </p>
 
-          {/* Buttons */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-opacity transition-transform duration-1000 delay-800 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            {isDesktop ? (
-              <button onClick={handleWhatsAppClick} className="px-8 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg">
-                <FaWhatsapp className="w-5 h-5" /> Book on WhatsApp
-              </button>
-            ) : (
-              <a href="https://wa.me/447990364147" target="_blank" rel="noopener noreferrer" className="px-8 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg">
-                <FaWhatsapp className="w-5 h-5" /> Book on WhatsApp
-              </a>
-            )}
-            <Link href="/contact" className="px-8 py-3 hidden md:inline-flex gap-2 items-center justify-center cursor-pointer text-sm border-2 border-white/30 backdrop-blur-md bg-white/10 rounded-lg text-white font-medium transition-all duration-300 hover:bg-white/20 hover:border-white/40">
-              <FaEnvelope className="w-5 h-5" /> Contact Us
-            </Link>
+          {/* Buttons - py-3.5 refinement */}
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-800 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <button 
+              onClick={scrollToContact} 
+              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-xl font-bold transition-all duration-300 flex items-center gap-2 shadow-xl active:scale-95"
+            >
+              <FaEnvelope className="w-4 h-4" /> Book Consultation
+            </button>
+            
+            <button 
+              onClick={handleWhatsAppClick} 
+              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer border-2 border-white/20 backdrop-blur-md bg-white/5 rounded-xl text-white font-bold transition-all duration-300 hover:bg-white/10 hover:border-white/40 active:scale-95 gap-2"
+            >
+              <FaWhatsapp className="w-4 h-4" /> WhatsApp Support
+            </button>
           </div>
         </div>
 
-        {/* Feature Banner */}
-        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[var(--brand-blue)]/90 backdrop-blur-sm transition-opacity transition-transform duration-1000 delay-1100 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="px-4 sm:px-6 lg:px-8 py-5">
+        {/* Feature Banner - Height/Text Refinement */}
+        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[var(--brand-blue)]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 delay-1100 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="px-4 py-5">
             <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="text-center border-r border-[var(--brand-blue-100)]/30">
-                  <div className="text-white font-semibold text-xs">GMC-registered doctor</div>
-                  <div className="text-blue-100 text-xs">Over 10 years experience</div>
-                </div>
-                <div className="text-center border-r border-[var(--brand-blue-100)]/30">
-                  <div className="text-white font-semibold text-xs">Drug-free options</div>
-                  <div className="text-blue-100 text-xs">Your own PRP — no hormones</div>
-                </div>
-                <div className="text-center border-r border-[var(--brand-blue-100)]/30">
-                  <div className="text-white font-semibold text-xs">Discreet location</div>
-                  <div className="text-blue-100 text-xs">Edgbaston & Central Birmingham</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-white font-semibold text-xs">Flexible appointments</div>
-                  <div className="text-blue-100 text-xs">Private 1:1 consultations</div>
-                </div>
+              <div className="grid grid-cols-4 gap-4">
+                {[
+                  { label: "GMC-registered doctor", sub: "Over 10 years experience" },
+                  { label: "Drug-free options", sub: "Your own PRP — no hormones" },
+                  { label: "Discreet location", sub: "Edgbaston & Central Birmingham" },
+                  { label: "Private consultations", sub: "Strictly 1:1 Care" }
+                ].map((item, idx) => (
+                  <div key={idx} className={`text-center ${idx !== 3 ? 'border-r border-white/10' : ''}`}>
+                    <div className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 font-inter">{item.label}</div>
+                    <div className="text-blue-100 text-[10px] md:text-[11px] font-semibold font-inter">{item.sub}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Services Grid */}
-      <section id="services" className="py-24 bg-white">
+      {/* Services Grid - py-16 refinement */}
+      <section id="services" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-raleway text-slate-900 mt-2">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mt-2 tracking-tight">
               Our Birmingham Treatments
             </h2>
-            <p className="text-slate-600 text-lg mt-4 max-w-3xl mx-auto">
+            <p className="text-slate-600 text-base mt-4 max-w-3xl mx-auto leading-relaxed">
               Regenerative medicine treatments delivered by an experienced doctor in our West Midlands clinic.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col">
-                <h3 className="text-xl font-raleway font-semibold text-slate-900 mb-3 group-hover:text-[var(--brand-blue)] transition-colors">
+              <div key={index} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col">
+                <h3 className="text-lg font-raleway font-bold text-slate-900 mb-3 group-hover:text-[var(--brand-blue)] transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 mb-6 font-inter text-sm leading-relaxed flex-grow">
+                <p className="text-slate-600 mb-6 font-inter text-xs leading-relaxed flex-grow">
                   {service.desc}
                 </p>
-                <Link href={service.link} className="inline-flex items-center text-[var(--brand-blue)] font-semibold group-hover:gap-2 transition-all duration-300">
+                <Link href={service.link} className="inline-flex items-center text-[var(--brand-blue)] text-xs font-bold group-hover:gap-2 transition-all duration-300">
                   View Details <FaArrowRight className="ml-2 w-3 h-3" />
                 </Link>
               </div>
@@ -174,22 +174,22 @@ export default function BirminghamHomeClient() {
         </div>
       </section>
 
-      {/* Joint Injections Preview - SEO TWEAK: Added 'Birmingham' to text */}
-      <section className="py-20 bg-slate-50">
+      {/* Joint Injections Preview - py-16 refinement */}
+      <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl order-last lg:order-first">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div className="relative h-[350px] rounded-3xl overflow-hidden shadow-xl order-last lg:order-first">
                  <img src="/joint-injections.jpg" alt="Joint Injection Therapy Birmingham" className="w-full h-full object-cover" />
               </div>
-              <div>
-                 <h2 className="text-3xl lg:text-4xl font-raleway text-slate-900 mb-6">
+              <div className="lg:pl-6">
+                 <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4 tracking-tight">
                     Joint Pain Relief in Birmingham
                  </h2>
-                 <p className="text-slate-600 font-inter leading-relaxed mb-6">
+                 <p className="text-slate-600 text-sm font-inter leading-relaxed mb-6">
                     We offer doctor-delivered PRP and Steroid injections for arthritis and sports injuries at our Birmingham clinic. 
                     Ideal for patients seeking non-surgical options for knee, shoulder, and hip pain.
                  </p>
-                 <Link href="/birmingham/joint-injections" className="inline-flex items-center text-[var(--brand-blue)] font-semibold hover:gap-2 transition-all duration-300">
+                 <Link href="/birmingham/joint-injections" className="inline-flex items-center text-[var(--brand-blue)] text-sm font-bold hover:gap-2 transition-all duration-300">
                     View Joint Treatments <FaArrowRight className="ml-2 w-4 h-4" />
                  </Link>
               </div>
@@ -197,23 +197,23 @@ export default function BirminghamHomeClient() {
         </div>
       </section>
 
-      {/* Location Details */}
-      <section className="py-20 bg-white">
+      {/* Location Details - py-16 refinement */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[var(--brand-blue)] rounded-3xl overflow-hidden shadow-2xl">
+          <div className="bg-[var(--brand-blue)] rounded-[2.5rem] overflow-hidden shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="p-10 lg:p-16 text-white flex flex-col justify-center">
-                <h2 className="text-3xl font-raleway font-bold mb-6">Visit Our Birmingham Clinic</h2>
-                <p className="text-blue-100 mb-8 font-inter leading-relaxed">
+              <div className="p-8 lg:p-14 text-white flex flex-col justify-center">
+                <h2 className="text-3xl font-raleway font-bold mb-4 tracking-tight">Visit Our Birmingham Clinic</h2>
+                <p className="text-blue-100 mb-8 text-sm font-inter leading-relaxed">
                   Conveniently located for patients across the West Midlands, including Solihull, Edgbaston, and Sutton Coldfield.
                 </p>
                 <div className="flex items-start gap-4 mb-10">
-                  <div className="p-3 bg-white/10 rounded-lg">
-                    <FaMapMarkerAlt className="w-6 h-6 text-white" />
+                  <div className="p-3 bg-white/10 rounded-xl">
+                    <FaMapMarkerAlt className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg mb-1">Address</h4>
-                    <p className="text-blue-100 text-sm">
+                    <h4 className="font-bold text-base mb-1">Address</h4>
+                    <p className="text-blue-100 text-xs leading-relaxed">
                       Healing-PRP Clinics Birmingham<br />
                       [Insert Full Street Address]<br />
                       Birmingham, West Midlands<br />
@@ -222,12 +222,12 @@ export default function BirminghamHomeClient() {
                   </div>
                 </div>
                 <div>
-                  <Link href="/contact" className="inline-block px-8 py-3 bg-white text-[var(--brand-blue)] rounded-lg font-bold hover:bg-gray-100 transition-colors">
+                  <Link href="/contact" className="inline-block px-8 py-3 bg-white text-[var(--brand-blue)] rounded-xl font-bold text-sm hover:bg-gray-100 transition-all active:scale-95">
                     Get Directions
                   </Link>
                 </div>
               </div>
-              <div className="relative h-[400px] lg:h-auto bg-slate-200">
+              <div className="relative h-[350px] lg:h-auto bg-slate-200">
                  <div className="w-full h-full flex items-center justify-center text-slate-500 font-medium">
                     <iframe width="100%" height="100%" style={{ border: 0 }} loading="lazy" allowFullScreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.6200223727823!2d-1.9025!3d52.4862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870000000000000%3A0x0000000000000000!2sBirmingham!5e0!3m2!1sen!2suk!4v1"></iframe>
                  </div>
@@ -237,25 +237,27 @@ export default function BirminghamHomeClient() {
         </div>
       </section>
 
-      {/* WhatsApp Modal */}
+      {/* WhatsApp Modal - Refined sizing */}
       <AnimatePresence>
         {isModalOpen && (
           <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
-            <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative text-center">
-                <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full"><FaTimes className="w-5 h-5 text-slate-600" /></button>
-                <h3 className="text-2xl font-raleway font-semibold text-slate-900 mb-2">Scan to Chat</h3>
-                <p className="text-sm text-slate-600 mb-6">Use your phone camera to scan the QR code</p>
-                <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6"><img src="/qrcode.png" alt="WhatsApp QR Code" className="w-64 h-64" /></div>
-                <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-medium transition-all duration-300"><FaWhatsapp className="w-5 h-5" /> Open WhatsApp Web</a>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-[#0f172a]/80 z-[60] backdrop-blur-md" onClick={() => setIsModalOpen(false)} />
+            <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="fixed inset-0 z-[70] flex items-center justify-center p-4 pointer-events-none" onClick={(e) => e.stopPropagation()}>
+              <div className="bg-white rounded-[2.5rem] p-8 max-w-sm w-full pointer-events-auto shadow-2xl relative text-center">
+                <button onClick={() => setIsModalOpen(false)} className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-900 transition-colors"><FaTimes className="w-4 h-4" /></button>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-2">Connect Instantly</h3>
+                <p className="text-xs text-slate-500 mb-6 font-inter leading-relaxed">Scan with your phone camera to chat with our medical team</p>
+                <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 inline-block mb-6"><img src="/qrcode.png" alt="WhatsApp QR Code" className="w-40 h-40" /></div>
+                <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full py-3.5 bg-[#25D366] text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all"><FaWhatsapp className="w-5 h-5" /> Open WhatsApp Web</a>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
 
-      <ContactCTASection />
+      <div id="contact-form-section">
+        <ContactCTASection />
+      </div>
       <Footer />
     </>
   );
