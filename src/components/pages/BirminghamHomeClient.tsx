@@ -77,24 +77,26 @@ export default function BirminghamHomeClient() {
         {/* OPTIMIZED IMAGE LOADING */}
         <div className="absolute inset-0 z-0">
           {/* Mobile Hero - Prioritized */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src="/mobilehero.png" 
             alt="Birmingham Clinic Hero" 
             className="absolute inset-0 w-full h-full object-cover sm:hidden opacity-60"
-            // @ts-ignore
+            // @ts-expect-error - fetchpriority is not yet in React types but supported by browsers
             fetchpriority="high"
           />
           {/* Desktop Hero - Prioritized */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src="/herobg.jpg" 
             alt="Birmingham Clinic Hero" 
             className="absolute inset-0 w-full h-full object-cover hidden sm:block opacity-60"
-            // @ts-ignore
+            // @ts-expect-error - fetchpriority is not yet in React types but supported by browsers
             fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
         </div>
-
+        
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-[-4vh]">
           {/* Badge */}
           <div className={`inline-block px-4 py-1.5 bg-[var(--brand-blue)] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] transition-all duration-700 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
