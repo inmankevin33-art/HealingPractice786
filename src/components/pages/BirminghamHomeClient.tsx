@@ -1,224 +1,154 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FaMapMarkerAlt, 
-  FaArrowRight, 
-  FaWhatsapp, 
-  FaEnvelope, 
-  FaTimes 
-} from "react-icons/fa";
-import Link from "next/link";
+import { FaWhatsapp, FaArrowRight, FaStethoscope, FaFlask, FaShieldAlt } from "react-icons/fa";
+
+// Component Imports
+import LocationSection from "@/components/LocationSection";
+import PRPExplanationSection from "@/components/PRPExplanationSection";
 import ContactCTASection from "@/components/ContactCTASection";
 import Footer from "@/components/Footer";
-import PRPExplanationSection from "@/components/PRPExplanationSection";
-import LocationSection from "@/components/LocationSection";
 
 export default function BirminghamHomeClient() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
 
-  useEffect(() => {
-    setIsLoaded(true);
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
-  }, []);
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, [isModalOpen]);
-
-  const handleWhatsAppClick = (e: React.MouseEvent) => {
-    if (isDesktop) {
-      e.preventDefault();
-      setIsModalOpen(true);
-    }
-  };
-
-  const scrollToContact = () => {
-    const section = document.getElementById("contact-form-section");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const services = [
-    {
-      title: "Hair Restoration",
-      desc: "West Midlands' leading clinic for PRP & Exosome hair therapy. Stimulate regrowth without surgery.",
-      link: "/birmingham/hair-restoration",
-    },
-    {
-      title: "Sexual Rejuvenation",
-      desc: "Confidential P-Shot® & O-Shot® treatments in Birmingham to restore function and sensitivity.",
-      link: "/birmingham/sexual-rejuvenation",
-    },
-    {
-      title: "Joint Injections",
-      desc: "Expert joint pain relief for arthritis and sports injuries using regenerative PRP therapy.",
-      link: "/birmingham/joint-injections",
-    },
-    {
-      title: "Facial Aesthetics",
-      desc: "Vampire Facials & Polynucleotides for natural skin rejuvenation in the heart of the Midlands.",
-      link: "/birmingham/facial-aesthetics",
-    },
-  ];
-
+  // Performance Optimization: Force GPU layer for the entire page
   return (
-    <>
-      {/* --- HERO SECTION --- */}
-      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center">
+    <div className="bg-slate-50 selection:bg-blue-100 selection:text-blue-900 transform-gpu overflow-x-hidden">
+      
+      {/* 1. CLINICAL HERO SECTION */}
+      <section className="relative min-h-[85vh] flex items-center pt-20 overflow-hidden bg-[#0a1128]">
+        {/* Optimized Background Image */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.png')" }}></div>
-          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden sm:block" style={{ backgroundImage: "url('/herobg.jpg')" }}></div>
-          <div className="absolute inset-0 bg-black/55"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1128] via-[#0a1128]/80 to-transparent z-10" />
+          <img
+            src="/images/birmingham-clinic.jpg" 
+            alt="Healing-PRP Birmingham Clinic"
+            className="w-full h-full object-cover object-center scale-105"
+            loading="eager"
+          />
         </div>
 
-        {/* Main Content - Centered mt refinement */}
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-[-4vh]">
-          
-          {/* Aligned Badge */}
-          <div className={`inline-block px-4 py-1.5 bg-[var(--brand-blue)] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] transition-all duration-1000 delay-200 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <FaMapMarkerAlt className="inline-block mr-2 mb-0.5" /> Birmingham Clinic
-          </div>
-
-          {/* Headline - Refined to text-5xl/text-3xl */}
-          <h1 className={`md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight transition-all duration-1000 delay-300 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            Natural Regeneration Treatments <br /> in Birmingham
-          </h1>
-
-          {/* Subheading - Refined to text-lg/text-base */}
-          <h2 className={`mt-1 md:text-lg text-base text-blue-100 font-medium leading-relaxed transition-all duration-1000 delay-500 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            Confidential Care by a GMC Registered Experienced Doctor
-          </h2>
-
-          <p className={`mt-3 text-sm md:text-base text-white/90 leading-relaxed max-w-2xl mx-auto mb-8 transition-all duration-1000 delay-500 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            Specialist regenerative treatments for Hair Loss, Sexual Wellness, and Joint Pain. 
-            Proudly serving Edgbaston, Solihull, and the wider West Midlands.
-          </p>
-
-          {/* Buttons - py-3.5 refinement */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-800 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <button 
-              onClick={scrollToContact} 
-              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-xl font-bold transition-all duration-300 flex items-center gap-2 shadow-xl active:scale-95"
-            >
-              <FaEnvelope className="w-4 h-4" /> Book Consultation
-            </button>
-            
-            <button 
-              onClick={handleWhatsAppClick} 
-              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer border-2 border-white/20 backdrop-blur-md bg-white/5 rounded-xl text-white font-bold transition-all duration-300 hover:bg-white/10 hover:border-white/40 active:scale-95 gap-2"
-            >
-              <FaWhatsapp className="w-4 h-4" /> WhatsApp Support
-            </button>
-          </div>
-        </div>
-
-        {/* Feature Banner - Height/Text Refinement */}
-        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[var(--brand-blue)]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 delay-1100 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="px-4 py-5">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-4 gap-4">
-                {[
-                  { label: "GMC-registered doctor", sub: "Over 10 years experience" },
-                  { label: "Drug-free options", sub: "Your own PRP — no hormones" },
-                  { label: "Discreet location", sub: "Edgbaston & Central Birmingham" },
-                  { label: "Private consultations", sub: "Strictly 1:1 Care" }
-                ].map((item, idx) => (
-                  <div key={idx} className={`text-center ${idx !== 3 ? 'border-r border-white/10' : ''}`}>
-                    <div className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 font-inter">{item.label}</div>
-                    <div className="text-blue-100 text-[10px] md:text-[11px] font-semibold font-inter">{item.sub}</div>
-                  </div>
-                ))}
-              </div>
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl transform-gpu"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-[11px] font-bold uppercase tracking-widest mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              Edgbaston Medical Quarter
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Services Grid - Performance Optimized & Aligned */}
-      <section id="services" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mt-2 tracking-tight">
-              Our Birmingham Treatments
-            </h2>
-            <p className="text-slate-600 text-base mt-4 max-w-3xl mx-auto leading-relaxed">
-              Regenerative medicine treatments delivered by an experienced doctor in our West Midlands clinic.
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-[1.1] mb-6 tracking-tight">
+              Specialist PRP <br />
+              <span className="text-blue-400">Clinic Birmingham</span>
+            </h1>
+            
+            <p className="text-lg text-slate-300 mb-8 leading-relaxed max-w-xl font-medium">
+              Doctor-led regenerative medicine specializing in PRP Hair Restoration, 
+              Joint Injections, and Sexual Wellness (P-Shot & O-Shot).
             </p>
+
+            <div className="flex flex-wrap gap-4">
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 flex items-center gap-2 group transform-gpu active:scale-95"
+              >
+                Book Consultation
+                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 2. CORE SERVICES GRID (Hardware Accelerated) */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">Clinical Specialisms</h2>
+            <div className="h-1 w-20 bg-blue-600 mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <motion.div 
-                key={index} 
-                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col transform-gpu will-change-transform"
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Hair Restoration", icon: <FaFlask />, path: "/birmingham/hair-restoration" },
+              { title: "Joint Injections", icon: <FaStethoscope />, path: "/birmingham/joint-injections" },
+              { title: "Sexual Wellness", icon: <FaShieldAlt />, path: "/birmingham/sexual-rejuvenation" }
+            ].map((service, i) => (
+              <motion.a
+                key={i}
+                href={service.path}
+                initial={false} // Performance: Don't animate off-screen
+                whileHover={{ y: -5 }}
+                className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:border-blue-200 transition-all group transform-gpu"
               >
-                <h3 className="text-lg font-raleway font-bold text-slate-900 mb-3 group-hover:text-[var(--brand-blue)] transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-slate-600 mb-6 font-inter text-xs leading-relaxed flex-grow">
-                  {service.desc}
-                </p>
-                <Link 
-                  href={service.link} 
-                  className="inline-flex items-center text-[var(--brand-blue)] text-xs font-bold group-hover:gap-2 transition-all duration-300"
-                >
-                  View Details <FaArrowRight className="ml-2 w-3 h-3" />
-                </Link>
-              </motion.div>
+                <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                  {React.cloneElement(service.icon as React.ReactElement, { size: 24 })}
+                </div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3">{service.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">Expert treatment plans tailored to your goals by GMC-registered doctors.</p>
+                <span className="text-blue-600 font-bold text-sm flex items-center gap-2">
+                  View Treatment <FaArrowRight size={12} />
+                </span>
+              </motion.a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Grid remains at the top */}
-      <section id="services" className="py-16 bg-white">
-        {/* ... existing services code ... */}
-      </section>
-
-      {/* NEW: Scientific PRP Breakdown replaces the static Joint section */}
+      {/* 3. NEW SCIENCE SECTION (Replaces old static joint section) */}
       <PRPExplanationSection />
 
-      {/* Localized Location Section */}
+      {/* 4. LOCALIZED LOCATION SECTION */}
       <LocationSection />
 
-      {/* WhatsApp Modal - Refined sizing */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-[#0f172a]/80 z-[60] backdrop-blur-md" onClick={() => setIsModalOpen(false)} />
-            <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="fixed inset-0 z-[70] flex items-center justify-center p-4 pointer-events-none" onClick={(e) => e.stopPropagation()}>
-              <div className="bg-white rounded-[2.5rem] p-8 max-w-sm w-full pointer-events-auto shadow-2xl relative text-center">
-                <button onClick={() => setIsModalOpen(false)} className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-900 transition-colors"><FaTimes className="w-4 h-4" /></button>
-                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-2">Connect Instantly</h3>
-                <p className="text-xs text-slate-500 mb-6 font-inter leading-relaxed">Scan with your phone camera to chat with our medical team</p>
-                <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 inline-block mb-6"><img src="/qrcode.png" alt="WhatsApp QR Code" className="w-40 h-40" /></div>
-                <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full py-3.5 bg-[#25D366] text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all"><FaWhatsapp className="w-5 h-5" /> Open WhatsApp Web</a>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-
+      {/* 5. CONTACT & FOOTER */}
       <div id="contact-form-section">
         <ContactCTASection />
       </div>
       <Footer />
-    </>
+
+      {/* OPTIMIZED WHATSAPP MODAL */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 transform-gpu">
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" 
+            />
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative bg-white rounded-[2.5rem] p-8 max-w-md w-full shadow-2xl overflow-hidden"
+            >
+              <div className="text-center">
+                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <FaWhatsapp size={40} />
+                </div>
+                <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Speak with our Doctor</h2>
+                <p className="text-slate-600 mb-8">Get instant answers about PRP treatments in Birmingham via WhatsApp.</p>
+                <a 
+                  href="https://wa.me/447XXXXXXXXX" 
+                  className="block w-full py-4 bg-green-600 hover:bg-green-700 text-white rounded-2xl font-bold transition-all shadow-lg shadow-green-600/20"
+                >
+                  Start Chat
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
