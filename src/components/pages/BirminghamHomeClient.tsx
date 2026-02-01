@@ -194,9 +194,6 @@ export default function BirminghamHomeClient() {
       {/* NEW: Scientific PRP Breakdown replaces the static Joint section */}
       <PRPExplanationSection />
 
-      {/* Localized Location Section */}
-      <LocationSection />
-
       {/* WhatsApp Modal - Refined sizing */}
       <AnimatePresence>
         {isModalOpen && (
@@ -217,6 +214,7 @@ export default function BirminghamHomeClient() {
 
       <div id="contact-form-section">
         <ContactCTASection />
+        <LocationSection />
       </div>
       <Footer />
     </>
