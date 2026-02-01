@@ -89,10 +89,10 @@ export default function ContactCTASection() {
         {/* Main Collapsed Header / Trigger */}
         <div className="text-center mb-6">
           <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] mb-4 border border-blue-100">
-            Secure Consultations
+            Get In Touch
           </div>
           <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
-            Begin Your Medical Protocol
+            Speak with a Specialist
           </h2>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
