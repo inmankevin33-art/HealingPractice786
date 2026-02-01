@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   },
   description: "Specialist medical clinic in Edgbaston, Birmingham. Contact us for private PRP treatments, Erectile Dysfunction (ED) protocols, and hair restoration.",
   alternates: {
-    canonical: "https://yourdomain.com/birmingham/contact",
+    canonical: "https://www.healing-prp.co.uk/birmingham/contact",
   },
 };
 
