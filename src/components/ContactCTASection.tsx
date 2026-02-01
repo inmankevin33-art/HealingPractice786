@@ -2,13 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { FaWhatsapp, FaEnvelope, FaInstagram, FaTimes, FaCheckCircle, FaPaperPlane } from "react-icons/fa";
+import { FaWhatsapp, FaEnvelope, FaTimes, FaCheckCircle, FaPaperPlane, FaInfoCircle } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 import emailjs from "@emailjs/browser";
 
 export default function ContactCTASection() {
+  const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   
+  // New: Clinic Toggle State
+  const [activeClinic, setActiveClinic] = useState<"st-albans" | "birmingham">(
+    pathname?.startsWith("/birmingham") ? "birmingham" : "st-albans"
+  );
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -66,6 +73,7 @@ export default function ContactCTASection() {
         phone: formData.phone,
         treatment: formData.treatment,
         message: formData.message,
+        clinic_location: activeClinic === "birmingham" ? "Birmingham (Edgbaston)" : "St Albans",
       });
 
       setSubmitStatus({ 
@@ -92,30 +100,25 @@ export default function ContactCTASection() {
   };
 
   return (
-    // 1. Tightened section padding: py-16 lg:py-24 (was 24/32)
     <section className="relative py-16 lg:py-24 overflow-hidden bg-white font-inter">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-30 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-96 bg-blue-50 blur-[120px] rounded-full" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 2. Reduced margin-bottom: mb-12 (was 16) */}
         <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={containerVariants}>
           <motion.div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] mb-4 border border-blue-100" variants={itemVariants}>
             Get In Touch
           </motion.div>
-          {/* 3. Reduced heading size: text-3xl md:text-4xl (was 4xl/5xl) */}
           <motion.h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4 tracking-tight" variants={itemVariants}>
             Book Your Private Consultation
           </motion.h2>
-          {/* 4. Reduced paragraph size: text-base (was lg) */}
           <motion.p className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed" variants={itemVariants}>
             We don’t simply perform a procedure—we develop a personalised medical protocol tailored to your individual biology.
           </motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* 5. Reduced container padding: p-6 md:p-8 (was 8/10) */}
           <motion.div 
             className="lg:col-span-7 bg-slate-50 p-6 md:p-8 rounded-[2.5rem] border border-slate-100 will-change-transform" 
             style={{ transform: 'translateZ(0)' }}
@@ -123,17 +126,36 @@ export default function ContactCTASection() {
             whileInView={{ opacity: 1, x: 0 }} 
             viewport={{ once: true }}
           >
-            {/* 6. Tightened grid gap: gap-4 (was 6) */}
             <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
+              
+              {/* NEW: CLINIC TOGGLE PILL */}
+              <div className="md:col-span-2 mb-4">
+                <div className="flex p-1 bg-slate-200/50 rounded-2xl w-fit">
+                  {(["st-albans", "birmingham"] as const).map((clinic) => (
+                    <button
+                      key={clinic}
+                      type="button"
+                      onClick={() => setActiveClinic(clinic)}
+                      className={`px-6 py-2 rounded-xl text-[11px] font-bold transition-all ${
+                        activeClinic === clinic 
+                          ? "bg-white text-blue-600 shadow-sm" 
+                          : "text-slate-500 hover:text-slate-700"
+                      }`}
+                    >
+                      {clinic === "st-albans" ? "St Albans Clinic" : "Birmingham Clinic"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div className="md:col-span-2 space-y-1.5">
                 <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Full Name</label>
                 <input 
                   type="text" 
                   name="name" 
                   required 
-                  defaultValue={formData.name} 
+                  value={formData.name} 
                   onChange={handleInputChange} 
-                  // 7. Reduced input padding: py-3 (was 4)
                   className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-shadow bg-white text-sm" 
                   placeholder="Full Name" 
                 />
@@ -144,7 +166,7 @@ export default function ContactCTASection() {
                   type="email" 
                   name="email" 
                   required 
-                  defaultValue={formData.email} 
+                  value={formData.email} 
                   onChange={handleInputChange} 
                   className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-shadow bg-white text-sm" 
                   placeholder="email@example.com" 
@@ -156,7 +178,7 @@ export default function ContactCTASection() {
                   type="tel" 
                   name="phone" 
                   required 
-                  defaultValue={formData.phone} 
+                  value={formData.phone} 
                   onChange={handleInputChange} 
                   className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-shadow bg-white text-sm" 
                   placeholder="07xxx xxxxxx" 
@@ -181,8 +203,8 @@ export default function ContactCTASection() {
                 <textarea 
                   name="message" 
                   required 
-                  rows={3} // 8. Reduced rows: 3 (was 4)
-                  defaultValue={formData.message} 
+                  rows={3} 
+                  value={formData.message} 
                   onChange={handleInputChange} 
                   className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 transition-shadow bg-white placeholder:text-slate-300 text-sm" 
                   placeholder="How can we help you?"
@@ -211,7 +233,6 @@ export default function ContactCTASection() {
 
               <button 
                 disabled={isSubmitting} 
-                // 9. Reduced button padding: py-4 (was 5)
                 className="md:col-span-2 w-full py-4 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 active:scale-[0.98] disabled:bg-slate-300 text-sm"
               >
                 {isSubmitting ? "Sending..." : <><FaPaperPlane className="w-4 h-4" /> Send My Enquiry</>}
@@ -219,9 +240,7 @@ export default function ContactCTASection() {
             </form>
           </motion.div>
           
-          {/* 10. Tightened right side spacing: gap-4 (was 6) */}
           <motion.div className="lg:col-span-5 space-y-4" initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            {/* 11. Reduced card padding: p-4 (was 6) */}
             <button onClick={() => isDesktop ? setIsModalOpen(true) : window.open('https://wa.me/447990364147', '_blank')} className="w-full group p-4 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300 text-left">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><FaWhatsapp /></div>
@@ -231,16 +250,13 @@ export default function ContactCTASection() {
                 </div>
               </div>
             </button>
-            <a href="/contact" className="block group p-4 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><FaEnvelope /></div>
-                <div>
-                  <h3 className="font-raleway font-bold text-slate-900 text-base">Full Contact Details</h3>
-                  <p className="text-xs text-slate-500">View maps & clinic hours</p>
-                </div>
+            <div className="w-full group p-4 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4">
+              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl"><FaInfoCircle /></div>
+              <div>
+                <h3 className="font-raleway font-bold text-slate-900 text-base">Full Contact Details</h3>
+                <p className="text-xs text-slate-500">View maps & clinic hours</p>
               </div>
-            </a>
-            {/* 12. Reduced standards panel padding: p-6 (was 8) */}
+            </div>
             <div className="p-6 bg-blue-50/50 rounded-[2rem] border border-blue-100/50">
               <h4 className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-4">Patient Standards</h4>
               <ul className="space-y-3">
