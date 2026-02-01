@@ -30,17 +30,9 @@
   --color-brand-blue-700: var(--brand-blue-700);
 }
 
-/* Disable system dark mode overrides */
-/* @media (prefers-color-scheme: dark) { }
-   Intentionally left inactive to keep a single light theme. */
-
-/* Removed class-based dark mode */
-
-}
-
 html {
   scroll-behavior: smooth;
-  /* Refined scaling for 100% zoom */
+  /* Reduced base size for refined 100% zoom look */
   font-size: 15px; 
 }
 
@@ -48,16 +40,14 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
-  /* Clinical feel: slight reduction in line-height for better density */
-  line-height: 1.5; 
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom animations for hero section */
 @keyframes float {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0px) translateX(0px);
   }
   25% {
@@ -70,7 +60,6 @@ body {
     transform: translateY(-30px) translateX(15px);
   }
 }
-
 @keyframes float-reverse {
   0%,
   100% {
