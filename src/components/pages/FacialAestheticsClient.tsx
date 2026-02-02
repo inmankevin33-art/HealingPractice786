@@ -486,39 +486,24 @@ export default function FacialAestheticsClient({
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
-                  className={`flex flex-col mt-3 sm:flex-row gap-4`}
+                  className="flex flex-col mt-6 items-center sm:items-start"
                 >
-                  {isDesktop ? (
-                    <button
-                      onClick={handleWhatsAppClick}
-                      className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
-                    >
-                      <FaWhatsapp className="w-5 h-5" />
-                      Book on WhatsApp
-                    </button>
-                  ) : (
-                    <a
-                      href="https://wa.me/447990364147"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
-                    >
-                      <FaWhatsapp className="w-5 h-5" />
-                      Book on WhatsApp
-                    </a>
-                  )}
-                  <button className="px-6 w-full md:w-max inline-flex items-center justify-center md:text-sm text-xs items-center gap-2 py-3 cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] rounded-lg font-inter bg-white font-medium transition-all duration-300 hover:bg-[var(--brand-blue-50)]">
-                    <Link className="flex items-center gap-2" href="/contact">
-                      <FaEnvelope className="w-5 h-5" />
-                      Contact Us
-                    </Link>
+                  <button
+                    onClick={(e) => {
+                    e.preventDefault();
+                    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+                    const section = document.getElementById("contact-form-section");
+                    if (section) section.scrollIntoView({ behavior: "smooth" });
+                  }}
+                    className="w-full sm:w-auto px-10 py-4 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-3 group active:scale-95"
+                >
+                    <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                    Book Consultation
                   </button>
                 </motion.div>
-              </motion.div>
-            </div>
+              )}
           </div>
-        </div>
-      </section>
+       </div>
 
       {/* Navigation */}
       <section className="py-8 border-b border-t shadow-xs border-gray-100 relative">
