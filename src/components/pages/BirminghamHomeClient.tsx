@@ -123,13 +123,6 @@ export default function BirminghamHomeClient() {
             >
               <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
-            
-            <button 
-              onClick={handleWhatsAppClick} 
-              className="px-10 py-3.5 flex items-center justify-center text-sm border-2 border-white/20 backdrop-blur-md bg-white/5 rounded-xl text-white font-bold transition-all hover:bg-white/10 active:scale-95 gap-2"
-            >
-              <FaWhatsapp className="w-4 h-4" /> WhatsApp Support
-            </button>
           </div>
         </div>
 
