@@ -501,9 +501,7 @@ export default function FacialAestheticsClient({
                     Book Consultation
                   </button>
                 </motion.div>
-              )}
-          </div>
-       </div>
+              </div>
 
       {/* Navigation */}
       <section className="py-8 border-b border-t shadow-xs border-gray-100 relative">
