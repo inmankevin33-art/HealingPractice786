@@ -32,6 +32,15 @@ export default function ContactCTASection() {
   }>({ type: null, message: "" });
 
   useEffect(() => {
+  const handleOpenEvent = () => setIsOpen(true);
+  
+  // Listen for the custom "open-contact-drawer" event
+  window.addEventListener("open-contact-drawer", handleOpenEvent);
+  
+  return () => window.removeEventListener("open-contact-drawer", handleOpenEvent);
+  }, []);
+
+  useEffect(() => {
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
     checkDesktop();
     window.addEventListener("resize", checkDesktop);
