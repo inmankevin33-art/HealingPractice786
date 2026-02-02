@@ -678,29 +678,31 @@ export default function FacialAestheticsClient({
                             {treatment.course}
                           </span>
                         </div>
-                      </div> 
-                      {/* Action Button Container */}
-                      <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 delay-400 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-                        <button 
-                          onClick={(e) => {
-                          e.preventDefault();
-                          // 1. Tell the drawer to open
-                          window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-                
-                          // 2. Scroll to the section
-                          const section = document.getElementById("contact-form-section");
-                          if (section) {
-                            section.scrollIntoView({ behavior: "smooth" });
-                          }
-                        }}   
-                        className="px-10 py-3.5 flex items-center justify-center text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-xl active:scale-95 gap-2 group"
-                      >
-                        <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" /> 
-                        Book Consultation
-                      </button>
+                      </div>
+                      {isDesktop ? (
+                        <motion.button
+                          onClick={handleWhatsAppClick}
+                          className="inline-flex items-center text-sm gap-2 mt-6 px-6 py-3 bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300"
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <FaWhatsapp className="w-4 h-4" />
+                          Enquire Now
+                        </motion.button>
+                      ) : (
+                        <motion.a
+                          href="https://wa.me/447990364147"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-sm gap-2 mt-6 px-6 py-3 bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300"
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <FaWhatsapp className="w-4 h-4" />
+                          Enquire Now
+                        </motion.a>
+                      )}
                     </div>
-                  }
-                      
+                  </div>
+
                   {/* Learn More Button */}
                   <div className="">
                     <motion.button
