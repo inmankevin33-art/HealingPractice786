@@ -110,12 +110,9 @@ export default function TreatmentsSection() {
                   variants={itemVariants}
                 >
                   <div className="flex gap-4">
-                    {/* <div className="w-12 h-12 bg-gradient-to-br from-[var(--brand-blue)] to-[var(--brand-blue-dark)] rounded-xl flex items-center justify-center flex-shrink-0">
-                      <treatment.icon className="w-6 h-6 text-white" />
-                    </div> */}
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <span className="text-xs font-medium text-[var(--brand-blue)] uppercase tracking-wide">
+                        <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">
                           {treatment.tag}
                         </span>
                       </div>
@@ -125,16 +122,29 @@ export default function TreatmentsSection() {
                       <p className="text-sm text-slate-500 leading-relaxed mb-4 transition-colors">
                         {treatment.description}
                       </p>
-                      <Link href="/contact">
-                        <button className="flex cursor-pointer text-sm items-center gap-2 text-[var(--brand-blue)] font-medium hover:text-[var(--brand-blue-dark)] transition-colors duration-300 group">
-                          <span>{treatment.cta}</span>
+                      
+                      {/* Updated Button Logic */}
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          // 1. Tell the Contact Drawer to open
+                          window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+
+                          // 2. Scroll to the form section
+                          const section = document.getElementById("contact-form-section");
+                          if (section) {
+                            section.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                        className="flex cursor-pointer text-sm items-center gap-2 text-blue-600 font-medium hover:text-blue-800 transition-colors duration-300 group"
+                        >
+                        <span>{treatment.cta}</span>
                           <MoveRight className="w-4 h-4 mt-[0.1rem] transition-transform duration-300 group-hover:translate-x-1" />
                         </button>
-                      </Link>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
             </motion.div>
           </motion.div>
 
