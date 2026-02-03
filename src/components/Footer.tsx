@@ -154,7 +154,7 @@ export default function Footer() {
             <div className="space-y-3 text-xs text-slate-400 leading-relaxed">
               <div className="flex items-start gap-2.5">
                 <FaMapMarkerAlt className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-blue-500/70" />
-                <p>Advanced Medical Hub,<br />Birmingham B1 2JP</p>
+                <p>38 Harborne Rd,<br />Edgbaston B15 3EB</p>
               </div>
               <div className="flex items-center gap-2.5">
                 <FaPhone className="w-3.5 h-3.5 flex-shrink-0 text-blue-500/70" />
@@ -171,7 +171,7 @@ export default function Footer() {
             <div className="space-y-3 text-xs text-slate-400 leading-relaxed">
               <div className="flex items-start gap-2.5">
                 <FaMapMarkerAlt className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-blue-500/70" />
-                <p>Wellness Center,<br />St Albans AL1 3UR</p>
+                <p>21 Victoria Street,<br />St Albans AL1 3JJ</p>
               </div>
               <div className="flex items-center gap-2.5">
                 <FaPhone className="w-3.5 h-3.5 flex-shrink-0 text-blue-500/70" />
