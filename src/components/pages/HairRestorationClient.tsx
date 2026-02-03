@@ -37,10 +37,7 @@ export default function HairRestorationClient({
   // Unified Action Function: Opens Drawer + Smooth Scroll
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
-    // 1. Signal the consultation drawer to open
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-    
-    // 2. Smooth scroll to the form section
     const section = document.getElementById("contact-form-section");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -51,10 +48,7 @@ export default function HairRestorationClient({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
     },
   };
 
@@ -63,9 +57,7 @@ export default function HairRestorationClient({
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-      },
+      transition: { duration: 0.6 },
     },
   };
 
@@ -133,7 +125,15 @@ export default function HairRestorationClient({
     },
     {
       question: "How long do results from PRP hair treatments last?",
-      answer: "Results vary, but many patients see improvements for 12–18 months.",
+      answer: "Results vary, but many patients see improvements for 12–18 months. Maintenance treatments are often recommended every 6–12 months.",
+    },
+    {
+      question: "Is the hair restoration treatment painful?",
+      answer: "Discomfort is generally mild. We use topical numbing cream and very fine needles to ensure the procedure is as comfortable as possible.",
+    },
+    {
+      question: "Can I go back to work after my scalp treatment?",
+      answer: "Yes, most patients return to normal activities immediately. There may be some mild redness or a 'tight' sensation on the scalp for 24 hours.",
     },
   ];
 
@@ -151,34 +151,18 @@ export default function HairRestorationClient({
             <motion.div className="inline-block px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-xs font-inter font-medium mb-4" variants={itemVariants}>
               GMC‑registered | CE‑marked | Natural Results
             </motion.div>
-
             <motion.h1 className="text-2xl lg:text-4xl text-gray-700 font-semibold mb-2" variants={itemVariants}>
               Hair Restoration & Regenerative Treatments in {locationName}
             </motion.h1>
-
             <motion.p className="text-sm text-gray-500 leading-relaxed max-w-3xl mb-6" variants={itemVariants}>
               Doctor-led regenerative hair treatments tailored to individual needs following a medical consultation.
             </motion.p>
-
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
               <button onClick={handleAction} className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-xl gap-2 group active:scale-95">
                 <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                 Book Consultation
               </button>
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Navigation */}
-      <section className="py-8 border-b border-t border-gray-100 relative bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="flex flex-wrap justify-center gap-4" initial="hidden" animate="visible" variants={containerVariants}>
-            {treatments.map((t, i) => (
-              <motion.a key={i} href={`#${t.name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`} className="px-4 py-2 text-sm border border-gray-100 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors" variants={itemVariants}>
-                {t.name}
-              </motion.a>
-            ))}
           </motion.div>
         </div>
       </section>
@@ -202,22 +186,22 @@ export default function HairRestorationClient({
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-white rounded-xl p-6">
-                    <h4 className="font-semibold text-slate-900 mb-4">Treatment Details</h4>
+                  <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+                    <h4 className="font-semibold text-slate-900 mb-4 font-raleway">Treatment Details</h4>
                     <div className="space-y-3 mb-6">
-                      <div className="text-sm"><span className="font-medium">Duration:</span> {treatment.duration}</div>
-                      <div className="text-sm"><span className="font-medium">Course:</span> {treatment.course}</div>
+                      <div className="text-sm font-inter"><span className="font-medium text-slate-700">Duration:</span> {treatment.duration}</div>
+                      <div className="text-sm font-inter"><span className="font-medium text-slate-700">Course:</span> {treatment.course}</div>
                     </div>
-                    <button onClick={handleAction} className="inline-flex items-center justify-center w-full sm:w-auto text-sm gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all group active:scale-95">
+                    <button onClick={handleAction} className="inline-flex items-center justify-center w-full text-sm gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all group active:scale-95">
                       <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                       Book Consultation
                     </button>
                   </div>
                 </div>
 
-                <div className="mt-4">
-                  <button onClick={() => setExpandedTreatment(expandedTreatment === treatment.name ? null : treatment.name)} className="inline-flex items-center gap-2 py-2 text-blue-600 text-sm font-medium hover:opacity-70 transition-opacity">
-                    {expandedTreatment === treatment.name ? (<>Show Less <FaChevronUp className="w-3 h-3" /></>) : (<>Learn More <FaChevronDown className="w-3 h-3" /></>)}
+                <div className="mt-6">
+                  <button onClick={() => setExpandedTreatment(expandedTreatment === treatment.name ? null : treatment.name)} className="inline-flex items-center gap-2 py-2 text-blue-600 text-sm font-semibold hover:opacity-70 transition-opacity">
+                    {expandedTreatment === treatment.name ? (<>Show Less <FaChevronUp className="w-3" /></>) : (<>Learn More <FaChevronDown className="w-3" /></>)}
                   </button>
                 </div>
 
@@ -227,14 +211,14 @@ export default function HairRestorationClient({
                       <div className="bg-white rounded-xl p-6 border-t border-slate-200">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                           <div>
-                            <h4 className="font-semibold mb-2">How It Works</h4>
-                            <p className="text-sm text-slate-600">{treatment.expandedContent.howItWorks}</p>
+                            <h4 className="font-bold text-slate-900 mb-2 font-raleway">How It Works</h4>
+                            <p className="text-sm text-slate-600 leading-relaxed font-inter">{treatment.expandedContent.howItWorks}</p>
                           </div>
                           <div>
-                            <h4 className="font-semibold mb-2">Who Is It For?</h4>
-                            <ul className="space-y-1">
+                            <h4 className="font-bold text-slate-900 mb-2 font-raleway">Who Is It For?</h4>
+                            <ul className="space-y-2">
                               {treatment.expandedContent.whoIsItFor.map((w, i) => (
-                                <li key={i} className="text-sm text-slate-700 flex gap-2"><FaCheck className="text-blue-600 w-3 h-3 mt-1" /> {w}</li>
+                                <li key={i} className="text-sm text-slate-700 flex gap-2 font-inter"><FaCheck className="text-blue-600 w-3 mt-1" /> {w}</li>
                               ))}
                             </ul>
                           </div>
@@ -249,15 +233,53 @@ export default function HairRestorationClient({
         </div>
       </section>
 
-      {/* Reusable CTA Bar */}
+      {/* CTA Bar */}
       <section className="py-12 bg-white border-t border-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center gap-4">
           <Link href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"} className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-lg active:scale-95 gap-2">
             View Treatment Prices
           </Link>
           <Link href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"} className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white rounded-xl font-bold transition-all active:scale-95 gap-2">
             View Clinic FAQs
           </Link>
+        </div>
+      </section>
+
+      {/* FAQs Section */}
+      <section id="faqs" className="py-20 lg:py-32 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+            <div className="text-center mb-12">
+              <div className="inline-block px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-xs font-inter font-medium mb-4">
+                Frequently Asked Questions
+              </div>
+              <h2 className="text-2xl lg:text-4xl font-raleway text-slate-900 tracking-tight leading-tight">
+                Common Questions About Hair Restoration
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                  <button onClick={() => toggleFAQ(index)} className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors">
+                    <h3 className="font-raleway text-slate-900 font-semibold pr-4">{faq.question}</h3>
+                    <div className="flex-shrink-0 w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 transition-transform">
+                      {openFAQIndex === index ? <FaMinus /> : <FaPlus />}
+                    </div>
+                  </button>
+                  <AnimatePresence>
+                    {openFAQIndex === index && (
+                      <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+                        <div className="px-6 pb-6 pt-2 border-t border-slate-50">
+                          <p className="text-slate-600 text-sm leading-relaxed font-inter">{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
