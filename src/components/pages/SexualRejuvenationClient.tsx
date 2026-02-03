@@ -538,7 +538,8 @@ export default function SexualHealthClient({
                 rel="noopener noreferrer"
                 className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
               >
-                <BookOpen className="w-5 h-5" />
+                {/* Using FaCheck instead of BookOpen to avoid the error */}
+                <FaCheck className="w-4 h-4" /> 
                 Read More
               </Link>
             </motion.div>
@@ -646,14 +647,15 @@ export default function SexualHealthClient({
                 may not be appropriate for everyone.
               </p>
             </motion.div>
-            <motion.div variants={itemVariants}>
+           <motion.div variants={itemVariants}>
               <Link
                 href="/blog"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
               >
-                <BookOpen className="w-5 h-5" />
+                {/* Using FaCheck instead of BookOpen to avoid the error */}
+                <FaCheck className="w-4 h-4" /> 
                 Read More
               </Link>
             </motion.div>
