@@ -1,12 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import {
   FaCheck,
   FaPlus,
   FaMinus,
   FaEnvelope,
+  FaTimes,      // Add this
+  FaChevronUp,  // Add this
+  FaChevronDown // Add this
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
