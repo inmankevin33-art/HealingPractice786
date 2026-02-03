@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion"; // Removed AnimatePresence if only used for the old modal
 import { 
   FaMapMarkerAlt, 
   FaArrowRight, 
-  FaWhatsapp, 
-  FaEnvelope, 
-  FaTimes 
-} from "react-icons/fa";
+  FaEnvelope 
+} from "react-icons/fa"; // Removed FaWhatsapp and FaTimes
 import Link from "next/link";
 import ContactCTASection from "@/components/ContactCTASection";
 import Footer from "@/components/Footer";
@@ -17,29 +15,18 @@ import LocationSection from "@/components/LocationSection";
 
 export default function BirminghamHomeClient() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = isModalOpen ? "hidden" : "";
-  }, [isModalOpen]);
-
-  const handleWhatsAppClick = (e: React.MouseEvent) => {
-    if (isDesktop) {
-      e.preventDefault();
-      setIsModalOpen(true);
-    }
-  };
-
-  const scrollToContact = () => {
+  // Simplified scroll and drawer trigger
+  const handleConsultationClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // 1. Open the drawer
+    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    
+    // 2. Scroll to section
     const section = document.getElementById("contact-form-section");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -118,10 +105,21 @@ export default function BirminghamHomeClient() {
 
           <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 delay-400 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
             <button 
-              onClick={scrollToContact} 
-              className="px-10 py-3.5 flex items-center justify-center text-sm bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-xl font-bold transition-all shadow-xl active:scale-95 gap-2"
+              onClick={(e) => {
+                e.preventDefault();
+                // 1. Open the Consultation Drawer
+                window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+                
+                // 2. Smooth scroll to the form
+                const section = document.getElementById("contact-form-section");
+                if (section) {
+                  section.scrollIntoView({ behavior: "smooth" });
+                }
+              }} 
+              className="px-10 py-3.5 flex items-center justify-center text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-xl active:scale-95 gap-2 group"
             >
-              <FaEnvelope className="w-4 h-4" /> Book Consultation
+              <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" /> 
+              Book Consultation
             </button>
           </div>
         </div>
@@ -197,23 +195,7 @@ export default function BirminghamHomeClient() {
 
       <Footer />
 
-      {/* WhatsApp Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-[#0f172a]/80 z-[60] backdrop-blur-md" onClick={() => setIsModalOpen(false)} />
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="fixed inset-0 z-[70] flex items-center justify-center p-4">
-              <div className="bg-white rounded-[2.5rem] p-8 max-w-sm w-full shadow-2xl relative text-center" onClick={e => e.stopPropagation()}>
-                <button onClick={() => setIsModalOpen(false)} className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-900"><FaTimes className="w-4 h-4" /></button>
-                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-2">Connect Instantly</h3>
-                <p className="text-xs text-slate-500 mb-6 font-inter leading-relaxed">Scan with your phone camera to chat with our medical team</p>
-                <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 inline-block mb-6"><img src="/qrcode.png" alt="WhatsApp QR" className="w-40 h-40" /></div>
-                <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full py-3.5 bg-[#25D366] text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all"><FaWhatsapp className="w-5 h-5" /> Open WhatsApp Web</a>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* Note: WhatsApp Modal and unused states have been removed for a cleaner, conversion-focused flow */}
     </main>
   );
 }
