@@ -55,8 +55,18 @@ export default function Footer() {
   };
 
   const contactMethods = [
-    { icon: FaEnvelope, label: "Email", href: "mailto:info@healing-prp.co.uk" },
-    { icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/Healing_Prp" },
+    { 
+      icon: FaEnvelope, 
+      label: "Email", 
+      href: "mailto:info@healing-prp.co.uk",
+      text: "info@healing-prp.co.uk" // Added the visible text
+    },
+    { 
+      icon: FaInstagram, 
+      label: "Instagram", 
+      href: "https://www.instagram.com/Healing_Prp",
+      text: "@Healing_Prp" // Optional: add handle here too
+    },
   ];
 
   const treatments = [
@@ -88,21 +98,29 @@ export default function Footer() {
                 Healing-PRP Clinics
               </h3>
             </div>
+            
             <p className="text-slate-400 mb-6 text-xs leading-relaxed max-w-xs">
               Evidence‑based treatments using your own Platelet‑Rich Plasma
               (PRP) in a discreet, professional medical setting.
             </p>
-            <div className="flex gap-3">
+
+            {/* Visible Contact List */}
+            <div className="flex flex-col gap-4 mt-6">
               {contactMethods.map((method, idx) => (
                 <a
                   key={idx}
                   href={method.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-slate-800 rounded-lg hover:bg-blue-600 transition-all duration-300"
+                  className="flex items-center gap-3 group"
                   aria-label={method.label}
                 >
-                  <method.icon className="w-3.5 h-3.5" />
+                  <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-blue-600 transition-all duration-300">
+                    <method.icon className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-xs text-slate-400 group-hover:text-white transition-colors truncate">
+                    {method.text}
+                  </span>
                 </a>
               ))}
             </div>
