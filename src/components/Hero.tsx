@@ -104,7 +104,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <button 
-            onClick={scrollToContact} 
+            onClick={handleAction}
             className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95"
           >
             <FaEnvelope className="w-4 h-4" /> Book Consultation
