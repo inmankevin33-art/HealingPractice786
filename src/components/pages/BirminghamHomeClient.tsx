@@ -11,6 +11,7 @@ import Link from "next/link";
 import ContactCTASection from "@/components/ContactCTASection";
 import Footer from "@/components/Footer";
 import PRPExplanationSection from "@/components/PRPExplanationSection";
+import FAQSection from "@/components/FAQSection";
 import LocationSection from "@/components/LocationSection";
 
 export default function BirminghamHomeClient() {
@@ -186,6 +187,9 @@ export default function BirminghamHomeClient() {
 
       {/* --- SCIENCE SECTION --- */}
       <PRPExplanationSection />
+
+      {/* NEW SECTION ADDED HERE */}
+      <FAQSection />
 
       {/* --- CONTACT & LOCATION SECTION --- */}
       <div id="contact-form-section" className="contain-layout">
