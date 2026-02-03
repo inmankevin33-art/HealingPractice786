@@ -1,16 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import {
-  FaWhatsapp,
   FaCheck,
-  FaChevronDown,
-  FaChevronUp,
   FaPlus,
   FaMinus,
   FaEnvelope,
-  FaTimes,
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -25,60 +21,30 @@ export default function JointInjectionsClient({
 }: JointInjectionsClientProps) {
   const [expandedTreatment, setExpandedTreatment] = useState<string | null>(null);
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Determine nearby areas text based on location
+  const nearbyAreas =
+    locationName === "Birmingham"
+      ? "Solihull, Edgbaston, Sutton Coldfield, and the West Midlands"
+      : "Harpenden, Luton, Watford, Welwyn, Hertford, and London";
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
- useEffect(() => {
-    // Check if desktop
-    const checkDesktop = () => {
-      setIsDesktop(window.innerWidth >= 768); // md breakpoint
-    };
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
-  }, []);
-
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    if (isModalOpen) {
-      const scrollY = window.scrollY;
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.paddingRight = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+  // Unified Action Function: Opens Drawer + Smooth Scroll
+  const handleAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // 1. Signal the consultation drawer to open
+    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    
+    // 2. Smooth scroll to the form section
+    const section = document.getElementById("contact-form-section");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.paddingRight = "";
-    };
-  }, [isModalOpen]);
-
-  const handleWhatsAppClick = (e: React.MouseEvent) => {
-    if (isDesktop) {
-      e.preventDefault();
-      setIsModalOpen(true);
-    }
-    // On mobile, let the default link behavior work
   };
-
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -269,30 +235,12 @@ export default function JointInjectionsClient({
                   variants={itemVariants}
                   className={`flex flex-col mt-3 sm:flex-row gap-4`}
                 >
-                  {isDesktop ? (
-                    <button
-                      onClick={handleWhatsAppClick}
-                      className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
-                    >
-                      <FaWhatsapp className="w-5 h-5" />
-                      Book on WhatsApp
-                    </button>
-                  ) : (
-                    <a
-                      href="https://wa.me/447990364147"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
-                    >
-                      <FaWhatsapp className="w-5 h-5" />
-                      Book on WhatsApp
-                    </a>
-                  )}
-                  <button className="px-6 w-full md:w-max inline-flex items-center justify-center md:text-sm text-xs items-center gap-2 py-3 cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] rounded-lg font-inter bg-white font-medium transition-all duration-300 hover:bg-[var(--brand-blue-50)]">
-                    <Link className="flex items-center gap-2" href="/contact">
-                      <FaEnvelope className="w-5 h-5" />
-                      Contact Us
-                    </Link>
+                  <button
+                    onClick={handleAction}
+                    className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
+                >
+                    <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                    Book Consultation
                   </button>
                 </motion.div>
               </motion.div>
@@ -530,27 +478,21 @@ export default function JointInjectionsClient({
                           </span>
                         </div>
                       </div>
-                      {isDesktop ? (
-                        <motion.button
-                          onClick={handleWhatsAppClick}
-                          className="inline-flex items-center md:text-sm text-xs gap-2 mt-6 md:px-6 px-4 py-3 bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300"
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <FaWhatsapp className="w-4 h-4 md:block hidden" />
-                          Enquire About {treatment.name}
-                        </motion.button>
-                      ) : (
-                        <motion.a
-                          href="https://wa.me/447990364147"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center md:text-sm text-xs gap-2 mt-6 md:px-6 px-4 py-3 bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300"
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <FaWhatsapp className="w-4 h-4 md:block hidden" />
-                          Enquire About {treatment.name}
-                        </motion.a>
-                      )}
+                      <motion.button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+                          const section = document.getElementById("contact-form-section");
+                          if (section) {
+                            section.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                        className="inline-flex items-center text-sm gap-2 mt-6 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-lg shadow-blue-500/20 group"
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                        Book Consultation
+                      </motion.button>
                     </div>
                   </div>
 
@@ -559,12 +501,10 @@ export default function JointInjectionsClient({
                     <motion.button
                       onClick={() =>
                         setExpandedTreatment(
-                          expandedTreatment === treatment.name
-                            ? null
-                            : treatment.name
+                          expandedTreatment === treatment.name ? null : treatment.name
                         )
                       }
-                      className="inline-flex items-center gap-2 py-3 text-[var(--brand-blue)] rounded-lg font-inter text-sm transition-all duration-300 hover:opacity-50 cursor-pointer"
+                      className="inline-flex items-center gap-2 py-3 text-blue-600 rounded-lg font-inter text-sm transition-all duration-300 hover:opacity-50 cursor-pointer"
                       whileTap={{ scale: 0.95 }}
                     >
                       {expandedTreatment === treatment.name ? (
@@ -580,7 +520,6 @@ export default function JointInjectionsClient({
                       )}
                     </motion.button>
                   </div>
-
                   {/* Expanded Content */}
                   <AnimatePresence>
                     {expandedTreatment === treatment.name && (
@@ -788,7 +727,7 @@ export default function JointInjectionsClient({
           {/* Prices Link */}
           <Link
             href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+            className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all shadow-lg active:scale-95 gap-2"
           >
             View Treatment Prices
           </Link>
@@ -796,7 +735,7 @@ export default function JointInjectionsClient({
           {/* FAQ Link */}
           <Link
             href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue-50)] bg-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+            className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white rounded-xl font-inter font-bold transition-all active:scale-95 gap-2"
           >
             View Clinic FAQs
           </Link>
@@ -909,74 +848,7 @@ export default function JointInjectionsClient({
 
       <ContactCTASection />
 
-      <Footer />
-
-      {/* WhatsApp QR Code Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
-              onClick={() => setIsModalOpen(false)}
-            />
-            {/* Modal */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
-                {/* Close Button */}
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors"
-                  aria-label="Close modal"
-                >
-                  <FaTimes className="w-5 h-5 text-slate-600" />
-                </button>
-
-                {/* Modal Content */}
-                <div className="text-center">
-                  <h3 className="text-2xl font-raleway font-semibold text-slate-900 mb-2">
-                    Scan to Chat on WhatsApp
-                  </h3>
-                  <p className="text-sm text-slate-600 mb-6">
-                    Use your phone camera to scan the QR code
-                  </p>
-
-                  {/* QR Code */}
-                  <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
-                    <img
-                      src="/qrcode.png"
-                      alt="WhatsApp QR Code"
-                      className="w-64 h-64"
-                    />
-                  </div>
-
-                  {/* WhatsApp Web Button */}
-                  <a
-                    href="https://web.whatsapp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-medium transition-all duration-300"
-                  >
-                    <FaWhatsapp className="w-5 h-5" />
-                    Open WhatsApp Web
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+       <Footer />
     </>
   );
 }
