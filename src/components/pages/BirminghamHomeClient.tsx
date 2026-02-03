@@ -96,7 +96,7 @@ export default function BirminghamHomeClient() {
           <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 delay-400 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
             <button 
               onClick={handleConsultationClick} 
-              className="px-10 py-3.5 flex items-center justify-center text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-xl active:scale-95 gap-2 group"
+              className="px-10 py-3.5 flex items-center justify-center text-sm bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all shadow-xl active:scale-95 gap-2 group"
             >
               <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" /> 
               Book Consultation
