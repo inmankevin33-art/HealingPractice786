@@ -193,16 +193,16 @@ export default function BirminghamHomeClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
           {/* Prices Link */}
           <Link
-            href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+            href="/birmingham/prices"
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
           >
             View Treatment Prices
           </Link>
           
           {/* FAQ Link */}
           <Link
-            href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue-50)] bg-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+            href="/birmingham/faq"
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
           >
             View Clinic FAQs
           </Link>
