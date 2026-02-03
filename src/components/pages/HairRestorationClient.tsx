@@ -192,7 +192,7 @@ export default function HairRestorationClient({
                       <div className="text-sm font-inter"><span className="font-medium text-slate-700">Duration:</span> {treatment.duration}</div>
                       <div className="text-sm font-inter"><span className="font-medium text-slate-700">Course:</span> {treatment.course}</div>
                     </div>
-                    <button onClick={handleAction} className="inline-flex items-center justify-center w-full text-sm gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all group active:scale-95">
+                    <button onClick={handleAction} className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-xl gap-2 group active:scale-95">
                       <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                       Book Consultation
                     </button>
