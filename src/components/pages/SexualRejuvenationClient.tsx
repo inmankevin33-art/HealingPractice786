@@ -471,30 +471,23 @@ export default function SexualHealthClient({
               supporting erectile function, confidence, and intimacy over time.
             </motion.p>
             <motion.div variants={itemVariants}>
-              {isDesktop ? (
-                <button
-                  onClick={handleWhatsAppClick}
-                  className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
-                >
-                  <FaWhatsapp className="w-5 h-5" />
-                  Book a consultation
-                </button>
-              ) : (
-                <a
-                  href="https://wa.me/447990364147"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
-                >
-                  <FaWhatsapp className="w-5 h-5" />
-                  Book a consultation
-                </a>
-              )}
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+                  const section = document.getElementById("contact-form-section");
+                  if (section) section.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2 group"
+              >
+                <FaEnvelope className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                Book Consultation
+              </button>
             </motion.div>
           </motion.div>
         </div>
       </section>
-
+      
       <section className="py-12 lg:py-16 relative">
         {/* Background Elements */}
 
