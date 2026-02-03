@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import Link from "next/link"; // IMPORTANT: Added this import
 import Hero from "@/components/Hero";
 import ServiceOverview from "@/components/ServiceOverview";
 import PRPExplanationSection from "@/components/PRPExplanationSection";
@@ -104,6 +105,28 @@ export default function Home() {
         <Hero />
         <ServiceOverview />
         <PRPExplanationSection />
+
+        {/* --- ST ALBANS CTA BAR --- */}
+        <section className="py-12 bg-white border-t border-slate-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
+            {/* Prices Link */}
+            <Link
+              href="/prices"
+              className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-lg active:scale-95 gap-2"
+            >
+              View Treatment Prices
+            </Link>
+            
+            {/* FAQ Link */}
+            <Link
+              href="/faq"
+              className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white rounded-xl font-bold transition-all active:scale-95 gap-2"
+            >
+              View Clinic FAQs
+            </Link>
+          </div>
+        </section>
+
         <FAQSection />
         <ContactCTASection />
         <LocationSection />
