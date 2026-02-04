@@ -2,10 +2,9 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-// KEEPING YOUR WORKING ICONS
-import { ArrowLeft, Dot, ChevronRight } from "lucide-react"; 
+import { ArrowLeft, Dot, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image"; 
+// Removed Next/Image to avoid config errors
 import { BlogPost, getBlogPostBySlug, getBlogPostNavigation } from "@/lib/contentful";
 import Footer from "@/components/Footer";
 
@@ -20,7 +19,7 @@ interface RichTextContent {
   content: RichTextNode[];
 }
 
-// ✅ 1. NEW HELPER: This fixes the broken "Blue Question Mark" image
+// ✅ HELPER: Adds 'https:' to images so they definitely load
 const getImageUrl = (url: string) => {
   if (!url) return "";
   if (url.startsWith("//")) {
@@ -88,14 +87,16 @@ export default function BlogPostClient({ slug }: { slug: string }) {
     return richContent.content.map((node, index) => {
       if (node.nodeType === "paragraph") {
         return (
-          <p key={index} className="mb-6 text-base md:text-lg text-slate-600 font-inter leading-relaxed">
+          // FONT FIX: Reduced to text-sm/base (was text-lg)
+          <p key={index} className="mb-6 text-sm md:text-base text-slate-600 font-inter leading-relaxed">
             {node.content?.map((textNode) => textNode.value).join("")}
           </p>
         );
       }
       if (node.nodeType.startsWith("heading-")) {
         return (
-          <h2 key={index} className="text-2xl md:text-3xl font-raleway font-semibold text-slate-900 mt-12 mb-6 leading-tight">
+          // FONT FIX: Reduced heading size
+          <h2 key={index} className="text-xl md:text-2xl font-raleway font-semibold text-slate-900 mt-10 mb-4 leading-tight">
             {node.content?.map((textNode) => textNode.value).join("")}
           </h2>
         );
@@ -109,13 +110,13 @@ export default function BlogPostClient({ slug }: { slug: string }) {
   return (
     <motion.div initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
       
-      {/* ✅ 2. HERO UPDATE: Swapped Radial Gradient for Standard Hero Image to match other pages */}
-      <div className="absolute top-0 left-0 w-full h-[60vh] z-[-1] overflow-hidden">
-         <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-white z-10"></div>
+      {/* Background Hero Image - Standardized */}
+      <div className="absolute top-0 left-0 w-full h-[55vh] z-[-1] overflow-hidden">
+         <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-white z-10"></div>
          <img 
             src="/hero_img.png" 
             alt="Background" 
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full object-cover opacity-50"
          />
       </div>
 
@@ -125,11 +126,11 @@ export default function BlogPostClient({ slug }: { slug: string }) {
             
             {/* Navigation Bar */}
             <motion.div variants={itemVariants} className="flex items-center justify-between mb-8 pb-4 border-b border-slate-200/60">
-              <Link href="/blog" className="inline-flex items-center text-xs font-inter font-bold text-[#4041d1] hover:opacity-70 transition-colors uppercase tracking-widest">
+              <Link href="/blog" className="inline-flex items-center text-[10px] md:text-xs font-inter font-bold text-[#4041d1] hover:opacity-70 transition-colors uppercase tracking-widest">
                 <ArrowLeft className="w-3 h-3 mr-1" /> Back to Insights
               </Link>
               {navigation.next && (
-                <Link href={`/blog/${navigation.next.slug}`} className="text-xs font-inter font-bold text-[#4041d1] hover:underline flex items-center uppercase tracking-widest">
+                <Link href={`/blog/${navigation.next.slug}`} className="text-[10px] md:text-xs font-inter font-bold text-[#4041d1] hover:underline flex items-center uppercase tracking-widest">
                   Next Article <ChevronRight className="w-3 h-3 ml-1" />
                 </Link>
               )}
@@ -144,13 +145,14 @@ export default function BlogPostClient({ slug }: { slug: string }) {
               <span className="text-xs font-inter font-medium text-slate-500">{formatDate(post.date)}</span>
             </motion.div>
 
-            {/* Title */}
-            <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8 leading-tight">
+            {/* Title - FONT FIX: Reduced from 5xl to 3xl/4xl */}
+            <motion.h1 variants={itemVariants} className="text-2xl md:text-4xl font-raleway font-bold text-slate-900 mb-6 leading-tight">
               {post.title}
             </motion.h1>
 
             {post.excerpt && (
-              <motion.p variants={itemVariants} className="text-lg text-slate-600 font-inter leading-relaxed max-w-2xl mx-auto">
+              // FONT FIX: Reduced excerpt size
+              <motion.p variants={itemVariants} className="text-sm md:text-base text-slate-600 font-inter leading-relaxed max-w-2xl mx-auto italic">
                 {post.excerpt}
               </motion.p>
             )}
@@ -164,15 +166,13 @@ export default function BlogPostClient({ slug }: { slug: string }) {
             <motion.div 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
-              className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 aspect-video md:aspect-[21/9]"
+              className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-100 aspect-video md:aspect-[21/9]"
             >
-              {/* ✅ 3. IMAGE FIX: Using getImageUrl() to add https: */}
-              <Image 
+              {/* IMAGE FIX: Standard img tag guarantees display */}
+              <img 
                 src={getImageUrl(post.coverImage.url)} 
                 alt={post.coverImage.title || "Blog Cover"} 
-                fill
-                priority
-                className="object-cover" 
+                className="w-full h-full object-cover"
               />
             </motion.div>
           </div>
@@ -187,12 +187,15 @@ export default function BlogPostClient({ slug }: { slug: string }) {
             </motion.div>
           </motion.article>
           
-          <motion.div variants={itemVariants} className="mt-16 pt-8 border-t border-slate-100 text-center">
-            <p className="text-slate-600 font-inter mb-6 font-medium">Want to discuss this treatment with a specialist?</p>
+          <motion.div variants={itemVariants} className="mt-12 pt-8 border-t border-slate-100 text-center">
+            <p className="text-slate-600 font-inter mb-6 font-medium text-sm">Want to discuss this treatment with a specialist?</p>
             <Link 
                 href="/contact" 
-                // ✅ 4. COLOR FIX: Locked to Brand Blue #4041d1
-                className="inline-flex px-8 py-3 bg-[#4041d1] text-white rounded-lg font-inter font-bold hover:bg-[#2a2bb8] transition-all shadow-md"
+                className="inline-flex px-8 py-3 bg-[#4041d1] text-white rounded-lg font-inter font-bold hover:bg-[#2a2bb8] transition-all shadow-md text-sm"
+                onClick={(e) => {
+                   // Optional: Open drawer
+                   // window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+                }}
             >
               Book a Consultation
             </Link>
