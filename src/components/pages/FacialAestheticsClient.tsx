@@ -387,8 +387,8 @@ export default function FacialAestheticsClient({
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Standardized to 55vh & Brand Colors */}
+      <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
@@ -401,8 +401,8 @@ export default function FacialAestheticsClient({
 
         {/* Hero Content */}
         <div className="relative w-full z-20 flex h-full">
-          <div className="w-full max-w-7xl mt-10 md:mt-0 mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-            <div className="text-white">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center md:justify-start">
+            <div className="text-center md:text-left">
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -416,24 +416,25 @@ export default function FacialAestheticsClient({
                 </motion.div>
 
                 <motion.h1
-                  className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
+                  className="text-2xl lg:text-4xl text-slate-900 font-raleway font-semibold leading-snug mb-2"
                   variants={itemVariants}
                 >
                   Facial Aesthetics Treatments in {locationName}
-                  <span className="block mt-1">Healing-PRP Clinics</span>
+                  <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
                 </motion.h1>
  
                 <motion.p
-                  className="text-sm font-inter text-gray-500 leading-relaxed max-w-3xl"
+                  className="text-sm md:text-base font-inter text-slate-600 leading-relaxed max-w-3xl mb-8"
                   variants={itemVariants}
                 >
                   Safe, natural, and effective treatments to restore youthful
                   skin, reduce fine lines, and improve overall skin health. All
                   procedures are carried out by a GMC‑registered doctor.
                 </motion.p>
+
                 <motion.div
                   variants={itemVariants}
-                  className={`flex flex-col mt-3 sm:flex-row gap-4`}
+                  className={`flex flex-col sm:flex-row gap-4 justify-center md:justify-start`}
                 >
                  <button
                     onClick={(e) => {
@@ -442,17 +443,12 @@ export default function FacialAestheticsClient({
                       const section = document.getElementById("contact-form-section");
                       if (section) section.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
+                    // BRAND COLOR LOCK: Used hex #4041d1 to match Home Page button
+                    className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
                   >
                     <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                     Book Consultation
                   </button>
-                  {/* Empty space to maintain line count if needed */}
-                  <div className="hidden"></div>
-                  <div className="hidden"></div>
-                  <div className="hidden"></div>
-                  <div className="hidden"></div>
-                  <div className="hidden"></div>
                 </motion.div>
               </motion.div>
             </div>
@@ -479,7 +475,8 @@ export default function FacialAestheticsClient({
                 href={`#${treatment.name
                   .toLowerCase()
                   .replace(/[^a-z0-9]/g, "-")}`}
-                className="px-4 py-2 text-sm border border-gray-100 shadow-xs bg-white text-[var(--brand-blue)] rounded-lg font-inter font-medium hover:bg-[var(--brand-blue-50)] transition-colors duration-300"
+                // Using white/80 backdrop for consistency
+                className="px-4 py-2 text-sm border border-gray-100 shadow-xs bg-white/80 backdrop-blur-sm text-[var(--brand-blue)] rounded-lg font-inter font-medium hover:bg-[var(--brand-blue-50)] transition-colors duration-300"
                 variants={itemVariants}
               >
                 {treatment.name}
@@ -490,7 +487,7 @@ export default function FacialAestheticsClient({
       </section>
 
       {/* Introduction Section */}
-      <section className="py-14 lg:py-32 bg-white relative">
+      <section className="py-16 lg:py-24 bg-white relative">
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-r from-[#f6f7ff] to-transparent"></div>
@@ -524,10 +521,10 @@ export default function FacialAestheticsClient({
               ].map((benefit, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-start gap-3 p-4 bg-white rounded-lg"
+                  className="flex items-start gap-3 p-4 bg-white rounded-lg border border-slate-100 shadow-sm"
                   variants={itemVariants}
                 >
-                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[var(--brand-blue)] flex-shrink-0" />
+                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[#4041d1] flex-shrink-0" />
                   <span className="font-inter text-sm text-slate-700">
                     {benefit}
                   </span>
@@ -554,7 +551,7 @@ export default function FacialAestheticsClient({
             variants={containerVariants}
           >
             <motion.h2
-              className="text-2xl lg:text-4xl font-raleway text-slate-900 mb-8 text-center"
+              className="text-2xl lg:text-4xl font-raleway font-semibold text-slate-900 mb-8 text-center"
               variants={itemVariants}
             >
               Our Facial Aesthetics Treatments
@@ -567,15 +564,15 @@ export default function FacialAestheticsClient({
                   id={treatment.name
                     .toLowerCase()
                     .replace(/[^a-z0-9]/g, "-")}
-                  className="bg-slate-50 rounded-2xl p-8 lg:p-12"
+                  className="bg-slate-50 rounded-2xl p-8 lg:p-12 border border-slate-100"
                   variants={itemVariants}
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                     <div>
                       <div className="flex items-center gap-2 mb-4">
-                        <h3 className="md:text-2xl text-lg font-raleway text-slate-900">
+                        <h3 className="md:text-2xl text-lg font-raleway font-semibold text-slate-900">
                           {treatment.name} -{" "}
-                          <span className="md:text-xl text-lg font-inter font-semibold text-[var(--brand-blue)]">
+                          <span className="md:text-xl text-lg font-inter font-bold text-[#4041d1]">
                             {treatment.price}
                           </span>
                         </h3>
@@ -589,7 +586,7 @@ export default function FacialAestheticsClient({
                             key={benefitIndex}
                             className="flex items-start gap-3"
                           >
-                            <FaCheck className="w-3 h-3 mt-[0.3rem] text-[var(--brand-blue)] flex-shrink-0 mt-0.5" />
+                            <FaCheck className="w-3 h-3 mt-[0.3rem] text-[#4041d1] flex-shrink-0 mt-0.5" />
                             <span className="font-inter text-sm text-slate-700">
                               {benefit}
                             </span>
@@ -597,7 +594,7 @@ export default function FacialAestheticsClient({
                         ))}
                       </ul>
                     </div>
-                    <div className="bg-white rounded-xl p-6">
+                    <div className="bg-white rounded-xl p-6 border border-slate-100 shadow-sm">
                       <h4 className="md:text-lg text-base font-raleway font-semibold text-slate-900 mb-4">
                         Treatment Details
                       </h4>
@@ -628,7 +625,7 @@ export default function FacialAestheticsClient({
                             section.scrollIntoView({ behavior: "smooth" });
                           }
                         }}
-                        className="inline-flex items-center text-sm gap-2 mt-6 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-lg shadow-blue-500/20 group"
+                        className="inline-flex items-center text-sm gap-2 mt-6 px-8 py-3.5 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-lg shadow-blue-500/20 group"
                         whileTap={{ scale: 0.95 }}
                       >
                         <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
@@ -649,7 +646,7 @@ export default function FacialAestheticsClient({
                             : treatment.name
                         )
                       }
-                      className="inline-flex items-center gap-2 py-3 text-[var(--brand-blue)] rounded-lg font-inter text-sm transition-all duration-300 hover:opacity-50 cursor-pointer"
+                      className="inline-flex items-center gap-2 py-3 text-[#4041d1] rounded-lg font-inter text-sm font-semibold transition-all duration-300 hover:opacity-70 cursor-pointer"
                       whileTap={{ scale: 0.95 }}
                     >
                       {expandedTreatment === treatment.name ? (
@@ -700,7 +697,7 @@ export default function FacialAestheticsClient({
                                       key={itemIndex}
                                       className="flex items-start gap-3"
                                     >
-                                      <FaCheck className="w-3 h-3 mt-[0.3rem] text-[var(--brand-blue)] flex-shrink-0" />
+                                      <FaCheck className="w-3 h-3 mt-[0.3rem] text-[#4041d1] flex-shrink-0" />
                                       <span className="text-sm font-inter text-slate-700">
                                         {item}
                                       </span>
@@ -745,13 +742,13 @@ export default function FacialAestheticsClient({
         </div>
       </section>
 
-      {/* Reusable CTA Bar */}
+      {/* Reusable CTA Bar - Colors Locked */}
       <section className="py-12 bg-white border-t border-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
           {/* Prices Link */}
           <Link
             href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex items-center gap-2 shadow-lg"
           >
             View Treatment Prices
           </Link>
@@ -759,14 +756,14 @@ export default function FacialAestheticsClient({
           {/* FAQ Link */}
           <Link
             href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue-50)] bg-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex items-center gap-2"
           >
             View Clinic FAQs
           </Link>
         </div>
       </section>
 
-      {/* FAQs Section */}
+      {/* FAQs Section - FIXED: Added Raleway Semibold to fix thin font */}
       <section id="faqs" className="py-20 lg:py-32 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -783,14 +780,14 @@ export default function FacialAestheticsClient({
               </div>
             </motion.div>
             <motion.h2
-              className="text-2xl lg:text-4xl text-text tracking-tight font-raleway text-navy-600 leading-tight text-center"
+              className="text-2xl lg:text-4xl text-slate-900 tracking-tight font-raleway font-semibold leading-tight text-center"
               variants={itemVariants}
             >
               Common Questions About Facial Aesthetics
             </motion.h2>
 
             <motion.p
-              className="text-sm font-inter text-slate-600 mx-auto leading-relaxed text-center"
+              className="text-sm font-inter text-slate-600 mx-auto leading-relaxed text-center mt-2 mb-8"
               variants={itemVariants}
             >
               Find answers to the most frequently asked questions about our
@@ -805,7 +802,7 @@ export default function FacialAestheticsClient({
               {faqs.map((faq, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200/50 overflow-hidden"
+                  className="bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200/50 overflow-hidden shadow-sm"
                   variants={itemVariants}
                 >
                   <motion.button
@@ -813,7 +810,8 @@ export default function FacialAestheticsClient({
                     onClick={() => toggleFAQ(index)}
                     whileTap={{ scale: 0.99 }}
                   >
-                    <h3 className="text-slate-900 md:text-base text-sm font-raleway pr-4 leading-relaxed">
+                    {/* FIXED: Font-Raleway Font-Semibold added here */}
+                    <h3 className="text-slate-900 md:text-base text-sm font-raleway font-semibold pr-4 leading-relaxed">
                       {faq.question}
                     </h3>
                     <motion.div
@@ -828,7 +826,7 @@ export default function FacialAestheticsClient({
                         }}
                         transition={{ duration: 0.2 }}
                       >
-                        <FaPlus className="w-3 h-3 text-[var(--brand-blue)]" />
+                        <FaPlus className="w-3 h-3 text-[#4041d1]" />
                       </motion.div>
                       <motion.div
                         className="absolute"
@@ -838,7 +836,7 @@ export default function FacialAestheticsClient({
                         }}
                         transition={{ duration: 0.2 }}
                       >
-                        <FaMinus className="w-3 h-3 text-[var(--brand-blue)]" />
+                        <FaMinus className="w-3 h-3 text-[#4041d1]" />
                       </motion.div>
                     </motion.div>
                   </motion.button>
