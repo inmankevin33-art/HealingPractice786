@@ -124,7 +124,19 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                   Doctor-led regenerative treatments with clear, upfront costs. Serving patients across {isBirmingham ? "the West Midlands" : "Hertfordshire"}.
                 </motion.p>
 
-                <motion.div variants={itemVariants} className="flex flex-col mt-8 sm:flex-row gap-4 justify-center items-center">
+                <motion.div variants={itemVariants} className="flex flex-col mt-8 gap-6 justify-center items-center">
+                  <div className="flex flex-wrap justify-center gap-2 max-w-2xl">
+                    {categories.map(cat => (
+                      <a 
+                        key={cat.id} 
+                        href={`#${cat.id}`} 
+                        className="px-4 py-2 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full text-xs font-semibold text-slate-700 hover:border-blue-400 hover:text-blue-600 transition-all shadow-sm whitespace-nowrap"
+                      >
+                        {cat.title}
+                      </a>
+                    ))}
+                  </div>
+
                   <button
                     onClick={handleConsultationClick}
                     className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
@@ -132,25 +144,13 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                     <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                     Book Consultation
                   </button>
-
-                  <div className="flex flex-wrap justify-center gap-2 max-w-md">
-                    {categories.map(cat => (
-                      <a 
-                        key={cat.id} 
-                        href={`#${cat.id}`} 
-                        className="px-4 py-2 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full text-xs font-semibold text-slate-700 hover:border-blue-400 hover:text-blue-600 transition-all shadow-sm"
-                      >
-                        {cat.title}
-                      </a>
-                    ))}
-                  </div>
                 </motion.div>
               </motion.div>
             </div>
           </div>
         </div>
       </section>
-
+      
       {/* Pricing Tables Section */}
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
