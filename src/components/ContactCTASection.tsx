@@ -9,8 +9,6 @@ import emailjs from "@emailjs/browser";
 
 export default function ContactCTASection() {
   const pathname = usePathname();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
   const [isOpen, setIsOpen] = useState(false); // Collapsible drawer state
   
   const [activeClinic, setActiveClinic] = useState<"st-albans" | "birmingham">(
@@ -32,19 +30,9 @@ export default function ContactCTASection() {
   }>({ type: null, message: "" });
 
   useEffect(() => {
-  const handleOpenEvent = () => setIsOpen(true);
-  
-  // Listen for the custom "open-contact-drawer" event
-  window.addEventListener("open-contact-drawer", handleOpenEvent);
-  
-  return () => window.removeEventListener("open-contact-drawer", handleOpenEvent);
-  }, []);
-
-  useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
+    const handleOpenEvent = () => setIsOpen(true);
+    window.addEventListener("open-contact-drawer", handleOpenEvent);
+    return () => window.removeEventListener("open-contact-drawer", handleOpenEvent);
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -105,11 +93,9 @@ export default function ContactCTASection() {
           </h2>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
-            {/* The "Center Button" that opens the form */}
             {!isOpen && (
               <button
                 onClick={() => setIsOpen(true)}
-                // BRAND COLOR LOCK: #4041d1
                 className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-4 bg-[#4041d1] text-white rounded-2xl font-bold text-sm hover:bg-[#2a2bb8] transition-all shadow-xl shadow-blue-500/20 group"
               >
                 <FaPaperPlane className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -118,7 +104,6 @@ export default function ContactCTASection() {
               </button>
             )}
 
-            {/* Direct Call Option */}
             <a 
               href="tel:07990364147"
               className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-2xl font-bold text-sm hover:bg-slate-50 transition-all"
@@ -148,6 +133,7 @@ export default function ContactCTASection() {
                   </button>
 
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
                     {/* LEFT: THE FORM */}
                     <div className="lg:col-span-7">
                       <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
@@ -168,7 +154,7 @@ export default function ContactCTASection() {
                           </div>
                         </div>
 
-                        {/* Form Fields - Updated Styles */}
+                        {/* Form Fields */}
                         <div className="md:col-span-2 space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Full Name</label>
                           <input type="text" name="name" required value={formData.name} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" placeholder="Full Name" />
@@ -209,14 +195,32 @@ export default function ContactCTASection() {
 
                     {/* RIGHT SIDE: QUICK CONTACTS */}
                     <div className="lg:col-span-5 space-y-3">
-                      <button onClick={() => isDesktop ? setIsModalOpen(true) : window.open('https://wa.me/447990364147', '_blank')} className="w-full flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 hover:shadow-md transition-all text-left">
-                        <div className="w-10 h-10 bg-green-50 text-green-600 rounded-xl flex items-center justify-center text-lg"><FaWhatsapp /></div>
-                        <div>
-                          <h4 className="text-sm font-bold text-slate-900">WhatsApp Help</h4>
-                          <p className="text-[10px] text-slate-500 italic">Avg. 1 hour response</p>
+                      
+                      {/* ✅ NEW: Direct QR Code Card (Replaces Modal) */}
+                      <div className="w-full bg-white rounded-2xl border border-slate-100 p-6 text-center shadow-sm">
+                        <div className="inline-flex items-center gap-2 text-green-600 mb-4 bg-green-50 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                          <FaWhatsapp className="w-3 h-3" /> Quick Chat
                         </div>
-                      </button>
+                        
+                        {/* QR Code Container */}
+                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 inline-block mb-4">
+                          <img src="/qrcode.png" alt="WhatsApp QR" className="w-32 h-32 mx-auto mix-blend-multiply" />
+                        </div>
+                        
+                        <div className="space-y-1">
+                          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Scan or Click to Chat</p>
+                          <a 
+                            href="https://wa.me/447990364147" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="block text-lg font-raleway font-bold text-[#4041d1] hover:underline"
+                          >
+                            +44 7990 364 147
+                          </a>
+                        </div>
+                      </div>
 
+                      {/* Clinic Info Link */}
                       <Link href="/contact" className="w-full flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 hover:shadow-md transition-all">
                         <div className="w-10 h-10 bg-[var(--brand-blue-50)] text-[#4041d1] rounded-xl flex items-center justify-center text-lg"><FaInfoCircle /></div>
                         <div>
@@ -225,6 +229,7 @@ export default function ContactCTASection() {
                         </div>
                       </Link>
 
+                      {/* Standards List */}
                       <div className="p-5 bg-slate-100/50 rounded-2xl border border-slate-200/50">
                         <h4 className="text-[9px] font-bold text-[#4041d1] uppercase tracking-widest mb-3">Standards</h4>
                         <ul className="space-y-2">
@@ -243,25 +248,6 @@ export default function ContactCTASection() {
           )}
         </AnimatePresence>
       </div>
-
-      {/* WhatsApp Modal Logic */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="fixed inset-0 z-[70] flex items-center justify-center p-4">
-              <div className="bg-white rounded-[2.5rem] shadow-2xl max-w-md w-full p-8 relative overflow-hidden" onClick={e => e.stopPropagation()}>
-                <button onClick={() => setIsModalOpen(false)} className="absolute top-6 right-6 p-2 hover:bg-slate-100 rounded-full transition-colors"><FaTimes className="w-5 h-5 text-slate-400" /></button>
-                <div className="text-center">
-                  <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Scan to Chat</h3>
-                  <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 inline-block mb-6 mt-4"><img src="/qrcode.png" alt="WhatsApp QR" className="w-40 h-40" /></div>
-                  <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white rounded-2xl font-bold hover:shadow-lg transition-all"><FaWhatsapp className="w-5 h-5" /> Open WhatsApp Web</a>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
