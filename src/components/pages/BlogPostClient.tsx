@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BlogPost, getPostBySlug } from "@/lib/contentful";
+// FIXED: Correctly importing 'getBlogPostBySlug' to match your contentful.ts
+import { BlogPost, getBlogPostBySlug } from "@/lib/contentful";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-// ✅ HELPER: Fixes the broken image issue by adding 'https:' if missing
-const getImageUrl = (url: string) => {
+// ✅ HELPER: Robust image URL fixer
+const getImageUrl = (url: string | undefined) => {
   if (!url) return "";
+  if (url === "https:undefined") return ""; // Catch errors from contentful.ts
   if (url.startsWith("//")) {
     return `https:${url}`;
   }
@@ -17,6 +19,7 @@ const getImageUrl = (url: string) => {
 };
 
 const formatDate = (dateString: string) => {
+  if (!dateString) return "";
   return new Date(dateString).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
@@ -32,7 +35,8 @@ export default function BlogPostClient({ slug }: { slug: string }) {
   useEffect(() => {
     async function fetchPost() {
       try {
-        const fetchedPost = await getPostBySlug(slug);
+        // FIXED: Using the correct function name 'getBlogPostBySlug'
+        const fetchedPost = await getBlogPostBySlug(slug);
         setPost(fetchedPost);
       } catch (error) {
         console.error("Failed to fetch post", error);
@@ -60,18 +64,20 @@ export default function BlogPostClient({ slug }: { slug: string }) {
     );
   }
 
+  const validImageUrl = post.coverImage ? getImageUrl(post.coverImage.url) : "";
+
   return (
     <>
       <article className="bg-white">
-        {/* Header Section - Twin Standard (55vh feel but adapted for reading) */}
-        <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-slate-50 min-h-[50vh] flex flex-col justify-center">
+        {/* Header Section - Twin Standard (55vh feel) */}
+        <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-slate-50 min-h-[50vh] flex flex-col justify-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/90 z-10"></div>
           
           {/* Background blurred image effect */}
-          {post.coverImage && (
+          {validImageUrl && (
              <div className="absolute inset-0 opacity-15">
                 <img 
-                  src={getImageUrl(post.coverImage.url)} 
+                  src={validImageUrl} 
                   alt="Background" 
                   className="w-full h-full object-cover blur-sm"
                 />
@@ -105,12 +111,12 @@ export default function BlogPostClient({ slug }: { slug: string }) {
 
         {/* Main Content */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-          {/* Main Featured Image - Standard <img> tag to ensure display */}
-          {post.coverImage && (
+          {/* Main Featured Image */}
+          {validImageUrl && (
             <div className="rounded-2xl overflow-hidden shadow-lg mb-12 border border-slate-100">
               <img
-                src={getImageUrl(post.coverImage.url)}
-                alt={post.coverImage.title || post.title}
+                src={validImageUrl}
+                alt={post.coverImage?.title || post.title}
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -127,8 +133,8 @@ export default function BlogPostClient({ slug }: { slug: string }) {
             <Link 
               href="/contact" 
               onClick={(e) => {
-                 e.preventDefault();
-                 window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+                 // Allow navigation but trigger drawer if on same page logic exists
+                 // window.dispatchEvent(new CustomEvent("open-contact-drawer")); 
               }}
               className="inline-flex px-8 py-3 bg-[#4041d1] text-white rounded-lg font-inter font-bold hover:bg-[#2a2bb8] transition-all shadow-md"
             >
