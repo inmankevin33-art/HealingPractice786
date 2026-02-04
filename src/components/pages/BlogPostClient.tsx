@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { BlogPost, getBlogPostBySlug } from "@/lib/contentful";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-// FIXED: Changed from 'lucide-react' to 'react-icons/fa'
-import { FaArrowLeft, FaCalendar, FaClock } from "react-icons/fa"; 
+// FIXED: Changed imports to use 'react-icons/fa' which you have installed
+import { FaArrowLeft, FaCalendar, FaClock } from "react-icons/fa";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 // ✅ HELPER: Robust image URL fixer
@@ -131,7 +131,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
             <Link 
               href="/contact" 
               onClick={(e) => {
-                 // Trigger drawer if needed
+                 // Trigger drawer logic if needed
                  // window.dispatchEvent(new CustomEvent("open-contact-drawer")); 
               }}
               className="inline-flex px-8 py-3 bg-[#4041d1] text-white rounded-lg font-inter font-bold hover:bg-[#2a2bb8] transition-all shadow-md"
