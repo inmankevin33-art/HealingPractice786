@@ -45,7 +45,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
       items: [
         { name: "P-Shot® (PRP)", price: "£650", sessions: "Course of 3: £1800", details: "Male performance & repair" },
         { name: "O-Shot® (PRP)", price: "£700", sessions: "1-3 sessions", details: "Female health & sensitivity" },
-        { name: "EXO P-Shot®", price: "£1200", sessions: "1-3 sessions", details: "Advanced exosome protocol" },
+        { name: "EXO P-Shot®", price: "£1200", sessions: "Enhanced", details: "Advanced exosome protocol" },
       ]
     }
   ];
@@ -59,7 +59,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
     "description": `Doctor-led regenerative medicine prices for ${locationName}.`
   };
 
-  // Animation Variants (Identical to FaqClient)
+  // Animation Variants (Identical to other pages)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
@@ -85,7 +85,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(priceSchema) }}
       />
 
-      {/* Hero Section - CLONED from FaqClient */}
+      {/* Hero Section - Standardized 55vh & Typography */}
       <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
@@ -124,13 +124,14 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                   Doctor-led regenerative treatments with clear, upfront costs. Serving patients across {isBirmingham ? "the West Midlands" : "Hertfordshire"}.
                 </motion.p>
 
+                {/* Stacked Layout: Tags Top, Button Bottom */}
                 <motion.div variants={itemVariants} className="flex flex-col mt-8 gap-6 justify-center items-center">
                   <div className="flex flex-wrap justify-center gap-2 max-w-2xl">
                     {categories.map(cat => (
                       <a 
                         key={cat.id} 
                         href={`#${cat.id}`} 
-                        className="px-4 py-2 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full text-xs font-semibold text-slate-700 hover:border-blue-400 hover:text-blue-600 transition-all shadow-sm whitespace-nowrap"
+                        className="px-4 py-2 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full text-xs font-semibold font-inter text-slate-700 hover:border-[#4041d1] hover:text-[#4041d1] transition-all shadow-sm whitespace-nowrap"
                       >
                         {cat.title}
                       </a>
@@ -139,7 +140,8 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
 
                   <button
                     onClick={handleConsultationClick}
-                    className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
+                    // BRAND COLOR LOCK: #4041d1
+                    className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
                   >
                     <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                     Book Consultation
@@ -150,20 +152,20 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
           </div>
         </div>
       </section>
-      
+
       {/* Pricing Tables Section */}
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           {categories.map((cat) => (
             <div key={cat.id} id={cat.id} className="scroll-mt-24">
-              <h2 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <span className="w-8 h-1 bg-blue-600 rounded-full"></span>
+              <h2 className="text-xl font-raleway font-semibold text-slate-900 mb-6 flex items-center gap-3">
+                <span className="w-8 h-1 bg-[#4041d1] rounded-full"></span>
                 {cat.title}
               </h2>
 
               <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden transition-all hover:border-slate-200">
                 {/* Table Header - Desktop Only */}
-                <div className="hidden md:grid grid-cols-4 bg-slate-50/50 p-4 border-b border-slate-100 text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em]">
+                <div className="hidden md:grid grid-cols-4 bg-slate-50/50 p-4 border-b border-slate-100 text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] font-inter">
                   <div className="col-span-1 pl-2">Treatment</div>
                   <div className="col-span-1 text-center">Investment</div>
                   <div className="col-span-1 text-center">Sessions</div>
@@ -177,12 +179,12 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                     className="grid grid-cols-1 md:grid-cols-4 items-center p-5 md:p-6 border-b last:border-0 border-slate-50 hover:bg-slate-50/50 transition-colors"
                   >
                     <div className="col-span-1 mb-3 md:mb-0">
-                      <h3 className="font-raleway font-bold text-slate-900 text-base md:text-lg leading-tight">{item.name}</h3>
+                      <h3 className="font-raleway font-semibold text-slate-900 text-base md:text-lg leading-tight">{item.name}</h3>
                       <p className="text-xs text-slate-500 mt-1 font-inter">{item.details}</p>
                     </div>
                     
                     <div className="col-span-1 text-left md:text-center mb-3 md:mb-0">
-                      <span className="text-blue-600 font-bold text-xl font-inter">{item.price}</span>
+                      <span className="text-[#4041d1] font-bold text-xl font-inter">{item.price}</span>
                     </div>
 
                     <div className="col-span-1 text-left md:text-center mb-4 md:mb-0">
@@ -194,7 +196,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                     <div className="col-span-1 text-left md:text-right">
                       <button 
                         onClick={handleConsultationClick}
-                        className="flex items-center gap-1 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors group ml-auto md:ml-0 md:inline-flex"
+                        className="flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors group ml-auto md:ml-0 md:inline-flex font-inter"
                       >
                         Book Now
                         <FaChevronRight className="w-2 h-2 group-hover:translate-x-1 transition-transform" />
