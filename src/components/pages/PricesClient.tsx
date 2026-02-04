@@ -113,7 +113,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                   className="md:text-3xl text-2xl font-raleway font-semibold text-slate-900 leading-tight"
                   variants={itemVariants}
                 >
-                  Treatment Prices Healing-PRP Clinics {locationName}
+                  Treatment Prices in {locationName}
                   <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
                 </motion.h1>
 
