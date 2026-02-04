@@ -1,43 +1,24 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
+// Removed FaWhatsapp and FaTimes to prevent build errors
 import {
-  FaWhatsapp,
   FaCheck,
   FaEnvelope,
-  FaTimes,
 } from "react-icons/fa";
 import ContactCTASection from "@/components/ContactCTASection";
-// REMOVED: import Footer from "@/components/Footer"; 
+import LocationSection from "@/components/LocationSection";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import Script from "next/script";
 
 export default function PricesClient({ isBirmingham = false }: { isBirmingham?: boolean }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  // Removed isModalOpen and isDesktop states
+  // Removed all useEffect hooks and handleWhatsAppClick function
 
-  useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
-  }, []);
-
-  const handleWhatsAppClick = (e: React.MouseEvent) => {
-    if (isDesktop) {
-      e.preventDefault();
-      setIsModalOpen(true);
-    }
-  };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, [isModalOpen]);
+  // If your page uses location-based logic, we keep the isBirmingham check
+  const locationName = isBirmingham ? "Birmingham" : "St Albans";
 
   const categories = [
     {
@@ -88,7 +69,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
   };
 
   return (
-    <>
+    <main> {/* Changed from <> to <main> to match the closing tag */}
       <Script
         id="price-schema"
         type="application/ld+json"
@@ -147,10 +128,15 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                   </div>
                   <div className="col-span-1 text-left md:text-right">
                     <button 
-                      onClick={handleWhatsAppClick}
-                      className="text-sm font-bold text-blue-600 hover:text-blue-800 underline underline-offset-4"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+                        const section = document.getElementById("contact-form-section");
+                        if (section) section.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="text-sm font-bold text-blue-600 hover:text-blue-800 underline underline-offset-4 cursor-pointer"
                     >
-                      Book on WhatsApp
+                      Book Consultation
                     </button>
                   </div>
                 </div>
@@ -159,30 +145,14 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
           </div>
         </section>
       ))}
-
-      <ContactCTASection />
-      {/* REMOVED: <Footer /> - Managed by parent page.tsx */}
-
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
-            <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className="fixed inset-0 z-50 flex items-center justify-center p-4">
-              <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative text-center">
-                <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors"><FaTimes className="w-5 h-5 text-slate-600" /></button>
-                <h3 className="text-2xl font-raleway font-semibold text-slate-900 mb-2">Scan to Chat</h3>
-                <p className="text-sm text-slate-600 mb-6">Use your phone camera to scan the QR code</p>
-                <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
-                  <img src="/qrcode.png" alt="WhatsApp QR Code" className="w-64 h-64" />
-                </div>
-                <a href="https://wa.me/447990364147" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-medium transition-all">
-                  <FaWhatsapp className="w-5 h-5" /> Open WhatsApp
-                </a>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
+    
+      {/* Location and Footer Sections */}
+      <div id="contact-form-section" className="contain-layout">
+        <ContactCTASection />
+        <LocationSection />
+      </div>
+    
+      <Footer />
+    </main>
   );
 }
