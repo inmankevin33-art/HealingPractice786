@@ -9,7 +9,8 @@ import emailjs from "@emailjs/browser";
 
 export default function ContactCTASection() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false); // Collapsible drawer state
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false); // Used for QR Logic
   
   const [activeClinic, setActiveClinic] = useState<"st-albans" | "birmingham">(
     pathname?.startsWith("/birmingham") ? "birmingham" : "st-albans"
@@ -29,10 +30,19 @@ export default function ContactCTASection() {
     message: string;
   }>({ type: null, message: "" });
 
+  // Handle drawer open events
   useEffect(() => {
     const handleOpenEvent = () => setIsOpen(true);
     window.addEventListener("open-contact-drawer", handleOpenEvent);
     return () => window.removeEventListener("open-contact-drawer", handleOpenEvent);
+  }, []);
+
+  // Check screen size for QR logic
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkDesktop(); // Run immediately
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -154,21 +164,21 @@ export default function ContactCTASection() {
                           </div>
                         </div>
 
-                        {/* Form Fields */}
+                        {/* Form Fields - Updated Labels for Contrast */}
                         <div className="md:col-span-2 space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Full Name</label>
+                          <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Full Name</label>
                           <input type="text" name="name" required value={formData.name} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" placeholder="Full Name" />
                         </div>
                         <div className="space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Email</label>
+                          <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Email</label>
                           <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" placeholder="email@example.com" />
                         </div>
                         <div className="space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Phone</label>
+                          <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Phone</label>
                           <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" placeholder="07xxx xxxxxx" />
                         </div>
                         <div className="md:col-span-2 space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Treatment</label>
+                          <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Treatment</label>
                           <select name="treatment" value={formData.treatment} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-slate-600 appearance-none text-sm">
                             <option>Sexual Rejuvenation (P-Shot/O-Shot)</option>
                             <option>Hair Restoration</option>
@@ -177,7 +187,7 @@ export default function ContactCTASection() {
                           </select>
                         </div>
                         <div className="md:col-span-2 space-y-1">
-                          <label className="text-[10px] font-bold uppercase text-slate-400 ml-1 tracking-widest">Message</label>
+                          <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Message</label>
                           <textarea name="message" required rows={3} value={formData.message} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" placeholder="How can we help?"></textarea>
                         </div>
 
@@ -196,28 +206,41 @@ export default function ContactCTASection() {
                     {/* RIGHT SIDE: QUICK CONTACTS */}
                     <div className="lg:col-span-5 space-y-3">
                       
-                      {/* ✅ NEW: Direct QR Code Card (Replaces Modal) */}
+                      {/* ✅ MOBILE SMART LOGIC: Show Button on Mobile, QR on Desktop */}
                       <div className="w-full bg-white rounded-2xl border border-slate-100 p-6 text-center shadow-sm">
                         <div className="inline-flex items-center gap-2 text-green-600 mb-4 bg-green-50 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                           <FaWhatsapp className="w-3 h-3" /> Quick Chat
                         </div>
                         
-                        {/* QR Code Container */}
-                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 inline-block mb-4">
-                          <img src="/qrcode.png" alt="WhatsApp QR" className="w-32 h-32 mx-auto mix-blend-multiply" />
-                        </div>
-                        
-                        <div className="space-y-1">
-                          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Scan or Click to Chat</p>
-                          <a 
-                            href="https://wa.me/447990364147" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="block text-lg font-raleway font-bold text-[#4041d1] hover:underline"
-                          >
-                            +44 7990 364 147
-                          </a>
-                        </div>
+                        {isDesktop ? (
+                          // DESKTOP: Show QR Code
+                          <>
+                            <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 inline-block mb-4">
+                              <img src="/qrcode.png" alt="WhatsApp QR" className="w-32 h-32 mx-auto mix-blend-multiply" />
+                            </div>
+                            <div className="space-y-1">
+                              <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Scan to Chat</p>
+                              <div className="text-lg font-raleway font-bold text-[#4041d1]">
+                                +44 7990 364 147
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          // MOBILE: Show Big Button
+                          <div className="py-4">
+                             <a 
+                               href="https://wa.me/447990364147" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all"
+                             >
+                               <FaWhatsapp className="w-6 h-6" /> Open WhatsApp
+                             </a>
+                             <p className="mt-4 text-[10px] text-slate-400">
+                               Typically replies in &lt; 1 hour
+                             </p>
+                          </div>
+                        )}
                       </div>
 
                       {/* Clinic Info Link */}
