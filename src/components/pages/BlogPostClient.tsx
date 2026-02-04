@@ -1,17 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// FIXED: Correctly importing 'getBlogPostBySlug' to match your contentful.ts
 import { BlogPost, getBlogPostBySlug } from "@/lib/contentful";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock } from "lucide-react";
+// FIXED: Changed from 'lucide-react' to 'react-icons/fa'
+import { FaArrowLeft, FaCalendar, FaClock } from "react-icons/fa"; 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 // ✅ HELPER: Robust image URL fixer
 const getImageUrl = (url: string | undefined) => {
   if (!url) return "";
-  if (url === "https:undefined") return ""; // Catch errors from contentful.ts
+  if (url === "https:undefined") return ""; 
   if (url.startsWith("//")) {
     return `https:${url}`;
   }
@@ -31,11 +31,9 @@ export default function BlogPostClient({ slug }: { slug: string }) {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch the post data
   useEffect(() => {
     async function fetchPost() {
       try {
-        // FIXED: Using the correct function name 'getBlogPostBySlug'
         const fetchedPost = await getBlogPostBySlug(slug);
         setPost(fetchedPost);
       } catch (error) {
@@ -69,7 +67,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
   return (
     <>
       <article className="bg-white">
-        {/* Header Section - Twin Standard (55vh feel) */}
+        {/* Header Section */}
         <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-slate-50 min-h-[50vh] flex flex-col justify-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/90 z-10"></div>
           
@@ -89,7 +87,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
               href="/blog" 
               className="inline-flex items-center text-xs font-bold text-[#4041d1] mb-8 hover:opacity-70 transition-opacity uppercase tracking-widest font-inter"
             >
-              <ArrowLeft className="mr-2 w-4 h-4" /> Back to Blog
+              <FaArrowLeft className="mr-2 w-3 h-3" /> Back to Blog
             </Link>
             
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight">
@@ -98,11 +96,11 @@ export default function BlogPostClient({ slug }: { slug: string }) {
 
             <div className="flex items-center justify-center gap-6 text-sm text-slate-500 font-inter">
               <span className="flex items-center gap-2">
-                <Calendar className="text-[#4041d1] w-4 h-4" />
+                <FaCalendar className="text-[#4041d1] w-3 h-3" />
                 {formatDate(post.date)}
               </span>
               <span className="flex items-center gap-2">
-                 <Clock className="text-[#4041d1] w-4 h-4" />
+                 <FaClock className="text-[#4041d1] w-3 h-3" />
                  5 min read
               </span>
             </div>
@@ -133,7 +131,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
             <Link 
               href="/contact" 
               onClick={(e) => {
-                 // Allow navigation but trigger drawer if on same page logic exists
+                 // Trigger drawer if needed
                  // window.dispatchEvent(new CustomEvent("open-contact-drawer")); 
               }}
               className="inline-flex px-8 py-3 bg-[#4041d1] text-white rounded-lg font-inter font-bold hover:bg-[#2a2bb8] transition-all shadow-md"
