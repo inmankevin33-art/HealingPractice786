@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { ArrowLeft, Dot, ChevronRight } from "lucide-react";
+// KEEPING YOUR WORKING ICONS
+import { ArrowLeft, Dot, ChevronRight } from "lucide-react"; 
 import Link from "next/link";
-import Image from "next/image"; // Improved for performance
+import Image from "next/image"; 
 import { BlogPost, getBlogPostBySlug, getBlogPostNavigation } from "@/lib/contentful";
 import Footer from "@/components/Footer";
 
@@ -18,6 +19,15 @@ interface RichTextNode {
 interface RichTextContent {
   content: RichTextNode[];
 }
+
+// ✅ 1. NEW HELPER: This fixes the broken "Blue Question Mark" image
+const getImageUrl = (url: string) => {
+  if (!url) return "";
+  if (url.startsWith("//")) {
+    return `https:${url}`;
+  }
+  return url;
+};
 
 export default function BlogPostClient({ slug }: { slug: string }) {
   const [post, setPost] = useState<BlogPost | null>(null);
@@ -65,7 +75,9 @@ export default function BlogPostClient({ slug }: { slug: string }) {
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-GB", {
-      year: "numeric", month: "long", day: "numeric",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -96,36 +108,49 @@ export default function BlogPostClient({ slug }: { slug: string }) {
 
   return (
     <motion.div initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
-      <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.05)_0,rgba(0,163,255,0)_50%)]"></div>
+      
+      {/* ✅ 2. HERO UPDATE: Swapped Radial Gradient for Standard Hero Image to match other pages */}
+      <div className="absolute top-0 left-0 w-full h-[60vh] z-[-1] overflow-hidden">
+         <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-white z-10"></div>
+         <img 
+            src="/hero_img.png" 
+            alt="Background" 
+            className="w-full h-full object-cover opacity-60"
+         />
+      </div>
 
-      <header className="pt-16 md:pt-24 pb-8">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+      <header className="pt-32 md:pt-40 pb-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
-            <motion.div variants={itemVariants} className="flex items-center justify-between mb-8 border-b border-slate-100 pb-4">
-              <Link href="/blog" className="inline-flex items-center text-xs font-inter font-medium text-slate-500 hover:text-[var(--brand-blue)] transition-colors">
+            
+            {/* Navigation Bar */}
+            <motion.div variants={itemVariants} className="flex items-center justify-between mb-8 pb-4 border-b border-slate-200/60">
+              <Link href="/blog" className="inline-flex items-center text-xs font-inter font-bold text-[#4041d1] hover:opacity-70 transition-colors uppercase tracking-widest">
                 <ArrowLeft className="w-3 h-3 mr-1" /> Back to Insights
               </Link>
               {navigation.next && (
-                <Link href={`/blog/${navigation.next.slug}`} className="text-xs font-inter font-medium text-[var(--brand-blue)] hover:underline flex items-center">
+                <Link href={`/blog/${navigation.next.slug}`} className="text-xs font-inter font-bold text-[#4041d1] hover:underline flex items-center uppercase tracking-widest">
                   Next Article <ChevronRight className="w-3 h-3 ml-1" />
                 </Link>
               )}
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-4">
-              <span className="px-3 py-1 bg-[var(--brand-blue-50)] text-[var(--brand-blue)] rounded-full text-[10px] font-bold uppercase tracking-wider">
+            {/* Meta Data */}
+            <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 mb-6">
+              <span className="px-3 py-1 bg-[var(--brand-blue-50)] text-[#4041d1] rounded-full text-[10px] font-bold uppercase tracking-wider">
                 {post.type?.[0] || "Medical Insight"}
               </span>
               <Dot className="text-slate-300" />
-              <span className="text-xs font-inter text-slate-500">{formatDate(post.date)}</span>
+              <span className="text-xs font-inter font-medium text-slate-500">{formatDate(post.date)}</span>
             </motion.div>
 
-            <motion.h1 variants={itemVariants} className="text-3xl md:text-4xl font-raleway font-semibold text-slate-900 mb-6 leading-tight">
+            {/* Title */}
+            <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8 leading-tight">
               {post.title}
             </motion.h1>
 
             {post.excerpt && (
-              <motion.p variants={itemVariants} className="text-lg text-slate-500 font-inter leading-relaxed italic border-l-4 border-[var(--brand-blue-100)] pl-6">
+              <motion.p variants={itemVariants} className="text-lg text-slate-600 font-inter leading-relaxed max-w-2xl mx-auto">
                 {post.excerpt}
               </motion.p>
             )}
@@ -136,10 +161,15 @@ export default function BlogPostClient({ slug }: { slug: string }) {
       {post.coverImage && (
         <section className="pb-12">
           <div className="max-w-4xl mx-auto px-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 aspect-video md:aspect-[21/9]">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 aspect-video md:aspect-[21/9]"
+            >
+              {/* ✅ 3. IMAGE FIX: Using getImageUrl() to add https: */}
               <Image 
-                src={post.coverImage.url} 
-                alt={post.coverImage.title} 
+                src={getImageUrl(post.coverImage.url)} 
+                alt={post.coverImage.title || "Blog Cover"} 
                 fill
                 priority
                 className="object-cover" 
@@ -159,7 +189,11 @@ export default function BlogPostClient({ slug }: { slug: string }) {
           
           <motion.div variants={itemVariants} className="mt-16 pt-8 border-t border-slate-100 text-center">
             <p className="text-slate-600 font-inter mb-6 font-medium">Want to discuss this treatment with a specialist?</p>
-            <Link href="/contact" className="inline-flex px-8 py-3 bg-[var(--brand-blue)] text-white rounded-lg font-inter font-semibold hover:bg-[var(--brand-blue-dark)] transition-all shadow-md">
+            <Link 
+                href="/contact" 
+                // ✅ 4. COLOR FIX: Locked to Brand Blue #4041d1
+                className="inline-flex px-8 py-3 bg-[#4041d1] text-white rounded-lg font-inter font-bold hover:bg-[#2a2bb8] transition-all shadow-md"
+            >
               Book a Consultation
             </Link>
           </motion.div>
