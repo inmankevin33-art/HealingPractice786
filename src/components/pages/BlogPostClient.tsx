@@ -1,172 +1,144 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { ArrowLeft, Dot, ChevronRight } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image"; // Improved for performance
-import { BlogPost, getBlogPostBySlug, getBlogPostNavigation } from "@/lib/contentful";
+import { useEffect, useState } from "react";
+import { BlogPost, getPostBySlug } from "@/lib/contentful";
 import Footer from "@/components/Footer";
+import Link from "next/link";
+import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-// Specific types to replace 'any'
-interface RichTextNode {
-  nodeType: string;
-  value?: string;
-  content?: RichTextNode[];
-}
+// ✅ HELPER: Fixes the broken image issue by adding 'https:' if missing
+const getImageUrl = (url: string) => {
+  if (!url) return "";
+  if (url.startsWith("//")) {
+    return `https:${url}`;
+  }
+  return url;
+};
 
-interface RichTextContent {
-  content: RichTextNode[];
-}
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
 
 export default function BlogPostClient({ slug }: { slug: string }) {
   const [post, setPost] = useState<BlogPost | null>(null);
-  const [navigation, setNavigation] = useState<{
-    previous: BlogPost | null;
-    next: BlogPost | null;
-  }>({ previous: null, next: null });
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [notFound, setNotFound] = useState(false);
+  const [loading, setLoading] = useState(true);
 
+  // Fetch the post data
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const fetchPost = async () => {
+    async function fetchPost() {
       try {
-        const [blogPost, nav] = await Promise.all([
-          getBlogPostBySlug(slug),
-          getBlogPostNavigation(slug),
-        ]);
-
-        if (blogPost) {
-          setPost(blogPost);
-          setNavigation(nav);
-        } else {
-          setNotFound(true);
-        }
+        const fetchedPost = await getPostBySlug(slug);
+        setPost(fetchedPost);
       } catch (error) {
-        console.error("Error fetching post:", error);
-        setNotFound(true);
+        console.error("Failed to fetch post", error);
+      } finally {
+        setLoading(false);
       }
-    };
+    }
     fetchPost();
-    const timer = setTimeout(() => setIsLoaded(true), 300);
-    return () => clearTimeout(timer);
   }, [slug]);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.8, staggerChildren: 0.15 } },
-  };
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-[#4041d1] font-inter font-semibold animate-pulse">Loading Article...</div>
+      </div>
+    );
+  }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-GB", {
-      year: "numeric", month: "long", day: "numeric",
-    });
-  };
-
-  const renderRichText = (content: unknown) => {
-    const richContent = content as RichTextContent;
-    if (!richContent || !richContent.content) return null;
-
-    return richContent.content.map((node, index) => {
-      if (node.nodeType === "paragraph") {
-        return (
-          <p key={index} className="mb-6 text-base md:text-lg text-slate-600 font-inter leading-relaxed">
-            {node.content?.map((textNode) => textNode.value).join("")}
-          </p>
-        );
-      }
-      if (node.nodeType.startsWith("heading-")) {
-        return (
-          <h2 key={index} className="text-2xl md:text-3xl font-raleway font-semibold text-slate-900 mt-12 mb-6 leading-tight">
-            {node.content?.map((textNode) => textNode.value).join("")}
-          </h2>
-        );
-      }
-      return null;
-    });
-  };
-
-  if (notFound || !post) return <div className="min-h-screen bg-white" />;
+  if (!post) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4">
+        <h1 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Post Not Found</h1>
+        <Link href="/blog" className="text-[#4041d1] font-inter hover:underline">Return to Blog</Link>
+      </div>
+    );
+  }
 
   return (
-    <motion.div initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
-      <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.05)_0,rgba(0,163,255,0)_50%)]"></div>
-
-      <header className="pt-16 md:pt-24 pb-8">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <motion.div variants={containerVariants} initial="hidden" animate="visible">
-            <motion.div variants={itemVariants} className="flex items-center justify-between mb-8 border-b border-slate-100 pb-4">
-              <Link href="/blog" className="inline-flex items-center text-xs font-inter font-medium text-slate-500 hover:text-[var(--brand-blue)] transition-colors">
-                <ArrowLeft className="w-3 h-3 mr-1" /> Back to Insights
-              </Link>
-              {navigation.next && (
-                <Link href={`/blog/${navigation.next.slug}`} className="text-xs font-inter font-medium text-[var(--brand-blue)] hover:underline flex items-center">
-                  Next Article <ChevronRight className="w-3 h-3 ml-1" />
-                </Link>
-              )}
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-4">
-              <span className="px-3 py-1 bg-[var(--brand-blue-50)] text-[var(--brand-blue)] rounded-full text-[10px] font-bold uppercase tracking-wider">
-                {post.type?.[0] || "Medical Insight"}
-              </span>
-              <Dot className="text-slate-300" />
-              <span className="text-xs font-inter text-slate-500">{formatDate(post.date)}</span>
-            </motion.div>
-
-            <motion.h1 variants={itemVariants} className="text-3xl md:text-4xl font-raleway font-semibold text-slate-900 mb-6 leading-tight">
-              {post.title}
-            </motion.h1>
-
-            {post.excerpt && (
-              <motion.p variants={itemVariants} className="text-lg text-slate-500 font-inter leading-relaxed italic border-l-4 border-[var(--brand-blue-100)] pl-6">
-                {post.excerpt}
-              </motion.p>
-            )}
-          </motion.div>
-        </div>
-      </header>
-
-      {post.coverImage && (
-        <section className="pb-12">
-          <div className="max-w-4xl mx-auto px-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 aspect-video md:aspect-[21/9]">
-              <Image 
-                src={post.coverImage.url} 
-                alt={post.coverImage.title} 
-                fill
-                priority
-                className="object-cover" 
-              />
-            </motion.div>
-          </div>
-        </section>
-      )}
-
-      <section className="pb-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <motion.article variants={containerVariants} initial="hidden" animate="visible">
-            <motion.div variants={itemVariants} className="prose prose-slate max-w-none">
-              {renderRichText(post.content)}
-            </motion.div>
-          </motion.article>
+    <>
+      <article className="bg-white">
+        {/* Header Section - Twin Standard (55vh feel but adapted for reading) */}
+        <div className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 bg-slate-50 min-h-[50vh] flex flex-col justify-center">
+          <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/90 z-10"></div>
           
-          <motion.div variants={itemVariants} className="mt-16 pt-8 border-t border-slate-100 text-center">
+          {/* Background blurred image effect */}
+          {post.coverImage && (
+             <div className="absolute inset-0 opacity-15">
+                <img 
+                  src={getImageUrl(post.coverImage.url)} 
+                  alt="Background" 
+                  className="w-full h-full object-cover blur-sm"
+                />
+             </div>
+          )}
+          
+          <div className="relative z-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <Link 
+              href="/blog" 
+              className="inline-flex items-center text-xs font-bold text-[#4041d1] mb-8 hover:opacity-70 transition-opacity uppercase tracking-widest font-inter"
+            >
+              <ArrowLeft className="mr-2 w-4 h-4" /> Back to Blog
+            </Link>
+            
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight">
+              {post.title}
+            </h1>
+
+            <div className="flex items-center justify-center gap-6 text-sm text-slate-500 font-inter">
+              <span className="flex items-center gap-2">
+                <Calendar className="text-[#4041d1] w-4 h-4" />
+                {formatDate(post.date)}
+              </span>
+              <span className="flex items-center gap-2">
+                 <Clock className="text-[#4041d1] w-4 h-4" />
+                 5 min read
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+          {/* Main Featured Image - Standard <img> tag to ensure display */}
+          {post.coverImage && (
+            <div className="rounded-2xl overflow-hidden shadow-lg mb-12 border border-slate-100">
+              <img
+                src={getImageUrl(post.coverImage.url)}
+                alt={post.coverImage.title || post.title}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          )}
+
+          {/* Rich Text Content */}
+          <div className="prose prose-lg prose-slate max-w-none font-inter headings:font-raleway headings:font-semibold headings:text-slate-900 prose-a:text-[#4041d1]">
+             {post.content && documentToReactComponents(post.content)}
+          </div>
+          
+          {/* CTA Footer in Post */}
+          <div className="mt-16 pt-8 border-t border-slate-100 text-center">
             <p className="text-slate-600 font-inter mb-6 font-medium">Want to discuss this treatment with a specialist?</p>
-            <Link href="/contact" className="inline-flex px-8 py-3 bg-[var(--brand-blue)] text-white rounded-lg font-inter font-semibold hover:bg-[var(--brand-blue-dark)] transition-all shadow-md">
+            <Link 
+              href="/contact" 
+              onClick={(e) => {
+                 e.preventDefault();
+                 window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+              }}
+              className="inline-flex px-8 py-3 bg-[#4041d1] text-white rounded-lg font-inter font-bold hover:bg-[#2a2bb8] transition-all shadow-md"
+            >
               Book a Consultation
             </Link>
-          </motion.div>
+          </div>
         </div>
-      </section>
+      </article>
 
       <Footer />
-    </motion.div>
+    </>
   );
 }
