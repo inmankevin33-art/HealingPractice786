@@ -139,31 +139,37 @@ export default function HairRestorationClient({
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Standardized 55vh & Colors */}
+      <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img src="/hero_img.png" alt="Hair Restoration" className="w-full h-full object-cover" />
         </div>
 
-        <div className="relative w-full z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-            <motion.div className="inline-block px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-xs font-inter font-medium mb-4" variants={itemVariants}>
-              GMC‑registered | CE‑marked | Natural Results
+        <div className="relative w-full z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center md:justify-start">
+          <div className="text-center md:text-left">
+            <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+              <motion.div className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4" variants={itemVariants}>
+                GMC‑registered | CE‑marked | Natural Results
+              </motion.div>
+              
+              <motion.h1 className="text-2xl lg:text-4xl text-slate-900 font-raleway font-semibold leading-snug mb-2" variants={itemVariants}>
+                Hair Restoration & Regenerative Treatments in {locationName}
+                <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
+              </motion.h1>
+              
+              <motion.p className="text-sm md:text-base text-slate-600 font-inter leading-relaxed max-w-3xl mb-8" variants={itemVariants}>
+                Doctor-led regenerative hair treatments tailored to individual needs following a medical consultation.
+              </motion.p>
+              
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <button onClick={handleAction} className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all shadow-xl gap-2 group active:scale-95">
+                  <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                  Book Consultation
+                </button>
+              </motion.div>
             </motion.div>
-            <motion.h1 className="text-2xl lg:text-4xl text-gray-700 font-semibold mb-2" variants={itemVariants}>
-              Hair Restoration & Regenerative Treatments in {locationName}
-            </motion.h1>
-            <motion.p className="text-sm text-gray-500 leading-relaxed max-w-3xl mb-6" variants={itemVariants}>
-              Doctor-led regenerative hair treatments tailored to individual needs following a medical consultation.
-            </motion.p>
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
-              <button onClick={handleAction} className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-xl gap-2 group active:scale-95">
-                <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                Book Consultation
-              </button>
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -175,13 +181,13 @@ export default function HairRestorationClient({
               <motion.div key={index} id={treatment.name.toLowerCase().replace(/[^a-z0-9]/g, "-")} className="bg-slate-50 rounded-2xl p-8 lg:p-12" variants={itemVariants}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                   <div>
-                    <h3 className="md:text-2xl text-lg font-raleway text-slate-900 mb-4">{treatment.name}</h3>
-                    <p className="text-sm text-slate-600 mb-6">{treatment.description}</p>
+                    <h3 className="md:text-2xl text-lg font-raleway font-semibold text-slate-900 mb-4">{treatment.name}</h3>
+                    <p className="text-sm font-inter text-slate-600 mb-6">{treatment.description}</p>
                     <ul className="space-y-3 mb-6">
                       {treatment.benefits.map((b, i) => (
                         <li key={i} className="flex items-start gap-3">
-                          <FaCheck className="w-3 h-3 text-blue-600 flex-shrink-0 mt-1" />
-                          <span className="text-sm text-slate-700">{b}</span>
+                          <FaCheck className="w-3 h-3 text-[#4041d1] flex-shrink-0 mt-1" />
+                          <span className="text-sm font-inter text-slate-700">{b}</span>
                         </li>
                       ))}
                     </ul>
@@ -192,7 +198,7 @@ export default function HairRestorationClient({
                       <div className="text-sm font-inter"><span className="font-medium text-slate-700">Duration:</span> {treatment.duration}</div>
                       <div className="text-sm font-inter"><span className="font-medium text-slate-700">Course:</span> {treatment.course}</div>
                     </div>
-                    <button onClick={handleAction} className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-xl gap-2 group active:scale-95">
+                    <button onClick={handleAction} className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all shadow-xl gap-2 group active:scale-95">
                       <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                       Book Consultation
                     </button>
@@ -200,7 +206,7 @@ export default function HairRestorationClient({
                 </div>
 
                 <div className="mt-6">
-                  <button onClick={() => setExpandedTreatment(expandedTreatment === treatment.name ? null : treatment.name)} className="inline-flex items-center gap-2 py-2 text-blue-600 text-sm font-semibold hover:opacity-70 transition-opacity">
+                  <button onClick={() => setExpandedTreatment(expandedTreatment === treatment.name ? null : treatment.name)} className="inline-flex items-center gap-2 py-2 text-[#4041d1] text-sm font-semibold font-inter hover:opacity-70 transition-opacity">
                     {expandedTreatment === treatment.name ? (<>Show Less <FaChevronUp className="w-3" /></>) : (<>Learn More <FaChevronDown className="w-3" /></>)}
                   </button>
                 </div>
@@ -218,7 +224,7 @@ export default function HairRestorationClient({
                             <h4 className="font-bold text-slate-900 mb-2 font-raleway">Who Is It For?</h4>
                             <ul className="space-y-2">
                               {treatment.expandedContent.whoIsItFor.map((w, i) => (
-                                <li key={i} className="text-sm text-slate-700 flex gap-2 font-inter"><FaCheck className="text-blue-600 w-3 mt-1" /> {w}</li>
+                                <li key={i} className="text-sm text-slate-700 flex gap-2 font-inter"><FaCheck className="text-[#4041d1] w-3 mt-1" /> {w}</li>
                               ))}
                             </ul>
                           </div>
@@ -233,13 +239,13 @@ export default function HairRestorationClient({
         </div>
       </section>
 
-      {/* CTA Bar */}
+      {/* CTA Bar - Matched Colors */}
       <section className="py-12 bg-white border-t border-slate-50">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center gap-4">
-          <Link href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"} className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-lg active:scale-95 gap-2">
+          <Link href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"} className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all shadow-lg active:scale-95 gap-2">
             View Treatment Prices
           </Link>
-          <Link href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"} className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white rounded-xl font-bold transition-all active:scale-95 gap-2">
+          <Link href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"} className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-xl font-inter font-bold transition-all active:scale-95 gap-2">
             View Clinic FAQs
           </Link>
         </div>
@@ -250,10 +256,10 @@ export default function HairRestorationClient({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
             <div className="text-center mb-12">
-              <div className="inline-block px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-xs font-inter font-medium mb-4">
+              <div className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4">
                 Frequently Asked Questions
               </div>
-              <h2 className="text-2xl lg:text-4xl font-raleway text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-2xl lg:text-4xl font-raleway font-semibold text-slate-900 tracking-tight leading-tight">
                 Common Questions About Hair Restoration
               </h2>
             </div>
@@ -262,8 +268,9 @@ export default function HairRestorationClient({
               {faqs.map((faq, index) => (
                 <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
                   <button onClick={() => toggleFAQ(index)} className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors">
-                    <h3 className="font-raleway text-slate-900 font-semibold pr-4">{faq.question}</h3>
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 transition-transform">
+                    {/* FIXED: Font-Raleway Semibold used here */}
+                    <h3 className="font-raleway text-slate-900 font-semibold pr-4 leading-relaxed">{faq.question}</h3>
+                    <div className="flex-shrink-0 w-8 h-8 bg-[var(--brand-blue)]/10 rounded-full flex items-center justify-center text-[#4041d1] transition-transform">
                       {openFAQIndex === index ? <FaMinus /> : <FaPlus />}
                     </div>
                   </button>
