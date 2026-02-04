@@ -1,23 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
-// Removed FaWhatsapp and FaTimes to prevent build errors
-import {
-  FaCheck,
-  FaEnvelope,
-} from "react-icons/fa";
+import { FaEnvelope, FaChevronRight } from "react-icons/fa";
 import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
-import Link from "next/link";
 import Script from "next/script";
+import Link from "next/link";
 
 export default function PricesClient({ isBirmingham = false }: { isBirmingham?: boolean }) {
-  // Removed isModalOpen and isDesktop states
-  // Removed all useEffect hooks and handleWhatsAppClick function
-
-  // If your page uses location-based logic, we keep the isBirmingham check
   const locationName = isBirmingham ? "Birmingham" : "St Albans";
 
   const categories = [
@@ -54,7 +45,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
       items: [
         { name: "P-Shot® (PRP)", price: "£650", sessions: "Course of 3: £1800", details: "Male performance & repair" },
         { name: "O-Shot® (PRP)", price: "£700", sessions: "1-3 sessions", details: "Female health & sensitivity" },
-        { name: "EXO P-Shot®", price: "£1200", sessions: "Enhanced", details: "Advanced exosome protocol" },
+        { name: "EXO P-Shot®", price: "£1200", sessions: "1-3 sessions", details: "Advanced exosome protocol" },
       ]
     }
   ];
@@ -65,94 +56,164 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
     "name": "Healing-PRP Clinics",
     "priceRange": "£120 - £1800",
     "image": "https://www.healing-prp.co.uk/Logo2.png",
-    "description": "Doctor-led regenerative medicine prices for St Albans and Birmingham."
+    "description": `Doctor-led regenerative medicine prices for ${locationName}.`
+  };
+
+  // Animation Variants (Identical to FaqClient)
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const handleConsultationClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    const section = document.getElementById("contact-form-section");
+    if (section) section.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <main> {/* Changed from <> to <main> to match the closing tag */}
+    <>
       <Script
         id="price-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(priceSchema) }}
       />
 
-      <section className="pt-32 pb-16 bg-slate-50 border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-            Transparent Pricing
-          </span>
-          <h1 className="text-4xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">
-            Treatment Prices in {isBirmingham ? "Birmingham" : "St Albans"}
-          </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto font-inter">
-            Doctor-led regenerative treatments with clear, upfront costs. Serving patients across {isBirmingham ? "the West Midlands" : "Hertfordshire"}.
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4 mt-10">
-            {categories.map(cat => (
-              <a key={cat.id} href={`#${cat.id}`} className="px-5 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-700 hover:border-blue-400 hover:text-blue-600 transition-all shadow-sm">
-                {cat.title}
-              </a>
-            ))}
+      {/* Hero Section - CLONED from FaqClient */}
+      <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
+          <img 
+            src="/hero_img.png" 
+            alt="Pricing Background" 
+            className="w-full h-full object-cover" 
+            loading="eager"
+          />
+        </div>
+
+        <div className="relative w-full z-20 flex h-full">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+            <div className="text-center">
+              <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+                
+                <motion.div
+                  className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
+                  variants={itemVariants}
+                >
+                  Transparent Pricing
+                </motion.div>
+
+                <motion.h1
+                  className="md:text-3xl text-2xl font-raleway font-semibold text-slate-900 leading-tight"
+                  variants={itemVariants}
+                >
+                  Treatment Prices Healing-PRP Clinics {locationName}
+                  <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
+                </motion.h1>
+
+                <motion.p
+                  className="text-base mt-2 text-slate-600 leading-relaxed max-w-2xl mx-auto font-inter"
+                  variants={itemVariants}
+                >
+                  Doctor-led regenerative treatments with clear, upfront costs. Serving patients across {isBirmingham ? "the West Midlands" : "Hertfordshire"}.
+                </motion.p>
+
+                <motion.div variants={itemVariants} className="flex flex-col mt-8 sm:flex-row gap-4 justify-center items-center">
+                  <button
+                    onClick={handleConsultationClick}
+                    className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
+                  >
+                    <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                    Book Consultation
+                  </button>
+
+                  <div className="flex flex-wrap justify-center gap-2 max-w-md">
+                    {categories.map(cat => (
+                      <a 
+                        key={cat.id} 
+                        href={`#${cat.id}`} 
+                        className="px-4 py-2 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full text-xs font-semibold text-slate-700 hover:border-blue-400 hover:text-blue-600 transition-all shadow-sm"
+                      >
+                        {cat.title}
+                      </a>
+                    ))}
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {categories.map((cat) => (
-        <section key={cat.id} id={cat.id} className="py-16 bg-white border-b border-slate-50 scroll-mt-24">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-8 flex items-center gap-3">
-              <span className="w-8 h-1 bg-blue-600 rounded-full"></span>
-              {cat.title}
-            </h2>
+      {/* Pricing Tables Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          {categories.map((cat) => (
+            <div key={cat.id} id={cat.id} className="scroll-mt-24">
+              <h2 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-3">
+                <span className="w-8 h-1 bg-blue-600 rounded-full"></span>
+                {cat.title}
+              </h2>
 
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-              <div className="hidden md:grid grid-cols-4 bg-slate-50 p-4 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase tracking-widest">
-                <div className="col-span-1">Treatment</div>
-                <div className="col-span-1 text-center">Price</div>
-                <div className="col-span-1 text-center">Sessions</div>
-                <div className="col-span-1 text-right">Action</div>
-              </div>
-
-              {cat.items.map((item, idx) => (
-                <div key={idx} className="grid grid-cols-1 md:grid-cols-4 items-center p-6 border-b last:border-0 border-slate-100 hover:bg-slate-50 transition-colors">
-                  <div className="col-span-1 mb-2 md:mb-0">
-                    <h3 className="font-raleway font-bold text-slate-900 text-lg">{item.name}</h3>
-                    <p className="text-xs text-slate-500 mt-1">{item.details}</p>
-                  </div>
-                  <div className="col-span-1 text-left md:text-center mb-4 md:mb-0">
-                    <span className="text-blue-600 font-bold text-xl">{item.price}</span>
-                  </div>
-                  <div className="col-span-1 text-left md:text-center mb-4 md:mb-0">
-                    <span className="text-sm text-slate-600 bg-slate-100 px-3 py-1 rounded-full uppercase tracking-tighter font-semibold">{item.sessions}</span>
-                  </div>
-                  <div className="col-span-1 text-left md:text-right">
-                    <button 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-                        const section = document.getElementById("contact-form-section");
-                        if (section) section.scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="text-sm font-bold text-blue-600 hover:text-blue-800 underline underline-offset-4 cursor-pointer"
-                    >
-                      Book Consultation
-                    </button>
-                  </div>
+              <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden transition-all hover:border-slate-200">
+                {/* Table Header - Desktop Only */}
+                <div className="hidden md:grid grid-cols-4 bg-slate-50/50 p-4 border-b border-slate-100 text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em]">
+                  <div className="col-span-1 pl-2">Treatment</div>
+                  <div className="col-span-1 text-center">Investment</div>
+                  <div className="col-span-1 text-center">Sessions</div>
+                  <div className="col-span-1 text-right pr-2">Action</div>
                 </div>
-              ))}
+
+                {/* Pricing Rows */}
+                {cat.items.map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    className="grid grid-cols-1 md:grid-cols-4 items-center p-5 md:p-6 border-b last:border-0 border-slate-50 hover:bg-slate-50/50 transition-colors"
+                  >
+                    <div className="col-span-1 mb-3 md:mb-0">
+                      <h3 className="font-raleway font-bold text-slate-900 text-base md:text-lg leading-tight">{item.name}</h3>
+                      <p className="text-xs text-slate-500 mt-1 font-inter">{item.details}</p>
+                    </div>
+                    
+                    <div className="col-span-1 text-left md:text-center mb-3 md:mb-0">
+                      <span className="text-blue-600 font-bold text-xl font-inter">{item.price}</span>
+                    </div>
+
+                    <div className="col-span-1 text-left md:text-center mb-4 md:mb-0">
+                      <span className="text-[10px] text-slate-500 bg-slate-100 px-3 py-1 rounded-full uppercase font-bold tracking-wider font-inter">
+                        {item.sessions}
+                      </span>
+                    </div>
+
+                    <div className="col-span-1 text-left md:text-right">
+                      <button 
+                        onClick={handleConsultationClick}
+                        className="flex items-center gap-1 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors group ml-auto md:ml-0 md:inline-flex"
+                      >
+                        Book Now
+                        <FaChevronRight className="w-2 h-2 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
-    
-      {/* Location and Footer Sections */}
-      <div id="contact-form-section" className="contain-layout">
+          ))}
+        </div>
+      </section>
+
+      <div id="contact-form-section">
         <ContactCTASection />
         <LocationSection />
       </div>
-    
+
       <Footer />
-    </main>
+    </>
   );
 }
