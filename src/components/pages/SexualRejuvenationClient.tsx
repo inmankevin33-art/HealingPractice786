@@ -291,7 +291,8 @@ export default function SexualHealthClient({
                 variants={containerVariants}
               >
                 <motion.div
-                  className="inline-flex gap-1 px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium mb-4"
+                  // BRAND COLOR LOCK: Light blue background, brand text
+                  className="inline-flex gap-1 px-4 py-2 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-inter font-bold mb-4 uppercase tracking-wider"
                   variants={itemVariants}
                 >
                   GMC‑registered | CE‑marked equipment{" "}
@@ -299,7 +300,7 @@ export default function SexualHealthClient({
                 </motion.div>
 
                <motion.h1
-                  className="text-2xl lg:text-4xl text-gray-700 font-semibold leading-snug mb-2"
+                  className="text-2xl lg:text-4xl text-slate-900 font-raleway font-bold leading-snug mb-2"
                   variants={itemVariants}
                 >
                   Sexual Rejuvenation & Natural Regeneration in {locationName}
@@ -308,7 +309,7 @@ export default function SexualHealthClient({
                 </motion.h1>
 
                 <motion.p
-                  className="md:text-base text-xs font-inter text-gray-500 leading-relaxed max-w-3xl"
+                  className="md:text-base text-xs font-inter text-slate-600 leading-relaxed max-w-3xl"
                   variants={itemVariants}
                 >
                   Patient-centred, non-surgical solutions to support confidence,
@@ -317,7 +318,7 @@ export default function SexualHealthClient({
                 </motion.p>
                 <motion.div
                   variants={itemVariants}
-                  className={`flex flex-col items-center md:items-start mb-10 md:mb-0 mt-3 sm:flex-row gap-4`}
+                  className={`flex flex-col items-center md:items-start mb-10 md:mb-0 mt-6 sm:flex-row gap-4`}
                 >
                   <button
                     onClick={(e) => {
@@ -326,7 +327,8 @@ export default function SexualHealthClient({
                       const section = document.getElementById("contact-form-section");
                       if (section) section.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
+                    // BRAND COLOR LOCK: #4041d1 with hover #2a2bb8
+                    className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
                   >
                     <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                     Book Consultation
@@ -345,7 +347,7 @@ export default function SexualHealthClient({
       </section>
       
       {/* Navigation */}
-      <section className="py-8 border-b border-t shadow-xs border-gray-100 relative">
+      <section className="py-8 border-b border-t shadow-xs border-slate-100 relative">
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-r from-white to-gray-50"></div>
@@ -364,7 +366,7 @@ export default function SexualHealthClient({
                 href={`#${treatment.name
                   .toLowerCase()
                   .replace(/[^a-z0-9]/g, "-")}`}
-                className="px-4 py-2 text-sm border border-gray-100 shadow-xs bg-white text-[var(--brand-blue)] rounded-lg font-inter font-medium hover:bg-[var(--brand-blue-50)] transition-colors duration-300"
+                className="px-4 py-2 text-sm border border-slate-100 shadow-xs bg-white text-[#4041d1] rounded-lg font-inter font-bold hover:bg-[#4041d1]/5 transition-colors duration-300"
                 variants={itemVariants}
               >
                 {treatment.name}
@@ -372,7 +374,7 @@ export default function SexualHealthClient({
             ))}
             <motion.a
               href="#comparison"
-              className="px-4 py-2 text-sm bg-white text-[var(--brand-blue)] border border-gray-100 shadow-xs rounded-lg font-inter font-medium hover:bg-[var(--brand-blue-50)] transition-colors duration-300"
+              className="px-4 py-2 text-sm bg-white text-[#4041d1] border border-slate-100 shadow-xs rounded-lg font-inter font-bold hover:bg-[#4041d1]/5 transition-colors duration-300"
               variants={itemVariants}
             >
               Comparison
@@ -386,7 +388,7 @@ export default function SexualHealthClient({
                   section.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className="px-4 py-2 text-sm bg-white text-[var(--brand-blue)] border border-gray-100 shadow-xs rounded-lg font-inter font-medium hover:bg-[var(--brand-blue-50)] transition-colors duration-300"
+              className="px-4 py-2 text-sm bg-white text-[#4041d1] border border-slate-100 shadow-xs rounded-lg font-inter font-bold hover:bg-[#4041d1]/5 transition-colors duration-300"
               variants={itemVariants}
             >
               Premature Ejaculation
@@ -398,7 +400,7 @@ export default function SexualHealthClient({
                   section.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className="px-4 py-2 text-sm bg-white text-[var(--brand-blue)] border border-gray-100 shadow-xs rounded-lg font-inter font-medium hover:bg-[var(--brand-blue-50)] transition-colors duration-300"
+              className="px-4 py-2 text-sm bg-white text-[#4041d1] border border-slate-100 shadow-xs rounded-lg font-inter font-bold hover:bg-[#4041d1]/5 transition-colors duration-300"
               variants={itemVariants}
             >
               Peyronie&apos;s Disease
@@ -419,7 +421,7 @@ export default function SexualHealthClient({
             variants={containerVariants}
           >
             <motion.h2
-              className="text-2xl lg:text-3xl font-raleway text-slate-900 mb-3"
+              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-3"
               variants={itemVariants}
             >
               Understanding Erectile Dysfunction (ED)
@@ -478,7 +480,8 @@ export default function SexualHealthClient({
                   const section = document.getElementById("contact-form-section");
                   if (section) section.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2 group"
+                // BRAND COLOR LOCK
+                className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 flex items-center gap-2 group"
               >
                 <FaEnvelope className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                 Book Consultation
@@ -499,7 +502,7 @@ export default function SexualHealthClient({
             variants={containerVariants}
           >
             <motion.h2
-              className="text-2xl lg:text-3xl font-raleway text-slate-900 mb-3"
+              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-3"
               variants={itemVariants}
             >
               A Personal, Medical Approach to Sexual Wellness
@@ -536,7 +539,8 @@ export default function SexualHealthClient({
                 href="/blog"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
+                // BRAND COLOR LOCK
+                className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 flex items-center gap-2"
               >
                 {/* Using FaCheck instead of BookOpen to avoid the error */}
                 <FaCheck className="w-4 h-4" /> 
@@ -557,7 +561,7 @@ export default function SexualHealthClient({
             variants={containerVariants}
           >
             <motion.h2
-              className="md:text-3xl text-2xl font-raleway text-slate-900 mb-3"
+              className="md:text-3xl text-2xl font-raleway font-bold text-slate-900 mb-3"
               variants={itemVariants}
             >
               What is PRP (Platelet‑Rich Plasma)?
@@ -593,10 +597,10 @@ export default function SexualHealthClient({
               ].map((benefit, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center gap-3 p-4 bg-white rounded-lg"
+                  className="flex items-center gap-3 p-4 bg-white rounded-lg border border-slate-100"
                   variants={itemVariants}
                 >
-                  <FaCheck className="w-4 h-4 text-[var(--brand-blue)] flex-shrink-0" />
+                  <FaCheck className="w-4 h-4 text-[#4041d1] flex-shrink-0" />
                   <span className="font-inter text-slate-700">{benefit}</span>
                 </motion.div>
               ))}
@@ -616,7 +620,7 @@ export default function SexualHealthClient({
             variants={containerVariants}
           >
             <motion.h2
-              className="text-2xl lg:text-3xl font-raleway text-slate-900 mb-3"
+              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-3"
               variants={itemVariants}
             >
               What PRP therapy cannot do
@@ -652,7 +656,7 @@ export default function SexualHealthClient({
                 href="/blog"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 flex items-center gap-2"
+                className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 flex items-center gap-2"
               >
                 {/* Using FaCheck instead of BookOpen to avoid the error */}
                 <FaCheck className="w-4 h-4" /> 
@@ -673,7 +677,7 @@ export default function SexualHealthClient({
             variants={containerVariants}
           >
             <motion.h2
-              className="md:text-3xl text-2xl font-raleway text-slate-900 mb-6"
+              className="md:text-3xl text-2xl font-raleway font-bold text-slate-900 mb-6"
               variants={itemVariants}
             >
               Understanding Premature Ejaculation
@@ -691,7 +695,7 @@ export default function SexualHealthClient({
             </motion.p>
 
             <motion.h3
-              className="md:text-2xl text-xl font-raleway text-slate-900 mb-4"
+              className="md:text-2xl text-xl font-raleway font-semibold text-slate-900 mb-4"
               variants={itemVariants}
             >
               How It Works
@@ -710,7 +714,7 @@ export default function SexualHealthClient({
                   className="flex items-start gap-3"
                   variants={itemVariants}
                 >
-                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[var(--brand-blue)] flex-shrink-0" />
+                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[#4041d1] flex-shrink-0" />
                   <span className="text-sm font-inter text-slate-700 leading-relaxed">
                     {point}
                   </span>
@@ -729,7 +733,8 @@ export default function SexualHealthClient({
             <motion.div variants={itemVariants}>
               <Link
                 href="/premature-ejaculation"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300"
+                // BRAND COLOR LOCK
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300"
               >
                 Learn More
                 <FaChevronDown className="w-3 h-3 rotate-[-90deg]" />
@@ -749,7 +754,7 @@ export default function SexualHealthClient({
             variants={containerVariants}
           >
             <motion.h2
-              className="md:text-3xl text-2xl font-raleway text-slate-900 mb-6"
+              className="md:text-3xl text-2xl font-raleway font-bold text-slate-900 mb-6"
               variants={itemVariants}
             >
               Understanding Peyronie&apos;s Disease
@@ -781,7 +786,7 @@ export default function SexualHealthClient({
                   className="flex items-start gap-3 p-4 bg-slate-50 rounded-lg"
                   variants={itemVariants}
                 >
-                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[var(--brand-blue)] flex-shrink-0" />
+                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[#4041d1] flex-shrink-0" />
                   <span className="text-sm font-inter text-slate-700 leading-relaxed">
                     {symptom}
                   </span>
@@ -790,7 +795,7 @@ export default function SexualHealthClient({
             </motion.div>
 
             <motion.h3
-              className="md:text-2xl text-xl font-raleway text-slate-900 mb-4"
+              className="md:text-2xl text-xl font-raleway font-semibold text-slate-900 mb-4"
               variants={itemVariants}
             >
               How It Works
@@ -813,7 +818,8 @@ export default function SexualHealthClient({
             <motion.div variants={itemVariants}>
               <Link
                 href="/peyronies-disease"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300"
+                // BRAND COLOR LOCK
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300"
               >
                 Learn More
                 <FaChevronDown className="w-3 h-3 rotate-[-90deg]" />
@@ -832,7 +838,7 @@ export default function SexualHealthClient({
             variants={containerVariants}
           >
             <motion.h2
-              className="md:text-3xl text-2xl font-raleway text-slate-900 mb-8"
+              className="md:text-3xl text-2xl font-raleway font-bold text-slate-900 mb-8"
               variants={itemVariants}
             >
               Treatments Offered at Healing‑PRP Clinics
@@ -845,17 +851,17 @@ export default function SexualHealthClient({
                   id={treatment.name
                     .toLowerCase()
                     .replace(/[^a-z0-9]/g, "-")}
-                  className="bg-slate-50 rounded-2xl p-8 lg:p-12"
+                  className="bg-slate-50 rounded-2xl p-8 lg:p-12 border border-slate-100"
                   variants={itemVariants}
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                     <div>
                       <div className="flex items-center gap-2 mb-4">
-                        <h3 className="md:text-2xl text-xl font-raleway text-slate-900">
+                        <h3 className="md:text-2xl text-xl font-raleway font-bold text-slate-900">
                           {treatment.name} -
                         </h3>
                         <div className="flex items-center gap-2">
-                          <span className="text-xl font-inter font-semibold text-[var(--brand-blue)]">
+                          <span className="text-xl font-inter font-bold text-[#4041d1]">
                             {treatment.price}
                           </span>
                         </div>
@@ -869,7 +875,7 @@ export default function SexualHealthClient({
                             key={benefitIndex}
                             className="flex items-start gap-3"
                           >
-                            <FaCheck className="w-3 h-3 mt-[0.3rem] text-[var(--brand-blue)] flex-shrink-0 mt-0.5" />
+                            <FaCheck className="w-3 h-3 mt-[0.3rem] text-[#4041d1] flex-shrink-0 mt-0.5" />
                             <span className="font-inter text-sm text-slate-700">
                               {benefit}
                             </span>
@@ -877,13 +883,13 @@ export default function SexualHealthClient({
                         ))}
                       </ul>
                     </div>
-                    <div className="bg-white rounded-xl md:p-6 p-4">
-                      <h4 className="md:text-lg text-base font-raleway font-semibold text-slate-900 mb-4">
+                    <div className="bg-white rounded-xl md:p-6 p-4 border border-slate-100 shadow-sm">
+                      <h4 className="md:text-lg text-base font-raleway font-bold text-slate-900 mb-4">
                         Treatment Details
                       </h4>
                       <div className="space-y-3  md:text-base text-sm ">
                         <div>
-                          <span className="font-inter font-medium text-slate-700">
+                          <span className="font-inter font-bold text-slate-700">
                             Duration:
                           </span>
                           <span className="font-inter text-slate-600 ml-2">
@@ -891,7 +897,7 @@ export default function SexualHealthClient({
                           </span>
                         </div>
                         <div>
-                          <span className="font-inter font-medium text-slate-700">
+                          <span className="font-inter font-bold text-slate-700">
                             Course:
                           </span>
                           <span className="font-inter text-slate-600 ml-2">
@@ -908,7 +914,8 @@ export default function SexualHealthClient({
                             section.scrollIntoView({ behavior: "smooth" });
                           }
                         }}
-                        className="inline-flex items-center text-sm gap-2 mt-6 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-lg shadow-blue-500/20 group"
+                        // BRAND COLOR LOCK
+                        className="inline-flex items-center text-sm gap-2 mt-6 px-8 py-3.5 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-lg shadow-blue-500/20 group"
                         whileTap={{ scale: 0.95 }}
                       >
                         <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
@@ -929,7 +936,7 @@ export default function SexualHealthClient({
                             : treatment.name
                         )
                       }
-                      className="inline-flex items-center gap-2 py-3 text-[var(--brand-blue)] rounded-lg font-inter text-sm transition-all duration-300 hover:opacity-50 cursor-pointer"
+                      className="inline-flex items-center gap-2 py-3 text-[#4041d1] rounded-lg font-inter text-sm font-bold transition-all duration-300 hover:opacity-70 cursor-pointer"
                       whileTap={{ scale: 0.95 }}
                     >
                       {expandedTreatment === treatment.name ? (
@@ -956,11 +963,11 @@ export default function SexualHealthClient({
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden mt-6"
                       >
-                        <div className="bg-white rounded-xl p-6 border-t border-slate-200">
+                        <div className="bg-white rounded-xl p-6 border border-slate-200">
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {/* How It Works */}
                             <div>
-                              <h4 className="text-lg font-raleway font-semibold text-slate-900 mb-4">
+                              <h4 className="text-lg font-raleway font-bold text-slate-900 mb-4">
                                 How It Works
                               </h4>
                               <p className="md:text-sm text-xs font-inter text-slate-600 leading-relaxed">
@@ -970,7 +977,7 @@ export default function SexualHealthClient({
 
                             {/* Who Is It For */}
                             <div>
-                              <h4 className="md:text-lg text-base font-raleway font-semibold text-slate-900 mb-4">
+                              <h4 className="md:text-lg text-base font-raleway font-bold text-slate-900 mb-4">
                                 Who Is It For?
                               </h4>
                               <ul className="space-y-2 md:text-sm text-xs">
@@ -980,7 +987,7 @@ export default function SexualHealthClient({
                                       key={itemIndex}
                                       className="flex items-start gap-3"
                                     >
-                                      <FaCheck className="w-3 h-3 mt-[0.3rem] text-[var(--brand-blue)] flex-shrink-0" />
+                                      <FaCheck className="w-3 h-3 mt-[0.3rem] text-[#4041d1] flex-shrink-0" />
                                       <span className="font-inter text-slate-700">
                                         {item}
                                       </span>
@@ -993,7 +1000,7 @@ export default function SexualHealthClient({
 
                           {/* Common Questions */}
                           <div className="mt-8">
-                            <h4 className="md:text-lg text-base font-raleway font-semibold text-slate-900 mb-4">
+                            <h4 className="md:text-lg text-base font-raleway font-bold text-slate-900 mb-4">
                               Common Questions
                             </h4>
                             <div className="space-y-4">
@@ -1001,9 +1008,9 @@ export default function SexualHealthClient({
                                 (qa, qaIndex) => (
                                   <div
                                     key={qaIndex}
-                                    className="bg-slate-50 rounded-lg md:p-4 p-2"
+                                    className="bg-slate-50 rounded-lg md:p-4 p-2 border border-slate-100"
                                   >
-                                    <h5 className="font-inter md:text-base text-sm font-semibold text-slate-900 mb-2">
+                                    <h5 className="font-inter md:text-base text-sm font-bold text-slate-900 mb-2">
                                       {qa.question}
                                     </h5>
                                     <p className="md:text-sm text-xs font-inter text-slate-600">
@@ -1035,7 +1042,7 @@ export default function SexualHealthClient({
             variants={containerVariants}
           >
             <motion.h2
-              className="md:text-3xl text-xl font-raleway text-slate-900 md:mb-6 mb-4"
+              className="md:text-3xl text-xl font-raleway font-bold text-slate-900 md:mb-6 mb-4"
               variants={itemVariants}
             >
               P-Shot® vs Exomine® P-Shot{" "}
@@ -1043,27 +1050,27 @@ export default function SexualHealthClient({
             </motion.h2>
 
             <motion.div
-              className="bg-white rounded-sm shadow-lg border border-slate-200 overflow-hidden"
+              className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden"
               variants={itemVariants}
             >
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
-                  <thead className="bg-slate-100">
+                  <thead className="bg-slate-50 border-b border-slate-200">
                     <tr>
-                      <th className="px-6 py-4 text-left font-raleway font-semibold text-slate-900">
+                      <th className="px-6 py-4 text-left font-raleway font-bold text-slate-900">
                         Feature
                       </th>
-                      <th className="px-6 py-4 text-left font-raleway font-semibold text-slate-900">
+                      <th className="px-6 py-4 text-left font-raleway font-bold text-slate-900">
                         P-Shot® (Priapus Shot®)
                       </th>
-                      <th className="px-6 py-4 text-left font-raleway font-semibold text-slate-900">
+                      <th className="px-6 py-4 text-left font-raleway font-bold text-slate-900">
                         Exomine® P-Shot (Priapus Shot®)
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200">
+                  <tbody className="divide-y divide-slate-100">
                     <tr>
-                      <td className="px-6 py-4 font-inter font-medium text-slate-700">
+                      <td className="px-6 py-4 font-inter font-bold text-slate-700">
                         Type of PRP
                       </td>
                       <td className="px-6 py-4 font-inter text-slate-600">
@@ -1074,8 +1081,8 @@ export default function SexualHealthClient({
                         released outside the platelets
                       </td>
                     </tr>
-                    <tr className="bg-slate-50">
-                      <td className="px-6 py-4 font-inter font-medium text-slate-700">
+                    <tr className="bg-slate-50/50">
+                      <td className="px-6 py-4 font-inter font-bold text-slate-700">
                         Growth Factor Release
                       </td>
                       <td className="px-6 py-4 font-inter text-slate-600">
@@ -1087,7 +1094,7 @@ export default function SexualHealthClient({
                       </td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-inter font-medium text-slate-700">
+                      <td className="px-6 py-4 font-inter font-bold text-slate-700">
                         Procedure Time
                       </td>
                       <td className="px-6 py-4 font-inter text-slate-600">
@@ -1097,8 +1104,8 @@ export default function SexualHealthClient({
                         ~60 minutes (extra preparation steps)
                       </td>
                     </tr>
-                    <tr className="bg-slate-50">
-                      <td className="px-6 py-4 font-inter font-medium text-slate-700">
+                    <tr className="bg-slate-50/50">
+                      <td className="px-6 py-4 font-inter font-bold text-slate-700">
                         Course of Treatment
                       </td>
                       <td className="px-6 py-4 font-inter text-slate-600">
@@ -1109,7 +1116,7 @@ export default function SexualHealthClient({
                       </td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-inter font-medium text-slate-700">
+                      <td className="px-6 py-4 font-inter font-bold text-slate-700">
                         Best For
                       </td>
                       <td className="px-6 py-4 font-inter text-slate-600">
@@ -1122,8 +1129,8 @@ export default function SexualHealthClient({
                         advanced cases)
                       </td>
                     </tr>
-                    <tr className="bg-slate-50">
-                      <td className="px-6 py-4 font-inter font-medium text-slate-700">
+                    <tr className="bg-slate-50/50">
+                      <td className="px-6 py-4 font-inter font-bold text-slate-700">
                         Cost
                       </td>
                       <td className="px-6 py-4 font-inter text-slate-600">
@@ -1147,7 +1154,8 @@ export default function SexualHealthClient({
           {/* Prices Link */}
           <Link
             href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--brand-blue-dark)] text-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+            // BRAND COLOR LOCK
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex items-center gap-2"
           >
             View Treatment Prices
           </Link>
@@ -1155,7 +1163,8 @@ export default function SexualHealthClient({
           {/* FAQ Link */}
           <Link
             href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[var(--brand-blue)] text-[var(--brand-blue)] hover:bg-[var(--brand-blue-50)] bg-white rounded-lg font-inter font-medium transition-all duration-300 inline-flex items-center gap-2"
+            // BRAND COLOR LOCK
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex items-center gap-2"
           >
             View Clinic FAQs
           </Link>
@@ -1175,26 +1184,26 @@ export default function SexualHealthClient({
               className="flex justify-center mb-2"
               variants={itemVariants}
             >
-              <div className="inline-block px-4 py-2 bg-[var(--brand-blue-100)] text-[var(--brand-blue-700)] rounded-full text-xs font-inter font-medium">
+              <div className="inline-block px-4 py-2 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-inter font-bold uppercase tracking-wider">
                 Frequently Asked Questions
               </div>
             </motion.div>
             <motion.h2
-              className="md:text-3xl text-xl tracking-tight font-raleway text-navy-600 leading-tight text-center"
+              className="md:text-3xl text-xl tracking-tight font-raleway font-bold text-slate-900 leading-tight text-center mb-6"
               variants={itemVariants}
             >
               Common Questions About PRP Treatments
             </motion.h2>
 
             <motion.p
-              className="md:text-sm text-xs font-inter text-slate-600 mx-auto leading-relaxed text-center"
+              className="md:text-sm text-xs font-inter text-slate-600 mx-auto leading-relaxed text-center max-w-2xl"
               variants={itemVariants}
             >
               Find answers to the most frequently asked questions about our PRP
               treatments and services in {locationName}.
             </motion.p>
             <motion.div
-              className="space-y-4 mt-4"
+              className="space-y-4 mt-8"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
@@ -1203,19 +1212,19 @@ export default function SexualHealthClient({
               {faqs.map((faq, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200/50 overflow-hidden"
+                  className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
                   variants={itemVariants}
                 >
                   {/* Question */}
                   <motion.button
-                    className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50/50 transition-colors duration-300"
+                    className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
                     onClick={() => toggleFAQ(index)}
                   >
-                    <h3 className="md:text-base text-sm text-slate-900 pr-4 leading-relaxed">
+                    <h3 className="md:text-base text-sm font-raleway font-bold text-slate-900 pr-4 leading-relaxed">
                       {faq.question}
                     </h3>
                     <motion.div
-                      className="flex-shrink-0 w-8 h-8 bg-[var(--brand-blue)]/10 rounded-full flex items-center justify-center"
+                      className="flex-shrink-0 w-8 h-8 bg-[#4041d1]/10 rounded-full flex items-center justify-center"
                       animate={{ rotate: openFAQIndex === index ? 180 : 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
@@ -1226,7 +1235,7 @@ export default function SexualHealthClient({
                         }}
                         transition={{ duration: 0.2 }}
                       >
-                        <FaPlus className="w-3 h-3 text-[var(--brand-blue)]" />
+                        <FaPlus className="w-3 h-3 text-[#4041d1]" />
                       </motion.div>
                       <motion.div
                         className="absolute"
@@ -1236,7 +1245,7 @@ export default function SexualHealthClient({
                         }}
                         transition={{ duration: 0.2 }}
                       >
-                        <FaMinus className="w-3 h-3 text-[var(--brand-blue)]" />
+                        <FaMinus className="w-3 h-3 text-[#4041d1]" />
                       </motion.div>
                     </motion.div>
                   </motion.button>
@@ -1252,7 +1261,7 @@ export default function SexualHealthClient({
                         className="overflow-hidden"
                       >
                         <div className="px-6 pb-6">
-                          <div className="border-t border-slate-200/50 pt-4">
+                          <div className="border-t border-slate-100 pt-4">
                             <p className="font-inter text-sm text-slate-600 leading-relaxed">
                               {faq.answer}
                             </p>
