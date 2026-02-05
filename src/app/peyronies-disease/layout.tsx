@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Peyronie's Disease Treatment - Healing-PRP Clinics | St Albans",
-  description:
-    "Advanced Peyronie's Disease treatment combining PRP P-Shot with Low Intensity Shockwave Therapy. Non-surgical, GP-led care for plaque remodelling and vascular regeneration in St Albans.",
+  title: {
+    template: "%s | St Albans Clinic",
+    default: "Peyronie's Disease Treatment | St Albans Clinic",
+  },
 };
 
-export default function PeyroniesDiseaseLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
-
