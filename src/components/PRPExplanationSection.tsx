@@ -41,9 +41,8 @@ export default function PRPExplanationSection() {
   return (
     <section 
       id="prp-explanation" 
-      // 1. Adjusted padding: py-20 lg:py-28 (Refining vertical space)
       className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter"
-      style={{ backgroundImage: 'radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.08) 0%, transparent 40%)' }}
+      style={{ backgroundImage: 'radial-gradient(circle at 10% 10%, rgba(64, 65, 209, 0.15) 0%, transparent 40%)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -54,14 +53,14 @@ export default function PRPExplanationSection() {
           variants={containerVariants}
         >
           <motion.div
-            className="inline-block px-4 py-1.5 bg-blue-500/10 text-blue-300 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] mb-6 border border-blue-500/20"
+            // BRAND COLOR LOCK: Lightened #4041d1 for contrast against dark mode
+            className="inline-block px-4 py-1.5 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-[10px] font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway"
             variants={itemVariants}
           >
             Scientific Excellence
           </motion.div>
 
           <motion.h2
-            // 2. Reduced heading: text-3xl md:text-4xl (Refining clinical look)
             className="text-3xl md:text-4xl font-raleway font-bold text-white leading-tight mb-6 tracking-tight"
             variants={itemVariants}
           >
@@ -70,8 +69,7 @@ export default function PRPExplanationSection() {
 
           <div className="max-w-4xl mx-auto space-y-8">
             <motion.p
-              // 3. Adjusted text: text-base (was text-lg)
-              className="text-base text-slate-200 leading-relaxed font-medium"
+              className="text-base text-slate-200 leading-relaxed font-medium font-inter"
               variants={itemVariants}
             >
               Platelet-Rich Plasma (PRP) is prepared using a small sample of your own blood, 
@@ -84,18 +82,18 @@ export default function PRPExplanationSection() {
               variants={itemVariants}
             >
               {applications.map((app, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 bg-white/[0.03] rounded-2xl border border-white/10">
-                  <FaCheckCircle className="text-blue-400 mt-1 shrink-0 w-3.5 h-3.5" />
+                <div key={i} className="flex items-start gap-3 p-4 bg-white/[0.03] rounded-2xl border border-white/10 hover:border-[#4041d1]/40 transition-colors duration-300">
+                  <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-3.5 h-3.5" />
                   <div>
-                    <span className="text-white font-bold block text-sm">{app.title}</span>
-                    <span className="text-slate-400 text-xs">{app.desc}</span>
+                    <span className="text-white font-bold block text-sm font-raleway">{app.title}</span>
+                    <span className="text-slate-400 text-xs font-inter">{app.desc}</span>
                   </div>
                 </div>
               ))}
             </motion.div>
 
             <motion.p
-              className="text-xs text-slate-400 italic"
+              className="text-xs text-slate-400 italic font-inter"
               variants={itemVariants}
             >
               Because PRP is derived from your own blood, it is biocompatible and tailored to your body’s natural healing processes.
@@ -113,10 +111,10 @@ export default function PRPExplanationSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.2 }}
-                className="inline-flex items-center gap-3 px-5 py-2 bg-white/10 border border-white/20 rounded-full shadow-lg"
+                className="inline-flex items-center gap-3 px-5 py-2 bg-white/10 border border-white/20 rounded-full shadow-lg backdrop-blur-sm"
               >
-                <span className="flex h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
-                <span className="text-[9px] font-bold text-white uppercase tracking-widest">
+                <span className="flex h-1.5 w-1.5 rounded-full bg-[#4041d1] animate-pulse" />
+                <span className="text-[9px] font-bold text-white uppercase tracking-widest font-raleway">
                   Phase 0{steps[activeStep].number}: {steps[activeStep].title}
                 </span>
               </motion.div>
@@ -144,15 +142,15 @@ export default function PRPExplanationSection() {
                   variants={itemVariants}
                 >
                   <div
-                    // 4. Tightened card padding: p-6 (was p-8)
                     className={`p-6 rounded-[2rem] border transition-all duration-300 cursor-pointer h-full flex flex-col ${
                       isActive
-                        ? "border-blue-500 bg-white shadow-xl scale-105 z-20"
+                        // BRAND COLOR LOCK: Active state border uses Brand Blue
+                        ? "border-[#4041d1] bg-white shadow-xl shadow-[#4041d1]/20 scale-105 z-20"
                         : "border-white/10 bg-white/[0.04] opacity-70 hover:opacity-100"
                     }`}
                   >
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 ${
-                      isActive ? "bg-blue-600 text-white shadow-lg" : "bg-white/10 text-slate-300 group-hover:text-blue-400"
+                      isActive ? "bg-[#4041d1] text-white shadow-lg" : "bg-white/10 text-slate-300 group-hover:text-[#4041d1]"
                     }`}>
                       <IconComponent className="w-5 h-5" />
                     </div>
@@ -160,7 +158,7 @@ export default function PRPExplanationSection() {
                     <h3 className={`font-raleway font-bold mb-2 text-base transition-colors ${isActive ? "text-slate-900" : "text-white"}`}>
                       {step.title}
                     </h3>
-                    <p className={`text-xs leading-relaxed transition-colors ${isActive ? "text-slate-600" : "text-slate-400"}`}>
+                    <p className={`text-xs leading-relaxed font-inter transition-colors ${isActive ? "text-slate-600" : "text-slate-400"}`}>
                       {step.description}
                     </p>
                   </div>
