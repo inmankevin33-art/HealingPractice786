@@ -55,13 +55,14 @@ export default function Hero() {
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={fadeUpVariants}
-          className="inline-block px-4 py-1.5 bg-blue-600 text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em]"
+          // BRAND COLOR LOCK: bg-[#4041d1]
+          className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter"
         >
-          <FaMapMarkerAlt className="inline-block mr-2 mb-0.5 text-blue-200" />
+          <FaMapMarkerAlt className="inline-block mr-2 mb-0.5 text-white/70" />
           St Albans • Harpenden • Luton • London
         </motion.div>
 
-        {/* Headline - Refined Sizing */}
+        {/* Headline - Raleway Bold */}
         <motion.h1 
           custom={2}
           initial="hidden"
@@ -72,7 +73,7 @@ export default function Hero() {
           Natural Regeneration Treatments <br /> Healing-PRP Clinics
         </motion.h1>
 
-        {/* Sub-headline - Refined Sizing */}
+        {/* Sub-headline - Raleway Medium */}
         <motion.h2 
           custom={3}
           initial="hidden"
@@ -83,7 +84,7 @@ export default function Hero() {
           Doctor-led. Patient-focused. Regenerative care
         </motion.h2>
 
-        {/* Description - Refined Sizing */}
+        {/* Description - Inter */}
         <motion.p 
           custom={4}
           initial="hidden"
@@ -105,7 +106,8 @@ export default function Hero() {
         >
           <button 
             onClick={handleAction}
-            className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95"
+            // BRAND COLOR LOCK: bg-[#4041d1] with hover #2a2bb8
+            className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
           >
             <FaEnvelope className="w-4 h-4" /> Book Consultation
           </button>
@@ -125,7 +127,7 @@ export default function Hero() {
               ].map((item, idx) => (
                 <div key={idx} className={`text-center ${idx !== 3 ? 'border-r border-white/10' : ''}`}>
                   <div className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 font-inter">{item.label}</div>
-                  <div className="text-blue-400 text-[10px] md:text-[11px] font-semibold font-inter">{item.sub}</div>
+                  <div className="text-blue-300 text-[10px] md:text-[11px] font-semibold font-inter">{item.sub}</div>
                 </div>
               ))}
             </div>
