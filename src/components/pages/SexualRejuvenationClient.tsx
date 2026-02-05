@@ -1279,6 +1279,7 @@ export default function SexualHealthClient({
 
       {/* Contact Section */}
       <ContactCTASection />
+      <LocationSection />
 
       <Footer />
     </>
