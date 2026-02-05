@@ -8,9 +8,13 @@ export const metadata: Metadata = {
   description: "Stay informed about the latest developments in PRP treatments, joint health, and aesthetic medicine from our medical experts.",
 };
 
+// ✅ FIX 1: Add Revalidation so new Contentful posts appear automatically
+export const revalidate = 3600; // Revalidate every hour
+
 export default async function Page() {
   // We fetch the posts on the server for faster loading and better SEO
   const posts = await getAllBlogPosts();
 
-  return <BlogClient initialPosts={posts} />;
+  // ✅ FIX 2: Added "|| []" to prevent crash if Contentful returns null
+  return <BlogClient initialPosts={posts || []} />;
 }
