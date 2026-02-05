@@ -40,10 +40,10 @@ export default function PrivacyPolicy() {
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors duration-300"
+            className="inline-flex items-center gap-2 text-slate-600 hover:text-[#4041d1] transition-colors duration-300 group"
           >
-            <FaArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">Back to Home</span>
+            <FaArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-medium font-inter">Back to Home</span>
           </Link>
         </motion.div>
 
@@ -52,14 +52,17 @@ export default function PrivacyPolicy() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="prose prose-slate max-w-none"
+          className="prose prose-slate max-w-none font-inter"
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="mb-8">
             <h1 className="text-4xl font-raleway font-bold text-slate-900 mb-2">
               Privacy Policy
             </h1>
-            <p className="text-slate-600 text-sm">
+            <p className="text-slate-600 text-sm mb-2 font-inter">
+              Healing-PRP Clinics – healing-prp.co.uk
+            </p>
+            <p className="text-slate-600 text-sm font-inter">
               Last updated: {new Date().toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "long",
@@ -94,7 +97,8 @@ export default function PrivacyPolicy() {
                 <strong>Email:</strong>{" "}
                 <a
                   href="mailto:info@healing-prp.co.uk"
-                  className="text-blue-600 hover:text-blue-800 underline"
+                  // BRAND COLOR LOCK: #4041d1
+                  className="text-[#4041d1] hover:text-[#2a2bb8] underline transition-colors"
                 >
                   info@healing-prp.co.uk
                 </a>
@@ -103,7 +107,7 @@ export default function PrivacyPolicy() {
                 <strong>Website:</strong>{" "}
                 <a
                   href="https://healing-prp.co.uk"
-                  className="text-blue-600 hover:text-blue-800 underline"
+                  className="text-[#4041d1] hover:text-[#2a2bb8] underline transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -305,7 +309,7 @@ export default function PrivacyPolicy() {
               To exercise these rights, please contact us at{" "}
               <a
                 href="mailto:info@healing-prp.co.uk"
-                className="text-blue-600 hover:text-blue-800 underline"
+                className="text-[#4041d1] hover:text-[#2a2bb8] underline transition-colors"
               >
                 info@healing-prp.co.uk
               </a>
@@ -350,7 +354,7 @@ export default function PrivacyPolicy() {
               information, please see our{" "}
               <Link
                 href="/cookie-policy"
-                className="text-blue-600 hover:text-blue-800 underline"
+                className="text-[#4041d1] hover:text-[#2a2bb8] underline transition-colors"
               >
                 Cookie Policy
               </Link>
@@ -372,7 +376,7 @@ export default function PrivacyPolicy() {
                 <strong>Email:</strong>{" "}
                 <a
                   href="mailto:info@healing-prp.co.uk"
-                  className="text-blue-600 hover:text-blue-800 underline"
+                  className="text-[#4041d1] hover:text-[#2a2bb8] underline transition-colors"
                 >
                   info@healing-prp.co.uk
                 </a>
@@ -387,7 +391,7 @@ export default function PrivacyPolicy() {
               data:{" "}
               <a
                 href="https://ico.org.uk"
-                className="text-blue-600 hover:text-blue-800 underline"
+                className="text-[#4041d1] hover:text-[#2a2bb8] underline transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -402,4 +406,3 @@ export default function PrivacyPolicy() {
     </div>
   );
 }
-
