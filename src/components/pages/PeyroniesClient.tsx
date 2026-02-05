@@ -3,12 +3,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
-  FaWhatsapp,
   FaCheck,
   FaPlus,
   FaMinus,
   FaEnvelope,
-  FaTimes,
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -16,7 +14,6 @@ import Link from "next/link";
 
 export default function PeyroniesClient() {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
   const toggleFAQ = (index: number) => {
@@ -30,23 +27,6 @@ export default function PeyroniesClient() {
     window.addEventListener("resize", checkDesktop);
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
-
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [isModalOpen]);
-
-  const handleWhatsAppClick = (e: React.MouseEvent) => {
-    if (isDesktop) {
-      e.preventDefault();
-      setIsModalOpen(true);
-    }
-  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -124,7 +104,7 @@ export default function PeyroniesClient() {
 
   return (
     <>
-      {/* Hero Section - Twin Standard Height */}
+      {/* Hero Section - Standardized Twin Style */}
       <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
@@ -137,7 +117,7 @@ export default function PeyroniesClient() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-20 flex h-full w-full items-center">
+        <div className="relative z-20 flex h-full w-full items-center mt-10 md:mt-0">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial="hidden"
@@ -154,17 +134,18 @@ export default function PeyroniesClient() {
               </motion.div>
 
               <motion.h1
-                className="text-3xl lg:text-5xl font-raleway text-slate-900 font-bold leading-tight mb-4"
+                className="text-2xl lg:text-4xl font-raleway text-slate-900 font-bold leading-snug mb-4"
                 variants={itemVariants}
               >
                 Peyronie&apos;s Disease Treatment
+                <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
               </motion.h1>
 
               <motion.p
                 className="text-sm md:text-base font-inter text-slate-600 leading-relaxed max-w-2xl mx-auto mb-8"
                 variants={itemVariants}
               >
-                Advanced male sexual rejuvenation with regenerative therapies
+                Advanced male sexual rejuvenation with regenerative therapies. Doctor-led care using your body's natural healing ability.
               </motion.p>
 
               <motion.div
@@ -184,38 +165,24 @@ export default function PeyroniesClient() {
                 ))}
               </motion.div>
 
+              {/* Standardized Single Button */}
               <motion.div
                 variants={itemVariants}
-                className={`flex flex-col items-center justify-center mt-3 sm:flex-row gap-4`}
+                className="flex justify-center"
               >
-                {isDesktop ? (
-                  <button
-                    onClick={handleWhatsAppClick}
-                    // BRAND COLOR LOCK: bg-[#4041d1]
-                    className="px-8 py-3.5 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 flex items-center gap-2 shadow-xl shadow-blue-500/20"
-                  >
-                    <FaWhatsapp className="w-5 h-5" />
-                    Book on WhatsApp
-                  </button>
-                ) : (
-                  <a
-                    href="https://wa.me/447990364147"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-8 py-3.5 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 flex items-center gap-2 shadow-xl shadow-blue-500/20"
-                  >
-                    <FaWhatsapp className="w-5 h-5" />
-                    Book on WhatsApp
-                  </a>
-                )}
-
-                <Link 
-                  href="/contact"
-                  className="px-8 py-3.5 w-full md:w-max inline-flex items-center justify-center md:text-sm text-xs items-center gap-2 cursor-pointer border-2 border-[#4041d1] text-[#4041d1] rounded-xl font-inter font-bold transition-all duration-300 hover:bg-[#4041d1]/5 bg-white"
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+                    const section = document.getElementById("contact-form-section");
+                    if (section) section.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  // BRAND COLOR LOCK: #4041d1
+                  className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
                 >
-                  <FaEnvelope className="w-4 h-4" />
-                  Contact Us
-                </Link>
+                  <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                  Book Consultation
+                </button>
               </motion.div>
             </motion.div>
           </div>
@@ -428,6 +395,25 @@ export default function PeyroniesClient() {
         </div>
       </section>
 
+      {/* NEW: Reusable CTA Bar (Standardized) */}
+      <section className="py-12 bg-white border-t border-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
+          <Link
+            href="/prices"
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
+          >
+            View Treatment Prices
+          </Link>
+          
+          <Link
+            href="/faq"
+            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
+          >
+            View Clinic FAQs
+          </Link>
+        </div>
+      </section>
+
       {/* FAQs Section */}
       <section id="faqs" className="py-20 lg:py-24 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -521,66 +507,6 @@ export default function PeyroniesClient() {
       <ContactCTASection />
 
       <Footer />
-
-      {/* WhatsApp QR Code Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
-              onClick={() => setIsModalOpen(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-full transition-colors"
-                >
-                  <FaTimes className="w-5 h-5 text-slate-600" />
-                </button>
-
-                <div className="text-center">
-                  <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">
-                    Scan to Chat on WhatsApp
-                  </h3>
-                  <p className="text-sm font-inter text-slate-600 mb-6">
-                    Use your phone camera to scan the QR code
-                  </p>
-
-                  <div className="bg-white p-6 rounded-xl border-2 border-slate-200 inline-block mb-6">
-                    <img
-                      src="/qrcode.png"
-                      alt="WhatsApp QR Code"
-                      className="w-64 h-64"
-                    />
-                  </div>
-
-                  <a
-                    href="https://web.whatsapp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg font-bold font-inter transition-all duration-300"
-                  >
-                    <FaWhatsapp className="w-5 h-5" />
-                    Open WhatsApp Web
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </>
   );
 }
