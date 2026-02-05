@@ -40,10 +40,10 @@ export default function TermsOfService() {
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors duration-300"
+            className="inline-flex items-center gap-2 text-slate-600 hover:text-[#4041d1] transition-colors duration-300 group"
           >
-            <FaArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">Back to Home</span>
+            <FaArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-medium font-inter">Back to Home</span>
           </Link>
         </motion.div>
 
@@ -52,17 +52,17 @@ export default function TermsOfService() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="prose prose-slate max-w-none"
+          className="prose prose-slate max-w-none font-inter"
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="mb-8">
             <h1 className="text-4xl font-raleway font-bold text-slate-900 mb-2">
               Terms of Service
             </h1>
-            <p className="text-slate-600 text-sm mb-2">
+            <p className="text-slate-600 text-sm mb-2 font-inter">
               Healing-PRP Clinics – healing-prp.co.uk
             </p>
-            <p className="text-slate-600 text-sm">
+            <p className="text-slate-600 text-sm font-inter">
               Last updated: {new Date().toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "long",
@@ -95,7 +95,8 @@ export default function TermsOfService() {
                 <strong>Email:</strong>{" "}
                 <a
                   href="mailto:info@healing-prp.co.uk"
-                  className="text-blue-600 hover:text-blue-800 underline"
+                  // BRAND COLOR LOCK: #4041d1
+                  className="text-[#4041d1] hover:text-[#2a2bb8] underline transition-colors"
                 >
                   info@healing-prp.co.uk
                 </a>
@@ -104,7 +105,7 @@ export default function TermsOfService() {
                 <strong>Website:</strong>{" "}
                 <a
                   href="https://healing-prp.co.uk"
-                  className="text-blue-600 hover:text-blue-800 underline"
+                  className="text-[#4041d1] hover:text-[#2a2bb8] underline transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -280,7 +281,7 @@ export default function TermsOfService() {
               and medical information is processed according to our{" "}
               <Link
                 href="/privacy-policy"
-                className="text-blue-600 hover:text-blue-800 underline"
+                className="text-[#4041d1] hover:text-[#2a2bb8] underline transition-colors"
               >
                 Privacy Policy
               </Link>
@@ -358,4 +359,3 @@ export default function TermsOfService() {
     </div>
   );
 }
-
