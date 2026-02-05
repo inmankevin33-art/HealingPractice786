@@ -18,18 +18,18 @@ export default function Footer() {
   // Trigger the Contact Drawer
   const handleContactClick = (e: React.MouseEvent) => {
     // List of pages where the drawer exists
-   const drawerPages = [
-     "/", 
-     "/birmingham", 
-     "/facial-aesthetics", 
-     "/hair-restoration", 
-     "/joint-injections", 
-     "/sexual-rejuvenation",
-     "/birmingham/facial-aesthetics",
-     "/birmingham/hair-restoration",
-     "/birmingham/joint-injections",
-     "/birmingham/sexual-rejuvenation"
-   ];
+    const drawerPages = [
+      "/", 
+      "/birmingham", 
+      "/facial-aesthetics", 
+      "/hair-restoration", 
+      "/joint-injections", 
+      "/sexual-rejuvenation",
+      "/birmingham/facial-aesthetics",
+      "/birmingham/hair-restoration",
+      "/birmingham/joint-injections",
+      "/birmingham/sexual-rejuvenation"
+    ];
     
     if (drawerPages.includes(pathname || "")) {
       e.preventDefault();
@@ -59,13 +59,13 @@ export default function Footer() {
       icon: FaEnvelope, 
       label: "Email", 
       href: "mailto:info@healing-prp.co.uk",
-      text: "info@healing-prp.co.uk" // Added the visible text
+      text: "info@healing-prp.co.uk" 
     },
     { 
       icon: FaInstagram, 
       label: "Instagram", 
       href: "https://www.instagram.com/Healing_Prp",
-      text: "@Healing_Prp" // Optional: add handle here too
+      text: "@Healing_Prp" 
     },
   ];
 
@@ -81,7 +81,6 @@ export default function Footer() {
     <footer className="bg-[#0f172a] text-white font-inter border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          // 1. Reduced vertical padding: py-12 (was 16)
           className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8"
           initial="hidden"
           whileInView="visible"
@@ -115,7 +114,8 @@ export default function Footer() {
                   className="flex items-center gap-3 group"
                   aria-label={method.label}
                 >
-                  <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-blue-600 transition-all duration-300">
+                  {/* BRAND COLOR LOCK: Hover bg-[#4041d1] */}
+                  <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-[#4041d1] transition-all duration-300">
                     <method.icon className="w-3.5 h-3.5 text-white" />
                   </div>
                   <span className="text-xs text-slate-400 group-hover:text-white transition-colors truncate">
@@ -153,11 +153,12 @@ export default function Footer() {
             </h4>
             <div className="space-y-3 text-xs text-slate-400 leading-relaxed">
               <div className="flex items-start gap-2.5">
-                <FaMapMarkerAlt className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-blue-500/70" />
+                {/* BRAND COLOR LOCK: Text-[#4041d1] */}
+                <FaMapMarkerAlt className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-[#4041d1]/80" />
                 <p>38 Harborne Rd,<br />Edgbaston B15 3EB</p>
               </div>
               <div className="flex items-center gap-2.5">
-                <FaPhone className="w-3.5 h-3.5 flex-shrink-0 text-blue-500/70" />
+                <FaPhone className="w-3.5 h-3.5 flex-shrink-0 text-[#4041d1]/80" />
                 <a href="tel:07990364147" className="hover:text-white transition-colors">+44 7990 364147</a>
               </div>
             </div>
@@ -170,11 +171,11 @@ export default function Footer() {
             </h4>
             <div className="space-y-3 text-xs text-slate-400 leading-relaxed">
               <div className="flex items-start gap-2.5">
-                <FaMapMarkerAlt className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-blue-500/70" />
+                <FaMapMarkerAlt className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-[#4041d1]/80" />
                 <p>21 Victoria Street,<br />St Albans AL1 3JJ</p>
               </div>
               <div className="flex items-center gap-2.5">
-                <FaPhone className="w-3.5 h-3.5 flex-shrink-0 text-blue-500/70" />
+                <FaPhone className="w-3.5 h-3.5 flex-shrink-0 text-[#4041d1]/80" />
                 <a href="tel:07990364147" className="hover:text-white transition-colors">+44 7990 364147</a>
               </div>
             </div>
@@ -183,7 +184,6 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <motion.div
-          // 2. Reduced padding: py-6 (was 8)
           className="border-t border-white/5 py-6 flex flex-col md:flex-row justify-between items-center gap-4"
           initial="hidden"
           whileInView="visible"
