@@ -111,10 +111,11 @@ export default function PRPExplanationSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.2 }}
-                className="inline-flex items-center gap-3 px-5 py-2 bg-white/10 border border-white/20 rounded-full shadow-lg backdrop-blur-sm"
+                // UPDATED: Increased padding, larger border, and bigger text
+                className="inline-flex items-center gap-3 px-6 py-3 bg-[#4041d1]/10 border border-[#4041d1]/40 rounded-full shadow-[0_0_15px_rgba(64,65,209,0.25)] backdrop-blur-md"
               >
-                <span className="flex h-1.5 w-1.5 rounded-full bg-[#4041d1] animate-pulse" />
-                <span className="text-[9px] font-bold text-white uppercase tracking-widest font-raleway">
+                <span className="flex h-2 w-2 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_8px_#4041d1]" />
+                <span className="text-xs font-bold text-white uppercase tracking-[0.25em] font-raleway">
                   Phase 0{steps[activeStep].number}: {steps[activeStep].title}
                 </span>
               </motion.div>
