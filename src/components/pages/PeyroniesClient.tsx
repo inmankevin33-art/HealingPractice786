@@ -145,7 +145,7 @@ export default function PeyroniesClient() {
                 className="text-sm md:text-base font-inter text-slate-600 leading-relaxed max-w-2xl mx-auto mb-8"
                 variants={itemVariants}
               >
-                Advanced male sexual rejuvenation with regenerative therapies. Doctor-led care using your body's natural healing ability.
+                Advanced male sexual rejuvenation with regenerative therapies. Doctor-led care using your body&apos;s natural healing ability.
               </motion.p>
 
               <motion.div
