@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, MapPin, Phone } from "lucide-react";
+// FIXED: Swapped to react-icons/fa to match your installed library
+import { FaBars, FaTimes, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-// Define the Interface to fix the TypeScript 'isContact' error
 interface MenuItem {
   name: string;
   href: string;
@@ -60,6 +60,7 @@ const Header = () => {
 
   return (
     <>
+      {/* PRESERVED: Dark Background #0f172a */}
       <header className="sticky top-0 left-0 right-0 z-50 bg-[#0f172a] border-b border-white/10 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
@@ -82,19 +83,19 @@ const Header = () => {
             <div className="flex items-center gap-4 md:gap-8">
               {/* Desktop Clinic Info + Phone */}
               <div className="hidden lg:flex flex-col items-end">
-                <div className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5 mb-1">
-                  <MapPin className="w-3 h-3 text-blue-400" />
+                <div className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5 mb-1 font-inter">
+                  <FaMapMarkerAlt className="w-3 h-3 text-[#4041d1]" />
                   <span className="text-slate-300">
                     {isBirmingham ? "Birmingham Clinic" : "St Albans Clinic"}
                   </span>
                 </div>
                 
-                {/* Clickable Phone Number with Icon */}
+                {/* Clickable Phone Number */}
                 <a 
                   href="tel:07990364147" 
-                  className="flex items-center gap-1.5 text-sm font-bold text-blue-400 hover:text-white transition-colors tracking-wider group"
+                  className="flex items-center gap-2 text-sm font-bold text-white hover:text-[#4041d1] transition-colors tracking-wider group font-inter"
                 >
-                  <Phone className="w-3.5 h-3.5 fill-current group-hover:scale-110 transition-transform" />
+                  <FaPhoneAlt className="w-3 h-3 fill-current text-[#4041d1] group-hover:scale-110 transition-transform" />
                   <span>07990 364 147</span>
                 </a>
               </div>
@@ -102,10 +103,11 @@ const Header = () => {
               {/* Mobile Phone Link (Visible icon only) */}
               <a 
                 href="tel:07990364147" 
-                className="lg:hidden p-2.5 bg-blue-600 rounded-full text-white shadow-lg shadow-blue-500/20"
+                // BRAND COLOR LOCK: #4041d1
+                className="lg:hidden p-2.5 bg-[#4041d1] rounded-full text-white shadow-lg shadow-blue-500/20"
                 aria-label="Call Clinic"
               >
-                <Phone className="w-4 h-4 fill-current" />
+                <FaPhoneAlt className="w-4 h-4 fill-current" />
               </a>
 
               {/* Menu Toggle */}
@@ -116,7 +118,7 @@ const Header = () => {
                 <span className="hidden md:inline text-xs font-bold font-inter text-white uppercase tracking-widest">
                   {isMenuOpen ? "CLOSE" : "MENU"}
                 </span>
-                {isMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
+                {isMenuOpen ? <FaTimes className="w-5 h-5 text-white" /> : <FaBars className="w-5 h-5 text-white" />}
               </button>
             </div>
           </div>
@@ -129,18 +131,28 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            // PRESERVED: Dark Menu Background
             className="fixed inset-0 z-40 bg-[#0f172a] pt-24 overflow-y-auto"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
               
               {/* Location Selectors */}
               <div className="mb-12 border-b border-white/10 pb-12">
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-6">Select Your Location</p>
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-6 font-inter">Select Your Location</p>
                 <div className="flex flex-col sm:flex-row gap-4 max-w-xl">
-                  <Link href="/" onClick={() => setIsMenuOpen(false)} className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all ${!isBirmingham ? 'border-blue-500 bg-blue-500/10 text-white font-bold' : 'border-white/10 text-slate-400 hover:border-white/20'}`}>
+                  <Link 
+                    href="/" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    // BRAND COLOR LOCK: #4041d1 for active state
+                    className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter ${!isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20'}`}
+                  >
                     St Albans Clinic
                   </Link>
-                  <Link href="/birmingham" onClick={() => setIsMenuOpen(false)} className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all ${isBirmingham ? 'border-blue-500 bg-blue-500/10 text-white font-bold' : 'border-white/10 text-slate-400 hover:border-white/20'}`}>
+                  <Link 
+                    href="/birmingham" 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter ${isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20'}`}
+                  >
                     Birmingham Clinic
                   </Link>
                 </div>
@@ -159,8 +171,8 @@ const Header = () => {
                       href={item.href} 
                       className={`text-2xl md:text-4xl font-raleway transition-colors inline-block ${
                         item.isContact 
-                          ? "text-blue-400 font-bold border-b-2 border-blue-400/30 pb-1" 
-                          : "font-medium text-white hover:text-blue-400"
+                          ? "text-[#4041d1] font-bold border-b-2 border-[#4041d1]/30 pb-1" 
+                          : "font-medium text-white hover:text-[#4041d1]"
                       }`}
                       onClick={item.isContact ? handleContactClick : () => setIsMenuOpen(false)}
                     >
