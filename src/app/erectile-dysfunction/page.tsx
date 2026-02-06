@@ -1,0 +1,52 @@
+import type { Metadata } from "next";
+import ErectileDysfunctionClient from "@/components/pages/ErectileDysfunctionClient";
+
+export const metadata: Metadata = {
+  // 1. Optimized Title: Focuses on the solution
+  title: "Erectile Dysfunction Treatment & Shockwave Therapy",
+
+  description:
+    "Doctor-led Erectile Dysfunction (ED) clinic serving Luton & St Albans. We restore natural function using Shockwave Therapy and PRP (P-Shot®). Private, non-pharmaceutical ED solutions.",
+
+  alternates: {
+    canonical: "https://www.healing-prp.co.uk/erectile-dysfunction",
+  },
+
+  // 2. Focused Keywords (Heavy emphasis on Luton & St Albans)
+  keywords: [
+    // High-Priority Location Terms (Luton Focus)
+    "Erectile dysfunction treatment Luton",
+    "Private ED clinic Luton",
+    "Shockwave therapy Luton",
+    "Men's health clinic near Luton",
+    "Impotence treatment Bedfordshire",
+    
+    // Core Clinical Terms (St Albans/Herts Base)
+    "Erectile dysfunction treatment St Albans",
+    "P-Shot for erectile dysfunction",
+    "Vascular ED treatment",
+    "Shockwave therapy Hertfordshire",
+    "Non-surgical impotence cure",
+    
+    // Specific Long-Tail
+    "Viagra alternative Luton",
+    "Private ED doctor Harpenden",
+    "Restorative sexual medicine",
+    "Male performance clinic Watford",
+    "Low intensity shockwave therapy London"
+  ],
+
+  openGraph: {
+    title: "Erectile Dysfunction Treatment | Luton & St Albans",
+    description:
+      "Restore spontaneity and confidence. Doctor-led Shockwave & PRP therapy for ED. Conveniently serving Luton, St Albans, and Hertfordshire.",
+    url: "https://www.healing-prp.co.uk/erectile-dysfunction",
+    siteName: "Healing-PRP Clinics",
+    locale: "en_GB",
+    type: "website",
+  },
+};
+
+export default function Page() {
+  return <ErectileDysfunctionClient />;
+}
