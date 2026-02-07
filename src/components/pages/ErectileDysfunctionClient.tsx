@@ -92,12 +92,12 @@ export default function ErectileDysfunctionClient() {
       color: "bg-teal-50 text-teal-600",
     },
     {
-      title: "Reliance on Pills",
+      title: "Confidence Dependence",
       description:
-        "Needing Viagra or Cialis for confidence, and wanting a longer-term medical approach.",
-      icon: FaPills,
-      color: "bg-[#f0f0ff] text-[#4041d1]",
-    },
+        "Relying on medication for reassurance or performance confidence, while wanting a more comprehensive medical approach that supports long-term sexual health.",
+      icon: FaFeather,
+      color: "bg-teal-50 text-teal-600",  
+    }
   ];
 
   // --- DATA: PROTOCOL STEPS ---
