@@ -7,6 +7,14 @@ import {
   FaPlus,
   FaMinus,
   FaUserMd,
+  FaBatteryQuarter,
+  FaHourglassEnd,
+  FaFeather,
+  FaPills,
+  FaWaveSquare,
+  FaSyringe,
+  FaDna,
+  FaCheckCircle,
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -14,7 +22,7 @@ import Link from "next/link";
 
 export default function ErectileDysfunctionClient() {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [activeStep, setActiveStep] = useState(0); // For the Dark Blue Process Section
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
@@ -22,10 +30,6 @@ export default function ErectileDysfunctionClient() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
   const containerVariants = {
@@ -41,42 +45,59 @@ export default function ErectileDysfunctionClient() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // SEO-Optimized Benefits
-  const benefits = [
-    "Restores natural spontaneous erections",
-    "Non-pharmaceutical & non-surgical",
-    "Improves blood flow & sensitivity",
-  ];
-
+  // --- DATA: SYMPTOMS (Using Card Style) ---
   const symptoms = [
-    "Difficulty achieving a full erection",
-    "Losing erection during intercourse",
-    "Reduced firmness or sensation",
-    "Reliance on oral medications (Pills)",
-  ];
-
-  const whoIsItFor = [
-    "Men seeking a long-term fix, not just a temporary pill",
-    "Patients with vascular-related ED (blood flow issues)",
-    "Men who experience side effects from ED medication",
-    "Those looking to restore morning erections and confidence",
-  ];
-
-  const treatmentDetails = [
     {
-      title: "Focused Shockwave Therapy (LiSWT)",
-      description:
-        "The gold standard for vascular ED. Acoustic waves stimulate the formation of new blood vessels (angiogenesis) and clear micro-plaque blockages. This treats the root cause of ED by physically improving blood supply to the tissue.",
+      title: "Difficulty Achieving",
+      description: "Struggling to get a full erection when you want to, causing frustration.",
+      icon: FaBatteryQuarter,
+      color: "bg-rose-50 text-rose-600",
     },
     {
-      title: "The P-Shot® (PRP Therapy)",
-      description:
-        "We utilize high-concentration Platelet-Rich Plasma from your own blood. When injected, these growth factors rejuvenate the nerve endings and cavernous tissue, enhancing sensitivity and response times.",
+      title: "Losing Maintenance",
+      description: "Erection becomes soft or is lost during intercourse.",
+      icon: FaHourglassEnd,
+      color: "bg-indigo-50 text-indigo-600",
     },
     {
-      title: "Comprehensive Hormonal Review",
-      description:
-        "Erectile health is often linked to Testosterone levels. We review your hormonal profile to ensure your body has the chemical signals it needs to function correctly, prescribing optimization protocols if necessary.",
+      title: "Reduced Sensation",
+      description: "Feeling less pleasure or 'numbness', often linked to blood flow.",
+      icon: FaFeather,
+      color: "bg-teal-50 text-teal-600",
+    },
+    {
+      title: "Reliance on Pills",
+      description: "Needing Viagra or Cialis just to function, and wanting a natural fix.",
+      icon: FaPills,
+      color: "bg-blue-50 text-[#4041d1]",
+    },
+  ];
+
+  // --- DATA: TREATMENT STEPS (Using Dark Blue Process Style) ---
+  const protocolSteps = [
+    {
+      number: 1,
+      icon: FaWaveSquare,
+      title: "Shockwave Therapy",
+      description: "Acoustic waves clear micro-plaque and stimulate new blood vessel growth (angiogenesis).",
+    },
+    {
+      number: 2,
+      icon: FaSyringe,
+      title: "P-Shot® (PRP)",
+      description: "Growth factors from your own blood are injected to rejuvenate nerve endings and tissue.",
+    },
+    {
+      number: 3,
+      icon: FaDna,
+      title: "Hormone Optimization",
+      description: "We review Testosterone levels to ensure your body has the chemical fuel it needs.",
+    },
+    {
+      number: 4,
+      icon: FaCheckCircle,
+      title: "Restoration",
+      description: "Over 6-12 weeks, blood flow improves, allowing for natural, spontaneous erections.",
     },
   ];
 
@@ -105,20 +126,18 @@ export default function ErectileDysfunctionClient() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
-        {/* Background Elements */}
+      {/* --- HERO SECTION (Kept Standard) --- */}
+      <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden font-inter">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
           <img
-            src="/ed_hero.jpg" 
+            src="/ed_hero.jpg"
             alt="Male Health Consultation"
             className="w-full h-full object-cover"
-            onError={(e) => (e.currentTarget.src = "/hero_img.png")} // Fallback
+            onError={(e) => (e.currentTarget.src = "/hero_img.png")}
           />
         </div>
 
-        {/* Hero Content */}
         <div className="relative z-20 flex h-full w-full items-center mt-10 md:mt-0">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -135,47 +154,27 @@ export default function ErectileDysfunctionClient() {
               </motion.div>
 
               <motion.h1
-                className="text-2xl lg:text-4xl font-raleway text-slate-900 font-bold leading-snug mb-4"
+                className="text-3xl lg:text-5xl font-raleway text-slate-900 font-bold leading-snug mb-4"
                 variants={itemVariants}
               >
                 Erectile Dysfunction Treatment
-                <span className="block mt-1 text-slate-700">Treat the Root Cause, Not Just Symptoms</span>
+                <span className="block mt-2 text-xl lg:text-2xl font-medium text-slate-600 font-inter">
+                  Treat the Root Cause, Not Just Symptoms
+                </span>
               </motion.h1>
 
-              <motion.p
-                className="text-sm md:text-base font-inter text-slate-600 leading-relaxed max-w-2xl mx-auto mb-8"
-                variants={itemVariants}
-              >
-                Move beyond temporary pills. We use advanced Shockwave Therapy and PRP to restore blood flow and spontaneity to your love life.
-              </motion.p>
-
-              <motion.div
-                className="hidden md:flex flex-row justify-center gap-4 mb-8"
-                variants={itemVariants}
-              >
-                {benefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm"
-                  >
-                    <FaCheck className="w-3 h-3 text-[#4041d1]" />
-                    <span className="text-sm font-inter text-slate-700 font-medium">
-                      {benefit}
-                    </span>
-                  </div>
-                ))}
-              </motion.div>
-
               <motion.div
                 variants={itemVariants}
-                className="flex justify-center"
+                className="flex justify-center mt-8"
               >
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+                    window.dispatchEvent(
+                      new CustomEvent("open-contact-drawer")
+                    );
                   }}
-                  className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
+                  className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
                 >
                   <FaUserMd className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   Book Confidential Consult
@@ -186,275 +185,261 @@ export default function ErectileDysfunctionClient() {
         </div>
       </section>
 
-      {/* Navigation */}
-      <section className="py-8 border-b border-t shadow-xs border-slate-100 relative">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="flex flex-wrap justify-center gap-4"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            {[
-              { label: "Understanding ED", href: "#understanding" },
-              { label: "Warning Signs", href: "#symptoms" },
-              { label: "Our Protocol", href: "#how-it-works" },
-              { label: "Ideal Candidates", href: "#who-is-it-for" },
-              { label: "FAQs", href: "#faqs" },
-            ].map((link, idx) => (
-              <motion.a
-                key={idx}
-                href={link.href}
-                className="px-4 py-2 text-sm border border-slate-100 shadow-xs bg-white text-[#4041d1] rounded-lg font-inter font-bold hover:bg-[#4041d1]/5 transition-colors duration-300"
-                variants={itemVariants}
-              >
-                {link.label}
-              </motion.a>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Understanding ED Section */}
-      <section id="understanding" className="py-20 lg:py-24 bg-white">
+      {/* --- SECTION 2: SYMPTOMS (Using ServiceOverview Card Style) --- */}
+      <section className="py-24 bg-white font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
+          <div className="text-center max-w-3xl mx-auto mb-16">
             <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-6"
-              variants={itemVariants}
-            >
-              Why It Happens: The Vascular Connection
-            </motion.h2>
-
-            <motion.p
-              className="text-sm md:text-base font-inter text-slate-600 max-w-4xl leading-relaxed"
-              variants={itemVariants}
-            >
-              {/* FIXED: Replaced " with &quot; to fix build error */}
-              Erectile Dysfunction is rarely &quot;just in your head.&quot; In the majority of men over 40, it is a vascular issue. As we age, the micro-vessels in the penis can become restricted or develop plaque (atherosclerosis), limiting the blood inflow required for a firm erection. Our treatments focus on clearing these pathways and generating new, healthy vessels.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Symptoms Section */}
-      <section id="symptoms" className="py-20 lg:py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-6"
-              variants={itemVariants}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4"
             >
               Signs You May Need Treatment
             </motion.h2>
+            <p className="text-slate-600 text-lg">
+              ED is rarely "just in your head." If you recognize these signs, it is likely a treatable vascular issue.
+            </p>
+          </div>
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
-              variants={containerVariants}
-            >
-              {symptoms.map((symptom, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm border border-slate-200"
-                  variants={itemVariants}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {symptoms.map((symptom, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:border-[#4041d1]/20 transition-all duration-500 flex flex-col h-full group"
+              >
+                <div
+                  className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform group-hover:scale-110`}
                 >
-                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[#4041d1] flex-shrink-0" />
-                  <span className="text-sm font-inter text-slate-700 leading-relaxed">
-                    {symptom}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+                  <symptom.icon />
+                </div>
+
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  {symptom.title}
+                </h3>
+
+                <p className="text-slate-600 text-sm leading-relaxed font-inter">
+                  {symptom.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* --- SECTION 3: THE PROTOCOL (Using Dark Blue Scientific Style) --- */}
+      <section
+        className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 10% 10%, rgba(64, 65, 209, 0.15) 0%, transparent 40%)",
+        }}
+      >
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
+            className="text-center mb-12"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true }}
             variants={containerVariants}
           >
-            <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-12 text-center"
+            <motion.div
+              className="inline-block px-4 py-1.5 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-[10px] font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway"
               variants={itemVariants}
             >
-              Our Regenerative Protocol
-            </motion.h2>
-
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={containerVariants}
-            >
-              {treatmentDetails.map((detail, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-slate-50 rounded-xl p-6 shadow-sm border border-slate-100"
-                  variants={itemVariants}
-                >
-                  <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3">
-                    {detail.title}
-                  </h3>
-                  <p className="text-sm font-inter text-slate-600 leading-relaxed">
-                    {detail.description}
-                  </p>
-                </motion.div>
-              ))}
+              Our Protocol
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* Who Is It For Section */}
-      <section id="who-is-it-for" className="py-20 lg:py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
             <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-6"
+              className="text-3xl md:text-4xl font-raleway font-bold text-white leading-tight mb-6 tracking-tight"
               variants={itemVariants}
             >
-              Who Is This For?
+              The "Vascular Restoration" Method
             </motion.h2>
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
-              variants={containerVariants}
-            >
-              {whoIsItFor.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm border border-slate-200"
-                  variants={itemVariants}
-                >
-                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[#4041d1] flex-shrink-0" />
-                  <span className="text-sm font-inter text-slate-700 leading-relaxed">
-                    {item}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA Bar */}
-      <section className="py-12 bg-white border-t border-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
-          <Link
-            href="/prices"
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
-          >
-            View Treatment Prices
-          </Link>
-          
-          <Link
-            href="/faq"
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
-          >
-            View Clinic FAQs
-          </Link>
-        </div>
-      </section>
-
-      {/* FAQs Section */}
-      <section id="faqs" className="py-20 lg:py-24 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 leading-tight text-center mb-8"
+            <motion.p
+              className="text-base text-slate-200 leading-relaxed max-w-3xl mx-auto font-medium font-inter"
               variants={itemVariants}
             >
-              Common Questions
-            </motion.h2>
+              We combine Low-Intensity Shockwave Therapy (LiSWT) with the P-Shot® (PRP) to tackle ED from two angles: clearing blockages and regenerating tissue.
+            </motion.p>
+          </motion.div>
 
-            <motion.div
-              className="space-y-4"
-              variants={containerVariants}
-            >
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-                  variants={itemVariants}
-                >
-                  <motion.button
-                    className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
-                    onClick={() => toggleFAQ(index)}
+          {/* Interactive Steps Display */}
+          <div className="max-w-6xl mx-auto mt-16 relative">
+             {/* Current Active Step Badge */}
+             <div className="text-center mb-10">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeStep}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.2 }}
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-[#4041d1]/10 border border-[#4041d1]/40 rounded-full shadow-[0_0_15px_rgba(64,65,209,0.25)] backdrop-blur-md"
                   >
-                    <h3 className="font-raleway font-bold text-slate-900 pr-4 leading-relaxed text-sm md:text-base">
-                      {faq.question}
-                    </h3>
-                    <motion.div
-                      className="flex-shrink-0 w-8 h-8 bg-[#4041d1]/10 rounded-full flex items-center justify-center relative"
-                      animate={{ rotate: openFAQIndex === index ? 180 : 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                      <motion.div
-                        animate={{ opacity: openFAQIndex === index ? 0 : 1, scale: openFAQIndex === index ? 0 : 1 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute"
-                      >
-                        <FaPlus className="w-3 h-3 text-[#4041d1]" />
-                      </motion.div>
-                      <motion.div
-                        animate={{ opacity: openFAQIndex === index ? 1 : 0, scale: openFAQIndex === index ? 1 : 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <FaMinus className="w-3 h-3 text-[#4041d1]" />
-                      </motion.div>
-                    </motion.div>
-                  </motion.button>
+                    <span className="flex h-2 w-2 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_8px_#4041d1]" />
+                    <span className="text-xs font-bold text-white uppercase tracking-[0.25em] font-raleway">
+                      Step 0{protocolSteps[activeStep].number}: {protocolSteps[activeStep].title}
+                    </span>
+                  </motion.div>
+                </AnimatePresence>
+            </div>
 
-                  <AnimatePresence>
-                    {openFAQIndex === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="overflow-hidden"
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
+
+              {protocolSteps.map((step, index) => {
+                const IconComponent = step.icon;
+                const isActive = activeStep === index;
+
+                return (
+                  <motion.div
+                    key={index}
+                    className="relative group cursor-pointer"
+                    onClick={() => setActiveStep(index)}
+                    variants={itemVariants}
+                  >
+                    <div
+                      className={`p-6 rounded-[2rem] border transition-all duration-300 h-full flex flex-col ${
+                        isActive
+                          ? "border-[#4041d1] bg-white shadow-xl shadow-[#4041d1]/20 scale-105 z-20"
+                          : "border-white/10 bg-white/[0.04] opacity-70 hover:opacity-100"
+                      }`}
+                    >
+                      <div
+                        className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 ${
+                          isActive
+                            ? "bg-[#4041d1] text-white shadow-lg"
+                            : "bg-white/10 text-slate-300 group-hover:text-[#4041d1]"
+                        }`}
                       >
-                        <div className="px-6 pb-6">
-                          <div className="border-t border-slate-100 pt-4">
-                            <p className="font-inter text-sm text-slate-600 leading-relaxed">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+
+                      <h3
+                        className={`font-raleway font-bold mb-2 text-base transition-colors ${
+                          isActive ? "text-slate-900" : "text-white"
+                        }`}
+                      >
+                        {step.title}
+                      </h3>
+                      <p
+                        className={`text-xs leading-relaxed font-inter transition-colors ${
+                          isActive ? "text-slate-600" : "text-slate-400"
+                        }`}
+                      >
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
+      {/* --- SECTION 4: DOCTOR / TRUST SECTION (Image Placeholder) --- */}
+      <section className="py-20 bg-slate-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+               <div className="w-full md:w-1/2">
+                   {/* IMAGE PLACEHOLDER: Doctor interacting with patient */}
+                   <div className="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/3] group">
+                       <div className="absolute inset-0 bg-indigo-900/10 group-hover:bg-transparent transition-colors duration-500"/>
+                        <img 
+                            src="/doctor_consult.jpg" 
+                            alt="Doctor Consultation" 
+                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                            onError={(e) => (e.currentTarget.src = "/hero_img.png")}
+                        />
+                   </div>
+               </div>
+               <div className="w-full md:w-1/2">
+                   <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
+                       Discreet, Private & Professional
+                   </h3>
+                   <p className="text-slate-600 font-inter leading-relaxed mb-6">
+                       We understand that discussing sexual health can be difficult. That is why our clinic offers a strictly confidential, judgement-free environment.
+                   </p>
+                   <ul className="space-y-4 mb-8">
+                       {[
+                           "Direct access to GMC-Registered Doctors",
+                           "No GP referral required",
+                           "Same-day treatments available"
+                       ].map((item, i) => (
+                           <li key={i} className="flex items-center gap-3 text-slate-700 font-bold font-inter text-sm">
+                               <FaCheckCircle className="text-[#4041d1]"/> {item}
+                           </li>
+                       ))}
+                   </ul>
+               </div>
+          </div>
+      </section>
+
+      {/* --- SECTION 5: FAQs --- */}
+      <section id="faqs" className="py-20 lg:py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">
+              Common Questions
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              >
+                <button
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  <h3 className="font-raleway font-bold text-slate-900 pr-4 text-sm md:text-base">
+                    {faq.question}
+                  </h3>
+                  <div className="flex-shrink-0 w-8 h-8 bg-[#4041d1]/10 rounded-full flex items-center justify-center text-[#4041d1]">
+                    {openFAQIndex === index ? <FaMinus className="w-3 h-3"/> : <FaPlus className="w-3 h-3"/>}
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {openFAQIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 border-t border-slate-100 pt-4">
+                        <p className="font-inter text-sm text-slate-600 leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- FOOTER CTA (Imported Component) --- */}
       <ContactCTASection />
+      
       <Footer />
     </>
   );
