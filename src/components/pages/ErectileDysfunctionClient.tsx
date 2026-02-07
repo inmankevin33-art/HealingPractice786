@@ -6,7 +6,6 @@ import {
   FaCheck,
   FaPlus,
   FaMinus,
-  FaEnvelope,
   FaUserMd,
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
@@ -111,7 +110,6 @@ export default function ErectileDysfunctionClient() {
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
-          {/* USER: Replace with an image of a confident couple or abstract medical background */}
           <img
             src="/ed_hero.jpg" 
             alt="Male Health Consultation"
@@ -237,7 +235,8 @@ export default function ErectileDysfunctionClient() {
               className="text-sm md:text-base font-inter text-slate-600 max-w-4xl leading-relaxed"
               variants={itemVariants}
             >
-              Erectile Dysfunction is rarely "just in your head." In the majority of men over 40, it is a vascular issue. As we age, the micro-vessels in the penis can become restricted or develop plaque (atherosclerosis), limiting the blood inflow required for a firm erection. Our treatments focus on clearing these pathways and generating new, healthy vessels.
+              {/* FIXED: Replaced " with &quot; to fix build error */}
+              Erectile Dysfunction is rarely &quot;just in your head.&quot; In the majority of men over 40, it is a vascular issue. As we age, the micro-vessels in the penis can become restricted or develop plaque (atherosclerosis), limiting the blood inflow required for a firm erection. Our treatments focus on clearing these pathways and generating new, healthy vessels.
             </motion.p>
           </motion.div>
         </div>
