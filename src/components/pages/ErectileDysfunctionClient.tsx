@@ -14,7 +14,7 @@ import {
   FaSyringe,
   FaDna,
   FaCheckCircle,
-  FaEnvelope, // Added for the button icon
+  FaEnvelope, // Icon for the consultation button
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -31,7 +31,7 @@ export default function ErectileDysfunctionClient() {
     window.scrollTo(0, 0);
   }, []);
 
-  // --- FIXED: SMART SCROLL HANDLER ---
+  // --- SMART SCROLL HANDLER (Fixed to prevent getting stuck) ---
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
     
@@ -42,8 +42,6 @@ export default function ErectileDysfunctionClient() {
     setTimeout(() => {
       const section = document.getElementById("contact-form-section");
       if (section) {
-        // Calculate position manually to ensure accuracy
-        // We subtract 100px to account for your fixed header so it doesn't cover the title
         const headerOffset = 100; 
         const elementPosition = section.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.scrollY - headerOffset;
@@ -73,8 +71,7 @@ export default function ErectileDysfunctionClient() {
   const symptoms = [
     {
       title: "Difficulty Achieving",
-      description:
-        "Struggling to get a full erection when you want to, causing frustration.",
+      description: "Struggling to get a full erection when you want to, causing frustration.",
       icon: FaBatteryQuarter,
       color: "bg-rose-50 text-rose-600",
     },
@@ -86,18 +83,16 @@ export default function ErectileDysfunctionClient() {
     },
     {
       title: "Reduced Sensation",
-      description:
-        "Feeling less pleasure or reduced sensitivity, often linked to blood flow.",
+      description: "Feeling less pleasure or reduced sensitivity, often linked to blood flow.",
       icon: FaFeather,
       color: "bg-teal-50 text-teal-600",
     },
     {
-      title: "Confidence Dependence",
-      description:
-        "Relying on medication for reassurance or performance confidence, while wanting a more comprehensive medical approach that supports long-term sexual health.",
-      icon: FaFeather,
-      color: "bg-teal-50 text-teal-600",  
-    }
+      title: "Reliance on Pills",
+      description: "Needing Viagra or Cialis for confidence, and wanting a longer-term approach.",
+      icon: FaPills,
+      color: "bg-[#f0f0ff] text-[#4041d1]",
+    },
   ];
 
   // --- DATA: PROTOCOL STEPS ---
@@ -106,57 +101,48 @@ export default function ErectileDysfunctionClient() {
       number: 1,
       icon: FaWaveSquare,
       title: "Shockwave Therapy",
-      description:
-        "Low-intensity acoustic waves may stimulate new blood vessel growth (angiogenesis) and support healthier circulation.",
+      description: "Low-intensity acoustic waves may stimulate new blood vessel growth (angiogenesis) and support healthier circulation.",
     },
     {
       number: 2,
       icon: FaSyringe,
       title: "PRP (P-Shot®)",
-      description:
-        "Platelet-rich plasma from your own blood is injected to support tissue repair and nerve responsiveness.",
+      description: "Platelet-rich plasma from your own blood is injected to support tissue repair and nerve responsiveness.",
     },
     {
       number: 3,
       icon: FaDna,
       title: "Hormone Review",
-      description:
-        "If appropriate, we review blood tests (including testosterone) to ensure contributing factors are addressed.",
+      description: "If appropriate, we review blood tests (including testosterone) to ensure contributing factors are addressed.",
     },
     {
       number: 4,
       icon: FaCheckCircle,
       title: "Recovery & Restoration",
-      description:
-        "Regeneration takes time. Many men notice gradual improvement over weeks as tissue health returns.",
+      description: "Regeneration takes time. Many men notice gradual improvement over weeks as tissue health returns.",
     },
   ];
 
   const faqs = [
     {
       question: "Is Shockwave Therapy painful?",
-      answer:
-        "Most men find it very tolerable. You may feel a tapping sensation, but anaesthetic is not usually required. There is typically no downtime and you can drive home immediately.",
+      answer: "Most men find it very tolerable. You may feel a tapping sensation, but anaesthetic is not usually required. There is typically no downtime and you can drive home immediately.",
     },
     {
       question: "How is this different from Viagra/Cialis?",
-      answer:
-        "Tablets can help temporarily by increasing blood flow for a few hours. Regenerative treatments such as shockwave therapy and PRP aim to support vascular function and tissue health over time. The most suitable option depends on the underlying cause of ED.",
+      answer: "Tablets can help temporarily by increasing blood flow for a few hours. Regenerative treatments such as shockwave therapy and PRP aim to support vascular function and tissue health over time.",
     },
     {
       question: "How quickly will I see results?",
-      answer:
-        "Tissue healing and vascular regeneration take time. Some men notice changes after a few sessions, but improvements are often more noticeable in the weeks following treatment. Results vary depending on health, age, and contributing factors such as diabetes or medications.",
+      answer: "Tissue healing takes time. Some men notice changes after a few sessions, but improvements are often more noticeable in the weeks following treatment. Results vary based on overall health.",
     },
     {
       question: "Can I treat ED if I have diabetes?",
-      answer:
-        "Often, yes. Diabetes-related ED is commonly linked to blood vessel and nerve changes. A medical consultation is important to assess suitability and optimise contributing factors such as glucose control and cardiovascular risk.",
+      answer: "Often, yes. Diabetes-related ED is commonly linked to blood vessel and nerve changes. A medical consultation is important to assess suitability and cardiovascular risk.",
     },
     {
       question: "Is this treatment suitable for everyone?",
-      answer:
-        "Not always. Suitability depends on the cause of erectile dysfunction, overall health, medications, and expectations. A medical consultation is required to assess whether treatment is appropriate for you.",
+      answer: "Not always. Suitability depends on the cause of erectile dysfunction, overall health, and medications. A medical consultation is required to assess appropriateness.",
     },
   ];
 
@@ -165,7 +151,6 @@ export default function ErectileDysfunctionClient() {
       {/* --- HERO SECTION --- */}
       <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden font-inter">
         <div className="absolute inset-0 z-0">
-          {/* Darker overlay for text readability */}
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/40 z-10" />
           <img
@@ -185,51 +170,45 @@ export default function ErectileDysfunctionClient() {
               className="max-w-4xl mx-auto"
             >
               <motion.div
-                className="inline-block px-5 py-2 bg-[#4041d1] text-white rounded-full text-xs md:text-sm font-inter font-bold mb-8 uppercase tracking-widest shadow-lg border border-white/10"
+                className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter border border-white/10 shadow-lg"
                 variants={itemVariants}
               >
-                Restorative Medicine
+                GMC-Registered | CE-Marked Equipment | Confidential
               </motion.div>
 
-              {/* FONT UPGRADE: Text-5xl/7xl for impact */}
+              {/* HEADING UPDATE: Matches the structure of the snippet you provided */}
               <motion.h1
-                className="text-4xl md:text-5xl lg:text-7xl font-raleway text-white font-extrabold leading-tight mb-6 drop-shadow-2xl"
+                className="text-3xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight drop-shadow-2xl"
                 variants={itemVariants}
               >
                 Erectile Dysfunction Treatment
-                <span className="block mt-4 text-xl md:text-2xl lg:text-3xl font-medium text-slate-200 font-raleway">
-                  Doctor-Led, Non-Surgical Treatment Focused on Restoring Natural Function
+                <span className="block mt-2 text-xl md:text-3xl font-medium text-blue-200">
+                  Healing-PRP Clinics
                 </span>
               </motion.h1>
 
-              <motion.div
-                variants={itemVariants}
-                className="flex justify-center mt-10"
-              >
-                {/* BUTTON FIX: Uses handleAction & your exact styling */}
-                <button
-                  onClick={handleAction}
-                  className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
-                >
-                  <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                  Book Confidential Consult
-                </button>
-              </motion.div>
-
               <motion.p
                 variants={itemVariants}
-                className="mt-8 text-slate-200 text-base md:text-lg max-w-3xl mx-auto leading-relaxed font-inter font-medium drop-shadow-md"
+                className="mt-6 text-sm md:text-base text-white/90 max-w-2xl mx-auto leading-relaxed font-inter font-medium drop-shadow-md"
               >
-                Erectile dysfunction (ED) is a common medical condition that can
-                develop due to reduced blood flow, nerve sensitivity changes,
-                hormonal imbalance, diabetes, high blood pressure, stress, or
-                medication side effects.
-                <br />
-                <br />
-                At Healing-PRP Clinics, we take an evidence-based, doctor-led
-                approach — focusing on identifying and addressing the underlying
-                cause, rather than relying solely on short-term symptom relief.
+                Patient-centred, non-surgical solutions to support confidence,
+                sensitivity and intimacy — delivered by a fully insured,
+                GMC-registered doctor.
               </motion.p>
+
+              {/* BUTTON FIX: Uses handleAction */}
+              <motion.div
+                variants={itemVariants}
+                className="flex justify-center mt-8"
+              >
+                <button
+                  onClick={handleAction}
+                  className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
+                >
+                  <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                  Book Consultation
+                </button>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -247,11 +226,8 @@ export default function ErectileDysfunctionClient() {
             >
               Signs You May Benefit From Treatment
             </motion.h2>
-            <p className="text-slate-600 text-lg md:text-xl leading-relaxed">
-              Erectile dysfunction is rarely &quot;just psychological.&quot; In many men,
-              it is linked to reduced penile blood flow, nerve signalling
-              changes, or underlying metabolic conditions. Recognising these
-              signs early allows treatment to be more effective.
+            <p className="text-slate-600 text-lg leading-relaxed font-inter">
+              Erectile dysfunction is rarely &quot;just psychological.&quot; Recognising these signs early allows treatment to be more effective.
             </p>
           </div>
 
@@ -264,17 +240,17 @@ export default function ErectileDysfunctionClient() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-lg hover:shadow-2xl hover:border-[#4041d1]/30 transition-all duration-500 flex flex-col h-full group"
+                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:border-[#4041d1]/20 transition-all duration-500 flex flex-col h-full group"
               >
                 <div
-                  className={`w-16 h-16 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-3xl transition-transform group-hover:scale-110 shadow-sm`}
+                  className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform group-hover:scale-110`}
                 >
                   <symptom.icon />
                 </div>
                 <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
                   {symptom.title}
                 </h3>
-                <p className="text-slate-600 text-sm leading-relaxed font-inter font-medium">
+                <p className="text-slate-600 text-sm leading-relaxed font-inter">
                   {symptom.description}
                 </p>
               </motion.div>
@@ -401,7 +377,7 @@ export default function ErectileDysfunctionClient() {
         </div>
       </section>
 
-      {/* --- WHAT IT CAN / CANNOT DO --- */}
+      {/* --- WHAT IT CAN / CANNOT DO (Trust Section) --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
           <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
@@ -491,7 +467,7 @@ export default function ErectileDysfunctionClient() {
             {/* BUTTON FIX: Uses handleAction */}
             <button
               onClick={handleAction}
-              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
+              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
             >
               <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               Speak To A Specialist
