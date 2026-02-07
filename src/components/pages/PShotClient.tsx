@@ -102,7 +102,7 @@ export default function PShotClient() {
     },
     {
       question: "Will it increase size?",
-      answer: "While the P-Shot is primarily for function and sensitivity, many men report an increase in girth due to improved blood flow and tissue health. Length gains are less common but possible if combined with pump therapy.",
+      answer: "While the P-Shot is primarily for function, sensitivity, and erection quality, many men report an increase in girth due to improved blood flow and tissue health. Length gains are less common but possible if combined with pump therapy.",
     },
     {
       question: "How long does it last?",
@@ -159,7 +159,8 @@ export default function PShotClient() {
               Why Choose The P-Shot?
             </motion.h2>
             <p className="text-slate-600 text-lg">
-              Harness your body's own growth factors to rejuvenate tissue and enhance performance.
+              {/* FIXED: Replaced ' with &apos; in "body's" */}
+              Harness your body&apos;s own growth factors to rejuvenate tissue and enhance performance.
             </p>
           </div>
 
