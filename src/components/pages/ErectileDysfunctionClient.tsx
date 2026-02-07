@@ -224,7 +224,7 @@ export default function ErectileDysfunctionClient() {
               Signs You May Benefit From Treatment
             </motion.h2>
             <p className="text-slate-600 text-lg">
-              Erectile dysfunction is rarely “just psychological.” In many men,
+              Erectile dysfunction is rarely &quot;just psychological.&quot; In many men,
               it is linked to reduced penile blood flow, nerve signalling
               changes, or underlying metabolic conditions. Recognising these
               signs early allows treatment to be more effective.
@@ -285,7 +285,7 @@ export default function ErectileDysfunctionClient() {
               className="text-3xl md:text-4xl font-raleway font-bold text-white leading-tight mb-6 tracking-tight"
               variants={itemVariants}
             >
-              The “Vascular Restoration” Method
+              The &quot;Vascular Restoration&quot; Method
             </motion.h2>
             <motion.p
               className="text-base text-slate-200 leading-relaxed max-w-3xl mx-auto font-medium font-inter"
