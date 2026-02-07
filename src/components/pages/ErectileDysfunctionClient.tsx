@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import {
   FaPlus,
   FaMinus,
-  FaUserMd,
+  FaEnvelope, // Added FaEnvelope
   FaBatteryQuarter,
   FaHourglassEnd,
   FaFeather,
@@ -70,7 +70,7 @@ export default function ErectileDysfunctionClient() {
       description:
         "Needing Viagra or Cialis for confidence, and wanting a longer-term medical approach.",
       icon: FaPills,
-      color: "bg-blue-50 text-[#4041d1]",
+      color: "bg-[#f0f0ff] text-[#4041d1]", // Matched brand-blue-50 manually
     },
   ];
 
@@ -137,10 +137,8 @@ export default function ErectileDysfunctionClient() {
   return (
     <>
       {/* --- HERO SECTION --- */}
-      {/* UPDATE: Darker overlay and text-white for better readability */}
       <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden font-inter">
         <div className="absolute inset-0 z-0">
-          {/* Darker gradient for better text contrast */}
           <div className="absolute inset-0 bg-black/60 z-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/40 z-10" />
           <img
@@ -159,7 +157,6 @@ export default function ErectileDysfunctionClient() {
               variants={containerVariants}
               className="max-w-4xl mx-auto"
             >
-              {/* Tag - Slightly larger and bolder */}
               <motion.div
                 className="inline-block px-5 py-2 bg-[#4041d1] text-white rounded-full text-xs md:text-sm font-inter font-bold mb-8 uppercase tracking-widest shadow-lg border border-white/10"
                 variants={itemVariants}
@@ -167,7 +164,6 @@ export default function ErectileDysfunctionClient() {
                 Restorative Medicine
               </motion.div>
 
-              {/* Main Heading - White text for contrast against dark bg */}
               <motion.h1
                 className="text-4xl md:text-5xl lg:text-7xl font-raleway text-white font-extrabold leading-tight mb-6 drop-shadow-2xl"
                 variants={itemVariants}
@@ -178,7 +174,7 @@ export default function ErectileDysfunctionClient() {
                 </span>
               </motion.h1>
 
-              {/* CTA Button - Larger and more prominent */}
+              {/* MATCHED BUTTON: Exactly as requested */}
               <motion.div
                 variants={itemVariants}
                 className="flex justify-center mt-10"
@@ -190,10 +186,10 @@ export default function ErectileDysfunctionClient() {
                       new CustomEvent("open-contact-drawer")
                     );
                   }}
-                  className="px-10 py-5 flex items-center justify-center text-base cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-2xl font-inter font-bold transition-all duration-300 shadow-[0_0_20px_rgba(64,65,209,0.5)] hover:shadow-[0_0_30px_rgba(64,65,209,0.7)] hover:-translate-y-1 gap-3 group"
+                  className="px-10 py-3.5 flex items-center justify-center text-sm bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all shadow-xl active:scale-95 gap-2 group"
                 >
-                  <FaUserMd className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                  Book Confidential Consult
+                  <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                  Book Consultation
                 </button>
               </motion.div>
 
@@ -217,7 +213,6 @@ export default function ErectileDysfunctionClient() {
       </section>
 
       {/* --- SYMPTOMS (Card Style) --- */}
-      {/* UPDATE: Added bg-slate-50 to create depth for the cards */}
       <section className="py-24 bg-slate-50 font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -470,12 +465,14 @@ export default function ErectileDysfunctionClient() {
                 </p>
             </div>
 
+            {/* MATCHED BUTTON */}
             <button
               onClick={() =>
                 window.dispatchEvent(new CustomEvent("open-contact-drawer"))
               }
-              className="px-10 py-4 bg-[#4041d1] text-white rounded-2xl font-bold hover:bg-[#2a2bb8] transition-all shadow-[0_10px_20px_rgba(64,65,209,0.25)] hover:shadow-[0_15px_30px_rgba(64,65,209,0.4)] hover:-translate-y-1"
+              className="px-10 py-3.5 flex items-center justify-center text-sm bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all shadow-xl active:scale-95 gap-2 group"
             >
+              <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               Speak To A Specialist
             </button>
           </div>
