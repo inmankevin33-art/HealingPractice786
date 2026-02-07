@@ -424,54 +424,64 @@ export default function SexualHealthClient({
               className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-3"
               variants={itemVariants}
             >
-              Understanding Erectile Dysfunction (ED)
+            Understanding Erectile Dysfunction (ED)
             </motion.h2>
-
+            
             <motion.p
               className="text-sm font-inter text-slate-600 leading-relaxed mb-4"
               variants={itemVariants}
             >
-              Erectile dysfunction (ED) is a common condition in which achieving
-              or maintaining an erection becomes difficult. It often results
-              from a combination of factors, including reduced blood flow,
-              stress, hormonal imbalance, diabetes, high blood pressure, nerve
-              changes, or certain medications.
+              Erectile dysfunction (ED) is a common medical condition in which achieving or
+              maintaining an erection becomes difficult. It often develops due to a
+              combination of factors, including reduced blood flow, stress, hormonal
+              imbalance, diabetes, high blood pressure, nerve sensitivity changes, or the
+              effects of certain medications.
             </motion.p>
-
-            <motion.p
-              className="text-sm font-inter text-slate-600 leading-relaxed mb-3 "
-              variants={itemVariants}
-            >
-              Sometimes, the blood vessels supplying the penis can become
-              narrow, and the penile muscles may weaken, reducing the ability to
-              maintain a firm erection. PRP (Platelet-Rich Plasma) therapy can
-              help by improving blood flow, regenerating tissue, and
-              strengthening the smooth muscle responsible for erections.
-            </motion.p>
-
+            
             <motion.p
               className="text-sm font-inter text-slate-600 leading-relaxed mb-3"
               variants={itemVariants}
             >
-              At Healing-PRP Clinics, we recognise that ED can affect both
-              physical confidence and emotional wellbeing. Many men prefer to
-              avoid invasive procedures and instead explore natural,
-              regenerative options. Our treatments — including PRP-based
-              therapies such as the P-Shot® and Exomine® P-Shot — use your
-              body’s own growth factors to support tissue healing and
-              sensitivity.
+              In many cases, the blood vessels supplying the penis may become narrowed, and
+              the smooth muscle within erectile tissue may weaken over time. These changes
+              can reduce rigidity and make it harder to maintain an erection, particularly
+              during sustained intimacy.
             </motion.p>
-
+            
             <motion.p
               className="text-sm font-inter text-slate-600 leading-relaxed mb-3"
               variants={itemVariants}
             >
-              Because PRP is derived from your own blood, the treatment is
-              autologous, and minimally invasive. While results vary between
-              individuals, PRP therapy is designed to address contributing
-              factors rather than simply masking symptoms, with the aim of
-              supporting erectile function, confidence, and intimacy over time.
+              Platelet-Rich Plasma (PRP) therapy may help by supporting blood flow,
+              encouraging tissue repair, and improving the health of erectile tissue.
+              Rather than acting as a temporary stimulant, PRP aims to work at a
+              regenerative level by using growth factors derived from your own blood.
             </motion.p>
+            
+            <motion.p
+              className="text-sm font-inter text-slate-600 leading-relaxed mb-3"
+              variants={itemVariants}
+            >
+              At Healing-PRP Clinics, we recognise that erectile dysfunction can affect both
+              physical confidence and emotional wellbeing. Many men wish to avoid invasive
+              procedures or long-term reliance on medication and instead explore medical
+              options that support natural function. Our doctor-led treatments — including
+              PRP-based therapies such as the P-Shot® and Exomine® P-Shot — are designed to
+              support tissue health, sensitivity, and vascular function.
+            </motion.p>
+            
+            <motion.p
+              className="text-sm font-inter text-slate-600 leading-relaxed mb-3"
+              variants={itemVariants}
+            >
+              Because PRP is autologous (derived from your own blood), treatment is minimally
+              invasive and generally well tolerated. Outcomes vary between individuals, and
+              suitability is assessed during a medical consultation. PRP therapy is
+              intended to address contributing factors rather than simply masking symptoms,
+              with the aim of supporting erectile function, confidence, and intimacy over
+              time.
+            </motion.p>
+
             <motion.div variants={itemVariants}>
               <button
                 onClick={(e) => {
