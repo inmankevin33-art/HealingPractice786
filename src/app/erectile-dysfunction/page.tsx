@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ErectileDysfunctionClient from "@/components/pages/ErectileDysfunctionClient";
 
 export const metadata: Metadata = {
-  // 1. Optimized Title: Focuses on the solution
+  // The layout adds " | St Albans Clinic" automatically
   title: "Erectile Dysfunction Treatment & Shockwave Therapy",
 
   description:
@@ -12,7 +12,6 @@ export const metadata: Metadata = {
     canonical: "https://www.healing-prp.co.uk/erectile-dysfunction",
   },
 
-  // 2. Focused Keywords (Heavy emphasis on Luton & St Albans)
   keywords: [
     // High-Priority Location Terms (Luton Focus)
     "Erectile dysfunction treatment Luton",
