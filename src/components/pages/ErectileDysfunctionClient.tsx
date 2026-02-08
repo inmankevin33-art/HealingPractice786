@@ -482,6 +482,7 @@ export default function ErectileDysfunctionClient({
                   "Healthier erectile tissue and smooth muscle function",
                   "Enhanced nerve responsiveness and sensitivity",
                   "Greater confidence and more reliable erectile function as tissue health improves",
+                  "Support for endothelial and microvascular health",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
@@ -534,16 +535,17 @@ export default function ErectileDysfunctionClient({
           <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
-                Interested in PRP specifically?
+                Interested in P-Shot specifically?
               </h4>
               <p className="text-slate-600 text-sm leading-relaxed max-w-2xl">
-                For patients interested in PRP-based treatment specifically, further details about the procedure, process, and suitability are available on our dedicated page.
+                For patients interested in P-Shot treatment specifically, further details about the procedure, process, and suitability are available on our dedicated page.
               </p>
             </div>
             
             <a 
-              href={pShotLink} // <--- CORRECT: Uses the dynamic prop
-              className="shrink-0 px-8 py-3 bg-[#4041d1]/10 text-[#4041d1] hover:bg-[#4041d1] hover:text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group whitespace-nowrap"
+              href={pShotLink} 
+              // UPDATED CLASSNAME: Matches the main "Book Consultation" button style exactly
+              className="shrink-0 px-8 py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group whitespace-nowrap shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
             >
               View P-Shot® Treatment
               <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
