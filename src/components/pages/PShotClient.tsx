@@ -1,33 +1,73 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
-  FaCheck,
   FaPlus,
   FaMinus,
-  FaBolt,
-  FaTint,
-  FaRulerVertical,
-  FaStopwatch,
-  FaVial,
-  FaMicroscope,
+  FaSyringe,
+  FaDna,
   FaCheckCircle,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaBurn,
+  FaExpandArrowsAlt,
+  FaRegClock,
+  FaShieldAlt,
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 
-export default function PShotClient() {
+// --- INTERFACE FOR DYNAMIC LOCATION PROPS ---
+interface PShotProps {
+  locationName?: string;
+  servingAreas?: string;
+}
+
+export default function PShotClient({
+  locationName = "St Albans", // Default location
+  servingAreas = "Harpenden • Luton • Watford • Hertfordshire", // Default areas
+}: PShotProps) {
+  
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setIsLoaded(true);
+  }, []);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const handleAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    setTimeout(() => {
+      const section = document.getElementById("contact-form-section");
+      if (section) {
+        const headerOffset = 100;
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  };
+
+  // --- ANIMATION VARIANTS ---
+  const fadeUpVariants: Variants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
+    }),
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -39,182 +79,343 @@ export default function PShotClient() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // --- DATA: P-SHOT BENEFITS (Card Style) ---
+  // --- DATA SECTIONS ---
   const benefits = [
     {
-      title: "Enhanced Sensitivity",
-      description: "Rejuvenates nerve endings for increased sensation and pleasure.",
-      icon: FaBolt,
-      color: "bg-amber-50 text-amber-600",
-    },
-    {
       title: "Stronger Erections",
-      description: "Improves blood flow for firmer, more reliable erections.",
-      icon: FaRulerVertical,
-      color: "bg-blue-50 text-blue-600",
-    },
-    {
-      title: "Tissue Health",
-      description: "Treats issues like Lichen Sclerosus and improves skin texture.",
-      icon: FaTint,
+      description: "Increased blood flow and tissue rejuvenation can lead to firmer, more sustainable erections.",
+      icon: FaBurn,
       color: "bg-rose-50 text-rose-600",
     },
     {
-      title: "No Downtime",
-      description: "Walk-in, walk-out procedure. Resume normal activity immediately.",
-      icon: FaStopwatch,
-      color: "bg-green-50 text-green-600",
+      title: "Increased Sensitivity",
+      description: "Regenerating nerve tissues can enhance sensation and pleasure during intimacy.",
+      icon: FaDna,
+      color: "bg-indigo-50 text-indigo-600",
+    },
+    {
+      title: "Peyronie’s Improvement",
+      description: "Can help reduce curvature and scar tissue associated with Peyronie's disease.",
+      icon: FaExpandArrowsAlt,
+      color: "bg-teal-50 text-teal-600",
+    },
+    {
+      title: "Enhanced Girth",
+      description: "Many patients report improvements in girth and overall penile health.",
+      icon: FaExpandArrowsAlt,
+      color: "bg-[#f0f0ff] text-[#4041d1]",
     },
   ];
 
-  // --- DATA: P-SHOT PROCESS (Dark Blue Style) ---
-  const processSteps = [
+  const protocolSteps = [
     {
       number: 1,
-      icon: FaVial,
+      icon: FaSyringe, // Represents drawing blood
       title: "Blood Draw",
-      description: "A small sample is taken from your arm, just like a standard blood test.",
+      description: "A small amount of blood is drawn from your arm, similar to a standard blood test. Quick and simple.",
     },
     {
       number: 2,
-      icon: FaMicroscope,
-      title: "Centrifuge",
-      description: "We spin the blood to isolate the Platelet-Rich Plasma (PRP) & growth factors.",
+      icon: FaDna, // Represents processing
+      title: "PRP Preparation",
+      description: "Your blood is spun in a centrifuge to separate the Platelet-Rich Plasma (PRP), concentrating healing factors.",
     },
     {
       number: 3,
-      icon: FaTint,
-      title: "Activation",
-      description: "The PRP is prepared for injection. A strong numbing cream is applied.",
+      icon: FaShieldAlt, // Represents numbing/safety
+      title: "Numbing Application",
+      description: "A potent local anaesthetic cream is applied to ensure the procedure is comfortable and virtually pain-free.",
     },
     {
       number: 4,
-      icon: FaCheckCircle,
-      title: "Injection",
-      description: "Pain-free injection into specific areas to trigger rejuvenation.",
+      icon: FaSyringe, // Represents injection
+      title: "The Injection",
+      description: "The PRP is injected into specific areas of the penis using a tiny needle. The process takes just a few minutes.",
     },
   ];
 
   const faqs = [
     {
-      question: "Does the injection hurt?",
-      answer: "This is the most common fear, but the answer is no. We use a very strong medical-grade numbing cream. Most patients report feeling only pressure, not sharp pain.",
+      question: "Is the P-Shot® painful?",
+      answer: "Most patients report minimal to no discomfort. We use a high-strength numbing cream before the procedure to ensure you are comfortable. Any sensation is typically described as a slight pinch.",
     },
     {
-      question: "Will it increase size?",
-      answer: "While the P-Shot is primarily for function, sensitivity, and erection quality, many men report an increase in girth due to improved blood flow and tissue health. Length gains are less common but possible if combined with pump therapy.",
+      question: "How long does the procedure take?",
+      answer: "The entire appointment typically takes about 45-60 minutes. This includes time for the blood draw, numbing, PRP preparation, and the injection itself.",
     },
     {
-      question: "How long does it last?",
-      answer: "The results typically last 12 to 18 months. Since we are using your body's own biology to repair tissue, the effects are long-lasting. Many men choose to have an annual 'maintenance' shot.",
+      question: "When will I see results?",
+      answer: "Results vary, but some men notice improvements within a few weeks. The full benefits of tissue regeneration often continue to develop over 2-3 months as new blood vessels and collagen form.",
     },
     {
-      question: "Is there recovery time?",
-      answer: "There is zero downtime. You can return to work, exercise, and sexual activity on the same day.",
+      question: "How long do the results last?",
+      answer: "Effects can last 12-18 months, or even longer for some. Maintenance treatments may be recommended annually to sustain the benefits.",
+    },
+    {
+      question: "Are there any side effects?",
+      answer: "Since PRP uses your own blood, the risk of allergic reaction is virtually non-existent. Minor bruising or swelling at the injection site is possible but usually resolves quickly.",
     },
   ];
 
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden font-inter">
+      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+        {/* Background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-white/90 z-10" />
-          <img
-            src="/pshot_hero.jpg"
-            alt="P-Shot Therapy"
-            className="w-full h-full object-cover"
-            onError={(e) => (e.currentTarget.src = "/hero_img.png")}
+          <div className="absolute inset-0 bg-black/60 z-10" /> 
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
+          <img 
+            src="/p-shot-consultation.webp" 
+            alt="P-Shot treatment consultation" 
+            className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => (e.currentTarget.src = "/ed-doctor-consultation.webp")}
           />
         </div>
 
-        <div className="relative z-20 flex h-full w-full items-center mt-10 md:mt-0">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div initial="hidden" animate="visible" variants={containerVariants} className="max-w-4xl mx-auto">
-              <motion.div className="inline-block px-4 py-2 bg-[#4041d1] text-white rounded-full text-xs font-inter font-bold mb-6 uppercase tracking-wider" variants={itemVariants}>
-                Male Enhancement
-              </motion.div>
-              <motion.h1 className="text-4xl lg:text-6xl font-raleway text-slate-900 font-bold leading-tight mb-6 drop-shadow-sm" variants={itemVariants}>
-                The P-Shot® (Priapus Shot)
-                <span className="block mt-2 text-xl lg:text-2xl font-medium text-slate-700 font-inter">
-                  Power Your Performance Naturally
-                </span>
-              </motion.h1>
-              <motion.div variants={itemVariants} className="flex justify-center mt-8">
-                <button onClick={() => window.dispatchEvent(new CustomEvent("open-contact-drawer"))} className="px-10 py-4 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group">
-                  <FaBolt className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                  Book P-Shot Consult
-                </button>
-              </motion.div>
-            </motion.div>
+        {/* Main Content */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16">
+          
+          <motion.h1 
+            custom={1}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
+          >
+            The P-Shot® (Priapus Shot)<br />
+            {/* DYNAMIC HEADING */}
+            <span className="block mt-2">Healing-PRP Clinics, {locationName}</span>
+          </motion.h1>
+
+          <motion.h2 
+            custom={2}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="mt-1 md:text-lg text-base text-blue-100 font-medium font-raleway leading-relaxed"
+          >
+            Advanced Platelet-Rich Plasma (PRP) Therapy for Men
+          </motion.h2>
+
+          <motion.p 
+            custom={3}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
+          >
+            A natural, non-surgical treatment designed to rejuvenate tissue, 
+            enhance performance, and improve vascular health using your body’s own healing factors.
+          </motion.p>
+
+          <motion.div 
+            custom={4}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <button 
+              onClick={handleAction}
+              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+            >
+              <FaEnvelope className="w-4 h-4" /> Book Consultation
+            </button>
+          </motion.div>
+
+          {/* DYNAMIC LOCATION BADGE */}
+          <motion.div 
+            custom={5}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
+          >
+             <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
+             <span>Serving: {servingAreas}</span>
+          </motion.div>
+
+        </div>
+
+        {/* Feature Banner / Trust Bar */}
+        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="px-4 py-5">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-4 gap-4">
+                {[
+                  { label: "GMC-registered doctor", sub: "Specialist Care" },
+                  { label: "100% Natural", sub: "Uses Your Own PRP" },
+                  { label: "Minimal Downtime", sub: "Return to Routine" },
+                  { label: "Private & Confidential", sub: "Strictly 1:1" }
+                ].map((item, idx) => (
+                  <div key={idx} className={`text-center ${idx !== 3 ? 'border-r border-white/10' : ''}`}>
+                    <div className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 font-inter">{item.label}</div>
+                    <div className="text-blue-300 text-[10px] md:text-[11px] font-semibold font-inter">{item.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* --- BENEFITS (Card Style) --- */}
-      <section className="py-24 bg-white font-inter">
+      {/* --- BENEFITS SECTION --- */}
+      <section className="py-24 bg-slate-50 font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">
-              Why Choose The P-Shot?
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6"
+            >
+              Potential Benefits of the P-Shot®
             </motion.h2>
-            <p className="text-slate-600 text-lg">
-              {/* FIXED: Replaced ' with &apos; in "body's" */}
-              Harness your body&apos;s own growth factors to rejuvenate tissue and enhance performance.
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-slate-600 text-lg leading-relaxed font-inter"
+            >
+              By stimulating growth factors, the P-Shot aims to rejuvenate penile tissue, leading to improved function and sensation.
+            </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} whileHover={{ y: -10 }} className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:border-[#4041d1]/20 transition-all duration-500 flex flex-col h-full group">
-                <div className={`w-14 h-14 rounded-2xl ${benefit.color} flex items-center justify-center mb-6 text-2xl transition-transform group-hover:scale-110`}>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group cursor-default"
+              >
+                <div
+                  className={`w-14 h-14 rounded-2xl ${benefit.color} flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
+                >
                   <benefit.icon />
                 </div>
-                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">{benefit.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed font-inter">{benefit.description}</p>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  {benefit.title}
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed font-inter">
+                  {benefit.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* --- PROCESS (Dark Blue Style) --- */}
-      <section className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter" style={{ backgroundImage: "radial-gradient(circle at 10% 10%, rgba(64, 65, 209, 0.15) 0%, transparent 40%)" }}>
+      {/* --- PROTOCOL SECTION --- */}
+      <section
+        className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 10% 10%, rgba(64, 65, 209, 0.15) 0%, transparent 40%)",
+        }}
+      >
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
-            <motion.div className="inline-block px-4 py-1.5 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-[10px] font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway" variants={itemVariants}>
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div
+              className="inline-block px-5 py-2 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway shadow-[0_0_15px_rgba(64,65,209,0.1)]"
+              variants={itemVariants}
+            >
               The Procedure
             </motion.div>
-            <motion.h2 className="text-3xl md:text-4xl font-raleway font-bold text-white leading-tight mb-6 tracking-tight" variants={itemVariants}>
+            <motion.h2
+              className="text-3xl md:text-5xl font-raleway font-bold text-white leading-tight mb-8 tracking-tight"
+              variants={itemVariants}
+            >
               Simple, Safe & Effective
             </motion.h2>
+            <motion.p
+              className="text-lg text-slate-200 leading-relaxed max-w-3xl mx-auto font-medium font-inter"
+              variants={itemVariants}
+            >
+              The P-Shot is a straightforward in-clinic procedure that uses the healing power of your own blood. There is no surgery, and downtime is minimal.
+            </motion.p>
           </motion.div>
 
-          <div className="max-w-6xl mx-auto mt-16 relative">
-             <div className="text-center mb-10">
-                <AnimatePresence mode="wait">
-                  <motion.div key={activeStep} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.2 }} className="inline-flex items-center gap-3 px-6 py-3 bg-[#4041d1]/10 border border-[#4041d1]/40 rounded-full shadow-[0_0_15px_rgba(64,65,209,0.25)] backdrop-blur-md">
-                    <span className="flex h-2 w-2 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_8px_#4041d1]" />
-                    <span className="text-xs font-bold text-white uppercase tracking-[0.25em] font-raleway">
-                      Step 0{processSteps[activeStep].number}: {processSteps[activeStep].title}
-                    </span>
-                  </motion.div>
-                </AnimatePresence>
+          <div className="max-w-6xl mx-auto mt-12 relative">
+            <div className="text-center mb-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ duration: 0.2 }}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/20 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] backdrop-blur-md"
+                >
+                  <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
+                  <span className="text-sm font-bold text-white uppercase tracking-[0.2em] font-raleway">
+                    Step 0{protocolSteps[activeStep].number}:{" "}
+                    {protocolSteps[activeStep].title}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
-            <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
-              {processSteps.map((step, index) => {
+              {protocolSteps.map((step, index) => {
                 const IconComponent = step.icon;
                 const isActive = activeStep === index;
                 return (
-                  <motion.div key={index} className="relative group cursor-pointer" onClick={() => setActiveStep(index)} variants={itemVariants}>
-                    <div className={`p-6 rounded-[2rem] border transition-all duration-300 h-full flex flex-col ${isActive ? "border-[#4041d1] bg-white shadow-xl shadow-[#4041d1]/20 scale-105 z-20" : "border-white/10 bg-white/[0.04] opacity-70 hover:opacity-100"}`}>
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 ${isActive ? "bg-[#4041d1] text-white shadow-lg" : "bg-white/10 text-slate-300 group-hover:text-[#4041d1]"}`}>
-                        <IconComponent className="w-5 h-5" />
+                  <motion.div
+                    key={index}
+                    className="relative group cursor-pointer"
+                    onClick={() => setActiveStep(index)}
+                    variants={itemVariants}
+                  >
+                    <div
+                      className={`p-6 rounded-[2.5rem] border transition-all duration-300 h-full flex flex-col ${
+                        isActive
+                          ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
+                          : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"
+                      }`}
+                    >
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
+                          isActive
+                            ? "bg-[#4041d1] text-white shadow-lg scale-110"
+                            : "bg-white/10 text-slate-300 group-hover:text-[#4041d1] group-hover:scale-105"
+                        }`}
+                      >
+                        <IconComponent className="w-6 h-6" />
                       </div>
-                      <h3 className={`font-raleway font-bold mb-2 text-base transition-colors ${isActive ? "text-slate-900" : "text-white"}`}>{step.title}</h3>
-                      <p className={`text-xs leading-relaxed font-inter transition-colors ${isActive ? "text-slate-600" : "text-slate-400"}`}>{step.description}</p>
+                      <h3
+                        className={`font-raleway font-bold mb-3 text-lg transition-colors ${
+                          isActive ? "text-slate-900" : "text-white"
+                        }`}
+                      >
+                        {step.title}
+                      </h3>
+                      <p
+                        className={`text-xs leading-relaxed font-inter transition-colors ${
+                          isActive ? "text-slate-600 font-medium" : "text-slate-400"
+                        }`}
+                      >
+                        {step.description}
+                      </p>
                     </div>
                   </motion.div>
                 );
@@ -224,57 +425,96 @@ export default function PShotClient() {
         </div>
       </section>
 
-      {/* --- IMAGE SECTION --- */}
-      <section className="py-20 bg-slate-50 font-inter">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
-               <div className="w-full md:w-1/2">
-                   <div className="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/3] group">
-                       <div className="absolute inset-0 bg-indigo-900/10 group-hover:bg-transparent transition-colors duration-500"/>
-                        <img 
-                            src="/pshot_hero.jpg" 
-                            alt="Lab Processing" 
-                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                            onError={(e) => (e.currentTarget.src = "/hero_img.png")}
-                        />
-                   </div>
-               </div>
-               <div className="w-full md:w-1/2">
-                   <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
-                       Why Choose Healing-PRP Clinics?
-                   </h3>
-                   <ul className="space-y-4 mb-8">
-                       {["Certified P-Shot® Providers", "Strictly Confidential", "Advanced Centrifuge Technology"].map((item, i) => (
-                           <li key={i} className="flex items-center gap-3 text-slate-700 font-bold font-inter text-sm">
-                               <FaCheckCircle className="text-[#4041d1]"/> {item}
-                           </li>
-                       ))}
-                   </ul>
-                   <button onClick={() => window.dispatchEvent(new CustomEvent("open-contact-drawer"))} className="px-8 py-3 bg-[#4041d1] text-white rounded-xl font-bold hover:bg-[#2a2bb8] transition-all shadow-lg">
-                      Book P-Shot Consultation
-                   </button>
-               </div>
+      {/* --- DOCTOR & PRIVACY SECTION --- */}
+      <section className="py-24 bg-slate-50 font-inter">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-16">
+          <div className="w-full md:w-1/2">
+            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] group border-4 border-white">
+              <div className="absolute inset-0 bg-indigo-900/10 group-hover:bg-transparent transition-colors duration-500" />
+              <img
+                src="/doctor_consult.jpg"
+                alt="Confidential doctor-led consultation"
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                onError={(e) => (e.currentTarget.src = "/hero_img.png")}
+              />
+            </div>
           </div>
+          <div className="w-full md:w-1/2">
+            <div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+                Expert Medical Care
+            </div>
+            <h3 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight">
+              Doctor-Led, Confidential & Safe
+            </h3>
+            <p className="text-slate-600 font-inter text-lg leading-relaxed mb-8">
+              Your procedure is performed by a fully insured, GMC-registered doctor with extensive experience in regenerative medicine. We prioritise your privacy and comfort at every stage.
+            </p>
+            <ul className="space-y-4 mb-10">
+              {[
+                "Performed by a GMC-Registered Doctor",
+                "Strictly confidential environment",
+                "Full medical assessment included",
+              ].map((item, i) => (
+                <li
+                  key={i}
+                  className="flex items-center gap-3 text-slate-800 font-bold font-inter text-base"
+                >
+                  <FaCheckCircle className="text-[#4041d1] text-xl" /> {item}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={handleAction}
+              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
+            >
+              <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+              Speak To A Specialist
+            </button>
+          </div>
+        </div>
       </section>
 
-      <section id="faqs" className="py-20 lg:py-24 bg-white font-inter">
+      {/* --- FAQs --- */}
+      <section id="faqs" className="py-24 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">Common Questions</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">
+              Common Questions
+            </h2>
           </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <motion.div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <button className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300" onClick={() => toggleFAQ(index)}>
-                  <h3 className="font-raleway font-bold text-slate-900 pr-4 text-sm md:text-base">{faq.question}</h3>
-                  <div className="flex-shrink-0 w-8 h-8 bg-[#4041d1]/10 rounded-full flex items-center justify-center text-[#4041d1]">
-                    {openFAQIndex === index ? <FaMinus className="w-3 h-3"/> : <FaPlus className="w-3 h-3"/>}
+              <motion.div
+                key={index}
+                className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
+              >
+                <button
+                  className="w-full p-6 md:p-8 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  <h3 className="font-raleway font-bold text-slate-900 pr-8 text-base md:text-lg">
+                    {faq.question}
+                  </h3>
+                  <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${openFAQIndex === index ? 'bg-[#4041d1] text-white' : 'bg-[#4041d1]/10 text-[#4041d1]'}`}>
+                    {openFAQIndex === index ? (
+                      <FaMinus className="w-4 h-4" />
+                    ) : (
+                      <FaPlus className="w-4 h-4" />
+                    )}
                   </div>
                 </button>
                 <AnimatePresence>
                   {openFAQIndex === index && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                      <div className="px-6 pb-6 border-t border-slate-100 pt-4">
-                        <p className="font-inter text-sm text-slate-600 leading-relaxed">{faq.answer}</p>
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 md:px-8 pb-8 border-t border-slate-100 pt-6">
+                        <p className="font-inter text-base text-slate-600 leading-relaxed font-medium">
+                          {faq.answer}
+                        </p>
                       </div>
                     </motion.div>
                   )}
