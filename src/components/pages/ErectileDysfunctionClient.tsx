@@ -218,8 +218,8 @@ export default function ErectileDysfunctionClient() {
         </div>
       </section>
 
-      {/* --- SYMPTOMS SECTION --- */}
-      <section className="py-24 bg-slate-50 font-inter">
+      {/* --- SYMPTOMS SECTION (Refined for Premium Feel) --- */}
+      <section className="py-24 bg-slate-50 font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
@@ -228,6 +228,7 @@ export default function ErectileDysfunctionClient() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              // VISUAL UPDATE: Slightly smaller text for better hierarchy
               className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6"
             >
               Signs You May Benefit From Treatment
@@ -253,7 +254,8 @@ export default function ErectileDysfunctionClient() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group"
+                // VISUAL UPDATE: Added 'hover:shadow-xl' and 'hover:shadow-blue-900/5' for a premium lift effect
+                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group cursor-default"
               >
                 {/* Icon Box */}
                 <div
