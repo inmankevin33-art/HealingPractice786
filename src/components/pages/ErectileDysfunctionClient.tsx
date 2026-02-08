@@ -1,11 +1,10 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   FaPlus,
   FaMinus,
-  FaUserMd,
   FaBatteryQuarter,
   FaHourglassEnd,
   FaFeather,
@@ -14,7 +13,8 @@ import {
   FaSyringe,
   FaDna,
   FaCheckCircle,
-  FaEnvelope, // Icon for the consultation button
+  FaEnvelope,
+  FaMapMarkerAlt, // Added to match Hero icon usage
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -22,36 +22,47 @@ import ContactCTASection from "@/components/ContactCTASection";
 export default function ErectileDysfunctionClient() {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false); // Added for Hero animation sync
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setIsLoaded(true); // Trigger animations on mount
+  }, []);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  // --- SMART SCROLL HANDLER ---
+  // --- UNIFIED ACTION HANDLER (Scroll + Open Drawer) ---
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
-    
-    // 1. Signal the consultation drawer to open
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-    
-    // 2. Wait 100ms for the drawer animation to start, then scroll
     setTimeout(() => {
       const section = document.getElementById("contact-form-section");
       if (section) {
-        const headerOffset = 100; 
+        const headerOffset = 100;
         const elementPosition = section.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.scrollY - headerOffset;
-  
         window.scrollTo({
           top: offsetPosition,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     }, 100);
+  };
+
+  // --- ANIMATION VARIANTS (Copied from Hero.tsx) ---
+  const fadeUpVariants: Variants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        delay: i * 0.15,
+        ease: "easeOut",
+      },
+    }),
   };
 
   const containerVariants = {
@@ -67,7 +78,7 @@ export default function ErectileDysfunctionClient() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // --- DATA: SYMPTOMS ---
+  // --- DATA SECTIONS ---
   const symptoms = [
     {
       title: "Difficulty Achieving",
@@ -95,7 +106,6 @@ export default function ErectileDysfunctionClient() {
     },
   ];
 
-  // --- DATA: PROTOCOL STEPS ---
   const protocolSteps = [
     {
       number: 1,
@@ -148,75 +158,107 @@ export default function ErectileDysfunctionClient() {
 
   return (
     <>
-     {/* --- HERO SECTION (Adjusted for Composition) --- */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden font-inter">
-        {/* Background Image & Overlay */}
+      {/* --- HERO SECTION (Exact Match to Hero.tsx) --- */}
+      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+        {/* Background Section */}
         <div className="absolute inset-0 z-0">
-          {/* Gradient Overlay: Darker on left/bottom for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 z-10" />
-          
-          <img
+          <div className="absolute inset-0 bg-black/60 z-10" /> 
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
+          <img 
             src="/ed-doctor-consultation.webp" 
-            alt="Private doctor consultation for erectile dysfunction treatment"
-            // VISUAL UPDATE: 'object-[50%_35%]' focuses higher up, pulling the head down into view
-            className="w-full h-full object-cover object-[50%_35%]" 
+            alt="Erectile dysfunction treatment consultation" 
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
 
-        <div className="relative z-20 flex h-full w-full items-center mt-10 md:mt-0">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* CONTAINER: Centered text alignment */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-              className="max-w-3xl mx-auto text-center pt-24" 
+        {/* Main Content */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-[-4vh]">
+          
+          {/* Top Badge - Matches Hero.tsx Style */}
+          <motion.div 
+            custom={1}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter"
+          >
+             GMC-Registered | CE-Marked Equipment | Confidential
+          </motion.div>
+
+          {/* Headline - Matches Hero.tsx Size & Font */}
+          <motion.h1 
+            custom={2}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
+          >
+            Erectile Dysfunction Treatment<br />
+            <span className="block mt-2">Healing-PRP Clinics</span>
+          </motion.h1>
+
+          {/* Sub-headline - Matches Hero.tsx Style */}
+          <motion.h2 
+            custom={3}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="mt-1 md:text-lg text-base text-blue-100 font-medium font-raleway leading-relaxed"
+          >
+            Doctor-led. Patient-focused. Regenerative care
+          </motion.h2>
+
+          {/* Description - Matches Hero.tsx Font/Spacing */}
+          <motion.p 
+            custom={4}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
+          >
+            Evidence-based, non-surgical solutions to support confidence, 
+            sensitivity and intimacy — delivered by a fully insured, 
+            GMC-registered doctor.
+          </motion.p>
+
+          {/* CTA Button - Matches Hero.tsx */}
+          <motion.div 
+            custom={5}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <button 
+              onClick={handleAction}
+              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
             >
-              {/* HEADING */}
-              <motion.h1
-                className="text-3xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight drop-shadow-2xl md:whitespace-nowrap"
-                variants={itemVariants}
-              >
-                Erectile Dysfunction Treatment
-                <span className="block mt-3 text-xl md:text-3xl font-medium text-blue-100">
-                  Healing-PRP Clinics
-                </span>
-              </motion.h1>
+              <FaEnvelope className="w-4 h-4" /> Book Consultation
+            </button>
+          </motion.div>
+        </div>
 
-              <motion.p
-                variants={itemVariants}
-                className="mt-6 text-sm md:text-base text-white/90 max-w-xl mx-auto leading-relaxed font-inter font-medium drop-shadow-md"
-              >
-                Patient-centred, non-surgical solutions to support confidence,
-                sensitivity and intimacy — delivered by a fully insured,
-                GMC-registered doctor.
-              </motion.p>
-
-              {/* TRUST BADGE & ACTION GROUP */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col items-center justify-center mt-10 gap-6"
-              >
-                {/* TRUST BADGE */}
-                <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-[10px] font-bold uppercase tracking-[0.2em] font-inter shadow-sm">
-                  GMC-Registered | CE-Marked Equipment | Confidential
-                </div>
-
-                {/* BUTTON */}
-                <button
-                  onClick={handleAction}
-                  className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
-                >
-                  <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                  Book Consultation
-                </button>
-              </motion.div>
-
-            </motion.div>
+        {/* Feature Banner / Trust Bar - Exact copy from Hero.tsx */}
+        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="px-4 py-5">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-4 gap-4">
+                {[
+                  { label: "GMC-registered doctor", sub: "Over 10 years experience" },
+                  { label: "Drug-free options", sub: "Natural PRP Treatments" },
+                  { label: "Discreet location", sub: "St Albans & Birmingham" },
+                  { label: "Private consultations", sub: "Strictly 1:1 Care" }
+                ].map((item, idx) => (
+                  <div key={idx} className={`text-center ${idx !== 3 ? 'border-r border-white/10' : ''}`}>
+                    <div className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 font-inter">{item.label}</div>
+                    <div className="text-blue-300 text-[10px] md:text-[11px] font-semibold font-inter">{item.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* --- SYMPTOMS SECTION (Refined for Premium Feel) --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30">
@@ -228,7 +270,6 @@ export default function ErectileDysfunctionClient() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              // VISUAL UPDATE: Slightly smaller text for better hierarchy
               className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6"
             >
               Signs You May Benefit From Treatment
@@ -254,22 +295,16 @@ export default function ErectileDysfunctionClient() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                // VISUAL UPDATE: Added 'hover:shadow-xl' and 'hover:shadow-blue-900/5' for a premium lift effect
                 className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group cursor-default"
               >
-                {/* Icon Box */}
                 <div
                   className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
                 >
                   <symptom.icon />
                 </div>
-                
-                {/* Title */}
                 <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
                   {symptom.title}
                 </h3>
-                
-                {/* Description */}
                 <p className="text-slate-600 text-sm leading-relaxed font-inter">
                   {symptom.description}
                 </p>
@@ -279,7 +314,7 @@ export default function ErectileDysfunctionClient() {
         </div>
       </section>
 
-      {/* --- PROTOCOL (Dark Blue Scientific Style) --- */}
+      {/* --- PROTOCOL SECTION --- */}
       <section
         className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter"
         style={{
@@ -397,19 +432,17 @@ export default function ErectileDysfunctionClient() {
         </div>
       </section>
 
-      {/* --- WHAT IT CAN / CANNOT DO (Trust Section) --- */}
+      {/* --- WHAT IT CAN DO (TRUST) --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
           <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
             What PRP & Shockwave Therapy Can — and Cannot — Do
           </h3>
-
           <p className="text-slate-600 text-lg leading-relaxed mb-8">
             Regenerative treatments such as PRP and shockwave therapy can be
             effective for many men with vascular-related erectile dysfunction.
             Honest advice matters, and suitability should be assessed medically.
           </p>
-
           <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-inner">
             <ul className="space-y-4 text-slate-700 text-sm md:text-base font-medium">
               <li className="flex items-start gap-3">
@@ -433,7 +466,7 @@ export default function ErectileDysfunctionClient() {
         </div>
       </section>
 
-      {/* --- DOCTOR & TRUST (Image Section) --- */}
+      {/* --- DOCTOR & PRIVACY SECTION --- */}
       <section className="py-24 bg-slate-50 font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-16">
           <div className="w-full md:w-1/2">
@@ -474,7 +507,6 @@ export default function ErectileDysfunctionClient() {
                 </li>
               ))}
             </ul>
-
             <div className="p-6 bg-white rounded-2xl border border-slate-200 mb-8 shadow-sm">
                 <p className="text-slate-600 text-sm leading-relaxed font-medium">
                   Our pricing is intentionally kept accessible compared with many
@@ -483,8 +515,6 @@ export default function ErectileDysfunctionClient() {
                   care.
                 </p>
             </div>
-
-            {/* BUTTON FIX: Uses handleAction */}
             <button
               onClick={handleAction}
               className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
