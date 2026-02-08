@@ -4,7 +4,7 @@ import ErectileDysfunctionClient from "@/components/pages/ErectileDysfunctionCli
 export const metadata: Metadata = {
   title: {
     // FIX: Use 'absolute' to prevent layout conflicts and ensure exact SEO title
-    absolute: "Erectile Dysfunction Treatment St Albans & Luton | Healing-PRP",
+    absolute: "Erectile Dysfunction Treatment St Albans | Healing-PRP",
   },
 
   description:
@@ -53,7 +53,7 @@ export default function Page() {
   return (
     <ErectileDysfunctionClient 
       // 1. HEADLINE: "Healing-PRP Clinics, St Albans & Luton"
-      locationName="St Albans & Luton"
+      locationName="St Albans"
       
       // 2. BADGE: Local catchment areas
       servingAreas="St Albans • Luton • Harpenden • Hertfordshire"
