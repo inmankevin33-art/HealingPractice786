@@ -148,31 +148,30 @@ export default function ErectileDysfunctionClient() {
 
   return (
     <>
-     {/* --- HERO SECTION (Centered Text, Blurred & Shifted Image) --- */}
-      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden font-inter">
+     {/* --- HERO SECTION (Adjusted for Composition) --- */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden font-inter">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
-          {/* Gradient Overlay: Keeps the background dark for text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70 z-10" />
+          {/* Gradient Overlay: Darker on left/bottom for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 z-10" />
           
           <img
             src="/ed-doctor-consultation.webp" 
             alt="Private doctor consultation for erectile dysfunction treatment"
-            // VISUAL UPDATES:
-            // 1. 'blur': Applies a distinct blur for text readability.
-            // 2. 'object-[50%_25%]': Shifts focus upwards to show the doctor's head under the nav.
-            // 3. 'scale-105': Slightly zooms in to prevent blurred edges from showing.
-            className="w-full h-full object-cover object-[50%_25%] blur scale-105 transition-all duration-700" 
+            // VISUAL UPDATE: 'object-[50%_35%]' focuses higher up, pulling the head down into view
+            className="w-full h-full object-cover object-[50%_35%]" 
           />
         </div>
 
         <div className="relative z-20 flex h-full w-full items-center mt-10 md:mt-0">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* CONTAINER: Pushed down (pt-24) to clear face, Tighter width (max-w-2xl) */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={containerVariants}
-              className="max-w-4xl mx-auto"
+              className="max-w-2xl mr-auto text-center md:text-left pt-24"
             >
               {/* HEADING */}
               <motion.h1
@@ -187,7 +186,7 @@ export default function ErectileDysfunctionClient() {
 
               <motion.p
                 variants={itemVariants}
-                className="mt-6 text-sm md:text-base text-white/90 max-w-2xl mx-auto leading-relaxed font-inter font-medium drop-shadow-md"
+                className="mt-6 text-sm md:text-base text-white/90 max-w-xl mx-auto md:mx-0 leading-relaxed font-inter font-medium drop-shadow-md"
               >
                 Patient-centred, non-surgical solutions to support confidence,
                 sensitivity and intimacy — delivered by a fully insured,
@@ -197,10 +196,10 @@ export default function ErectileDysfunctionClient() {
               {/* TRUST BADGE & ACTION GROUP */}
               <motion.div
                 variants={itemVariants}
-                className="flex flex-col items-center justify-center mt-10 gap-6"
+                className="flex flex-col items-center md:items-start justify-center mt-10 gap-6"
               >
                 {/* TRUST BADGE */}
-                <div className="inline-block px-6 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-[11px] font-bold uppercase tracking-[0.2em] font-inter shadow-sm">
+                <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-[10px] font-bold uppercase tracking-[0.2em] font-inter shadow-sm">
                   GMC-Registered | CE-Marked Equipment | Confidential
                 </div>
 
