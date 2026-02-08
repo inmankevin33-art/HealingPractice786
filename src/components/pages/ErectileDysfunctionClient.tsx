@@ -15,7 +15,7 @@ import {
   FaCheckCircle,
   FaEnvelope,
   FaMapMarkerAlt,
-  FaArrowRight, // <--- Added this to fix the error
+  FaArrowRight, // Correctly imported
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -24,11 +24,13 @@ import ContactCTASection from "@/components/ContactCTASection";
 interface ErectileDysfunctionProps {
   locationName?: string;
   servingAreas?: string;
+  pShotLink?: string; // <--- ADDED THIS: Required to fix the type error
 }
 
 export default function ErectileDysfunctionClient({
   locationName = "St Albans", // Default if no prop provided
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire", // Default areas
+  pShotLink = "/p-shot-treatment", // <--- ADDED THIS: Default link if not provided
 }: ErectileDysfunctionProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
@@ -443,7 +445,7 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-     {/* --- WHAT IT CAN DO (TRUST & REALITY CHECK) --- */}
+      {/* --- WHAT IT CAN DO (TRUST & REALITY CHECK) --- */}
       <section className="py-24 bg-white font-inter">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -540,7 +542,7 @@ export default function ErectileDysfunctionClient({
             </div>
             
             <a 
-              href={pShotLink} // <--- CRITICAL UPDATE: Uses the dynamic prop
+              href={pShotLink} // <--- CORRECT: Uses the dynamic prop
               className="shrink-0 px-8 py-3 bg-[#4041d1]/10 text-[#4041d1] hover:bg-[#4041d1] hover:text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group whitespace-nowrap"
             >
               View P-Shot® Treatment
