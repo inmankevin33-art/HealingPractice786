@@ -14,12 +14,22 @@ import {
   FaDna,
   FaCheckCircle,
   FaEnvelope,
-  FaMapMarkerAlt,
+  FaMapMarkerAlt, // Ensure this is imported for the location badge
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 
-export default function ErectileDysfunctionClient() {
+// --- INTERFACE FOR DYNAMIC LOCATION PROPS ---
+interface ErectileDysfunctionProps {
+  locationName?: string;
+  servingAreas?: string;
+}
+
+export default function ErectileDysfunctionClient({
+  locationName = "St Albans", // Default if no prop provided
+  servingAreas = "Harpenden • Luton • Watford • Hertfordshire", // Default areas
+}: ErectileDysfunctionProps) {
+  
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -33,7 +43,7 @@ export default function ErectileDysfunctionClient() {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-  // --- UNIFIED ACTION HANDLER (Scroll + Open Drawer) ---
+  // --- UNIFIED ACTION HANDLER ---
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
@@ -162,7 +172,7 @@ export default function ErectileDysfunctionClient() {
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
         {/* Background Section */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/50 z-10" /> 
+          <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
           <img 
             src="/ed-doctor-consultation.webp" 
@@ -172,10 +182,9 @@ export default function ErectileDysfunctionClient() {
         </div>
 
         {/* Main Content */}
-        {/* VISUAL UPDATE: Removed 'mt-[-4vh]' and added 'pt-16' to push the heading down */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16">
           
-          {/* Headline (Now first in visual order) */}
+          {/* Headline */}
           <motion.h1 
             custom={1}
             initial="hidden"
@@ -184,7 +193,8 @@ export default function ErectileDysfunctionClient() {
             className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
           >
             Erectile Dysfunction Treatment<br />
-            <span className="block mt-2">Healing-PRP Clinics</span>
+            {/* DYNAMIC SUB-HEADING: Uses props */}
+            <span className="block mt-2">Healing-PRP Clinics, {locationName}</span>
           </motion.h1>
 
           {/* Sub-headline */}
@@ -227,16 +237,16 @@ export default function ErectileDysfunctionClient() {
             </button>
           </motion.div>
 
-          {/* TRUST BADGE (Moved to bottom) */}
-          {/* VISUAL UPDATE: Moved here from top. Added 'mt-8' for spacing. */}
+          {/* LOCATION BADGE (Moved to bottom & Dynamic) */}
           <motion.div 
             custom={5}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mt-8 font-bold uppercase tracking-[0.2em] font-inter shadow-lg border border-white/10"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
           >
-             GMC-Registered | CE-Marked Equipment | Confidential
+             <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
+             <span>Serving: {servingAreas}</span>
           </motion.div>
 
         </div>
