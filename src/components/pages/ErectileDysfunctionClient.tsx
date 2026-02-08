@@ -19,6 +19,7 @@ import {
   FaMapMarkerAlt,
   FaArrowRight, // Correctly imported
 } from "react-icons/fa";
+import LocationSection from "@/components/LocationSection"; // <--- ADD THIS
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 
@@ -698,7 +699,10 @@ export default function ErectileDysfunctionClient({
       </section>
 
       <ContactCTASection />
-      <LocationSection />
+      
+      {/* Location Section added here */}
+      <LocationSection /> 
+
       <Footer />
     </>
   );
