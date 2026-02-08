@@ -152,7 +152,7 @@ export default function ErectileDysfunctionClient() {
       <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden font-inter">
         <div className="absolute inset-0 z-0">
           {/* VISUAL UPDATE: Reduced opacity to 50% so image is more visible */}
-          <div className="absolute inset-0 bg-black/50 z-10" /> 
+          <div className="absolute inset-0 bg-black/40 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/40 z-10" />
           <img
             src="/ed-doctor-consultation.webp" 
