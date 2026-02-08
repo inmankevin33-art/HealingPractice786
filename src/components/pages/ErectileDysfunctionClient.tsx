@@ -14,7 +14,8 @@ import {
   FaDna,
   FaCheckCircle,
   FaEnvelope,
-  FaMapMarkerAlt, // Ensure this is imported for the location badge
+  FaMapMarkerAlt,
+  FaArrowRight, // <--- Added this to fix the error
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
