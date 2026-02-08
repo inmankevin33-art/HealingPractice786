@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import ErectileDysfunctionClient from "@/components/pages/ErectileDysfunctionClient";
 
 export const metadata: Metadata = {
-  // The layout adds " | St Albans Clinic" automatically
-  title: "Erectile Dysfunction Treatment & Shockwave Therapy",
+  title: {
+    // FIX: Use 'absolute' to prevent layout conflicts and ensure exact SEO title
+    absolute: "Erectile Dysfunction Treatment St Albans & Luton | Healing-PRP",
+  },
 
   description:
     "Doctor-led Erectile Dysfunction (ED) clinic serving Luton & St Albans. We restore natural function using Shockwave Therapy and PRP (P-Shot®). Private, non-pharmaceutical ED solutions.",
 
   alternates: {
+    // NOTE: Check if your domain is 'healing-prp.co.uk' or 'healing-practice.co.uk'
     canonical: "https://www.healing-prp.co.uk/erectile-dysfunction",
   },
 
@@ -47,5 +50,13 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ErectileDysfunctionClient />;
+  return (
+    <ErectileDysfunctionClient 
+      // 1. Explicitly setting the location for this main page
+      locationName="St Albans & Luton"
+      
+      // 2. Matching the serving areas to your metadata
+      servingAreas="St Albans • Luton • Harpenden • Hertfordshire"
+    />
+  );
 }
