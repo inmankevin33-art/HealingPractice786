@@ -150,10 +150,12 @@ export default function ErectileDysfunctionClient() {
     <>
       {/* --- HERO SECTION --- */}
       <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden font-inter">
+        {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
-          {/* VISUAL UPDATE: Reduced opacity to 50% so image is more visible */}
+          {/* VISUAL UPDATE: Opacity reduced to 40% for better image visibility */}
           <div className="absolute inset-0 bg-black/40 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/40 z-10" />
+          
           <img
             src="/ed-doctor-consultation.webp" 
             alt="Private doctor consultation for erectile dysfunction treatment"
@@ -169,13 +171,7 @@ export default function ErectileDysfunctionClient() {
               variants={containerVariants}
               className="max-w-4xl mx-auto"
             >
-              <motion.div
-                className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter border border-white/10 shadow-lg"
-                variants={itemVariants}
-              >
-                GMC-Registered | CE-Marked Equipment | Confidential
-              </motion.div>
-
+              {/* HEADING MOVED TO TOP */}
               <motion.h1
                 className="text-4xl md:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight drop-shadow-2xl"
                 variants={itemVariants}
@@ -195,10 +191,17 @@ export default function ErectileDysfunctionClient() {
                 GMC-registered doctor.
               </motion.p>
 
+              {/* TRUST BADGE & ACTION GROUP */}
               <motion.div
                 variants={itemVariants}
-                className="flex justify-center mt-8"
+                className="flex flex-col items-center justify-center mt-12 gap-5"
               >
+                {/* TRUST BADGE: Moved here & styled as "Glass" to distinct it from the button */}
+                <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-[10px] font-bold uppercase tracking-[0.2em] font-inter shadow-sm">
+                  GMC-Registered | CE-Marked Equipment | Confidential
+                </div>
+
+                {/* BUTTON: Pushed down slightly */}
                 <button
                   onClick={handleAction}
                   className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
@@ -207,6 +210,7 @@ export default function ErectileDysfunctionClient() {
                   Book Consultation
                 </button>
               </motion.div>
+
             </motion.div>
           </div>
         </div>
