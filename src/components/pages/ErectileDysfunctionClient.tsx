@@ -218,12 +218,12 @@ export default function ErectileDysfunctionClient() {
         </div>
       </section>
 
-      {/* --- SYMPTOMS (Card Style) --- */}
-      {/* VISUAL UPDATE: Changed py-24 to pt-12 pb-24 to close the gap */}
-      <section className="pt-12 pb-24 bg-slate-50 font-inter">
+      {/* --- SYMPTOMS SECTION --- */}
+      <section className="py-24 bg-slate-50 font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            {/* VISUAL UPDATE: Reduced font size to text-3xl md:text-4xl */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -232,11 +232,18 @@ export default function ErectileDysfunctionClient() {
             >
               Signs You May Benefit From Treatment
             </motion.h2>
-            <p className="text-slate-600 text-lg leading-relaxed font-inter">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-slate-600 text-lg leading-relaxed font-inter"
+            >
               Erectile dysfunction is rarely &quot;just psychological.&quot; Recognising these signs early allows treatment to be more effective.
-            </p>
+            </motion.p>
           </div>
 
+          {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {symptoms.map((symptom, index) => (
               <motion.div
@@ -245,17 +252,22 @@ export default function ErectileDysfunctionClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:border-[#4041d1]/20 transition-all duration-500 flex flex-col h-full group"
+                whileHover={{ y: -8 }}
+                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group"
               >
+                {/* Icon Box */}
                 <div
-                  className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform group-hover:scale-110`}
+                  className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
                 >
                   <symptom.icon />
                 </div>
+                
+                {/* Title */}
                 <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
                   {symptom.title}
                 </h3>
+                
+                {/* Description */}
                 <p className="text-slate-600 text-sm leading-relaxed font-inter">
                   {symptom.description}
                 </p>
