@@ -31,7 +31,7 @@ export default function ErectileDysfunctionClient() {
     window.scrollTo(0, 0);
   }, []);
 
-  // --- SMART SCROLL HANDLER (Fixed to prevent getting stuck) ---
+  // --- SMART SCROLL HANDLER ---
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
     
@@ -148,16 +148,14 @@ export default function ErectileDysfunctionClient() {
 
   return (
     <>
-     {/* --- HERO SECTION (Updated for Doctor Consultation Image) --- */}
+      {/* --- HERO SECTION --- */}
       <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden font-inter">
-        {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
-          {/* Heavy Dark Overlay to make white text pop against the room background */}
-          <div className="absolute inset-0 bg-black/60 z-10" /> 
+          {/* VISUAL UPDATE: Reduced opacity to 50% so image is more visible */}
+          <div className="absolute inset-0 bg-black/50 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/40 z-10" />
-          
           <img
-            src="/ed-doctor-consultation.webp" // ✅ Updated File Name
+            src="/ed-doctor-consultation.webp" 
             alt="Private doctor consultation for erectile dysfunction treatment"
             className="w-full h-full object-cover" 
           />
@@ -171,7 +169,6 @@ export default function ErectileDysfunctionClient() {
               variants={containerVariants}
               className="max-w-4xl mx-auto"
             >
-              {/* Tag */}
               <motion.div
                 className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter border border-white/10 shadow-lg"
                 variants={itemVariants}
@@ -179,7 +176,6 @@ export default function ErectileDysfunctionClient() {
                 GMC-Registered | CE-Marked Equipment | Confidential
               </motion.div>
 
-              {/* HEADING */}
               <motion.h1
                 className="text-4xl md:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight drop-shadow-2xl"
                 variants={itemVariants}
@@ -199,7 +195,6 @@ export default function ErectileDysfunctionClient() {
                 GMC-registered doctor.
               </motion.p>
 
-              {/* Action Button */}
               <motion.div
                 variants={itemVariants}
                 className="flex justify-center mt-8"
@@ -218,14 +213,16 @@ export default function ErectileDysfunctionClient() {
       </section>
 
       {/* --- SYMPTOMS (Card Style) --- */}
-      <section className="py-24 bg-slate-50 font-inter">
+      {/* VISUAL UPDATE: Changed py-24 to pt-12 pb-24 to close the gap */}
+      <section className="pt-12 pb-24 bg-slate-50 font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
+            {/* VISUAL UPDATE: Reduced font size to text-3xl md:text-4xl */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-raleway font-bold text-slate-900 mb-6"
+              className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6"
             >
               Signs You May Benefit From Treatment
             </motion.h2>
