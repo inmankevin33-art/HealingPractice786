@@ -148,29 +148,30 @@ export default function ErectileDysfunctionClient() {
 
   return (
     <>
-     {/* --- HERO SECTION (Left-Aligned Text) --- */}
-      <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden font-inter">
+     {/* --- HERO SECTION (Adjusted for Composition) --- */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden font-inter">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
-          {/* GRADIENT OVERLAY: Darker on the left (for text), transparent on the right (for doctor) */}
+          {/* Gradient Overlay: Darker on left/bottom for text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 z-10" />
           
           <img
             src="/ed-doctor-consultation.webp" 
             alt="Private doctor consultation for erectile dysfunction treatment"
-            className="w-full h-full object-cover" 
+            // VISUAL UPDATE: 'object-[50%_35%]' focuses higher up, pulling the head down into view
+            className="w-full h-full object-cover object-[50%_35%]" 
           />
         </div>
 
         <div className="relative z-20 flex h-full w-full items-center mt-10 md:mt-0">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* CONTAINER: Left-aligned on Desktop, Centered on Mobile */}
+            {/* CONTAINER: Pushed down (pt-24) to clear face, Tighter width (max-w-2xl) */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={containerVariants}
-              className="max-w-3xl mr-auto text-center md:text-left"
+              className="max-w-2xl mr-auto text-center md:text-left pt-24"
             >
               {/* HEADING */}
               <motion.h1
