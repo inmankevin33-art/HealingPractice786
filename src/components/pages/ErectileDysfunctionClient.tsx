@@ -175,7 +175,7 @@ export default function ErectileDysfunctionClient() {
             >
               {/* HEADING */}
               <motion.h1
-                className="text-4xl md:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight drop-shadow-2xl"
+                className="text-3xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight drop-shadow-2xl md:whitespace-nowrap"
                 variants={itemVariants}
               >
                 Erectile Dysfunction Treatment
