@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link"; // <--- ADD THIS
+// ... rest of your imports
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
@@ -555,63 +557,92 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- DOCTOR & PRIVACY SECTION --- */}
+      {/* --- DOCTOR & PRIVACY SECTION (Updated: Text-Only + 3 Buttons) --- */}
       <section className="py-24 bg-slate-50 font-inter">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-16">
-          <div className="w-full md:w-1/2">
-            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] group border-4 border-white">
-              <div className="absolute inset-0 bg-indigo-900/10 group-hover:bg-transparent transition-colors duration-500" />
-              <img
-                src="/doctor_consult.jpg"
-                alt="Confidential doctor-led consultation"
-                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                onError={(e) => (e.currentTarget.src = "/hero_img.png")}
-              />
-            </div>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          
+          {/* Badge & Heading */}
+          <div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+            Patient Privacy Priority
           </div>
-          <div className="w-full md:w-1/2">
-            <div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-                Patient Privacy Priority
-            </div>
-            <h3 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight">
-              Discreet, Private & Professional
-            </h3>
-            <p className="text-slate-600 font-inter text-lg leading-relaxed mb-8">
-              We understand that discussing sexual health can feel uncomfortable.
-              Our clinics provide a discreet, confidential, and judgement-free
-              medical environment, where concerns are addressed professionally
+          <h3 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8 leading-tight">
+            Discreet, Private & Professional
+          </h3>
+
+          {/* New Text Content */}
+          <div className="prose prose-lg prose-slate mx-auto mb-12">
+            <p className="text-slate-600 font-inter text-lg leading-relaxed mb-6">
+              We understand that discussing sexual health can feel uncomfortable. 
+              Our clinics provide a discreet, confidential, and judgement-free 
+              medical environment, where concerns are addressed professionally 
               and with respect.
             </p>
-            <ul className="space-y-4 mb-10">
-              {[
-                "Direct access to GMC-Registered Doctors",
-                "No GP referral required",
-                "Same-day appointments may be available",
-              ].map((item, i) => (
-                <li
-                  key={i}
-                  className="flex items-center gap-3 text-slate-800 font-bold font-inter text-base"
-                >
-                  <FaCheckCircle className="text-[#4041d1] text-xl" /> {item}
-                </li>
-              ))}
-            </ul>
-            <div className="p-6 bg-white rounded-2xl border border-slate-200 mb-8 shadow-sm">
-                <p className="text-slate-600 text-sm leading-relaxed font-medium">
-                  Our pricing is intentionally kept accessible compared with many
-                  London clinics, while maintaining the same medical-grade
-                  equipment, evidence-based protocols, and experienced doctor-led
-                  care.
-                </p>
-            </div>
+            <p className="text-slate-600 font-inter text-lg leading-relaxed">
+              Erectile dysfunction often develops gradually and may reflect underlying 
+              vascular or metabolic health. Seeking assessment earlier can provide 
+              greater clarity, more treatment options, and a better opportunity to 
+              support long-term sexual health — without pressure to proceed unless 
+              it feels right for you.
+            </p>
+          </div>
+
+          {/* Key Features Grid (Horizontal) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-left">
+            {[
+              "Direct access to GMC-Registered Doctors",
+              "No GP referral required",
+              "Same-day appointments may be available",
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center md:items-start md:text-left hover:border-[#4041d1]/30 transition-colors"
+              >
+                <FaCheckCircle className="text-[#4041d1] text-2xl mb-3" /> 
+                <span className="text-slate-800 font-bold font-inter text-sm md:text-base">
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Pricing Note */}
+          <div className="max-w-3xl mx-auto p-6 bg-white rounded-2xl border border-slate-200 mb-10 shadow-sm">
+            <p className="text-slate-600 text-sm leading-relaxed font-medium">
+              Our pricing is intentionally kept accessible compared with many
+              London clinics, while maintaining the same medical-grade
+              equipment, evidence-based protocols, and experienced doctor-led care.
+            </p>
+          </div>
+
+          {/* --- ACTION BUTTONS ROW --- */}
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full">
+            
+            {/* 1. Book Consultation (Main Action) */}
             <button
               onClick={handleAction}
-              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
             >
-              <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-              Speak To A Specialist
+              <FaEnvelope className="w-4 h-4" /> Speak To A Specialist
             </button>
+
+            {/* 2. Prices Link (Logic: Checks if Birmingham) */}
+            <Link
+              href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
+            >
+              View Treatment Prices
+            </Link>
+            
+            {/* 3. FAQ Link (Logic: Checks if Birmingham) */}
+            <Link
+              href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
+            >
+              View Clinic FAQs
+            </Link>
+            
           </div>
+
         </div>
       </section>
 
