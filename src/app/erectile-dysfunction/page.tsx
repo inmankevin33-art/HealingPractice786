@@ -52,11 +52,14 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ErectileDysfunctionClient 
-      // 1. Explicitly setting the location for this main page
+      // 1. HEADLINE: "Healing-PRP Clinics, St Albans & Luton"
       locationName="St Albans & Luton"
       
-      // 2. Matching the serving areas to your metadata
+      // 2. BADGE: Local catchment areas
       servingAreas="St Albans • Luton • Harpenden • Hertfordshire"
+      
+      // 3. LINK: Points to your main P-Shot page (src/app/p-shot/page.tsx)
+      pShotLink="/p-shot"
     />
   );
 }
