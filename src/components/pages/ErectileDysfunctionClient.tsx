@@ -14,7 +14,7 @@ import {
   FaDna,
   FaCheckCircle,
   FaEnvelope,
-  FaMapMarkerAlt, // Added to match Hero icon usage
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -22,11 +22,11 @@ import ContactCTASection from "@/components/ContactCTASection";
 export default function ErectileDysfunctionClient() {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false); // Added for Hero animation sync
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setIsLoaded(true); // Trigger animations on mount
+    setIsLoaded(true);
   }, []);
 
   const toggleFAQ = (index: number) => {
@@ -51,7 +51,7 @@ export default function ErectileDysfunctionClient() {
     }, 100);
   };
 
-  // --- ANIMATION VARIANTS (Copied from Hero.tsx) ---
+  // --- ANIMATION VARIANTS ---
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
     visible: (i: number) => ({
@@ -158,7 +158,7 @@ export default function ErectileDysfunctionClient() {
 
   return (
     <>
-      {/* --- HERO SECTION (Exact Match to Hero.tsx) --- */}
+      {/* --- HERO SECTION --- */}
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
         {/* Background Section */}
         <div className="absolute inset-0 z-0">
@@ -172,22 +172,12 @@ export default function ErectileDysfunctionClient() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-[-4vh]">
+        {/* VISUAL UPDATE: Removed 'mt-[-4vh]' and added 'pt-16' to push the heading down */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16">
           
-          {/* Top Badge - Matches Hero.tsx Style */}
-          <motion.div 
-            custom={1}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter"
-          >
-             GMC-Registered | CE-Marked Equipment | Confidential
-          </motion.div>
-
-          {/* Headline - Matches Hero.tsx Size & Font */}
+          {/* Headline (Now first in visual order) */}
           <motion.h1 
-            custom={2}
+            custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -197,9 +187,9 @@ export default function ErectileDysfunctionClient() {
             <span className="block mt-2">Healing-PRP Clinics</span>
           </motion.h1>
 
-          {/* Sub-headline - Matches Hero.tsx Style */}
+          {/* Sub-headline */}
           <motion.h2 
-            custom={3}
+            custom={2}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -208,9 +198,9 @@ export default function ErectileDysfunctionClient() {
             Doctor-led. Patient-focused. Regenerative care
           </motion.h2>
 
-          {/* Description - Matches Hero.tsx Font/Spacing */}
+          {/* Description */}
           <motion.p 
-            custom={4}
+            custom={3}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -221,9 +211,9 @@ export default function ErectileDysfunctionClient() {
             GMC-registered doctor.
           </motion.p>
 
-          {/* CTA Button - Matches Hero.tsx */}
+          {/* CTA Button */}
           <motion.div 
-            custom={5}
+            custom={4}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -236,9 +226,22 @@ export default function ErectileDysfunctionClient() {
               <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
           </motion.div>
+
+          {/* TRUST BADGE (Moved to bottom) */}
+          {/* VISUAL UPDATE: Moved here from top. Added 'mt-8' for spacing. */}
+          <motion.div 
+            custom={5}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mt-8 font-bold uppercase tracking-[0.2em] font-inter shadow-lg border border-white/10"
+          >
+             GMC-Registered | CE-Marked Equipment | Confidential
+          </motion.div>
+
         </div>
 
-        {/* Feature Banner / Trust Bar - Exact copy from Hero.tsx */}
+        {/* Feature Banner / Trust Bar */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-4 py-5">
             <div className="max-w-7xl mx-auto">
@@ -260,11 +263,10 @@ export default function ErectileDysfunctionClient() {
         </div>
       </div>
 
-      {/* --- SYMPTOMS SECTION (Refined for Premium Feel) --- */}
+      {/* --- SYMPTOMS SECTION --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -285,7 +287,6 @@ export default function ErectileDysfunctionClient() {
             </motion.p>
           </div>
 
-          {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {symptoms.map((symptom, index) => (
               <motion.div
@@ -354,7 +355,6 @@ export default function ErectileDysfunctionClient() {
             </motion.p>
           </motion.div>
 
-          {/* Interactive Steps */}
           <div className="max-w-6xl mx-auto mt-12 relative">
             <div className="text-center mb-12">
               <AnimatePresence mode="wait">
