@@ -162,7 +162,7 @@ export default function ErectileDysfunctionClient() {
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
         {/* Background Section */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/60 z-10" /> 
+          <div className="absolute inset-0 bg-black/50 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
           <img 
             src="/ed-doctor-consultation.webp" 
