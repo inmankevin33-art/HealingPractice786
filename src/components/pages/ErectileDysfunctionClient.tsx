@@ -148,16 +148,18 @@ export default function ErectileDysfunctionClient() {
 
   return (
     <>
-      {/* --- HERO SECTION --- */}
-      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden font-inter">
+     {/* --- HERO SECTION (Updated for Doctor Consultation Image) --- */}
+      <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden font-inter">
+        {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
+          {/* Heavy Dark Overlay to make white text pop against the room background */}
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/40 z-10" />
+          
           <img
-            src="/ed_hero.jpg"
-            alt="Private doctor consultation for erectile dysfunction"
-            className="w-full h-full object-cover scale-105"
-            onError={(e) => (e.currentTarget.src = "/herobg.jpg")}
+            src="/ed-doctor-consultation.webp" // ✅ Updated File Name
+            alt="Private doctor consultation for erectile dysfunction treatment"
+            className="w-full h-full object-cover" 
           />
         </div>
 
@@ -169,6 +171,7 @@ export default function ErectileDysfunctionClient() {
               variants={containerVariants}
               className="max-w-4xl mx-auto"
             >
+              {/* Tag */}
               <motion.div
                 className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter border border-white/10 shadow-lg"
                 variants={itemVariants}
@@ -176,13 +179,13 @@ export default function ErectileDysfunctionClient() {
                 GMC-Registered | CE-Marked Equipment | Confidential
               </motion.div>
 
-              {/* HEADING UPDATE: Matches the structure of the snippet you provided */}
+              {/* HEADING */}
               <motion.h1
-                className="text-3xl md:text-5xl lg:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight drop-shadow-2xl"
+                className="text-4xl md:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight drop-shadow-2xl"
                 variants={itemVariants}
               >
                 Erectile Dysfunction Treatment
-                <span className="block mt-2 text-xl md:text-3xl font-medium text-blue-200">
+                <span className="block mt-3 text-xl md:text-3xl font-medium text-blue-100">
                   Healing-PRP Clinics
                 </span>
               </motion.h1>
@@ -196,7 +199,7 @@ export default function ErectileDysfunctionClient() {
                 GMC-registered doctor.
               </motion.p>
 
-              {/* BUTTON FIX: Uses handleAction */}
+              {/* Action Button */}
               <motion.div
                 variants={itemVariants}
                 className="flex justify-center mt-8"
