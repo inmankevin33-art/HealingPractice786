@@ -59,11 +59,11 @@ export const metadata: Metadata = {
 export default function BirminghamEDPage() {
   return (
     <ErectileDysfunctionClient
-      // 1. VISIBLE HEADING: Strictly "Birmingham"
       locationName="Birmingham"
-      
-      // 2. VISIBLE BADGE: Strictly local towns
       servingAreas="Edgbaston • Solihull • Sutton Coldfield"
+      
+      // VERIFIED: Correct link to 'src/app/birmingham/p-shot/page.tsx'
+      pShotLink="/birmingham/p-shot"
     />
   );
 }
