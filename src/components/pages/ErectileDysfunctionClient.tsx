@@ -442,37 +442,111 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- WHAT IT CAN DO (TRUST) --- */}
-      <section className="py-20 bg-white font-inter">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
-          <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
-            What PRP & Shockwave Therapy Can — and Cannot — Do
-          </h3>
-          <p className="text-slate-600 text-lg leading-relaxed mb-8">
-            Regenerative treatments such as PRP and shockwave therapy can be
-            effective for many men with vascular-related erectile dysfunction.
-            Honest advice matters, and suitability should be assessed medically.
-          </p>
-          <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-inner">
-            <ul className="space-y-4 text-slate-700 text-sm md:text-base font-medium">
-              <li className="flex items-start gap-3">
-                 <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                 <span>These treatments aim to support blood flow and tissue health — they are not instant fixes.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                 <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                 <span>Results vary depending on age, overall health, diabetes control, and medication use.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                 <FaCheckCircle className="text-slate-400 mt-1 shrink-0" />
-                 <span>They cannot reverse severe nerve damage or advanced structural disease.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                 <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                 <span>A medical consultation is required to assess suitability before treatment is recommended.</span>
-              </li>
-            </ul>
+     {/* --- WHAT IT CAN DO (TRUST & REALITY CHECK) --- */}
+      <section className="py-24 bg-white font-inter">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+              What PRP & Shockwave Therapy Can — and Cannot — Do
+            </h3>
+            <p className="text-slate-600 text-lg leading-relaxed mb-6">
+              Regenerative treatments such as Platelet-Rich Plasma (PRP) therapy and
+              low-intensity shockwave therapy are designed to support vascular
+              health and tissue regeneration in men with erectile dysfunction,
+              particularly where reduced blood flow is a contributing factor.
+            </p>
+            <p className="text-slate-600 text-base leading-relaxed">
+              For many patients, these treatments offer a non-surgical, doctor-led
+              option focused on restoring natural function rather than relying
+              solely on symptom-based solutions.
+            </p>
           </div>
+
+          {/* TWO-COLUMN GRID: Benefits vs. Limitations */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            
+            {/* COLUMN 1: What it aims to support */}
+            <div className="bg-blue-50/50 p-8 rounded-3xl border border-blue-100">
+              <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <span className="w-2 h-8 bg-[#4041d1] rounded-full block"></span>
+                What these treatments aim to support
+              </h4>
+              <ul className="space-y-4">
+                {[
+                  "Improved penile blood flow and vascular response over time",
+                  "Healthier erectile tissue and smooth muscle function",
+                  "Enhanced nerve responsiveness and sensitivity",
+                  "Greater confidence and more reliable erectile function as tissue health improves",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
+                    <span className="text-slate-700 text-sm md:text-base font-medium leading-relaxed">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 pt-6 border-t border-blue-100/50">
+                 <p className="text-xs text-slate-500 italic">
+                   * These processes are gradual and depend on the body’s natural healing response. Improvement is typically seen over weeks rather than days.
+                 </p>
+              </div>
+            </div>
+
+            {/* COLUMN 2: Important Limitations */}
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
+              <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <span className="w-2 h-8 bg-slate-400 rounded-full block"></span>
+                Important limitations to understand
+              </h4>
+              <ul className="space-y-4">
+                {[
+                  "Results vary between individuals and are influenced by age, overall health, diabetes control, and medications.",
+                  "Cannot reverse severe nerve damage, advanced structural disease, or conditions where blood supply is irreversibly compromised.",
+                  "Not an instant fix — regenerative healing takes time.",
+                  "A medical consultation is essential to assess suitability and identify contributing factors.",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    {/* Grey Checkmark for Neutral/Cautionary items */}
+                    <div className="mt-1 shrink-0 text-slate-400">
+                       <FaCheckCircle className="text-slate-400" /> 
+                    </div>
+                    <span className="text-slate-700 text-sm md:text-base font-medium leading-relaxed">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 pt-6 border-t border-slate-200">
+                 <p className="text-xs text-slate-500 italic">
+                   Where appropriate, regenerative treatments may be used alongside lifestyle measures or medication as part of an individualised care plan.
+                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* LINK TO P-SHOT PAGE (CTA Box) */}
+          <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
+                Interested in PRP specifically?
+              </h4>
+              <p className="text-slate-600 text-sm leading-relaxed max-w-2xl">
+                For patients interested in PRP-based treatment specifically, further details about the procedure, process, and suitability are available on our dedicated page.
+              </p>
+            </div>
+            
+            <a 
+              href={pShotLink} // <--- CRITICAL UPDATE: Uses the dynamic prop
+              className="shrink-0 px-8 py-3 bg-[#4041d1]/10 text-[#4041d1] hover:bg-[#4041d1] hover:text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group whitespace-nowrap"
+            >
+              View P-Shot® Treatment
+              <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+
         </div>
       </section>
 
