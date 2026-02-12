@@ -147,7 +147,7 @@ export default function PShotClient({
 
   const faqs = [
     {
-      question: "Is the P-Shot® painful?",
+      question: "Is the P-Shot painful?",
       answer:
         "Local anaesthetic is used to maximise comfort during the procedure. Most patients describe the treatment as well tolerated, with only mild temporary discomfort at the injection sites.",
     },
@@ -162,7 +162,7 @@ export default function PShotClient({
         "Individual responses vary. Some men notice gradual changes within a few weeks, while regenerative processes may continue to develop over several months as tissue healing occurs.",
     },
     {
-      question: "Is the P-Shot® permanent?",
+      question: "Is the P-Shot permanent?",
       answer:
         "PRP therapy is not considered a permanent treatment. While some men report sustained improvement, results vary and may gradually change over time depending on age, vascular health, and lifestyle factors. Maintenance treatment can be discussed where appropriate.",
     },
@@ -201,7 +201,7 @@ export default function PShotClient({
             variants={fadeUpVariants}
             className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
           >
-            The P-Shot® (Priapus Shot)<br />
+            The P-Shot (Priapus Shot)<br />
             <span className="block mt-2">Healing-PRP Clinics, {locationName}</span>
           </motion.h1>
 
@@ -284,7 +284,7 @@ export default function PShotClient({
               viewport={{ once: true }}
               className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6"
             >
-              Potential Benefits of the P-Shot®
+              Potential Benefits of the P-Shot
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -485,7 +485,7 @@ export default function PShotClient({
           
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              The P-Shot®: Realistic Expectations
+              The P-Shot: Realistic Expectations
             </h3>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
               Platelet-Rich Plasma (PRP) therapy is a powerful regenerative tool, 
