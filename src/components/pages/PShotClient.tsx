@@ -16,7 +16,7 @@ import {
   FaShieldAlt,
   FaArrowRight,
   FaRegClock, // Time icon
-  FaLeaf,     // Natural icon
+  FaLeaf,     // Natural/Treatment icon
   FaWalking,  // Downtime icon
   FaUserMd,   // Medical icon
 } from "react-icons/fa";
@@ -431,29 +431,33 @@ export default function PShotClient({
               {/* Card 1: Time */}
               <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
                    <FaRegClock className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Approx. 60 Mins</div>
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold">Includes consultation</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Includes consultation</div>
               </div>
 
               {/* Card 2: Comfort */}
               <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
                    <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Local Anaesthetic</div>
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold">Generally well tolerated</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Generally well tolerated</div>
               </div>
 
               {/* Card 3: Downtime */}
               <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
                    <FaWalking className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Downtime</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Little to None</div>
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold">Resume daily activities</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Resume daily activities</div>
               </div>
 
               {/* Card 4: Method */}
               <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
                    <FaUserMd className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Treatment</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Autologous PRP</div>
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold">Your own growth factors</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Your own growth factors</div>
               </div>
             </motion.div>
 
