@@ -88,31 +88,36 @@ export default function PShotClient({
 
   // --- DATA ---
   const benefits = [
-    {
-      title: "Stronger Erections",
-      description: "Increased blood flow and tissue rejuvenation can lead to firmer, more sustainable erections.",
-      icon: FaBurn,
-      color: "bg-rose-50 text-rose-600",
-    },
-    {
-      title: "Increased Sensitivity",
-      description: "Regenerating nerve tissues can enhance sensation and pleasure during intimacy.",
-      icon: FaDna,
-      color: "bg-indigo-50 text-indigo-600",
-    },
-    {
-      title: "Peyronie’s Improvement",
-      description: "Can help reduce curvature and scar tissue associated with Peyronie's disease.",
-      icon: FaExpandArrowsAlt,
-      color: "bg-teal-50 text-teal-600",
-    },
-    {
-      title: "Enhanced Girth",
-      description: "Many patients report improvements in girth and overall penile health.",
-      icon: FaExpandArrowsAlt,
-      color: "bg-[#f0f0ff] text-[#4041d1]",
-    },
-  ];
+  {
+    title: "Improved Erectile Strength",
+    description:
+      "Improved blood flow and tissue support may contribute to firmer, more sustainable erections in suitable patients.",
+    icon: FaBurn,
+    color: "bg-rose-50 text-rose-600",
+  },
+  {
+    title: "Enhanced Sensitivity",
+    description:
+      "Supporting nerve responsiveness and tissue health may improve sensation and overall sexual experience.",
+    icon: FaDna,
+    color: "bg-indigo-50 text-indigo-600",
+  },
+  {
+    title: "Support for Peyronie’s Changes",
+    description:
+      "May support tissue quality in selected cases where curvature or scar tissue are contributing factors.",
+    icon: FaExpandArrowsAlt,
+    color: "bg-teal-50 text-teal-600",
+  },
+  {
+    title: "Improved Fullness",
+    description:
+      "Some patients report improved firmness or fullness as tissue health and vascular function improve over time.",
+    icon: FaExpandArrowsAlt,
+    color: "bg-[#f0f0ff] text-[#4041d1]",
+  },
+];
+
 
   const protocolSteps = [
     {
