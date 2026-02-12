@@ -187,12 +187,11 @@ export default function PShotClient({
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
-          
-          {/* UPDATED IMAGE HERE 👇 */}
           <img 
             src="/ed-doctor-consultation.webp" 
             alt="P-Shot treatment consultation" 
             className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => (e.currentTarget.src = "/ed-doctor-consultation.webp")}
           />
         </div>
 
@@ -327,7 +326,7 @@ export default function PShotClient({
         </div>
       </section>
 
-      {/* --- PROTOCOL SECTION (Standard) --- */}
+      {/* --- PROTOCOL SECTION (Updated with Quick Facts) --- */}
       <section
         className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter"
         style={{
@@ -488,7 +487,7 @@ export default function PShotClient({
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1.5 bg-indigo-600/10 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wider mb-6 border border-indigo-200">
+            <div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6 border border-[#4041d1]/20">
               Advanced Option
             </div>
             <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight">
@@ -503,16 +502,16 @@ export default function PShotClient({
             
             {/* Left Column: Description */}
             <div className="space-y-8">
-              <div className="bg-white p-8 rounded-3xl shadow-sm border border-indigo-50 relative overflow-hidden group hover:border-indigo-100 transition-colors">
-                <div className="absolute top-0 left-0 w-1 h-full bg-indigo-600"></div>
+              <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative overflow-hidden group hover:border-[#4041d1]/20 transition-colors">
+                <div className="absolute top-0 left-0 w-1 h-full bg-[#4041d1]"></div>
                 <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-3">
-                  <FaMicroscope className="text-indigo-600 text-2xl" />
+                  <FaMicroscope className="text-[#4041d1] text-2xl" />
                   Regenerative Signalling
                 </h3>
                 <p className="text-slate-600 text-base leading-relaxed">
                   This approach uses your own platelet-rich plasma (PRP), enhanced with exosome-derived regenerative signalling, and is designed to support tissue repair and blood flow.
                 </p>
-                <div className="mt-6 flex items-center gap-2 text-xs font-bold text-indigo-700 uppercase tracking-widest">
+                <div className="mt-6 flex items-center gap-2 text-xs font-bold text-[#4041d1] uppercase tracking-widest">
                   <FaMapMarkerAlt /> Available in St Albans, Birmingham & London
                 </div>
               </div>
@@ -527,7 +526,7 @@ export default function PShotClient({
                     "Not a stem cell treatment"
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm text-slate-700 font-medium bg-slate-50 px-4 py-3 rounded-xl border border-slate-100">
-                      <FaCheckCircle className="text-indigo-500 shrink-0" /> {item}
+                      <FaCheckCircle className="text-[#4041d1] shrink-0" /> {item}
                     </div>
                   ))}
                 </div>
@@ -540,7 +539,7 @@ export default function PShotClient({
             {/* Right Column: How it Works (Visual) */}
             <div className="bg-slate-900 text-white p-8 md:p-10 rounded-[2.5rem] relative overflow-hidden">
               {/* Background Glow */}
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/30 rounded-full blur-3xl"></div>
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#4041d1]/30 rounded-full blur-3xl"></div>
               <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
 
               <h3 className="text-2xl font-raleway font-bold mb-8 relative z-20">How Does it Work?</h3>
@@ -549,13 +548,13 @@ export default function PShotClient({
                 {/* Step 1 */}
                 <div className="flex gap-5">
                   <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/30">
+                    <div className="w-10 h-10 rounded-full bg-[#4041d1] flex items-center justify-center shrink-0 shadow-lg shadow-[#4041d1]/30">
                       <span className="font-bold text-sm">1</span>
                     </div>
-                    <div className="w-0.5 h-full bg-indigo-900/50 mt-2"></div>
+                    <div className="w-0.5 h-full bg-[#4041d1]/50 mt-2"></div>
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold font-raleway mb-2 text-indigo-100">Platelet Activation</h4>
+                    <h4 className="text-lg font-bold font-raleway mb-2 text-blue-100">Platelet Activation</h4>
                     <p className="text-sm text-slate-300 leading-relaxed">
                       A crucial step in all PRP-based treatments. Growth factors are released only once platelets are activated through controlled physiological stress during processing.
                     </p>
@@ -565,13 +564,13 @@ export default function PShotClient({
                 {/* Step 2 */}
                 <div className="flex gap-5">
                   <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/30">
+                    <div className="w-10 h-10 rounded-full bg-[#5a5bfa] flex items-center justify-center shrink-0 shadow-lg shadow-[#5a5bfa]/30">
                       <span className="font-bold text-sm">2</span>
                     </div>
-                    <div className="w-0.5 h-full bg-indigo-900/50 mt-2"></div>
+                    <div className="w-0.5 h-full bg-[#4041d1]/50 mt-2"></div>
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold font-raleway mb-2 text-indigo-100">Exosome Support</h4>
+                    <h4 className="text-lg font-bold font-raleway mb-2 text-blue-100">Exosome Support</h4>
                     <p className="text-sm text-slate-300 leading-relaxed">
                       Exosome-derived bioactive factors are included to support cellular communication and help optimise the regenerative environment.
                     </p>
@@ -581,7 +580,7 @@ export default function PShotClient({
                 {/* Step 3 */}
                 <div className="flex gap-5">
                   <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-white text-indigo-900 flex items-center justify-center shrink-0 shadow-lg">
+                    <div className="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center shrink-0 shadow-lg">
                       <FaVial className="text-sm" />
                     </div>
                   </div>
@@ -734,7 +733,7 @@ export default function PShotClient({
             {/* 1. Book Consultation (Main Action) */}
             <button
               onClick={handleAction}
-              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
             >
               <FaEnvelope className="w-4 h-4" /> Speak To A Specialist
             </button>
@@ -742,7 +741,7 @@ export default function PShotClient({
             {/* 2. Prices Link */}
             <Link
               href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
-              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
             >
               View Treatment Prices
             </Link>
@@ -750,7 +749,7 @@ export default function PShotClient({
             {/* 3. FAQ Link */}
             <Link
               href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
-              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-xl font-inter font-bold transition-all duration-300 inline-flex gap-2"
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
             >
               View Clinic FAQs
             </Link>
