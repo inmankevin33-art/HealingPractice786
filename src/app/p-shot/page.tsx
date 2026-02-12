@@ -47,5 +47,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <PShotClient />;
+  return (
+    <PShotClient 
+      locationName="St Albans"
+      servingAreas="Harpenden • Luton • Watford • Hertfordshire"
+    />
+  );
 }
