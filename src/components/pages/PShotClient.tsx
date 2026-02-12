@@ -103,7 +103,7 @@ export default function PShotClient({
     color: "bg-indigo-50 text-indigo-600",
   },
   {
-    title: "Support for Peyronie’s Changes",
+    title: "Support for Peyronie’s",
     description:
       "May support tissue quality in selected cases where curvature or scar tissue are contributing factors.",
     icon: FaExpandArrowsAlt,
@@ -149,23 +149,33 @@ export default function PShotClient({
   const faqs = [
     {
       question: "Is the P-Shot® painful?",
-      answer: "Most patients report minimal to no discomfort. We use a high-strength numbing cream before the procedure to ensure you are comfortable. Any sensation is typically described as a slight pinch.",
+      answer:
+        "Local anaesthetic is used to maximise comfort during the procedure. Most patients describe the treatment as well tolerated, with only mild temporary discomfort at the injection sites.",
     },
     {
       question: "How long does the procedure take?",
-      answer: "The entire appointment typically takes about 45-60 minutes. This includes time for the blood draw, numbing, PRP preparation, and the injection itself.",
+      answer:
+        "The full appointment usually lasts around 45–60 minutes. This includes consultation review, blood collection, PRP preparation, and the treatment itself.",
     },
     {
-      question: "When will I see results?",
-      answer: "Results vary, but some men notice improvements within a few weeks. The full benefits of tissue regeneration often continue to develop over 2-3 months as new blood vessels and collagen form.",
+      question: "When might I notice changes?",
+      answer:
+        "Individual responses vary. Some men notice gradual changes within a few weeks, while regenerative processes may continue to develop over several months as tissue healing occurs.",
     },
     {
-      question: "How long do the results last?",
-      answer: "Effects can last 12-18 months, or even longer for some. Maintenance treatments may be recommended annually to sustain the benefits.",
+      question: "Is the P-Shot® permanent?",
+      answer:
+        "PRP therapy is not considered a permanent treatment. While some men report sustained improvement, results vary and may gradually change over time depending on age, vascular health, and lifestyle factors. Maintenance treatment can be discussed where appropriate.",
+    },
+    {
+      question: "How long may the effects last?",
+      answer:
+        "Duration varies depending on age, vascular health, and underlying conditions. Some patients report sustained improvement for many months, and maintenance treatment may be discussed where appropriate.",
     },
     {
       question: "Are there any side effects?",
-      answer: "Since PRP uses your own blood, the risk of allergic reaction is virtually non-existent. Minor bruising or swelling at the injection site is possible but usually resolves quickly.",
+      answer:
+        "Because PRP is derived from your own blood, the risk of allergic reaction is extremely low. Temporary swelling, mild bruising, or tenderness at the injection site can occur and usually settles within a few days.",
     },
   ];
 
