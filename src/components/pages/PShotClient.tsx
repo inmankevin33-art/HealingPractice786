@@ -19,6 +19,8 @@ import {
   FaLeaf,     // Natural/Treatment icon
   FaWalking,  // Downtime icon
   FaUserMd,   // Medical icon
+  FaMicroscope, // Added for Exo-P section
+  FaVial,       // Added for Exo-P section
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -86,7 +88,7 @@ export default function PShotClient({
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // --- DATA (YOUR CUSTOM CONTENT PRESERVED) ---
+  // --- DATA ---
   const benefits = [
     {
       title: "Erectile Strength",
@@ -324,7 +326,7 @@ export default function PShotClient({
         </div>
       </section>
 
-      {/* --- PROTOCOL SECTION (Updated with Quick Facts) --- */}
+      {/* --- PROTOCOL SECTION (Standard) --- */}
       <section
         className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter"
         style={{
@@ -361,6 +363,7 @@ export default function PShotClient({
           </motion.div>
 
           <div className="max-w-6xl mx-auto mt-12 relative">
+            {/* Steps Visualizer */}
             <div className="text-center mb-12">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -434,7 +437,7 @@ export default function PShotClient({
               })}
             </motion.div>
 
-            {/* --- NEW: QUICK FACTS SUMMARY GRID (Clinically Safe + Premium) --- */}
+            {/* Quick Facts Grid */}
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
@@ -474,6 +477,122 @@ export default function PShotClient({
                    <div className="text-slate-500 text-[10px] font-medium">Your own growth factors</div>
               </div>
             </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* --- NEW SECTION: EXO-P SHOT (ADVANCED OPTION) --- */}
+      <section className="py-24 bg-gradient-to-br from-[#f8f9ff] to-white relative overflow-hidden font-inter border-t border-slate-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1.5 bg-indigo-600/10 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wider mb-6 border border-indigo-200">
+              Advanced Option
+            </div>
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 leading-tight">
+              The Exo-P Shot
+            </h2>
+            <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto">
+              For men seeking a non-surgical, doctor-led option, the Exo-P Shot offers an advanced PRP-based treatment enhanced with exosome-derived regenerative signalling.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Column: Description */}
+            <div className="space-y-8">
+              <div className="bg-white p-8 rounded-3xl shadow-sm border border-indigo-50 relative overflow-hidden group hover:border-indigo-100 transition-colors">
+                <div className="absolute top-0 left-0 w-1 h-full bg-indigo-600"></div>
+                <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-3">
+                  <FaMicroscope className="text-indigo-600 text-2xl" />
+                  Regenerative Signalling
+                </h3>
+                <p className="text-slate-600 text-base leading-relaxed">
+                  This approach uses your own platelet-rich plasma (PRP), enhanced with exosome-derived regenerative signalling, and is designed to support tissue repair and blood flow.
+                </p>
+                <div className="mt-6 flex items-center gap-2 text-xs font-bold text-indigo-700 uppercase tracking-widest">
+                  <FaMapMarkerAlt /> Available in St Albans, Birmingham & London
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-lg font-bold font-raleway text-slate-900">Safety & Transparency</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    "Doctor-led treatment",
+                    "Uses your own blood (autologous)",
+                    "No synthetic fillers",
+                    "Not a stem cell treatment"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-slate-700 font-medium bg-slate-50 px-4 py-3 rounded-xl border border-slate-100">
+                      <FaCheckCircle className="text-indigo-500 shrink-0" /> {item}
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-slate-500 italic mt-2">
+                  * Results are not guaranteed. Individual response varies and more than one session may be recommended.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column: How it Works (Visual) */}
+            <div className="bg-slate-900 text-white p-8 md:p-10 rounded-[2.5rem] relative overflow-hidden">
+              {/* Background Glow */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/30 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
+
+              <h3 className="text-2xl font-raleway font-bold mb-8 relative z-20">How Does it Work?</h3>
+              
+              <div className="space-y-8 relative z-20">
+                {/* Step 1 */}
+                <div className="flex gap-5">
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/30">
+                      <span className="font-bold text-sm">1</span>
+                    </div>
+                    <div className="w-0.5 h-full bg-indigo-900/50 mt-2"></div>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold font-raleway mb-2 text-indigo-100">Platelet Activation</h4>
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                      A crucial step in all PRP-based treatments. Growth factors are released only once platelets are activated through controlled physiological stress during processing.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="flex gap-5">
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/30">
+                      <span className="font-bold text-sm">2</span>
+                    </div>
+                    <div className="w-0.5 h-full bg-indigo-900/50 mt-2"></div>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold font-raleway mb-2 text-indigo-100">Exosome Support</h4>
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                      Exosome-derived bioactive factors are included to support cellular communication and help optimise the regenerative environment.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="flex gap-5">
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-10 rounded-full bg-white text-indigo-900 flex items-center justify-center shrink-0 shadow-lg">
+                      <FaVial className="text-sm" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold font-raleway mb-2 text-white">Combined Effect</h4>
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                      This combined approach is designed to support tissue health and blood flow associated with erectile function.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
