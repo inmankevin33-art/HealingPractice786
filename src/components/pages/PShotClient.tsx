@@ -89,7 +89,7 @@ export default function PShotClient({
   // --- DATA ---
   const benefits = [
   {
-    title: "Improved Erectile Strength",
+    title: "Erectile Strength",
     description:
       "Improved blood flow and tissue support may contribute to firmer, more sustainable erections in suitable patients.",
     icon: FaBurn,
