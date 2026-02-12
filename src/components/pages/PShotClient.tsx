@@ -556,7 +556,7 @@ export default function PShotClient({
                   <div>
                     <h4 className="text-lg font-bold font-raleway mb-2 text-blue-100">Platelet Activation</h4>
                     <p className="text-sm text-slate-300 leading-relaxed">
-                      A crucial step in all PRP-based treatments. Growth factors are released only once platelets are activated through controlled physiological stress during processing.
+                      A key step in PRP-based treatments. During processing, platelets are physiologically activated, encouraging the release of growth factors involved in tissue repair and vascular support.                    
                     </p>
                   </div>
                 </div>
@@ -572,7 +572,7 @@ export default function PShotClient({
                   <div>
                     <h4 className="text-lg font-bold font-raleway mb-2 text-blue-100">Exosome Support</h4>
                     <p className="text-sm text-slate-300 leading-relaxed">
-                      Exosome-derived bioactive factors are included to support cellular communication and help optimise the regenerative environment.
+                      Exosome-derived bioactive factors are incorporated to support cellular communication and help optimise the regenerative environment within treated tissue.
                     </p>
                   </div>
                 </div>
@@ -585,9 +585,9 @@ export default function PShotClient({
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold font-raleway mb-2 text-white">Combined Effect</h4>
+                    <h4 className="text-lg font-bold font-raleway mb-2 text-white">Integrated Regeneration</h4>
                     <p className="text-sm text-slate-300 leading-relaxed">
-                      This combined approach is designed to support tissue health and blood flow associated with erectile function.
+                      This combined protocol is designed to support tissue health, endothelial function, and blood flow associated with erectile performance.
                     </p>
                   </div>
                 </div>
