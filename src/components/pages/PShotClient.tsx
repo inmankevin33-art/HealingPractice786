@@ -86,38 +86,37 @@ export default function PShotClient({
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // --- DATA ---
+  // --- DATA (YOUR CUSTOM CONTENT PRESERVED) ---
   const benefits = [
-  {
-    title: "Erectile Strength",
-    description:
-      "Improved blood flow and tissue support may contribute to firmer, more sustainable erections in suitable patients.",
-    icon: FaBurn,
-    color: "bg-rose-50 text-rose-600",
-  },
-  {
-    title: "Enhanced Sensitivity",
-    description:
-      "Supporting nerve responsiveness and tissue health may improve sensation and overall sexual experience.",
-    icon: FaDna,
-    color: "bg-indigo-50 text-indigo-600",
-  },
-  {
-    title: "Support for Peyronie’s",
-    description:
-      "May support tissue quality in selected cases where curvature or scar tissue are contributing factors.",
-    icon: FaExpandArrowsAlt,
-    color: "bg-teal-50 text-teal-600",
-  },
-  {
-    title: "Improved Fullness",
-    description:
-      "Some patients report improved firmness or fullness as tissue health and vascular function improve over time.",
-    icon: FaExpandArrowsAlt,
-    color: "bg-[#f0f0ff] text-[#4041d1]",
-  },
-];
-
+    {
+      title: "Erectile Strength",
+      description:
+        "Improved blood flow and tissue support may contribute to firmer, more sustainable erections in suitable patients.",
+      icon: FaBurn,
+      color: "bg-rose-50 text-rose-600",
+    },
+    {
+      title: "Enhanced Sensitivity",
+      description:
+        "Supporting nerve responsiveness and tissue health may improve sensation and overall sexual experience.",
+      icon: FaDna,
+      color: "bg-indigo-50 text-indigo-600",
+    },
+    {
+      title: "Support for Peyronie’s",
+      description:
+        "May support tissue quality in selected cases where curvature or scar tissue are contributing factors.",
+      icon: FaExpandArrowsAlt,
+      color: "bg-teal-50 text-teal-600",
+    },
+    {
+      title: "Improved Fullness",
+      description:
+        "Some patients report improved firmness or fullness as tissue health and vascular function improve over time.",
+      icon: FaExpandArrowsAlt,
+      color: "bg-[#f0f0ff] text-[#4041d1]",
+    },
+  ];
 
   const protocolSteps = [
     {
@@ -435,7 +434,7 @@ export default function PShotClient({
               })}
             </motion.div>
 
-            {/* --- NEW: QUICK FACTS SUMMARY GRID --- */}
+            {/* --- NEW: QUICK FACTS SUMMARY GRID (Clinically Safe + Premium) --- */}
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
@@ -448,7 +447,7 @@ export default function PShotClient({
                    <FaRegClock className="text-[#4041d1] text-xl mb-2" />
                    <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Approx. 60 Mins</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Includes consultation</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Includes consultation & prep</div>
               </div>
 
               {/* Card 2: Comfort */}
@@ -456,7 +455,7 @@ export default function PShotClient({
                    <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
                    <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Local Anaesthetic</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Generally well tolerated</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Well tolerated</div>
               </div>
 
               {/* Card 3: Downtime */}
