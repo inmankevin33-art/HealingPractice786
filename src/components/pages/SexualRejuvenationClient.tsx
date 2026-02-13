@@ -9,6 +9,7 @@ import {
   FaPlus,
   FaMinus,
   FaEnvelope,
+  FaArrowRight,
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -24,11 +25,18 @@ export default function SexualHealthClient({
   const [expandedTreatment, setExpandedTreatment] = useState<string | null>(null);
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
 
+  // --- DYNAMIC LINKS BASED ON LOCATION ---
+  const isBirmingham = locationName === "Birmingham";
+  
+  const pShotUrl = isBirmingham ? "/birmingham/p-shot" : "/p-shot";
+  const edUrl = isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction";
+  const pricesUrl = isBirmingham ? "/birmingham/prices" : "/prices";
+  const faqUrl = isBirmingham ? "/birmingham/faq" : "/faq";
+
   // Determine nearby areas text based on location
-  const nearbyAreas =
-    locationName === "Birmingham"
-      ? "Solihull, Edgbaston, Sutton Coldfield, and the West Midlands"
-      : "Harpenden, Watford, Welwyn Garden City, Hitchin, Luton, Hertford, and London";
+  const nearbyAreas = isBirmingham
+    ? "Solihull, Edgbaston, Sutton Coldfield, and the West Midlands"
+    : "Harpenden, Watford, Welwyn Garden City, Hitchin, Luton, Hertford, and London";
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
@@ -68,6 +76,9 @@ export default function SexualHealthClient({
       ],
       duration: "30–45 minutes",
       course: "Up to 3 injections",
+      // LINK TO NEW P-SHOT PAGE
+      pageLink: pShotUrl,
+      pageLinkText: "View Full P-Shot® Details",
       expandedContent: {
         howItWorks:
           "A small blood sample of around 40ml is taken from your arm, just like a routine blood test. The blood is then placed in a medical centrifuge to create high‑quality PRP (Platelet‑Rich Plasma). Before treatment, a numbing cream is applied to ensure comfort. The PRP is then carefully injected into precise areas of the penis to stimulate repair and regeneration. You may feel very mild discomfort during the injection, which usually settles within 5–30 minutes. You can return to work straight away. The whole procedure typically takes 30–45 minutes. Depending on your medical history and individual response, you may require a course of up to three injections, which will be discussed in detail during your online consultation. After treatment, you will receive personalised aftercare instructions.",
@@ -114,6 +125,9 @@ export default function SexualHealthClient({
       ],
       duration: "~60 minutes",
       course: "Up to 3 injections",
+      // LINK TO NEW P-SHOT PAGE
+      pageLink: pShotUrl,
+      pageLinkText: "View Exomine® P-Shot Details",
       expandedContent: {
         howItWorks:
           "A small blood sample of around 40ml is taken from your arm. The blood is processed using the Exomine kit, producing PRP with growth factors already released and active. After numbing cream is applied, the enriched PRP is carefully injected into precise areas of the penis to stimulate repair and regeneration. Mild discomfort usually settles within 5–30 minutes, and you can return to work straight away. The procedure is very similar to the standard P‑Shot® but typically takes around 1 hour. Depending on your history and response, you may require a course of up to three injections for optimal results.",
@@ -409,8 +423,6 @@ export default function SexualHealthClient({
         </div>
       </section>
 
-      {/* Introduction Section */}
-
       {/* Understanding ED Section */}
       <section className="py-12 lg:py-24 bg-gradient-to-b from-[#f6f7ff] to-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -482,7 +494,7 @@ export default function SexualHealthClient({
               time.
             </motion.p>
 
-            <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mt-6">
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -490,12 +502,20 @@ export default function SexualHealthClient({
                   const section = document.getElementById("contact-form-section");
                   if (section) section.scrollIntoView({ behavior: "smooth" });
                 }}
-                // BRAND COLOR LOCK
-                className="px-6 py-3 mt-4 w-max text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 flex items-center gap-2 group"
+                className="px-6 py-3 w-max text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 flex items-center gap-2 group shadow-lg"
               >
                 <FaEnvelope className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                 Book Consultation
               </button>
+
+              {/* NEW BUTTON: Link to the Dedicated ED Page */}
+              <Link
+                href={edUrl}
+                className="px-6 py-3 w-max text-sm cursor-pointer bg-white border border-[#4041d1] text-[#4041d1] hover:bg-blue-50 rounded-lg font-inter font-bold transition-all duration-300 flex items-center gap-2"
+              >
+                <FaArrowRight className="w-4 h-4" />
+                View Erectile Dysfunction Treatments
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -661,7 +681,7 @@ export default function SexualHealthClient({
                 may not be appropriate for everyone.
               </p>
             </motion.div>
-           <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants}>
               <Link
                 href="/blog"
                 target="_blank"
@@ -931,6 +951,22 @@ export default function SexualHealthClient({
                         <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                         Book Consultation
                       </motion.button>
+                      
+                      {/* NEW BUTTON: Optional "View Full Details" link if this treatment has one */}
+                      {/* @ts-ignore - simple check if pageLink exists on the object */}
+                      {treatment.pageLink && (
+                        <div className="mt-4 pt-4 border-t border-slate-100">
+                           <Link 
+                              // @ts-ignore
+                              href={treatment.pageLink}
+                              className="inline-flex items-center gap-2 text-[#4041d1] font-bold text-sm hover:underline"
+                           >
+                             {/* @ts-ignore */}
+                             {treatment.pageLinkText} <FaArrowRight className="w-3 h-3" />
+                           </Link>
+                        </div>
+                      )}
+
                       {/* Empty space to maintain tag alignment */}
                       <div className="hidden"></div>
                     </div>
@@ -1163,7 +1199,7 @@ export default function SexualHealthClient({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
           {/* Prices Link */}
           <Link
-            href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
+            href={pricesUrl}
             // BRAND COLOR LOCK
             className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex items-center gap-2"
           >
@@ -1172,7 +1208,7 @@ export default function SexualHealthClient({
           
           {/* FAQ Link */}
           <Link
-            href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
+            href={faqUrl}
             // BRAND COLOR LOCK
             className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex items-center gap-2"
           >
