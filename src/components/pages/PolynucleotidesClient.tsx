@@ -215,9 +215,9 @@ export default function PolynucleotidesClient({
             variants={fadeUpVariants}
             className="mt-4 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
           >
-            A revolutionary, multi-layered treatment that uses filtered DNA fractions to 
-            repair skin cells, boost hydration, and restore a natural, youthful glow 
-            from within.
+            A doctor-led regenerative skin treatment combining polynucleotides, non-cross-linked hyaluronic acid, 
+            and precision microneedling to support collagen stimulation, hydration, and overall skin quality 
+            through a structured three-dimensional approach.
           </motion.p>
 
           <motion.div 
