@@ -201,10 +201,11 @@ export default function PolynucleotidesClient({
             variants={fadeUpVariants}
             className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
-            Polynucleotides: The &quot;DNA Glow&quot;<br />
+            Polynucleotides in {locationName}
             <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-purple-200">
-              Healing-PRP Clinics, {locationName}
+              The DNA Glow Concept™ at Healing-PRP Clinics
             </span>
+
           </motion.h1>
 
           <motion.p 
