@@ -14,6 +14,25 @@ import {
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Link from "next/link";
+import Image from "next/image"; // Added for optimized images
+
+// --- TYPES ---
+// This interface defines the shape of our data, making @ts-ignore unnecessary
+interface Treatment {
+  name: string;
+  price: string;
+  description: string;
+  benefits: string[];
+  duration: string;
+  course: string;
+  pageLink?: string;     // Optional: Only some treatments have this
+  pageLinkText?: string; // Optional
+  expandedContent: {
+    howItWorks: string;
+    whoIsItFor: string[];
+    commonQuestions: { question: string; answer: string }[];
+  };
+}
 
 type SexualHealthClientProps = {
   locationName?: string;
@@ -63,7 +82,8 @@ export default function SexualHealthClient({
     },
   };
 
-  const treatments = [
+  // Typed array using the Interface defined above
+  const treatments: Treatment[] = [
     {
       name: "P‑Shot®",
       price: "",
@@ -285,13 +305,15 @@ export default function SexualHealthClient({
     <>
       {/* Hero Section */}
       <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+        {/* Background Image - Optimized with Next.js Image */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
-          <img
+          <Image
             src="/hero_img.png"
-            alt="Projects background"
-            className="w-full h-full object-cover"
+            alt="Sexual Rejuvenation Background"
+            fill
+            className="object-cover"
+            priority // Loads this image first for better performance (LCP)
           />
         </div>
 
@@ -953,15 +975,12 @@ export default function SexualHealthClient({
                       </motion.button>
                       
                       {/* NEW BUTTON: Optional "View Full Details" link if this treatment has one */}
-                      {/* @ts-ignore - simple check if pageLink exists on the object */}
                       {treatment.pageLink && (
                         <div className="mt-4 pt-4 border-t border-slate-100">
                            <Link 
-                              // @ts-ignore
                               href={treatment.pageLink}
                               className="inline-flex items-center gap-2 text-[#4041d1] font-bold text-sm hover:underline"
                            >
-                             {/* @ts-ignore */}
                              {treatment.pageLinkText} <FaArrowRight className="w-3 h-3" />
                            </Link>
                         </div>
