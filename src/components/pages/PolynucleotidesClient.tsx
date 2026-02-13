@@ -213,11 +213,11 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-4 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
+            className="mt-4 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-4xl mx-auto mb-8"
           >
-            A doctor-led regenerative skin treatment combining polynucleotides, non-cross-linked hyaluronic acid, 
-            and precision microneedling to support collagen stimulation, hydration, and overall skin quality 
-            through a structured three-dimensional approach.
+            A doctor-led regenerative skin treatment combining polynucleotides, non-cross-linked<br className="hidden md:block" />
+            hyaluronic acid, and precision microneedling to support collagen stimulation,<br className="hidden md:block" />
+            hydration, and overall skin quality through a structured three-dimensional approach.
           </motion.p>
 
           <motion.div 
