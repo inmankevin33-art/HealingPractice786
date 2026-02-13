@@ -14,6 +14,10 @@ import {
   FaMapMarkerAlt,
   FaCheckCircle,
   FaArrowRight,
+  FaRegClock,
+  FaWalking,
+  FaUserMd,
+  FaMicroscope
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -31,6 +35,7 @@ export default function PolynucleotidesClient({
 }: PolynucleotidesProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
+  const [activeStep, setActiveStep] = useState(0); // For the Protocol Section
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Dynamic Links
@@ -56,6 +61,7 @@ export default function PolynucleotidesClient({
     }, 100);
   };
 
+  // Animation Variants
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
     visible: (i: number) => ({
@@ -65,6 +71,48 @@ export default function PolynucleotidesClient({
     }),
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  // --- DATA: Protocol Steps ---
+  const protocolSteps = [
+    {
+      number: 1,
+      icon: FaUserMd,
+      title: "Assessment",
+      description: "We assess your skin quality, tear troughs, or target areas to ensure this is the right treatment for your goals.",
+    },
+    {
+      number: 2,
+      icon: FaShieldAlt,
+      title: "Preparation",
+      description: "Your skin is cleaned and a potent numbing cream is applied to ensure the procedure is comfortable.",
+    },
+    {
+      number: 3,
+      icon: FaSyringe,
+      title: "Micro-Injection",
+      description: "Using a tiny needle or cannula, we inject small amounts of the product into the deep skin layers.",
+    },
+    {
+      number: 4,
+      icon: FaRegClock,
+      title: "Recovery",
+      description: "You may see tiny bumps (papules) where the product was placed. These are normal and usually settle within 24 hours.",
+    },
+  ];
+
+  // --- DATA: Benefits ---
   const benefits = [
     {
       title: "Deep Bio-Stimulation",
@@ -238,6 +286,162 @@ export default function PolynucleotidesClient({
                 </p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- PROTOCOL SECTION (Dark Blue) --- */}
+      <section
+        className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 10% 10%, rgba(64, 65, 209, 0.15) 0%, transparent 40%)",
+        }}
+      >
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div
+              className="inline-block px-5 py-2 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway shadow-[0_0_15px_rgba(64,65,209,0.1)]"
+              variants={itemVariants}
+            >
+              The Procedure
+            </motion.div>
+            <motion.h2
+              className="text-3xl md:text-5xl font-raleway font-bold text-white leading-tight mb-8 tracking-tight"
+              variants={itemVariants}
+            >
+              Simple, Safe & Effective
+            </motion.h2>
+            <motion.p
+              className="text-lg text-slate-200 leading-relaxed max-w-3xl mx-auto font-medium font-inter"
+              variants={itemVariants}
+            >
+              A straightforward in-clinic procedure designed to minimise discomfort and downtime while maximising skin regeneration.
+            </motion.p>
+          </motion.div>
+
+          <div className="max-w-6xl mx-auto mt-12 relative">
+            {/* Steps Visualizer */}
+            <div className="text-center mb-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ duration: 0.2 }}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/20 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] backdrop-blur-md"
+                >
+                  <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
+                  <span className="text-sm font-bold text-white uppercase tracking-[0.2em] font-raleway">
+                    Step 0{protocolSteps[activeStep].number}:{" "}
+                    {protocolSteps[activeStep].title}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-16"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
+              {protocolSteps.map((step, index) => {
+                const IconComponent = step.icon;
+                const isActive = activeStep === index;
+                return (
+                  <motion.div
+                    key={index}
+                    className="relative group cursor-pointer"
+                    onClick={() => setActiveStep(index)}
+                    variants={itemVariants}
+                  >
+                    <div
+                      className={`p-6 rounded-[2.5rem] border transition-all duration-300 h-full flex flex-col ${
+                        isActive
+                          ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
+                          : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"
+                      }`}
+                    >
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
+                          isActive
+                            ? "bg-[#4041d1] text-white shadow-lg scale-110"
+                            : "bg-white/10 text-slate-300 group-hover:text-[#4041d1] group-hover:scale-105"
+                        }`}
+                      >
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <h3
+                        className={`font-raleway font-bold mb-3 text-lg transition-colors ${
+                          isActive ? "text-slate-900" : "text-white"
+                        }`}
+                      >
+                        {step.title}
+                      </h3>
+                      <p
+                        className={`text-xs leading-relaxed font-inter transition-colors ${
+                          isActive ? "text-slate-600 font-medium" : "text-slate-400"
+                        }`}
+                      >
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+            {/* Quick Facts Grid */}
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: 0.4 }}
+               className="grid grid-cols-2 md:grid-cols-4 gap-4"
+            >
+              {/* Card 1: Time */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaRegClock className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">30-45 Mins</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Inc. numbing time</div>
+              </div>
+
+              {/* Card 2: Comfort */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Minimal Pain</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Numbing cream used</div>
+              </div>
+
+              {/* Card 3: Downtime */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaWalking className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Downtime</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">~24 Hours</div>
+                   <div className="text-slate-500 text-[10px] font-medium">For papules to settle</div>
+              </div>
+
+              {/* Card 4: Method */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaDna className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Course</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">3 Sessions</div>
+                   <div className="text-slate-500 text-[10px] font-medium">For optimal results</div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
