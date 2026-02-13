@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// FIXED: Swapped to react-icons/fa to match your installed library
 import { FaBars, FaTimes, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -12,6 +11,7 @@ interface MenuItem {
   name: string;
   href: string;
   isContact?: boolean;
+  isSubItem?: boolean; // Added to allow visual indentation if desired (optional)
 }
 
 const Header = () => {
@@ -47,7 +47,22 @@ const Header = () => {
     { name: "Facial Aesthetics", href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics" },
     { name: "Joint Injections", href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections" },
     { name: "Hair Restoration", href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration" },
+    
+    // MAIN CATEGORY
     { name: "Sexual Rejuvenation", href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation" },
+    
+    // NEW SPECIFIC ITEMS (Option A)
+    { 
+      name: "P-Shot® Treatment", 
+      href: isBirmingham ? "/birmingham/p-shot" : "/p-shot",
+      isSubItem: true // We can use this to add a subtle indent
+    },
+    { 
+      name: "Erectile Dysfunction", 
+      href: isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction",
+      isSubItem: true 
+    },
+
     { name: "Prices", href: isBirmingham ? "/birmingham/prices" : "/prices" },
     { name: "FAQs", href: isBirmingham ? "/birmingham/faq" : "/faq" },
     { name: "Health Blog", href: "/blog" },
@@ -137,7 +152,7 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
               
               {/* Location Selectors */}
-              <div className="mb-12 border-b border-white/10 pb-12">
+              <div className="mb-10 border-b border-white/10 pb-10">
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-6 font-inter">Select Your Location</p>
                 <div className="flex flex-col sm:flex-row gap-4 max-w-xl">
                   <Link 
@@ -159,20 +174,25 @@ const Header = () => {
               </div>
 
               {/* Navigation Items */}
-              <nav className="flex flex-col space-y-4 md:space-y-6">
+              <nav className="flex flex-col space-y-3 md:space-y-4">
                 {menuItems.map((item, idx) => (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.05 }}
+                    // Add indentation for sub-items
+                    className={item.isSubItem ? "pl-6 border-l-2 border-white/10 ml-1" : ""}
                   >
                     <Link 
                       href={item.href} 
-                      className={`text-2xl md:text-4xl font-raleway transition-colors inline-block ${
+                      // REDUCED FONT SIZE: from text-2xl/4xl to text-xl/3xl to fit more items
+                      className={`text-xl md:text-3xl font-raleway transition-colors inline-block ${
                         item.isContact 
-                          ? "text-[#4041d1] font-bold border-b-2 border-[#4041d1]/30 pb-1" 
-                          : "font-medium text-white hover:text-[#4041d1]"
+                          ? "text-[#4041d1] font-bold border-b-2 border-[#4041d1]/30 pb-1 mt-4" 
+                          : item.isSubItem 
+                            ? "font-medium text-slate-300 hover:text-[#4041d1]" 
+                            : "font-medium text-white hover:text-[#4041d1]"
                       }`}
                       onClick={item.isContact ? handleContactClick : () => setIsMenuOpen(false)}
                     >
