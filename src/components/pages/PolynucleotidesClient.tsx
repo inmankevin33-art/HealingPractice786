@@ -17,7 +17,8 @@ import {
   FaRegClock,
   FaWalking,
   FaUserMd,
-  FaMicroscope
+  FaTint,
+  FaLayerGroup
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -35,7 +36,7 @@ export default function PolynucleotidesClient({
 }: PolynucleotidesProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-  const [activeStep, setActiveStep] = useState(0); // For the Protocol Section
+  const [activeStep, setActiveStep] = useState(0); 
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Dynamic Links
@@ -90,36 +91,30 @@ export default function PolynucleotidesClient({
       number: 1,
       icon: FaUserMd,
       title: "Assessment",
-      description: "We assess your skin quality, tear troughs, or target areas to ensure this is the right treatment for your goals.",
+      description: "We assess your skin quality and target areas to ensure the DNA Glow Concept™ is the perfect match for your goals.",
     },
     {
       number: 2,
       icon: FaShieldAlt,
       title: "Preparation",
-      description: "Your skin is cleaned and a potent numbing cream is applied to ensure the procedure is comfortable.",
+      description: "Your skin is deeply cleaned and a potent numbing cream is applied to ensure the procedure is comfortable.",
     },
     {
       number: 3,
       icon: FaSyringe,
-      title: "Micro-Injection",
-      description: "Using a tiny needle or cannula, we inject small amounts of the product into the deep skin layers.",
+      title: "Delivery & Texture",
+      description: "We use micro-injections for depth and microneedling for surface texture to ensure even distribution.",
     },
     {
       number: 4,
       icon: FaRegClock,
       title: "Recovery",
-      description: "You may see tiny bumps (papules) where the product was placed. These are normal and usually settle within 24 hours.",
+      description: "You may see tiny bumps (papules) or redness. This is normal and usually settles within 24 hours.",
     },
   ];
 
   // --- DATA: Benefits ---
   const benefits = [
-    {
-      title: "Deep Bio-Stimulation",
-      description: "Unlike fillers that just add volume, this stimulates your own cells to repair and regenerate.",
-      icon: FaDna,
-      color: "bg-blue-50 text-blue-600",
-    },
     {
       title: "Dark Circle Correction",
       description: "Thickens the skin under the eyes to reduce transparency and dark shadows naturally.",
@@ -133,33 +128,39 @@ export default function PolynucleotidesClient({
       color: "bg-teal-50 text-teal-600",
     },
     {
-      title: "Hydration from Within",
-      description: "Attracts water molecules to the cellular level for a lasting, dewy glow.",
-      icon: FaSyringe,
-      color: "bg-purple-50 text-purple-600",
+      title: "Acne Scarring",
+      description: "Promotes deep tissue repair to smooth out uneven skin texture and scarring.",
+      icon: FaLayerGroup,
+      color: "bg-rose-50 text-rose-600",
+    },
+    {
+      title: "Natural Radiance",
+      description: "Restores the skin's biological capability to hold moisture and reflect light.",
+      icon: FaTint,
+      color: "bg-blue-50 text-blue-600",
     },
   ];
 
   const faqs = [
     {
-      question: "What are Polynucleotides?",
-      answer: "Polynucleotides are filtered, ultra-pure DNA fractions derived from salmon or trout. When injected, they act as a 'biostimulator,' signaling your skin cells (fibroblasts) to regenerate, repair tissue, and produce new collagen.",
+      question: "What makes the DNA Glow Concept™ different?",
+      answer: "Unlike standard treatments that use a single product, our concept combines three powerful modalities: Polynucleotides for deep repair, Non-Cross-Linked HA for hydration, and Microneedling for surface texture. This creates a multi-layered result.",
     },
     {
       question: "Is this the same as Dermal Filler?",
-      answer: "No. Fillers (Hyaluronic Acid) are designed to add volume and change shape. Polynucleotides are designed to improve skin quality, hydration, and health without artificially changing your features.",
+      answer: "No. Fillers add structural volume to change the shape of your face. The DNA Glow Concept™ improves the quality of the skin itself—making it thicker, hydrated, and more elastic without changing your natural features.",
     },
     {
       question: "How many sessions do I need?",
       answer: "We typically recommend a course of 3 treatments spaced 2–4 weeks apart to achieve the full 'DNA Glow' effect. Maintenance is usually one session every 6–9 months.",
     },
     {
-      question: "Can it treat under-eye bags?",
-      answer: "Yes, it is excellent for the tear trough area. Because it doesn't attract water like some fillers, it reduces the risk of puffiness while thickening the skin to hide dark circles.",
+      question: "Is there downtime?",
+      answer: "Minimal. Because we treat multiple layers of the skin, you may have some redness or small bumps (papules) for 24–48 hours. This is a sign the product is working.",
     },
     {
-      question: "Is there downtime?",
-      answer: "Minimal. You may have small bumps (papules) at the injection points, which usually settle within 24 hours. Mild bruising is possible but rare.",
+      question: "Can it treat under-eye bags?",
+      answer: "Yes, it is excellent for the tear trough area. Because it doesn't attract water like some fillers, it reduces the risk of puffiness while thickening the skin to hide dark circles.",
     },
   ];
 
@@ -213,7 +214,7 @@ export default function PolynucleotidesClient({
             variants={fadeUpVariants}
             className="mt-4 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
           >
-            A revolutionary, non-surgical treatment that uses filtered DNA fractions to 
+            A revolutionary, multi-layered treatment that uses filtered DNA fractions to 
             repair skin cells, boost hydration, and restore a natural, youthful glow 
             from within.
           </motion.p>
@@ -252,16 +253,75 @@ export default function PolynucleotidesClient({
         </div>
       </div>
 
+      {/* --- NEW SECTION: The DNA Glow Concept™ --- */}
+      <section className="py-20 bg-white font-inter">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+                <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-2 block">Our Signature Protocol</span>
+                <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900">
+                    What Makes DNA Glow Concept™ Different?
+                </h2>
+                <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Block 1: Deep Repair */}
+                <div className="relative group p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300">
+                    <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <FaDna className="w-24 h-24 text-blue-600" />
+                    </div>
+                    <div className="w-14 h-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <FaDna />
+                    </div>
+                    <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3">1. Deep Repair</h3>
+                    <p className="text-sm font-bold text-blue-600 uppercase tracking-wider mb-3">Polynucleotides</p>
+                    <p className="text-slate-600 leading-relaxed text-sm">
+                        Supports cellular repair processes and collagen stimulation within the deep dermis, rebuilding the skin's foundation.
+                    </p>
+                </div>
+
+                {/* Block 2: Internal Hydration */}
+                <div className="relative group p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-cyan-100 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300">
+                    <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <FaTint className="w-24 h-24 text-cyan-500" />
+                    </div>
+                    <div className="w-14 h-14 rounded-2xl bg-cyan-100 text-cyan-600 flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <FaTint />
+                    </div>
+                    <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3">2. Internal Hydration</h3>
+                    <p className="text-sm font-bold text-cyan-600 uppercase tracking-wider mb-3">Non-Cross-Linked HA</p>
+                    <p className="text-slate-600 leading-relaxed text-sm">
+                        Delivers evenly distributed dermal hydration (glow) without adding artificial structural volume or puffiness.
+                    </p>
+                </div>
+
+                {/* Block 3: Surface Optimisation */}
+                <div className="relative group p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:border-purple-100 hover:shadow-xl hover:shadow-purple-900/5 transition-all duration-300">
+                    <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <FaLayerGroup className="w-24 h-24 text-purple-600" />
+                    </div>
+                    <div className="w-14 h-14 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <FaLayerGroup />
+                    </div>
+                    <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3">3. Surface Optimisation</h3>
+                    <p className="text-sm font-bold text-purple-600 uppercase tracking-wider mb-3">Microneedling</p>
+                    <p className="text-slate-600 leading-relaxed text-sm">
+                        Enhances product distribution and refines skin texture, pores, and surface irregularities for a polished finish.
+                    </p>
+                </div>
+            </div>
+        </div>
+      </section>
+
       {/* --- BENEFITS SECTION --- */}
       <section className="py-24 bg-slate-50 font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              True Regeneration, Not Just Correction
+              Targeted Results
             </h2>
             <p className="text-slate-600 text-lg">
-              Polynucleotides (PN) work differently from other injectables. Instead of 
-              just filling lines, they communicate with your cells to trigger natural repair.
+              Because the DNA Glow Concept™ works on three levels, it can address complex skin concerns that single treatments cannot.
             </p>
           </div>
 
