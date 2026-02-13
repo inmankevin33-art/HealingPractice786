@@ -276,7 +276,8 @@ export default function PolynucleotidesClient({
                     <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3">1. Deep Repair</h3>
                     <p className="text-sm font-bold text-blue-600 uppercase tracking-wider mb-3">Polynucleotides</p>
                     <p className="text-slate-600 leading-relaxed text-sm">
-                        Supports cellular repair processes and collagen stimulation within the deep dermis, rebuilding the skin's foundation.
+                        {/* FIX: Escaped apostrophe here */}
+                        Supports cellular repair processes and collagen stimulation within the deep dermis, rebuilding the skin&apos;s foundation.
                     </p>
                 </div>
 
