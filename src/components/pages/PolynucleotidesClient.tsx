@@ -17,10 +17,11 @@ import {
   FaWalking,
   FaUserMd,
   FaTint,
-  FaLayerGroup,
-  FaSparkles
-} from "react-icons/fa";
-import { FaSparkles } from "react-icons/fa6"; // <-- Added this line
+  FaLayerGroup
+} from "react-icons/fa"; // Notice I removed FaSparkles from this list
+
+import { FaWandSparkles } from "react-icons/fa6"; // <-- Changed to FaWandSparkles
+
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
