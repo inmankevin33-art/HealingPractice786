@@ -383,7 +383,7 @@ export default function PolynucleotidesClient({
             </motion.p>
           </motion.div>
 
-          <div className="max-w-6xl mx-auto mt-12 relative">
+         <div className="max-w-6xl mx-auto mt-12 relative">
             {/* Steps Visualizer */}
             <div className="text-center mb-12">
               <AnimatePresence mode="wait">
@@ -392,7 +392,7 @@ export default function PolynucleotidesClient({
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.1 }}
+                  transition={{ duration: 0.2 }}
                   className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/20 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] backdrop-blur-md"
                 >
                   <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
@@ -423,16 +423,14 @@ export default function PolynucleotidesClient({
                     variants={itemVariants}
                   >
                     <div
-                      /* CHANGED: duration-300 to duration-150 for a faster, snappier response */
-                      className={`p-6 rounded-[2.5rem] border transition-all duration-150 h-full flex flex-col ${
+                      className={`p-6 rounded-[2.5rem] border transition-all duration-300 h-full flex flex-col ${
                         isActive
                           ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
                           : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"
                       }`}
                     >
                       <div
-                        /* CHANGED: duration-300 to duration-150 here as well */
-                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-150 ${
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
                           isActive
                             ? "bg-[#4041d1] text-white shadow-lg scale-110"
                             : "bg-white/10 text-slate-300 group-hover:text-[#4041d1] group-hover:scale-105"
@@ -441,14 +439,14 @@ export default function PolynucleotidesClient({
                         <IconComponent className="w-6 h-6" />
                       </div>
                       <h3
-                        className={`font-raleway font-bold mb-3 text-lg transition-colors duration-150 ${
+                        className={`font-raleway font-bold mb-3 text-lg transition-colors ${
                           isActive ? "text-slate-900" : "text-white"
                         }`}
                       >
                         {step.title}
                       </h3>
                       <p
-                        className={`text-xs leading-relaxed font-inter transition-colors duration-150 ${
+                        className={`text-xs leading-relaxed font-inter transition-colors ${
                           isActive ? "text-slate-600 font-medium" : "text-slate-400"
                         }`}
                       >
@@ -460,13 +458,13 @@ export default function PolynucleotidesClient({
               })}
             </motion.div>
 
-            {/* SEQUENCED QUICK FACTS (Time -> Comfort -> Downtime -> Course) */}
+            {/* Quick Facts Grid (Polynucleotides specific data) */}
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
                transition={{ delay: 0.4 }}
-               className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8"
+               className="grid grid-cols-2 md:grid-cols-4 gap-4"
             >
               {/* Card 1: Time */}
               <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
