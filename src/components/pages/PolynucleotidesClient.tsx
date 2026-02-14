@@ -16,7 +16,9 @@ import {
   FaRegClock,
   FaWalking,
   FaUserMd,
-  FaMicroscope
+  FaMicroscope,
+  FaChevronLeft,
+  FaChevronRight
 } from "react-icons/fa";
 import { FaWandSparkles } from "react-icons/fa6";
 import Footer from "@/components/Footer";
@@ -37,6 +39,9 @@ export default function PolynucleotidesClient({
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0); 
   const [isLoaded, setIsLoaded] = useState(false);
+  
+  // NEW: State for the Before/After Slider (starts at 50%)
+  const [sliderPosition, setSliderPosition] = useState(50);
 
   // Dynamic Links
   const isBirmingham = locationName === "Birmingham";
@@ -297,7 +302,7 @@ export default function PolynucleotidesClient({
         </div>
       </section>
 
-      {/* --- LIGHT SECTION 2: What Can Polynucleotides Help Improve? --- */}
+      {/* --- LIGHT SECTION 2: What Can Polynucleotides Help Improve? (WITH SLIDER) --- */}
       <section className="py-20 bg-slate-50 font-inter border-t border-slate-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -325,24 +330,62 @@ export default function PolynucleotidesClient({
               </ul>
             </div>
             
-            <div className="lg:w-1/2 relative">
-                <div className="relative h-[450px] w-full bg-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl transform-gpu">
-                   {/* FIXED: Added transform-gpu to lock mix-blend-multiply to the GPU */}
-                   <div className="absolute inset-0 bg-gradient-to-tr from-[#4041d1]/80 to-purple-500/40 mix-blend-multiply z-10 transform-gpu" />
-                   <Image 
-                     src="/polynucleotides-hero.webp" 
-                     alt="Skin Quality Improvement"
-                     fill
-                     className="object-cover grayscale"
-                   />
-                   <div className="absolute inset-0 z-20 flex items-center justify-center">
-                      <div className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-center transform-gpu">
-                         <FaWandSparkles className="w-8 h-8 text-white mx-auto mb-2" />
-                         <span className="text-white font-raleway font-bold tracking-widest uppercase text-sm">Treatment Focus</span>
+            {/* --- THE BEFORE & AFTER SLIDER --- */}
+            <div className="lg:w-1/2 relative w-full">
+                <div className="relative h-[450px] w-full bg-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl transform-gpu group select-none">
+                   
+                   {/* AFTER IMAGE (Background - always full width) */}
+                   <div className="absolute inset-0 z-0">
+                      <Image 
+                        src="/polynucleotides-after.webp" 
+                        alt="After Treatment"
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-4 right-6 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold tracking-widest uppercase">
+                        After
                       </div>
                    </div>
+
+                   {/* BEFORE IMAGE (Foreground - visually clipped based on slider state) */}
+                   <div 
+                      className="absolute inset-0 z-10 will-change-transform transform-gpu"
+                      style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
+                   >
+                      <Image 
+                        src="/polynucleotides-before.webp" 
+                        alt="Before Treatment"
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-4 left-6 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold tracking-widest uppercase">
+                        Before
+                      </div>
+                   </div>
+
+                   {/* THE SLIDER HANDLE & LINE */}
+                   <div 
+                      className="absolute inset-y-0 z-20 w-1 bg-white pointer-events-none transform-gpu"
+                      style={{ left: `calc(${sliderPosition}% - 2px)` }}
+                   >
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-[0_0_20px_rgba(0,0,0,0.3)] flex items-center justify-center transition-transform group-hover:scale-110">
+                         <FaChevronLeft className="text-slate-600 w-3 h-3 ml-0.5" />
+                         <FaChevronRight className="text-slate-600 w-3 h-3 mr-0.5" />
+                      </div>
+                   </div>
+
+                   {/* INVISIBLE RANGE INPUT (The secret to lag-free mobile/desktop sliding) */}
+                   <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={sliderPosition}
+                      onChange={(e) => setSliderPosition(Number(e.target.value))}
+                      className="absolute inset-0 z-30 w-full h-full opacity-0 cursor-ew-resize"
+                   />
                 </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -393,7 +436,6 @@ export default function PolynucleotidesClient({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.2 }}
-                  /* FIXED: Removed backdrop-blur-md, changed to bg-[#4041d1]/30 for zero-lag solid color */
                   className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/30 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] transform-gpu"
                 >
                   <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
@@ -420,12 +462,10 @@ export default function PolynucleotidesClient({
                   <motion.div
                     key={index}
                     className="relative group cursor-pointer"
-                    /* FIXED: Swapped onClick for instant onPointerDown */
                     onPointerDown={() => setActiveStep(index)}
                     variants={itemVariants}
                   >
                     <div
-                      /* FIXED: Stripped slow transition-all, added GPU lock */
                       className={`p-6 rounded-[2.5rem] border transition duration-300 ease-out transform-gpu h-full flex flex-col ${
                         isActive
                           ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
@@ -433,7 +473,6 @@ export default function PolynucleotidesClient({
                       }`}
                     >
                       <div
-                        /* FIXED: Stripped slow transition-all, added GPU lock */
                         className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition duration-300 ease-out transform-gpu ${
                           isActive
                             ? "bg-[#4041d1] text-white shadow-lg scale-110"
@@ -516,44 +555,39 @@ export default function PolynucleotidesClient({
       </section>
 
       {/* --- DARK SECTION 2: DNA GLOW PLUS (The PRP Upgrade) --- */}
-      <section className="py-20 lg:py-24 bg-[#0A1128] font-inter relative overflow-hidden border-t border-white/5">
-         {/* FIXED: Added transform-gpu to lock the heavy blur/mix-blend to the graphics card */}
+      <section className="py-20 lg:py-28 bg-[#0A1128] font-inter relative overflow-hidden border-t border-white/5">
          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none transform-gpu" />
          
-         {/* EXPANDED CONTAINER to max-w-7xl */}
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* INCREASED PADDING: p-10 md:p-14 */}
-            <div className="flex flex-col md:flex-row items-center gap-12 bg-white/5 border border-white/10 p-10 md:p-14 rounded-[2.5rem] backdrop-blur-xl transform-gpu shadow-2xl">
+         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16 bg-white/5 border border-white/10 p-10 md:p-16 lg:p-20 rounded-[3rem] backdrop-blur-xl transform-gpu shadow-2xl">
                <div className="md:w-2/3">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-200 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-purple-500/30">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-200 rounded-full text-xs font-bold uppercase tracking-wider mb-6 border border-purple-500/30">
                      <FaWandSparkles className="w-3 h-3" /> Premium Upgrade
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-raleway font-bold text-white mb-4">
+                  <h2 className="text-3xl md:text-5xl font-raleway font-bold text-white mb-6 leading-tight">
                     DNA Glow Plus™
                   </h2>
-                  <p className="text-slate-300 leading-relaxed mb-8">
+                  <p className="text-slate-300 text-lg leading-relaxed mb-10">
                     For patients seeking enhanced regenerative support, DNA Glow Plus™ builds upon the DNA Glow Concept™ by incorporating PRP-based microneedling. 
                     <br/><br/>
                     Platelet-Rich Plasma (PRP), derived from your own blood, contains growth factors involved in natural tissue repair and may further support skin resilience and recovery.
                   </p>
                   
-                  {/* STANDARD BLUE BUTTON */}
                   <button 
                     onClick={handleAction}
-                    className="px-8 py-3.5 bg-[#4041d1] text-white rounded-xl font-bold hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] transition duration-300 font-inter transform-gpu"
+                    className="px-8 py-4 inline-flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] active:scale-95 font-inter"
                   >
-                    Enquire About DNA Glow Plus™
+                    <FaEnvelope className="w-4 h-4" /> Book Consultation
                   </button>
                </div>
                
                <div className="md:w-1/3 flex justify-center">
-                  <div className="relative w-48 h-48">
-                     {/* FIXED: Hardware accelerated the spinning animation */}
+                  <div className="relative w-56 h-56 lg:w-64 lg:h-64">
                      <div className="absolute inset-0 border-4 border-dashed border-purple-500/30 rounded-full animate-[spin_20s_linear_infinite] transform-gpu" />
                      <div className="absolute inset-4 border-2 border-blue-500/40 rounded-full animate-[spin_15s_linear_infinite_reverse] transform-gpu" />
                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full blur-sm opacity-80 transform-gpu" />
-                        <span className="absolute text-white font-bold font-raleway text-xl">PLUS™</span>
+                        <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full blur-sm opacity-80 transform-gpu" />
+                        <span className="absolute text-white font-bold font-raleway text-2xl tracking-wider">PLUS™</span>
                      </div>
                   </div>
                </div>
