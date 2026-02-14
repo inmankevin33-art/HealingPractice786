@@ -18,7 +18,9 @@ import {
   FaUserMd,
   FaMicroscope,
   FaChevronLeft,
-  FaChevronRight
+  FaChevronRight,
+  FaFileInvoiceDollar,
+  FaQuestionCircle
 } from "react-icons/fa";
 import { FaWandSparkles } from "react-icons/fa6";
 import Footer from "@/components/Footer";
@@ -198,7 +200,7 @@ export default function PolynucleotidesClient({
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Regenerative Aesthetics</span>
           </motion.div>
 
-         <motion.h1 
+          <motion.h1 
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
@@ -233,15 +235,16 @@ export default function PolynucleotidesClient({
             variants={fadeUpVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
+            {/* UPDATED TO BLUE BUTTON */}
             <button 
               onClick={handleAction}
-              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-white text-slate-900 hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter transform-gpu"
+              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out gap-2 shadow-xl active:scale-95 font-inter transform-gpu"
             >
               <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
             <Link
               href={pricesUrl}
-              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl font-bold transition-all duration-300 gap-2 backdrop-blur-sm font-inter transform-gpu"
+              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl font-bold transition duration-300 ease-out gap-2 backdrop-blur-sm font-inter transform-gpu"
             >
               View Prices
             </Link>
@@ -317,7 +320,7 @@ export default function PolynucleotidesClient({
                 Polynucleotides are commonly used to support improvement in:
               </p>
               
-              <ul className="space-y-4">
+              <ul className="space-y-4 mb-8">
                 {[
                   "Under-eye dark circles and crepey skin",
                   "Fine lines and early textural ageing",
@@ -331,13 +334,16 @@ export default function PolynucleotidesClient({
                   </li>
                 ))}
               </ul>
+              
+              {/* NEW BLUE BUTTON UNDER TEXT LIST (Optional depending on layout preference, keeping it under slider is more standard) */}
+              
             </div>
             
-            {/* --- THE BEFORE & AFTER SLIDER --- */}
-            <div className="lg:w-1/2 relative w-full">
-                <div className="relative h-[450px] w-full bg-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl transform-gpu group select-none">
+            {/* --- THE BEFORE & AFTER SLIDER & BUTTON --- */}
+            <div className="lg:w-1/2 relative w-full flex flex-col items-center">
+                <div className="relative h-[450px] w-full bg-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl transform-gpu group select-none mb-8">
                    
-                   {/* AFTER IMAGE (Background - always full width) */}
+                   {/* AFTER IMAGE */}
                    <div className="absolute inset-0 z-0">
                       <Image 
                         src="/polynucleotides-after.webp" 
@@ -350,7 +356,7 @@ export default function PolynucleotidesClient({
                       </div>
                    </div>
 
-                   {/* BEFORE IMAGE (Foreground - visually clipped based on slider state) */}
+                   {/* BEFORE IMAGE */}
                    <div 
                       className="absolute inset-0 z-10 will-change-transform transform-gpu"
                       style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
@@ -366,7 +372,7 @@ export default function PolynucleotidesClient({
                       </div>
                    </div>
 
-                   {/* THE SLIDER HANDLE & LINE */}
+                   {/* SLIDER HANDLE */}
                    <div 
                       className="absolute inset-y-0 z-20 w-1 bg-white pointer-events-none transform-gpu"
                       style={{ left: `calc(${sliderPosition}% - 2px)` }}
@@ -377,7 +383,7 @@ export default function PolynucleotidesClient({
                       </div>
                    </div>
 
-                   {/* INVISIBLE RANGE INPUT (The secret to lag-free mobile/desktop sliding) */}
+                   {/* INVISIBLE RANGE INPUT */}
                    <input
                       type="range"
                       min="0"
@@ -387,6 +393,14 @@ export default function PolynucleotidesClient({
                       className="absolute inset-0 z-30 w-full h-full opacity-0 cursor-ew-resize"
                    />
                 </div>
+                
+                {/* NEW BLUE BUTTON UNDER SLIDER */}
+                <button 
+                  onClick={handleAction}
+                  className="px-8 py-4 w-full sm:w-auto inline-flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(64,65,209,0.3)] active:scale-95 font-inter"
+                >
+                  <FaEnvelope className="w-4 h-4" /> Book Consultation
+                </button>
             </div>
 
           </div>
@@ -576,6 +590,7 @@ export default function PolynucleotidesClient({
                     Platelet-Rich Plasma (PRP), derived from your own blood, contains growth factors involved in natural tissue repair and may further support skin resilience and recovery.
                   </p>
                   
+                  {/* UPDATED TO BLUE BUTTON */}
                   <button 
                     onClick={handleAction}
                     className="px-8 py-4 inline-flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] active:scale-95 font-inter"
@@ -634,16 +649,22 @@ export default function PolynucleotidesClient({
         </div>
       </section>
 
-      {/* --- CTA BAR --- */}
-      <section className="py-12 bg-white border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-              <Link href={pricesUrl} className="text-blue-600 font-bold hover:underline flex items-center gap-2 transition-colors">
-                 View Treatment Prices <FaArrowRight className="w-3 h-3"/>
+      {/* --- UPDATED CTA BAR --- */}
+      <section className="py-16 bg-white border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+           <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-8">Ready to take the next step?</h2>
+           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <Link 
+                href={pricesUrl} 
+                className="w-full sm:w-auto px-8 py-4 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-full font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(64,65,209,0.3)] font-inter"
+              >
+                 <FaFileInvoiceDollar className="w-4 h-4"/> View Treatment Prices
               </Link>
-              <span className="hidden md:block text-slate-300">|</span>
-              <Link href={faqUrl} className="text-blue-600 font-bold hover:underline flex items-center gap-2 transition-colors">
-                 Read Full FAQs <FaArrowRight className="w-3 h-3"/>
+              <Link 
+                href={faqUrl} 
+                className="w-full sm:w-auto px-8 py-4 inline-flex items-center justify-center text-sm bg-slate-100 text-slate-800 hover:bg-slate-200 rounded-full font-bold transition duration-300 ease-out transform-gpu gap-2 font-inter"
+              >
+                 <FaQuestionCircle className="w-4 h-4 text-[#4041d1]" /> Read Full FAQs
               </Link>
            </div>
         </div>
