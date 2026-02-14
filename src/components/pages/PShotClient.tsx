@@ -362,123 +362,123 @@ export default function PShotClient({
             </motion.p>
           </motion.div>
 
-          <div className="max-w-6xl mx-auto mt-12 relative">
-            {/* Steps Visualizer */}
-            <div className="text-center mb-12">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeStep}
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.2 }}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/20 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] backdrop-blur-md"
-                >
-                  <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
-                  <span className="text-sm font-bold text-white uppercase tracking-[0.2em] font-raleway">
-                    Step 0{protocolSteps[activeStep].number}:{" "}
-                    {protocolSteps[activeStep].title}
-                  </span>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+           <div className="max-w-6xl mx-auto mt-12 relative">
+            {/* Steps Visualizer */}
+            <div className="text-center mb-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ duration: 0.2 }}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/20 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] backdrop-blur-md"
+                >
+                  <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
+                  <span className="text-sm font-bold text-white uppercase tracking-[0.2em] font-raleway">
+                    Step 0{protocolSteps[activeStep].number}:{" "}
+                    {protocolSteps[activeStep].title}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-16"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
-              {protocolSteps.map((step, index) => {
-                const IconComponent = step.icon;
-                const isActive = activeStep === index;
-                return (
-                  <motion.div
-                    key={index}
-                    className="relative group cursor-pointer"
-                    onClick={() => setActiveStep(index)}
-                    variants={itemVariants}
-                  >
-                    <div
-                      className={`p-6 rounded-[2.5rem] border transition-all duration-300 h-full flex flex-col ${
-                        isActive
-                          ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
-                          : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"
-                      }`}
-                    >
-                      <div
-                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
-                          isActive
-                            ? "bg-[#4041d1] text-white shadow-lg scale-110"
-                            : "bg-white/10 text-slate-300 group-hover:text-[#4041d1] group-hover:scale-105"
-                        }`}
-                      >
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <h3
-                        className={`font-raleway font-bold mb-3 text-lg transition-colors ${
-                          isActive ? "text-slate-900" : "text-white"
-                        }`}
-                      >
-                        {step.title}
-                      </h3>
-                      <p
-                        className={`text-xs leading-relaxed font-inter transition-colors ${
-                          isActive ? "text-slate-600 font-medium" : "text-slate-400"
-                        }`}
-                      >
-                        {step.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-16"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
+              {protocolSteps.map((step, index) => {
+                const IconComponent = step.icon;
+                const isActive = activeStep === index;
+                return (
+                  <motion.div
+                    key={index}
+                    className="relative group cursor-pointer"
+                    onClick={() => setActiveStep(index)}
+                    variants={itemVariants}
+                  >
+                    <div
+                      className={`p-6 rounded-[2.5rem] border transition-all duration-300 h-full flex flex-col ${
+                        isActive
+                          ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
+                          : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"
+                      }`}
+                    >
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
+                          isActive
+                            ? "bg-[#4041d1] text-white shadow-lg scale-110"
+                            : "bg-white/10 text-slate-300 group-hover:text-[#4041d1] group-hover:scale-105"
+                        }`}
+                      >
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <h3
+                        className={`font-raleway font-bold mb-3 text-lg transition-colors ${
+                          isActive ? "text-slate-900" : "text-white"
+                        }`}
+                      >
+                        {step.title}
+                      </h3>
+                      <p
+                        className={`text-xs leading-relaxed font-inter transition-colors ${
+                          isActive ? "text-slate-600 font-medium" : "text-slate-400"
+                        }`}
+                      >
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
 
-            {/* Quick Facts Grid (Polynucleotides specific data) */}
-            <motion.div 
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ delay: 0.4 }}
-               className="grid grid-cols-2 md:grid-cols-4 gap-4"
-            >
-              {/* Card 1: Time */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
-                   <FaRegClock className="text-[#4041d1] text-xl mb-2" />
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">30-45 Mins</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Inc. numbing time</div>
-              </div>
+            {/* Quick Facts Grid */}
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: 0.4 }}
+               className="grid grid-cols-2 md:grid-cols-4 gap-4"
+            >
+              {/* Card 1: Time */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaRegClock className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Approx. 60 Mins</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Includes consultation & prep</div>
+              </div>
 
-              {/* Card 2: Comfort */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
-                   <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Minimal Pain</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Numbing cream used</div>
-              </div>
+              {/* Card 2: Comfort */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Local Anaesthetic</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Well tolerated</div>
+              </div>
 
-              {/* Card 3: Downtime */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
-                   <FaWalking className="text-[#4041d1] text-xl mb-2" />
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Downtime</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">~24 Hours</div>
-                   <div className="text-slate-500 text-[10px] font-medium">For papules to settle</div>
-              </div>
+              {/* Card 3: Downtime */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaWalking className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Downtime</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Little to None</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Resume daily activities</div>
+              </div>
 
-              {/* Card 4: Method */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
-                   <FaDna className="text-[#4041d1] text-xl mb-2" />
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Course</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">3 Sessions</div>
-                   <div className="text-slate-500 text-[10px] font-medium">For optimal results</div>
-              </div>
-            </motion.div>
+              {/* Card 4: Method */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaUserMd className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Treatment</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Autologous PRP</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Your own growth factors</div>
+              </div>
+            </motion.div>
 
-          </div>
+          </div>
         </div>
       </section>
 
