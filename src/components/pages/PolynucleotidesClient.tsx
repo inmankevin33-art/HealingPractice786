@@ -520,8 +520,10 @@ export default function PolynucleotidesClient({
          {/* FIXED: Added transform-gpu to lock the heavy blur/mix-blend to the graphics card */}
          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none transform-gpu" />
          
-         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col md:flex-row items-center gap-12 bg-white/5 border border-white/10 p-8 md:p-12 rounded-[2.5rem] backdrop-blur-xl transform-gpu">
+         {/* EXPANDED CONTAINER to max-w-7xl */}
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* INCREASED PADDING: p-10 md:p-14 */}
+            <div className="flex flex-col md:flex-row items-center gap-12 bg-white/5 border border-white/10 p-10 md:p-14 rounded-[2.5rem] backdrop-blur-xl transform-gpu shadow-2xl">
                <div className="md:w-2/3">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-200 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-purple-500/30">
                      <FaWandSparkles className="w-3 h-3" /> Premium Upgrade
@@ -535,9 +537,10 @@ export default function PolynucleotidesClient({
                     Platelet-Rich Plasma (PRP), derived from your own blood, contains growth factors involved in natural tissue repair and may further support skin resilience and recovery.
                   </p>
                   
+                  {/* STANDARD BLUE BUTTON */}
                   <button 
                     onClick={handleAction}
-                    className="px-8 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-bold hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition duration-300 font-inter transform-gpu"
+                    className="px-8 py-3.5 bg-[#4041d1] text-white rounded-xl font-bold hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] transition duration-300 font-inter transform-gpu"
                   >
                     Enquire About DNA Glow Plus™
                   </button>
