@@ -437,7 +437,7 @@ export default function PShotClient({
               })}
             </motion.div>
 
-            {/* Quick Facts Grid */}
+            {/* Quick Facts Grid (Polynucleotides specific data) */}
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
@@ -449,32 +449,32 @@ export default function PShotClient({
               <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
                    <FaRegClock className="text-[#4041d1] text-xl mb-2" />
                    <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Approx. 60 Mins</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Includes consultation & prep</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">30-45 Mins</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Inc. numbing time</div>
               </div>
 
               {/* Card 2: Comfort */}
               <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
                    <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
                    <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Local Anaesthetic</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Well tolerated</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Minimal Pain</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Numbing cream used</div>
               </div>
 
               {/* Card 3: Downtime */}
               <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
                    <FaWalking className="text-[#4041d1] text-xl mb-2" />
                    <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Downtime</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Little to None</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Resume daily activities</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">~24 Hours</div>
+                   <div className="text-slate-500 text-[10px] font-medium">For papules to settle</div>
               </div>
 
               {/* Card 4: Method */}
               <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
-                   <FaUserMd className="text-[#4041d1] text-xl mb-2" />
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Treatment</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Autologous PRP</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Your own growth factors</div>
+                   <FaDna className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Course</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">3 Sessions</div>
+                   <div className="text-slate-500 text-[10px] font-medium">For optimal results</div>
               </div>
             </motion.div>
 
