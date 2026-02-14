@@ -115,35 +115,83 @@ export default function PolynucleotidesClient({
   // --- DATA: Benefits ---
   const benefits = [
     {
-      title: "Deep Bio-Stimulation",
-      description: "Unlike fillers that just add volume, this stimulates your own cells to repair and regenerate.",
+      title: "Deep Repair – Polynucleotides",
+      description:
+        "Supports collagen stimulation and tissue repair within the dermis, improving skin quality, resilience, and overall texture over time.",
       icon: FaDna,
       color: "bg-blue-50 text-blue-600",
     },
     {
-      title: "Dark Circle Correction",
-      description: "Thickens the skin under the eyes to reduce transparency and dark shadows naturally.",
-      icon: FaRegLightbulb,
-      color: "bg-amber-50 text-amber-600",
-    },
-    {
-      title: "Elasticity & Firmness",
-      description: "Boosts collagen and elastin production for firmer, more resilient skin texture.",
-      icon: FaShieldAlt,
-      color: "bg-teal-50 text-teal-600",
-    },
-    {
-      title: "Hydration from Within",
-      description: "Attracts water molecules to the cellular level for a lasting, dewy glow.",
+      title: "Internal Hydration – Non-Cross-Linked HA",
+      description:
+        "Delivers evenly distributed dermal hydration without adding structural volume, supporting smoother, more luminous skin.",
       icon: FaSyringe,
       color: "bg-purple-50 text-purple-600",
     },
+    {
+      title: "Surface Optimisation – Microneedling",
+      description:
+        "Enhances product absorption and refines skin texture and pore appearance, contributing to a more polished and even finish.",
+      icon: FaMicroscope,
+      color: "bg-teal-50 text-teal-600",
+    },
   ];
+
+  <section className="py-20 bg-white font-inter border-t border-slate-100">
+    <div className="max-w-5xl mx-auto px-4">
+  
+      <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
+        What Can Polynucleotides Help Improve?
+      </h2>
+  
+      <p className="text-slate-600 leading-relaxed mb-6">
+        Polynucleotides are commonly used to support improvement in:
+      </p>
+  
+      <ul className="space-y-2 text-slate-700 text-sm">
+        <li>• Under-eye dark circles and crepey skin</li>
+        <li>• Fine lines and early textural ageing</li>
+        <li>• Dull or dehydrated skin</li>
+        <li>• Mild acne scarring</li>
+        <li>• Neck and décolletage skin quality</li>
+      </ul>
+  
+    </div>
+  </section>
+  <section className="py-20 bg-white font-inter border-y border-slate-100">
+    <div className="max-w-4xl mx-auto px-4">
+      <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-4">
+        Treatment Effect
+      </h2>
+  
+      <p className="text-slate-600 leading-relaxed">
+        Improvements develop gradually as part of the skin’s natural regenerative cycle.
+        Results may be sustained for several months, depending on individual response
+        and the recommended treatment course.
+      </p>
+    </div>
+  </section>
+  <section className="py-20 bg-slate-50 font-inter">
+    <div className="max-w-5xl mx-auto px-4">
+  
+      <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
+        DNA Glow Plus™
+      </h2>
+  
+      <p className="text-slate-600 leading-relaxed">
+        For patients seeking enhanced regenerative support, DNA Glow Plus™ builds upon
+        the DNA Glow Concept™ by incorporating PRP-based microneedling. Platelet-Rich
+        Plasma (PRP), derived from your own blood, contains growth factors involved in
+        natural tissue repair and may further support skin resilience and recovery.
+      </p>
+  
+    </div>
+  </section>
 
   const faqs = [
     {
       question: "What are Polynucleotides?",
-      answer: "Polynucleotides are filtered, ultra-pure DNA fractions derived from salmon or trout. When injected, they act as a 'biostimulator,' signaling your skin cells (fibroblasts) to regenerate, repair tissue, and produce new collagen.",
+      answer: "Polynucleotides are highly purified DNA fragments used in regenerative aesthetics to support collagen stimulation and tissue repair. They act as biostimulators, encouraging the skin’s natural regenerative processes.",
     },
     {
       question: "Is this the same as Dermal Filler?",
