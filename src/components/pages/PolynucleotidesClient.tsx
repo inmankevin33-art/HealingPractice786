@@ -20,6 +20,7 @@ import {
   FaLayerGroup,
   FaSparkles
 } from "react-icons/fa";
+import { FaSparkles } from "react-icons/fa6"; // <-- Added this line
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
