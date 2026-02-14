@@ -423,14 +423,16 @@ export default function PolynucleotidesClient({
                     variants={itemVariants}
                   >
                     <div
-                      className={`p-6 rounded-[2.5rem] border transition-all duration-300 h-full flex flex-col ${
+                      /* CHANGED: duration-300 to duration-150 for a faster, snappier response */
+                      className={`p-6 rounded-[2.5rem] border transition-all duration-150 h-full flex flex-col ${
                         isActive
                           ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
                           : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"
                       }`}
                     >
                       <div
-                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
+                        /* CHANGED: duration-300 to duration-150 here as well */
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-150 ${
                           isActive
                             ? "bg-[#4041d1] text-white shadow-lg scale-110"
                             : "bg-white/10 text-slate-300 group-hover:text-[#4041d1] group-hover:scale-105"
@@ -439,14 +441,14 @@ export default function PolynucleotidesClient({
                         <IconComponent className="w-6 h-6" />
                       </div>
                       <h3
-                        className={`font-raleway font-bold mb-3 text-lg transition-colors ${
+                        className={`font-raleway font-bold mb-3 text-lg transition-colors duration-150 ${
                           isActive ? "text-slate-900" : "text-white"
                         }`}
                       >
                         {step.title}
                       </h3>
                       <p
-                        className={`text-xs leading-relaxed font-inter transition-colors ${
+                        className={`text-xs leading-relaxed font-inter transition-colors duration-150 ${
                           isActive ? "text-slate-600 font-medium" : "text-slate-400"
                         }`}
                       >
