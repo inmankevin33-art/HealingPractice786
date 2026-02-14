@@ -188,7 +188,7 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm"
+            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
           >
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Regenerative Aesthetics</span>
           </motion.div>
@@ -227,13 +227,13 @@ export default function PolynucleotidesClient({
           >
             <button 
               onClick={handleAction}
-              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-white text-slate-900 hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
+              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-white text-slate-900 hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter transform-gpu"
             >
               <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
             <Link
               href={pricesUrl}
-              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl font-bold transition-all duration-300 gap-2 backdrop-blur-sm font-inter"
+              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl font-bold transition-all duration-300 gap-2 backdrop-blur-sm font-inter transform-gpu"
             >
               View Prices
             </Link>
@@ -266,7 +266,7 @@ export default function PolynucleotidesClient({
                   internal hydration, and refined surface quality. This creates a more balanced and
                   natural result that evolves gradually through the skin’s own restorative processes.
                 </p>
-                <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-8 rounded-full"></div>
+                <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-8 rounded-full transform-gpu"></div>
             </div>
 
             <div className="text-center mb-10">
@@ -279,8 +279,8 @@ export default function PolynucleotidesClient({
                 {benefits.map((benefit, index) => {
                   const Icon = benefit.icon;
                   return (
-                    <div key={index} className={`relative group p-8 rounded-[2rem] bg-slate-50 border border-slate-100 ${benefit.hoverBorder} ${benefit.hoverShadow} transition-all duration-300 hover:-translate-y-1`}>
-                        <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <div key={index} className={`relative group p-8 rounded-[2rem] bg-slate-50 border border-slate-100 ${benefit.hoverBorder} ${benefit.hoverShadow} transition duration-300 transform-gpu hover:-translate-y-1`}>
+                        <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
                             <Icon className="w-24 h-24" />
                         </div>
                         <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm ${benefit.color}`}>
@@ -317,7 +317,7 @@ export default function PolynucleotidesClient({
                   "Mild acne scarring",
                   "Neck and décolletage skin quality"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                  <li key={idx} className="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-100 shadow-sm transform-gpu">
                     <FaCheckCircle className="text-[#4041d1] text-xl shrink-0" />
                     <span className="text-slate-700 font-medium">{item}</span>
                   </li>
@@ -326,9 +326,9 @@ export default function PolynucleotidesClient({
             </div>
             
             <div className="lg:w-1/2 relative">
-                {/* Visual aesthetic element */}
-                <div className="relative h-[450px] w-full bg-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                   <div className="absolute inset-0 bg-gradient-to-tr from-[#4041d1]/80 to-purple-500/40 mix-blend-multiply z-10" />
+                <div className="relative h-[450px] w-full bg-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl transform-gpu">
+                   {/* FIXED: Added transform-gpu to lock mix-blend-multiply to the GPU */}
+                   <div className="absolute inset-0 bg-gradient-to-tr from-[#4041d1]/80 to-purple-500/40 mix-blend-multiply z-10 transform-gpu" />
                    <Image 
                      src="/polynucleotides-hero.webp" 
                      alt="Skin Quality Improvement"
@@ -336,7 +336,7 @@ export default function PolynucleotidesClient({
                      className="object-cover grayscale"
                    />
                    <div className="absolute inset-0 z-20 flex items-center justify-center">
-                      <div className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-center">
+                      <div className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-center transform-gpu">
                          <FaWandSparkles className="w-8 h-8 text-white mx-auto mb-2" />
                          <span className="text-white font-raleway font-bold tracking-widest uppercase text-sm">Treatment Focus</span>
                       </div>
@@ -364,7 +364,7 @@ export default function PolynucleotidesClient({
             variants={containerVariants}
           >
             <motion.div
-              className="inline-block px-5 py-2 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway shadow-[0_0_15px_rgba(64,65,209,0.1)]"
+              className="inline-block px-5 py-2 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway shadow-[0_0_15px_rgba(64,65,209,0.1)] transform-gpu"
               variants={itemVariants}
             >
               The Procedure
@@ -393,7 +393,8 @@ export default function PolynucleotidesClient({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.2 }}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/20 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] backdrop-blur-md"
+                  /* FIXED: Removed backdrop-blur-md, changed to bg-[#4041d1]/30 for zero-lag solid color */
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/30 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] transform-gpu"
                 >
                   <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
                   <span className="text-sm font-bold text-white uppercase tracking-[0.2em] font-raleway">
@@ -419,19 +420,20 @@ export default function PolynucleotidesClient({
                   <motion.div
                     key={index}
                     className="relative group cursor-pointer"
-                    onClick={() => setActiveStep(index)}
+                    /* FIXED: Swapped onClick for instant onPointerDown */
+                    onPointerDown={() => setActiveStep(index)}
                     variants={itemVariants}
                   >
                     <div
-                      /* FIXED: Swapped 'transition-all' for 'transition transform-gpu will-change-transform' */
-                      className={`p-6 rounded-[2.5rem] border transition duration-300 ease-out transform-gpu will-change-transform h-full flex flex-col ${
+                      /* FIXED: Stripped slow transition-all, added GPU lock */
+                      className={`p-6 rounded-[2.5rem] border transition duration-300 ease-out transform-gpu h-full flex flex-col ${
                         isActive
                           ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
                           : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"
                       }`}
                     >
                       <div
-                        /* FIXED: Added transform-gpu here as well */
+                        /* FIXED: Stripped slow transition-all, added GPU lock */
                         className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition duration-300 ease-out transform-gpu ${
                           isActive
                             ? "bg-[#4041d1] text-white shadow-lg scale-110"
@@ -460,7 +462,7 @@ export default function PolynucleotidesClient({
               })}
             </motion.div>
 
-            {/* Quick Facts Grid (Polynucleotides specific data) */}
+            {/* Quick Facts Grid */}
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
@@ -468,32 +470,28 @@ export default function PolynucleotidesClient({
                transition={{ delay: 0.4 }}
                className="grid grid-cols-2 md:grid-cols-4 gap-4"
             >
-              {/* Card 1: Time */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors duration-300 transform-gpu">
                    <FaRegClock className="text-[#4041d1] text-xl mb-2" />
                    <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">30-45 Mins</div>
                    <div className="text-slate-500 text-[10px] font-medium">Inc. numbing time</div>
               </div>
 
-              {/* Card 2: Comfort */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors duration-300 transform-gpu">
                    <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
                    <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Minimal Pain</div>
                    <div className="text-slate-500 text-[10px] font-medium">Numbing cream used</div>
               </div>
 
-              {/* Card 3: Downtime */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors duration-300 transform-gpu">
                    <FaWalking className="text-[#4041d1] text-xl mb-2" />
                    <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Downtime</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">~24 Hours</div>
                    <div className="text-slate-500 text-[10px] font-medium">For papules to settle</div>
               </div>
 
-              {/* Card 4: Method */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors duration-300 transform-gpu">
                    <FaDna className="text-[#4041d1] text-xl mb-2" />
                    <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Course</div>
                    <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">3 Sessions</div>
@@ -505,7 +503,7 @@ export default function PolynucleotidesClient({
         </div>
       </section>
 
-      {/* --- LIGHT SECTION 3: Treatment Effect (The Breathing Space) --- */}
+      {/* --- LIGHT SECTION 3: Treatment Effect --- */}
       <section className="py-20 bg-white font-inter">
          <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
@@ -519,10 +517,11 @@ export default function PolynucleotidesClient({
 
       {/* --- DARK SECTION 2: DNA GLOW PLUS (The PRP Upgrade) --- */}
       <section className="py-20 lg:py-24 bg-[#0A1128] font-inter relative overflow-hidden border-t border-white/5">
-         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none" />
+         {/* FIXED: Added transform-gpu to lock the heavy blur/mix-blend to the graphics card */}
+         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none transform-gpu" />
          
          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col md:flex-row items-center gap-12 bg-white/5 border border-white/10 p-8 md:p-12 rounded-[2.5rem] backdrop-blur-xl">
+            <div className="flex flex-col md:flex-row items-center gap-12 bg-white/5 border border-white/10 p-8 md:p-12 rounded-[2.5rem] backdrop-blur-xl transform-gpu">
                <div className="md:w-2/3">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-200 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-purple-500/30">
                      <FaWandSparkles className="w-3 h-3" /> Premium Upgrade
@@ -538,7 +537,7 @@ export default function PolynucleotidesClient({
                   
                   <button 
                     onClick={handleAction}
-                    className="px-8 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-bold hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition-all font-inter"
+                    className="px-8 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-bold hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition duration-300 font-inter transform-gpu"
                   >
                     Enquire About DNA Glow Plus™
                   </button>
@@ -546,10 +545,11 @@ export default function PolynucleotidesClient({
                
                <div className="md:w-1/3 flex justify-center">
                   <div className="relative w-48 h-48">
-                     <div className="absolute inset-0 border-4 border-dashed border-purple-500/30 rounded-full animate-[spin_20s_linear_infinite]" />
-                     <div className="absolute inset-4 border-2 border-blue-500/40 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+                     {/* FIXED: Hardware accelerated the spinning animation */}
+                     <div className="absolute inset-0 border-4 border-dashed border-purple-500/30 rounded-full animate-[spin_20s_linear_infinite] transform-gpu" />
+                     <div className="absolute inset-4 border-2 border-blue-500/40 rounded-full animate-[spin_15s_linear_infinite_reverse] transform-gpu" />
                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full blur-sm opacity-80" />
+                        <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full blur-sm opacity-80 transform-gpu" />
                         <span className="absolute text-white font-bold font-raleway text-xl">PLUS™</span>
                      </div>
                   </div>
@@ -566,7 +566,7 @@ export default function PolynucleotidesClient({
           </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+              <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm transform-gpu">
                 <button
                   className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors"
                   onClick={() => toggleFAQ(index)}
@@ -598,11 +598,11 @@ export default function PolynucleotidesClient({
       <section className="py-12 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 text-center">
            <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-              <Link href={pricesUrl} className="text-blue-600 font-bold hover:underline flex items-center gap-2">
+              <Link href={pricesUrl} className="text-blue-600 font-bold hover:underline flex items-center gap-2 transition-colors">
                  View Treatment Prices <FaArrowRight className="w-3 h-3"/>
               </Link>
               <span className="hidden md:block text-slate-300">|</span>
-              <Link href={faqUrl} className="text-blue-600 font-bold hover:underline flex items-center gap-2">
+              <Link href={faqUrl} className="text-blue-600 font-bold hover:underline flex items-center gap-2 transition-colors">
                  Read Full FAQs <FaArrowRight className="w-3 h-3"/>
               </Link>
            </div>
