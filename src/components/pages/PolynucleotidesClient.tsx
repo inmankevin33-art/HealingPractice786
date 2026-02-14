@@ -198,7 +198,7 @@ export default function PolynucleotidesClient({
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Regenerative Aesthetics</span>
           </motion.div>
 
-          <motion.h1 
+         <motion.h1 
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
@@ -207,7 +207,10 @@ export default function PolynucleotidesClient({
           >
             Polynucleotides in {locationName}
             <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-purple-200">
-              The DNA Glow Concept™ at Healing-PRP Clinics
+              The DNA Glow Concept™
+            </span>
+            <span className="block text-2xl md:text-3xl text-white/80 mt-2 font-medium">
+              Healing-PRP Clinics
             </span>
           </motion.h1>
 
