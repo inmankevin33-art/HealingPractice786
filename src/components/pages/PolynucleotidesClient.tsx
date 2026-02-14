@@ -193,29 +193,27 @@ export default function PolynucleotidesClient({
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Regenerative Aesthetics</span>
           </motion.div>
 
-          <motion.h1 
+         <motion.h1
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
             className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
-            Polynucleotides: The &quot;DNA Glow&quot;<br />
+            Polynucleotides in {locationName}
             <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-purple-200">
-              Healing-PRP Clinics, {locationName}
+              The DNA Glow Concept™ at Healing-PRP Clinics
             </span>
           </motion.h1>
-
-          <motion.p 
+          
+          <motion.p
             custom={2}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
             className="mt-4 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
           >
-            A revolutionary, non-surgical treatment that uses filtered DNA fractions to 
-            repair skin cells, boost hydration, and restore a natural, youthful glow 
-            from within.
+            A doctor-led regenerative treatment combining polynucleotides, non-cross-linked hyaluronic acid, and precision microneedling to enhance skin quality, resilience, and natural luminosity through our structured three-dimensional approach.
           </motion.p>
 
           <motion.div 
