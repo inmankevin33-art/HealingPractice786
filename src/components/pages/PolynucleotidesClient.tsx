@@ -327,7 +327,7 @@ export default function PolynucleotidesClient({
                    />
                    <div className="absolute inset-0 z-20 flex items-center justify-center">
                       <div className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-center">
-                         <FaSparkles className="w-8 h-8 text-white mx-auto mb-2" />
+                         <FaWandSparkles className="w-8 h-8 text-white mx-auto mb-2" />
                          <span className="text-white font-raleway font-bold tracking-widest uppercase text-sm">Treatment Focus</span>
                       </div>
                    </div>
@@ -459,7 +459,7 @@ export default function PolynucleotidesClient({
             <div className="flex flex-col md:flex-row items-center gap-12 bg-slate-800/50 border border-slate-700 p-8 md:p-12 rounded-[2.5rem] backdrop-blur-xl">
                <div className="md:w-2/3">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-200 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-purple-500/30">
-                     <FaSparkles className="w-3 h-3" /> Premium Upgrade
+                     <FaWandSparkles className="w-3 h-3" /> Premium Upgrade
                   </div>
                   <h2 className="text-3xl md:text-4xl font-raleway font-bold text-white mb-4">
                     DNA Glow Plus™
