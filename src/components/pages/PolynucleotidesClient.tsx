@@ -252,15 +252,27 @@ export default function PolynucleotidesClient({
         </div>
       </div>
 
-      {/* --- SECTION: The DNA Glow Concept™ (Benefits) --- */}
+      {/* --- LIGHT SECTION 1: What Makes Us Different & The Concept --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
                 <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-2 block">Our Signature Protocol</span>
-                <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900">
-                    What Makes DNA Glow Concept™ Different?
+                <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+                  What Makes Our Polynucleotide Treatment Different?
                 </h2>
-                <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-6 rounded-full"></div>
+                <p className="text-slate-600 leading-relaxed max-w-3xl mx-auto">
+                  Unlike standard single-product approaches, our doctor-led protocol is built around a
+                  structured, three-dimensional concept designed to support deeper skin regeneration,
+                  internal hydration, and refined surface quality. This creates a more balanced and
+                  natural result that evolves gradually through the skin’s own restorative processes.
+                </p>
+                <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-8 rounded-full"></div>
+            </div>
+
+            <div className="text-center mb-10">
+                <h3 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-2">
+                  The DNA Glow Concept™
+                </h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -285,7 +297,7 @@ export default function PolynucleotidesClient({
         </div>
       </section>
 
-      {/* --- SECTION: What Can Polynucleotides Help Improve? --- */}
+      {/* --- LIGHT SECTION 2: What Can Polynucleotides Help Improve? --- */}
       <section className="py-20 bg-slate-50 font-inter border-t border-slate-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -335,7 +347,7 @@ export default function PolynucleotidesClient({
         </div>
       </section>
 
-      {/* --- DARK SECTION 1: PROTOCOL --- */}
+      {/* --- DARK SECTION 1: THE PROCEDURE & QUICK FACTS --- */}
       <section
         className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter border-t border-slate-800"
         style={{
@@ -445,8 +457,62 @@ export default function PolynucleotidesClient({
                 );
               })}
             </motion.div>
+
+            {/* SEQUENCED QUICK FACTS (Time -> Comfort -> Downtime -> Course) */}
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: 0.4 }}
+               className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8"
+            >
+              {/* Card 1: Time */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaRegClock className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">30-45 Mins</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Inc. numbing time</div>
+              </div>
+
+              {/* Card 2: Comfort */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Minimal Pain</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Numbing cream used</div>
+              </div>
+
+              {/* Card 3: Downtime */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaWalking className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Downtime</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">~24 Hours</div>
+                   <div className="text-slate-500 text-[10px] font-medium">For papules to settle</div>
+              </div>
+
+              {/* Card 4: Method */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaDna className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Course</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">3 Sessions</div>
+                   <div className="text-slate-500 text-[10px] font-medium">For optimal results</div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
+      </section>
+
+      {/* --- LIGHT SECTION 3: Treatment Effect (The Breathing Space) --- */}
+      <section className="py-20 bg-white font-inter">
+         <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
+              Treatment Effect & Recovery
+            </h2>
+            <p className="text-slate-600 leading-relaxed text-lg">
+              Improvements develop gradually as part of the skin’s natural regenerative cycle. Results may be sustained for several months, depending on individual response and the recommended treatment course.
+            </p>
+         </div>
       </section>
 
       {/* --- DARK SECTION 2: DNA GLOW PLUS (The PRP Upgrade) --- */}
@@ -490,20 +556,8 @@ export default function PolynucleotidesClient({
          </div>
       </section>
 
-      {/* --- SECTION: Treatment Effect --- */}
-      <section className="py-20 bg-white font-inter border-y border-slate-100">
-         <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-4">
-              Treatment Effect
-            </h2>
-            <p className="text-slate-600 leading-relaxed text-lg">
-              Improvements develop gradually as part of the skin’s natural regenerative cycle. Results may be sustained for several months, depending on individual response and the recommended treatment course.
-            </p>
-         </div>
-      </section>
-
-      {/* --- FAQs --- */}
-      <section className="py-24 bg-slate-50 font-inter">
+      {/* --- LIGHT SECTION 4: FAQs --- */}
+      <section className="py-24 bg-slate-50 font-inter border-t border-slate-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-raleway font-bold text-slate-900">Common Questions</h2>
