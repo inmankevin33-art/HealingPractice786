@@ -516,44 +516,41 @@ export default function PolynucleotidesClient({
       </section>
 
       {/* --- DARK SECTION 2: DNA GLOW PLUS (The PRP Upgrade) --- */}
-      <section className="py-20 lg:py-28 bg-[#0A1128] font-inter relative overflow-hidden border-t border-white/5">
-         {/* GPU-Accelerated Background Glow */}
+      <section className="py-20 lg:py-24 bg-[#0A1128] font-inter relative overflow-hidden border-t border-white/5">
+         {/* FIXED: Added transform-gpu to lock the heavy blur/mix-blend to the graphics card */}
          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none transform-gpu" />
          
-         {/* EXPANDED CONTAINER: max-w-6xl */}
-         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* EXPANDED PADDING: p-10 to p-20 based on screen size */}
-            <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16 bg-white/5 border border-white/10 p-10 md:p-16 lg:p-20 rounded-[3rem] backdrop-blur-xl transform-gpu shadow-2xl">
+         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col md:flex-row items-center gap-12 bg-white/5 border border-white/10 p-8 md:p-12 rounded-[2.5rem] backdrop-blur-xl transform-gpu">
                <div className="md:w-2/3">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-200 rounded-full text-xs font-bold uppercase tracking-wider mb-6 border border-purple-500/30">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-200 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-purple-500/30">
                      <FaWandSparkles className="w-3 h-3" /> Premium Upgrade
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-raleway font-bold text-white mb-6 leading-tight">
+                  <h2 className="text-3xl md:text-4xl font-raleway font-bold text-white mb-4">
                     DNA Glow Plus™
                   </h2>
-                  <p className="text-slate-300 text-lg leading-relaxed mb-10">
+                  <p className="text-slate-300 leading-relaxed mb-8">
                     For patients seeking enhanced regenerative support, DNA Glow Plus™ builds upon the DNA Glow Concept™ by incorporating PRP-based microneedling. 
                     <br/><br/>
                     Platelet-Rich Plasma (PRP), derived from your own blood, contains growth factors involved in natural tissue repair and may further support skin resilience and recovery.
                   </p>
                   
-                  {/* STANDARD BLUE CTA BUTTON */}
                   <button 
                     onClick={handleAction}
-                    className="px-8 py-4 inline-flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] active:scale-95 font-inter"
+                    className="px-8 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-bold hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition duration-300 font-inter transform-gpu"
                   >
-                    <FaEnvelope className="w-4 h-4" /> Book Consultation
+                    Enquire About DNA Glow Plus™
                   </button>
                </div>
                
                <div className="md:w-1/3 flex justify-center">
-                  {/* SCALED UP GRAPHIC: larger width and height to match the new box */}
-                  <div className="relative w-56 h-56 lg:w-64 lg:h-64">
+                  <div className="relative w-48 h-48">
+                     {/* FIXED: Hardware accelerated the spinning animation */}
                      <div className="absolute inset-0 border-4 border-dashed border-purple-500/30 rounded-full animate-[spin_20s_linear_infinite] transform-gpu" />
                      <div className="absolute inset-4 border-2 border-blue-500/40 rounded-full animate-[spin_15s_linear_infinite_reverse] transform-gpu" />
                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full blur-sm opacity-80 transform-gpu" />
-                        <span className="absolute text-white font-bold font-raleway text-2xl tracking-wider">PLUS™</span>
+                        <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full blur-sm opacity-80 transform-gpu" />
+                        <span className="absolute text-white font-bold font-raleway text-xl">PLUS™</span>
                      </div>
                   </div>
                </div>
