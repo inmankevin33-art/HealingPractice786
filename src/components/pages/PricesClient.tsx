@@ -16,6 +16,8 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
       id: "facial",
       title: "Facial Aesthetics",
       items: [
+        { name: "DNA Glow Plus™", price: "£650", sessions: "Course of 3: £1750", details: "Premium: Poly + HA + PRP Microneedling" },
+        { name: "DNA Glow Concept™", price: "£450", sessions: "Course of 3: £1200", details: "Signature: Poly + HA + Microneedling" },
         { name: "Polynucleotides", price: "From £150", sessions: "1-3 sessions", details: "Advanced skin repair & hydration" },
         { name: "HA Skin Boosters", price: "£250", sessions: "2-3 sessions", details: "Deep hydration & glow" },
         { name: "PRP Microneedling", price: "£150", sessions: "2-3 sessions", details: "Texture & acne scar support" },
@@ -59,7 +61,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
     "description": `Doctor-led regenerative medicine prices for ${locationName}.`
   };
 
-  // Animation Variants (Identical to other pages)
+  // Animation Variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
@@ -85,7 +87,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(priceSchema) }}
       />
 
-      {/* Hero Section - Standardized 55vh & Typography */}
+      {/* Hero Section */}
       <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
@@ -124,7 +126,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                   Doctor-led regenerative treatments with clear, upfront costs. Serving patients across {isBirmingham ? "the West Midlands" : "Hertfordshire"}.
                 </motion.p>
 
-                {/* Stacked Layout: Tags Top, Button Bottom */}
+                {/* Stacked Layout */}
                 <motion.div variants={itemVariants} className="flex flex-col mt-8 gap-6 justify-center items-center">
                   <div className="flex flex-wrap justify-center gap-2 max-w-2xl">
                     {categories.map(cat => (
@@ -140,7 +142,6 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
 
                   <button
                     onClick={handleConsultationClick}
-                    // BRAND COLOR LOCK: #4041d1
                     className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
                   >
                     <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
