@@ -283,11 +283,6 @@ export default function PolynucleotidesClient({
                   support collagen stimulation, hydration, and tissue repair. They work as biostimulators,
                   creating an optimal environment for the skin to renew itself naturally.
                 </p>
-                
-                <h3 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-2">
-                  The DNA Glow Concept™
-                </h3>
-            </div>
 
             <div className="text-center mb-10">
                 <h3 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-2">
