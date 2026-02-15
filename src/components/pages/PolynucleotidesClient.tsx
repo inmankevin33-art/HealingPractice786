@@ -254,9 +254,10 @@ export default function PolynucleotidesClient({
         </div>
       </div>
 
-      {/* --- LIGHT SECTION 1: What Makes Us Different & The Concept --- */}
+     {/* --- LIGHT SECTION 1: What Makes Us Different & The Concept --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
             <div className="text-center mb-16">
                 <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-2 block">Our Signature Protocol</span>
                 <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
@@ -271,20 +272,15 @@ export default function PolynucleotidesClient({
                 <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-8 rounded-full transform-gpu"></div>
             </div>
 
-            <div className="text-center mb-10">
-                {/* Heading with font-raleway */}
+            <div className="text-center mb-12">
                 <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">
                   What Are Polynucleotides?
                 </h3>
-                
-                {/* Paragraph with font-inter added */}
                 <p className="text-slate-600 leading-relaxed max-w-3xl mx-auto mb-12 text-lg font-inter">
                   Polynucleotides are highly purified DNA fragments used in regenerative medicine to
                   support collagen stimulation, hydration, and tissue repair. They work as biostimulators,
                   creating an optimal environment for the skin to renew itself naturally.
                 </p>
-
-            <div className="text-center mb-10">
                 <h3 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-2">
                   The DNA Glow Concept™
                 </h3>
@@ -309,6 +305,7 @@ export default function PolynucleotidesClient({
                   );
                 })}
             </div>
+
         </div>
       </section>
 
