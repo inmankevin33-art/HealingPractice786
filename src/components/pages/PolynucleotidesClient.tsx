@@ -272,6 +272,24 @@ export default function PolynucleotidesClient({
             </div>
 
             <div className="text-center mb-10">
+                {/* Heading with font-raleway */}
+                <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">
+                  What Are Polynucleotides?
+                </h3>
+                
+                {/* Paragraph with font-inter added */}
+                <p className="text-slate-600 leading-relaxed max-w-3xl mx-auto mb-12 text-lg font-inter">
+                  Polynucleotides are highly purified DNA fragments used in regenerative medicine to
+                  support collagen stimulation, hydration, and tissue repair. They work as biostimulators,
+                  creating an optimal environment for the skin to renew itself naturally.
+                </p>
+                
+                <h3 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-2">
+                  The DNA Glow Concept™
+                </h3>
+            </div>
+
+            <div className="text-center mb-10">
                 <h3 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-2">
                   The DNA Glow Concept™
                 </h3>
