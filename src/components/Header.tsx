@@ -30,14 +30,20 @@ const Header = () => {
   }, [isMenuOpen]);
 
   const menuItems: MenuItem[] = [
+    // FACIAL AESTHETICS & SUB-ITEMS
     { name: "Facial Aesthetics", href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics" },
+    { 
+      name: "Polynucleotides", 
+      href: isBirmingham ? "/birmingham/polynucleotides" : "/polynucleotides",
+      isSubItem: true 
+    },
+    
+    // OTHER MAIN CATEGORIES
     { name: "Joint Injections", href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections" },
     { name: "Hair Restoration", href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration" },
     
-    // MAIN CATEGORY
+    // SEXUAL REJUVENATION & SUB-ITEMS
     { name: "Sexual Rejuvenation", href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation" },
-    
-    // SPECIFIC ITEMS
     { 
       name: "P-Shot® Treatment", 
       href: isBirmingham ? "/birmingham/p-shot" : "/p-shot",
@@ -174,7 +180,6 @@ const Header = () => {
                             ? "font-medium text-slate-300 hover:text-[#4041d1]" 
                             : "font-medium text-white hover:text-[#4041d1]"
                       }`}
-                      // FIX: REMOVED SCROLL LOGIC. NOW JUST CLOSES MENU & NAVIGATES.
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}
