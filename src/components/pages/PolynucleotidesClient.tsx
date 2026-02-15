@@ -12,15 +12,12 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaCheckCircle,
-  FaArrowRight,
   FaRegClock,
   FaWalking,
   FaUserMd,
   FaMicroscope,
   FaChevronLeft,
-  FaChevronRight,
-  FaFileInvoiceDollar,
-  FaQuestionCircle
+  FaChevronRight
 } from "react-icons/fa";
 import { FaWandSparkles } from "react-icons/fa6";
 import Footer from "@/components/Footer";
@@ -42,7 +39,7 @@ export default function PolynucleotidesClient({
   const [activeStep, setActiveStep] = useState(0); 
   const [isLoaded, setIsLoaded] = useState(false);
   
-  // NEW: State for the Before/After Slider (starts at 50%)
+  // State for the Before/After Slider (starts at 50%)
   const [sliderPosition, setSliderPosition] = useState(50);
 
   // Dynamic Links
@@ -233,21 +230,15 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex justify-center"
           >
-            {/* UPDATED TO BLUE BUTTON */}
+            {/* HERO BUTTON: Single, centered Blue Button */}
             <button 
               onClick={handleAction}
-              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out gap-2 shadow-xl active:scale-95 font-inter transform-gpu"
+              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out gap-2 shadow-xl hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] active:scale-95 font-inter transform-gpu"
             >
               <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
-            <Link
-              href={pricesUrl}
-              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-xl font-bold transition duration-300 ease-out gap-2 backdrop-blur-sm font-inter transform-gpu"
-            >
-              View Prices
-            </Link>
           </motion.div>
           
           <motion.div 
@@ -334,9 +325,6 @@ export default function PolynucleotidesClient({
                   </li>
                 ))}
               </ul>
-              
-              {/* NEW BLUE BUTTON UNDER TEXT LIST (Optional depending on layout preference, keeping it under slider is more standard) */}
-              
             </div>
             
             {/* --- THE BEFORE & AFTER SLIDER & BUTTON --- */}
@@ -394,7 +382,7 @@ export default function PolynucleotidesClient({
                    />
                 </div>
                 
-                {/* NEW BLUE BUTTON UNDER SLIDER */}
+                {/* BLUE BUTTON UNDER SLIDER */}
                 <button 
                   onClick={handleAction}
                   className="px-8 py-4 w-full sm:w-auto inline-flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(64,65,209,0.3)] active:scale-95 font-inter"
@@ -590,7 +578,6 @@ export default function PolynucleotidesClient({
                     Platelet-Rich Plasma (PRP), derived from your own blood, contains growth factors involved in natural tissue repair and may further support skin resilience and recovery.
                   </p>
                   
-                  {/* UPDATED TO BLUE BUTTON */}
                   <button 
                     onClick={handleAction}
                     className="px-8 py-4 inline-flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] active:scale-95 font-inter"
@@ -649,24 +636,41 @@ export default function PolynucleotidesClient({
         </div>
       </section>
 
-      {/* --- UPDATED CTA BAR --- */}
-      <section className="py-16 bg-white border-t border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-           <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-8">Ready to take the next step?</h2>
+      {/* --- MATCHING BOTTOM CTA BAR --- */}
+      <section className="py-24 bg-white border-t border-slate-200">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+           
+           {/* Pricing Info Box */}
+           <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
+              <p className="text-slate-600 leading-relaxed text-sm md:text-base font-inter">
+                 Our pricing is intentionally kept accessible compared with many London clinics, while maintaining the same medical-grade equipment, evidence-based protocols, and experienced doctor-led care.
+              </p>
+           </div>
+           
+           {/* 3-Button Layout matching ED page */}
            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <button 
+                onClick={handleAction}
+                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-sm font-inter"
+              >
+                 <FaEnvelope className="w-4 h-4"/> Book Consultation
+              </button>
+              
               <Link 
                 href={pricesUrl} 
-                className="w-full sm:w-auto px-8 py-4 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-full font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(64,65,209,0.3)] font-inter"
+                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu shadow-sm font-inter"
               >
-                 <FaFileInvoiceDollar className="w-4 h-4"/> View Treatment Prices
+                 View Treatment Prices
               </Link>
+              
               <Link 
                 href={faqUrl} 
-                className="w-full sm:w-auto px-8 py-4 inline-flex items-center justify-center text-sm bg-slate-100 text-slate-800 hover:bg-slate-200 rounded-full font-bold transition duration-300 ease-out transform-gpu gap-2 font-inter"
+                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-white border border-[#4041d1] text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition duration-300 ease-out transform-gpu font-inter"
               >
-                 <FaQuestionCircle className="w-4 h-4 text-[#4041d1]" /> Read Full FAQs
+                 View Clinic FAQs
               </Link>
            </div>
+
         </div>
       </section>
 
