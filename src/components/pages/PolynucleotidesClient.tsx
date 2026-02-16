@@ -211,6 +211,21 @@ export default function PolynucleotidesClient({
             <span className="block text-2xl md:text-3xl text-white/80 mt-2 font-medium">
               Healing-PRP Clinics
             </span>
+          <motion.h1 
+            custom={1}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="text-[28px] sm:text-3xl md:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
+          >
+            {/* Added a responsive line break so 'Birmingham' doesn't squish */}
+            Polynucleotides in <br className="sm:hidden" /> {locationName}
+            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-purple-200">
+              The DNA Glow Concept™
+            </span>
+            <span className="block text-xl sm:text-2xl md:text-3xl text-white/80 mt-2 font-medium">
+              Healing-PRP Clinics
+            </span>
           </motion.h1>
 
           <motion.p 
@@ -218,7 +233,7 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-4 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-4xl mx-auto mb-8"
+            className="mt-4 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-4xl mx-auto mb-8 px-2"
           >
             A doctor-led regenerative treatment combining polynucleotides, non-cross-linked<br className="hidden md:block" />
             hyaluronic acid, and precision microneedling to enhance skin quality, resilience, and natural luminosity<br className="hidden md:block" />
@@ -246,10 +261,14 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
+            // UPDATED: Made this pill flex-col on mobile so the long Birmingham text wraps perfectly
+            className="inline-flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-6 py-3 bg-[#4041d1] text-white rounded-2xl sm:rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 max-w-[90%] mx-auto text-center"
           >
-             <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
-             <span>Serving: {servingAreas}</span>
+             <div className="flex items-center gap-1.5 text-white/80">
+               <FaMapMarkerAlt className="w-3 h-3" /> 
+               <span>Serving:</span>
+             </div>
+             <span className="leading-relaxed">{servingAreas}</span>
           </motion.div>
         </div>
       </div>
