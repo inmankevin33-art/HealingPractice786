@@ -202,20 +202,6 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
-          >
-            Polynucleotides in {locationName}
-            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-purple-200">
-              The DNA Glow Concept™
-            </span>
-            <span className="block text-2xl md:text-3xl text-white/80 mt-2 font-medium">
-              Healing-PRP Clinics
-            </span>
-          <motion.h1 
-            custom={1}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
             className="text-[28px] sm:text-3xl md:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
             {/* Added a responsive line break so 'Birmingham' doesn't squish */}
@@ -261,10 +247,10 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            // UPDATED: Made this pill flex-col on mobile so the long Birmingham text wraps perfectly
             className="inline-flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-6 py-3 bg-[#4041d1] text-white rounded-2xl sm:rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 max-w-[90%] mx-auto text-center"
           >
-             <div className="flex items-center gap-1.5 text-white/80">
+             {/* Updated to text-white so it is bright and crisp! */}
+             <div className="flex items-center gap-1.5 text-white">
                <FaMapMarkerAlt className="w-3 h-3" /> 
                <span>Serving:</span>
              </div>
@@ -272,7 +258,7 @@ export default function PolynucleotidesClient({
           </motion.div>
         </div>
       </div>
-
+      
      {/* --- LIGHT SECTION 1: What Makes Us Different & The Concept --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
