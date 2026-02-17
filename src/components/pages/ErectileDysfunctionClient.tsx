@@ -198,9 +198,10 @@ export default function ErectileDysfunctionClient({
             variants={fadeUpVariants}
             className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
           >
-            Erectile Dysfunction Treatment<br />
-            {/* DYNAMIC SUB-HEADING: Uses props */}
-            <span className="block mt-2">Healing-PRP Clinics, {locationName}</span>
+            Erectile Dysfunction Treatment in {locationName}<br />
+            <span className="block mt-2 text-white/90">
+              Doctor-Led, Confidential Private Clinic
+            </span>
           </motion.h1>
 
           {/* Sub-headline */}
@@ -211,7 +212,8 @@ export default function ErectileDysfunctionClient({
             variants={fadeUpVariants}
             className="mt-1 md:text-lg text-base text-blue-100 font-medium font-raleway leading-relaxed"
           >
-            Doctor-led. Patient-focused. Regenerative care
+            Private assessment and tailored treatment options — including lifestyle and medication review, appropriate blood tests, and regenerative options where suitable.
+
           </motion.h2>
 
           {/* Description */}
@@ -222,9 +224,10 @@ export default function ErectileDysfunctionClient({
             variants={fadeUpVariants}
             className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
           >
-            Evidence-based, non-surgical solutions to support confidence, 
-            sensitivity and intimacy — delivered by a fully insured, 
-            GMC-registered doctor.
+            A discreet, non-judgemental consultation to understand,
+            the cause of ED and build a personalised plan.
+            We discuss evidence, suitability and alternatives. 
+            Results vary and are not guaranteed.
           </motion.p>
 
           {/* CTA Button */}
