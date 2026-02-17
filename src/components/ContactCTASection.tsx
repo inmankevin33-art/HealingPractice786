@@ -206,39 +206,43 @@ export default function ContactCTASection() {
                     {/* RIGHT SIDE: QUICK CONTACTS */}
                     <div className="lg:col-span-5 space-y-3">
                       
-                      {/* ✅ MOBILE SMART LOGIC: Show Button on Mobile, QR on Desktop */}
+                     {/* ✅ UPDATED WHATSAPP CARD: Primary Button + Secondary QR + Tracking */}
                       <div className="w-full bg-white rounded-2xl border border-slate-100 p-6 text-center shadow-sm">
                         <div className="inline-flex items-center gap-2 text-green-600 mb-4 bg-green-50 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                           <FaWhatsapp className="w-3 h-3" /> Quick Chat
                         </div>
                         
-                        {isDesktop ? (
-                          // DESKTOP: Show QR Code
-                          <>
-                            <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 inline-block mb-4">
-                              <img src="/qrcode.png" alt="WhatsApp QR" className="w-32 h-32 mx-auto mix-blend-multiply" />
+                        {/* 1. PRIMARY ACTION: The Green Button (Shows everywhere) */}
+                        <a 
+                          href={`https://wa.me/447990364147?text=${encodeURIComponent("Hi, I would like to discreetly inquire about treatments.")}`}
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            // Safely fire GA4 event for modal clicks
+                            if (typeof window !== "undefined" && (window as any).gtag) {
+                              (window as any).gtag("event", "whatsapp_modal_click");
+                            }
+                          }}
+                          className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] hover:bg-[#1DA851] text-white rounded-xl font-bold shadow-lg shadow-green-500/20 active:scale-95 transition-all group"
+                        >
+                          <FaWhatsapp className="w-6 h-6 group-hover:scale-110 transition-transform" /> 
+                          <span className="text-base">Start WhatsApp Chat</span>
+                        </a>
+                        
+                        <p className="mt-3 text-[10.5px] text-slate-500 font-medium">
+                          Secure & discreet. Typically replies in &lt; 1 hour.
+                        </p>
+
+                        {/* 2. SECONDARY ACTION: QR Code (Only shows on Desktop as a fallback) */}
+                        {isDesktop && (
+                          <div className="mt-5 pt-5 border-t border-slate-100">
+                            <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3">Or Scan to Chat</p>
+                            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 inline-block mb-2">
+                              <img src="/qrcode.png" alt="WhatsApp QR" className="w-24 h-24 mx-auto mix-blend-multiply" />
                             </div>
-                            <div className="space-y-1">
-                              <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Scan to Chat</p>
-                              <div className="text-lg font-raleway font-bold text-[#4041d1]">
-                                +44 7990 364 147
-                              </div>
+                            <div className="text-sm font-raleway font-bold text-[#4041d1]">
+                              +44 7990 364 147
                             </div>
-                          </>
-                        ) : (
-                          // MOBILE: Show Big Button
-                          <div className="py-4">
-                             <a 
-                               href="https://wa.me/447990364147" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all"
-                             >
-                               <FaWhatsapp className="w-6 h-6" /> Open WhatsApp
-                             </a>
-                             <p className="mt-4 text-[10px] text-slate-400">
-                               Typically replies in &lt; 1 hour
-                             </p>
                           </div>
                         )}
                       </div>
