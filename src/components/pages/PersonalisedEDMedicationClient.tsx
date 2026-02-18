@@ -201,12 +201,28 @@ export default function PersonalisedEDMedicationClient({
             Advanced, doctor-led formulation for men who have not achieved satisfactory results or experienced side effects with standard tablets.
           </motion.p>
 
-          <motion.div custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={handleAction}
-              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+          {/* --- UPDATED CTA BUTTONS --- */}
+          <motion.div 
+            custom={3} 
+            initial="hidden" 
+            animate={isLoaded ? "visible" : "hidden"} 
+            variants={fadeUpVariants} 
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            {/* Primary Action: The Assessment */}
+            <button 
+              onClick={() => setIsAssessmentOpen(true)}
+              className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
             >
-              <FaEnvelope className="w-4 h-4" /> Book Medical Consultation
+               Take Free Online Assessment
+            </button>
+
+            {/* Secondary Action: Direct Booking */}
+            <button 
+              onClick={handleAction}
+              className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1]/80 hover:bg-[#4041d1] backdrop-blur-md text-white border border-white/20 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
+            >
+              <FaEnvelope className="w-4 h-4" /> Book Directly
             </button>
           </motion.div>
 
