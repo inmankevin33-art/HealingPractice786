@@ -189,7 +189,7 @@ export default function PersonalisedEDMedicationClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-6 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-2xl mx-auto"
+            className="mt-6 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto"
           >
             Advanced, doctor-led formulation for men who have not achieved satisfactory results or experienced side effects with standard tablets.
           </motion.p>
@@ -197,7 +197,7 @@ export default function PersonalisedEDMedicationClient({
           <motion.div custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants} className="mt-10 flex justify-center">
             <button
               onClick={handleAction}
-              className="px-10 py-4 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
             >
               <FaEnvelope className="w-4 h-4" /> Book Medical Consultation
             </button>
