@@ -177,9 +177,11 @@ export default function PersonalisedEDMedicationClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
+            // Removed the overly large lg:text-6xl and matched your main ED page sizing
+            className="md:text-5xl text-[28px] sm:text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight px-2"
           >
-            Personalised ED Medication in <br className="sm:hidden" /> {locationName}
+            Personalised ED Medication <br className="hidden md:block" /> 
+            in {locationName}
           </motion.h1>
 
           <motion.p
