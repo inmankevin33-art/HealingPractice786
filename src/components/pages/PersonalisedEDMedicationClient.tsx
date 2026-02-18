@@ -160,7 +160,7 @@ export default function PersonalisedEDMedicationClient({
   return (
     <>
       {/* --- HERO SECTION (Restored fully compliant layout) --- */}
-      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-end justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
@@ -171,7 +171,7 @@ export default function PersonalisedEDMedicationClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 pb-32 md:pb-40">
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-48 md:pb-56">
           <motion.h1
             custom={1}
             initial="hidden"
