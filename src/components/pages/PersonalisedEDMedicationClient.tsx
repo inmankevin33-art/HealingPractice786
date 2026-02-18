@@ -16,7 +16,8 @@ import {
   FaPills,
   FaExclamationTriangle,
   FaFileMedical,
-  FaHistory
+  FaHistory,
+  FaArrowRight
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
@@ -78,7 +79,6 @@ export default function PersonalisedEDMedicationClient({
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // --- WHO IT'S FOR CARDS (Updated to match Symptoms styling with icons) ---
   const candidates = [
     {
       title: "Limited Response to Standard Tablets",
@@ -106,7 +106,6 @@ export default function PersonalisedEDMedicationClient({
     },
   ];
 
-  // --- PROTOCOL STEPS ---
   const protocolSteps = [
     {
       number: 1,
@@ -159,7 +158,7 @@ export default function PersonalisedEDMedicationClient({
 
   return (
     <>
-      {/* --- HERO SECTION (Restored fully compliant layout) --- */}
+      {/* --- HERO SECTION --- */}
       <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-end justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
@@ -168,17 +167,22 @@ export default function PersonalisedEDMedicationClient({
             src="/personalised-meds-hero.webp"
             alt="Personalised erectile dysfunction medication consultation"
             className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => {
+               // Fallback just in case the new image name wasn't updated yet
+               e.currentTarget.src = "/ed-doctor-consultation.webp";
+            }}
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-48 md:pb-56">
+        {/* Text container positioned lower to show the doctor's face */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-24 md:pb-32">
+          
           <motion.h1
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            // Removed the overly large lg:text-6xl and matched your main ED page sizing
-            className="md:text-5xl text-[28px] sm:text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight px-2"
+            className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
           >
             Personalised ED Medication <br className="hidden md:block" /> 
             in {locationName}
@@ -189,12 +193,12 @@ export default function PersonalisedEDMedicationClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-6 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto"
+            className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
           >
             Advanced, doctor-led formulation for men who have not achieved satisfactory results or experienced side effects with standard tablets.
           </motion.p>
 
-          <motion.div custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants} className="mt-10 flex justify-center">
+          <motion.div custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={handleAction}
               className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
@@ -203,23 +207,18 @@ export default function PersonalisedEDMedicationClient({
             </button>
           </motion.div>
 
-          {/* Location Badge */}
           <motion.div 
             custom={4}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-6 py-3 bg-[#4041d1] text-white rounded-2xl sm:rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 max-w-[90%] mx-auto text-center"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
           >
-             <div className="flex items-center gap-1.5 text-white">
-               <FaMapMarkerAlt className="w-3 h-3" /> 
-               <span>Serving:</span>
-             </div>
-             <span className="leading-relaxed">{servingAreas}</span>
+             <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
+             <span>Serving: {servingAreas}</span>
           </motion.div>
         </div>
 
-        {/* Restored Feature Banner / Trust Bar */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-4 py-5">
             <div className="max-w-7xl mx-auto">
@@ -241,7 +240,7 @@ export default function PersonalisedEDMedicationClient({
         </div>
       </div>
 
-      {/* --- WHO THIS IS FOR (Restored Hover & Scroll Animations) --- */}
+      {/* --- WHO THIS IS FOR --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -281,7 +280,7 @@ export default function PersonalisedEDMedicationClient({
         </div>
       </section>
 
-      {/* --- PROTOCOL SECTION (Restored Interactive Stepper) --- */}
+      {/* --- PROTOCOL SECTION --- */}
       <section className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter" style={{ backgroundImage: "radial-gradient(circle at 10% 10%, rgba(64, 65, 209, 0.15) 0%, transparent 40%)" }}>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
@@ -338,7 +337,7 @@ export default function PersonalisedEDMedicationClient({
         </div>
       </section>
 
-      {/* --- FAQ (Restored Typography & Styling) --- */}
+      {/* --- FAQ --- */}
       <section className="py-24 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
