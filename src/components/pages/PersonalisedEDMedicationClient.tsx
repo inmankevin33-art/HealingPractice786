@@ -19,9 +19,11 @@ import {
   FaHistory,
   FaArrowRight
 } from "react-icons/fa";
+
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
+import OnlineAssessmentModal from "@/components/OnlineAssessmentModal";
 
 interface PersonalisedEDMedicationProps {
   locationName?: string;
@@ -36,6 +38,7 @@ export default function PersonalisedEDMedicationClient({
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -379,6 +382,12 @@ export default function PersonalisedEDMedicationClient({
       <ContactCTASection />
       <LocationSection />
       <Footer />
+
+      {/* ADD THE MODAL RIGHT HERE */}
+      <OnlineAssessmentModal 
+        isOpen={isAssessmentOpen} 
+        onClose={() => setIsAssessmentOpen(false)} 
+      />
     </>
   );
 }
