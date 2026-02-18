@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaTimes, FaArrowLeft, FaCheckCircle, FaUserMd } from "react-icons/fa";
+import { FaTimes, FaArrowLeft, FaCheckCircle, FaUserMd, FaUser, FaEnvelope, FaPhone } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 interface OnlineAssessmentModalProps {
   isOpen: boolean;
@@ -13,6 +14,11 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string | number>>({});
   const [isComplete, setIsComplete] = useState(false);
+  
+  // Lead Capture State
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -64,12 +70,21 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
       options: ["Yes", "No"],
       note: "This helps our doctors determine pharmacological suitability.",
     },
+    {
+      id: 9,
+      title: "Do you have diabetes?",
+      options: ["Yes", "No"],
+    },
+    {
+      id: 10,
+      title: "Erectile Dysfunction can affect men of all ages, what is your age?",
+      options: ["20-29 years old", "30-39 years old", "40-49 years old", "50-59 years old", "60+ years old"],
+    },
   ];
 
   const handleSelect = (answer: string | number) => {
     setAnswers((prev) => ({ ...prev, [step]: answer }));
     
-    // Tiny delay so the user sees their click register before moving
     setTimeout(() => {
       if (step < questions.length - 1) {
         setStep((prev) => prev + 1);
@@ -83,16 +98,69 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
     if (step > 0) setStep((prev) => prev - 1);
   };
 
-  const handleFinalSubmit = () => {
-    onClose();
-    // Reset state for next time
-    setTimeout(() => {
-      setStep(0);
-      setIsComplete(false);
-      setAnswers({});
-      // Trigger your existing contact drawer
-      window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-    }, 300);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // --- STANDALONE EMAILJS SUBMISSION LOGIC ---
+  const handleFinalSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS credentials missing.");
+      alert("Configuration error. Please use our standard contact form.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Format the 10 answers into a clean, readable summary for the doctor
+    let formattedAssessment = "=== ONLINE ED ASSESSMENT RESULTS ===\n\n";
+    questions.forEach((q, index) => {
+      formattedAssessment += `Q${index + 1}: ${q.title}\n`;
+      formattedAssessment += `Answer: ${answers[index] || "Not answered"}\n\n`;
+    });
+
+    const clinicLocation = window.location.pathname?.startsWith("/birmingham") 
+      ? "Birmingham (Edgbaston)" 
+      : "St Albans";
+
+    try {
+      emailjs.init(publicKey);
+      await emailjs.send(serviceId, templateId, {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        treatment: "Personalised ED Medication (Online Assessment Completed)",
+        message: formattedAssessment,
+        clinic_location: clinicLocation,
+      });
+
+      setIsSubmitted(true);
+      
+      // Close modal and reset state after a short delay so they see the success message
+      setTimeout(() => {
+        onClose();
+        setTimeout(() => {
+          setStep(0);
+          setIsComplete(false);
+          setIsSubmitted(false);
+          setAnswers({});
+          setFormData({ name: "", email: "", phone: "" });
+        }, 500);
+      }, 3000);
+
+    } catch (error) {
+      console.error("Failed to send assessment:", error);
+      alert("There was an issue sending your assessment. Please try calling us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -100,7 +168,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-        {/* Dark frosted glass backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -109,7 +176,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
           className="absolute inset-0 bg-[#0A1128]/80 backdrop-blur-md"
         />
 
-        {/* Modal Container */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -149,6 +215,7 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
           <div className="p-6 md:p-10 overflow-y-auto custom-scrollbar">
             <AnimatePresence mode="wait">
               {!isComplete ? (
+                /* QUESTION SCREEN */
                 <motion.div
                   key={step}
                   initial={{ opacity: 0, x: 20 }}
@@ -164,7 +231,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
                     {questions[step].title}
                   </h2>
 
-                  {/* Standard Options */}
                   {questions[step].type !== "scale" ? (
                     <div className="grid gap-3">
                       {questions[step].options.map((option) => (
@@ -187,7 +253,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
                       ))}
                     </div>
                   ) : (
-                    /* Scale Options (0-10) */
                     <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-3">
                       {questions[step].options.map((num) => (
                         <button
@@ -211,29 +276,99 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
                     </p>
                   )}
                 </motion.div>
-              ) : (
-                /* Completion Screen */
+              ) : !isSubmitted ? (
+                /* FORM SCREEN */
                 <motion.div
-                  key="complete"
+                  key="form"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-8"
+                  className="py-4"
                 >
-                  <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <FaCheckCircle className="text-green-500 text-4xl" />
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">
+                      Assessment Complete
+                    </h2>
+                    <p className="text-slate-600 font-inter leading-relaxed max-w-md mx-auto">
+                      Based on your answers, you are an excellent candidate for treatment. Enter your details below so our doctor can review your profile.
+                    </p>
                   </div>
-                  <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">
-                    Assessment Complete
-                  </h2>
-                  <p className="text-slate-600 font-inter text-lg leading-relaxed mb-8 max-w-md mx-auto">
-                    Thank you. Based on your profile, you are an excellent candidate for a clinical consultation. Our GMC-registered doctor will review these details to build your bespoke treatment plan.
-                  </p>
-                  <button
-                    onClick={handleFinalSubmit}
-                    className="px-10 py-4 w-full sm:w-auto bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold font-inter transition-all duration-300 shadow-xl shadow-[#4041d1]/20 active:scale-95 text-lg"
+
+                  <form onSubmit={handleFinalSubmit} className="max-w-md mx-auto space-y-4">
+                    <div className="relative">
+                      <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                      <input 
+                        type="text" 
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Full Name" 
+                        className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#4041d1] focus:border-[#4041d1] outline-none transition-all font-inter text-slate-900"
+                      />
+                    </div>
+                    <div className="relative">
+                      <FaPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                      <input 
+                        type="tel" 
+                        name="phone"
+                        required
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="Phone Number" 
+                        className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#4041d1] focus:border-[#4041d1] outline-none transition-all font-inter text-slate-900"
+                      />
+                    </div>
+                    <div className="relative">
+                      <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                      <input 
+                        type="email" 
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Email Address" 
+                        className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#4041d1] focus:border-[#4041d1] outline-none transition-all font-inter text-slate-900"
+                      />
+                    </div>
+                    
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="mt-6 w-full py-4 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold font-inter transition-all duration-300 shadow-xl shadow-[#4041d1]/20 active:scale-95 text-lg disabled:opacity-70 disabled:active:scale-100 flex justify-center items-center"
+                    >
+                      {isSubmitting ? (
+                        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        "Submit to Doctor"
+                      )}
+                    </button>
+                    <p className="text-center text-xs text-slate-400 mt-4 font-inter">
+                      Your details are strictly confidential and completely secure.
+                    </p>
+                  </form>
+                </motion.div>
+              ) : (
+                /* SUCCESS SCREEN */
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center py-12"
+                >
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6"
                   >
-                    Secure My Consultation
-                  </button>
+                    <FaCheckCircle className="text-green-500 text-5xl" />
+                  </motion.div>
+                  <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">
+                    Request Received
+                  </h2>
+                  <p className="text-slate-600 font-inter text-lg leading-relaxed mb-8 max-w-sm mx-auto">
+                    Thank you, {formData.name.split(' ')[0]}. Our clinical team will review your assessment and be in touch shortly.
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
