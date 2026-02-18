@@ -164,8 +164,8 @@ export default function PersonalisedEDMedicationClient({
       {/* --- HERO SECTION --- */}
       <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-end justify-center bg-black">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/60 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-10" />
           <img
             src="/personalised-meds-hero.webp"
             alt="Personalised erectile dysfunction medication consultation"
