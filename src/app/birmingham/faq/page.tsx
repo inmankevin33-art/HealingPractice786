@@ -14,18 +14,40 @@ export const metadata: Metadata = {
   },
 
   // 2. Added Regional Keywords
-  keywords: [
+ keywords: [
+    // Your strong original local & trust keywords
     "PRP treatment FAQ Birmingham",
-    "Is PRP safe for joints",
-    "P-Shot results Birmingham",
-    "PRP hair loss questions West Midlands",
     "Edgbaston medical quarter PRP clinic",
-    "Joint injection recovery time Solihull",
+    "GMC registered doctor Edgbaston",
     "Private PRP doctor Wolverhampton",
-    "O-Shot safety Sutton Coldfield",
     "Healing-PRP Birmingham parking",
-    "GMC registered doctor Edgbaston"
+    
+    // NEW: High-intent FAQ searches (Cost & Comparisons)
+    "PRP treatment cost Birmingham", 
+    "PRP vs steroid injection knee",
+    "How much is the P-Shot UK",
+    
+    // NEW: Missing treatments explicitly mentioned in your text/site
+    "Exosome therapy West Midlands",
+    "Polynucleotides Birmingham",
+    
+    // Your original highly-targeted treatment questions
+    "Is PRP safe for joints",
+    "Joint injection recovery time Solihull",
+    "P-Shot results Birmingham",
+    "O-Shot safety Sutton Coldfield",
+    "PRP hair loss questions West Midlands"
   ],
+  
+  // 3. Added OpenGraph for consistent social/message sharing
+  openGraph: {
+    title: "PRP & Regenerative Medicine FAQs | Birmingham",
+    description: "Doctor-led answers for Hair, Joints, and Sexual Wellness treatments in Edgbaston and the West Midlands.",
+    url: "https://www.healing-prp.co.uk/birmingham/faq",
+    siteName: "Healing-PRP Clinics",
+    locale: "en_GB",
+    type: "website",
+  },
 };
 
 export default function BirminghamFaqPage() {
@@ -80,7 +102,8 @@ export default function BirminghamFaqPage() {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer,
+        // The crucial regex fix to strip markdown links for Google's schema parser!
+        "text": faq.answer.replace(/\[(.*?)\]\((.*?)\)/g, '$1'),
       },
     })),
   };
