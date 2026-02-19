@@ -59,14 +59,14 @@ export default function BirminghamHomeClient() {
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-[#0a1128]">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/mobilehero.png" 
+            src="/mobilehero.webp" 
             alt="Birmingham Clinic Hero" 
             className="absolute inset-0 w-full h-full object-cover sm:hidden opacity-60"
             // @ts-expect-error - fetchpriority supported by browsers
             fetchpriority="high"
           />
           <img 
-            src="/herobg.jpg" 
+            src="/herobg.webp" 
             alt="Birmingham Clinic Hero" 
             className="absolute inset-0 w-full h-full object-cover hidden sm:block opacity-60"
             // @ts-expect-error - fetchpriority supported by browsers
