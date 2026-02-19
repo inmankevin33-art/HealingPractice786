@@ -90,7 +90,8 @@ export default function MainFaqPage() {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer,
+        // This regex perfectly strips out the markdown links, feeding Google pure, clean text
+        "text": faq.answer.replace(/\[(.*?)\]\((.*?)\)/g, '$1'),
       },
     })),
   };
