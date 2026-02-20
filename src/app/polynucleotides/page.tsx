@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     "Ameela eyes St Albans",
     "Nucleofill treatment Luton",
     "PhilArt eyes Hertfordshire",
+    "Plinest polynucleotides St Albans", // <-- NEW
+    "Neauvia skin rejuvenation UK",      // <-- NEW
     
     // Problem/Solution (Long Tail)
     "Tear trough treatment without filler",
@@ -67,7 +69,8 @@ const polynucleotidesSchema = [
     "@context": "https://schema.org",
     "@type": "MedicalTherapy",
     "name": "Polynucleotide Treatment (DNA Glow)",
-    "alternateName": ["Ameela", "Nucleofill", "PhilArt", "Salmon DNA Facial", "Biostimulator Therapy"],
+    // Added Plinest and Neauvia right into the schema array!
+    "alternateName": ["Ameela", "Nucleofill", "PhilArt", "Plinest", "Neauvia", "Salmon DNA Facial", "Biostimulator Therapy"],
     "description": "An advanced regenerative biostimulator treatment using polymerized polynucleotides to stimulate fibroblasts, increase collagen production, and naturally rejuvenate skin, particularly around the tear troughs and eyes.",
     "relevantSpecialty": {
       "@type": "MedicalSpecialty",
