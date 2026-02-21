@@ -183,8 +183,8 @@ export default function SexualHealthClient({
       {/* --- HERO SECTION (Dark Premium) --- */}
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/60 z-10" /> 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
+          <div className="absolute inset-0 bg-black/50 z-10" /> 
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90 z-10" />
           <Image
             src="/personalised-meds-hero.webp"
             alt="Sexual Rejuvenation Background"
@@ -194,36 +194,29 @@ export default function SexualHealthClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-20">
-          <motion.div 
+        {/* Pushed down with pt-32 md:pt-48 to frame the doctor's face perfectly */}
+        <div className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 md:pt-48 pb-16">
+          
+          <motion.h1 
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-flex gap-1 px-4 py-2 bg-white/10 text-blue-100 border border-white/20 rounded-full text-xs font-inter font-bold mb-6 uppercase tracking-wider backdrop-blur-sm"
+            className="md:text-[2.75rem] lg:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight drop-shadow-lg"
           >
-            GMC‑registered | CE‑marked equipment <span className="hidden md:block">| Confidential</span>
-          </motion.div>
-
-          <motion.h1 
-            custom={2}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
-          >
-            Sexual Rejuvenation & Natural Regeneration in {locationName}
-            <span className="block mt-2 text-white/90">
+            <span className="md:whitespace-nowrap">Sexual Rejuvenation & Natural Regeneration</span> <br className="hidden md:block" />
+            in {locationName}
+            <span className="block mt-3 text-white/90 text-2xl md:text-3xl font-medium drop-shadow-md">
               Healing-PRP Clinics
             </span>
           </motion.h1>
 
           <motion.p 
-            custom={3}
+            custom={2}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-4 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-3xl mx-auto mb-8"
+            className="mt-6 text-sm md:text-base text-white/90 font-inter leading-relaxed max-w-3xl mx-auto mb-8 drop-shadow"
           >
             Patient-centred, non-surgical solutions to support confidence,
             sensitivity and intimacy — delivered by a fully insured,
@@ -231,7 +224,7 @@ export default function SexualHealthClient({
           </motion.p>
 
           <motion.div 
-            custom={4}
+            custom={3}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -252,7 +245,7 @@ export default function SexualHealthClient({
           </motion.div>
 
           <motion.div 
-            custom={5}
+            custom={4}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -360,7 +353,6 @@ export default function SexualHealthClient({
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
               className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] border border-white/10 relative overflow-hidden shadow-xl"
             >
-              {/* Graphic Elements inside the card */}
               <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl pointer-events-none" />
               <FaHeartbeat className="absolute -bottom-10 -right-10 text-[15rem] text-white opacity-5 pointer-events-none transform -rotate-12" />
               
