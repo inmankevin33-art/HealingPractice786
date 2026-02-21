@@ -19,7 +19,8 @@ import {
   FaCheckCircle,
   FaUserMd,
   FaLeaf,
-  FaPills
+  FaPills,
+  FaChevronDown
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -37,6 +38,7 @@ export default function SexualHealthClient({
 }: SexualHealthClientProps) {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
 
   // --- DYNAMIC LINKS BASED ON LOCATION ---
   const isBirmingham = locationName === "Birmingham";
@@ -83,7 +85,7 @@ export default function SexualHealthClient({
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // --- NEW BIG CARDS DATA ---
+  // --- TREATMENT CARDS DATA ---
   const treatmentCards = [
     {
       title: "Erectile Dysfunction",
@@ -159,27 +161,103 @@ export default function SexualHealthClient({
     }
   ];
 
+  // --- SEO RICH FAQS ---
   const faqs = [
     {
-      question: "Are these treatments safe?",
-      answer: "Absolutely. Treatments like the P-Shot and O-Shot use autologous PRP (derived from your own blood), meaning the risk of allergic reaction is exceptionally low. All procedures are carried out by GMC-registered doctors using CE-marked medical equipment.",
+      question: "Are PRP and regenerative sexual treatments safe?",
+      answer: "Yes. PRP, shockwave therapy, the P-Shot and O-Shot are considered safe. PRP uses your own blood, reducing allergy risk, and all procedures are performed by trained clinicians."
     },
     {
       question: "Will my consultation be strictly confidential?",
-      answer: "Yes. We operate a strictly 1:1, highly discreet clinic environment. Your privacy is our absolute priority, and no information is shared without your explicit consent.",
+      answer: "Yes. All consultations are private, one-to-one, and conducted discreetly by a doctor. No information is ever shared without your consent."
     },
     {
-      question: "How long do regenerative treatments take to work?",
-      answer: "Regenerative medicine relies on tissue healing and vascular repair, which takes time. While some patients notice early changes within weeks, optimal results usually develop over 2 to 3 months as new collagen and blood vessels form.",
+      question: "How long do regenerative sexual treatments take to work?",
+      answer: "Some patients notice early changes within weeks, but optimal results develop over 8–12 weeks as blood flow, nerves and tissue naturally regenerate."
     },
     {
       question: "Do I need a GP referral?",
-      answer: "No, you do not need a GP referral to book a consultation with our specialists.",
+      answer: "No. You may book directly for assessment and treatment of ED, premature ejaculation, Peyronie’s disease or vaginal rejuvenation without needing a referral."
     },
+    {
+      question: "Who can benefit from PRP treatment?",
+      answer: "Men and women with reduced sensitivity, erectile issues, vaginal dryness, pelvic trauma or age-related tissue decline may benefit, as PRP supports natural healing and function."
+    },
+    {
+      question: "What is PRP sexual rejuvenation?",
+      answer: "PRP sexual rejuvenation uses concentrated growth factors from your own blood to improve blood flow, sensitivity, lubrication and natural sexual performance."
+    },
+    {
+      question: "Is PRP safe for sexual rejuvenation?",
+      answer: "Yes. PRP is very safe because it is autologous, meaning it comes from your own blood. Side effects are mild and short-lived."
+    },
+    {
+      question: "What are the benefits of the P-Shot?",
+      answer: "The P-Shot may enhance erection strength, sensitivity and circulation by delivering PRP into penile tissue to support natural erectile function."
+    },
+    {
+      question: "Are there any P-Shot side effects?",
+      answer: "Side effects are mild, such as temporary swelling or tenderness. Allergic reactions are extremely rare because PRP comes from your own blood."
+    },
+    {
+      question: "How long does the O-Shot last?",
+      answer: "Many women notice benefits for 12–18 months, including improved lubrication, sensitivity and sexual comfort. Duration varies between individuals."
+    },
+    {
+      question: "What is vaginal rejuvenation without surgery?",
+      answer: "Non-surgical vaginal rejuvenation uses PRP or energy-based treatments to improve lubrication, sensitivity, tissue health and comfort without downtime or invasive procedures."
+    },
+    {
+      question: "What is a natural treatment for erectile dysfunction?",
+      answer: "PRP and shockwave therapy are natural ED treatments that stimulate blood-flow regeneration and tissue repair, addressing the root causes rather than relying on tablets."
+    },
+    {
+      question: "Is shockwave therapy effective for erectile dysfunction?",
+      answer: "Shockwave therapy promotes new blood vessel growth in erectile tissue and can improve circulation. Many patients see benefits after a structured treatment course."
+    },
+    {
+      question: "What are natural alternatives to Viagra or Cialis?",
+      answer: "PRP and shockwave therapy offer non-medication alternatives by improving vascular health and supporting spontaneous erections without reliance on tablets."
+    },
+    {
+      question: "Can premature ejaculation be treated naturally?",
+      answer: "Yes. Techniques, topical therapies and PRP to support nerve balance can help improve timing, sensitivity control and confidence."
+    },
+    {
+      question: "What is a non-surgical treatment for Peyronie’s disease?",
+      answer: "PRP and shockwave therapy may help soften plaque, reduce discomfort and support curvature improvement without requiring invasive surgery."
+    },
+    {
+      question: "Is this a private sexual health clinic?",
+      answer: "Yes. We operate as a discreet, doctor-led private clinic offering confidential assessments and personalised regenerative treatment plans."
+    }
   ];
+
+  // Slice FAQs based on state
+  const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
+
+  // --- JSON-LD FAQ SCHEMA ---
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  };
 
   return (
     <>
+      {/* --- INJECT SEO SCHEMA --- */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* --- HERO SECTION (Dark Premium) --- */}
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
@@ -368,7 +446,7 @@ export default function SexualHealthClient({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <motion.div 
                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-                className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors"
+                className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-center"
               >
                 <FaLeaf className="absolute -top-8 -right-8 text-[10rem] text-white opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
                 <h3 className="text-xl font-raleway font-bold text-blue-100 mb-4 flex items-center justify-center gap-3 relative z-10">
@@ -381,7 +459,7 @@ export default function SexualHealthClient({
 
               <motion.div 
                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-                className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors"
+                className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-center"
               >
                 <FaDna className="absolute -bottom-8 -right-8 text-[10rem] text-white opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
                 <h3 className="text-xl font-raleway font-bold text-blue-100 mb-4 flex items-center justify-center gap-3 relative z-10">
@@ -396,7 +474,7 @@ export default function SexualHealthClient({
             {/* Paragraph 4: Our Approach (Dark Premium Box with Blue Glow) */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-              className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] border border-[#4041d1]/30 shadow-[0_0_40px_rgba(64,65,209,0.1)] relative overflow-hidden"
+              className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] border border-[#4041d1]/30 shadow-[0_0_40px_rgba(64,65,209,0.1)] relative overflow-hidden flex flex-col justify-center"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#4041d1]/10 to-transparent pointer-events-none" />
               <FaUserMd className="absolute top-10 right-10 text-[8rem] text-white opacity-5 pointer-events-none" />
@@ -432,7 +510,7 @@ export default function SexualHealthClient({
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="bg-[#0f172a] rounded-[2rem] p-8 md:p-10 border border-slate-800 shadow-xl hover:shadow-2xl hover:border-[#4041d1]/50 transition-all duration-300 flex flex-col h-full group relative overflow-hidden"
               >
                 {/* Subtle hover gradient inside card */}
@@ -532,7 +610,7 @@ export default function SexualHealthClient({
         </div>
       </section>
 
-      {/* --- FAQs Section --- */}
+      {/* --- FAQs Section with Show More functionality --- */}
       <section id="faqs" className="py-20 lg:py-28 bg-white border-t border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -543,7 +621,7 @@ export default function SexualHealthClient({
           </div>
           
           <div className="space-y-4">
-            {faqs.map((faq, index) => (
+            {displayedFaqs.map((faq, index) => (
               <div key={index} className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
                 <button
                   className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-100 transition-colors duration-300"
@@ -575,6 +653,20 @@ export default function SexualHealthClient({
               </div>
             ))}
           </div>
+
+          {/* Toggle All FAQs Button */}
+          {faqs.length > 5 && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setShowAllFaqs(!showAllFaqs)}
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 rounded-xl font-inter font-bold transition-all duration-300"
+              >
+                {showAllFaqs ? "Show Less FAQs" : "View All FAQs"}
+                <FaChevronDown className={`w-3 h-3 transition-transform duration-300 ${showAllFaqs ? "rotate-180" : ""}`} />
+              </button>
+            </div>
+          )}
+
         </div>
       </section>
 
