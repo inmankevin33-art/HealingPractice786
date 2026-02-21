@@ -18,7 +18,8 @@ import {
   FaShieldAlt,
   FaCheckCircle,
   FaUserMd,
-  FaLeaf
+  FaLeaf,
+  FaPills
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -45,6 +46,7 @@ export default function SexualHealthClient({
   const peUrl = isBirmingham ? "/birmingham/premature-ejaculation" : "/premature-ejaculation";
   const peyroniesUrl = isBirmingham ? "/birmingham/peyronies-disease" : "/peyronies-disease";
   const oShotUrl = isBirmingham ? "/birmingham/o-shot" : "/o-shot"; 
+  const medsUrl = isBirmingham ? "/birmingham/personalised-medications" : "/personalised-medications";
   const pricesUrl = isBirmingham ? "/birmingham/prices" : "/prices";
 
   // Determine nearby areas text based on location
@@ -142,6 +144,18 @@ export default function SexualHealthClient({
       ],
       link: oShotUrl,
       icon: FaSyringe
+    },
+    {
+      title: "Personalised Medications",
+      category: "Men's Health",
+      description: "Custom-tailored prescription treatments designed to address your specific symptoms, from climax control to performance enhancement.",
+      bullets: [
+        "Doctor-prescribed custom formulations",
+        "Targeted symptom management",
+        "Discreet consultation and guidance"
+      ],
+      link: medsUrl,
+      icon: FaPills
     }
   ];
 
@@ -172,7 +186,7 @@ export default function SexualHealthClient({
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
           <Image
-            src="/hero_img.png"
+            src="/personalised-meds-hero.webp"
             alt="Sexual Rejuvenation Background"
             fill
             className="object-cover"
