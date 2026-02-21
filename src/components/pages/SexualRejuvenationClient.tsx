@@ -16,7 +16,9 @@ import {
   FaDna,
   FaSyringe,
   FaShieldAlt,
-  FaCheckCircle
+  FaCheckCircle,
+  FaUserMd,
+  FaLeaf
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -317,9 +319,9 @@ export default function SexualHealthClient({
         </div>
       </div>
 
-      {/* --- EDUCATION: A MEDICAL APPROACH --- */}
-      <section className="py-20 lg:py-28 bg-white border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* --- EDUCATION: DYNAMIC GRAPHIC CARDS --- */}
+      <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -339,50 +341,64 @@ export default function SexualHealthClient({
           </motion.div>
 
           <div className="space-y-8">
-            {/* Paragraph 1: What is it? (Wide Box) */}
+            {/* Paragraph 1: What is it? (Wide Dark Box with Dynamic Graphics) */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-              className="bg-blue-50/50 p-8 md:p-10 rounded-[2rem] border border-blue-100"
+              className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] border border-white/10 relative overflow-hidden shadow-xl"
             >
-              <h3 className="text-xl md:text-2xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-3">
-                <FaHeartbeat className="text-[#4041d1]" /> What is sexual rejuvenation?
+              {/* Graphic Elements inside the card */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl pointer-events-none" />
+              <FaHeartbeat className="absolute -bottom-10 -right-10 text-[15rem] text-white opacity-5 pointer-events-none transform -rotate-12" />
+              
+              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-6 flex items-center gap-4 relative z-10">
+                <div className="p-3 bg-[#4041d1]/20 rounded-xl border border-[#4041d1]/30">
+                  <FaHeartbeat className="text-[#4041d1] text-xl" />
+                </div> 
+                What is sexual rejuvenation?
               </h3>
-              <p className="text-base md:text-lg font-inter text-slate-700 leading-relaxed">
+              <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed relative z-10 max-w-4xl">
                 Sexual rejuvenation refers to a range of evidence-based, regenerative treatments that support the natural function of sexual tissues. These therapies focus on improving blood flow, nerve signalling, sensitivity, lubrication, and overall performance — not through artificial stimulation, but by promoting the body’s own healing and repair processes.
               </p>
             </motion.div>
 
-            {/* Paragraph 2 & 3: Why it matters & Healthy Life (2 Columns) */}
+            {/* Paragraph 2 & 3: Why it matters & Healthy Life (2 Columns, Slate-900 Cards) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <motion.div 
                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-                className="bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm"
+                className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors"
               >
-                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-4">Why it matters</h3>
-                <p className="text-base font-inter text-slate-600 leading-relaxed">
+                <FaLeaf className="absolute -top-8 -right-8 text-[10rem] text-white opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+                <h3 className="text-xl font-raleway font-bold text-blue-100 mb-4 flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[#4041d1]" /> Why it matters
+                </h3>
+                <p className="text-sm md:text-base font-inter text-slate-400 leading-relaxed relative z-10">
                   Changes in sexual function are extremely common and can occur due to ageing, hormonal shifts, vascular decline, childbirth, stress, illness, medication, or lifestyle factors. While many people feel embarrassed to speak about these issues, they have a significant impact on confidence, emotional wellbeing, relationships, and overall quality of life. Addressing these concerns early helps prevent long-term decline and supports healthier ageing.
                 </p>
               </motion.div>
 
               <motion.div 
                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-                className="bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm"
+                className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors"
               >
-                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-4">The role of a healthy sexual life</h3>
-                <p className="text-base font-inter text-slate-600 leading-relaxed">
+                <FaDna className="absolute -bottom-8 -right-8 text-[10rem] text-white opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+                <h3 className="text-xl font-raleway font-bold text-blue-100 mb-4 flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[#4041d1]" /> The role of a healthy sexual life
+                </h3>
+                <p className="text-sm md:text-base font-inter text-slate-400 leading-relaxed relative z-10">
                   A fulfilling sexual life is medically linked to lower stress levels, improved cardiovascular health, hormone balance, immune function, better sleep quality, and stronger emotional connection with partners. For many, rejuvenation can restore not only physical function but also self-esteem and psychological wellbeing.
                 </p>
               </motion.div>
             </div>
 
-            {/* Paragraph 4: Our Approach (Dark Premium Box) */}
+            {/* Paragraph 4: Our Approach (Dark Premium Box with Blue Glow) */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-              className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] shadow-xl relative overflow-hidden"
+              className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] border border-[#4041d1]/30 shadow-[0_0_40px_rgba(64,65,209,0.1)] relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/30 rounded-full blur-3xl pointer-events-none transform-gpu" />
-              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-4 relative z-10">
-                Your clinic’s patient-centred approach
+              <div className="absolute inset-0 bg-gradient-to-r from-[#4041d1]/10 to-transparent pointer-events-none" />
+              <FaUserMd className="absolute top-10 right-10 text-[8rem] text-white opacity-5 pointer-events-none" />
+              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-4 relative z-10 flex items-center gap-3">
+                <FaCheckCircle className="text-[#4041d1] text-xl" /> Our clinic’s patient-centred approach
               </h3>
               <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed relative z-10 max-w-4xl">
                 At Healing-PRP Clinics, we take a comprehensive, non-judgemental approach to sexual wellness. Every patient receives a private, 1:1 medical consultation to understand the underlying causes of their symptoms. We focus on long-term regenerative improvement — not temporary quick fixes — using advanced PRP, Exosome, and shockwave technologies to encourage real tissue repair, vascular restoration, and improved natural performance.
@@ -392,8 +408,8 @@ export default function SexualHealthClient({
         </div>
       </section>
 
-      {/* --- BIG CARDS: TREATMENT PATHWAYS --- */}
-      <section className="py-24 bg-slate-50 relative border-b border-slate-200">
+      {/* --- BIG CARDS: TREATMENT PATHWAYS (Dark Theme) --- */}
+      <section className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -405,7 +421,7 @@ export default function SexualHealthClient({
             </p>
           </div>
 
-          {/* 2-Column Grid for Big Cards */}
+          {/* 2-Column Grid for Big Dark Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {treatmentCards.map((card, idx) => (
               <motion.div
@@ -414,34 +430,37 @@ export default function SexualHealthClient({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-[2rem] p-8 md:p-10 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#4041d1]/30 transition-all duration-300 flex flex-col h-full group"
+                className="bg-[#0f172a] rounded-[2rem] p-8 md:p-10 border border-slate-800 shadow-xl hover:shadow-2xl hover:border-[#4041d1]/50 transition-all duration-300 flex flex-col h-full group relative overflow-hidden"
               >
+                {/* Subtle hover gradient inside card */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#4041d1]/0 via-transparent to-[#4041d1]/0 group-hover:from-[#4041d1]/10 transition-colors duration-500 pointer-events-none"></div>
+
                 {/* Card Header */}
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 bg-[#4041d1]/10 text-[#4041d1] rounded-2xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <div className="flex items-center gap-4 mb-6 relative z-10">
+                  <div className="w-14 h-14 bg-[#4041d1]/20 text-[#4041d1] rounded-2xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <card.icon />
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#4041d1] block mb-1">
                       {card.category}
                     </span>
-                    <h4 className="text-2xl font-raleway font-bold text-slate-900 group-hover:text-[#4041d1] transition-colors">
+                    <h4 className="text-2xl font-raleway font-bold text-white">
                       {card.title}
                     </h4>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-slate-600 font-inter text-sm md:text-base leading-relaxed mb-8">
+                <p className="text-slate-400 font-inter text-sm md:text-base leading-relaxed mb-8 relative z-10">
                   {card.description}
                 </p>
 
                 {/* Bullet Points */}
-                <ul className="space-y-4 mb-10 flex-grow">
+                <ul className="space-y-4 mb-10 flex-grow relative z-10">
                   {card.bullets.map((bullet, bIdx) => (
                     <li key={bIdx} className="flex items-start gap-3">
                       <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                      <span className="text-slate-700 text-sm font-medium">{bullet}</span>
+                      <span className="text-slate-300 text-sm font-medium">{bullet}</span>
                     </li>
                   ))}
                 </ul>
@@ -449,7 +468,7 @@ export default function SexualHealthClient({
                 {/* Card CTA */}
                 <Link
                   href={card.link}
-                  className="w-full py-4 px-6 bg-slate-50 hover:bg-[#4041d1] text-slate-900 hover:text-white border border-slate-200 hover:border-[#4041d1] rounded-xl font-inter font-bold text-center transition-all duration-300 flex items-center justify-center gap-2 group/btn"
+                  className="w-full py-4 px-6 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold text-center transition-all duration-300 flex items-center justify-center gap-2 relative z-10 group/btn shadow-lg shadow-[#4041d1]/20"
                 >
                   Explore Treatment <FaArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Link>
@@ -462,7 +481,7 @@ export default function SexualHealthClient({
       </section>
 
       {/* --- THE SCIENCE: HOW REGENERATION WORKS --- */}
-      <section className="py-20 lg:py-28 bg-[#0A1128] text-white relative overflow-hidden">
+      <section className="py-20 lg:py-28 bg-[#0A1128] text-white relative overflow-hidden border-t border-white/5">
         {/* Background glow */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />
         
