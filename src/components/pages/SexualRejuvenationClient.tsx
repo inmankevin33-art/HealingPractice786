@@ -50,6 +50,7 @@ export default function SexualHealthClient({
   const oShotUrl = isBirmingham ? "/birmingham/o-shot" : "/o-shot"; 
   const medsUrl = isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication";
   const pricesUrl = isBirmingham ? "/birmingham/prices" : "/prices";
+  const faqUrl = isBirmingham ? "/birmingham/faq" : "/faq";
 
   // Determine nearby areas text based on location
   const nearbyAreas = isBirmingham
@@ -250,6 +251,24 @@ export default function SexualHealthClient({
     })),
   };
 
+  // --- UNIFIED ACTION HANDLER ---
+  const handleAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    setTimeout(() => {
+      const section = document.getElementById("contact-form-section");
+      if (section) {
+        const headerOffset = 100;
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  };
+
   return (
     <>
       {/* --- INJECT SEO SCHEMA --- */}
@@ -306,12 +325,7 @@ export default function SexualHealthClient({
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <button 
-              onClick={(e) => {
-                e.preventDefault();
-                window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-                const section = document.getElementById("contact-form-section");
-                if (section) section.scrollIntoView({ behavior: "smooth" });
-              }}
+              onClick={handleAction}
               className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
             >
               <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" /> 
@@ -613,6 +627,31 @@ export default function SexualHealthClient({
       {/* --- FAQs Section with Show More functionality --- */}
       <section id="faqs" className="py-20 lg:py-28 bg-white border-t border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* --- ACTION BUTTONS ROW (From ED Page) --- */}
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full mb-16">
+            <button
+              onClick={handleAction}
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
+            >
+              <FaEnvelope className="w-4 h-4" /> Book Consultation
+            </button>
+
+            <Link
+              href={pricesUrl}
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20"
+            >
+              View Treatment Prices
+            </Link>
+            
+            <Link
+              href={faqUrl}
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
+            >
+              View Clinic FAQs
+            </Link>
+          </div>
+
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
               Common Questions
