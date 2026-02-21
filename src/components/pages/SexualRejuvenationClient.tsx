@@ -317,51 +317,83 @@ export default function SexualHealthClient({
         </div>
       </div>
 
-      {/* --- EDUCATION: BEYOND AESTHETICS --- */}
+      {/* --- EDUCATION: A MEDICAL APPROACH --- */}
       <section className="py-20 lg:py-28 bg-white border-b border-slate-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={containerVariants}
+            className="text-center mb-16 max-w-4xl mx-auto"
           >
             <motion.div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6" variants={itemVariants}>
-              The Importance of Sexual Wellness
+              Education & Philosophy
             </motion.div>
             <motion.h2
-              className="text-3xl lg:text-4xl font-raleway font-bold text-slate-900 mb-6 leading-tight"
+              className="text-3xl lg:text-5xl font-raleway font-bold text-slate-900 mb-8 leading-tight tracking-tight"
               variants={itemVariants}
             >
-              Beyond the Taboo: A Medical Approach to Intimacy
+              Sexual Rejuvenation: A Medical Approach to Intimacy & Wellbeing
             </motion.h2>
-            
-            <motion.p
-              className="text-lg font-inter text-slate-600 leading-relaxed mb-6"
-              variants={itemVariants}
-            >
-              Sexual health is a fundamental pillar of overall human health, emotional well-being, and relationship intimacy. Yet, for many, it remains a difficult topic to discuss.
-            </motion.p>
-            
-            <motion.p
-              className="text-base font-inter text-slate-600 leading-relaxed mb-6"
-              variants={itemVariants}
-            >
-              As we age, vascular changes, cellular aging, and hormonal shifts can naturally affect both performance and sensation. Erectile dysfunction, reduced sensitivity, and discomfort are incredibly common, but they are often accepted as an inevitable part of getting older.
-            </motion.p>
-
-            <motion.p
-              className="text-base font-inter text-slate-600 leading-relaxed mb-10"
-              variants={itemVariants}
-            >
-              At Healing-PRP Clinics, we believe in addressing these changes proactively. A healthy sexual life is linked to improved cardiovascular health, reduced stress, and deeper psychological well-being. Our goal is to move past temporary fixes and use advanced regenerative medicine to restore natural function and confidence.
-            </motion.p>
           </motion.div>
+
+          <div className="space-y-8">
+            {/* Paragraph 1: What is it? (Wide Box) */}
+            <motion.div 
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
+              className="bg-blue-50/50 p-8 md:p-10 rounded-[2rem] border border-blue-100"
+            >
+              <h3 className="text-xl md:text-2xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-3">
+                <FaHeartbeat className="text-[#4041d1]" /> What is sexual rejuvenation?
+              </h3>
+              <p className="text-base md:text-lg font-inter text-slate-700 leading-relaxed">
+                Sexual rejuvenation refers to a range of evidence-based, regenerative treatments that support the natural function of sexual tissues. These therapies focus on improving blood flow, nerve signalling, sensitivity, lubrication, and overall performance — not through artificial stimulation, but by promoting the body’s own healing and repair processes.
+              </p>
+            </motion.div>
+
+            {/* Paragraph 2 & 3: Why it matters & Healthy Life (2 Columns) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <motion.div 
+                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
+                className="bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm"
+              >
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-4">Why it matters</h3>
+                <p className="text-base font-inter text-slate-600 leading-relaxed">
+                  Changes in sexual function are extremely common and can occur due to ageing, hormonal shifts, vascular decline, childbirth, stress, illness, medication, or lifestyle factors. While many people feel embarrassed to speak about these issues, they have a significant impact on confidence, emotional wellbeing, relationships, and overall quality of life. Addressing these concerns early helps prevent long-term decline and supports healthier ageing.
+                </p>
+              </motion.div>
+
+              <motion.div 
+                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
+                className="bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm"
+              >
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-4">The role of a healthy sexual life</h3>
+                <p className="text-base font-inter text-slate-600 leading-relaxed">
+                  A fulfilling sexual life is medically linked to lower stress levels, improved cardiovascular health, hormone balance, immune function, better sleep quality, and stronger emotional connection with partners. For many, rejuvenation can restore not only physical function but also self-esteem and psychological wellbeing.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Paragraph 4: Our Approach (Dark Premium Box) */}
+            <motion.div 
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
+              className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] shadow-xl relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/30 rounded-full blur-3xl pointer-events-none transform-gpu" />
+              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-4 relative z-10">
+                Your clinic’s patient-centred approach
+              </h3>
+              <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed relative z-10 max-w-4xl">
+                At Healing-PRP Clinics, we take a comprehensive, non-judgemental approach to sexual wellness. Every patient receives a private, 1:1 medical consultation to understand the underlying causes of their symptoms. We focus on long-term regenerative improvement — not temporary quick fixes — using advanced PRP, Exosome, and shockwave technologies to encourage real tissue repair, vascular restoration, and improved natural performance.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* --- BIG CARDS: TREATMENT PATHWAYS --- */}
-      <section className="py-24 bg-slate-50 relative">
+      <section className="py-24 bg-slate-50 relative border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -432,7 +464,7 @@ export default function SexualHealthClient({
       {/* --- THE SCIENCE: HOW REGENERATION WORKS --- */}
       <section className="py-20 lg:py-28 bg-[#0A1128] text-white relative overflow-hidden">
         {/* Background glow */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />
         
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
