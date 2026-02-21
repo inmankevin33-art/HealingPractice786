@@ -202,13 +202,10 @@ export default function SexualHealthClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="md:text-[2.75rem] lg:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight drop-shadow-lg"
+            className="md:text-[2.75rem] lg:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight drop-shadow-lg"
           >
             <span className="md:whitespace-nowrap">Sexual Rejuvenation & Natural Regeneration</span> <br className="hidden md:block" />
             in {locationName}
-            <span className="block mt-3 text-white/90 text-2xl md:text-3xl font-medium drop-shadow-md">
-              Healing-PRP Clinics
-            </span>
           </motion.h1>
 
           <motion.p 
