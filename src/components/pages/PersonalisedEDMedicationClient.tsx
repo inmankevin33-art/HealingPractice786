@@ -31,6 +31,7 @@ import Image from "next/image";
 
 type SexualHealthClientProps = {
   locationName?: string;
+  servingAreas?: string; // <-- Add this line
 };
 
 export default function SexualHealthClient({
