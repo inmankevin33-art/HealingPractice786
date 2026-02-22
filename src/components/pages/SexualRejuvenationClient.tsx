@@ -86,7 +86,7 @@ export default function SexualHealthClient({
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // --- TREATMENT CARDS DATA ---
+  // --- NEW BIG CARDS DATA ---
   const treatmentCards = [
     {
       title: "Erectile Dysfunction",
@@ -432,7 +432,7 @@ export default function SexualHealthClient({
               className="text-3xl lg:text-5xl font-raleway font-bold text-slate-900 mb-8 leading-tight tracking-tight"
               variants={itemVariants}
             >
-              Sexual Rejuvenation: A Medical Approach to Intimacy & Wellbeing
+              A Medical Approach to Intimacy & Wellbeing
             </motion.h2>
           </motion.div>
 
