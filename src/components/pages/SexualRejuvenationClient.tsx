@@ -445,13 +445,13 @@ export default function SexualHealthClient({
               <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl pointer-events-none" />
               <FaHeartbeat className="absolute -bottom-10 -right-10 text-[15rem] text-white opacity-5 pointer-events-none transform -rotate-12" />
               
-              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-6 flex items-center justify-center gap-4 relative z-10">
+              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-6 flex items-center justify-center gap-4 relative z-10 text-white">
                 <div className="p-3 bg-[#4041d1]/20 rounded-xl border border-[#4041d1]/30">
                   <FaHeartbeat className="text-[#4041d1] text-xl" />
                 </div> 
                 What is sexual rejuvenation?
               </h3>
-              <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed text-center relative z-10 max-w-4xl mx-auto">
+              <p className="text-base md:text-lg font-inter text-slate-100 leading-relaxed text-center relative z-10 max-w-4xl mx-auto">
                 Sexual rejuvenation refers to a range of evidence-based, regenerative treatments that support the natural function of sexual tissues. These therapies focus on improving blood flow, nerve signalling, sensitivity, lubrication, and overall performance — not through artificial stimulation, but by promoting the body’s own healing and repair processes.
               </p>
             </motion.div>
@@ -463,10 +463,10 @@ export default function SexualHealthClient({
                 className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-center"
               >
                 <FaLeaf className="absolute -top-8 -right-8 text-[10rem] text-white opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-                <h3 className="text-xl font-raleway font-bold text-blue-100 mb-4 flex items-center justify-center gap-3 relative z-10">
+                <h3 className="text-xl font-raleway font-bold text-white mb-4 flex items-center justify-center gap-3 relative z-10">
                   <div className="w-2 h-2 rounded-full bg-[#4041d1]" /> Why it matters
                 </h3>
-                <p className="text-sm md:text-base font-inter text-slate-400 leading-relaxed text-center relative z-10">
+                <p className="text-sm md:text-base font-inter text-slate-100 leading-relaxed text-center relative z-10">
                   Changes in sexual function are extremely common and can occur due to ageing, hormonal shifts, vascular decline, childbirth, stress, illness, medication, or lifestyle factors. While many people feel embarrassed to speak about these issues, they have a significant impact on confidence, emotional wellbeing, relationships, and overall quality of life. Addressing these concerns early helps prevent long-term decline and supports healthier ageing.
                 </p>
               </motion.div>
@@ -476,10 +476,10 @@ export default function SexualHealthClient({
                 className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-center"
               >
                 <FaDna className="absolute -bottom-8 -right-8 text-[10rem] text-white opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-                <h3 className="text-xl font-raleway font-bold text-blue-100 mb-4 flex items-center justify-center gap-3 relative z-10">
+                <h3 className="text-xl font-raleway font-bold text-white mb-4 flex items-center justify-center gap-3 relative z-10">
                   <div className="w-2 h-2 rounded-full bg-[#4041d1]" /> The role of a healthy sexual life
                 </h3>
-                <p className="text-sm md:text-base font-inter text-slate-400 leading-relaxed text-center relative z-10">
+                <p className="text-sm md:text-base font-inter text-slate-100 leading-relaxed text-center relative z-10">
                   A fulfilling sexual life is medically linked to lower stress levels, improved cardiovascular health, hormone balance, immune function, better sleep quality, and stronger emotional connection with partners. For many, rejuvenation can restore not only physical function but also self-esteem and psychological wellbeing.
                 </p>
               </motion.div>
@@ -492,10 +492,10 @@ export default function SexualHealthClient({
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#4041d1]/10 to-transparent pointer-events-none" />
               <FaUserMd className="absolute top-10 right-10 text-[8rem] text-white opacity-5 pointer-events-none" />
-              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-4 relative z-10 flex items-center justify-center gap-3">
+              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-4 relative z-10 flex items-center justify-center gap-3 text-white">
                 <FaCheckCircle className="text-[#4041d1] text-xl" /> Our clinic’s patient-centred approach
               </h3>
-              <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed text-center relative z-10 max-w-4xl mx-auto">
+              <p className="text-base md:text-lg font-inter text-slate-100 leading-relaxed text-center relative z-10 max-w-4xl mx-auto">
                 At Healing-PRP Clinics, we take a comprehensive, non-judgemental approach to sexual wellness. Every patient receives a private, 1:1 medical consultation to understand the underlying causes of their symptoms. We focus on long-term regenerative improvement — not temporary quick fixes — using advanced PRP, Exosome, and shockwave technologies to encourage real tissue repair, vascular restoration, and improved natural performance.
               </p>
             </motion.div>
@@ -546,7 +546,7 @@ export default function SexualHealthClient({
                 </div>
 
                 {/* Description */}
-                <p className="text-slate-400 font-inter text-sm md:text-base leading-relaxed mb-8 relative z-10">
+                <p className="text-slate-200 font-inter text-sm md:text-base leading-relaxed mb-8 relative z-10">
                   {card.description}
                 </p>
 
@@ -555,7 +555,7 @@ export default function SexualHealthClient({
                   {card.bullets.map((bullet, bIdx) => (
                     <li key={bIdx} className="flex items-start gap-3">
                       <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                      <span className="text-slate-300 text-sm font-medium">{bullet}</span>
+                      <span className="text-slate-100 text-sm font-medium">{bullet}</span>
                     </li>
                   ))}
                 </ul>
@@ -585,7 +585,7 @@ export default function SexualHealthClient({
             <h2 className="text-3xl lg:text-4xl font-raleway font-bold mb-6">
               The Science of Regeneration
             </h2>
-            <p className="text-slate-300 text-lg leading-relaxed max-w-3xl mx-auto font-inter">
+            <p className="text-slate-200 text-lg leading-relaxed max-w-3xl mx-auto font-inter">
               We utilise advanced Platelet-Rich Plasma (PRP) and Exosome therapies to target the root causes of sexual dysfunction—not just mask the symptoms.
             </p>
           </div>
@@ -596,7 +596,7 @@ export default function SexualHealthClient({
                 <FaSyringe />
               </div>
               <h4 className="text-xl font-bold font-raleway mb-3">1. Autologous Healing</h4>
-              <p className="text-slate-400 text-sm leading-relaxed font-inter">
+              <p className="text-slate-200 text-sm leading-relaxed font-inter">
                 We draw a small sample of your own blood, eliminating the risk of allergic reactions or rejection.
               </p>
             </div>
@@ -606,7 +606,7 @@ export default function SexualHealthClient({
                 <FaDna />
               </div>
               <h4 className="text-xl font-bold font-raleway mb-3">2. Concentration</h4>
-              <p className="text-slate-400 text-sm leading-relaxed font-inter">
+              <p className="text-slate-200 text-sm leading-relaxed font-inter">
                 Using a medical centrifuge, we isolate the platelets, which contain hundreds of powerful growth factors and signaling proteins.
               </p>
             </div>
@@ -616,7 +616,7 @@ export default function SexualHealthClient({
                 <FaHeartbeat />
               </div>
               <h4 className="text-xl font-bold font-raleway mb-3">3. Angiogenesis</h4>
-              <p className="text-slate-400 text-sm leading-relaxed font-inter">
+              <p className="text-slate-200 text-sm leading-relaxed font-inter">
                 When injected into target areas, these factors stimulate the creation of new blood vessels (angiogenesis) and rejuvenate nerve pathways.
               </p>
             </div>
