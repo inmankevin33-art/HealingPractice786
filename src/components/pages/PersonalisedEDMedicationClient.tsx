@@ -1,62 +1,44 @@
 "use client";
 
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { useState, useEffect } from "react";
 import {
-  FaCheck,
   FaPlus,
   FaMinus,
-  FaEnvelope,
-  FaArrowRight,
-  FaGoogle,
-  FaStar,
-  FaLock,
-  FaMapMarkerAlt,
-  FaHeartbeat,
-  FaDna,
-  FaSyringe,
-  FaShieldAlt,
-  FaCheckCircle,
   FaUserMd,
-  FaLeaf,
+  FaPrescriptionBottleAlt,
+  FaHeartbeat,
+  FaBalanceScale,
+  FaCheckCircle,
+  FaEnvelope,
+  FaMapMarkerAlt,
   FaPills,
-  FaChevronDown
+  FaExclamationTriangle,
+  FaFileMedical,
+  FaHistory,
+  FaArrowRight
 } from "react-icons/fa";
+
+import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
-import LocationSection from "@/components/LocationSection";
-import TrustReviews from "@/components/TrustReviews";
-import Link from "next/link";
-import Image from "next/image";
+import OnlineAssessmentModal from "@/components/OnlineAssessmentModal";
 
-type SexualHealthClientProps = {
+interface PersonalisedEDMedicationProps {
   locationName?: string;
-  servingAreas?: string; // <-- Add this line
-};
+  servingAreas?: string;
+}
 
-export default function SexualHealthClient({
+export default function PersonalisedEDMedicationClient({
   locationName = "St Albans",
-}: SexualHealthClientProps) {
+  servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
+}: PersonalisedEDMedicationProps) {
+
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
+  const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showAllFaqs, setShowAllFaqs] = useState(false);
-
-  // --- DYNAMIC LINKS BASED ON LOCATION ---
-  const isBirmingham = locationName === "Birmingham";
-  
-  const pShotUrl = isBirmingham ? "/birmingham/p-shot" : "/p-shot";
-  const edUrl = isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction";
-  const peUrl = isBirmingham ? "/birmingham/premature-ejaculation" : "/premature-ejaculation";
-  const peyroniesUrl = isBirmingham ? "/birmingham/peyronies-disease" : "/peyronies-disease";
-  const oShotUrl = isBirmingham ? "/birmingham/o-shot" : "/o-shot"; 
-  const medsUrl = isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication";
-  const pricesUrl = isBirmingham ? "/birmingham/prices" : "/prices";
-  const faqUrl = isBirmingham ? "/birmingham/faq" : "/faq";
-
-  // Determine nearby areas text based on location
-  const nearbyAreas = isBirmingham
-    ? "Solihull, Edgbaston, Sutton Coldfield, and the West Midlands"
-    : "Harpenden, Watford, Welwyn Garden City, Hitchin, Luton, Hertford, and London";
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -66,8 +48,21 @@ export default function SexualHealthClient({
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
-  
-  // --- ANIMATION VARIANTS ---
+
+  const handleAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    setTimeout(() => {
+      const section = document.getElementById("contact-form-section");
+      if (section) {
+        const headerOffset = 100;
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      }
+    }, 100);
+  };
+
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
     visible: (i: number) => ({
@@ -87,250 +82,147 @@ export default function SexualHealthClient({
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // --- NEW BIG CARDS DATA ---
-  const treatmentCards = [
+  const candidates = [
     {
-      title: "Erectile Dysfunction",
-      category: "Men's Health",
-      description: "A comprehensive, doctor-led approach focusing on vascular restoration and long-term tissue health rather than temporary medication.",
-      bullets: [
-        "In-depth medical and lifestyle assessment",
-        "Low-Intensity Shockwave Therapy (LiSWT)",
-        "Focuses on natural vascular regeneration"
-      ],
-      link: edUrl,
-      icon: FaHeartbeat
+      title: "Limited Response to Standard Tablets",
+      description: "Inadequate or inconsistent results despite appropriate use.",
+      icon: FaPills,
+      color: "bg-rose-50 text-rose-600",
     },
     {
-      title: "The P-Shot® (Priapus Shot)",
-      category: "Men's Health",
-      description: "Advanced Platelet-Rich Plasma (PRP) therapy designed to rejuvenate penile tissue, support firmness, and enhance sensitivity.",
-      bullets: [
-        "Uses your own body's natural growth factors",
-        "Aims to improve erection strength & stamina",
-        "Exomine® (Advanced Exosome) options available"
-      ],
-      link: pShotUrl,
-      icon: FaSyringe
+      title: "Dose-Limiting Side Effects",
+      description: "Flushing, headache or intolerance preventing dose escalation.",
+      icon: FaExclamationTriangle,
+      color: "bg-amber-50 text-amber-600",
     },
     {
-      title: "Premature Ejaculation",
-      category: "Men's Health",
-      description: "Medical management for hypersensitivity and climax control, helping you regain confidence and extend intimacy.",
-      bullets: [
-        "Custom topical treatments & medication",
-        "Neurochemical and sensitivity balancing",
-        "Behavioural technique guidance"
-      ],
-      link: peUrl,
-      icon: FaShieldAlt
+      title: "Complex Medical Profile",
+      description: "Diabetes, hypertension or multiple medications affecting response.",
+      icon: FaFileMedical,
+      color: "bg-indigo-50 text-indigo-600",
     },
     {
-      title: "Peyronie's Disease",
-      category: "Men's Health",
-      description: "Targeted regenerative treatments aiming to support plaque remodelling, reduce curvature, and relieve discomfort.",
-      bullets: [
-        "Combined PRP and Shockwave protocols",
-        "Supports breakdown of fibrous scar tissue",
-        "Non-surgical intervention"
-      ],
-      link: peyroniesUrl,
-      icon: FaDna
+      title: "Previous PDE5 Inhibitor Use",
+      description: "Suboptimal outcome despite correct timing and dosing.",
+      icon: FaHistory,
+      color: "bg-teal-50 text-teal-600",
     },
-    {
-      title: "The O-Shot®",
-      category: "Female Rejuvenation",
-      description: "A natural, PRP-based treatment to support vaginal health, improve natural lubrication, and enhance sexual sensation.",
-      bullets: [
-        "Highly effective for post-menopausal dryness",
-        "Helps reduce stress urinary incontinence",
-        "Enhances overall sensitivity and comfort"
-      ],
-      link: oShotUrl,
-      icon: FaSyringe
-    },
-    {
-      title: "Personalised Medications",
-      category: "Men's Health",
-      description: "Custom-tailored prescription treatments designed to address your specific symptoms, from climax control to performance enhancement.",
-      bullets: [
-        "Doctor-prescribed custom formulations",
-        "Targeted symptom management",
-        "Discreet consultation and guidance"
-      ],
-      link: medsUrl,
-      icon: FaPills
-    }
   ];
 
-  // --- SEO RICH FAQS ---
+  const protocolSteps = [
+    {
+      number: 1,
+      icon: FaUserMd,
+      title: "Comprehensive Assessment",
+      description: "Full cardiovascular, medication and lifestyle review to determine suitability.",
+    },
+    {
+      number: 2,
+      icon: FaHeartbeat,
+      title: "Pharmacological Review",
+      description: "Assessment of prior dosing response, tolerability and therapeutic targets.",
+    },
+    {
+      number: 3,
+      icon: FaPrescriptionBottleAlt,
+      title: "Personalised Formulation",
+      description: "Custom-formulated prescription medication where clinically appropriate.",
+    },
+    {
+      number: 4,
+      icon: FaBalanceScale,
+      title: "Direct Dispensing",
+      description: "Medication supplied directly with structured follow-up and dose refinement.",
+    },
+  ];
+
   const faqs = [
     {
-      question: "Are PRP and regenerative sexual treatments safe?",
-      answer: "Yes. PRP, shockwave therapy, the P-Shot and O-Shot are considered safe. PRP uses your own blood, reducing allergy risk, and all procedures are performed by trained clinicians."
+      question: "Is personalised ED medication stronger than standard tablets?",
+      answer: "The aim is precision rather than strength. Treatment is tailored to improve response and tolerability where fixed-dose therapy has been insufficient.",
     },
     {
-      question: "Will my consultation be strictly confidential?",
-      answer: "Yes. All consultations are private, one-to-one, and conducted discreetly by a doctor. No information is ever shared without your consent."
+      question: "Why not simply increase the dose?",
+      answer: "Higher doses may increase side effects without improving response. A personalised approach considers pharmacokinetics and interactions.",
     },
     {
-      question: "How long do regenerative sexual treatments take to work?",
-      answer: "Some patients notice early changes within weeks, but optimal results develop over 8–12 weeks as blood flow, nerves and tissue naturally regenerate."
+      question: "Is this safe if I have diabetes or high blood pressure?",
+      answer: "Suitability depends on cardiovascular risk and medication profile. A full medical assessment is required before prescribing.",
     },
     {
-      question: "Do I need a GP referral?",
-      answer: "No. You may book directly for assessment and treatment of ED, premature ejaculation, Peyronie’s disease or vaginal rejuvenation without needing a referral."
+      question: "How is medication supplied?",
+      answer: "Prescription-only medication is dispensed directly following clinical assessment and confirmation of suitability.",
     },
     {
-      question: "Who can benefit from PRP treatment?",
-      answer: "Men and women with reduced sensitivity, erectile issues, vaginal dryness, pelvic trauma or age-related tissue decline may benefit, as PRP supports natural healing and function."
+      question: "Is this suitable for everyone?",
+      answer: "No. Erectile dysfunction has multiple causes. Treatment is offered only where clinically appropriate following full evaluation.",
     },
-    {
-      question: "What is PRP sexual rejuvenation?",
-      answer: "PRP sexual rejuvenation uses concentrated growth factors from your own blood to improve blood flow, sensitivity, lubrication and natural sexual performance."
-    },
-    {
-      question: "Is PRP safe for sexual rejuvenation?",
-      answer: "Yes. PRP is very safe because it is autologous, meaning it comes from your own blood. Side effects are mild and short-lived."
-    },
-    {
-      question: "What are the benefits of the P-Shot?",
-      answer: "The P-Shot may enhance erection strength, sensitivity and circulation by delivering PRP into penile tissue to support natural erectile function."
-    },
-    {
-      question: "Are there any P-Shot side effects?",
-      answer: "Side effects are mild, such as temporary swelling or tenderness. Allergic reactions are extremely rare because PRP comes from your own blood."
-    },
-    {
-      question: "How long does the O-Shot last?",
-      answer: "Many women notice benefits for 12–18 months, including improved lubrication, sensitivity and sexual comfort. Duration varies between individuals."
-    },
-    {
-      question: "What is vaginal rejuvenation without surgery?",
-      answer: "Non-surgical vaginal rejuvenation uses PRP or energy-based treatments to improve lubrication, sensitivity, tissue health and comfort without downtime or invasive procedures."
-    },
-    {
-      question: "What is a natural treatment for erectile dysfunction?",
-      answer: "PRP and shockwave therapy are natural ED treatments that stimulate blood-flow regeneration and tissue repair, addressing the root causes rather than relying on tablets."
-    },
-    {
-      question: "Is shockwave therapy effective for erectile dysfunction?",
-      answer: "Shockwave therapy promotes new blood vessel growth in erectile tissue and can improve circulation. Many patients see benefits after a structured treatment course."
-    },
-    {
-      question: "What are natural alternatives to Viagra or Cialis?",
-      answer: "PRP and shockwave therapy offer non-medication alternatives by improving vascular health and supporting spontaneous erections without reliance on tablets."
-    },
-    {
-      question: "Can premature ejaculation be treated naturally?",
-      answer: "Yes. Techniques, topical therapies and PRP to support nerve balance can help improve timing, sensitivity control and confidence."
-    },
-    {
-      question: "What is a non-surgical treatment for Peyronie’s disease?",
-      answer: "PRP and shockwave therapy may help soften plaque, reduce discomfort and support curvature improvement without requiring invasive surgery."
-    },
-    {
-      question: "Is this a private sexual health clinic?",
-      answer: "Yes. We operate as a discreet, doctor-led private clinic offering confidential assessments and personalised regenerative treatment plans."
-    }
   ];
-
-  // Slice FAQs based on state
-  const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
-
-  // --- JSON-LD FAQ SCHEMA ---
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map((faq) => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer,
-      },
-    })),
-  };
-
-  // --- UNIFIED ACTION HANDLER ---
-  const handleAction = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-    setTimeout(() => {
-      const section = document.getElementById("contact-form-section");
-      if (section) {
-        const headerOffset = 100;
-        const elementPosition = section.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    }, 100);
-  };
 
   return (
     <>
-      {/* --- INJECT SEO SCHEMA --- */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
-      {/* --- HERO SECTION (Dark Premium) --- */}
-      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      {/* --- HERO SECTION --- */}
+      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-end justify-center bg-black">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/50 z-10" /> 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90 z-10" />
-          <Image
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-10" />
+          <img
             src="/personalised-meds-hero.webp"
-            alt="Sexual Rejuvenation Background"
-            fill
-            className="object-cover"
-            priority
+            alt="Personalised erectile dysfunction medication consultation"
+            className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => {
+               // Fallback just in case the new image name wasn't updated yet
+               e.currentTarget.src = "/ed-doctor-consultation.webp";
+            }}
           />
         </div>
 
-        {/* Pushed down with pt-32 md:pt-48 to frame the doctor's face perfectly */}
-        <div className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 md:pt-48 pb-16">
+        {/* Text container positioned lower to show the doctor's face */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-24 md:pb-32">
           
-          <motion.h1 
+          <motion.h1
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="md:text-[2.75rem] lg:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight drop-shadow-lg"
+            className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
           >
-            <span className="md:whitespace-nowrap">Sexual Rejuvenation & Natural Regeneration</span> <br className="hidden md:block" />
+            Personalised ED Medication <br className="hidden md:block" /> 
             in {locationName}
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             custom={2}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-6 text-sm md:text-base text-white/90 font-inter leading-relaxed max-w-3xl mx-auto mb-8 drop-shadow"
+            className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
           >
-            Patient-centred, non-surgical solutions to support confidence,
-            sensitivity and intimacy — delivered by a fully insured,
-            GMC-registered doctor in {locationName}.
+            Advanced, doctor-led formulation for men who have not achieved satisfactory results or experienced side effects with standard tablets.
           </motion.p>
 
+          {/* --- UPDATED CTA BUTTONS --- */}
           <motion.div 
-            custom={3}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
+            custom={3} 
+            initial="hidden" 
+            animate={isLoaded ? "visible" : "hidden"} 
+            variants={fadeUpVariants} 
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
+            {/* Primary Action: The Assessment */}
+            <button 
+              onClick={() => setIsAssessmentOpen(true)}
+              className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
+            >
+               Take Free Online Assessment
+            </button>
+
+            {/* Secondary Action: Direct Booking */}
             <button 
               onClick={handleAction}
-              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
+              className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1]/80 hover:bg-[#4041d1] backdrop-blur-md text-white border border-white/20 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
             >
-              <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" /> 
-              Book Consultation
+              <FaEnvelope className="w-4 h-4" /> Book Directly
             </button>
           </motion.div>
 
@@ -339,395 +231,179 @@ export default function SexualHealthClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-6 py-3 bg-[#4041d1] text-white rounded-2xl sm:rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 max-w-[90%] mx-auto text-center"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
           >
-             <div className="flex items-center gap-1.5 text-white/80">
-               <FaMapMarkerAlt className="w-3 h-3" /> 
-               <span>Serving:</span>
-             </div>
-             <span className="leading-relaxed">{nearbyAreas}</span>
+             <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
+             <span>Serving: {servingAreas}</span>
           </motion.div>
         </div>
 
-        {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="px-2 py-4 max-w-7xl mx-auto">
-            <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
-              {/* 1. Google 5-Star Link */}
-              <a href="#reviews" onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
-              }} className="flex justify-center items-center group cursor-pointer px-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-[#4285F4] group-hover:scale-110 transition-transform shadow-md">
-                    <FaGoogle className="w-4 h-4" />
+          <div className="px-4 py-5">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-4 gap-4">
+                {[
+                  { label: "GMC-registered doctor", sub: "Clinical Assessment" },
+                  { label: "Bespoke Formulas", sub: "Tailored to your profile" },
+                  { label: "Discreet location", sub: "St Albans & Birmingham" },
+                  { label: "Private dispensing", sub: "Directly from clinic" }
+                ].map((item, idx) => (
+                  <div key={idx} className={`text-center ${idx !== 3 ? 'border-r border-white/10' : ''}`}>
+                    <div className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 font-inter">{item.label}</div>
+                    <div className="text-blue-300 text-[10px] md:text-[11px] font-semibold font-inter">{item.sub}</div>
                   </div>
-                  <div className="flex flex-col items-start">
-                    <div className="flex text-amber-400 text-[10px] mb-0.5">
-                      <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
-                    </div>
-                    <span className="text-white text-[9px] font-bold tracking-widest uppercase opacity-90 group-hover:opacity-100 font-inter">
-                      5.0 Patient Rating
-                    </span>
-                  </div>
-                </div>
-              </a>
-
-              {/* 2. Experience Badge */}
-              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
-                    10+
-                  </div>
-                  <div className="flex flex-col items-start">
-                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Years</span>
-                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Experience</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* 3. GMC Badge */}
-              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
-                    GMC
-                  </div>
-                  <div className="flex flex-col items-start">
-                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Registered</span>
-                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Doctors</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* 4. Privacy & Discreet Care */}
-              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
-                    <FaLock className="w-3.5 h-3.5" />
-                  </div>
-                  <div className="flex flex-col items-start">
-                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Strictly 1:1</span>
-                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Discreet Care</span>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* --- EDUCATION: DYNAMIC GRAPHIC CARDS --- */}
-      <section className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={containerVariants}
-            className="text-center mb-16 max-w-4xl mx-auto"
-          >
-            <motion.div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6" variants={itemVariants}>
-              Education & Philosophy
-            </motion.div>
-            <motion.h2
-              className="text-3xl lg:text-5xl font-raleway font-bold text-slate-900 mb-8 leading-tight tracking-tight"
-              variants={itemVariants}
-            >
-              A Medical Approach to Intimacy & Wellbeing
-            </motion.h2>
-          </motion.div>
-
-          <div className="space-y-8">
-            {/* Paragraph 1: What is it? (Wide Dark Box with Dynamic Graphics) */}
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-              className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] border border-white/10 relative overflow-hidden shadow-xl"
-            >
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl pointer-events-none" />
-              <FaHeartbeat className="absolute -bottom-10 -right-10 text-[15rem] text-white opacity-5 pointer-events-none transform -rotate-12" />
-              
-              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-6 flex items-center justify-center gap-4 relative z-10">
-                <div className="p-3 bg-[#4041d1]/20 rounded-xl border border-[#4041d1]/30">
-                  <FaHeartbeat className="text-[#4041d1] text-xl" />
-                </div> 
-                What is sexual rejuvenation?
-              </h3>
-              <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed text-center relative z-10 max-w-4xl mx-auto">
-                Sexual rejuvenation refers to a range of evidence-based, regenerative treatments that support the natural function of sexual tissues. These therapies focus on improving blood flow, nerve signalling, sensitivity, lubrication, and overall performance — not through artificial stimulation, but by promoting the body’s own healing and repair processes.
-              </p>
-            </motion.div>
-
-            {/* Paragraph 2 & 3: Why it matters & Healthy Life (2 Columns, Slate-900 Cards) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div 
-                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-                className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-center"
-              >
-                <FaLeaf className="absolute -top-8 -right-8 text-[10rem] text-white opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-                <h3 className="text-xl font-raleway font-bold text-blue-100 mb-4 flex items-center justify-center gap-3 relative z-10">
-                  <div className="w-2 h-2 rounded-full bg-[#4041d1]" /> Why it matters
-                </h3>
-                <p className="text-sm md:text-base font-inter text-slate-400 leading-relaxed text-center relative z-10">
-                  Changes in sexual function are extremely common and can occur due to ageing, hormonal shifts, vascular decline, childbirth, stress, illness, medication, or lifestyle factors. While many people feel embarrassed to speak about these issues, they have a significant impact on confidence, emotional wellbeing, relationships, and overall quality of life. Addressing these concerns early helps prevent long-term decline and supports healthier ageing.
-                </p>
-              </motion.div>
-
-              <motion.div 
-                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-                className="bg-[#0f172a] text-white p-8 md:p-10 rounded-[2rem] border border-white/5 shadow-lg relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-center"
-              >
-                <FaDna className="absolute -bottom-8 -right-8 text-[10rem] text-white opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-                <h3 className="text-xl font-raleway font-bold text-blue-100 mb-4 flex items-center justify-center gap-3 relative z-10">
-                  <div className="w-2 h-2 rounded-full bg-[#4041d1]" /> The role of a healthy sexual life
-                </h3>
-                <p className="text-sm md:text-base font-inter text-slate-400 leading-relaxed text-center relative z-10">
-                  A fulfilling sexual life is medically linked to lower stress levels, improved cardiovascular health, hormone balance, immune function, better sleep quality, and stronger emotional connection with partners. For many, rejuvenation can restore not only physical function but also self-esteem and psychological wellbeing.
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Paragraph 4: Our Approach (Dark Premium Box with Blue Glow) */}
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
-              className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] border border-[#4041d1]/30 shadow-[0_0_40px_rgba(64,65,209,0.1)] relative overflow-hidden flex flex-col justify-center"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#4041d1]/10 to-transparent pointer-events-none" />
-              <FaUserMd className="absolute top-10 right-10 text-[8rem] text-white opacity-5 pointer-events-none" />
-              <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-4 relative z-10 flex items-center justify-center gap-3">
-                <FaCheckCircle className="text-[#4041d1] text-xl" /> Our clinic’s patient-centred approach
-              </h3>
-              <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed text-center relative z-10 max-w-4xl mx-auto">
-                At Healing-PRP Clinics, we take a comprehensive, non-judgemental approach to sexual wellness. Every patient receives a private, 1:1 medical consultation to understand the underlying causes of their symptoms. We focus on long-term regenerative improvement — not temporary quick fixes — using advanced PRP, Exosome, and shockwave technologies to encourage real tissue repair, vascular restoration, and improved natural performance.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- BIG CARDS: TREATMENT PATHWAYS (Dark Theme) --- */}
-      <section className="py-24 bg-white relative">
+      {/* --- WHO THIS IS FOR --- */}
+      <section className="py-24 bg-slate-50 font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              Our Treatment Pathways
-            </h3>
-            <p className="text-slate-600 text-lg font-inter">
-              Doctor-led, evidence-based treatments tailored to your specific needs. Select a pathway below to learn more about the procedure, benefits, and pricing.
-            </p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6"
+            >
+              Who This Programme Is Designed For
+            </motion.h2>
           </div>
 
-          {/* 2-Column Grid for Big Dark Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {treatmentCards.map((card, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {candidates.map((item, index) => (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 15 }}
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.3, delay: idx * 0.05 }}
-                className="bg-[#0f172a] rounded-[2rem] p-8 md:p-10 border border-slate-800 shadow-xl hover:shadow-2xl hover:border-[#4041d1]/50 transition-all duration-300 flex flex-col h-full group relative overflow-hidden"
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group cursor-default"
               >
-                {/* Subtle hover gradient inside card */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4041d1]/0 via-transparent to-[#4041d1]/0 group-hover:from-[#4041d1]/10 transition-colors duration-500 pointer-events-none"></div>
-
-                {/* Card Header */}
-                <div className="flex items-center gap-4 mb-6 relative z-10">
-                  <div className="w-14 h-14 bg-[#4041d1]/20 text-[#4041d1] rounded-2xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <card.icon />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#4041d1] block mb-1">
-                      {card.category}
-                    </span>
-                    <h4 className="text-2xl font-raleway font-bold text-white">
-                      {card.title}
-                    </h4>
-                  </div>
+                <div className={`w-14 h-14 rounded-2xl ${item.color} flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                  <item.icon />
                 </div>
-
-                {/* Description */}
-                <p className="text-slate-400 font-inter text-sm md:text-base leading-relaxed mb-8 relative z-10">
-                  {card.description}
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed font-inter">
+                  {item.description}
                 </p>
-
-                {/* Bullet Points */}
-                <ul className="space-y-4 mb-10 flex-grow relative z-10">
-                  {card.bullets.map((bullet, bIdx) => (
-                    <li key={bIdx} className="flex items-start gap-3">
-                      <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                      <span className="text-slate-300 text-sm font-medium">{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Card CTA */}
-                <Link
-                  href={card.link}
-                  className="w-full py-4 px-6 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold text-center transition-all duration-300 flex items-center justify-center gap-2 relative z-10 group/btn shadow-lg shadow-[#4041d1]/20"
-                >
-                  Explore Treatment <FaArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </Link>
-
               </motion.div>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* --- THE SCIENCE: HOW REGENERATION WORKS --- */}
-      <section className="py-20 lg:py-28 bg-[#0A1128] text-white relative overflow-hidden border-t border-white/5">
-        {/* Background glow */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />
-        
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-raleway font-bold mb-6">
-              The Science of Regeneration
-            </h2>
-            <p className="text-slate-300 text-lg leading-relaxed max-w-3xl mx-auto font-inter">
-              We utilise advanced Platelet-Rich Plasma (PRP) and Exosome therapies to target the root causes of sexual dysfunction—not just mask the symptoms.
-            </p>
-          </div>
+      {/* --- PROTOCOL SECTION --- */}
+      <section className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter" style={{ backgroundImage: "radial-gradient(circle at 10% 10%, rgba(64, 65, 209, 0.15) 0%, transparent 40%)" }}>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+            <motion.div className="inline-block px-5 py-2 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway shadow-[0_0_15px_rgba(64,65,209,0.1)]" variants={itemVariants}>
+              Clinical Protocol
+            </motion.div>
+            <motion.h2 className="text-3xl md:text-5xl font-raleway font-bold text-white leading-tight mb-8 tracking-tight" variants={itemVariants}>
+              The Precision Pharmacological Pathway
+            </motion.h2>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="p-6">
-              <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-blue-400 text-2xl mb-6">
-                <FaSyringe />
-              </div>
-              <h4 className="text-xl font-bold font-raleway mb-3">1. Autologous Healing</h4>
-              <p className="text-slate-400 text-sm leading-relaxed font-inter">
-                We draw a small sample of your own blood, eliminating the risk of allergic reactions or rejection.
-              </p>
-            </div>
-            
-            <div className="p-6 border-t md:border-t-0 md:border-l border-white/10">
-              <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-blue-400 text-2xl mb-6">
-                <FaDna />
-              </div>
-              <h4 className="text-xl font-bold font-raleway mb-3">2. Concentration</h4>
-              <p className="text-slate-400 text-sm leading-relaxed font-inter">
-                Using a medical centrifuge, we isolate the platelets, which contain hundreds of powerful growth factors and signaling proteins.
-              </p>
+          <div className="max-w-6xl mx-auto mt-12 relative">
+            <div className="text-center mb-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ duration: 0.2 }}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/20 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] backdrop-blur-md"
+                >
+                  <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
+                  <span className="text-sm font-bold text-white uppercase tracking-[0.2em] font-raleway">
+                    Step 0{protocolSteps[activeStep].number}: {protocolSteps[activeStep].title}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
-            <div className="p-6 border-t md:border-t-0 md:border-l border-white/10">
-              <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-blue-400 text-2xl mb-6">
-                <FaHeartbeat />
-              </div>
-              <h4 className="text-xl font-bold font-raleway mb-3">3. Angiogenesis</h4>
-              <p className="text-slate-400 text-sm leading-relaxed font-inter">
-                When injected into target areas, these factors stimulate the creation of new blood vessels (angiogenesis) and rejuvenate nerve pathways.
-              </p>
-            </div>
+            <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
+              {protocolSteps.map((step, index) => {
+                const IconComponent = step.icon;
+                const isActive = activeStep === index;
+                return (
+                  <motion.div key={index} className="relative group cursor-pointer" onClick={() => setActiveStep(index)} variants={itemVariants}>
+                    <div className={`p-6 rounded-[2.5rem] border transition-all duration-300 h-full flex flex-col ${isActive ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20" : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"}`}>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${isActive ? "bg-[#4041d1] text-white shadow-lg scale-110" : "bg-white/10 text-slate-300 group-hover:text-[#4041d1] group-hover:scale-105"}`}>
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <h3 className={`font-raleway font-bold mb-3 text-lg transition-colors ${isActive ? "text-slate-900" : "text-white"}`}>
+                        {step.title}
+                      </h3>
+                      <p className={`text-xs leading-relaxed font-inter transition-colors ${isActive ? "text-slate-600 font-medium" : "text-slate-400"}`}>
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* --- FAQs Section with Show More functionality --- */}
-      <section id="faqs" className="py-20 lg:py-28 bg-white border-t border-slate-100">
+      {/* --- FAQ --- */}
+      <section className="py-24 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* --- ACTION BUTTONS ROW (From ED Page) --- */}
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full mb-16">
-            <button
-              onClick={handleAction}
-              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
-            >
-              <FaEnvelope className="w-4 h-4" /> Book Consultation
-            </button>
-
-            <Link
-              href={pricesUrl}
-              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20"
-            >
-              View Treatment Prices
-            </Link>
-            
-            <Link
-              href={faqUrl}
-              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
-            >
-              View Clinic FAQs
-            </Link>
-          </div>
-
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">
               Common Questions
             </h2>
-            <p className="text-slate-600 font-inter">Find answers regarding safety, discretion, and our general clinical approach.</p>
           </div>
-          
           <div className="space-y-4">
-            {displayedFaqs.map((faq, index) => (
-              <div key={index} className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+            {faqs.map((faq, index) => (
+              <motion.div key={index} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
                 <button
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-100 transition-colors duration-300"
+                  className="w-full p-6 md:p-8 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
                   onClick={() => toggleFAQ(index)}
                 >
-                  <h3 className="font-raleway font-bold text-slate-900 pr-4">
+                  <h3 className="font-raleway font-bold text-slate-900 pr-8 text-base md:text-lg">
                     {faq.question}
                   </h3>
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${openFAQIndex === index ? 'bg-[#4041d1] text-white' : 'bg-[#4041d1]/10 text-[#4041d1]'}`}>
-                    {openFAQIndex === index ? <FaMinus className="w-3 h-3" /> : <FaPlus className="w-3 h-3" />}
+                  <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${openFAQIndex === index ? 'bg-[#4041d1] text-white' : 'bg-[#4041d1]/10 text-[#4041d1]'}`}>
+                    {openFAQIndex === index ? <FaMinus className="w-4 h-4" /> : <FaPlus className="w-4 h-4" />}
                   </div>
                 </button>
                 <AnimatePresence>
                   {openFAQIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6 pt-2 border-t border-slate-200/60 mt-2">
-                        <p className="font-inter text-sm text-slate-600 leading-relaxed font-medium">
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                      <div className="px-6 md:px-8 pb-8 border-t border-slate-100 pt-6">
+                        <p className="font-inter text-base text-slate-600 leading-relaxed font-medium">
                           {faq.answer}
                         </p>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             ))}
           </div>
-
-          {/* Toggle All FAQs Button */}
-          {faqs.length > 5 && (
-            <div className="mt-8 text-center">
-              <button
-                onClick={() => setShowAllFaqs(!showAllFaqs)}
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 rounded-xl font-inter font-bold transition-all duration-300"
-              >
-                {showAllFaqs ? "Show Less FAQs" : "View All FAQs"}
-                <FaChevronDown className={`w-3 h-3 transition-transform duration-300 ${showAllFaqs ? "rotate-180" : ""}`} />
-              </button>
-            </div>
-          )}
-
         </div>
       </section>
 
-      {/* --- GOOGLE REVIEWS SECTION --- */}
-      <div id="reviews-section">
-        <TrustReviews 
-          widgetUrl={
-            isBirmingham 
-              ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" 
-              : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"
-          } 
-        />
-      </div>
-
-      {/* Contact Section */}
-      <div id="contact-form-section" className="contain-layout">
-        <ContactCTASection />
-        <LocationSection />
-      </div>
-
+      <ContactCTASection />
+      <LocationSection />
       <Footer />
+
+      {/* ADD THE MODAL RIGHT HERE */}
+      <OnlineAssessmentModal 
+        isOpen={isAssessmentOpen} 
+        onClose={() => setIsAssessmentOpen(false)} 
+      />
     </>
   );
 }
