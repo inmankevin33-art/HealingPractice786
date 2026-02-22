@@ -29,12 +29,19 @@ import TrustReviews from "@/components/TrustReviews";
 import Link from "next/link";
 import Image from "next/image";
 
+type FaqType = {
+  question: string;
+  answer: string;
+};
+
 type SexualHealthClientProps = {
   locationName?: string;
+  faqs: FaqType[]; // <--- Now expecting FAQs as a prop
 };
 
 export default function SexualHealthClient({
   locationName = "St Albans",
+  faqs,
 }: SexualHealthClientProps) {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -86,7 +93,7 @@ export default function SexualHealthClient({
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // --- NEW BIG CARDS DATA ---
+  // --- TREATMENT CARDS DATA ---
   const treatmentCards = [
     {
       title: "Erectile Dysfunction",
@@ -162,94 +169,8 @@ export default function SexualHealthClient({
     }
   ];
 
-  // --- SEO RICH FAQS ---
-  const faqs = [
-    {
-      question: "Are PRP and regenerative sexual treatments safe?",
-      answer: "Yes. PRP, shockwave therapy, the P-Shot and O-Shot are considered safe. PRP uses your own blood, reducing allergy risk, and all procedures are performed by trained clinicians."
-    },
-    {
-      question: "Will my consultation be strictly confidential?",
-      answer: "Yes. All consultations are private, one-to-one, and conducted discreetly by a doctor. No information is ever shared without your consent."
-    },
-    {
-      question: "How long do regenerative sexual treatments take to work?",
-      answer: "Some patients notice early changes within weeks, but optimal results develop over 8–12 weeks as blood flow, nerves and tissue naturally regenerate."
-    },
-    {
-      question: "Do I need a GP referral?",
-      answer: "No. You may book directly for assessment and treatment of ED, premature ejaculation, Peyronie’s disease or vaginal rejuvenation without needing a referral."
-    },
-    {
-      question: "Who can benefit from PRP treatment?",
-      answer: "Men and women with reduced sensitivity, erectile issues, vaginal dryness, pelvic trauma or age-related tissue decline may benefit, as PRP supports natural healing and function."
-    },
-    {
-      question: "What is PRP sexual rejuvenation?",
-      answer: "PRP sexual rejuvenation uses concentrated growth factors from your own blood to improve blood flow, sensitivity, lubrication and natural sexual performance."
-    },
-    {
-      question: "Is PRP safe for sexual rejuvenation?",
-      answer: "Yes. PRP is very safe because it is autologous, meaning it comes from your own blood. Side effects are mild and short-lived."
-    },
-    {
-      question: "What are the benefits of the P-Shot?",
-      answer: "The P-Shot may enhance erection strength, sensitivity and circulation by delivering PRP into penile tissue to support natural erectile function."
-    },
-    {
-      question: "Are there any P-Shot side effects?",
-      answer: "Side effects are mild, such as temporary swelling or tenderness. Allergic reactions are extremely rare because PRP comes from your own blood."
-    },
-    {
-      question: "How long does the O-Shot last?",
-      answer: "Many women notice benefits for 12–18 months, including improved lubrication, sensitivity and sexual comfort. Duration varies between individuals."
-    },
-    {
-      question: "What is vaginal rejuvenation without surgery?",
-      answer: "Non-surgical vaginal rejuvenation uses PRP or energy-based treatments to improve lubrication, sensitivity, tissue health and comfort without downtime or invasive procedures."
-    },
-    {
-      question: "What is a natural treatment for erectile dysfunction?",
-      answer: "PRP and shockwave therapy are natural ED treatments that stimulate blood-flow regeneration and tissue repair, addressing the root causes rather than relying on tablets."
-    },
-    {
-      question: "Is shockwave therapy effective for erectile dysfunction?",
-      answer: "Shockwave therapy promotes new blood vessel growth in erectile tissue and can improve circulation. Many patients see benefits after a structured treatment course."
-    },
-    {
-      question: "What are natural alternatives to Viagra or Cialis?",
-      answer: "PRP and shockwave therapy offer non-medication alternatives by improving vascular health and supporting spontaneous erections without reliance on tablets."
-    },
-    {
-      question: "Can premature ejaculation be treated naturally?",
-      answer: "Yes. Techniques, topical therapies and PRP to support nerve balance can help improve timing, sensitivity control and confidence."
-    },
-    {
-      question: "What is a non-surgical treatment for Peyronie’s disease?",
-      answer: "PRP and shockwave therapy may help soften plaque, reduce discomfort and support curvature improvement without requiring invasive surgery."
-    },
-    {
-      question: "Is this a private sexual health clinic?",
-      answer: "Yes. We operate as a discreet, doctor-led private clinic offering confidential assessments and personalised regenerative treatment plans."
-    }
-  ];
-
   // Slice FAQs based on state
   const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
-
-  // --- JSON-LD FAQ SCHEMA ---
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map((faq) => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer,
-      },
-    })),
-  };
 
   // --- UNIFIED ACTION HANDLER ---
   const handleAction = (e: React.MouseEvent) => {
@@ -271,12 +192,6 @@ export default function SexualHealthClient({
 
   return (
     <>
-      {/* --- INJECT SEO SCHEMA --- */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
       {/* --- HERO SECTION (Dark Premium) --- */}
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
@@ -291,9 +206,7 @@ export default function SexualHealthClient({
           />
         </div>
 
-        {/* Pushed down with pt-32 md:pt-48 to frame the doctor's face perfectly */}
         <div className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 md:pt-48 pb-16">
-          
           <motion.h1 
             custom={1}
             initial="hidden"
@@ -352,7 +265,6 @@ export default function SexualHealthClient({
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
-              {/* 1. Google 5-Star Link */}
               <a href="#reviews" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -372,7 +284,6 @@ export default function SexualHealthClient({
                 </div>
               </a>
 
-              {/* 2. Experience Badge */}
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
@@ -385,7 +296,6 @@ export default function SexualHealthClient({
                 </div>
               </div>
 
-              {/* 3. GMC Badge */}
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
@@ -398,7 +308,6 @@ export default function SexualHealthClient({
                 </div>
               </div>
 
-              {/* 4. Privacy & Discreet Care */}
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
@@ -437,7 +346,6 @@ export default function SexualHealthClient({
           </motion.div>
 
           <div className="space-y-8">
-            {/* Paragraph 1: What is it? (Wide Dark Box with Dynamic Graphics) */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
               className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] border border-white/10 relative overflow-hidden shadow-xl"
@@ -456,7 +364,6 @@ export default function SexualHealthClient({
               </p>
             </motion.div>
 
-            {/* Paragraph 2 & 3: Why it matters & Healthy Life (2 Columns, Slate-900 Cards) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <motion.div 
                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
@@ -485,7 +392,6 @@ export default function SexualHealthClient({
               </motion.div>
             </div>
 
-            {/* Paragraph 4: Our Approach (Dark Premium Box with Blue Glow) */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={itemVariants} 
               className="bg-[#0A1128] text-white p-8 md:p-12 rounded-[2rem] border border-[#4041d1]/30 shadow-[0_0_40px_rgba(64,65,209,0.1)] relative overflow-hidden flex flex-col justify-center"
@@ -516,7 +422,6 @@ export default function SexualHealthClient({
             </p>
           </div>
 
-          {/* 2-Column Grid for Big Dark Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {treatmentCards.map((card, idx) => (
               <motion.div
@@ -527,10 +432,8 @@ export default function SexualHealthClient({
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="bg-[#0f172a] rounded-[2rem] p-8 md:p-10 border border-slate-800 shadow-xl hover:shadow-2xl hover:border-[#4041d1]/50 transition-all duration-300 flex flex-col h-full group relative overflow-hidden"
               >
-                {/* Subtle hover gradient inside card */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#4041d1]/0 via-transparent to-[#4041d1]/0 group-hover:from-[#4041d1]/10 transition-colors duration-500 pointer-events-none"></div>
 
-                {/* Card Header */}
                 <div className="flex items-center gap-4 mb-6 relative z-10">
                   <div className="w-14 h-14 bg-[#4041d1]/20 text-[#4041d1] rounded-2xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <card.icon />
@@ -545,12 +448,10 @@ export default function SexualHealthClient({
                   </div>
                 </div>
 
-                {/* Description */}
                 <p className="text-slate-200 font-inter text-sm md:text-base leading-relaxed mb-8 relative z-10">
                   {card.description}
                 </p>
 
-                {/* Bullet Points */}
                 <ul className="space-y-4 mb-10 flex-grow relative z-10">
                   {card.bullets.map((bullet, bIdx) => (
                     <li key={bIdx} className="flex items-start gap-3">
@@ -560,14 +461,12 @@ export default function SexualHealthClient({
                   ))}
                 </ul>
 
-                {/* Card CTA */}
                 <Link
                   href={card.link}
                   className="w-full py-4 px-6 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold text-center transition-all duration-300 flex items-center justify-center gap-2 relative z-10 group/btn shadow-lg shadow-[#4041d1]/20"
                 >
                   Explore Treatment <FaArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Link>
-
               </motion.div>
             ))}
           </div>
@@ -577,7 +476,6 @@ export default function SexualHealthClient({
 
       {/* --- THE SCIENCE: HOW REGENERATION WORKS --- */}
       <section className="py-20 lg:py-28 bg-[#0A1128] text-white relative overflow-hidden border-t border-white/5">
-        {/* Background glow */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />
         
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -624,11 +522,10 @@ export default function SexualHealthClient({
         </div>
       </section>
 
-      {/* --- FAQs Section with Show More functionality --- */}
+      {/* --- FAQs Section --- */}
       <section id="faqs" className="py-20 lg:py-28 bg-white border-t border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* --- ACTION BUTTONS ROW (From ED Page) --- */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full mb-16">
             <button
               onClick={handleAction}
