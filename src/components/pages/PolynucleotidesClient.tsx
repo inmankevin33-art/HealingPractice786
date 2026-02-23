@@ -17,27 +17,40 @@ import {
   FaUserMd,
   FaMicroscope,
   FaChevronLeft,
-  FaChevronRight
+  FaChevronRight,
+  FaGoogle,
+  FaStar,
+  FaLock,
+  FaChevronDown // <--- Added this import
 } from "react-icons/fa";
 import { FaWandSparkles } from "react-icons/fa6";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
+import TrustReviews from "@/components/TrustReviews";
 import Image from "next/image";
+
+type FaqType = {
+  question: string;
+  answer: string;
+};
 
 interface PolynucleotidesProps {
   locationName?: string;
   servingAreas?: string;
+  faqs: FaqType[];
 }
 
 export default function PolynucleotidesClient({
   locationName = "St Albans",
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
+  faqs,
 }: PolynucleotidesProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0); 
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showAllFaqs, setShowAllFaqs] = useState(false); // <--- Added FAQ toggle state
   
   // State for the Before/After Slider (starts at 50%)
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -144,28 +157,8 @@ export default function PolynucleotidesClient({
     },
   ];
 
-  const faqs = [
-    {
-      question: "What exactly are Polynucleotides?",
-      answer: "Polynucleotides are highly purified DNA fragments used in regenerative aesthetics to support collagen stimulation and tissue repair. They act as biostimulators, encouraging the skin\u2019s natural regenerative processes.",
-    },
-    {
-      question: "What makes the DNA Glow Concept™ different?",
-      answer: "Unlike standard treatments that use a single product, our concept combines three powerful modalities: Polynucleotides for deep repair, Non-Cross-Linked HA for hydration, and Microneedling for surface texture. This creates a multi-layered result.",
-    },
-    {
-      question: "Are polynucleotides better than filler?",
-      answer: "They serve different purposes. Fillers add structural volume to change the shape of your face. Polynucleotides improve the quality of the skin itself—making it thicker, hydrated, and more elastic without changing your natural features.",
-    },
-    {
-      question: "How many sessions do I need?",
-      answer: "We typically recommend a course of 3 treatments spaced 2–4 weeks apart to achieve the full effect. Maintenance is usually one session every 6–9 months.",
-    },
-    {
-      question: "Is there downtime?",
-      answer: "Minimal. Because we treat multiple layers of the skin, you may have some redness or small bumps (papules) for 24–48 hours. This is a sign the product is working.",
-    },
-  ];
+  // --- Slice FAQs based on state ---
+  const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   return (
     <>
@@ -204,7 +197,6 @@ export default function PolynucleotidesClient({
             variants={fadeUpVariants}
             className="text-[28px] sm:text-3xl md:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
-            {/* Added a responsive line break so 'Birmingham' doesn't squish */}
             Polynucleotides in <br className="sm:hidden" /> {locationName}
             <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-purple-200">
               The DNA Glow Concept™
@@ -235,7 +227,6 @@ export default function PolynucleotidesClient({
             variants={fadeUpVariants}
             className="flex justify-center"
           >
-            {/* HERO BUTTON: Single, centered Blue Button */}
             <button 
               onClick={handleAction}
               className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out gap-2 shadow-xl hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] active:scale-95 font-inter transform-gpu"
@@ -251,13 +242,76 @@ export default function PolynucleotidesClient({
             variants={fadeUpVariants}
             className="inline-flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-6 py-3 bg-[#4041d1] text-white rounded-2xl sm:rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 max-w-[90%] mx-auto text-center"
           >
-             {/* Updated to text-white so it is bright and crisp! */}
              <div className="flex items-center gap-1.5 text-white">
                <FaMapMarkerAlt className="w-3 h-3" /> 
                <span>Serving:</span>
              </div>
              <span className="leading-relaxed">{servingAreas}</span>
           </motion.div>
+        </div>
+
+        {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
+        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="px-2 py-4 max-w-7xl mx-auto">
+            <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
+              
+              <a href="#reviews" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
+              }} className="flex justify-center items-center group cursor-pointer px-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-[#4285F4] group-hover:scale-110 transition-transform shadow-md">
+                    <FaGoogle className="w-4 h-4" />
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <div className="flex text-amber-400 text-[10px] mb-0.5">
+                      <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                    </div>
+                    <span className="text-white text-[9px] font-bold tracking-widest uppercase opacity-90 group-hover:opacity-100 font-inter">
+                      5.0 Patient Rating
+                    </span>
+                  </div>
+                </div>
+              </a>
+
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
+                    10+
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Years</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Experience</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
+                    GMC
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Registered</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Doctors</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
+                    <FaLock className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Strictly 1:1</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Discreet Care</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
       
@@ -347,7 +401,7 @@ export default function PolynucleotidesClient({
             {/* --- THE BEFORE & AFTER SLIDER & BUTTON --- */}
             <div className="lg:w-1/2 relative w-full flex flex-col items-center">
                 <div className="relative h-[450px] w-full bg-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl transform-gpu group select-none mb-8">
-                   
+                    
                    {/* AFTER IMAGE */}
                    <div className="absolute inset-0 z-0">
                       <Image 
@@ -624,7 +678,7 @@ export default function PolynucleotidesClient({
             <h2 className="text-3xl font-raleway font-bold text-slate-900">Common Questions</h2>
           </div>
           <div className="space-y-4">
-            {faqs.map((faq, index) => (
+            {displayedFaqs.map((faq, index) => (
               <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm transform-gpu">
                 <button
                   className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors"
@@ -650,13 +704,27 @@ export default function PolynucleotidesClient({
               </div>
             ))}
           </div>
+
+          {/* Toggle All FAQs Button */}
+          {faqs.length > 5 && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setShowAllFaqs(!showAllFaqs)}
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 rounded-xl font-inter font-bold transition-all duration-300"
+              >
+                {showAllFaqs ? "Show Less FAQs" : "View All FAQs"}
+                <FaChevronDown className={`w-3 h-3 transition-transform duration-300 ${showAllFaqs ? "rotate-180" : ""}`} />
+              </button>
+            </div>
+          )}
+          
         </div>
       </section>
 
       {/* --- MATCHING BOTTOM CTA BAR --- */}
       <section className="py-24 bg-white border-t border-slate-200">
         <div className="max-w-5xl mx-auto px-4 text-center">
-           
+            
            {/* Pricing Info Box */}
            <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
               <p className="text-slate-600 leading-relaxed text-sm md:text-base font-inter">
@@ -691,8 +759,22 @@ export default function PolynucleotidesClient({
         </div>
       </section>
 
-      <ContactCTASection />
-      <LocationSection />
+      {/* --- GOOGLE REVIEWS SECTION --- */}
+      <div id="reviews-section">
+        <TrustReviews 
+          widgetUrl={
+            isBirmingham 
+              ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" 
+              : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"
+          } 
+        />
+      </div>
+
+      <div id="contact-form-section" className="contain-layout">
+        <ContactCTASection />
+        <LocationSection />
+      </div>
+      
       <Footer />
     </>
   );
