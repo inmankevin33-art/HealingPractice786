@@ -179,7 +179,8 @@ export default function PolynucleotidesClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16">
+        {/* --- FIXED: Added md:pb-24 to push the content up off the footer! --- */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
           <motion.div 
             custom={0}
             initial="hidden"
@@ -211,7 +212,8 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-4 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-4xl mx-auto mb-8 px-2"
+            /* FIXED: Changed mb-8 to mb-6 to tighten spacing */
+            className="mt-4 text-sm md:text-lg text-white/90 font-inter leading-relaxed max-w-4xl mx-auto mb-6 px-2"
           >
             A doctor-led regenerative treatment combining polynucleotides, non-cross-linked
             <br className="hidden md:block" />{" "}
@@ -240,8 +242,8 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            /* THIS IS THE UPDATED, SLEEK P-SHOT BADGE STYLE */
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
+            /* FIXED: Changed mt-8 to mt-6 to tighten spacing */
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-6 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
           >
              <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
              <span>Serving: {servingAreas}</span>
