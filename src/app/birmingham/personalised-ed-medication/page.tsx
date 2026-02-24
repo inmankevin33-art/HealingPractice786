@@ -5,7 +5,7 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: {
     // Added "Male Performance" to the Title tag for higher search volume
-    absolute: "Personalised ED Medication & Male Performance Birmingham | Healing-PRP",
+    absolute: "Personalised ED Medication & Male Performance Birmingham | Healing-PRP Clinics",
   },
   description:
     "Doctor-led male performance and personalised erectile dysfunction medication clinic in Birmingham. Bespoke ED prescriptions and private, tailored treatments serving Edgbaston.",
