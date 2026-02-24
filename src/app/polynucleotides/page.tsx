@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     absolute: "Polynucleotides St Albans | DNA Glow Skin Treatment | Healing-PRP",
   },
   description:
-    "Official Polynucleotide clinic in St Albans. Regenerative 'DNA Glow' therapy for dark circles, fine lines & crepey skin by a GMC-registered doctor.",
+    "Polynucleotides in Birmingham. Doctor-led regenerative DNA Glow therapy for under-eye rejuvenation and skin quality improvement in Edgbaston.",
   keywords: [
     // Core Service
     "Polynucleotides St Albans",
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     "Ameela eyes St Albans",
     "Nucleofill treatment Luton",
     "PhilArt eyes Hertfordshire",
-    "Plinest polynucleotides St Albans", // <-- NEW
-    "Neauvia skin rejuvenation UK",      // <-- NEW
+    "Plinest polynucleotides St Albans", 
+    "Neauvia skin rejuvenation UK",      
     
     // Problem/Solution (Long Tail)
     "Tear trough treatment without filler",
@@ -50,6 +50,34 @@ export const metadata: Metadata = {
   },
 };
 
+// --- SEO RICH FAQS ---
+const faqs = [
+  {
+    question: "Is polynucleotide treatment available at your St Albans clinic?",
+    answer: "Yes. Polynucleotide treatment is available at our St Albans clinic as part of our structured DNA Glow Concept™ protocol. A medical consultation is required to assess suitability and treatment goals."
+  },
+  {
+    question: "What are polynucleotides used for in skin treatment?",
+    answer: "Polynucleotides are purified DNA fragments used in regenerative aesthetics to support collagen stimulation and tissue repair. They are commonly used to improve under-eye skin quality, hydration, and early textural changes."
+  },
+  {
+    question: "Can polynucleotides help with dark circles under the eyes?",
+    answer: "Polynucleotides are frequently used for delicate under-eye areas where concerns include dark circles, crepey skin, or thinning. They focus on improving skin quality rather than adding structural volume."
+  },
+  {
+    question: "How many polynucleotide sessions are recommended?",
+    answer: "A course of three treatments spaced approximately 2–4 weeks apart is commonly advised to support optimal regenerative response. Maintenance sessions may be considered depending on individual skin condition."
+  },
+  {
+    question: "Is there downtime after polynucleotide treatment in St Albans?",
+    answer: "Downtime is usually minimal. Mild redness or small injection-site papules may occur and typically settle within 24–48 hours. Most patients return to normal activities shortly after treatment."
+  },
+  {
+    question: "Are polynucleotides the same as dermal fillers?",
+    answer: "No. Dermal fillers are designed to add volume and reshape facial contours, whereas polynucleotides are biostimulators that aim to improve skin quality, elasticity, and hydration without altering natural facial structure."
+  },
+];
+
 // --- JSON-LD SCHEMA: Medical Clinic & Medical Therapy (Polynucleotides) ---
 const polynucleotidesSchema = [
   {
@@ -62,6 +90,11 @@ const polynucleotidesSchema = [
       "addressLocality": "St Albans",
       "addressRegion": "Hertfordshire",
       "addressCountry": "UK"
+    },
+    // The "Power Move" for Local SEO:
+    "areaServed": {
+      "@type": "City",
+      "name": "St Albans"
     },
     "medicalSpecialty": ["Dermatology", "Aesthetic Medicine"]
   },
@@ -80,17 +113,42 @@ const polynucleotidesSchema = [
 ];
 
 export default function PolynucleotidesPage() {
+  // --- GENERATE JSON-LD SCHEMA FOR FAQS ---
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
-    <>
+    <main>
+      {/* Clinic & Therapy Schema */}
       <Script
         id="polynucleotides-schema-stalbans"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(polynucleotidesSchema) }}
       />
+      
+      {/* FAQ Schema */}
+      <Script
+        id="polynucleotides-faq-stalbans"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      {/* Client Component with props */}
       <PolynucleotidesClient 
         locationName="St Albans"
         servingAreas="Harpenden • Luton • Watford • Hertfordshire"
+        faqs={faqs} 
       />
-    </>
+    </main>
   );
 }
