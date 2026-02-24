@@ -22,15 +22,15 @@ import {
   FaGoogle,      
   FaStar,        
   FaLock,
-  FaSyringe,      // Added for P-Shot Card
-  FaHourglassHalf // Added for PE Card
+  FaSyringe,      
+  FaHourglassHalf 
 } from "react-icons/fa";
 
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import OnlineAssessmentModal from "@/components/OnlineAssessmentModal";
-import TrustReviews from "@/components/TrustReviews";
+import TrustReviews from "@/components/TrustReviews"; 
 
 // --- INTERFACE FOR DYNAMIC PROPS ---
 type FaqType = {
@@ -165,10 +165,12 @@ export default function PersonalisedEDMedicationClient({
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      {/* CHANGED: items-center is now items-end to push text to the bottom */}
+      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-end justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/40 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-10" />
+          {/* Enhanced the bottom gradient so text remains readable when pushed down */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-black/60 to-transparent z-10" />
           <img
             src="/personalised-meds-hero.webp"
             alt="Personalised erectile dysfunction medication consultation"
@@ -179,26 +181,19 @@ export default function PersonalisedEDMedicationClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 pb-32 md:pb-40">
-          <motion.div 
-            custom={0}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
-          >
-            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Doctor-Led Private Clinic</span>
-          </motion.div>
+        {/* CHANGED: Added pb-36 md:pb-48 to keep text anchored safely above the trust badges */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-36 md:pb-48">
 
-         <motion.h1
+          {/* UPDATED TITLE with Male Performance focus */}
+          <motion.h1
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
+            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
             Personalised ED Medication <br className="hidden md:block" /> 
-            for Male Performance in {locationName}
+            <span className="md:text-5xl text-3xl">for Male Performance in {locationName}</span>
           </motion.h1>
 
           <motion.p
@@ -206,7 +201,7 @@ export default function PersonalisedEDMedicationClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
+            className="mt-2 text-base md:text-xl text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
             Advanced, doctor-led formulation for men who have not achieved satisfactory results or experienced side effects with standard tablets.
           </motion.p>
@@ -246,7 +241,7 @@ export default function PersonalisedEDMedicationClient({
         </div>
 
         {/* --- HERO TRUST BADGES --- */}
-        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} z-30`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
               <a href="#reviews" onClick={(e) => {
@@ -380,7 +375,6 @@ export default function PersonalisedEDMedicationClient({
             {/* CARD 2: Premature Ejaculation */}
             <Link href={peRoute} className="group relative block rounded-[2rem] overflow-visible shadow-lg hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[380px] bg-slate-900 mt-8 md:mt-0">
               <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
-                {/* Fallback image, replace if you have a specific one for PE */}
                 <div className="absolute inset-0 bg-slate-800 opacity-60"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/80 to-transparent"></div>
               </div>
@@ -529,7 +523,6 @@ export default function PersonalisedEDMedicationClient({
         </div>
       </section>
 
-      {/* --- NEW: GOOGLE REVIEWS SECTION --- */}
       <div id="reviews-section">
         <TrustReviews 
           widgetUrl={
