@@ -18,17 +18,19 @@ import {
   FaFileMedical,
   FaHistory,
   FaArrowRight,
-  FaChevronDown, // Added for FAQ Dropdown
-  FaGoogle,      // Added for Trust Badges
-  FaStar,        // Added for Trust Badges
-  FaLock         // Added for Trust Badges
+  FaChevronDown, 
+  FaGoogle,      
+  FaStar,        
+  FaLock,
+  FaSyringe,      // Added for P-Shot Card
+  FaHourglassHalf // Added for PE Card
 } from "react-icons/fa";
 
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import OnlineAssessmentModal from "@/components/OnlineAssessmentModal";
-import TrustReviews from "@/components/TrustReviews"; // Added Trust Reviews
+import TrustReviews from "@/components/TrustReviews";
 
 // --- INTERFACE FOR DYNAMIC PROPS ---
 type FaqType = {
@@ -39,7 +41,7 @@ type FaqType = {
 interface PersonalisedEDMedicationProps {
   locationName?: string;
   servingAreas?: string;
-  faqs: FaqType[]; // Added faqs array to props for SEO
+  faqs: FaqType[]; 
 }
 
 export default function PersonalisedEDMedicationClient({
@@ -52,9 +54,15 @@ export default function PersonalisedEDMedicationClient({
   const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
-  const [showAllFaqs, setShowAllFaqs] = useState(false); // FAQ toggle state
+  const [showAllFaqs, setShowAllFaqs] = useState(false); 
 
   const isBirmingham = locationName === "Birmingham";
+
+  // --- DYNAMIC ROUTING PATHS ---
+  const baseRoute = isBirmingham ? "/birmingham" : "";
+  const edRoute = `${baseRoute}/erectile-dysfunction`;
+  const peRoute = `${baseRoute}/premature-ejaculation`;
+  const pshotRoute = `${baseRoute}/p-shot`;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -152,7 +160,6 @@ export default function PersonalisedEDMedicationClient({
     },
   ];
 
-  // Slice FAQs based on state
   const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   return (
@@ -172,10 +179,7 @@ export default function PersonalisedEDMedicationClient({
           />
         </div>
 
-        {/* Text container positioned with proper padding to clear the trust badges */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 pb-32 md:pb-40">
-          
-          {/* NEW: Top Sleek Badge */}
           <motion.div 
             custom={0}
             initial="hidden"
@@ -214,7 +218,6 @@ export default function PersonalisedEDMedicationClient({
             variants={fadeUpVariants} 
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            {/* Primary Action: The Assessment */}
             <button 
               onClick={() => setIsAssessmentOpen(true)}
               className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
@@ -222,7 +225,6 @@ export default function PersonalisedEDMedicationClient({
                Take Free Online Assessment
             </button>
 
-            {/* Secondary Action: Direct Booking */}
             <button 
               onClick={handleAction}
               className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1]/80 hover:bg-[#4041d1] backdrop-blur-md text-white border border-white/20 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
@@ -231,7 +233,6 @@ export default function PersonalisedEDMedicationClient({
             </button>
           </motion.div>
 
-          {/* NEW: Sleek Location Badge */}
           <motion.div 
             custom={4}
             initial="hidden"
@@ -244,11 +245,10 @@ export default function PersonalisedEDMedicationClient({
           </motion.div>
         </div>
 
-        {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
+        {/* --- HERO TRUST BADGES --- */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
-              
               <a href="#reviews" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -267,7 +267,6 @@ export default function PersonalisedEDMedicationClient({
                   </div>
                 </div>
               </a>
-
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
@@ -279,7 +278,6 @@ export default function PersonalisedEDMedicationClient({
                   </div>
                 </div>
               </div>
-
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
@@ -291,7 +289,6 @@ export default function PersonalisedEDMedicationClient({
                   </div>
                 </div>
               </div>
-
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
@@ -303,7 +300,6 @@ export default function PersonalisedEDMedicationClient({
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -345,6 +341,81 @@ export default function PersonalisedEDMedicationClient({
                 </p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- OUR TREATMENTS (HUB GRID) --- */}
+      <section className="py-24 bg-white font-inter border-t border-slate-100 relative z-30 overflow-visible">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-2 block">Our Treatments</span>
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+              View our range of treatments to improve your Sexual Health.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-8 pt-6">
+            
+            {/* CARD 1: Erectile Dysfunction */}
+            <Link href={edRoute} className="group relative block rounded-[2rem] overflow-visible shadow-lg hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[380px] bg-slate-900 mt-8 md:mt-0">
+              <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
+                <img src="/ed-doctor-consultation.webp" alt="Erectile Dysfunction" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/80 to-transparent"></div>
+              </div>
+              <div className="relative h-full flex flex-col justify-end p-8 pt-32 text-center md:text-left z-10">
+                <h3 className="text-2xl font-raleway font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">Erectile Dysfunction</h3>
+                <div className="text-[#8ea3ff] text-xs font-bold uppercase tracking-wider mb-4">Treatment Details</div>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6 font-medium">
+                  Tailored PDE5 inhibitors and bespoke daily medication plans designed for optimal response and minimal side effects.
+                </p>
+              </div>
+              {/* 3D Pop-Out Icon */}
+              <div className="absolute -bottom-6 -left-2 md:-left-6 w-20 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 group-hover:-translate-y-2 group-hover:rotate-0 transition-all duration-500 border-[6px] border-[#f8f9ff] z-20">
+                 <FaPills className="text-[#4041d1] text-4xl" />
+              </div>
+            </Link>
+
+            {/* CARD 2: Premature Ejaculation */}
+            <Link href={peRoute} className="group relative block rounded-[2rem] overflow-visible shadow-lg hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[380px] bg-slate-900 mt-8 md:mt-0">
+              <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
+                {/* Fallback image, replace if you have a specific one for PE */}
+                <div className="absolute inset-0 bg-slate-800 opacity-60"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/80 to-transparent"></div>
+              </div>
+              <div className="relative h-full flex flex-col justify-end p-8 pt-32 text-center md:text-left z-10">
+                <h3 className="text-2xl font-raleway font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">Premature Ejaculation</h3>
+                <div className="text-[#8ea3ff] text-xs font-bold uppercase tracking-wider mb-4">Treatment Details</div>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6 font-medium">
+                  Discreet, doctor-prescribed solutions designed to improve stamina, control, and restore sexual confidence.
+                </p>
+              </div>
+              {/* 3D Pop-Out Icon */}
+              <div className="absolute -bottom-6 -left-2 md:-left-6 w-20 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 group-hover:-translate-y-2 group-hover:rotate-0 transition-all duration-500 border-[6px] border-[#f8f9ff] z-20">
+                 <FaHourglassHalf className="text-[#4041d1] text-4xl" />
+              </div>
+            </Link>
+
+            {/* CARD 3: P-Shot */}
+            <Link href={pshotRoute} className="group relative block rounded-[2rem] overflow-visible shadow-lg hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[380px] bg-slate-900 mt-8 md:mt-0">
+              <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
+                <img src="/p-shot-consultation.webp" alt="P-Shot Regenerative Therapy" onError={(e) => e.currentTarget.style.display = 'none'} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/80 to-transparent"></div>
+              </div>
+              <div className="relative h-full flex flex-col justify-end p-8 pt-32 text-center md:text-left z-10">
+                <h3 className="text-2xl font-raleway font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">The P-Shot®</h3>
+                <div className="text-[#8ea3ff] text-xs font-bold uppercase tracking-wider mb-4">Treatment Details</div>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6 font-medium">
+                  Combine your tailored medication protocol with autologous PRP for maximum tissue restoration and vascular health.
+                </p>
+              </div>
+              {/* 3D Pop-Out Icon */}
+              <div className="absolute -bottom-6 -left-2 md:-left-6 w-20 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 group-hover:-translate-y-2 group-hover:rotate-0 transition-all duration-500 border-[6px] border-[#f8f9ff] z-20">
+                 <FaSyringe className="text-[#4041d1] text-4xl" />
+              </div>
+            </Link>
+
           </div>
         </div>
       </section>
@@ -443,7 +514,6 @@ export default function PersonalisedEDMedicationClient({
             ))}
           </div>
 
-          {/* --- ADDED: TOGGLE ALL FAQS BUTTON --- */}
           {faqs.length > 5 && (
             <div className="mt-8 text-center">
               <button
@@ -474,7 +544,6 @@ export default function PersonalisedEDMedicationClient({
       <LocationSection />
       <Footer />
 
-      {/* ADD THE MODAL RIGHT HERE */}
       <OnlineAssessmentModal 
         isOpen={isAssessmentOpen} 
         onClose={() => setIsAssessmentOpen(false)} 
