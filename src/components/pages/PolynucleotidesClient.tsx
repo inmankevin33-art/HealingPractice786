@@ -21,7 +21,7 @@ import {
   FaGoogle,
   FaStar,
   FaLock,
-  FaChevronDown // <--- Added this import
+  FaChevronDown 
 } from "react-icons/fa";
 import { FaWandSparkles } from "react-icons/fa6";
 import Footer from "@/components/Footer";
@@ -50,7 +50,7 @@ export default function PolynucleotidesClient({
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0); 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showAllFaqs, setShowAllFaqs] = useState(false); // <--- Added FAQ toggle state
+  const [showAllFaqs, setShowAllFaqs] = useState(false); 
   
   // State for the Before/After Slider (starts at 50%)
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -671,8 +671,46 @@ export default function PolynucleotidesClient({
          </div>
       </section>
 
-      {/* --- LIGHT SECTION 4: FAQs --- */}
-      <section className="py-24 bg-slate-50 font-inter border-t border-slate-100">
+      {/* --- REORDERED: MATCHING BOTTOM CTA BAR NOW ABOVE FAQS --- */}
+      <section className="py-24 bg-white border-b border-slate-200">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+            
+           {/* Pricing Info Box */}
+           <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
+              <p className="text-slate-600 leading-relaxed text-sm md:text-base font-inter">
+                 Our pricing is intentionally kept accessible compared with many London clinics, while maintaining the same medical-grade equipment, evidence-based protocols, and experienced doctor-led care.
+              </p>
+           </div>
+           
+           {/* 3-Button Layout matching ED page */}
+           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <button 
+                onClick={handleAction}
+                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-sm font-inter"
+              >
+                 <FaEnvelope className="w-4 h-4"/> Book Consultation
+              </button>
+              
+              <Link 
+                href={pricesUrl} 
+                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu shadow-sm font-inter"
+              >
+                 View Treatment Prices
+              </Link>
+              
+              <Link 
+                href={faqUrl} 
+                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-white border border-[#4041d1] text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition duration-300 ease-out transform-gpu font-inter"
+              >
+                 View Clinic FAQs
+              </Link>
+           </div>
+
+        </div>
+      </section>
+
+      {/* --- REORDERED: LIGHT SECTION 4: FAQs NOW BELOW CTA BAR --- */}
+      <section className="py-24 bg-slate-50 font-inter border-b border-slate-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-raleway font-bold text-slate-900">Common Questions</h2>
@@ -718,44 +756,6 @@ export default function PolynucleotidesClient({
             </div>
           )}
           
-        </div>
-      </section>
-
-      {/* --- MATCHING BOTTOM CTA BAR --- */}
-      <section className="py-24 bg-white border-t border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-            
-           {/* Pricing Info Box */}
-           <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
-              <p className="text-slate-600 leading-relaxed text-sm md:text-base font-inter">
-                 Our pricing is intentionally kept accessible compared with many London clinics, while maintaining the same medical-grade equipment, evidence-based protocols, and experienced doctor-led care.
-              </p>
-           </div>
-           
-           {/* 3-Button Layout matching ED page */}
-           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <button 
-                onClick={handleAction}
-                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-sm font-inter"
-              >
-                 <FaEnvelope className="w-4 h-4"/> Book Consultation
-              </button>
-              
-              <Link 
-                href={pricesUrl} 
-                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu shadow-sm font-inter"
-              >
-                 View Treatment Prices
-              </Link>
-              
-              <Link 
-                href={faqUrl} 
-                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-white border border-[#4041d1] text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition duration-300 ease-out transform-gpu font-inter"
-              >
-                 View Clinic FAQs
-              </Link>
-           </div>
-
         </div>
       </section>
 
