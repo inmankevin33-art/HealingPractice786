@@ -323,7 +323,7 @@ export default function ErectileDysfunctionClient({
               Erectile dysfunction is an incredibly common condition, yet it is often accompanied by unnecessary stigma. In many cases, it is an early indicator of underlying vascular, hormonal, or metabolic changes rather than being &quot;just psychological.&quot;
             </p>
             <p className="text-slate-600 text-lg leading-relaxed">
-              We believe in treating the root cause, not just the symptom. During your private consultation, our GMC-registered doctors take the time to listen, review your medical history, and discuss tailored, evidence-based solutions—from personalised medication and lifestyle optimisation to advanced restorative therapies like Shockwave and PRP.
+              We believe in treating the root cause, not just the symptom. During your doctor-led consultation, we take the time to listen, review your medical history, and agree a tailored, evidence-based plan—ranging from personalised medication and lifestyle optimisation to restorative options such as shockwave therapy and the P-Shot.
             </p>
             <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full transform-gpu"></div>
         </div>
