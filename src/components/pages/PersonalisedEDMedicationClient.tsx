@@ -63,6 +63,7 @@ export default function PersonalisedEDMedicationClient({
   const edRoute = `${baseRoute}/erectile-dysfunction`;
   const peRoute = `${baseRoute}/premature-ejaculation`;
   const pshotRoute = `${baseRoute}/p-shot`;
+  const rejuvenationRoute = `${baseRoute}/sexual-rejuvenation`; // <-- New Link Route Added
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -165,11 +166,9 @@ export default function PersonalisedEDMedicationClient({
   return (
     <>
       {/* --- HERO SECTION --- */}
-      {/* CHANGED: items-center is now items-end to push text to the bottom */}
       <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-end justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/40 z-10" />
-          {/* Enhanced the bottom gradient so text remains readable when pushed down */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-black/60 to-transparent z-10" />
           <img
             src="/personalised-meds-hero.webp"
@@ -181,10 +180,8 @@ export default function PersonalisedEDMedicationClient({
           />
         </div>
 
-        {/* CHANGED: Added pb-36 md:pb-48 to keep text anchored safely above the trust badges */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-36 md:pb-48">
 
-          {/* UPDATED TITLE with Male Performance focus */}
           <motion.h1
             custom={1}
             initial="hidden"
@@ -366,7 +363,6 @@ export default function PersonalisedEDMedicationClient({
                   Tailored PDE5 inhibitors and bespoke daily medication plans designed for optimal response and minimal side effects.
                 </p>
               </div>
-              {/* 3D Pop-Out Icon */}
               <div className="absolute -bottom-6 -left-2 md:-left-6 w-20 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 group-hover:-translate-y-2 group-hover:rotate-0 transition-all duration-500 border-[6px] border-[#f8f9ff] z-20">
                  <FaPills className="text-[#4041d1] text-4xl" />
               </div>
@@ -385,7 +381,6 @@ export default function PersonalisedEDMedicationClient({
                   Discreet, doctor-prescribed solutions designed to improve stamina, control, and restore sexual confidence.
                 </p>
               </div>
-              {/* 3D Pop-Out Icon */}
               <div className="absolute -bottom-6 -left-2 md:-left-6 w-20 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 group-hover:-translate-y-2 group-hover:rotate-0 transition-all duration-500 border-[6px] border-[#f8f9ff] z-20">
                  <FaHourglassHalf className="text-[#4041d1] text-4xl" />
               </div>
@@ -404,13 +399,39 @@ export default function PersonalisedEDMedicationClient({
                   Combine your tailored medication protocol with autologous PRP for maximum tissue restoration and vascular health.
                 </p>
               </div>
-              {/* 3D Pop-Out Icon */}
               <div className="absolute -bottom-6 -left-2 md:-left-6 w-20 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 group-hover:-translate-y-2 group-hover:rotate-0 transition-all duration-500 border-[6px] border-[#f8f9ff] z-20">
                  <FaSyringe className="text-[#4041d1] text-4xl" />
               </div>
             </Link>
 
           </div>
+
+          {/* --- NEW: EXPLORE SEXUAL REJUVENATION BANNER --- */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-20 bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-slate-800 relative overflow-hidden"
+          >
+            {/* Subtle background glow inside the banner */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl -z-10"></div>
+            
+            <div className="relative z-10 text-center md:text-left">
+              <h4 className="text-2xl font-raleway font-bold text-white mb-2">Looking for a holistic approach?</h4>
+              <p className="text-slate-300 text-sm md:text-base max-w-2xl font-inter">
+                Discover our comprehensive male intimate wellness and sexual rejuvenation programmes, focusing on long-term tissue health and aesthetic restoration.
+              </p>
+            </div>
+            
+            <Link 
+              href={rejuvenationRoute}
+              className="shrink-0 relative z-10 px-8 py-3.5 bg-white text-[#0f172a] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group shadow-lg active:scale-95 font-inter"
+            >
+              Explore Intimate Wellness
+              <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
+
         </div>
       </section>
 
