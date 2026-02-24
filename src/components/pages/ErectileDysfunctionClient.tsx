@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link"; // <--- ADD THIS
-// ... rest of your imports
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
@@ -17,28 +16,43 @@ import {
   FaCheckCircle,
   FaEnvelope,
   FaMapMarkerAlt,
-  FaArrowRight, // Correctly imported
+  FaArrowRight,
+  FaGoogle,
+  FaStar,
+  FaLock,
+  FaChevronDown // Added for the Show More button!
 } from "react-icons/fa";
-import LocationSection from "@/components/LocationSection"; // <--- ADD THIS
+import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
+import TrustReviews from "@/components/TrustReviews";
 
-// --- INTERFACE FOR DYNAMIC LOCATION PROPS ---
+// --- INTERFACE FOR DYNAMIC PROPS ---
+type FaqType = {
+  question: string;
+  answer: string;
+};
+
 interface ErectileDysfunctionProps {
   locationName?: string;
   servingAreas?: string;
-  pShotLink?: string; // <--- ADDED THIS: Required to fix the type error
+  pShotLink?: string;
+  faqs: FaqType[]; 
 }
 
 export default function ErectileDysfunctionClient({
-  locationName = "St Albans", // Default if no prop provided
-  servingAreas = "Harpenden • Luton • Watford • Hertfordshire", // Default areas
-  pShotLink = "/p-shot-treatment", // <--- ADDED THIS: Default link if not provided
+  locationName = "St Albans",
+  servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
+  pShotLink = "/p-shot-treatment",
+  faqs, 
 }: ErectileDysfunctionProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showAllFaqs, setShowAllFaqs] = useState(false); // FAQ toggle state
+
+  const isBirmingham = locationName === "Birmingham";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -149,46 +163,28 @@ export default function ErectileDysfunctionClient({
     },
   ];
 
-  const faqs = [
-    {
-      question: "Is Shockwave Therapy painful?",
-      answer: "Most men find it very tolerable. You may feel a tapping sensation, but anaesthetic is not usually required. There is typically no downtime and you can drive home immediately.",
-    },
-    {
-      question: "How is this different from Viagra/Cialis?",
-      answer: "Tablets can help temporarily by increasing blood flow for a few hours. Regenerative treatments such as shockwave therapy and PRP aim to support vascular function and tissue health over time.",
-    },
-    {
-      question: "How quickly will I see results?",
-      answer: "Tissue healing takes time. Some men notice changes after a few sessions, but improvements are often more noticeable in the weeks following treatment. Results vary based on overall health.",
-    },
-    {
-      question: "Can I treat ED if I have diabetes?",
-      answer: "Often, yes. Diabetes-related ED is commonly linked to blood vessel and nerve changes. A medical consultation is important to assess suitability and cardiovascular risk.",
-    },
-    {
-      question: "Is this treatment suitable for everyone?",
-      answer: "Not always. Suitability depends on the cause of erectile dysfunction, overall health, and medications. A medical consultation is required to assess appropriateness.",
-    },
-  ];
+  // Slice FAQs based on state
+  const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
         {/* Background Section */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
-          <img 
+          <Image 
             src="/ed-doctor-consultation.webp" 
             alt="Erectile dysfunction treatment consultation" 
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            className="object-cover opacity-90"
+            priority
           />
         </div>
 
         {/* Main Content */}
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16">
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 pb-32 md:pb-40">
           
           {/* Headline */}
           <motion.h1 
@@ -213,7 +209,6 @@ export default function ErectileDysfunctionClient({
             className="mt-1 md:text-lg text-base text-blue-100 font-medium font-raleway leading-relaxed"
           >
             Private assessment and tailored treatment options — including lifestyle and medication review, appropriate blood tests, and regenerative options where suitable.
-
           </motion.h2>
 
           {/* Description */}
@@ -224,7 +219,7 @@ export default function ErectileDysfunctionClient({
             variants={fadeUpVariants}
             className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
           >
-            A discreet, non-judgemental consultation to understand,
+            A discreet, non-judgemental consultation to understand
             the cause of ED and build a personalised plan.
             We discuss evidence, suitability and alternatives. 
             Results vary and are not guaranteed.
@@ -246,13 +241,13 @@ export default function ErectileDysfunctionClient({
             </button>
           </motion.div>
 
-          {/* LOCATION BADGE (Moved to bottom & Dynamic) */}
+          {/* LOCATION BADGE (Sleek Style) */}
           <motion.div 
             custom={5}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1]/10 text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter border border-white/10 backdrop-blur-sm"
           >
              <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
              <span>Serving: {servingAreas}</span>
@@ -260,23 +255,70 @@ export default function ErectileDysfunctionClient({
 
         </div>
 
-        {/* Feature Banner / Trust Bar */}
+        {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="px-4 py-5">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-4 gap-4">
-                {[
-                  { label: "GMC-registered doctor", sub: "Over 10 years experience" },
-                  { label: "Drug-free options", sub: "Natural PRP Treatments" },
-                  { label: "Discreet location", sub: "St Albans & Birmingham" },
-                  { label: "Private consultations", sub: "Strictly 1:1 Care" }
-                ].map((item, idx) => (
-                  <div key={idx} className={`text-center ${idx !== 3 ? 'border-r border-white/10' : ''}`}>
-                    <div className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 font-inter">{item.label}</div>
-                    <div className="text-blue-300 text-[10px] md:text-[11px] font-semibold font-inter">{item.sub}</div>
+          <div className="px-2 py-4 max-w-7xl mx-auto">
+            <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
+              
+              {/* 1. Google 5-Star Link */}
+              <a href="#reviews" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
+              }} className="flex justify-center items-center group cursor-pointer px-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-[#4285F4] group-hover:scale-110 transition-transform shadow-md">
+                    <FaGoogle className="w-4 h-4" />
                   </div>
-                ))}
+                  <div className="flex flex-col items-start">
+                    <div className="flex text-amber-400 text-[10px] mb-0.5">
+                      <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                    </div>
+                    <span className="text-white text-[9px] font-bold tracking-widest uppercase opacity-90 group-hover:opacity-100 font-inter">
+                      5.0 Patient Rating
+                    </span>
+                  </div>
+                </div>
+              </a>
+
+              {/* 2. Experience Badge */}
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
+                    10+
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Years</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Experience</span>
+                  </div>
+                </div>
               </div>
+
+              {/* 3. GMC Badge */}
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
+                    GMC
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Registered</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Doctor</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. Privacy & Discreet Care */}
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
+                    <FaLock className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Strictly 1:1</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Discreet Care</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -548,20 +590,19 @@ export default function ErectileDysfunctionClient({
               </p>
             </div>
             
-            <a 
+            <Link 
               href={pShotLink} 
-              // UPDATED CLASSNAME: Matches the main "Book Consultation" button style exactly
               className="shrink-0 px-8 py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group whitespace-nowrap shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
             >
               View P-Shot® Treatment
               <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
           </div>
 
         </div>
       </section>
 
-      {/* --- DOCTOR & PRIVACY SECTION (Updated: Text-Only + 3 Buttons) --- */}
+      {/* --- DOCTOR & PRIVACY SECTION (Text-Only + 3 Buttons) --- */}
       <section className="py-24 bg-slate-50 font-inter">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
@@ -631,7 +672,7 @@ export default function ErectileDysfunctionClient({
 
             {/* 2. Prices Link (Logic: Checks if Birmingham) */}
             <Link
-              href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
+              href={isBirmingham ? "/birmingham/prices" : "/prices"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
             >
               View Treatment Prices
@@ -639,7 +680,7 @@ export default function ErectileDysfunctionClient({
             
             {/* 3. FAQ Link (Logic: Checks if Birmingham) */}
             <Link
-              href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
+              href={isBirmingham ? "/birmingham/faq" : "/faq"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
             >
               View Clinic FAQs
@@ -659,7 +700,8 @@ export default function ErectileDysfunctionClient({
             </h2>
           </div>
           <div className="space-y-4">
-            {faqs.map((faq, index) => (
+            {/* CHANGED `faqs.map` to `displayedFaqs.map` */}
+            {displayedFaqs.map((faq, index) => (
               <motion.div
                 key={index}
                 className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
@@ -698,8 +740,33 @@ export default function ErectileDysfunctionClient({
               </motion.div>
             ))}
           </div>
+
+          {/* --- ADDED: TOGGLE ALL FAQS BUTTON --- */}
+          {faqs.length > 5 && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setShowAllFaqs(!showAllFaqs)}
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 rounded-xl font-inter font-bold transition-all duration-300"
+              >
+                {showAllFaqs ? "Show Less FAQs" : "View All FAQs"}
+                <FaChevronDown className={`w-3 h-3 transition-transform duration-300 ${showAllFaqs ? "rotate-180" : ""}`} />
+              </button>
+            </div>
+          )}
+
         </div>
       </section>
+
+      {/* --- GOOGLE REVIEWS SECTION --- */}
+      <div id="reviews-section">
+        <TrustReviews 
+          widgetUrl={
+            isBirmingham 
+              ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" 
+              : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"
+          } 
+        />
+      </div>
 
       <ContactCTASection />
       
