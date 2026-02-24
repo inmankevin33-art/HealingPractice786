@@ -169,12 +169,11 @@ export default function ErectileDysfunctionClient({
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
         {/* Background Section */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
-          {/* Reverted back to standard HTML img tag to fix the error! */}
           <img 
             src="/ed-doctor-consultation.webp" 
             alt="Erectile dysfunction treatment consultation" 
@@ -183,50 +182,44 @@ export default function ErectileDysfunctionClient({
         </div>
 
         {/* Main Content */}
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 pb-32 md:pb-40">
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
           
+          {/* Top Sleek Badge */}
+          <motion.div 
+            custom={0}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
+          >
+            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Doctor-Led Private Clinic</span>
+          </motion.div>
+
           {/* Headline */}
           <motion.h1 
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
+            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
-            Erectile Dysfunction Treatment in {locationName}<br />
-            <span className="block mt-2 text-white/90">
-              Doctor-Led, Confidential Private Clinic
-            </span>
+            Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {locationName}
           </motion.h1>
 
-          {/* Sub-headline */}
-          <motion.h2 
+          {/* Simplified Description */}
+          <motion.p 
             custom={2}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-1 md:text-lg text-base text-blue-100 font-medium font-raleway leading-relaxed"
+            className="mt-2 text-base md:text-xl text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
-            Private assessment and tailored treatment options — including lifestyle and medication review, appropriate blood tests, and regenerative options where suitable.
-          </motion.h2>
-
-          {/* Description */}
-          <motion.p 
-            custom={3}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
-          >
-            A discreet, non-judgemental consultation to understand
-            the cause of ED and build a personalised plan.
-            We discuss evidence, suitability and alternatives. 
-            Results vary and are not guaranteed.
+            A discreet, non-judgemental approach to restoring natural function, performance, and confidence.
           </motion.p>
 
           {/* CTA Button */}
           <motion.div 
-            custom={4}
+            custom={3}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -242,7 +235,7 @@ export default function ErectileDysfunctionClient({
 
           {/* LOCATION BADGE (Sleek Style) */}
           <motion.div 
-            custom={5}
+            custom={4}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -259,7 +252,6 @@ export default function ErectileDysfunctionClient({
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
               
-              {/* 1. Google 5-Star Link */}
               <a href="#reviews" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -279,7 +271,6 @@ export default function ErectileDysfunctionClient({
                 </div>
               </a>
 
-              {/* 2. Experience Badge */}
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
@@ -292,7 +283,6 @@ export default function ErectileDysfunctionClient({
                 </div>
               </div>
 
-              {/* 3. GMC Badge */}
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
@@ -305,7 +295,6 @@ export default function ErectileDysfunctionClient({
                 </div>
               </div>
 
-              {/* 4. Privacy & Discreet Care */}
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
@@ -323,8 +312,25 @@ export default function ErectileDysfunctionClient({
         </div>
       </div>
 
+      {/* --- NEW SECTION: PATIENT CENTRED APPROACH --- */}
+      <section className="py-20 bg-white font-inter">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-2 block">Why Choose Us</span>
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+              A Patient-Centred Approach to ED
+            </h2>
+            <p className="text-slate-600 text-lg leading-relaxed mb-6">
+              Erectile dysfunction is an incredibly common condition, yet it is often accompanied by unnecessary stigma. In many cases, it is an early indicator of underlying vascular, hormonal, or metabolic changes rather than being &quot;just psychological.&quot;
+            </p>
+            <p className="text-slate-600 text-lg leading-relaxed">
+              We believe in treating the root cause, not just the symptom. During your private consultation, our GMC-registered doctors take the time to listen, review your medical history, and discuss tailored, evidence-based solutions—from personalised medication and lifestyle optimisation to advanced restorative therapies like Shockwave and PRP.
+            </p>
+            <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full transform-gpu"></div>
+        </div>
+      </section>
+
       {/* --- SYMPTOMS SECTION --- */}
-      <section className="py-24 bg-slate-50 font-inter relative z-30">
+      <section className="py-24 bg-slate-50 font-inter relative z-30 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -343,7 +349,7 @@ export default function ErectileDysfunctionClient({
               transition={{ delay: 0.1 }}
               className="text-slate-600 text-lg leading-relaxed font-inter"
             >
-              Erectile dysfunction is rarely &quot;just psychological.&quot; Recognising these signs early allows treatment to be more effective.
+              Recognising these signs early allows treatment to be much more effective.
             </motion.p>
           </div>
 
@@ -691,7 +697,7 @@ export default function ErectileDysfunctionClient({
       </section>
 
       {/* --- FAQs --- */}
-      <section id="faqs" className="py-24 bg-white font-inter">
+      <section id="faqs" className="py-24 bg-white font-inter border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">
@@ -699,7 +705,6 @@ export default function ErectileDysfunctionClient({
             </h2>
           </div>
           <div className="space-y-4">
-            {/* CHANGED `faqs.map` to `displayedFaqs.map` */}
             {displayedFaqs.map((faq, index) => (
               <motion.div
                 key={index}
@@ -740,7 +745,7 @@ export default function ErectileDysfunctionClient({
             ))}
           </div>
 
-          {/* --- ADDED: TOGGLE ALL FAQS BUTTON --- */}
+          {/* --- TOGGLE ALL FAQS BUTTON --- */}
           {faqs.length > 5 && (
             <div className="mt-8 text-center">
               <button
@@ -769,7 +774,6 @@ export default function ErectileDysfunctionClient({
 
       <ContactCTASection />
       
-      {/* Location Section added here */}
       <LocationSection /> 
 
       <Footer />
