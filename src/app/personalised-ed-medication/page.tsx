@@ -5,7 +5,7 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: {
     // Added "Male Performance" to the Title tag
-    absolute: "Personalised ED Medication & Male Performance St Albans | Healing-PRP",
+    absolute: "Personalised ED Medication & Male Performance St Albans | Healing-PRP Clinics"
   },
   description:
     // Added "male performance" to the meta description
