@@ -20,7 +20,7 @@ import {
   FaGoogle,
   FaStar,
   FaLock,
-  FaChevronDown // Added for the Show More button!
+  FaChevronDown 
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
@@ -50,7 +50,7 @@ export default function ErectileDysfunctionClient({
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showAllFaqs, setShowAllFaqs] = useState(false); // FAQ toggle state
+  const [showAllFaqs, setShowAllFaqs] = useState(false); 
 
   const isBirmingham = locationName === "Birmingham";
 
@@ -174,12 +174,11 @@ export default function ErectileDysfunctionClient({
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
-          <Image 
+          {/* Reverted back to standard HTML img tag to fix the error! */}
+          <img 
             src="/ed-doctor-consultation.webp" 
             alt="Erectile dysfunction treatment consultation" 
-            fill
-            className="object-cover opacity-90"
-            priority
+            className="absolute inset-0 w-full h-full object-cover opacity-90"
           />
         </div>
 
