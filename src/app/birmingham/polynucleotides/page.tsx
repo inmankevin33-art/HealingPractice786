@@ -58,41 +58,77 @@ export const metadata: Metadata = {
 // --- SEO RICH FAQS ---
 const faqs = [
   {
-    question: "What exactly are Polynucleotides?",
-    answer: "Polynucleotides are highly purified DNA fragments used in regenerative aesthetics to support collagen stimulation and tissue repair. They act as biostimulators, encouraging the skin’s natural regenerative processes.",
+    question: "Is polynucleotide treatment available at your Birmingham clinic?",
+    answer: "Yes. Doctor-led polynucleotide treatment is available at our Birmingham clinic in Edgbaston as part of our structured DNA Glow Concept™ protocol. A medical consultation is required to assess suitability and your specific skin goals."
   },
   {
-    question: "What makes the DNA Glow Concept™ different?",
-    answer: "Unlike standard treatments that use a single product, our concept combines three powerful modalities: Polynucleotides for deep repair, Non-Cross-Linked HA for hydration, and Microneedling for surface texture. This creates a multi-layered result.",
+    question: "What are polynucleotides used for in skin treatment?",
+    answer: "Polynucleotides are purified DNA fragments used in regenerative aesthetics to support collagen stimulation and tissue repair. At our Birmingham clinic, they are commonly used to improve under-eye skin quality, hydration, and early textural changes."
   },
   {
-    question: "Are polynucleotides better than filler?",
-    answer: "They serve different purposes. Fillers add structural volume to change the shape of your face. Polynucleotides improve the quality of the skin itself—making it thicker, hydrated, and more elastic without changing your natural features or causing puffiness.",
+    question: "Can polynucleotides help with dark circles under the eyes?",
+    answer: "Polynucleotides are frequently used by our Birmingham patients for the delicate under-eye areas where concerns include dark circles, crepey skin, or thinning. They focus on naturally improving skin quality rather than adding structural volume."
   },
   {
-    question: "Can polynucleotides be used under the eyes?",
-    answer: "Yes, polynucleotide treatments like Ameela, PhilArt, and Plinest are exceptional for the delicate under-eye area. They help thicken crepey skin and reduce dark circles without the risk of the 'puffy' look sometimes associated with traditional tear trough fillers.",
+    question: "How many polynucleotide sessions are recommended?",
+    answer: "For patients visiting our Edgbaston skin clinic, a course of three treatments spaced approximately 2–4 weeks apart is commonly advised to support an optimal regenerative response. Maintenance sessions may be considered depending on individual skin condition."
   },
   {
-    question: "How many sessions do I need?",
-    answer: "We typically recommend a course of 3 treatments spaced 2–4 weeks apart to achieve the full clinical effect. Maintenance is usually recommended as one single session every 6–9 months.",
+    question: "Is there downtime after polynucleotide treatment in Birmingham?",
+    answer: "Downtime is usually minimal. Mild redness or small injection-site papules may occur and typically settle within 24–48 hours. Most patients return to their normal daily activities in the West Midlands shortly after treatment."
   },
   {
-    question: "How soon will I see results from the DNA Glow treatment?",
-    answer: "While you will notice an initial glow and hydration within the first week due to the HA component, the true regenerative effects of polynucleotides take about 3 to 4 weeks to become visible as your body naturally produces new collagen.",
+    question: "Are polynucleotides the same as dermal fillers?",
+    answer: "No. Dermal fillers are designed to add volume and reshape facial contours, whereas polynucleotides are biostimulators that aim to improve skin quality, elasticity, and hydration without altering your natural facial structure."
   },
   {
-    question: "Is there downtime?",
-    answer: "Downtime is minimal. Because we treat multiple layers of the skin, you may have some redness or small bumps (papules) at the injection sites for 24–48 hours. This is completely normal and a sign the product is working.",
+    question: "What is non-cross-linked hyaluronic acid (HA) and how is it different from filler?",
+    answer: "Non-cross-linked hyaluronic acid is a ‘skin booster’ designed for hydration and skin quality rather than volume. Unlike dermal fillers (which are cross-linked to hold shape), non-cross-linked HA spreads more evenly within the skin to support hydration, texture and elasticity without changing facial contours."
   },
   {
-    question: "Does the polynucleotide treatment hurt?",
-    answer: "We apply a highly effective, prescription-strength numbing cream before the procedure begins. Because we use ultra-fine needles and careful microneedling techniques, most patients report only very mild discomfort.",
+    question: "What does non-cross-linked HA help with?",
+    answer: "Non-cross-linked HA is commonly used for dehydrated or dull skin, fine lines, and overall skin texture. It is a popular choice at our Birmingham clinic when the goal is smoother, more luminous skin without adding structural volume."
   },
   {
-    question: "Who is a good candidate for this treatment?",
-    answer: "Anyone noticing early signs of skin laxity, dullness, dark circles, or crepey skin is a great candidate. It is highly effective for both preventative anti-ageing in your 30s and restorative care in your 40s, 50s, and beyond.",
+    question: "Can polynucleotides or non-cross-linked hyaluronic acid help with acne scars?",
+    answer: "They may help in selected cases, particularly where acne scarring is mild and the main issue is uneven texture. Polynucleotides support regenerative signalling over time, while HA improves hydration. Deep, tethered acne scars usually need scar-focused treatments following a personalised skin assessment with our Birmingham doctor."
   },
+  {
+    question: "What is PDRN in aesthetics?",
+    answer: "PDRN (polydeoxyribonucleotide) is a DNA-derived regenerative ingredient used in medical aesthetics to support skin repair and recovery. It is often used in protocols focused on improving skin texture, resilience and overall skin quality."
+  },
+  {
+    question: "What is the difference between PDRN and PN (polynucleotides) for skin?",
+    answer: "Both are used in regenerative aesthetics, but protocols may differ depending on the product and the target concern. In practice, the choice is based on factors such as skin quality, sensitivity, the treatment area (for example under-eye), and whether the goal is collagen support, hydration, or recovery."
+  },
+  {
+    question: "What is PRP microneedling?",
+    answer: "PRP microneedling, offered alongside our DNA Glow Concept in Edgbaston, combines microneedling with Platelet-Rich Plasma (PRP) prepared from a small sample of your blood. PRP contains growth factors involved in normal tissue repair which may support collagen signalling."
+  },
+  {
+    question: "What concerns can PRP microneedling help improve?",
+    answer: "PRP microneedling is commonly used by our West Midlands patients for uneven skin texture, post-acne scarring, enlarged pores, fine lines and dullness. Results tend to develop gradually as collagen remodelling occurs."
+  },
+  {
+    question: "How soon do you see results from PRP microneedling?",
+    answer: "Some people notice a short-term glow within a week as the skin recovers. More meaningful changes in texture and firmness typically develop over several weeks as collagen remodelling progresses. Individual results vary."
+  },
+  {
+    question: "Is there downtime after PRP microneedling?",
+    answer: "Downtime is usually mild. Redness can last 24–48 hours, and some people experience light dryness or flaking as the skin heals before returning to their normal routine. Post-treatment skincare advice helps support recovery."
+  },
+  {
+    question: "What is niacinamide and why is it used in skincare protocols?",
+    answer: "Niacinamide (vitamin B3) is a well-studied skincare ingredient that supports the skin barrier, helps reduce redness, and can improve uneven tone and the appearance of pores. It is often recommended as part of a maintenance routine alongside regenerative treatments."
+  },
+  {
+    question: "Can you combine polynucleotides with non-cross-linked HA and microneedling?",
+    answer: "Yes, this is exactly what our signature DNA Glow Concept™ at Healing-PRP Birmingham is designed to do. Combination protocols address multiple layers of skin health—dermal support, hydration and surface texture."
+  },
+  {
+    question: "Is a consultation needed before PDRN, polynucleotides, or PRP microneedling?",
+    answer: "Yes. Every patient at our Birmingham clinic receives a private medical consultation to confirm suitability, discuss expected outcomes, and ensure treatments are appropriate for your medical history, skin type, and goals."
+  }
 ];
 
 // --- JSON-LD SCHEMA: Medical Clinic & Medical Therapy (Birmingham) ---
