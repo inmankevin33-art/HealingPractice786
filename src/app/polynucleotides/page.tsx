@@ -4,10 +4,10 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Polynucleotides St Albans | DNA Glow Skin Treatment | Healing-PRP",
+    absolute: "Polynucleotides St Albans | DNA Glow Skin Treatment | Healing-PRP Clinics",
   },
   description:
-    "Polynucleotides in Birmingham. Doctor-led regenerative DNA Glow therapy for under-eye rejuvenation and skin quality improvement in Edgbaston.",
+    "Polynucleotides in St Albans. Doctor-led regenerative DNA Glow therapy for under-eye rejuvenation and skin quality improvement in Hertfordshire.",
   keywords: [
     // Core Service
     "Polynucleotides St Albans",
