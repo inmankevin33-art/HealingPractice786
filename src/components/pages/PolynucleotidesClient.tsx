@@ -229,7 +229,7 @@ export default function PolynucleotidesClient({
           >
             <button 
               onClick={handleAction}
-              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out gap-2 shadow-xl hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] active:scale-95 font-inter transform-gpu"
+              className="px-8 py-4 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-[#2a2bb8] rounded-xl font-bold transition duration-300 ease-out gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter transform-gpu"
             >
               <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
@@ -240,13 +240,11 @@ export default function PolynucleotidesClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-6 py-3 bg-[#4041d1] text-white rounded-2xl sm:rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 max-w-[90%] mx-auto text-center"
+            /* THIS IS THE UPDATED, SLEEK P-SHOT BADGE STYLE */
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
           >
-             <div className="flex items-center gap-1.5 text-white">
-               <FaMapMarkerAlt className="w-3 h-3" /> 
-               <span>Serving:</span>
-             </div>
-             <span className="leading-relaxed">{servingAreas}</span>
+             <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
+             <span>Serving: {servingAreas}</span>
           </motion.div>
         </div>
 
@@ -651,7 +649,7 @@ export default function PolynucleotidesClient({
                   
                   <button 
                     onClick={handleAction}
-                    className="px-8 py-4 inline-flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(64,65,209,0.4)] active:scale-95 font-inter"
+                    className="px-8 py-4 inline-flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] text-white hover:bg-[#2a2bb8] rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95 font-inter"
                   >
                     <FaEnvelope className="w-4 h-4" /> Book Consultation
                   </button>
@@ -671,12 +669,12 @@ export default function PolynucleotidesClient({
          </div>
       </section>
 
-      {/* --- REORDERED: MATCHING BOTTOM CTA BAR NOW ABOVE FAQS --- */}
+      {/* --- MATCHING BOTTOM CTA BAR NOW ABOVE FAQS --- */}
       <section className="py-24 bg-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 text-center">
             
            {/* Pricing Info Box */}
-           <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
+           <div className="max-w-3xl mx-auto bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
               <p className="text-slate-600 leading-relaxed text-sm md:text-base font-inter">
                  Our pricing is intentionally kept accessible compared with many London clinics, while maintaining the same medical-grade equipment, evidence-based protocols, and experienced doctor-led care.
               </p>
@@ -686,14 +684,14 @@ export default function PolynucleotidesClient({
            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <button 
                 onClick={handleAction}
-                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-sm font-inter"
+                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-[#2a2bb8] rounded-xl font-bold transition duration-300 ease-out transform-gpu gap-2 shadow-sm font-inter"
               >
                  <FaEnvelope className="w-4 h-4"/> Book Consultation
               </button>
               
               <Link 
                 href={pricesUrl} 
-                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-blue-700 rounded-xl font-bold transition duration-300 ease-out transform-gpu shadow-sm font-inter"
+                className="w-full sm:w-auto px-8 py-3.5 inline-flex items-center justify-center text-sm bg-[#4041d1] text-white hover:bg-[#2a2bb8] rounded-xl font-bold transition duration-300 ease-out transform-gpu shadow-sm font-inter"
               >
                  View Treatment Prices
               </Link>
@@ -709,7 +707,7 @@ export default function PolynucleotidesClient({
         </div>
       </section>
 
-      {/* --- REORDERED: LIGHT SECTION 4: FAQs NOW BELOW CTA BAR --- */}
+      {/* --- LIGHT SECTION 4: FAQs NOW BELOW CTA BAR --- */}
       <section className="py-24 bg-slate-50 font-inter border-b border-slate-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
