@@ -15,31 +15,46 @@ import {
   FaExpandArrowsAlt,
   FaShieldAlt,
   FaArrowRight,
-  FaRegClock, // Time icon
-  FaLeaf,     // Natural/Treatment icon
-  FaWalking,  // Downtime icon
-  FaUserMd,   // Medical icon
-  FaMicroscope, // Added for Exo-P section
-  FaVial,       // Added for Exo-P section
+  FaRegClock, 
+  FaLeaf,     
+  FaWalking,  
+  FaUserMd,   
+  FaMicroscope, 
+  FaVial,
+  FaGoogle,
+  FaStar,
+  FaLock,
+  FaChevronDown // <--- Added for FAQ Dropdown
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
+import TrustReviews from "@/components/TrustReviews";
 
-// --- INTERFACE ---
+// --- INTERFACE FOR DYNAMIC PROPS ---
+type FaqType = {
+  question: string;
+  answer: string;
+};
+
 interface PShotProps {
   locationName?: string;
   servingAreas?: string;
+  faqs: FaqType[]; // <--- Added faqs array to props for SEO
 }
 
 export default function PShotClient({
   locationName = "St Albans",
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
+  faqs,
 }: PShotProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showAllFaqs, setShowAllFaqs] = useState(false); // <--- Added FAQ toggle state
+
+  const isBirmingham = locationName === "Birmingham";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -147,38 +162,8 @@ export default function PShotClient({
     },
   ];
 
-  const faqs = [
-    {
-      question: "Is the P-Shot painful?",
-      answer:
-        "Local anaesthetic is used to maximise comfort during the procedure. Most patients describe the treatment as well tolerated, with only mild temporary discomfort at the injection sites.",
-    },
-    {
-      question: "How long does the procedure take?",
-      answer:
-        "The full appointment usually lasts around 45–60 minutes. This includes consultation review, blood collection, PRP preparation, and the treatment itself.",
-    },
-    {
-      question: "When might I notice changes?",
-      answer:
-        "Individual responses vary. Some men notice gradual changes within a few weeks, while regenerative processes may continue to develop over several months as tissue healing occurs.",
-    },
-    {
-      question: "Is the P-Shot permanent?",
-      answer:
-        "PRP therapy is not considered a permanent treatment. While some men report sustained improvement, results vary and may gradually change over time depending on age, vascular health, and lifestyle factors. Maintenance treatment can be discussed where appropriate.",
-    },
-    {
-      question: "How long may the effects last?",
-      answer:
-        "Duration varies depending on age, vascular health, and underlying conditions. Some patients report sustained improvement for many months, and maintenance treatment may be discussed where appropriate.",
-    },
-    {
-      question: "Are there any side effects?",
-      answer:
-        "Because PRP is derived from your own blood, the risk of allergic reaction is extremely low. Temporary swelling, mild bruising, or tenderness at the injection site can occur and usually settles within a few days.",
-    },
-  ];
+  // Slice FAQs based on state
+  const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   return (
     <>
@@ -195,41 +180,44 @@ export default function PShotClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16">
+        {/* FIXED: Added md:pb-24 to push content above the trust badge footer */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
+          
+          {/* NEW: Top Sleek Badge */}
+          <motion.div 
+            custom={0}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
+          >
+            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Doctor-Led Private Clinic</span>
+          </motion.div>
+
           <motion.h1 
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
+            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
-            The P-Shot (Priapus Shot)<br />
-            <span className="block mt-2">Healing-PRP Clinics, {locationName}</span>
+            The P-Shot (Priapus Shot)<br className="hidden sm:block" />
+            <span className="md:text-5xl text-3xl">in {locationName}</span>
           </motion.h1>
 
-          <motion.h2 
+          <motion.p 
             custom={2}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-1 md:text-lg text-base text-blue-100 font-medium font-raleway leading-relaxed"
-          >
-            Advanced Platelet-Rich Plasma (PRP) Therapy for Men
-          </motion.h2>
-
-          <motion.p 
-            custom={3}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
+            className="mt-2 text-base md:text-xl text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
             A natural, non-surgical treatment designed to rejuvenate tissue, 
             enhance performance, and improve vascular health using your body’s own healing factors.
           </motion.p>
 
           <motion.div 
-            custom={4}
+            custom={3}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -244,33 +232,81 @@ export default function PShotClient({
           </motion.div>
 
           <motion.div 
-            custom={5}
+            custom={4}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1] text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1]/10 text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 backdrop-blur-sm"
           >
              <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
              <span>Serving: {servingAreas}</span>
           </motion.div>
         </div>
 
+        {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="px-4 py-5">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-4 gap-4">
-                {[
-                  { label: "GMC-registered doctor", sub: "Specialist Care" },
-                  { label: "100% Natural", sub: "Uses Your Own PRP" },
-                  { label: "Minimal Downtime", sub: "Return to Routine" },
-                  { label: "Private & Confidential", sub: "Strictly 1:1" }
-                ].map((item, idx) => (
-                  <div key={idx} className={`text-center ${idx !== 3 ? 'border-r border-white/10' : ''}`}>
-                    <div className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 font-inter">{item.label}</div>
-                    <div className="text-blue-300 text-[10px] md:text-[11px] font-semibold font-inter">{item.sub}</div>
+          <div className="px-2 py-4 max-w-7xl mx-auto">
+            <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
+              
+              {/* 1. Google 5-Star Link */}
+              <a href="#reviews" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
+              }} className="flex justify-center items-center group cursor-pointer px-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-[#4285F4] group-hover:scale-110 transition-transform shadow-md">
+                    <FaGoogle className="w-4 h-4" />
                   </div>
-                ))}
+                  <div className="flex flex-col items-start">
+                    <div className="flex text-amber-400 text-[10px] mb-0.5">
+                      <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                    </div>
+                    <span className="text-white text-[9px] font-bold tracking-widest uppercase opacity-90 group-hover:opacity-100 font-inter">
+                      5.0 Patient Rating
+                    </span>
+                  </div>
+                </div>
+              </a>
+
+              {/* 2. Experience Badge */}
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
+                    10+
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Years</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Experience</span>
+                  </div>
+                </div>
               </div>
+
+              {/* 3. GMC Badge */}
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
+                    GMC
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Registered</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Doctor</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. Privacy & Discreet Care */}
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
+                    <FaLock className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Strictly 1:1</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Discreet Care</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -362,123 +398,123 @@ export default function PShotClient({
             </motion.p>
           </motion.div>
 
-           <div className="max-w-6xl mx-auto mt-12 relative">
-            {/* Steps Visualizer */}
-            <div className="text-center mb-12">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeStep}
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.2 }}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/20 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] backdrop-blur-md"
-                >
-                  <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
-                  <span className="text-sm font-bold text-white uppercase tracking-[0.2em] font-raleway">
-                    Step 0{protocolSteps[activeStep].number}:{" "}
-                    {protocolSteps[activeStep].title}
-                  </span>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+          <div className="max-w-6xl mx-auto mt-12 relative">
+            {/* Steps Visualizer */}
+            <div className="text-center mb-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ duration: 0.2 }}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1]/20 border border-[#4041d1]/50 rounded-full shadow-[0_0_25px_rgba(64,65,209,0.3)] backdrop-blur-md"
+                >
+                  <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_10px_#4041d1]" />
+                  <span className="text-sm font-bold text-white uppercase tracking-[0.2em] font-raleway">
+                    Step 0{protocolSteps[activeStep].number}:{" "}
+                    {protocolSteps[activeStep].title}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-16"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
-              {protocolSteps.map((step, index) => {
-                const IconComponent = step.icon;
-                const isActive = activeStep === index;
-                return (
-                  <motion.div
-                    key={index}
-                    className="relative group cursor-pointer"
-                    onClick={() => setActiveStep(index)}
-                    variants={itemVariants}
-                  >
-                    <div
-                      className={`p-6 rounded-[2.5rem] border transition-all duration-300 h-full flex flex-col ${
-                        isActive
-                          ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
-                          : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"
-                      }`}
-                    >
-                      <div
-                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
-                          isActive
-                            ? "bg-[#4041d1] text-white shadow-lg scale-110"
-                            : "bg-white/10 text-slate-300 group-hover:text-[#4041d1] group-hover:scale-105"
-                        }`}
-                      >
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <h3
-                        className={`font-raleway font-bold mb-3 text-lg transition-colors ${
-                          isActive ? "text-slate-900" : "text-white"
-                        }`}
-                      >
-                        {step.title}
-                      </h3>
-                      <p
-                        className={`text-xs leading-relaxed font-inter transition-colors ${
-                          isActive ? "text-slate-600 font-medium" : "text-slate-400"
-                        }`}
-                      >
-                        {step.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-16"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
+              {protocolSteps.map((step, index) => {
+                const IconComponent = step.icon;
+                const isActive = activeStep === index;
+                return (
+                  <motion.div
+                    key={index}
+                    className="relative group cursor-pointer"
+                    onClick={() => setActiveStep(index)}
+                    variants={itemVariants}
+                  >
+                    <div
+                      className={`p-6 rounded-[2.5rem] border transition-all duration-300 h-full flex flex-col ${
+                        isActive
+                          ? "border-[#4041d1] bg-white shadow-[0_0_40px_rgba(64,65,209,0.2)] scale-105 z-20"
+                          : "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:bg-white/[0.07]"
+                      }`}
+                    >
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
+                          isActive
+                            ? "bg-[#4041d1] text-white shadow-lg scale-110"
+                            : "bg-white/10 text-slate-300 group-hover:text-[#4041d1] group-hover:scale-105"
+                        }`}
+                      >
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <h3
+                        className={`font-raleway font-bold mb-3 text-lg transition-colors ${
+                          isActive ? "text-slate-900" : "text-white"
+                        }`}
+                      >
+                        {step.title}
+                      </h3>
+                      <p
+                        className={`text-xs leading-relaxed font-inter transition-colors ${
+                          isActive ? "text-slate-600 font-medium" : "text-slate-400"
+                        }`}
+                      >
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
 
-            {/* Quick Facts Grid */}
-            <motion.div 
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ delay: 0.4 }}
-               className="grid grid-cols-2 md:grid-cols-4 gap-4"
-            >
-              {/* Card 1: Time */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
-                   <FaRegClock className="text-[#4041d1] text-xl mb-2" />
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Approx. 60 Mins</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Includes consultation & prep</div>
-              </div>
+            {/* Quick Facts Grid */}
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: 0.4 }}
+               className="grid grid-cols-2 md:grid-cols-4 gap-4"
+            >
+              {/* Card 1: Time */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaRegClock className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Time</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Approx. 60 Mins</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Includes consultation & prep</div>
+              </div>
 
-              {/* Card 2: Comfort */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
-                   <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Local Anaesthetic</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Well tolerated</div>
-              </div>
+              {/* Card 2: Comfort */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaShieldAlt className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Comfort</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Local Anaesthetic</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Well tolerated</div>
+              </div>
 
-              {/* Card 3: Downtime */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
-                   <FaWalking className="text-[#4041d1] text-xl mb-2" />
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Downtime</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Little to None</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Resume daily activities</div>
-              </div>
+              {/* Card 3: Downtime */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaWalking className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Downtime</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Little to None</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Resume daily activities</div>
+              </div>
 
-              {/* Card 4: Method */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
-                   <FaUserMd className="text-[#4041d1] text-xl mb-2" />
-                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Treatment</div>
-                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Autologous PRP</div>
-                   <div className="text-slate-500 text-[10px] font-medium">Your own growth factors</div>
-              </div>
-            </motion.div>
+              {/* Card 4: Method */}
+              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/[0.06] transition-colors">
+                   <FaUserMd className="text-[#4041d1] text-xl mb-2" />
+                   <div className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mb-1">Treatment</div>
+                   <div className="text-white font-raleway font-bold text-sm md:text-base mb-0.5">Autologous PRP</div>
+                   <div className="text-slate-500 text-[10px] font-medium">Your own growth factors</div>
+              </div>
+            </motion.div>
 
-          </div>
+          </div>
         </div>
       </section>
 
@@ -512,7 +548,7 @@ export default function PShotClient({
                   This approach uses your own platelet-rich plasma (PRP), enhanced with exosome-derived regenerative signalling, and is designed to support tissue repair and blood flow.
                 </p>
                 <div className="mt-6 flex items-center gap-2 text-xs font-bold text-[#4041d1] uppercase tracking-widest">
-                  <FaMapMarkerAlt /> Available in St Albans, Birmingham & London
+                  <FaMapMarkerAlt /> Available in St Albans & Birmingham
                 </div>
               </div>
 
@@ -740,7 +776,7 @@ export default function PShotClient({
 
             {/* 2. Prices Link */}
             <Link
-              href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
+              href={isBirmingham ? "/birmingham/prices" : "/prices"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
             >
               View Treatment Prices
@@ -748,7 +784,7 @@ export default function PShotClient({
             
             {/* 3. FAQ Link */}
             <Link
-              href={locationName === "Birmingham" ? "/birmingham/faq" : "/faq"}
+              href={isBirmingham ? "/birmingham/faq" : "/faq"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
             >
               View Clinic FAQs
@@ -768,7 +804,7 @@ export default function PShotClient({
             </h2>
           </div>
           <div className="space-y-4">
-            {faqs.map((faq, index) => (
+            {displayedFaqs.map((faq, index) => (
               <motion.div
                 key={index}
                 className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
@@ -807,8 +843,33 @@ export default function PShotClient({
               </motion.div>
             ))}
           </div>
+
+          {/* --- ADDED: TOGGLE ALL FAQS BUTTON --- */}
+          {faqs.length > 5 && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setShowAllFaqs(!showAllFaqs)}
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 rounded-xl font-inter font-bold transition-all duration-300"
+              >
+                {showAllFaqs ? "Show Less FAQs" : "View All FAQs"}
+                <FaChevronDown className={`w-3 h-3 transition-transform duration-300 ${showAllFaqs ? "rotate-180" : ""}`} />
+              </button>
+            </div>
+          )}
+
         </div>
       </section>
+
+      {/* --- GOOGLE REVIEWS SECTION --- */}
+      <div id="reviews-section">
+        <TrustReviews 
+          widgetUrl={
+            isBirmingham 
+              ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" 
+              : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"
+          } 
+        />
+      </div>
 
       <ContactCTASection />
       
