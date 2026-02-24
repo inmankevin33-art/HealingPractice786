@@ -190,7 +190,7 @@ export default function PersonalisedEDMedicationClient({
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Doctor-Led Private Clinic</span>
           </motion.div>
 
-          <motion.h1
+         <motion.h1
             custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
@@ -198,7 +198,7 @@ export default function PersonalisedEDMedicationClient({
             className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
           >
             Personalised ED Medication <br className="hidden md:block" /> 
-            in {locationName}
+            for Male Performance in {locationName}
           </motion.h1>
 
           <motion.p
@@ -352,7 +352,7 @@ export default function PersonalisedEDMedicationClient({
           <div className="text-center max-w-3xl mx-auto mb-20">
             <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-2 block">Our Treatments</span>
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              View our range of treatments to improve your Sexual Health.
+              Explore our range of bespoke treatments to enhance male performance.
             </h2>
           </div>
 
