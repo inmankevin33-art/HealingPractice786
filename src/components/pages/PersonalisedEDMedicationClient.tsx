@@ -337,8 +337,8 @@ export default function PersonalisedEDMedicationClient({
         </div>
       </section>
 
-      {/* --- OUR TREATMENTS (HUB GRID) --- */}
-      <section className="py-24 bg-white font-inter border-t border-slate-100 relative z-30 overflow-visible">
+     {/* --- OUR TREATMENTS (HUB GRID) --- */}
+      <section className="py-24 bg-slate-50 font-inter border-t border-slate-100 relative z-30 overflow-visible">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-20">
@@ -348,60 +348,71 @@ export default function PersonalisedEDMedicationClient({
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-8 pt-6">
+          {/* Increased gap and top padding to allow room for the pop-out images */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-10 pt-10 pb-10">
             
             {/* CARD 1: Erectile Dysfunction */}
-            <Link href={edRoute} className="group relative block rounded-[2rem] overflow-visible shadow-lg hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[380px] bg-slate-900 mt-8 md:mt-0">
+            <Link href={edRoute} className="group relative block rounded-[2rem] overflow-visible shadow-xl hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[400px] bg-slate-900 mt-8 md:mt-0">
               <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
                 <img src="/ed-doctor-consultation.webp" alt="Erectile Dysfunction" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/80 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/60 to-transparent"></div>
               </div>
-              <div className="relative h-full flex flex-col justify-end p-8 pt-32 text-center md:text-left z-10">
-                <h3 className="text-2xl font-raleway font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">Erectile Dysfunction</h3>
-                <div className="text-[#8ea3ff] text-xs font-bold uppercase tracking-wider mb-4">Treatment Details</div>
-                <p className="text-slate-300 text-sm leading-relaxed mb-6 font-medium">
+              {/* Text content fully centered to match your screenshot */}
+              <div className="relative h-full flex flex-col justify-center items-center p-8 text-center z-10">
+                <h3 className="text-3xl font-raleway font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">Erectile Dysfunction</h3>
+                <div className="text-white/80 text-sm font-medium tracking-wider mb-6">Treatment Details</div>
+                <p className="text-slate-300 text-sm leading-relaxed font-medium max-w-[250px]">
                   Tailored PDE5 inhibitors and bespoke daily medication plans designed for optimal response and minimal side effects.
                 </p>
               </div>
-              <div className="absolute -bottom-6 -left-2 md:-left-6 w-20 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 group-hover:-translate-y-2 group-hover:rotate-0 transition-all duration-500 border-[6px] border-[#f8f9ff] z-20">
-                 <FaPills className="text-[#4041d1] text-4xl" />
-              </div>
+              {/* THE 3D POP-OUT IMAGE */}
+              <img 
+                src="/ed-bottle.png"  /* <-- Replace with your transparent PNG path */
+                alt="ED Medication" 
+                className="absolute -bottom-12 -left-6 w-32 md:w-40 h-auto object-contain drop-shadow-2xl transform group-hover:-translate-y-3 transition-all duration-500 z-20"
+              />
             </Link>
 
             {/* CARD 2: Premature Ejaculation */}
-            <Link href={peRoute} className="group relative block rounded-[2rem] overflow-visible shadow-lg hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[380px] bg-slate-900 mt-8 md:mt-0">
+            <Link href={peRoute} className="group relative block rounded-[2rem] overflow-visible shadow-xl hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[400px] bg-slate-900 mt-8 md:mt-0">
               <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
-                <div className="absolute inset-0 bg-slate-800 opacity-60"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/80 to-transparent"></div>
+                <div className="absolute inset-0 bg-slate-800 opacity-60"></div> {/* Replace with PE lifestyle image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/60 to-transparent"></div>
               </div>
-              <div className="relative h-full flex flex-col justify-end p-8 pt-32 text-center md:text-left z-10">
-                <h3 className="text-2xl font-raleway font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">Premature Ejaculation</h3>
-                <div className="text-[#8ea3ff] text-xs font-bold uppercase tracking-wider mb-4">Treatment Details</div>
-                <p className="text-slate-300 text-sm leading-relaxed mb-6 font-medium">
+              <div className="relative h-full flex flex-col justify-center items-center p-8 text-center z-10">
+                <h3 className="text-3xl font-raleway font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">Premature Ejaculation</h3>
+                <div className="text-white/80 text-sm font-medium tracking-wider mb-6">Treatment Details</div>
+                <p className="text-slate-300 text-sm leading-relaxed font-medium max-w-[250px]">
                   Discreet, doctor-prescribed solutions designed to improve stamina, control, and restore sexual confidence.
                 </p>
               </div>
-              <div className="absolute -bottom-6 -left-2 md:-left-6 w-20 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 group-hover:-translate-y-2 group-hover:rotate-0 transition-all duration-500 border-[6px] border-[#f8f9ff] z-20">
-                 <FaHourglassHalf className="text-[#4041d1] text-4xl" />
-              </div>
+              {/* THE 3D POP-OUT IMAGE */}
+              <img 
+                src="/pe-bottle.png" /* <-- Replace with your transparent PNG path */
+                alt="PE Medication" 
+                className="absolute -bottom-12 -left-6 w-32 md:w-40 h-auto object-contain drop-shadow-2xl transform group-hover:-translate-y-3 transition-all duration-500 z-20"
+              />
             </Link>
 
             {/* CARD 3: P-Shot */}
-            <Link href={pshotRoute} className="group relative block rounded-[2rem] overflow-visible shadow-lg hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[380px] bg-slate-900 mt-8 md:mt-0">
+            <Link href={pshotRoute} className="group relative block rounded-[2rem] overflow-visible shadow-xl hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[400px] bg-slate-900 mt-8 md:mt-0">
               <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
                 <img src="/p-shot-consultation.webp" alt="P-Shot Regenerative Therapy" onError={(e) => e.currentTarget.style.display = 'none'} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/80 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/60 to-transparent"></div>
               </div>
-              <div className="relative h-full flex flex-col justify-end p-8 pt-32 text-center md:text-left z-10">
-                <h3 className="text-2xl font-raleway font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">The P-Shot®</h3>
-                <div className="text-[#8ea3ff] text-xs font-bold uppercase tracking-wider mb-4">Treatment Details</div>
-                <p className="text-slate-300 text-sm leading-relaxed mb-6 font-medium">
+              <div className="relative h-full flex flex-col justify-center items-center p-8 text-center z-10">
+                <h3 className="text-3xl font-raleway font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">The P-Shot®</h3>
+                <div className="text-white/80 text-sm font-medium tracking-wider mb-6">Treatment Details</div>
+                <p className="text-slate-300 text-sm leading-relaxed font-medium max-w-[250px]">
                   Combine your tailored medication protocol with autologous PRP for maximum tissue restoration and vascular health.
                 </p>
               </div>
-              <div className="absolute -bottom-6 -left-2 md:-left-6 w-20 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 group-hover:-translate-y-2 group-hover:rotate-0 transition-all duration-500 border-[6px] border-[#f8f9ff] z-20">
-                 <FaSyringe className="text-[#4041d1] text-4xl" />
-              </div>
+              {/* THE 3D POP-OUT IMAGE */}
+              <img 
+                src="/pshot-vial.png" /* <-- Replace with your transparent PNG path */
+                alt="P-Shot Vial" 
+                className="absolute -bottom-12 -left-6 w-32 md:w-40 h-auto object-contain drop-shadow-2xl transform group-hover:-translate-y-3 transition-all duration-500 z-20"
+              />
             </Link>
 
           </div>
