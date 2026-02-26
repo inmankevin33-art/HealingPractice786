@@ -115,25 +115,23 @@ export default function PersonalisedEDMedicationClient({
       color: "bg-rose-50 text-rose-600",
     },
     {
-      title: "Dose-Limiting Side Effects",
-      description: "Flushing, headache or intolerance preventing dose escalation.",
+      title: "Confidence and Performance",
+      description: "Prefer a discreet, doctor-led approach with clear next steps.",
       icon: FaExclamationTriangle,
       color: "bg-amber-50 text-amber-600",
     },
     {
-      title: "Complex Medical Profile",
-      description: "Diabetes, hypertension or multiple medications affecting response.",
+      title: "Weaker Erection Quality",
+      description: "Less rigid erections or difficulty maintaining firmness during sex",
       icon: FaFileMedical,
       color: "bg-indigo-50 text-indigo-600",
     },
     {
-      title: "Previous PDE5 Inhibitor Use",
-      description: "Suboptimal outcome despite correct timing and dosing.",
+      title: "Personalised Treatment Plan",
+      description: "Tailored medication plan after private doctor review.",
       icon: FaHistory,
       color: "bg-teal-50 text-teal-600",
     },
-  ];
-
   const protocolSteps = [
     {
       number: 1,
