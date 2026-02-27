@@ -666,7 +666,7 @@ export default function OShotClient({
               </ul>
               <div className="mt-6 pt-6 border-t border-blue-100/50">
                  <p className="text-xs text-slate-500 italic">
-                   * Results are based on tissue regeneration, which is a gradual process. Best results are typically seen 8-12 weeks after treatment.
+                   * Results are based on tissue regeneration, which is a gradual process. Best results are typically seen 3-4 weeks after treatment.
                  </p>
               </div>
             </div>
@@ -763,7 +763,7 @@ export default function OShotClient({
               onClick={handleAction}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
             >
-              <FaEnvelope className="w-4 h-4" /> Speak To A Specialist
+              <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
 
             <Link
