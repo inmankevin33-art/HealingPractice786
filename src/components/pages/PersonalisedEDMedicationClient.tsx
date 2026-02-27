@@ -377,9 +377,17 @@ export default function PersonalisedEDMedicationClient({
             {/* CARD 2: Premature Ejaculation */}
             <Link href={peRoute} className="group relative block rounded-[2rem] overflow-visible shadow-xl hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[400px] bg-slate-900 mt-8 md:mt-0">
               <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
-                <div className="absolute inset-0 bg-slate-800 opacity-60"></div> {/* Replace with PE lifestyle image */}
+                
+                {/* --- NEW BACKGROUND IMAGE ADDED HERE --- */}
+                <img 
+                  src="/pe-lifestyle.webp" 
+                  alt="Premature Ejaculation Treatment" 
+                  className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" 
+                />
+                
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/60 to-transparent"></div>
               </div>
+              
               <div className="relative h-full flex flex-col justify-center items-center p-8 text-center z-10">
                 <h3 className="text-3xl font-raleway font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">Premature Ejaculation</h3>
                 <div className="text-white/80 text-sm font-medium tracking-wider mb-6">Treatment Details</div>
@@ -389,7 +397,7 @@ export default function PersonalisedEDMedicationClient({
               </div>
               {/* THE 3D POP-OUT IMAGE */}
               <img 
-                src="/pe-bottle.png" /* <-- Replace with your transparent PNG path */
+                src="/pe-bottle.png" 
                 alt="PE Medication" 
                 className="absolute -bottom-12 -left-6 w-32 md:w-40 h-auto object-contain drop-shadow-2xl transform group-hover:-translate-y-3 transition-all duration-500 z-20"
               />
