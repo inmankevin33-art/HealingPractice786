@@ -8,7 +8,7 @@ import {
   FaMinus,
   FaUserMd,
   FaPrescriptionBottleAlt,
-  FaCommentsMedical,
+  FaCommentMedical,
   FaTachometerAlt,
   FaLevelDownAlt,
   FaShippingFast,
@@ -157,7 +157,7 @@ export default function PersonalisedEDMedicationClient({
     },
     {
       number: 4,
-      icon: FaCommentsMedical,
+      icon: FaCommentMedical,
       title: "Regular Review by Dedicated Team",
       description: "Ongoing safety checks, progress tracking and dose optimisation.",
     },
