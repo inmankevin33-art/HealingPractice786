@@ -512,6 +512,38 @@ export default function PersonalisedEDMedicationClient({
         </div>
       </section>
 
+      {/* --- ACTION BUTTONS ROW --- */}
+          <div className="mt-16 flex flex-col md:flex-row justify-center items-center gap-4 w-full">
+            
+            {/* 1. Book Consultation (Main Action) */}
+            <button
+              onClick={handleAction}
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
+            >
+              <FaEnvelope className="w-4 h-4" /> Speak To A Specialist
+            </button>
+
+            {/* 2. Prices Link */}
+            <Link
+              href={isBirmingham ? "/birmingham/prices" : "/prices"}
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
+            >
+              View Treatment Prices
+            </Link>
+            
+            {/* 3. FAQ Link */}
+            <Link
+              href={isBirmingham ? "/birmingham/faq" : "/faq"}
+              className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
+            >
+              View Clinic FAQs
+            </Link>
+            
+          </div>
+
+        </div>
+      </section>
+
       {/* --- FAQ --- */}
       <section className="py-24 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
