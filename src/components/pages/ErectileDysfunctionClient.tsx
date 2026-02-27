@@ -67,15 +67,20 @@ export default function ErectileDysfunctionClient({
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    // --- NEW GA4 CONVERSION TRACKING ---
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "generate_lead", {
-        event_category: "engagement",
-        event_label: "opened_contact_drawer",
-        page_path: window.location.pathname,
-      });
+    // --- NEW GA4 CONVERSION TRACKING (Strict TypeScript Compliant) ---
+    if (typeof window !== "undefined") {
+      // Safely tell TypeScript that window might have a gtag function
+      const w = window as Window & { gtag?: (...args: unknown[]) => void };
+      
+      if (w.gtag) {
+        w.gtag("event", "generate_lead", {
+          event_category: "engagement",
+          event_label: "opened_contact_drawer",
+          page_path: window.location.pathname,
+        });
+      }
     }
-    // -----------------------------------
+    // -----------------------------------------------------------------
 
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
     setTimeout(() => {
