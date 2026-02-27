@@ -504,16 +504,36 @@ export default function PersonalisedEDMedicationClient({
                         {step.description}
                       </p>
                     </div>
-                  </motion.div>
+                 </motion.div>
                 );
               })}
             </motion.div>
+
+            {/* --- NEW ASSESSMENT BUTTON ADDED HERE --- */}
+            <motion.div 
+              className="mt-16 flex justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <button 
+                onClick={() => setIsAssessmentOpen(true)}
+                className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
+              >
+                 Take Free Online Assessment
+              </button>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* --- ACTION BUTTONS ROW --- */}
-          <div className="mt-16 flex flex-col md:flex-row justify-center items-center gap-4 w-full">
+     {/* --- FAQ & ACTION BUTTONS --- */}
+      <section className="py-24 bg-white font-inter">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* --- ACTION BUTTONS ROW (Moved ABOVE FAQ to match P-Shot page) --- */}
+          <div className="mb-24 flex flex-col md:flex-row justify-center items-center gap-4 w-full">
             
             {/* 1. Book Consultation (Main Action) */}
             <button
@@ -541,17 +561,12 @@ export default function PersonalisedEDMedicationClient({
             
           </div>
 
-        </div>
-      </section>
-
-      {/* --- FAQ --- */}
-      <section className="py-24 bg-white font-inter">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">
               Common Questions
             </h2>
           </div>
+          
           <div className="space-y-4">
             {displayedFaqs.map((faq, index) => (
               <motion.div key={index} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
