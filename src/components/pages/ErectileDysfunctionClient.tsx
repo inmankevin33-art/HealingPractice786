@@ -66,6 +66,17 @@ export default function ErectileDysfunctionClient({
   // --- UNIFIED ACTION HANDLER ---
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    // --- NEW GA4 CONVERSION TRACKING ---
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "generate_lead", {
+        event_category: "engagement",
+        event_label: "opened_contact_drawer",
+        page_path: window.location.pathname,
+      });
+    }
+    // -----------------------------------
+
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
     setTimeout(() => {
       const section = document.getElementById("contact-form-section");
@@ -80,7 +91,7 @@ export default function ErectileDysfunctionClient({
       }
     }, 100);
   };
-
+  
   // --- ANIMATION VARIANTS ---
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
