@@ -1,20 +1,48 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
   FaCheck,
   FaPlus,
   FaMinus,
   FaEnvelope,
+  FaArrowRight,
+  FaChevronDown,
+  FaMapMarkerAlt,
+  FaGoogle,
+  FaStar,
+  FaLock
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
+import LocationSection from "@/components/LocationSection";
+import TrustReviews from "@/components/TrustReviews";
 import Link from "next/link";
 
-export default function PrematureEjaculationClient() {
+// --- INTERFACE FOR DYNAMIC PROPS ---
+type FaqType = {
+  question: string;
+  answer: string;
+};
+
+interface PrematureEjaculationProps {
+  locationName?: string;
+  servingAreas?: string;
+  faqs: FaqType[];
+}
+
+export default function PrematureEjaculationClient({
+  locationName = "St Albans",
+  servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
+  faqs,
+}: PrematureEjaculationProps) {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const isBirmingham = locationName === "Birmingham";
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
@@ -22,11 +50,43 @@ export default function PrematureEjaculationClient() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsLoaded(true);
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
     checkDesktop();
     window.addEventListener("resize", checkDesktop);
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
+
+  // --- GA4 CONVERSION TRACKING ---
+  const handleAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    if (typeof window !== "undefined") {
+      const w = window as Window & { gtag?: (...args: unknown[]) => void };
+      if (w.gtag) {
+        w.gtag("event", "generate_lead", {
+          event_category: "engagement",
+          event_label: "opened_contact_drawer",
+          page_path: window.location.pathname,
+        });
+      }
+    }
+
+    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    setTimeout(() => {
+      const section = document.getElementById("contact-form-section");
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
+  const fadeUpVariants: Variants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
+    }),
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -77,115 +137,145 @@ export default function PrematureEjaculationClient() {
     "Couples looking to improve intimacy and confidence",
   ];
 
-  const faqs = [
-    {
-      question: "How quickly will I see results?",
-      answer:
-        "Many men notice improvement within weeks when behavioural plans and topical therapy are followed consistently.",
-    },
-    {
-      question: "Are there side effects?",
-      answer:
-        "Topical creams may cause temporary local numbness or sensitivity changes; medications can have specific side effects which we discuss during consultation.",
-    },
-    {
-      question: "Do you use PRP for PE?",
-      answer:
-        "No — PE is best addressed with behavioural strategies and medical therapy. We do not use PRP for premature ejaculation.",
-    },
-    {
-      question: "Can my partner be involved?",
-      answer:
-        "Yes. Partner‑inclusive guidance often improves outcomes and confidence.",
-    },
-  ];
+  const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   return (
     <>
-      {/* Hero Section - Twin Standard Height */}
-      <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
-        {/* Background Elements */}
+      {/* --- HERO SECTION (Dark Premium Theme) --- */}
+      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-end justify-center bg-black">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-black/60 to-transparent z-10" />
+          {/* Make sure to upload a relevant background image, or it will safely fallback to the ED doctor image */}
           <img
-            src="/hero_img.png"
-            alt="Background"
-            className="w-full h-full object-cover"
+            src="/pe-hero.webp"
+            alt="Premature Ejaculation Treatment"
+            className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => {
+               e.currentTarget.src = "/ed-doctor-consultation.webp";
+            }}
           />
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-20 flex h-full w-full items-center mt-10 md:mt-0">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-              className="text-center max-w-4xl mx-auto"
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-40 pb-20 md:pb-24">
+          
+          <motion.div
+            custom={0}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
+          >
+            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Male Sexual Health</span>
+          </motion.div>
+
+          <motion.h1
+            custom={1}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="text-3xl md:text-5xl lg:text-6xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
+          >
+            Premature Ejaculation (PE) <br className="hidden md:block" />
+            <span className="text-2xl md:text-4xl lg:text-5xl text-blue-100">Treatment in {locationName}</span>
+          </motion.h1>
+
+          <motion.p
+            custom={2}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="mt-4 text-sm md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
+          >
+            Advanced, doctor-led formulation and behavioural therapies for men seeking to regain control and confidence—without surgery.
+          </motion.p>
+
+          <motion.div
+            custom={3}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <button
+              onClick={handleAction}
+              className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
             >
-              <motion.div
-                // BRAND COLOR LOCK
-                className="inline-block px-4 py-2 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-inter font-bold mb-4 uppercase tracking-wider"
-                variants={itemVariants}
-              >
-                Male Sexual Health
-              </motion.div>
+              <FaEnvelope className="w-4 h-4" /> Book Consultation
+            </button>
+          </motion.div>
 
-              <motion.h1
-                className="text-2xl lg:text-4xl font-raleway text-slate-900 font-bold leading-snug mb-4"
-                variants={itemVariants}
-              >
-                Premature Ejaculation (PE) Treatment
-                <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
-              </motion.h1>
+          <motion.div
+            custom={4}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1]/10 text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 backdrop-blur-sm"
+          >
+             <FaMapMarkerAlt className="text-white/80 mb-0.5" />
+             <span>Serving: {servingAreas}</span>
+          </motion.div>
+        </div>
 
-              <motion.p
-                className="text-sm md:text-base font-inter text-slate-600 leading-relaxed max-w-2xl mx-auto mb-8"
-                variants={itemVariants}
-              >
-                Advanced male sexual health care using behavioural and medical therapies — no surgery, private and GP‑led.
-              </motion.p>
-
-              <motion.div
-                className="hidden md:flex flex-row justify-center gap-4 mb-8"
-                variants={itemVariants}
-              >
-                {benefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm"
-                  >
-                    <FaCheck className="w-3 h-3 text-[#4041d1]" />
-                    <span className="text-sm font-inter text-slate-700 font-medium">
-                      {benefit}
+        {/* --- HERO TRUST BADGES --- */}
+        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} z-30`}>
+          <div className="px-2 py-4 max-w-7xl mx-auto">
+            <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
+              <a href="#reviews" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
+              }} className="flex justify-center items-center group cursor-pointer px-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-[#4285F4] group-hover:scale-110 transition-transform shadow-md">
+                    <FaGoogle className="w-4 h-4" />
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <div className="flex text-amber-400 text-[10px] mb-0.5">
+                      <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                    </div>
+                    <span className="text-white text-[9px] font-bold tracking-widest uppercase opacity-90 group-hover:opacity-100 font-inter">
+                      5.0 Patient Rating
                     </span>
                   </div>
-                ))}
-              </motion.div>
-
-              {/* Standardized Single Button */}
-              <motion.div
-                variants={itemVariants}
-                className="flex justify-center"
-              >
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-                    const section = document.getElementById("contact-form-section");
-                    if (section) section.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  // BRAND COLOR LOCK: #4041d1
-                  className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
-                >
-                  <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                  Book Consultation
-                </button>
-              </motion.div>
-            </motion.div>
+                </div>
+              </a>
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
+                    10+
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Years</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Experience</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
+                    GMC
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Registered</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Doctor</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
+                    <FaLock className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Strictly 1:1</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Discreet Care</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Navigation */}
       <section className="py-8 border-b border-t shadow-xs border-slate-100 relative">
@@ -193,7 +283,8 @@ export default function PrematureEjaculationClient() {
           <motion.div
             className="flex flex-wrap justify-center gap-4"
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true }}
             variants={containerVariants}
           >
             {[
@@ -354,7 +445,7 @@ export default function PrematureEjaculationClient() {
               {treatmentComponents.map((component, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white rounded-xl p-6 shadow-sm border border-slate-200"
+                  className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:border-[#4041d1]/20 transition-colors"
                   variants={itemVariants}
                 >
                   <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3">
@@ -366,22 +457,46 @@ export default function PrematureEjaculationClient() {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* --- REVERSE LINK BANNER --- */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-20 bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-slate-800 relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl -z-10"></div>
+              
+              <div className="relative z-10 text-center md:text-left">
+                <h4 className="text-2xl font-raleway font-bold text-white mb-2">Looking for a holistic approach?</h4>
+                <p className="text-slate-300 text-sm md:text-base max-w-2xl font-inter">
+                  Explore our central hub for comprehensive treatments, including bespoke daily ED medications and advanced tissue restoration protocols.
+                </p>
+              </div>
+              
+              <Link 
+                href={isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication"}
+                className="shrink-0 relative z-10 px-8 py-3.5 bg-white text-[#0f172a] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group shadow-lg active:scale-95 font-inter"
+              >
+                Explore All Treatments
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+
           </motion.div>
         </div>
       </section>
 
-      {/* NEW: Reusable CTA Bar (Standardized) */}
+      {/* Dynamic CTA Bar */}
       <section className="py-12 bg-white border-t border-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
           <Link
-            href="/prices"
+            href={isBirmingham ? "/birmingham/prices" : "/prices"}
             className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
           >
             View Treatment Prices
           </Link>
           
           <Link
-            href="/faq"
+            href={isBirmingham ? "/birmingham/faq" : "/faq"}
             className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
           >
             View Clinic FAQs
@@ -389,7 +504,7 @@ export default function PrematureEjaculationClient() {
         </div>
       </section>
 
-      {/* FAQs Section */}
+      {/* Dynamic FAQs Section */}
       <section id="faqs" className="py-20 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -415,43 +530,25 @@ export default function PrematureEjaculationClient() {
 
             <motion.div
               className="space-y-4 mt-8"
-              initial="hidden"
-              whileInView="visible"
               variants={containerVariants}
             >
-              {faqs.map((faq, index) => (
+              {displayedFaqs.map((faq, index) => (
                 <motion.div
                   key={index}
                   className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                   variants={itemVariants}
                 >
-                  <motion.button
+                  <button
                     className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
                     onClick={() => toggleFAQ(index)}
                   >
                     <h3 className="font-raleway font-bold text-slate-900 pr-4 leading-relaxed text-sm md:text-base">
                       {faq.question}
                     </h3>
-                    <motion.div
-                      className="flex-shrink-0 w-8 h-8 bg-[#4041d1]/10 rounded-full flex items-center justify-center relative"
-                      animate={{ rotate: openFAQIndex === index ? 180 : 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                      <motion.div
-                        animate={{ opacity: openFAQIndex === index ? 0 : 1, scale: openFAQIndex === index ? 0 : 1 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute"
-                      >
-                        <FaPlus className="w-3 h-3 text-[#4041d1]" />
-                      </motion.div>
-                      <motion.div
-                        animate={{ opacity: openFAQIndex === index ? 1 : 0, scale: openFAQIndex === index ? 1 : 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <FaMinus className="w-3 h-3 text-[#4041d1]" />
-                      </motion.div>
-                    </motion.div>
-                  </motion.button>
+                    <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center relative transition-colors ${openFAQIndex === index ? 'bg-[#4041d1] text-white' : 'bg-[#4041d1]/10 text-[#4041d1]'}`}>
+                       {openFAQIndex === index ? <FaMinus className="w-3 h-3" /> : <FaPlus className="w-3 h-3" />}
+                    </div>
+                  </button>
 
                   <AnimatePresence>
                     {openFAQIndex === index && (
@@ -459,15 +556,13 @@ export default function PrematureEjaculationClient() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-6">
-                          <div className="border-t border-slate-100 pt-4">
-                            <p className="font-inter text-sm text-slate-600 leading-relaxed">
-                              {faq.answer}
-                            </p>
-                          </div>
+                        <div className="px-6 pb-6 border-t border-slate-100 pt-4">
+                          <p className="font-inter text-sm text-slate-600 leading-relaxed">
+                            {faq.answer}
+                          </p>
                         </div>
                       </motion.div>
                     )}
@@ -475,11 +570,38 @@ export default function PrematureEjaculationClient() {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Toggle All FAQs Button */}
+            {faqs.length > 5 && (
+              <div className="mt-8 text-center">
+                <button
+                  onClick={() => setShowAllFaqs(!showAllFaqs)}
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 rounded-xl font-inter font-bold transition-all duration-300"
+                >
+                  {showAllFaqs ? "Show Less FAQs" : "View All FAQs"}
+                  <FaChevronDown className={`w-3 h-3 transition-transform duration-300 ${showAllFaqs ? "rotate-180" : ""}`} />
+                </button>
+              </div>
+            )}
           </motion.div>
         </div>
       </section>
 
+      {/* --- GOOGLE REVIEWS SECTION --- */}
+      <div id="reviews-section">
+        <TrustReviews 
+          widgetUrl={
+            isBirmingham 
+              ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" 
+              : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"
+          } 
+        />
+      </div>
+
       <ContactCTASection />
+      
+      {/* Location Section Added Here */}
+      <LocationSection />
 
       <Footer />
     </>
