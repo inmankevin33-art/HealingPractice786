@@ -182,6 +182,7 @@ export default function PersonalisedEDMedicationClient({
           />
         </div>
 
+        {/* Adjusted padding: slightly less bottom padding to balance the smaller text */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-40 pb-20 md:pb-24">
 
           <motion.h1
@@ -189,10 +190,12 @@ export default function PersonalisedEDMedicationClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
+            // Scaled down text: md:text-5xl (was 6xl) and standard lg:text-6xl for huge screens
+            className="text-3xl md:text-5xl lg:text-6xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
             Personalised ED Medication <br className="hidden md:block" /> 
-            <span className="md:text-5xl text-3xl">for Male Performance in {locationName}</span>
+            {/* Scaled down span: md:text-4xl (was 5xl) */}
+            <span className="text-2xl md:text-4xl lg:text-5xl text-blue-100">for Male Performance in {locationName}</span>
           </motion.h1>
 
           <motion.p
@@ -200,7 +203,8 @@ export default function PersonalisedEDMedicationClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-2 text-base md:text-xl text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
+            // Scaled down text: text-sm md:text-lg (was base md:text-xl)
+            className="mt-4 text-sm md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
             Advanced, doctor-led formulation for men who have not achieved satisfactory results or experienced side effects with standard tablets.
           </motion.p>
@@ -214,14 +218,16 @@ export default function PersonalisedEDMedicationClient({
           >
             <button 
               onClick={() => setIsAssessmentOpen(true)}
-              className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
+              // Scaled down buttons: px-6 py-3 (was px-8 py-3.5)
+              className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
             >
                Take Free Online Assessment
             </button>
 
             <button 
               onClick={handleAction}
-              className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1]/80 hover:bg-[#4041d1] backdrop-blur-md text-white border border-white/20 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
+              // Scaled down buttons: px-6 py-3 (was px-8 py-3.5)
+              className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1]/80 hover:bg-[#4041d1] backdrop-blur-md text-white border border-white/20 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
             >
               <FaEnvelope className="w-4 h-4" /> Book Directly
             </button>
