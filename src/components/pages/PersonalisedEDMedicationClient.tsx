@@ -8,6 +8,7 @@ import {
   FaMinus,
   FaUserMd,
   FaPrescriptionBottleAlt,
+  FaHeartbeat,
   FaTachometerAlt,
   FaBalanceScale,
   FaCheckCircle,
@@ -109,28 +110,28 @@ export default function PersonalisedEDMedicationClient({
 
   const candidates = [
     {
-      title: "Reduced Morning Erections",
-      description: "Fewer or weaker morning erections compared with your usual pattern.",
+      title: "Limited Response to Standard Tablets",
+      description: "Inadequate or inconsistent results despite appropriate use.",
+      icon: FaPills,
+      color: "bg-rose-50 text-rose-600",
+    },
+    {
+      title: "Confidence and Performance",
+      description: "Prefer a discreet, doctor-led approach with clear next steps.",
       icon: FaCheckCircle, // Fixed Icon
       color: "bg-amber-50 text-amber-600",
     },
     {
       title: "Weaker Erection Quality",
       description: "Less rigid erections or difficulty maintaining firmness during sex",
-      icon: FaHeartbeat, // Fixed Icon
-      color: "bg-indigo-50 text-indigo-600",
-    },
-    {
-      title: "Difficulty Maintaining Erections",
-      description: "Erection starts but fades quickly or is hard to maintain during sex",
       icon: FaTachometerAlt, // Fixed Icon
       color: "bg-indigo-50 text-indigo-600",
     },
     {
-      title: "Limited Response to Standard Tablets",
-      description: "Inadequate or inconsistent results despite appropriate use.",
-      icon: FaPills,
-      color: "bg-rose-50 text-rose-600",
+      title: "Personalised Treatment Plan",
+      description: "Tailored medication plan after private doctor review.",
+      icon: FaUserMd, // Fixed Icon
+      color: "bg-teal-50 text-teal-600",
     },
   ]; // <-- FIXED: Added the missing closing bracket and semicolon!
 
