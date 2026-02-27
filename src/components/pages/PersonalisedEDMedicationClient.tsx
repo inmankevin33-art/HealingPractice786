@@ -8,7 +8,7 @@ import {
   FaMinus,
   FaUserMd,
   FaPrescriptionBottleAlt,
-  FaHeartbeat,
+  FaCommentsMedical,
   FaTachometerAlt,
   FaLevelDownAlt,
   FaShippingFast,
@@ -145,21 +145,21 @@ export default function PersonalisedEDMedicationClient({
     },
     {
       number: 2,
-      icon: FaHeartbeat,
-      title: "Pharmacological Review",
-      description: "Assessment of prior dosing response, tolerability and therapeutic targets.",
-    },
-    {
-      number: 3,
       icon: FaPrescriptionBottleAlt,
       title: "Personalised Formulation",
       description: "Custom-formulated prescription medication where clinically appropriate.",
     },
     {
-      number: 4,
+      number: 3,
       icon: FaShippingFast,
       title: "Direct Dispensing",
       description: "Medication supplied directly with structured follow-up and dose refinement.",
+    },
+    {
+      number: 4,
+      icon: FaCommentsMedical,
+      title: "Regular Review by Dedicated Team",
+      description: "Ongoing safety checks, progress tracking and dose optimisation.",
     },
   ];
 
