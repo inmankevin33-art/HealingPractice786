@@ -117,21 +117,23 @@ export default function PersonalisedEDMedicationClient({
     {
       title: "Confidence and Performance",
       description: "Prefer a discreet, doctor-led approach with clear next steps.",
-      icon: FaExclamationTriangle,
+      icon: FaCheckCircle, // Fixed Icon
       color: "bg-amber-50 text-amber-600",
     },
     {
       title: "Weaker Erection Quality",
       description: "Less rigid erections or difficulty maintaining firmness during sex",
-      icon: FaFileMedical,
+      icon: FaHeartbeat, // Fixed Icon
       color: "bg-indigo-50 text-indigo-600",
     },
     {
       title: "Personalised Treatment Plan",
       description: "Tailored medication plan after private doctor review.",
-      icon: FaHistory,
+      icon: FaUserMd, // Fixed Icon
       color: "bg-teal-50 text-teal-600",
     },
+  ]; // <-- FIXED: Added the missing closing bracket and semicolon!
+
   const protocolSteps = [
     {
       number: 1,
@@ -335,7 +337,7 @@ export default function PersonalisedEDMedicationClient({
         </div>
       </section>
 
-     {/* --- OUR TREATMENTS (HUB GRID) --- */}
+      {/* --- OUR TREATMENTS (HUB GRID) --- */}
       <section className="py-24 bg-slate-50 font-inter border-t border-slate-100 relative z-30 overflow-visible">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -355,7 +357,6 @@ export default function PersonalisedEDMedicationClient({
                 <img src="/ed-doctor-consultation.webp" alt="Erectile Dysfunction" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/60 to-transparent"></div>
               </div>
-              {/* Text content fully centered to match your screenshot */}
               <div className="relative h-full flex flex-col justify-center items-center p-8 text-center z-10">
                 <h3 className="text-3xl font-raleway font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">Erectile Dysfunction</h3>
                 <div className="text-white/80 text-sm font-medium tracking-wider mb-6">Treatment Details</div>
@@ -415,7 +416,7 @@ export default function PersonalisedEDMedicationClient({
 
           </div>
 
-          {/* --- NEW: EXPLORE SEXUAL REJUVENATION BANNER --- */}
+          {/* --- EXPLORE SEXUAL REJUVENATION BANNER --- */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
