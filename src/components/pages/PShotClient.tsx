@@ -180,10 +180,9 @@ export default function PShotClient({
           />
         </div>
 
-        {/* FIXED: Added md:pb-24 to push content above the trust badge footer */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
           
-          {/* NEW: Top Sleek Badge */}
+          {/* Top Sleek Badge */}
           <motion.div 
             custom={0}
             initial="hidden"
@@ -199,10 +198,12 @@ export default function PShotClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
+            // SCALED DOWN: Changed from md:text-6xl to text-3xl md:text-4xl lg:text-5xl
+            className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
             The P-Shot (Priapus Shot)<br className="hidden sm:block" />
-            <span className="md:text-5xl text-3xl">in {locationName}</span>
+            {/* SCALED DOWN: Changed from md:text-5xl to text-xl md:text-3xl lg:text-4xl */}
+            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100">in {locationName}</span>
           </motion.h1>
 
           <motion.p 
@@ -210,7 +211,8 @@ export default function PShotClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-2 text-base md:text-xl text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
+            // SCALED DOWN: Changed from text-base md:text-xl to text-sm md:text-base
+            className="mt-4 text-sm md:text-base text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
             A natural, non-surgical treatment designed to rejuvenate tissue, 
             enhance performance, and improve vascular health using your body’s own healing factors.
@@ -225,7 +227,8 @@ export default function PShotClient({
           >
             <button 
               onClick={handleAction}
-              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+              // SCALED DOWN BUTTON: Changed from px-10 py-3.5 to px-6 py-3
+              className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
             >
               <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
@@ -242,6 +245,7 @@ export default function PShotClient({
              <span>Serving: {servingAreas}</span>
           </motion.div>
         </div>
+      </div>
 
         {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
