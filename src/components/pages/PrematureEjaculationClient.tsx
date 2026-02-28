@@ -133,6 +133,7 @@ export default function PrematureEjaculationClient({
             src="/pe-hero.webp"
             alt="Premature Ejaculation Treatment"
             className="absolute inset-0 w-full h-full object-cover"
+            fetchPriority="high"
             onError={(e) => {
                e.currentTarget.src = "/ed-doctor-consultation.webp";
             }}
@@ -141,13 +142,12 @@ export default function PrematureEjaculationClient({
 
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-40 pb-20 md:pb-24">
           
-          {/* REMOVED ISLOADED: Animates instantly now! */}
           <motion.div
             custom={0}
             initial="hidden"
             animate="visible"
             variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
+            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm"
           >
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Male Sexual Health</span>
           </motion.div>
@@ -200,7 +200,7 @@ export default function PrematureEjaculationClient({
           </motion.div>
         </div>
 
-        {/* --- HERO TRUST BADGES (Native Framer Motion implementation, no lag) --- */}
+        {/* --- HERO TRUST BADGES --- */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
