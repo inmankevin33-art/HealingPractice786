@@ -19,8 +19,9 @@ import {
   FaRunning,
   FaLeaf,
   FaUserShield,
-  FaUserMd,     // Added for Doctor approach
-  FaLink        // Added for the ED Co-existence link
+  FaUserMd,
+  FaLink,
+  FaDumbbell // Added for the Pelvic Gym card
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -46,9 +47,7 @@ export default function PrematureEjaculationClient({
   faqs,
 }: PrematureEjaculationProps) {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const isBirmingham = locationName === "Birmingham";
 
@@ -58,11 +57,6 @@ export default function PrematureEjaculationClient({
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setIsLoaded(true);
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
   // --- GA4 CONVERSION TRACKING ---
@@ -87,12 +81,13 @@ export default function PrematureEjaculationClient({
     }, 100);
   };
 
+  // FASTER ANIMATIONS: Removed delay, tweaked duration
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
+      transition: { duration: 0.5, delay: i * 0.1, ease: "easeOut" },
     }),
   };
 
@@ -100,63 +95,21 @@ export default function PrematureEjaculationClient({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
-
-  const howItWorks = [
-    { text: "Custom topical numbing creams designed to remain effective in vaginal pH for better consistency", icon: FaFlask },
-    { text: "Tailored medication regimens where appropriate to delay climax and reduce hypersensitivity", icon: FaPills },
-    { text: "Behavioural techniques (stop‑start, squeeze method) to improve ejaculatory control", icon: FaBrain },
-    { text: "Pelvic floor training to strengthen the bulbocavernosus & pelvic musculature", icon: FaRunning },
-    { text: "Lifestyle optimisation (sleep, stress, alcohol/smoking) and partner‑inclusive guidance if desired", icon: FaLeaf },
-  ];
-
-  const treatmentComponents = [
-    {
-      title: "Custom Numbing Creams",
-      description: "Formulations designed for fast onset, consistent effect, and stability in the vaginal environment.",
-      icon: FaFlask,
-      color: "bg-blue-50 text-blue-600",
-    },
-    {
-      title: "Medication Options",
-      description: "Personalised prescribing where appropriate (e.g., on‑demand or daily regimens) with safety monitoring.",
-      icon: FaPills,
-      color: "bg-indigo-50 text-indigo-600",
-    },
-    {
-      title: "Behavioural Coaching",
-      description: "Guided practice of stop‑start / squeeze methods and arousal pacing, with a take‑home plan tailored to you.",
-      icon: FaBrain,
-      color: "bg-purple-50 text-purple-600",
-    },
-    {
-      title: "Pelvic Floor Programme",
-      description: "Targeted exercises and biofeedback‑style cues to build strength and control in the pelvic floor.",
-      icon: FaRunning,
-      color: "bg-teal-50 text-teal-600",
-    },
-  ];
-
-  const whoIsItFor = [
-    "Men struggling to maintain control or delay ejaculation during intimacy",
-    "Those seeking bespoke medical formulations, including custom creams and medications",
-    "Men experiencing PE co-existing with Erectile Dysfunction (ED) or performance anxiety",
-    "Individuals experiencing distress, frustration, or relationship strain due to rapid climax",
-  ];
 
   const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   return (
     <>
-      {/* --- HERO SECTION --- */}
-      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-end justify-center bg-black">
+      {/* --- HERO SECTION (Optimized for Instant Load) --- */}
+      <div className="relative min-h-[100vh] lg:min-h-[calc(100vh-5rem)] overflow-hidden flex items-end justify-center bg-[#0a0a0a]">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/40 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-black/60 to-transparent z-10" />
@@ -164,20 +117,22 @@ export default function PrematureEjaculationClient({
             src="/pe-hero.webp"
             alt="Premature Ejaculation Treatment"
             className="absolute inset-0 w-full h-full object-cover"
+            fetchPriority="high"
             onError={(e) => {
                e.currentTarget.src = "/ed-doctor-consultation.webp";
             }}
           />
         </div>
 
+        {/* HERO CONTENT: Renders Instantly */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-40 pb-20 md:pb-24">
           
           <motion.div
             custom={0}
             initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+            animate="visible"
             variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
+            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm"
           >
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Male Sexual Health</span>
           </motion.div>
@@ -185,7 +140,7 @@ export default function PrematureEjaculationClient({
           <motion.h1
             custom={1}
             initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+            animate="visible"
             variants={fadeUpVariants}
             className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
@@ -196,7 +151,7 @@ export default function PrematureEjaculationClient({
           <motion.p
             custom={2}
             initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+            animate="visible"
             variants={fadeUpVariants}
             className="mt-4 text-sm md:text-base text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
@@ -206,7 +161,7 @@ export default function PrematureEjaculationClient({
           <motion.div
             custom={3}
             initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+            animate="visible"
             variants={fadeUpVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
@@ -221,7 +176,7 @@ export default function PrematureEjaculationClient({
           <motion.div
             custom={4}
             initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+            animate="visible"
             variants={fadeUpVariants}
             className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1]/10 text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 backdrop-blur-sm"
           >
@@ -231,7 +186,12 @@ export default function PrematureEjaculationClient({
         </div>
 
         {/* --- HERO TRUST BADGES --- */}
-        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} z-30`}>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 z-30"
+        >
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
               <a href="#reviews" onClick={(e) => {
@@ -287,7 +247,7 @@ export default function PrematureEjaculationClient({
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Navigation */}
@@ -303,7 +263,7 @@ export default function PrematureEjaculationClient({
             {[
               { label: "Understanding PE", href: "#understanding" },
               { label: "Our Approach", href: "#approach" },
-              { label: "How It Works", href: "#how-it-works" },
+              { label: "Who Is It For", href: "#who-is-it-for" },
               { label: "Treatment Components", href: "#treatment-components" },
               { label: "FAQs", href: "#faqs" },
             ].map((link, idx) => (
@@ -320,7 +280,7 @@ export default function PrematureEjaculationClient({
         </div>
       </section>
 
-      {/* EXPANDED: Understanding Premature Ejaculation Section */}
+      {/* 1. Understanding Premature Ejaculation Section */}
       <section id="understanding" className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -358,7 +318,6 @@ export default function PrematureEjaculationClient({
                     Clinically, we often see Premature Ejaculation and Erectile Dysfunction (ED) co-existing. A man struggling to maintain an erection may subconsciously rush to climax before losing firmness, or conversely, severe anxiety around rapid ejaculation may cause a loss of erection. If you are experiencing both, it requires a holistic medical approach rather than a single off-the-shelf tablet.
                   </p>
                   
-                  {/* SEO Internal Link */}
                   <Link 
                     href={isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication"}
                     className="inline-flex items-center gap-2 text-[#4041d1] font-bold text-sm md:text-base hover:text-[#2a2bb8] transition-colors group"
@@ -368,108 +327,147 @@ export default function PrematureEjaculationClient({
                   </Link>
                 </div>
               </div>
-
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* NEW: Doctor-Led, Patient-Centred Approach */}
-      <section id="approach" className="py-20 lg:py-24 bg-[#0A1128] text-white relative overflow-hidden">
-        {/* Background Subtle Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-          <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-[#4041d1]/20 blur-[120px]"></div>
-          <div className="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-[#4041d1]/10 blur-[120px]"></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      {/* 2. Doctor-Led, Patient-Centred Approach (Now Light Theme!) */}
+      <section id="approach" className="py-20 lg:py-24 bg-white relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={containerVariants}
           >
-            <motion.div variants={itemVariants} className="w-16 h-16 bg-[#4041d1] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#4041d1]/30">
-              <FaUserMd className="text-2xl text-white" />
+            <motion.div variants={itemVariants} className="w-16 h-16 bg-[#4041d1]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm border border-[#4041d1]/20">
+              <FaUserMd className="text-2xl text-[#4041d1]" />
             </motion.div>
 
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-raleway font-bold mb-8">
+            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-8">
               A Doctor-Led, Patient-Centred Approach
             </motion.h2>
 
-            <motion.div variants={itemVariants} className="space-y-6 text-slate-300 font-inter text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
-              <p>
-                <p>
-                With years of experience in male sexual health, our GMC-registered doctor understand that there is no &quot;one-size-fits-all&quot; solution. We take a strictly patient-centred approach to your care.
-              </p>
-              </p>
-              <p>
-                During your discreet, 1:1 consultation, we do not just prescribe standard tablets; we listen to your specific history, identify the root physiological or psychological causes of your symptoms, and work closely with you to agree on a <strong>mutual management plan</strong>.
-              </p>
-              <p>
-                For many of our patients, our bespoke, personalised medication formulations and targeted behavioural strategies have provided life-changing control where standard over-the-counter options have failed.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* How It Works Section (Icon Grid) */}
-      <section id="how-it-works" className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <motion.h2
-                className="text-3xl lg:text-4xl font-raleway font-bold text-slate-900 mb-6"
-                variants={itemVariants}
-              >
-                How It Works
-              </motion.h2>
-              <motion.p
-                className="text-slate-600 text-lg leading-relaxed font-inter"
-                variants={itemVariants}
-              >
-                We use a combination of therapies tailored to your specific physiological and psychological needs.
-              </motion.p>
-            </div>
-
-            <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" variants={containerVariants}>
-              {howItWorks.map((point, index) => {
-                const Icon = point.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-start hover:shadow-md hover:border-[#4041d1]/30 transition-all"
-                    variants={itemVariants}
+            <motion.div 
+              variants={itemVariants}
+              className="bg-blue-50/50 border border-blue-100 rounded-3xl p-8 md:p-12 shadow-sm text-left relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-2 h-full bg-[#4041d1]"></div>
+              
+              <div className="space-y-6">
+                <div className="text-base md:text-lg font-inter text-slate-700 leading-relaxed font-medium space-y-4">
+                  <p>
+                    With years of experience in male sexual health, our GMC-registered doctors understand that there is no &quot;one-size-fits-all&quot; solution. We take a strictly patient-centred approach to your care.
+                  </p>
+                  <p>
+                    During your discreet, 1:1 consultation, we do not just prescribe standard tablets; we listen to your specific history, identify the root physiological or psychological causes of your symptoms, and work closely with you to agree on a <strong>mutual management plan</strong>.
+                  </p>
+                  <p>
+                    For many of our patients, our bespoke, personalised medication formulations and targeted behavioural strategies have provided life-changing control where standard over-the-counter options have failed.
+                  </p>
+                </div>
+                
+                {/* Internal Link Box to P-Shot */}
+                <div className="bg-white p-6 md:p-8 rounded-2xl border border-blue-100/50 shadow-sm mt-6">
+                  <h4 className="text-lg md:text-xl font-bold font-raleway text-[#4041d1] mb-3">
+                    Focusing on overall intimate wellness?
+                  </h4>
+                  <p className="text-sm md:text-base font-inter text-slate-600 leading-relaxed mb-5">
+                    Beyond ejaculatory control, we offer advanced regenerative therapies to improve penile health, blood flow, and sensitivity. 
+                  </p>
+                  <Link 
+                    href={isBirmingham ? "/birmingham/p-shot" : "/p-shot"}
+                    className="inline-flex items-center gap-2 text-[#4041d1] font-bold text-sm md:text-base hover:text-[#2a2bb8] transition-colors group"
                   >
-                    <div className="w-12 h-12 bg-blue-50 text-[#4041d1] rounded-xl flex items-center justify-center mb-4 text-xl">
-                      <Icon />
-                    </div>
-                    <span className="text-sm font-inter text-slate-700 leading-relaxed font-medium">
-                      {point.text}
-                    </span>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="text-center">
-              <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full border border-slate-200 text-sm font-inter text-slate-600 font-bold shadow-sm">
-                <FaLock className="text-slate-400" />
-                Sessions are discreet, and most patients resume normal activities immediately.
+                    Read about our P-Shot →
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Treatment Components Section (Premium Cards) */}
-      <section id="treatment-components" className="py-20 lg:py-28 bg-white border-t border-slate-100">
+      {/* 3. Who Is It For Section (Moved Up & Styled Light) */}
+      <section id="who-is-it-for" className="py-20 lg:py-24 bg-slate-50 border-t border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={containerVariants}
+          >
+            <div className="text-center mb-12">
+              <motion.div variants={itemVariants} className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-sm mb-6 border border-slate-200">
+                <FaUserShield className="text-2xl text-[#4041d1]" />
+              </motion.div>
+              <motion.h2
+                className="text-3xl lg:text-4xl font-raleway font-bold text-slate-900 mb-6"
+                variants={itemVariants}
+              >
+                Who Is It For?
+              </motion.h2>
+            </div>
+
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"
+              variants={containerVariants}
+            >
+              {/* Card 1 */}
+              <motion.div className="flex items-start gap-4 p-6 bg-white border border-slate-200 shadow-sm rounded-2xl hover:shadow-md transition-shadow" variants={itemVariants}>
+                <div className="mt-1 bg-blue-50 rounded-full p-2 shrink-0">
+                  <FaCheck className="w-3 h-3 text-[#4041d1]" />
+                </div>
+                <span className="text-sm md:text-base font-inter text-slate-700 leading-relaxed font-medium">
+                  Men struggling to hold ejaculation and wishing to regain control
+                </span>
+              </motion.div>
+
+              {/* Card 2 (With Internal ED Link) */}
+              <motion.div className="flex items-start gap-4 p-6 bg-white border border-slate-200 shadow-sm rounded-2xl hover:shadow-md transition-shadow" variants={itemVariants}>
+                <div className="mt-1 bg-blue-50 rounded-full p-2 shrink-0">
+                  <FaCheck className="w-3 h-3 text-[#4041d1]" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm md:text-base font-inter text-slate-700 leading-relaxed font-medium mb-3">
+                    Men experiencing PE co-existing with Erectile Dysfunction (ED) or performance anxiety
+                  </span>
+                  <Link 
+                    href={isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication"}
+                    className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors"
+                  >
+                    Explore ED Treatments →
+                  </Link>
+                </div>
+              </motion.div>
+
+              {/* Card 3 */}
+              <motion.div className="flex items-start gap-4 p-6 bg-white border border-slate-200 shadow-sm rounded-2xl hover:shadow-md transition-shadow" variants={itemVariants}>
+                <div className="mt-1 bg-blue-50 rounded-full p-2 shrink-0">
+                  <FaCheck className="w-3 h-3 text-[#4041d1]" />
+                </div>
+                <span className="text-sm md:text-base font-inter text-slate-700 leading-relaxed font-medium">
+                  Those wanting customised creams and medication options
+                </span>
+              </motion.div>
+
+              {/* Card 4 */}
+              <motion.div className="flex items-start gap-4 p-6 bg-white border border-slate-200 shadow-sm rounded-2xl hover:shadow-md transition-shadow" variants={itemVariants}>
+                <div className="mt-1 bg-blue-50 rounded-full p-2 shrink-0">
+                  <FaCheck className="w-3 h-3 text-[#4041d1]" />
+                </div>
+                <span className="text-sm md:text-base font-inter text-slate-700 leading-relaxed font-medium">
+                  Couples experiencing distress or frustration looking to improve intimacy
+                </span>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 4. Treatment Components (The 6-Card Grid) */}
+      <section id="treatment-components" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -488,145 +486,184 @@ export default function PrematureEjaculationClient({
                 className="text-slate-600 text-lg leading-relaxed font-inter"
                 variants={itemVariants}
               >
-                Our multi-faceted approach ensures we address PE from every possible angle.
+                Our multi-faceted approach ensures we address PE from every possible angle, combining therapies tailored to your specific physiological and psychological needs.
               </motion.p>
             </div>
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
-              variants={containerVariants}
-            >
-              {treatmentComponents.map((component, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group cursor-default"
-                  variants={itemVariants}
-                >
-                  <div
-                    className={`w-14 h-14 rounded-2xl ${component.color} flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
-                  >
-                    <component.icon />
-                  </div>
-                  <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
-                    {component.title}
-                  </h3>
-                  <p className="text-sm font-inter text-slate-600 leading-relaxed">
-                    {component.description}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
-            
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Who Is It For Section (Dark Contrast Band) */}
-      <section id="who-is-it-for" className="py-20 lg:py-24 bg-[#0A1128] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#4041d1]/10 rounded-full blur-3xl -z-10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <div className="text-center mb-12">
-              <motion.div variants={itemVariants} className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#4041d1]/20 text-[#8ea3ff] mb-6 border border-[#4041d1]/30">
-                <FaUserShield className="text-2xl" />
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" variants={containerVariants}>
+              
+              {/* Card 1: Creams */}
+              <motion.div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col items-start hover:shadow-md hover:border-[#4041d1]/30 transition-all group" variants={itemVariants}>
+                <div className="w-14 h-14 bg-blue-50 text-[#4041d1] rounded-2xl flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <FaFlask />
+                </div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  Custom Numbing Creams
+                </h3>
+                <p className="text-sm font-inter text-slate-600 leading-relaxed">
+                  Formulations designed for fast onset, consistent effect, and stability in vaginal pH for better consistency.
+                </p>
               </motion.div>
-              <motion.h2
-                className="text-3xl lg:text-4xl font-raleway font-bold text-white mb-6"
-                variants={itemVariants}
-              >
-                Who Is It For?
-              </motion.h2>
-            </div>
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"
-              variants={containerVariants}
-            >
-              {whoIsItFor.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-start gap-4 p-5 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-colors"
-                  variants={itemVariants}
-                >
-                  <div className="mt-1 bg-[#4041d1] rounded-full p-1 shrink-0">
-                    <FaCheck className="w-3 h-3 text-white" />
-                  </div>
-                  <span className="text-sm font-inter text-slate-200 leading-relaxed font-medium">
-                    {item}
-                  </span>
-                </motion.div>
-              ))}
+              {/* Card 2: Medication (With Internal Link) */}
+              <motion.div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col items-start hover:shadow-md hover:border-[#4041d1]/30 transition-all group" variants={itemVariants}>
+                <div className="w-14 h-14 bg-blue-50 text-[#4041d1] rounded-2xl flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <FaPills />
+                </div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  Medication Options
+                </h3>
+                <p className="text-sm font-inter text-slate-600 leading-relaxed mb-4">
+                  Tailored prescribing regimens where appropriate to safely delay climax and reduce hypersensitivity.
+                </p>
+                <div className="mt-auto">
+                  <Link 
+                    href={isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication"}
+                    className="inline-flex items-center gap-2 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors"
+                  >
+                    Explore Personalised Medication <FaArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </motion.div>
+
+              {/* Card 3: Coaching */}
+              <motion.div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col items-start hover:shadow-md hover:border-[#4041d1]/30 transition-all group" variants={itemVariants}>
+                <div className="w-14 h-14 bg-blue-50 text-[#4041d1] rounded-2xl flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <FaBrain />
+                </div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  Behavioural Coaching
+                </h3>
+                <p className="text-sm font-inter text-slate-600 leading-relaxed">
+                  Guided practice of stop-start and squeeze methods to improve your natural ejaculatory control.
+                </p>
+              </motion.div>
+
+              {/* Card 4: Pelvic Floor */}
+              <motion.div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col items-start hover:shadow-md hover:border-[#4041d1]/30 transition-all group" variants={itemVariants}>
+                <div className="w-14 h-14 bg-blue-50 text-[#4041d1] rounded-2xl flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <FaRunning />
+                </div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  Pelvic Floor Programme
+                </h3>
+                <p className="text-sm font-inter text-slate-600 leading-relaxed">
+                  Targeted training and exercises to strengthen the bulbocavernosus and pelvic musculature.
+                </p>
+              </motion.div>
+
+              {/* Card 5: Lifestyle */}
+              <motion.div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col items-start hover:shadow-md hover:border-[#4041d1]/30 transition-all group" variants={itemVariants}>
+                <div className="w-14 h-14 bg-blue-50 text-[#4041d1] rounded-2xl flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <FaLeaf />
+                </div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  Lifestyle Optimisation
+                </h3>
+                <p className="text-sm font-inter text-slate-600 leading-relaxed">
+                  Medical guidance on sleep, stress, and habits, plus partner-inclusive strategies if desired.
+                </p>
+              </motion.div>
+
+              {/* Card 6: Pelvic Gym (New!) */}
+              <motion.div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col items-start hover:shadow-md hover:border-[#4041d1]/30 transition-all group" variants={itemVariants}>
+                <div className="w-14 h-14 bg-blue-50 text-[#4041d1] rounded-2xl flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <FaDumbbell />
+                </div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  Pelvic Gym
+                </h3>
+                <p className="text-sm font-inter text-slate-600 leading-relaxed">
+                  An innovative, small at-home device designed to safely stimulate and enhance pelvic floor muscles, accelerating your progress and ejaculatory control.
+                </p>
+              </motion.div>
+
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="text-center">
+              <div className="inline-flex items-center gap-2 bg-slate-50 px-6 py-3 rounded-full border border-slate-200 text-sm font-inter text-slate-600 font-bold shadow-sm">
+                <FaLock className="text-slate-400" />
+                Sessions are strictly discreet, and most patients resume normal activities immediately.
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* UPDATED: REVERSE LINK BANNER FOR P-SHOT */}
-      <section className="py-16 bg-white">
+      {/* 5. Intimate Wellness Banner (Light Theme Dual-Link Hub) */}
+      <section className="py-16 bg-slate-50 border-t border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-slate-800 relative overflow-hidden"
+              className="bg-white rounded-3xl p-8 md:p-12 flex flex-col items-center justify-center text-center gap-6 shadow-sm border border-slate-200 relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl -z-10"></div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10"></div>
               
-              <div className="relative z-10 text-center md:text-left">
-                <h4 className="text-2xl font-raleway font-bold text-white mb-2">Looking for comprehensive tissue health?</h4>
-                <p className="text-slate-300 text-sm md:text-base max-w-2xl font-inter">
-                  If you are seeking to improve overall penile health, blood flow, and sensitivity alongside ejaculatory control, explore our advanced regenerative treatments.
+              <div className="relative z-10 max-w-2xl">
+                <h4 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">Looking for comprehensive intimate wellness?</h4>
+                <p className="text-slate-600 text-sm md:text-base font-inter">
+                  Explore our holistic treatments designed to restore confidence, performance, and overall male sexual health.
                 </p>
               </div>
               
-              <Link 
-                href={isBirmingham ? "/birmingham/p-shot" : "/p-shot"}
-                className="shrink-0 relative z-10 px-8 py-3.5 bg-white text-[#0f172a] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group shadow-lg active:scale-95 font-inter"
-              >
-                Discover The P-Shot
-                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mt-4">
+                <Link 
+                  href={isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction"}
+                  className="px-8 py-3.5 bg-white border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-sm active:scale-95 font-inter"
+                >
+                  Explore ED Treatments
+                  <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </Link>
+
+                <Link 
+                  href={isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation"}
+                  className="px-8 py-3.5 bg-[#4041d1] text-white hover:bg-[#2a2bb8] rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-md active:scale-95 font-inter"
+                >
+                  Explore Sexual Rejuvenation
+                  <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </motion.div>
         </div>
       </section>
 
-      {/* Dynamic CTA Bar */}
-      <section className="py-12 bg-white border-t border-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
-          <Link
-            href={isBirmingham ? "/birmingham/prices" : "/prices"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
-          >
-            View Treatment Prices
-          </Link>
-          
-          <Link
-            href={isBirmingham ? "/birmingham/faq" : "/faq"}
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
-          >
-            View Clinic FAQs
-          </Link>
-        </div>
-      </section>
-
-      {/* Dynamic FAQs Section */}
+      {/* 6. Action Bar & FAQs */}
       <section id="faqs" className="py-20 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Action Bar (Pre-FAQ) */}
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-16 border-b border-slate-100 pb-12">
+            <button
+              onClick={handleAction}
+              className="w-full md:w-auto px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 shadow-md active:scale-95"
+            >
+              Book Consultation
+            </button>
+            <Link
+              href={isBirmingham ? "/birmingham/prices" : "/prices"}
+              className="w-full md:w-auto px-6 py-3 flex items-center justify-center text-sm cursor-pointer border-2 border-slate-200 text-slate-700 hover:border-[#4041d1] hover:text-[#4041d1] bg-white rounded-lg font-inter font-bold transition-all duration-300"
+            >
+              View Treatment Prices
+            </Link>
+            <Link
+              href={isBirmingham ? "/birmingham/faq" : "/faq"}
+              className="w-full md:w-auto px-6 py-3 flex items-center justify-center text-sm cursor-pointer border-2 border-slate-200 text-slate-700 hover:border-[#4041d1] hover:text-[#4041d1] bg-white rounded-lg font-inter font-bold transition-all duration-300"
+            >
+              View Clinic FAQs
+            </Link>
+          </div>
+
+          {/* FAQ Accordions */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={containerVariants}
           >
-            <motion.div
-              className="flex justify-center mb-2"
-              variants={itemVariants}
-            >
+            <motion.div className="flex justify-center mb-2" variants={itemVariants}>
               <div className="inline-block px-4 py-2 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-inter font-bold uppercase tracking-wider">
                 Frequently Asked Questions
               </div>
@@ -638,10 +675,7 @@ export default function PrematureEjaculationClient({
               Common Questions
             </motion.h2>
 
-            <motion.div
-              className="space-y-4 mt-8"
-              variants={containerVariants}
-            >
+            <motion.div className="space-y-4 mt-8" variants={containerVariants}>
               {displayedFaqs.map((faq, index) => (
                 <motion.div
                   key={index}
