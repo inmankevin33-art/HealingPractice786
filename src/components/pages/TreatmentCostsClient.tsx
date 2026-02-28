@@ -10,10 +10,12 @@ import {
   FaBox,
   FaUserMd,
   FaLock,
-  FaPaperPlane
+  FaPaperPlane,
+  FaExclamationCircle
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import TrustReviews from "@/components/TrustReviews";
+import emailjs from "@emailjs/browser";
 
 // --- INTERFACE FOR DYNAMIC PROPS ---
 export type FaqType = {
@@ -25,10 +27,8 @@ interface TreatmentCostsProps {
   faqs: FaqType[];
 }
 
-export default function TreatmentCostsClient({
-  faqs,
-}: TreatmentCostsProps) {
-  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(0); // First FAQ open by default
+export default function TreatmentCostsClient({ faqs }: TreatmentCostsProps) {
+  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(0);
   const [isLoaded, setIsLoaded] = useState(false);
   
   // Form State
@@ -41,8 +41,12 @@ export default function TreatmentCostsClient({
     message: "",
     acceptedTerms: false
   });
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -57,16 +61,40 @@ export default function TreatmentCostsClient({
     const { name, value, type } = e.target;
     const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
     setFormData(prev => ({ ...prev, [name]: val }));
+    if (submitStatus.type) setSubmitStatus({ type: null, message: "" });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return; 
     setIsSubmitting(true);
     
-    // Simulate API Call for form submission
-    setTimeout(() => {
+    // Connect to your existing EmailJS Setup
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setSubmitStatus({ type: "error", message: "System error: Email service unconfigured." });
       setIsSubmitting(false);
-      setIsSubmitted(true);
+      return;
+    }
+
+    try {
+      emailjs.init(publicKey);
+      await emailjs.send(serviceId, templateId, {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        phone: formData.phone,
+        treatment: `Quote Request: ${formData.condition}`, // Maps your new dropdown to the existing template
+        message: formData.message || "No additional message provided.",
+        clinic_location: "Online / UK Wide", // Indicates it came from the national online page
+      });
+
+      setSubmitStatus({ 
+        type: "success", 
+        message: "Request Received Safely. Our clinical team will contact you discreetly with your custom quote." 
+      });
       
       // GA4 Tracking for Lead Generation
       if (typeof window !== "undefined") {
@@ -79,65 +107,49 @@ export default function TreatmentCostsClient({
           });
         }
       }
-    }, 1500);
+    } catch (error) {
+      setSubmitStatus({ type: "error", message: "Failed to send request. Please try calling or WhatsApping us directly." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const fadeUpVariants: Variants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, delay: i * 0.1, ease: "easeOut" },
-    }),
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  // Simplified animations for maximum page speed
+  const simpleFadeUp: Variants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   };
 
   return (
     <div className="bg-slate-50 min-h-screen font-inter">
-      {/* --- HERO SECTION --- */}
-      <div className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#0A1128]">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#0A1128] to-[#0A1128] z-10" />
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#4041d1]/5 rounded-full blur-[100px] pointer-events-none"></div>
-        </div>
-
-        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      {/* --- FAST, LIGHT HERO SECTION --- */}
+      <div className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-white border-b border-slate-200">
+        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            custom={0}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm"
+            variants={simpleFadeUp}
+            className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 border border-[#4041d1]/20 rounded-full bg-[#4041d1]/5"
           >
-            <FaLock className="text-blue-300 w-3 h-3" />
-            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Discreet UK-Wide Service</span>
+            <FaLock className="text-[#4041d1] w-3 h-3" />
+            <span className="text-[#4041d1] text-xs font-bold tracking-widest uppercase font-inter">Discreet UK-Wide Service</span>
           </motion.div>
 
           <motion.h1
-            custom={1}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight"
+            variants={simpleFadeUp}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold font-raleway text-slate-900 leading-tight mb-6 tracking-tight"
           >
             Treatment Costs
           </motion.h1>
 
           <motion.p
-            custom={2}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="text-base md:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto font-medium"
+            variants={simpleFadeUp}
+            className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium"
           >
             Ready to regain control? Complete the secure form below. Our medical team will assess your specific needs and formulate a bespoke treatment quote for you.
           </motion.p>
@@ -145,16 +157,16 @@ export default function TreatmentCostsClient({
       </div>
 
       {/* --- MAIN SPLIT SECTION: EXPLANATION & FORM --- */}
-      <section className="py-16 lg:py-24 relative z-30 -mt-10 lg:-mt-16">
+      <section className="py-16 lg:py-24 relative z-30 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
             
             {/* LEFT SIDE: The "Why" Explanation */}
             <motion.div 
               className="lg:col-span-5 flex flex-col justify-start pt-8"
-              initial={{ opacity: 0, x: -20 }}
-              animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              initial="hidden"
+              animate={isLoaded ? "visible" : "hidden"}
+              variants={simpleFadeUp}
             >
               <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-6 leading-tight">
                 Understanding Your Treatment Investment
@@ -175,7 +187,7 @@ export default function TreatmentCostsClient({
               {/* Value Props */}
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="mt-1 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                  <div className="mt-1 w-10 h-10 rounded-full bg-[#4041d1]/10 flex items-center justify-center shrink-0">
                     <FaUserMd className="text-[#4041d1]" />
                   </div>
                   <div>
@@ -185,7 +197,7 @@ export default function TreatmentCostsClient({
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="mt-1 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                  <div className="mt-1 w-10 h-10 rounded-full bg-[#4041d1]/10 flex items-center justify-center shrink-0">
                     <FaShieldAlt className="text-[#4041d1]" />
                   </div>
                   <div>
@@ -195,7 +207,7 @@ export default function TreatmentCostsClient({
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="mt-1 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                  <div className="mt-1 w-10 h-10 rounded-full bg-[#4041d1]/10 flex items-center justify-center shrink-0">
                     <FaBox className="text-[#4041d1]" />
                   </div>
                   <div>
@@ -206,17 +218,42 @@ export default function TreatmentCostsClient({
               </div>
             </motion.div>
 
-            {/* RIGHT SIDE: The Embedded Form */}
+            {/* RIGHT SIDE: The Embedded Form (Light Theme) */}
             <motion.div 
               className="lg:col-span-7"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              initial="hidden"
+              animate={isLoaded ? "visible" : "hidden"}
+              variants={simpleFadeUp}
             >
-              <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-xl border border-slate-100 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#4041d1] to-blue-400"></div>
+              <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-lg border border-slate-200 relative">
+                <div className="absolute top-0 left-0 w-full h-2 bg-[#4041d1]"></div>
 
-                {!isSubmitted ? (
+                {submitStatus.type === "success" ? (
+                  /* Success State */
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center text-center py-12 px-4 h-full"
+                  >
+                    <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
+                      <FaCheckCircle className="w-10 h-10 text-green-500" />
+                    </div>
+                    <h3 className="text-2xl font-bold font-raleway text-slate-900 mb-3">Request Received Safely</h3>
+                    <p className="text-slate-600 font-medium mb-8 max-w-sm mx-auto">
+                      {submitStatus.message}
+                    </p>
+                    <button 
+                      onClick={() => {
+                        setSubmitStatus({ type: null, message: "" });
+                        setFormData({ ...formData, message: "" }); // Reset message but keep name/email
+                      }} 
+                      className="text-[#4041d1] font-bold text-sm hover:underline"
+                    >
+                      Submit another query
+                    </button>
+                  </motion.div>
+                ) : (
+                  /* The Form */
                   <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                     <div className="mb-8">
                       <h3 className="text-2xl font-bold font-raleway text-slate-900">Get Your Customised Quote</h3>
@@ -225,43 +262,43 @@ export default function TreatmentCostsClient({
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">First Name *</label>
-                        <input required type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#4041d1] focus:ring-2 focus:ring-[#4041d1]/20 outline-none transition-all text-slate-700 bg-slate-50 focus:bg-white" placeholder="John" />
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">First Name *</label>
+                        <input required type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-slate-50 focus:bg-white text-sm" placeholder="John" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Last Name *</label>
-                        <input required type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#4041d1] focus:ring-2 focus:ring-[#4041d1]/20 outline-none transition-all text-slate-700 bg-slate-50 focus:bg-white" placeholder="Doe" />
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Last Name *</label>
+                        <input required type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-slate-50 focus:bg-white text-sm" placeholder="Doe" />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Email Address *</label>
-                        <input required type="email" name="email" value={formData.email} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#4041d1] focus:ring-2 focus:ring-[#4041d1]/20 outline-none transition-all text-slate-700 bg-slate-50 focus:bg-white" placeholder="john@example.com" />
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Email Address *</label>
+                        <input required type="email" name="email" value={formData.email} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-slate-50 focus:bg-white text-sm" placeholder="john@example.com" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Phone Number *</label>
-                        <input required type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#4041d1] focus:ring-2 focus:ring-[#4041d1]/20 outline-none transition-all text-slate-700 bg-slate-50 focus:bg-white" placeholder="07123 456789" />
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Phone Number *</label>
+                        <input required type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-slate-50 focus:bg-white text-sm" placeholder="07xxx xxxxxx" />
                       </div>
                     </div>
 
                     <div className="space-y-3 pt-2">
-                      <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Primary Condition *</label>
+                      <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Primary Condition *</label>
                       <div className="flex flex-wrap gap-4">
-                        <label className={`flex items-center gap-2 cursor-pointer px-4 py-3 rounded-xl border transition-all ${formData.condition === "Erectile Dysfunction" ? "border-[#4041d1] bg-blue-50/50" : "border-slate-200 bg-slate-50 hover:bg-slate-100"}`}>
-                          <input type="radio" name="condition" value="Erectile Dysfunction" checked={formData.condition === "Erectile Dysfunction"} onChange={handleInputChange} className="w-4 h-4 text-[#4041d1] focus:ring-[#4041d1]" />
-                          <span className="text-sm font-medium text-slate-700">Erectile Dysfunction</span>
+                        <label className={`flex items-center gap-2 cursor-pointer px-5 py-3 rounded-2xl border-none ring-1 transition-all text-sm ${formData.condition === "Erectile Dysfunction" ? "ring-2 ring-[#4041d1] bg-[#4041d1]/5 text-[#4041d1]" : "ring-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"}`}>
+                          <input type="radio" name="condition" value="Erectile Dysfunction" checked={formData.condition === "Erectile Dysfunction"} onChange={handleInputChange} className="hidden" />
+                          <span className="font-semibold">Erectile Dysfunction</span>
                         </label>
-                        <label className={`flex items-center gap-2 cursor-pointer px-4 py-3 rounded-xl border transition-all ${formData.condition === "Premature Ejaculation" ? "border-[#4041d1] bg-blue-50/50" : "border-slate-200 bg-slate-50 hover:bg-slate-100"}`}>
-                          <input type="radio" name="condition" value="Premature Ejaculation" checked={formData.condition === "Premature Ejaculation"} onChange={handleInputChange} className="w-4 h-4 text-[#4041d1] focus:ring-[#4041d1]" />
-                          <span className="text-sm font-medium text-slate-700">Premature Ejaculation</span>
+                        <label className={`flex items-center gap-2 cursor-pointer px-5 py-3 rounded-2xl border-none ring-1 transition-all text-sm ${formData.condition === "Premature Ejaculation" ? "ring-2 ring-[#4041d1] bg-[#4041d1]/5 text-[#4041d1]" : "ring-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"}`}>
+                          <input type="radio" name="condition" value="Premature Ejaculation" checked={formData.condition === "Premature Ejaculation"} onChange={handleInputChange} className="hidden" />
+                          <span className="font-semibold">Premature Ejaculation</span>
                         </label>
                       </div>
                     </div>
 
                     <div className="space-y-2 pt-2">
-                      <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">How can we help you? (Optional)</label>
-                      <textarea name="message" value={formData.message} onChange={handleInputChange} rows={3} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#4041d1] focus:ring-2 focus:ring-[#4041d1]/20 outline-none transition-all text-slate-700 bg-slate-50 focus:bg-white resize-none" placeholder="Please briefly describe your goals..." />
+                      <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">How can we help you? (Optional)</label>
+                      <textarea name="message" value={formData.message} onChange={handleInputChange} rows={3} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-slate-50 focus:bg-white text-sm resize-none" placeholder="Please briefly describe your goals..." />
                     </div>
 
                     <div className="pt-2 pb-4">
@@ -276,39 +313,25 @@ export default function TreatmentCostsClient({
                       </label>
                     </div>
 
+                    {submitStatus.type === "error" && (
+                      <div className="p-4 rounded-xl border bg-red-50 border-red-100 flex items-center gap-3">
+                        <FaExclamationCircle className="text-red-500 shrink-0" />
+                        <p className="text-xs font-bold text-slate-800">{submitStatus.message}</p>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
                       disabled={isSubmitting || !formData.acceptedTerms}
-                      className="w-full py-4 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold font-inter text-base flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#4041d1]/20 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="w-full py-4 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-2xl font-bold font-inter text-sm flex items-center justify-center gap-3 transition-all shadow-xl shadow-blue-600/20 disabled:bg-slate-300 disabled:shadow-none disabled:cursor-not-allowed"
                     >
-                      {isSubmitting ? (
-                        <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      ) : (
-                        <>Submit Request <FaPaperPlane className="w-4 h-4" /></>
-                      )}
+                      {isSubmitting ? "Processing..." : <>Send My Enquiry <FaPaperPlane className="w-4 h-4" /></>}
                     </button>
                     
-                    <div className="text-center flex items-center justify-center gap-2 text-xs text-slate-400 mt-4">
+                    <div className="text-center flex items-center justify-center gap-2 text-[11px] text-slate-400 mt-4 font-bold tracking-wider uppercase">
                       <FaLock /> 100% Secure & Confidential
                     </div>
                   </form>
-                ) : (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center justify-center text-center py-12 px-4 h-full"
-                  >
-                    <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
-                      <FaCheckCircle className="w-10 h-10 text-green-500" />
-                    </div>
-                    <h3 className="text-2xl font-bold font-raleway text-slate-900 mb-3">Request Received Safely</h3>
-                    <p className="text-slate-600 font-medium mb-8 max-w-sm mx-auto">
-                      Thank you, {formData.firstName}. Our medical team will review your details and contact you discreetly regarding your custom treatment quote.
-                    </p>
-                    <button onClick={() => setIsSubmitted(false)} className="text-[#4041d1] font-bold text-sm hover:underline">
-                      Submit another query
-                    </button>
-                  </motion.div>
                 )}
               </div>
             </motion.div>
@@ -320,31 +343,19 @@ export default function TreatmentCostsClient({
       {/* --- FAQs SPECIFIC TO PRICING --- */}
       <section className="py-20 lg:py-28 bg-white border-t border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={containerVariants}
-          >
-            <motion.div className="flex justify-center mb-2" variants={itemVariants}>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={simpleFadeUp}>
+            <motion.div className="flex justify-center mb-2">
               <div className="inline-block px-4 py-2 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-inter font-bold uppercase tracking-wider">
                 Financial Peace of Mind
               </div>
             </motion.div>
-            <motion.h2
-              className="text-3xl lg:text-4xl font-raleway font-bold text-slate-900 leading-tight text-center mb-12"
-              variants={itemVariants}
-            >
+            <motion.h2 className="text-3xl lg:text-4xl font-raleway font-bold text-slate-900 leading-tight text-center mb-12">
               Frequently Asked Questions
             </motion.h2>
 
-            <motion.div className="space-y-4" variants={containerVariants}>
+            <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-                  variants={itemVariants}
-                >
+                <div key={index} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <button
                     className="w-full p-6 md:p-8 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
                     onClick={() => toggleFAQ(index)}
@@ -363,7 +374,7 @@ export default function TreatmentCostsClient({
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
                         <div className="px-6 md:px-8 pb-8 border-t border-slate-100 pt-6">
@@ -374,14 +385,14 @@ export default function TreatmentCostsClient({
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Trust Reviews directly below FAQs */}
+      {/* Trust Reviews */}
       <div className="bg-white pb-10">
          <TrustReviews widgetUrl="https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586" />
       </div>
