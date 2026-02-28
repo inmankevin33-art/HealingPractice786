@@ -300,7 +300,7 @@ export default function PersonalisedEDMedicationClient({
         </div>
       </div>
 
-      {/* --- NEW: DARK PREMIUM AUTHORITY SECTION --- */}
+     {/* --- NEW: DARK PREMIUM AUTHORITY SECTION --- */}
       <section className="py-20 lg:py-28 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -325,12 +325,12 @@ export default function PersonalisedEDMedicationClient({
               <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed mb-10 flex-grow">
                 Experiencing reduced sexual performance or inconsistent erections is an incredibly common medical issue, yet the psychological toll it takes is often overlooked. We understand that struggling with erectile dysfunction can have a profound, cascading impact on your overall well-being, relationship dynamics, and daily stress levels.
               </p>
-              <Link
-                href={edRoute}
-                className="inline-flex items-center gap-2 text-blue-400 font-bold text-sm md:text-base hover:text-blue-300 transition-colors group-hover:translate-x-1 duration-300"
+              <button
+                onClick={() => setIsAssessmentOpen(true)}
+                className="inline-flex items-center gap-2 text-blue-400 font-bold text-sm md:text-base hover:text-blue-300 transition-colors group-hover:translate-x-1 duration-300 bg-transparent p-0 border-none cursor-pointer"
               >
-                Explore ED Treatments <FaArrowRight className="w-4 h-4" />
-              </Link>
+                Take Free Online Assessment <FaArrowRight className="w-4 h-4" />
+              </button>
             </motion.div>
 
             {/* Card 2: A Doctor-Led Approach */}
@@ -348,12 +348,12 @@ export default function PersonalisedEDMedicationClient({
               <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed mb-10 flex-grow">
                 As GMC-registered doctors specialising in male sexual health, we do not just treat the physical symptom; we treat the patient. Having successfully guided countless men through bespoke treatment plans, we have seen firsthand how restoring reliable sexual performance provides a life-changing boost to overall confidence and quality of life. Our goal is to build a mutual management plan that actually works for your unique physiology.
               </p>
-              <Link
-                href={rejuvenationRoute}
-                className="inline-flex items-center gap-2 text-blue-400 font-bold text-sm md:text-base hover:text-blue-300 transition-colors group-hover:translate-x-1 duration-300"
+              <button
+                onClick={handleAction}
+                className="inline-flex items-center gap-2 text-blue-400 font-bold text-sm md:text-base hover:text-blue-300 transition-colors group-hover:translate-x-1 duration-300 bg-transparent p-0 border-none cursor-pointer"
               >
-                Explore Sexual Rejuvenation <FaArrowRight className="w-4 h-4" />
-              </Link>
+                Book Your Consultation <FaArrowRight className="w-4 h-4" />
+              </button>
             </motion.div>
           </motion.div>
         </div>
