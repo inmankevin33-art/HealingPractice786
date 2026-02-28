@@ -483,24 +483,36 @@ export default function PersonalisedEDMedicationClient({
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-20 bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-slate-800 relative overflow-hidden"
+            className="mt-20 bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl border border-slate-800 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl -z-10"></div>
             
-            <div className="relative z-10 text-center md:text-left">
+            <div className="relative z-10 text-center lg:text-left max-w-2xl">
               <h4 className="text-2xl font-raleway font-bold text-white mb-2">Looking for a holistic approach?</h4>
-              <p className="text-slate-300 text-sm md:text-base max-w-2xl font-inter">
+              <p className="text-slate-300 text-sm md:text-base font-inter">
                 Discover our comprehensive male intimate wellness and sexual rejuvenation programmes, focusing on long-term tissue health and aesthetic restoration.
               </p>
             </div>
             
-            <Link 
-              href={rejuvenationRoute}
-              className="shrink-0 relative z-10 px-8 py-3.5 bg-white text-[#0f172a] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group shadow-lg active:scale-95 font-inter"
-            >
-              Explore Intimate Wellness
-              <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <div className="relative z-10 flex flex-col sm:flex-row gap-4 shrink-0 w-full lg:w-auto justify-center">
+              {/* ED Link (Secondary Outlined Style) */}
+              <Link 
+                href={edRoute}
+                className="px-6 py-3.5 border-2 border-[#4041d1] text-blue-100 hover:bg-[#4041d1]/30 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group active:scale-95 font-inter w-full sm:w-auto"
+              >
+                Explore ED Treatments
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              {/* Sexual Rejuvenation Link (Primary Solid Style) */}
+              <Link 
+                href={rejuvenationRoute}
+                className="px-6 py-3.5 bg-white text-[#0f172a] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-lg active:scale-95 font-inter w-full sm:w-auto"
+              >
+                Sexual Rejuvenation
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </motion.div>
 
         </div>
