@@ -16,37 +16,17 @@ import Footer from "@/components/Footer";
 import TrustReviews from "@/components/TrustReviews";
 
 // --- INTERFACE FOR DYNAMIC PROPS ---
-type FaqType = {
+export type FaqType = {
   question: string;
   answer: string;
 };
 
 interface TreatmentCostsProps {
-  faqs?: FaqType[];
+  faqs: FaqType[];
 }
 
-// Default Pricing FAQs if none are passed
-const defaultFaqs: FaqType[] = [
-  {
-    question: "What does my treatment cost include?",
-    answer: "Your bespoke cost covers everything: your comprehensive online review by a GMC-registered doctor, your custom-formulated medication, ongoing dosage adjustments, and secure, discreet direct-to-door shipping."
-  },
-  {
-    question: "Are there any hidden prescription fees?",
-    answer: "Absolutely not. We believe in complete transparency. The quote you receive includes both the medical consultation and the physical medication. There are no surprise pharmacy dispensing fees."
-  },
-  {
-    question: "Am I locked into a long-term contract?",
-    answer: "No. Every man's needs are different, and your treatment plan is completely flexible. We do not lock you into rigid long-term contracts; your treatment is managed according to your ongoing progress."
-  },
-  {
-    question: "Is the billing and shipping discreet?",
-    answer: "Yes, your privacy is our highest priority. All packages arrive in unbranded, plain packaging, and your bank statements will show a discreet billing name that does not mention ED or PE."
-  }
-];
-
 export default function TreatmentCostsClient({
-  faqs = defaultFaqs,
+  faqs,
 }: TreatmentCostsProps) {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(0); // First FAQ open by default
   const [isLoaded, setIsLoaded] = useState(false);
@@ -127,7 +107,6 @@ export default function TreatmentCostsClient({
       <div className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#0A1128]">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#0A1128] to-[#0A1128] z-10" />
-          {/* Optional abstract background pattern here */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#4041d1]/5 rounded-full blur-[100px] pointer-events-none"></div>
         </div>
 
@@ -235,7 +214,6 @@ export default function TreatmentCostsClient({
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-xl border border-slate-100 relative overflow-hidden">
-                {/* Decorative accent */}
                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#4041d1] to-blue-400"></div>
 
                 {!isSubmitted ? (
@@ -315,7 +293,6 @@ export default function TreatmentCostsClient({
                     </div>
                   </form>
                 ) : (
-                  /* Success State */
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
