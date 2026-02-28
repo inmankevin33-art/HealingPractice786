@@ -114,7 +114,7 @@ export default function PrematureEjaculationClient({
           <div className="absolute inset-0 bg-black/40 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-black/60 to-transparent z-10" />
           <img
-            src="/pe-hero.webp"
+            src="/ed-doctor-consultation.webp"
             alt="Premature Ejaculation Treatment"
             className="absolute inset-0 w-full h-full object-cover"
             fetchPriority="high"
