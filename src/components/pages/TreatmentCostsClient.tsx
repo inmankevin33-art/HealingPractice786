@@ -123,8 +123,8 @@ export default function TreatmentCostsClient({ faqs }: TreatmentCostsProps) {
   return (
     <div className="bg-slate-50 min-h-screen font-inter">
       
-     {/* --- FAST, LIGHT HERO SECTION --- */}
-      <div className="pt-24 pb-12 lg:pt-32 lg:pb-12 bg-white border-b border-slate-100">
+    {/* --- FAST, LIGHT HERO SECTION --- */}
+      <div className="pt-12 pb-12 lg:pt-16 lg:pb-12 bg-white border-b border-slate-100">
         <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
