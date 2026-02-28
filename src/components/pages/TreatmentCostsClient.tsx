@@ -123,24 +123,24 @@ export default function TreatmentCostsClient({ faqs }: TreatmentCostsProps) {
   return (
     <div className="bg-slate-50 min-h-screen font-inter">
       
-      {/* --- FAST, LIGHT HERO SECTION --- */}
-      <div className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-white border-b border-slate-200">
-        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     {/* --- FAST, LIGHT HERO SECTION --- */}
+      <div className="pt-24 pb-12 lg:pt-32 lg:pb-12 bg-white border-b border-slate-100">
+        <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={simpleFadeUp}
-            className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 border border-[#4041d1]/20 rounded-full bg-[#4041d1]/5"
+            className="inline-flex items-center gap-2 px-4 py-1.5 mb-5 border border-[#4041d1]/20 rounded-full bg-[#4041d1]/5"
           >
             <FaLock className="text-[#4041d1] w-3 h-3" />
-            <span className="text-[#4041d1] text-xs font-bold tracking-widest uppercase font-inter">Discreet UK-Wide Service</span>
+            <span className="text-[#4041d1] text-[10px] md:text-xs font-bold tracking-widest uppercase font-inter">Discreet UK-Wide Service</span>
           </motion.div>
 
           <motion.h1
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={simpleFadeUp}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold font-raleway text-slate-900 leading-tight mb-6 tracking-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-slate-900 leading-tight mb-4 tracking-tight"
           >
             Treatment Costs
           </motion.h1>
@@ -149,7 +149,7 @@ export default function TreatmentCostsClient({ faqs }: TreatmentCostsProps) {
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={simpleFadeUp}
-            className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium"
+            className="text-sm md:text-base text-slate-600 leading-relaxed max-w-xl mx-auto font-medium"
           >
             Ready to regain control? Complete the secure form below. Our medical team will assess your specific needs and formulate a bespoke treatment quote for you.
           </motion.p>
