@@ -67,6 +67,7 @@ export default function PersonalisedEDMedicationClient({
   const peRoute = `${baseRoute}/premature-ejaculation`;
   const pshotRoute = `${baseRoute}/p-shot`;
   const rejuvenationRoute = `${baseRoute}/sexual-rejuvenation`; 
+  const treatmentCostsRoute = `${baseRoute}/treatment-costs`; // Added route for the new pricing page
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -549,7 +550,7 @@ export default function PersonalisedEDMedicationClient({
               </AnimatePresence>
             </div>
 
-            <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-20" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
               {protocolSteps.map((step, index) => {
                 const IconComponent = step.icon;
@@ -572,18 +573,33 @@ export default function PersonalisedEDMedicationClient({
               })}
             </motion.div>
 
+            {/* --- MID-PAGE CTA BANNER --- */}
             <motion.div 
-              className="mt-16 flex justify-center"
+              className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto backdrop-blur-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <button 
-                onClick={() => setIsAssessmentOpen(true)}
-                className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
-              >
-                 Take Free Online Assessment
-              </button>
+              <h3 className="text-2xl md:text-3xl font-raleway font-bold text-white mb-4">
+                Ready to explore bespoke options?
+              </h3>
+              <p className="text-slate-300 font-inter mb-8 max-w-2xl mx-auto">
+                Discover how our tailored formulations can work for your specific physiology, and see transparent pricing for your personalised plan.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link 
+                  href={treatmentCostsRoute}
+                  className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#0A1128] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
+                >
+                   View Treatment Prices <FaArrowRight className="w-3 h-3" />
+                </Link>
+                <button 
+                  onClick={() => setIsAssessmentOpen(true)}
+                  className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-transparent border-2 border-white/20 text-white hover:bg-white/10 rounded-xl font-bold transition-all duration-300 gap-2 active:scale-95 font-inter"
+                >
+                   Take Free Assessment
+                </button>
+              </div>
             </motion.div>
 
           </div>
@@ -602,7 +618,7 @@ export default function PersonalisedEDMedicationClient({
               <FaEnvelope className="w-4 h-4" /> Speak To A Specialist
             </button>
             <Link
-              href={isBirmingham ? "/birmingham/prices" : "/prices"}
+              href={treatmentCostsRoute} 
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
             >
               View Treatment Prices
