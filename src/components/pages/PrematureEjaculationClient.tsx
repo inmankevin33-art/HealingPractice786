@@ -21,7 +21,7 @@ import {
   FaUserShield,
   FaUserMd,
   FaLink,
-  FaPlusCircle // Added for the new 6th card
+  FaPlusCircle
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -58,7 +58,7 @@ export default function PrematureEjaculationClient({
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Keeping isLoaded only for the Trust Badge slide-up, removed from Hero text for instant loading
+    // Only used for the trust badges to slide up smoothly after load
     setIsLoaded(true); 
   }, []);
 
@@ -115,11 +115,10 @@ export default function PrematureEjaculationClient({
     { title: "Lifestyle Optimisation", text: "Medical guidance on sleep, stress, and habits, plus partner-inclusive strategies if desired.", icon: FaLeaf },
   ];
 
-  // Upgraded Empathy & Symptom-focused list
   const whoIsItFor = [
     "Men struggling to hold ejaculation and wishing to regain control",
-    "Men with PE co-existing with ED or performance anxiety",
-    "Those wanting doctor-led, customised cream and medication regimens",
+    "Men with PE co-existing with ED or anxiety",
+    "Those wanting customised creams and medication options",
     "Couples experiencing distress or frustration looking to improve intimacy",
   ];
 
@@ -144,7 +143,7 @@ export default function PrematureEjaculationClient({
 
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-40 pb-20 md:pb-24">
           
-          {/* Removed isLoaded dependency here to fix lag. It animates instantly on render. */}
+          {/* REMOVED ISLOADED DEPENDENCY: Animates instantly now! */}
           <motion.div
             custom={0}
             initial="hidden"
@@ -203,7 +202,7 @@ export default function PrematureEjaculationClient({
           </motion.div>
         </div>
 
-        {/* --- HERO TRUST BADGES (Kept isLoaded so they smoothly slide up) --- */}
+        {/* --- HERO TRUST BADGES (Keeps isLoaded so they smoothly slide up) --- */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} z-30`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
@@ -519,6 +518,35 @@ export default function PrematureEjaculationClient({
               ))}
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* REVERSE LINK BANNER FOR P-SHOT */}
+      <section className="py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-slate-800 relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl -z-10"></div>
+              
+              <div className="relative z-10 text-center md:text-left">
+                <h4 className="text-2xl font-raleway font-bold text-white mb-2">Looking for comprehensive tissue health?</h4>
+                <p className="text-slate-300 text-sm md:text-base max-w-2xl font-inter">
+                  If you are seeking to improve overall penile health, blood flow, and sensitivity alongside ejaculatory control, explore our advanced regenerative treatments.
+                </p>
+              </div>
+              
+              <Link 
+                href={isBirmingham ? "/birmingham/p-shot" : "/p-shot"}
+                className="shrink-0 relative z-10 px-8 py-3.5 bg-white text-[#0f172a] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group shadow-lg active:scale-95 font-inter"
+              >
+                Discover The P-Shot
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
         </div>
       </section>
 
