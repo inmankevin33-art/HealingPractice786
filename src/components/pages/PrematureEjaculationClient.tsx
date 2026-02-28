@@ -145,10 +145,10 @@ export default function PrematureEjaculationClient({
   ];
 
   const whoIsItFor = [
-    "Men seeking a non‑surgical, structured plan for PE",
-    "Those wanting customised creams and medication options",
-    "Men with PE co‑existing with ED or anxiety",
-    "Couples looking to improve intimacy and confidence",
+    "Men struggling to maintain control or delay ejaculation during intimacy",
+    "Those seeking bespoke medical formulations, including custom creams and medications",
+    "Men experiencing PE co-existing with Erectile Dysfunction (ED) or performance anxiety",
+    "Individuals experiencing distress, frustration, or relationship strain due to rapid climax",
   ];
 
   const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
