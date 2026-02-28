@@ -426,7 +426,7 @@ export default function PersonalisedEDMedicationClient({
                 </p>
               </div>
               <img 
-                src="/ed-bottle.png"  
+                src="/ed-bottle.webp"  
                 alt="ED Medication" 
                 className="absolute -bottom-12 -left-6 w-32 md:w-40 h-auto object-contain drop-shadow-2xl transform group-hover:-translate-y-3 transition-all duration-500 z-20"
               />
@@ -450,7 +450,7 @@ export default function PersonalisedEDMedicationClient({
                 </p>
               </div>
               <img 
-                src="/pe-bottle.png" 
+                src="/pe-bottle.webp" 
                 alt="PE Medication" 
                 className="absolute -bottom-12 -left-6 w-32 md:w-40 h-auto object-contain drop-shadow-2xl transform group-hover:-translate-y-3 transition-all duration-500 z-20"
               />
@@ -470,7 +470,7 @@ export default function PersonalisedEDMedicationClient({
                 </p>
               </div>
               <img 
-                src="/pshot-vial.png" 
+                src="/pshot-vial.webp" 
                 alt="P-Shot Vial" 
                 className="absolute -bottom-12 -left-6 w-32 md:w-40 h-auto object-contain drop-shadow-2xl transform group-hover:-translate-y-3 transition-all duration-500 z-20"
               />
