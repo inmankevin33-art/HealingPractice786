@@ -399,7 +399,9 @@ export default function PrematureEjaculationClient({
 
             <motion.div variants={itemVariants} className="space-y-6 text-slate-300 font-inter text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
               <p>
-                With over a decade of experience in male sexual health, our GMC-registered doctors understand that there is no "one-size-fits-all" solution. We take a strictly patient-centred approach to your care.
+                <p>
+                With years of experience in male sexual health, our GMC-registered doctor understand that there is no &quot;one-size-fits-all&quot; solution. We take a strictly patient-centred approach to your care.
+              </p>
               </p>
               <p>
                 During your discreet, 1:1 consultation, we do not just prescribe standard tablets; we listen to your specific history, identify the root physiological or psychological causes of your symptoms, and work closely with you to agree on a <strong>mutual management plan</strong>.
