@@ -25,7 +25,8 @@ import {
   FaStar,        
   FaLock,
   FaSyringe,      
-  FaHourglassHalf 
+  FaHourglassHalf,
+  FaHeartbeat // Added for Authority Section
 } from "react-icons/fa";
 
 import LocationSection from "@/components/LocationSection";
@@ -65,7 +66,7 @@ export default function PersonalisedEDMedicationClient({
   const edRoute = `${baseRoute}/erectile-dysfunction`;
   const peRoute = `${baseRoute}/premature-ejaculation`;
   const pshotRoute = `${baseRoute}/p-shot`;
-  const rejuvenationRoute = `${baseRoute}/sexual-rejuvenation`; // <-- New Link Route Added
+  const rejuvenationRoute = `${baseRoute}/sexual-rejuvenation`; 
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -113,19 +114,19 @@ export default function PersonalisedEDMedicationClient({
     {
       title: "Reduced Morning Erections",
       description: "Fewer or weaker morning erections compared with your usual pattern.",
-      icon: FaCheckCircle, // Fixed Icon
+      icon: FaCheckCircle, 
       color: "bg-amber-50 text-amber-600",
     },
     {
       title: "Difficulty Maintaining Erections",
       description: "Erection starts but fades quickly or is hard to maintain during sex",
-      icon: FaTachometerAlt, // Fixed Icon
+      icon: FaTachometerAlt, 
       color: "bg-indigo-50 text-indigo-600",
     },
     {
       title: "Low Sexual Confidence",
       description: "Worry, performance anxiety or reduced confidence affecting intimacy.",
-      icon: FaLevelDownAlt, // Fixed Icon
+      icon: FaLevelDownAlt, 
       color: "bg-teal-50 text-teal-600",
     },
     {
@@ -134,7 +135,7 @@ export default function PersonalisedEDMedicationClient({
       icon: FaPills,
       color: "bg-rose-50 text-rose-600",
     },
-  ]; // <-- FIXED: Added the missing closing bracket and semicolon!
+  ]; 
 
   const protocolSteps = [
     {
@@ -182,7 +183,6 @@ export default function PersonalisedEDMedicationClient({
           />
         </div>
 
-        {/* Adjusted padding: slightly less bottom padding to balance the smaller text */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-40 pb-20 md:pb-24">
 
           <motion.h1
@@ -190,11 +190,9 @@ export default function PersonalisedEDMedicationClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            // Scaled down text: md:text-5xl (was 6xl) and standard lg:text-6xl for huge screens
             className="text-3xl md:text-5xl lg:text-6xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
             Personalised ED Medication <br className="hidden md:block" /> 
-            {/* Scaled down span: md:text-4xl (was 5xl) */}
             <span className="text-2xl md:text-4xl lg:text-5xl text-blue-100">for Male Performance in {locationName}</span>
           </motion.h1>
 
@@ -203,7 +201,6 @@ export default function PersonalisedEDMedicationClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            // Scaled down text: text-sm md:text-lg (was base md:text-xl)
             className="mt-4 text-sm md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
             Advanced, doctor-led formulation for men who have not achieved satisfactory results or experienced side effects with standard tablets.
@@ -218,7 +215,6 @@ export default function PersonalisedEDMedicationClient({
           >
             <button 
               onClick={() => setIsAssessmentOpen(true)}
-              // Scaled down buttons: px-6 py-3 (was px-8 py-3.5)
               className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
             >
                Take Free Online Assessment
@@ -226,7 +222,6 @@ export default function PersonalisedEDMedicationClient({
 
             <button 
               onClick={handleAction}
-              // Scaled down buttons: px-6 py-3 (was px-8 py-3.5)
               className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1]/80 hover:bg-[#4041d1] backdrop-blur-md text-white border border-white/20 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
             >
               <FaEnvelope className="w-4 h-4" /> Book Directly
@@ -305,6 +300,65 @@ export default function PersonalisedEDMedicationClient({
         </div>
       </div>
 
+      {/* --- NEW: DARK PREMIUM AUTHORITY SECTION --- */}
+      <section className="py-20 lg:py-28 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          >
+            {/* Card 1: The Clinical & Psychological Impact */}
+            <motion.div
+              variants={itemVariants}
+              className="bg-gradient-to-b from-[#0f172a] to-black rounded-[2rem] p-8 md:p-12 shadow-2xl flex flex-col items-start relative overflow-hidden group border border-slate-800"
+            >
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+              <div className="w-16 h-16 bg-blue-900/30 border border-blue-500/30 rounded-2xl flex items-center justify-center mb-8 shadow-inner">
+                <FaHeartbeat className="text-3xl text-blue-400" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-raleway font-bold text-white mb-6">
+                The Clinical & Psychological Impact
+              </h3>
+              <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed mb-10 flex-grow">
+                Experiencing reduced sexual performance or inconsistent erections is an incredibly common medical issue, yet the psychological toll it takes is often overlooked. We understand that struggling with erectile dysfunction can have a profound, cascading impact on your overall well-being, relationship dynamics, and daily stress levels.
+              </p>
+              <Link
+                href={edRoute}
+                className="inline-flex items-center gap-2 text-blue-400 font-bold text-sm md:text-base hover:text-blue-300 transition-colors group-hover:translate-x-1 duration-300"
+              >
+                Explore ED Treatments <FaArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            {/* Card 2: A Doctor-Led Approach */}
+            <motion.div
+              variants={itemVariants}
+              className="bg-gradient-to-b from-[#0f172a] to-black rounded-[2rem] p-8 md:p-12 shadow-2xl flex flex-col items-start relative overflow-hidden group border border-slate-800"
+            >
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+              <div className="w-16 h-16 bg-blue-900/30 border border-blue-500/30 rounded-2xl flex items-center justify-center mb-8 shadow-inner">
+                <FaUserMd className="text-3xl text-blue-400" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-raleway font-bold text-white mb-6">
+                A Doctor-Led Approach
+              </h3>
+              <p className="text-base md:text-lg font-inter text-slate-300 leading-relaxed mb-10 flex-grow">
+                As GMC-registered doctors specialising in male sexual health, we do not just treat the physical symptom; we treat the patient. Having successfully guided countless men through bespoke treatment plans, we have seen firsthand how restoring reliable sexual performance provides a life-changing boost to overall confidence and quality of life. Our goal is to build a mutual management plan that actually works for your unique physiology.
+              </p>
+              <Link
+                href={rejuvenationRoute}
+                className="inline-flex items-center gap-2 text-blue-400 font-bold text-sm md:text-base hover:text-blue-300 transition-colors group-hover:translate-x-1 duration-300"
+              >
+                Explore Sexual Rejuvenation <FaArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* --- WHO THIS IS FOR --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -356,7 +410,6 @@ export default function PersonalisedEDMedicationClient({
             </h2>
           </div>
 
-          {/* Increased gap and top padding to allow room for the pop-out images */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-10 pt-10 pb-10">
             
             {/* CARD 1: Erectile Dysfunction */}
@@ -372,9 +425,8 @@ export default function PersonalisedEDMedicationClient({
                   Tailored PDE5 inhibitors and bespoke daily medication plans designed for optimal response and minimal side effects.
                 </p>
               </div>
-              {/* THE 3D POP-OUT IMAGE */}
               <img 
-                src="/ed-bottle.png"  /* <-- Replace with your transparent PNG path */
+                src="/ed-bottle.png"  
                 alt="ED Medication" 
                 className="absolute -bottom-12 -left-6 w-32 md:w-40 h-auto object-contain drop-shadow-2xl transform group-hover:-translate-y-3 transition-all duration-500 z-20"
               />
@@ -383,17 +435,13 @@ export default function PersonalisedEDMedicationClient({
             {/* CARD 2: Premature Ejaculation */}
             <Link href={peRoute} className="group relative block rounded-[2rem] overflow-visible shadow-xl hover:shadow-2xl hover:shadow-[#4041d1]/20 transition-all duration-500 min-h-[400px] bg-slate-900 mt-8 md:mt-0">
               <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
-                
-                {/* --- NEW BACKGROUND IMAGE ADDED HERE --- */}
                 <img 
                   src="/pe-lifestyle.webp" 
                   alt="Premature Ejaculation Treatment" 
                   className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700" 
                 />
-                
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/60 to-transparent"></div>
               </div>
-              
               <div className="relative h-full flex flex-col justify-center items-center p-8 text-center z-10">
                 <h3 className="text-3xl font-raleway font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">Premature Ejaculation</h3>
                 <div className="text-white/80 text-sm font-medium tracking-wider mb-6">Treatment Details</div>
@@ -401,7 +449,6 @@ export default function PersonalisedEDMedicationClient({
                   Discreet, doctor-prescribed solutions designed to improve stamina, control, and restore sexual confidence.
                 </p>
               </div>
-              {/* THE 3D POP-OUT IMAGE */}
               <img 
                 src="/pe-bottle.png" 
                 alt="PE Medication" 
@@ -422,9 +469,8 @@ export default function PersonalisedEDMedicationClient({
                   Combine your tailored medication protocol with autologous PRP for maximum tissue restoration and vascular health.
                 </p>
               </div>
-              {/* THE 3D POP-OUT IMAGE */}
               <img 
-                src="/pshot-vial.png" /* <-- Replace with your transparent PNG path */
+                src="/pshot-vial.png" 
                 alt="P-Shot Vial" 
                 className="absolute -bottom-12 -left-6 w-32 md:w-40 h-auto object-contain drop-shadow-2xl transform group-hover:-translate-y-3 transition-all duration-500 z-20"
               />
@@ -439,7 +485,6 @@ export default function PersonalisedEDMedicationClient({
             viewport={{ once: true }}
             className="mt-20 bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-slate-800 relative overflow-hidden"
           >
-            {/* Subtle background glow inside the banner */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl -z-10"></div>
             
             <div className="relative z-10 text-center md:text-left">
@@ -515,7 +560,6 @@ export default function PersonalisedEDMedicationClient({
               })}
             </motion.div>
 
-            {/* --- NEW ASSESSMENT BUTTON ADDED HERE --- */}
             <motion.div 
               className="mt-16 flex justify-center"
               initial={{ opacity: 0, y: 20 }}
@@ -538,33 +582,25 @@ export default function PersonalisedEDMedicationClient({
       <section className="py-24 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* --- ACTION BUTTONS ROW (Moved ABOVE FAQ to match P-Shot page) --- */}
           <div className="mb-24 flex flex-col md:flex-row justify-center items-center gap-4 w-full">
-            
-            {/* 1. Book Consultation (Main Action) */}
             <button
               onClick={handleAction}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
             >
               <FaEnvelope className="w-4 h-4" /> Speak To A Specialist
             </button>
-
-            {/* 2. Prices Link */}
             <Link
               href={isBirmingham ? "/birmingham/prices" : "/prices"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
             >
               View Treatment Prices
             </Link>
-            
-            {/* 3. FAQ Link */}
             <Link
               href={isBirmingham ? "/birmingham/faq" : "/faq"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
             >
               View Clinic FAQs
             </Link>
-            
           </div>
 
           <div className="text-center mb-16">
