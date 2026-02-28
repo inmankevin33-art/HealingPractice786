@@ -174,13 +174,13 @@ export default function TreatmentCostsClient({ faqs }: TreatmentCostsProps) {
               
               <div className="space-y-5 text-slate-600 font-medium text-sm md:text-base leading-relaxed mb-10">
                 <p>
-                  Because our GMC-registered doctors do not prescribe standard, &quot;off-the-shelf&quot; tablets, there is no one-size-fits-all price list.
+                  Because our GMC-registered doctors do not prescribe standard, “off-the-shelf” tablets, there is no one-size-fits-all price list.
                 </p>
                 <p>
-                  Every man&apos;s physiology is different. Your medication formulation, dosage, and overall treatment plan are compounded specifically for your unique medical profile and goals.
+                  Every man’s physiology is different. Your medication formulation, dosage, and overall treatment plan are tailored specifically to your individual medical profile and treatment goals.
                 </p>
                 <p>
-                  This bespoke approach ensures you only pay for the exact medical intervention you require—resulting in higher success rates and minimal side effects compared to standard generic options.
+                  This personalised approach ensures you receive the exact medical intervention required — helping to minimise unnecessary medication, reduce potential side effects, and support more reliable outcomes compared to generic options.
                 </p>
               </div>
 
@@ -191,7 +191,7 @@ export default function TreatmentCostsClient({ faqs }: TreatmentCostsProps) {
                     <FaUserMd className="text-[#4041d1]" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 font-raleway">GMC-Registered Review</h4>
+                    <h4 className="font-bold text-slate-900 font-raleway">Doctor-Led Clinical Review</h4>
                     <p className="text-sm text-slate-500 mt-1">Your case is evaluated safely and thoroughly online.</p>
                   </div>
                 </div>
