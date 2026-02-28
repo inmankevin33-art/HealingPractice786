@@ -169,6 +169,8 @@ export default function PShotClient({
     <>
       {/* --- HERO SECTION --- */}
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+        
+        {/* 1. Background */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
@@ -180,9 +182,9 @@ export default function PShotClient({
           />
         </div>
 
+        {/* 2. Main Content */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
           
-          {/* Top Sleek Badge */}
           <motion.div 
             custom={0}
             initial="hidden"
@@ -198,11 +200,9 @@ export default function PShotClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            // SCALED DOWN: Changed from md:text-6xl to text-3xl md:text-4xl lg:text-5xl
             className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
             The P-Shot (Priapus Shot)<br className="hidden sm:block" />
-            {/* SCALED DOWN: Changed from md:text-5xl to text-xl md:text-3xl lg:text-4xl */}
             <span className="text-xl md:text-3xl lg:text-4xl text-blue-100">in {locationName}</span>
           </motion.h1>
 
@@ -211,7 +211,6 @@ export default function PShotClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            // SCALED DOWN: Changed from text-base md:text-xl to text-sm md:text-base
             className="mt-4 text-sm md:text-base text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
             A natural, non-surgical treatment designed to rejuvenate tissue, 
@@ -227,7 +226,6 @@ export default function PShotClient({
           >
             <button 
               onClick={handleAction}
-              // SCALED DOWN BUTTON: Changed from px-10 py-3.5 to px-6 py-3
               className="px-6 py-3 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
             >
               <FaEnvelope className="w-4 h-4" /> Book Consultation
@@ -245,14 +243,12 @@ export default function PShotClient({
              <span>Serving: {servingAreas}</span>
           </motion.div>
         </div>
-      </div>
 
-        {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
+        {/* 3. Hero Trust Badges (LOWER BORDER) */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
               
-              {/* 1. Google 5-Star Link */}
               <a href="#reviews" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -272,7 +268,6 @@ export default function PShotClient({
                 </div>
               </a>
 
-              {/* 2. Experience Badge */}
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
@@ -285,7 +280,6 @@ export default function PShotClient({
                 </div>
               </div>
 
-              {/* 3. GMC Badge */}
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
@@ -298,7 +292,6 @@ export default function PShotClient({
                 </div>
               </div>
 
-              {/* 4. Privacy & Discreet Care */}
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
@@ -314,6 +307,7 @@ export default function PShotClient({
             </div>
           </div>
         </div>
+        
       </div>
 
       {/* --- BENEFITS SECTION --- */}
