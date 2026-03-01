@@ -119,8 +119,8 @@ export default function PrematureEjaculationClient({
          <img
             src="/ed-doctor-consultation.webp"
             alt="Premature Ejaculation Treatment"
-            // FIX: Added object-[75%_center] to perfectly frame the doctor and patient on mobile
-            className="absolute inset-0 w-full h-full object-cover object-[75%_center] md:object-center"
+            // Dialed back from 75% to 60% to find the perfect middle ground
+            className="absolute inset-0 w-full h-full object-cover object-[60%_center] md:object-center"
             fetchPriority="high"
             onError={(e) => {
                e.currentTarget.src = "/ed-doctor-consultation.webp";
