@@ -26,7 +26,7 @@ import {
   FaLock,
   FaSyringe,      
   FaHourglassHalf,
-  FaHeartbeat // Added for Authority Section
+  FaHeartbeat
 } from "react-icons/fa";
 
 import LocationSection from "@/components/LocationSection";
@@ -67,7 +67,7 @@ export default function PersonalisedEDMedicationClient({
   const peRoute = `${baseRoute}/premature-ejaculation`;
   const pshotRoute = `${baseRoute}/p-shot`;
   const rejuvenationRoute = `${baseRoute}/sexual-rejuvenation`; 
-  const treatmentCostsRoute = `${baseRoute}/treatment-costs`; // Added route for the new pricing page
+  const treatmentCostsRoute = `${baseRoute}/treatment-costs`; 
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -479,41 +479,19 @@ export default function PersonalisedEDMedicationClient({
 
           </div>
 
-          {/* --- EXPLORE SEXUAL REJUVENATION BANNER --- */}
-          <motion.div
+          {/* --- NEW: TREATMENT COSTS BUTTON UNDER TREATMENTS GRID --- */}
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-20 bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl border border-slate-800 relative overflow-hidden"
+            className="mt-16 text-center"
           >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl -z-10"></div>
-            
-            <div className="relative z-10 text-center lg:text-left max-w-2xl">
-              <h4 className="text-2xl font-raleway font-bold text-white mb-2">Looking for a holistic approach?</h4>
-              <p className="text-slate-300 text-sm md:text-base font-inter">
-                Discover our comprehensive male intimate wellness and sexual rejuvenation programmes, focusing on long-term tissue health and aesthetic restoration.
-              </p>
-            </div>
-            
-            <div className="relative z-10 flex flex-col sm:flex-row gap-4 shrink-0 w-full lg:w-auto justify-center">
-              {/* ED Link (Secondary Outlined Style) */}
-              <Link 
-                href={edRoute}
-                className="px-6 py-3.5 border-2 border-[#4041d1] text-blue-100 hover:bg-[#4041d1]/30 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group active:scale-95 font-inter w-full sm:w-auto"
-              >
-                Explore ED Treatments
-                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              </Link>
-
-              {/* Sexual Rejuvenation Link (Primary Solid Style) */}
-              <Link 
-                href={rejuvenationRoute}
-                className="px-6 py-3.5 bg-white text-[#0f172a] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-lg active:scale-95 font-inter w-full sm:w-auto"
-              >
-                Sexual Rejuvenation
-                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
+            <Link 
+              href={treatmentCostsRoute}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter group"
+            >
+              View Treatment Prices <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </motion.div>
 
         </div>
@@ -573,36 +551,76 @@ export default function PersonalisedEDMedicationClient({
               })}
             </motion.div>
 
-            {/* --- MID-PAGE CTA BANNER --- */}
+            {/* --- MID-PAGE CTA BANNER (Now a sleeker, smaller rectangle) --- */}
             <motion.div 
-              className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto backdrop-blur-sm"
+              className="bg-white/5 border border-white/10 rounded-[2rem] p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 max-w-5xl mx-auto backdrop-blur-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl md:text-3xl font-raleway font-bold text-white mb-4">
-                Ready to explore bespoke options?
-              </h3>
-              <p className="text-slate-300 font-inter mb-8 max-w-2xl mx-auto">
-                Discover how our tailored formulations can work for your specific physiology, and see transparent pricing for your personalised plan.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="text-center md:text-left">
+                <h3 className="text-xl md:text-2xl font-raleway font-bold text-white mb-2">
+                  Ready to explore bespoke options?
+                </h3>
+                <p className="text-slate-300 font-inter text-sm max-w-xl">
+                  Discover how our tailored formulations can work for your specific physiology, and see transparent pricing for your personalised plan.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
                 <Link 
                   href={treatmentCostsRoute}
-                  className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#0A1128] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
+                  className="px-6 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#0A1128] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
                 >
-                   View Treatment Prices <FaArrowRight className="w-3 h-3" />
+                   View Treatment Prices
                 </Link>
                 <button 
                   onClick={() => setIsAssessmentOpen(true)}
-                  className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-transparent border-2 border-white/20 text-white hover:bg-white/10 rounded-xl font-bold transition-all duration-300 gap-2 active:scale-95 font-inter"
+                  className="px-6 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-transparent border-2 border-white/20 text-white hover:bg-white/10 rounded-xl font-bold transition-all duration-300 gap-2 active:scale-95 font-inter"
                 >
-                   Take Free Assessment
+                   Take Assessment
                 </button>
               </div>
             </motion.div>
 
           </div>
+        </div>
+      </section>
+
+      {/* --- EXPLORE SEXUAL REJUVENATION BANNER (Moved beneath Protocol) --- */}
+      <section className="py-16 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl border border-slate-800 relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#4041d1]/20 rounded-full blur-3xl -z-10"></div>
+            
+            <div className="relative z-10 text-center lg:text-left max-w-2xl">
+              <h4 className="text-2xl font-raleway font-bold text-white mb-2">Looking for a holistic approach?</h4>
+              <p className="text-slate-300 text-sm md:text-base font-inter">
+                Discover our comprehensive male intimate wellness and sexual rejuvenation programmes, focusing on long-term tissue health and aesthetic restoration.
+              </p>
+            </div>
+            
+            <div className="relative z-10 flex flex-col sm:flex-row gap-4 shrink-0 w-full lg:w-auto justify-center">
+              <Link 
+                href={edRoute}
+                className="px-6 py-3.5 border-2 border-[#4041d1] text-blue-100 hover:bg-[#4041d1]/30 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group active:scale-95 font-inter w-full sm:w-auto"
+              >
+                Explore ED Treatments
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link 
+                href={rejuvenationRoute}
+                className="px-6 py-3.5 bg-white text-[#0f172a] hover:bg-slate-100 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-lg active:scale-95 font-inter w-full sm:w-auto"
+              >
+                Sexual Rejuvenation
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
