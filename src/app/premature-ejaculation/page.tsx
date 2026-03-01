@@ -45,29 +45,41 @@ export const metadata: Metadata = {
 // --- SEO RICH FAQS (St Albans & Hertfordshire Focus) ---
 const faqs = [
   {
-    question: "What is the most effective treatment for premature ejaculation?",
-    answer: "At our St Albans clinic, we find that a combination approach works best. We utilise bespoke medical therapies—such as customised topical creams or oral medications—alongside behavioural coaching and pelvic floor programmes to give you long-term control.",
+    "question": "What causes premature ejaculation?",
+    "answer": "Premature ejaculation can be caused by heightened penile sensitivity, anxiety, stress, hormonal imbalance, or neurochemical factors. It is often a combination of physical and psychological contributors."
   },
   {
-    question: "Do you use the P-Shot (PRP) to treat Premature Ejaculation?",
-    answer: "No. While the P-Shot is excellent for erectile dysfunction and tissue rejuvenation, it is not an effective treatment for premature ejaculation. PE is best addressed through our dedicated behavioural and pharmacological protocols.",
+    "question": "Is premature ejaculation psychological or physical?",
+    "answer": "Premature ejaculation may be psychological, physical, or both. Anxiety and performance stress can contribute, while nerve sensitivity or serotonin imbalance may also play a role."
   },
   {
-    question: "Are the topical numbing creams safe for my partner?",
-    answer: "Yes. The custom formulations we prescribe at our Hertfordshire clinic are specifically designed to remain stable in the vaginal environment, ensuring fast onset for you without transferring unwanted numbness to your partner.",
+    "question": "Can premature ejaculation be treated naturally?",
+    "answer": "Yes. Natural treatment options may include sensitivity management, behavioural techniques, lifestyle optimisation, and regenerative approaches to support improved control."
   },
   {
-    question: "How quickly will I see results from the PE treatment?",
-    answer: "Many men notice a significant improvement in their ejaculatory control within the first few weeks of consistently following their personalised medical and behavioural plan.",
+    "question": "What is the best medical treatment for premature ejaculation?",
+    "answer": "Medical treatment may include topical therapies, prescription medication such as SSRIs, or tailored combination protocols designed to improve control and reduce hypersensitivity."
   },
   {
-    question: "Is a face-to-face consultation required?",
-    answer: "Yes, we provide highly discreet, strictly 1:1 doctor-led consultations at our St Albans clinic. This allows us to accurately assess the multifactorial causes of your PE, which can include sensitivity, anxiety, or neurochemical factors.",
+    "question": "Are there prescription treatments for premature ejaculation?",
+    "answer": "Yes. Doctors may prescribe specific medications to delay ejaculation by influencing serotonin levels or reducing sensitivity, depending on individual assessment."
   },
   {
-    question: "Can my partner attend the consultation with me?",
-    answer: "Absolutely. While it is completely optional, partner-inclusive guidance often improves outcomes, communication, and mutual sexual confidence.",
+    "question": "How long does premature ejaculation treatment take to work?",
+    "answer": "Some treatments work immediately, such as topical options, while prescription or regenerative approaches may take several weeks to achieve optimal results."
   },
+  {
+    "question": "Is premature ejaculation permanent?",
+    "answer": "In most cases, premature ejaculation is treatable. With proper assessment and a personalised management plan, many men achieve significant improvement."
+  },
+  {
+    "question": "Are treatments for premature ejaculation safe?",
+    "answer": "When prescribed and monitored by a qualified doctor, treatments are generally safe. Side effects depend on the chosen therapy and are discussed during consultation."
+  },
+  {
+    "question": "Is treatment provided by a private, confidential clinic?",
+    "answer": "Yes. Assessments and treatments are delivered discreetly through a private, doctor-led service with full confidentiality."
+  }
 ];
 
 // --- JSON-LD SCHEMA: Medical Clinic & Medical Therapy ---
