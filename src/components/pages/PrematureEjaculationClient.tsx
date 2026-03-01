@@ -21,7 +21,7 @@ import {
   FaUserShield,
   FaUserMd,
   FaLink,
-  FaDumbbell // Added for the Pelvic Gym card
+  FaDumbbell 
 } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -38,18 +38,19 @@ type FaqType = {
 interface PrematureEjaculationProps {
   locationName?: string;
   servingAreas?: string;
-  faqs: FaqType[];
+  faqs?: FaqType[];
 }
 
 export default function PrematureEjaculationClient({
   locationName = "St Albans",
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
-  faqs,
+  faqs = [],
 }: PrematureEjaculationProps) {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-  const [showAllFaqs, setShowAllFaqs] = useState(false);
+  const [showAllFaqs, setShowAllFaqs] = useState(false); // Added toggle state back
 
   const isBirmingham = locationName === "Birmingham";
+  const treatmentCostsRoute = isBirmingham ? "/birmingham/treatment-costs" : "/treatment-costs";
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
@@ -81,7 +82,7 @@ export default function PrematureEjaculationClient({
     }, 100);
   };
 
-  // FASTER ANIMATIONS: Removed delay, tweaked duration
+  // FASTER ANIMATIONS
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
     visible: (i: number) => ({
@@ -104,6 +105,7 @@ export default function PrematureEjaculationClient({
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
+  // Only show first 5 FAQs unless expanded
   const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   return (
@@ -332,7 +334,7 @@ export default function PrematureEjaculationClient({
         </div>
       </section>
 
-      {/* 2. Doctor-Led, Patient-Centred Approach (Now Light Theme!) */}
+      {/* 2. Doctor-Led, Patient-Centred Approach */}
       <section id="approach" className="py-20 lg:py-24 bg-white relative">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -389,7 +391,7 @@ export default function PrematureEjaculationClient({
         </div>
       </section>
 
-      {/* 3. Who Is It For Section (Moved Up & Styled Light) */}
+      {/* 3. Who Is It For Section */}
       <section id="who-is-it-for" className="py-20 lg:py-24 bg-slate-50 border-t border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -565,7 +567,7 @@ export default function PrematureEjaculationClient({
                 </p>
               </motion.div>
 
-              {/* Card 6: Pelvic Gym (New!) */}
+              {/* Card 6: Pelvic Gym */}
               <motion.div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col items-start hover:shadow-md hover:border-[#4041d1]/30 transition-all group" variants={itemVariants}>
                 <div className="w-14 h-14 bg-blue-50 text-[#4041d1] rounded-2xl flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                   <FaDumbbell />
@@ -590,7 +592,7 @@ export default function PrematureEjaculationClient({
         </div>
       </section>
 
-      {/* 5. Intimate Wellness Banner (Light Theme Dual-Link Hub) */}
+      {/* 5. Intimate Wellness Banner */}
       <section className="py-16 bg-slate-50 border-t border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -630,7 +632,7 @@ export default function PrematureEjaculationClient({
         </div>
       </section>
 
-     {/* 6. Action Bar & FAQs */}
+      {/* 6. Action Bar & FAQs */}
       <section id="faqs" className="py-20 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
