@@ -49,7 +49,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
         { name: "P-Shot® (PRP)", price: "£650", sessions: "Course of 3: £1800", details: "Male performance & repair" },
         { name: "O-Shot® (PRP)", price: "£700", sessions: "1-3 sessions", details: "Female health & sensitivity" },
         { name: "EXO P-Shot®", price: "£1200", sessions: "Enhanced", details: "Advanced exosome protocol" },
-        { name: "Personalised Medication", price: "Upon Consultation", sessions: "Enhanced", details: "Male Performance" },
+        { name: "Personalised Medication", price: "Upon Consultation", sessions: "6-12 months course", details: "Male Performance" },
       ]
     }
   ];
