@@ -630,7 +630,7 @@ export default function PrematureEjaculationClient({
         </div>
       </section>
 
-      {/* 6. Action Bar & FAQs */}
+     {/* 6. Action Bar & FAQs */}
       <section id="faqs" className="py-20 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -643,8 +643,8 @@ export default function PrematureEjaculationClient({
               Book Consultation
             </button>
             <Link
-              href={isBirmingham ? "/birmingham/prices" : "/prices"}
-              className="w-full md:w-auto px-6 py-3 flex items-center justify-center text-sm cursor-pointer border-2 border-slate-200 text-slate-700 hover:border-[#4041d1] hover:text-[#4041d1] bg-white rounded-lg font-inter font-bold transition-all duration-300"
+              href={treatmentCostsRoute}
+              className="w-full md:w-auto px-6 py-3 flex items-center justify-center text-sm cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300"
             >
               View Treatment Prices
             </Link>
@@ -676,6 +676,7 @@ export default function PrematureEjaculationClient({
             </motion.h2>
 
             <motion.div className="space-y-4 mt-8" variants={containerVariants}>
+              {/* Map over displayedFaqs to restrict default view */}
               {displayedFaqs.map((faq, index) => (
                 <motion.div
                   key={index}
@@ -715,7 +716,7 @@ export default function PrematureEjaculationClient({
               ))}
             </motion.div>
 
-            {/* Toggle All FAQs Button */}
+            {/* Re-added Toggle Button */}
             {faqs.length > 5 && (
               <div className="mt-8 text-center">
                 <button
