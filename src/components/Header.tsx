@@ -50,8 +50,28 @@ const Header = () => {
       isSubItem: true 
     },
     { 
+      name: "O-Shot® Treatment", 
+      href: isBirmingham ? "/birmingham/o-shot" : "/o-shot",
+      isSubItem: true 
+    },
+    { 
       name: "Erectile Dysfunction", 
       href: isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction",
+      isSubItem: true 
+    },
+    { 
+      name: "Premature Ejaculation", 
+      href: isBirmingham ? "/birmingham/premature-ejaculation" : "/premature-ejaculation",
+      isSubItem: true 
+    },
+    { 
+      name: "Peyronie's Disease", 
+      href: isBirmingham ? "/birmingham/peyronies-disease" : "/peyronies-disease",
+      isSubItem: true 
+    },
+    { 
+      name: "Personalised Medication", 
+      href: isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication",
       isSubItem: true 
     },
 
