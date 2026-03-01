@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     absolute: "Personalised ED Medication & Male Performance Birmingham | Healing-PRP Clinics",
   },
   description:
-    "Doctor-led male performance and personalised erectile dysfunction medication clinic in Birmingham. Bespoke ED prescriptions and private, tailored treatments serving Edgbaston.",
+    "Doctor-led male performance and personalised erectile dysfunction medication clinic in Birmingham. Bespoke ED prescriptions and private, tailored online treatments serving Edgbaston.",
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/personalised-ed-medication",
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "Men's health doctor Birmingham",
     "Erectile dysfunction clinic Sutton Coldfield",
     
-    // --- NEW: Male Performance Terms ---
+    // --- Male Performance Terms ---
     "Male performance clinic Birmingham",
     "Enhance male performance West Midlands",
     "Male sexual performance medication",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: "What is personalised ED medication and how do I get it in Birmingham?",
-    answer: "Personalised ED medication involves custom-formulated prescriptions tailored to your specific cardiovascular and metabolic profile. At our private Birmingham clinic in Edgbaston, our GMC-registered doctors provide comprehensive assessments to prescribe bespoke treatments when standard tablets like Viagra or Cialis are ineffective or cause side effects.",
+    answer: "Personalised ED medication involves custom-formulated prescriptions tailored to your specific cardiovascular and metabolic profile. At our private Birmingham clinic in Edgbaston, our GMC-registered doctors provide comprehensive online and in-person assessments to prescribe bespoke treatments when standard tablets like Viagra or Cialis are ineffective or cause side effects.",
   },
   {
     question: "Why choose bespoke treatments for male performance over standard pills?",
@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     question: "Do I need to visit the Birmingham clinic to get my custom ED medication?",
-    answer: "Yes, a thorough, strictly 1:1 private medical consultation is required to review your medical history and ensure a custom ED prescription is safe for you. Once prescribed by our Edgbaston doctor, the medication is dispensed directly with structured clinical follow-ups.",
+    answer: "No physical visit is strictly required. While we operate a private clinic in Edgbaston, our GMC-registered doctors also conduct secure online consultations. This allows you to receive expert, local medical care and bespoke prescriptions dispatched directly to your door without disrupting your schedule.",
   },
   {
     question: "Is this treatment safe if I have diabetes or take other medications?",
@@ -69,7 +69,7 @@ const faqs = [
   },
   {
     question: "Do I need a GP referral to access this private ED clinic in Birmingham?",
-    answer: "No GP referral is necessary. You can book a direct, confidential consultation with our medical team serving Birmingham, Solihull, and Sutton Coldfield to discuss your tailored ED dosage and bespoke treatment options immediately.",
+    answer: "No GP referral is necessary. You can book a direct, confidential online consultation with our medical team serving Birmingham, Solihull, and Sutton Coldfield to discuss your tailored ED dosage and bespoke treatment options immediately.",
   },
 ];
 
@@ -113,10 +113,10 @@ export default function Page() {
     "@type": "FAQPage",
     "mainEntity": faqs.map((faq) => ({
       "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
+      "name": faq.question,
+      "acceptedAnswer": {
         "@type": "Answer",
-        text: faq.answer,
+        "text": faq.answer,
       },
     })),
   };
