@@ -116,10 +116,11 @@ export default function PrematureEjaculationClient({
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/40 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-black/60 to-transparent z-10" />
-          <img
+         <img
             src="/ed-doctor-consultation.webp"
             alt="Premature Ejaculation Treatment"
-            className="absolute inset-0 w-full h-full object-cover"
+            // FIX: Added object-[75%_center] to perfectly frame the doctor and patient on mobile
+            className="absolute inset-0 w-full h-full object-cover object-[75%_center] md:object-center"
             fetchPriority="high"
             onError={(e) => {
                e.currentTarget.src = "/ed-doctor-consultation.webp";
