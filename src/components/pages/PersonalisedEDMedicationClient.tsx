@@ -178,6 +178,7 @@ export default function PersonalisedEDMedicationClient({
             src="/personalised-meds-hero.webp"
             alt="Personalised erectile dysfunction medication consultation"
             className="absolute inset-0 w-full h-full object-cover"
+            fetchPriority="high"
             onError={(e) => {
                e.currentTarget.src = "/ed-doctor-consultation.webp";
             }}
@@ -189,7 +190,7 @@ export default function PersonalisedEDMedicationClient({
           <motion.h1
             custom={1}
             initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+            animate="visible"
             variants={fadeUpVariants}
             className="text-3xl md:text-5xl lg:text-6xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
@@ -200,7 +201,7 @@ export default function PersonalisedEDMedicationClient({
           <motion.p
             custom={2}
             initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+            animate="visible"
             variants={fadeUpVariants}
             className="mt-4 text-sm md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
@@ -210,7 +211,7 @@ export default function PersonalisedEDMedicationClient({
           <motion.div 
             custom={3} 
             initial="hidden" 
-            animate={isLoaded ? "visible" : "hidden"} 
+            animate="visible" 
             variants={fadeUpVariants} 
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
@@ -232,7 +233,7 @@ export default function PersonalisedEDMedicationClient({
           <motion.div 
             custom={4}
             initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+            animate="visible"
             variants={fadeUpVariants}
             className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1]/10 text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 backdrop-blur-sm"
           >
@@ -316,7 +317,7 @@ export default function PersonalisedEDMedicationClient({
               variants={itemVariants}
               className="bg-gradient-to-b from-[#0f172a] to-black rounded-[2rem] p-8 md:p-12 shadow-2xl flex flex-col items-start relative overflow-hidden group border border-slate-800"
             >
-              <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
               <div className="w-16 h-16 bg-blue-900/30 border border-blue-500/30 rounded-2xl flex items-center justify-center mb-8 shadow-inner">
                 <FaHeartbeat className="text-3xl text-blue-400" />
               </div>
@@ -339,7 +340,7 @@ export default function PersonalisedEDMedicationClient({
               variants={itemVariants}
               className="bg-gradient-to-b from-[#0f172a] to-black rounded-[2rem] p-8 md:p-12 shadow-2xl flex flex-col items-start relative overflow-hidden group border border-slate-800"
             >
-              <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
               <div className="w-16 h-16 bg-blue-900/30 border border-blue-500/30 rounded-2xl flex items-center justify-center mb-8 shadow-inner">
                 <FaUserMd className="text-3xl text-blue-400" />
               </div>
