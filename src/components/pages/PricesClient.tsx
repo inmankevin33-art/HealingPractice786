@@ -43,17 +43,42 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
       ]
     },
     {
-      id: "sexual",
-      title: "Sexual Rejuvenation",
-      items: [
-        { name: "P-Shot® (PRP)", price: "£650", sessions: "Course of 3: £1800", details: "Male performance & repair" },
-        { name: "O-Shot® (PRP)", price: "£700", sessions: "1-3 sessions", details: "Female health & sensitivity" },
-        { name: "EXO P-Shot®", price: "£1200", sessions: "Enhanced", details: "Advanced exosome protocol" },
-        { name: "Personalised Medication", price: "Upon Consultation", sessions: "6-12 months course", details: "Male Performance" },
-      ]
-    }
-  ];
-
+    id: "sexual",
+    title: "Sexual Rejuvenation",
+    items: [
+      { 
+        name: "P-Shot® (Priapus Shot)", 
+        price: "£1,250", 
+        sessions: "Course of 3: £3,200", 
+        details: "Premium double-spin PRP for ED & performance" 
+      },
+      { 
+        name: "Peyronie's Disease Protocol", 
+        price: "£1,250", 
+        sessions: "Course of 3: £3,200", 
+        details: "Targeted plaque breakdown & tissue repair" 
+      },
+      { 
+        name: "EXO P-Shot®", 
+        price: "£1,800", // (Bumped slightly to maintain the premium gap above the standard P-Shot)
+        sessions: "Enhanced", 
+        details: "Advanced exosome cellular protocol" 
+      },
+      { 
+        name: "O-Shot® (PRP)", 
+        price: "£1,250", // (Women's treatments should be priced equally to men's to reflect the same premium equipment)
+        sessions: "1-3 sessions", 
+        details: "Female health, lubrication & sensitivity" 
+      },
+      { 
+        name: "Personalised Medication", 
+        price: "Upon Consultation", 
+        sessions: "Custom formulations", 
+        details: "Bespoke ED & PE management" 
+      },
+    ]
+  }
+    
   const priceSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
