@@ -18,7 +18,7 @@ import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Script from "next/script";
 
-export default function AboutClient() {
+export default function OurDoctorClient() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
