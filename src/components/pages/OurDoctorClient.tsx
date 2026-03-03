@@ -6,7 +6,6 @@ import {
   FaUserMd,
   FaAward,
   FaShieldAlt,
-  FaStethoscope,
   FaCheckCircle,
   FaEnvelope,
   FaDna,
@@ -66,31 +65,34 @@ export default function OurDoctorClient() {
   const doctorSchema = {
     "@context": "https://schema.org",
     "@type": "Physician",
-    "name": "Dr [Full Name]",
-    "medicalSpecialty": "Sexual Health & Regenerative Medicine",
+    "name": "Dr Syed Abdi",
+    "medicalSpecialty": ["General Practice", "Sexual Health", "Regenerative Medicine"],
     "identifier": [
       {
         "@type": "PropertyValue",
         "propertyID": "GMC Registration Number",
-        "value": "[GMC Number]"
+        "value": "[Insert GMC Number]"
       }
     ],
-    "worksFor": {
-      "@type": "MedicalClinic",
-      "name": "Healing-PRP Clinics",
-      "url": "https://www.healing-prp.co.uk"
-    },
-    "knowsAbout": ["Erectile Dysfunction", "Premature Ejaculation", "Peyronie's Disease", "PRP Therapy", "Shockwave Therapy"]
+    "worksFor": [
+      {
+        "@type": "MedicalClinic",
+        "name": "Healing-PRP Clinics",
+        "url": "https://www.healing-prp.co.uk"
+      },
+      {
+        "@type": "Hospital",
+        "name": "Royal Free Hospital"
+      }
+    ],
+    "knowsAbout": ["Erectile Dysfunction", "P-Shot®", "O-Shot®", "Ultrasound-Guided PRP Joint Injections", "Facial Aesthetics", "Hair Restoration"]
   };
 
   const expertiseList = [
-    "Erectile Dysfunction (vascular and neurogenic contributors)",
-    "Premature Ejaculation and sensitivity disorders",
-    "Peyronie’s Disease and plaque-related curvature",
-    "PRP (Platelet-Rich Plasma) therapy",
-    "P-Shot® and O-Shot® regenerative treatments",
-    "Shockwave therapy for vascular improvement",
-    "Bespoke, compounded medication protocols"
+    "Male & Female Sexual Rejuvenation (P-Shot® / O-Shot®)",
+    "Ultrasound-Guided PRP Joint Injections",
+    "Targeted PRP Hair Restoration",
+    "Advanced Facial Aesthetics (Bio-fillers, Skin Boosters)"
   ];
 
   return (
@@ -106,7 +108,7 @@ export default function OurDoctorClient() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/50 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-[#0A1128]/90 via-transparent to-[#0A1128]/95 z-10" />
-          {/* Replace with a professional clinic/doctor image if available */}
+          {/* Recommendation: Place a high-quality, professional photo of Dr. Abdi here in the background, opacity at 30-40% */}
           <div className="absolute inset-0 w-full h-full bg-slate-900 opacity-90" />
         </div>
 
@@ -123,14 +125,14 @@ export default function OurDoctorClient() {
             custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight"
           >
-            Doctor-Led Sexual Health <br className="hidden md:block" /> & Regenerative Medicine
+            Clinical Excellence & <br className="hidden md:block" /> Regenerative Precision
           </motion.h1>
 
           <motion.p 
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="mt-2 text-base md:text-xl text-blue-50/90 font-inter leading-relaxed max-w-3xl mx-auto mb-10 font-medium"
           >
-            At Healing-PRP Clinics, your care is delivered exclusively by a qualified medical doctor. We are not a volume-based prescribing service, nor a nurse-led injection clinic.
+            At Healing-PRP Clinics, your care is delivered exclusively by Dr Syed Abdi. We combine rigorous NHS medical standards with cutting-edge private regenerative therapies.
           </motion.p>
         </div>
       </div>
@@ -149,31 +151,35 @@ export default function OurDoctorClient() {
               <div className="w-16 h-16 bg-blue-50 text-[#4041d1] rounded-2xl flex items-center justify-center text-3xl mb-6">
                 <FaRegIdCard />
               </div>
-              <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Dr [Full Name]</h2>
-              <p className="text-[#4041d1] font-bold text-sm tracking-widest uppercase mb-6">Medical Director</p>
+              <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Dr Syed Abdi</h2>
+              <p className="text-[#4041d1] font-bold text-sm tracking-widest uppercase mb-6">Medical Director & GP</p>
               
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start gap-3">
                   <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                  <span className="text-slate-700 text-sm font-medium"><strong>GMC No:</strong> [GMC Number]</span>
+                  <span className="text-slate-700 text-sm font-medium"><strong>GMC No:</strong> [Insert GMC Number]</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                  <span className="text-slate-700 text-sm font-medium">Fully registered medical practitioner in the UK</span>
+                  <span className="text-slate-700 text-sm font-medium">10+ Years Clinical Experience as a General Practitioner</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                  <span className="text-slate-700 text-sm font-medium">Officially licensed & trained by the Cellular Medicine Association (CMA)</span>
+                  <span className="text-slate-700 text-sm font-medium">NHS Practice at the prestigious Royal Free Hospital</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                  <span className="text-slate-700 text-sm font-medium">Specialist interest in regenerative therapies</span>
+                  <span className="text-slate-700 text-sm font-medium">Former Senior Clinical Fellow in Orthopaedics</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
+                  <span className="text-slate-700 text-sm font-medium">Officially Licensed CMA Provider (200+ P-Shots Performed)</span>
                 </li>
               </ul>
 
               <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
                 <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                  Dr [Surname] practises in accordance with GMC standards for safe prescribing, ethical practice, and patient-centred care. All treatments are delivered within UK regulatory frameworks.
+                  Dr Abdi practises in accordance with GMC standards for safe prescribing, ethical practice, and patient-centred care. All treatments are delivered within UK regulatory frameworks.
                 </p>
               </div>
             </motion.div>
@@ -181,9 +187,9 @@ export default function OurDoctorClient() {
             {/* Right Col: The Copy */}
             <div className="lg:col-span-7 space-y-12">
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">Clinical Focus & Specialist Interest</h3>
+                <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">The Orthopaedic Advantage</h3>
                 <p className="text-slate-600 text-lg leading-relaxed mb-6">
-                  Sexual health concerns require discretion, medical insight, and careful evaluation. Our model is intentionally structured around private, one-to-one care, providing a level of clinical continuity rarely found in corporate treatment centres.
+                  Unlike standard aesthetic practitioners, Dr Abdi’s foundation in injection therapy stems from his tenure as a Senior Clinical Fellow in Orthopaedics. This advanced background in musculoskeletal anatomy and ultrasound-guided PRP joint injections translates into unparalleled precision and safety across all his regenerative treatments.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                   {expertiseList.map((item, index) => (
@@ -197,7 +203,7 @@ export default function OurDoctorClient() {
 
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                  <p className="text-slate-600 text-lg leading-relaxed">
-                  Rather than treating symptoms in isolation, Dr [Surname] conducts a structured medical evaluation to identify underlying causes—including cardiovascular risk factors, hormonal imbalance, psychological contributors, and medication interactions. This comprehensive approach ensures treatment is both appropriate and medically sound.
+                  With over a decade of comprehensive clinical practice, Dr Abdi understands that conditions like Erectile Dysfunction and tissue degradation are rarely isolated issues. By combining holistic NHS diagnostic rigor with advanced private treatments, he ensures that every patient receives a scientifically grounded, highly targeted protocol.
                 </p>
               </motion.div>
             </div>
@@ -218,12 +224,12 @@ export default function OurDoctorClient() {
               <div className="w-14 h-14 bg-white text-[#4041d1] rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                 <FaDna />
               </div>
-              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Regenerative Medicine Expertise</h3>
+              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Sexual Health Authority</h3>
               <p className="text-slate-600 leading-relaxed mb-4">
-                Regenerative therapies such as PRP require anatomical precision, clinical judgement, and appropriate patient selection. These are not cosmetic enhancements—they are biologically driven interventions designed to stimulate tissue repair and improved functional performance.
+                As an officially licensed and certified provider by the Cellular Medicine Association (CMA), Dr Abdi is one of the most experienced regenerative doctors in the region. 
               </p>
               <p className="text-slate-600 leading-relaxed">
-                Treatments are performed using medical-grade equipment, following established sterile techniques. The objective is not temporary symptom masking, but measurable physiological improvement.
+                Having successfully administered over 200 P-Shot® procedures and numerous O-Shot® therapies, he possesses a deep, nuanced understanding of tissue regeneration, vascular repair, and intimate wellness. These are highly specific medical interventions designed for measurable physiological improvement.
               </p>
             </motion.div>
 
@@ -234,12 +240,12 @@ export default function OurDoctorClient() {
               <div className="w-14 h-14 bg-white text-[#4041d1] rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                 <FaNotesMedical />
               </div>
-              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Responsible Prescribing</h3>
+              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Holistic & Responsible Care</h3>
               <p className="text-slate-600 leading-relaxed mb-4">
-                Online prescribing platforms frequently rely on automated questionnaires. In contrast, Dr [Surname] conducts a detailed consultation to allow for individualised dosage planning, monitoring of systemic risk, and avoidance of unnecessary medication.
+                Online clinics frequently rely on automated questionnaires. In contrast, Dr Abdi’s extensive background as a GP ensures that every patient is treated holistically. 
               </p>
               <p className="text-slate-600 leading-relaxed">
-                Each prescription is tailored specifically to your physiology and treatment goals—prioritising safety, efficacy, and long-term sustainability.
+                Rather than treating symptoms in isolation, he conducts a detailed consultation to identify underlying cardiovascular, hormonal, or psychological factors. Each treatment plan is tailored specifically to your physiology—prioritising safety, efficacy, and your long-term health.
               </p>
             </motion.div>
 
@@ -253,7 +259,7 @@ export default function OurDoctorClient() {
           <FaShieldAlt className="text-[#4041d1] text-5xl mx-auto mb-6 opacity-80" />
           <h2 className="text-3xl md:text-5xl font-raleway font-bold text-white mb-8">A Strictly Doctor-Led Model</h2>
           <p className="text-slate-300 text-lg leading-relaxed mb-10 max-w-3xl mx-auto">
-            Many high-volume clinics separate consultation, prescribing, and treatment delivery across multiple staff members. At Healing-PRP Clinics, your care remains under the direct supervision of a doctor throughout. There are no sales consultations and no delegated treatment pathways.
+            Many high-volume clinics separate consultation, prescribing, and treatment delivery across multiple staff members. At Healing-PRP Clinics, your care remains under the direct supervision of Dr Abdi throughout. There are no sales consultations and no delegated treatment pathways.
           </p>
           <button 
             onClick={handleAction}
