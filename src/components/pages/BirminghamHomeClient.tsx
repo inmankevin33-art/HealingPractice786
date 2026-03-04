@@ -11,10 +11,21 @@ import Link from "next/link";
 import ContactCTASection from "@/components/ContactCTASection";
 import Footer from "@/components/Footer";
 import PRPExplanationSection from "@/components/PRPExplanationSection";
-import FAQSection from "@/components/FAQSection";
 import LocationSection from "@/components/LocationSection";
+// 1. Swap the old static FAQ import for the new Dynamic one
+import DynamicFAQ from "@/components/DynamicFAQ";
 
-export default function BirminghamHomeClient() {
+// 2. Define the prop interface
+type FaqType = {
+  question: string;
+  answer: string;
+};
+
+interface BirminghamClientProps {
+  faqs: FaqType[];
+}
+
+export default function BirminghamHomeClient({ faqs }: BirminghamClientProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -186,7 +197,8 @@ export default function BirminghamHomeClient() {
         </div>
       </section>
 
-      <FAQSection />
+      {/* 4. Implement Dynamic FAQ Component */}
+      <DynamicFAQ faqs={faqs} locationName="Birmingham" />
 
       <div id="contact-form-section" className="contain-layout">
         <ContactCTASection />
