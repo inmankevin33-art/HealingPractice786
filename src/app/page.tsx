@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   // FIXED TITLE: Absolute ensures the layout doesn't append extra text, maximizing CTR
   title: {
-    absolute: "Doctor-Led PRP, P-Shot® & ED Clinic St Albans | Healing-PRP",
+    absolute: "Doctor-Led PRP, P-Shot® & ED Clinic St Albans | Healing-PRP Clinics",
   },
   // OPTIMIZED DESCRIPTION: Punchier, front-loading high-ticket treatments
   description:
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     "Exosome therapy London"
   ],
   openGraph: {
-    title: "Healing-PRP Clinics | St Albans & Birmingham",
+    title: "Healing-PRP Clinics | St Albans",
     description:
       "Doctor-led private care for Hair Restoration, Sexual Wellness & Pain Relief. Specialists in P-Shot and PRP therapy.",
     url: "https://www.healing-prp.co.uk",
