@@ -4,32 +4,62 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import ServiceOverview from "@/components/ServiceOverview";
 import PRPExplanationSection from "@/components/PRPExplanationSection";
-import DynamicFAQ from "@/components/DynamicFAQ"; // <-- IMPORTING THE NEW DYNAMIC COMPONENT
+import DynamicFAQ from "@/components/DynamicFAQ";
 import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 
 // --- SEO OPTIMISATION ---
 export const metadata: Metadata = {
-  title: "Doctor-Led PRP & ED Treatments St Albans",
+  // FIXED TITLE: Absolute ensures the layout doesn't append extra text, maximizing CTR
+  title: {
+    absolute: "Doctor-Led PRP, P-Shot® & ED Clinic St Albans | Healing-PRP",
+  },
+  // OPTIMIZED DESCRIPTION: Punchier, front-loading high-ticket treatments
   description:
-    "Private specialist clinic in St Albans. Expert doctor-led treatments for PRP Hair Restoration, Joint Pain injections, P-Shot®, O-Shot® & ED solutions. Serving Hertfordshire, London, Watford & Harpenden.",
-  keywords: [
+    "Top-rated private medical clinic in St Albans. Expert doctor-led treatments for Erectile Dysfunction (ED), P-Shot®, Joint Injections, and PRP Hair Restoration. Serving Hertfordshire.",
+ keywords: [
+    // --- CORE CLINIC & REGENERATIVE MEDICINE ---
     "PRP Clinic St Albans",
     "Private Doctor Hertfordshire",
+    "Regenerative Medicine Hertfordshire",
+    "Private medical clinic St Albans",
     "Regenerative Medicine UK",
+    
+    // --- MEN'S HEALTH, ED, PE & PEYRONIE'S (Primary Focus) ---
     "Erectile Dysfunction Treatment St Albans",
     "ED clinic Hertfordshire",
+    "Erectile dysfunction help Harpenden",
+    "Premature ejaculation treatment Hertfordshire",
+    "PE treatment clinic St Albans",
+    "Peyronies disease treatment London",
+    "Curved penis treatment St Albans",
     "P-Shot London",
     "P-Shot Watford",
-    "Erectile dysfunction help Harpenden",
-    "O-Shot treatment Radlett",
+    "Shockwave therapy for ED Hertfordshire",
     "Sexual health clinic St Albans",
+    "Mens health clinic Watford",
+    
+    // --- WOMEN'S HEALTH ---
+    "O-Shot treatment Radlett",
+    "O-Shot St Albans",
+    "Womens sexual wellness clinic Hertfordshire",
+    
+    // --- HAIR RESTORATION ---
     "Hair Loss Treatment St Albans",
+    "PRP hair therapy Hertfordshire",
+    "Hair restoration clinic Watford",
+    
+    // --- JOINT PAIN & ORTHOPAEDICS ---
     "Joint Injection Clinic Hemel Hempstead",
-    "Vampire Facial Hertfordshire",
     "Arthritis injections Berkhamsted",
     "Sports injury clinic Watford",
+    "PRP for joint pain St Albans",
+    
+    // --- SKIN & AESTHETICS ---
+    "Vampire Facial Hertfordshire",
+    "Polynucleotides St Albans",
+    "Exosome therapy London"
   ],
   openGraph: {
     title: "Healing-PRP Clinics | St Albans & Birmingham",
@@ -98,6 +128,11 @@ export default function Home() {
       "@type": "GeoCoordinates",
       "latitude": 51.7527, 
       "longitude": -0.3394
+    },
+    // --- NEW "POWER MOVE" AREA SERVED ADDED HERE ---
+    "areaServed": {
+      "@type": "City",
+      "name": "St Albans"
     },
     "medicalSpecialty": ["RegenerativeMedicine", "Urology", "Orthopaedic", "Dermatology"],
     // --- E-E-A-T UPGRADE: Connecting the Doctor to the Clinic ---
