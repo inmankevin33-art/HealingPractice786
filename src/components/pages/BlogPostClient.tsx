@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+// FIX 1: Imported 'Variants' from framer-motion
+import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, ChevronRight, Dot, Phone } from "lucide-react";
 import { FaWhatsapp, FaGoogle, FaUserMd } from "react-icons/fa"; 
 import ContactCTASection from "@/components/ContactCTASection";
-// Fixed the import path to match your existing file structure
 import { BlogPost } from "@/lib/contentful";
 
 // --- TYPESCRIPT INTERFACES ---
@@ -33,13 +33,13 @@ interface RichTextDocument {
 }
 // -----------------------------
 
-// Animation Variants
-const containerVariants = {
+// FIX 2: Added ': Variants' to the animation objects
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 15 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
@@ -50,7 +50,6 @@ const getImageUrl = (url: string | undefined) => {
   return url.startsWith("//") ? `https:${url}` : url;
 };
 
-// FIX 1: Replaced 'navigation: any' with 'navigation: NavigationData'
 export default function BlogPostClient({ post, navigation }: { post: BlogPost; navigation: NavigationData }) {
   
   const openContactForm = () => {
@@ -67,16 +66,13 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     });
   };
 
-  // FIX 2: Replaced 'content: any' with 'content: RichTextDocument | undefined'
   const renderRichText = (content: RichTextDocument | undefined) => {
     if (!content || !content.content) return null;
     
-    // FIX 3: Replaced 'node: any' with 'node: RichTextNode'
     return content.content.map((node: RichTextNode, i: number) => {
       if (node.nodeType === "paragraph") {
         return (
           <p key={i} className="mb-6 text-slate-600 leading-relaxed text-sm md:text-base">
-            {/* FIX 4: Replaced 'c: any' with 'c: RichTextChild' */}
             {node.content?.map((c: RichTextChild) => c.value).join("")}
           </p>
         );
