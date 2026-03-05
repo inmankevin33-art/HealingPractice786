@@ -108,20 +108,21 @@ export default function BlogPostClient({ slug }: { slug: string }) {
     <motion.div initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
       
       {/* --- AUTHORITY HERO SECTION --- */}
-      <div className="absolute top-0 left-0 w-full h-[55vh] z-[-1] overflow-hidden bg-[#0A1128]">
-         {/* Subtle overlay so text is highly readable */}
-         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1128]/80 to-[#0A1128] z-10"></div>
-         {post.coverImage && (
-           <img 
-              src={getImageUrl(post.coverImage.url)} 
-              alt="Background" 
-              className="w-full h-full object-cover opacity-30 mix-blend-overlay"
-           />
-         )}
-      </div>
+      <header className="relative pt-32 md:pt-48 pb-24 bg-[#0A1128] overflow-hidden">
+        {/* Background Image & Overlay */}
+        <div className="absolute inset-0 z-0">
+           <div className="absolute inset-0 bg-gradient-to-b from-[#0A1128]/80 to-[#0A1128] z-10"></div>
+           {post.coverImage && (
+             <img 
+                src={getImageUrl(post.coverImage.url)} 
+                alt="Background" 
+                className="w-full h-full object-cover opacity-30 mix-blend-overlay"
+             />
+           )}
+        </div>
 
-      <header className="pt-32 md:pt-40 pb-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+        {/* Content */}
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
             
             {/* Navigation Bar */}
