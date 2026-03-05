@@ -108,17 +108,15 @@ export default function BlogPostClient({ slug }: { slug: string }) {
     <motion.div initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
       
       {/* --- AUTHORITY HERO SECTION --- */}
-      <header className="relative pt-32 md:pt-48 pb-24 bg-[#0A1128] overflow-hidden">
+      <header className="relative pt-32 md:pt-48 pb-32 bg-[#0A1128] overflow-hidden">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
-           <div className="absolute inset-0 bg-gradient-to-b from-[#0A1128]/80 to-[#0A1128] z-10"></div>
-           {post.coverImage && (
-             <img 
-                src={getImageUrl(post.coverImage.url)} 
-                alt="Background" 
-                className="w-full h-full object-cover opacity-30 mix-blend-overlay"
-             />
-           )}
+           <div className="absolute inset-0 bg-gradient-to-b from-[#0A1128]/90 to-[#0A1128] z-10"></div>
+           <img 
+              src="/hero_img.png" 
+              alt="Background" 
+              className="w-full h-full object-cover opacity-20"
+           />
         </div>
 
         {/* Content */}
@@ -160,6 +158,24 @@ export default function BlogPostClient({ slug }: { slug: string }) {
           </motion.div>
         </div>
       </header>
+      {/* --- OVERLAPPING COVER IMAGE --- */}
+      {post.coverImage && (
+        <section className="relative z-20 -mt-20 mb-16">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              className="rounded-2xl overflow-hidden shadow-2xl bg-white aspect-video md:aspect-[21/9]"
+            >
+              <img 
+                src={getImageUrl(post.coverImage.url)} 
+                alt={post.coverImage.title || "Cover Image"} 
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* --- LEGACY CONTENT (If they didn't use the new blocks) --- */}
       {!!post.content && (!post.articleBlocks || post.articleBlocks.length === 0) && (
