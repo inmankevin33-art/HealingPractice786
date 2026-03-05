@@ -75,6 +75,23 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     });
   };
 
+  // --- NEW: SMART SCALING LOGIC FOR TITLES ---
+  const getTitleSizeClasses = (title: string) => {
+    if (!title) return "text-3xl md:text-5xl lg:text-[54px]"; // Fallback
+    const length = title.length;
+    
+    if (length < 40) {
+      // Short Titles: Make them massive
+      return "text-4xl md:text-6xl lg:text-[64px]";
+    } else if (length < 80) {
+      // Medium Titles: The standard elegant size
+      return "text-3xl md:text-5xl lg:text-[54px]";
+    } else {
+      // Long SEO Titles: Scale down to breathe 
+      return "text-3xl md:text-4xl lg:text-[44px]";
+    }
+  };
+
   const renderRichText = (content: RichTextDocument | undefined) => {
     if (!content || !content.content) return null;
     
@@ -105,7 +122,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
   return (
     <div className="bg-white min-h-screen font-inter flex flex-col">
       
-      {/* --- SLASHED TOP PADDING HERE (pt-8 md:pt-10) --- */}
       <header className="relative pt-8 md:pt-10 pb-12 md:pb-16 bg-[#0A1128] overflow-hidden">
         {/* Background Overlay */}
         <div className="absolute inset-0 z-0">
@@ -136,8 +152,8 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
         <div className="relative z-10 max-w-[1200px] mx-auto px-4 text-center">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
 
-            {/* Title */}
-            <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl lg:text-[54px] font-serif font-normal text-white mb-6 leading-[1.2] mx-auto max-w-4xl">
+            {/* Title: Now using the Smart Scaling function */}
+            <motion.h1 variants={itemVariants} className={`${getTitleSizeClasses(post.title)} font-serif font-normal text-white mb-6 leading-[1.2] mx-auto max-w-4xl transition-all duration-300`}>
               {post.title}
             </motion.h1>
 
