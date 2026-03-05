@@ -65,7 +65,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   // FIXED: Calling "getAllBlogPosts()" instead of "getAllPosts()"
   const allPosts = await getAllBlogPosts();
-  const currentIndex = allPosts.findIndex((p: any) => p.slug === params.slug);
+  
+  // FIXED TYPINGS: Replaced 'any' with the specific expected type
+  const currentIndex = allPosts.findIndex((p: { slug: string }) => p.slug === params.slug);
   
   let nextArticle = undefined;
 
