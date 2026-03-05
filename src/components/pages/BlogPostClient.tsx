@@ -75,12 +75,10 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     });
   };
 
-  // UPGRADED RENDERER: Now supports paragraphs AND embedded Contentful images
   const renderRichText = (content: RichTextDocument | undefined) => {
     if (!content || !content.content) return null;
     
     return content.content.map((node: RichTextNode, i: number) => {
-      // 1. Render Paragraphs
       if (node.nodeType === "paragraph") {
         return (
           <p key={i} className="mb-8 text-slate-700 leading-loose text-base md:text-[17px]">
@@ -89,7 +87,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
         );
       }
       
-      // 2. Render Embedded Images (Creates the Zig-Zag Layout)
       if (node.nodeType === "embedded-asset-block") {
         const url = node.data?.target?.fields?.file?.url;
         const title = node.data?.target?.fields?.title || "Article Image";
@@ -108,8 +105,8 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
   return (
     <div className="bg-white min-h-screen font-inter flex flex-col">
       
-      {/* --- REFINED EZRA HERO (Shorter Height) --- */}
-      <header className="relative pt-20 md:pt-28 pb-12 md:pb-16 bg-[#0A1128] overflow-hidden">
+      {/* --- SLASHED TOP PADDING HERE (pt-8 md:pt-10) --- */}
+      <header className="relative pt-8 md:pt-10 pb-12 md:pb-16 bg-[#0A1128] overflow-hidden">
         {/* Background Overlay */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[#0A1128]/90 z-10"></div>
@@ -117,13 +114,12 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
         </div>
 
         {/* --- HORIZON NAVIGATION --- */}
-        <div className="relative z-20 max-w-[1200px] mx-auto px-6 mb-10 md:mb-12">
+        <div className="relative z-20 max-w-[1200px] mx-auto px-6 mb-8 md:mb-10">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center justify-between">
             <Link href="/blog" className="inline-flex items-center text-[10px] md:text-xs font-semibold text-slate-400 hover:text-white transition-all uppercase tracking-widest">
               <ArrowLeft className="w-3 h-3 mr-2" /> Back to Insights
             </Link>
             
-            {/* Visual Balance: Fallback if no next article */}
             {navigation.next ? (
               <Link href={`/blog/${navigation.next.slug}`} className="text-[10px] md:text-xs font-semibold text-slate-400 hover:text-white flex items-center uppercase tracking-widest transition-colors">
                 Next Article <ChevronRight className="w-3 h-3 ml-2" />
@@ -140,7 +136,7 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
         <div className="relative z-10 max-w-[1200px] mx-auto px-4 text-center">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
 
-            {/* Title: Ezra Style (Serif, Wide, Elegant) */}
+            {/* Title */}
             <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl lg:text-[54px] font-serif font-normal text-white mb-6 leading-[1.2] mx-auto max-w-4xl">
               {post.title}
             </motion.h1>
@@ -152,7 +148,7 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
               </span>
             </motion.div>
 
-            {/* --- INJECTED P-SHOT TRUST BAR --- */}
+            {/* --- TRUST BAR --- */}
             <motion.div variants={itemVariants} className="max-w-4xl mx-auto bg-[#0f172a]/60 backdrop-blur-md border border-white/10 rounded-2xl p-4 md:p-5 shadow-2xl">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-2 divide-y md:divide-y-0 md:divide-x divide-white/10">
                 
@@ -222,7 +218,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
       {/* --- MAIN ARTICLE BODY --- */}
       <article className="flex-grow max-w-3xl mx-auto w-full px-4 sm:px-6 py-12 md:py-20">
         
-        {/* Lead Cover Image (If present) */}
         {post.coverImage && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
@@ -236,14 +231,12 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
           </motion.div>
         )}
 
-        {/* Excerpt Lead Paragraph */}
         {post.excerpt && (
           <p className="text-xl md:text-2xl text-slate-800 font-raleway leading-relaxed mb-10 border-l-2 border-[#4041d1] pl-6">
             {post.excerpt}
           </p>
         )}
 
-        {/* Contentful Rich Text (Text & Embedded Images) */}
         <div className="prose prose-slate prose-p:font-inter prose-p:font-light max-w-none">
            {renderRichText(post.content as unknown as RichTextDocument)}
         </div>
@@ -254,17 +247,14 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
          <TrustReviews widgetUrl="https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586" />
       </div>
 
-      {/* --- SIGNATURE CONTACT SECTION --- */}
       <div className="bg-slate-50 border-t border-slate-100">
         <ContactCTASection />
       </div>
 
-      {/* --- GLOBAL FOOTER --- */}
       <Footer />
 
       {/* --- SIGNATURE STICKY CTAs --- */}
       <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3 pointer-events-none">
-        {/* WhatsApp Bubble */}
         <a 
           href="https://wa.me/447990364147" 
           target="_blank" 
@@ -274,7 +264,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
           <FaWhatsapp size={24} />
         </a>
 
-        {/* Speak to a Specialist Button (Matched to Brand Colors) */}
         <button 
           onClick={openContactForm}
           className="flex items-center gap-3 px-6 py-3.5 bg-[#4041d1] text-white rounded-full font-bold text-[11px] shadow-2xl hover:bg-[#2a2bb8] transition-colors group pointer-events-auto uppercase tracking-wider"
