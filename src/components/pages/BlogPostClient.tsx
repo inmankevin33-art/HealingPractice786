@@ -108,7 +108,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
     <motion.div initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
       
       {/* --- AUTHORITY HERO SECTION --- */}
-      <header className="relative pt-24 md:pt-28 pb-32 bg-[#0A1128] overflow-hidden">
+      <header className="relative pt-12 md:pt-16 pb-32 bg-[#0A1128] overflow-hidden">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
            <div className="absolute inset-0 bg-gradient-to-b from-[#0A1128]/90 to-[#0A1128] z-10"></div>
