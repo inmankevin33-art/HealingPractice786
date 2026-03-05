@@ -161,7 +161,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
       </header>
 
       {/* --- LEGACY CONTENT (If they didn't use the new blocks) --- */}
-      {post.content && (!post.articleBlocks || post.articleBlocks.length === 0) && (
+      {!!post.content && (!post.articleBlocks || post.articleBlocks.length === 0) && (
         <section className="py-16 bg-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <div className="prose prose-slate max-w-none">
