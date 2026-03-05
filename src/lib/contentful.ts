@@ -102,17 +102,17 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
         const imageInfo = extractImageUrl(blockFields.image);
 
         return {
-          headline: blockFields.headline,
-          body: blockFields.body,
+          headline: blockFields.headline as string | undefined,
+          body: blockFields.body, // body stays unknown because it's rich text
           imageUrl: imageInfo?.url,
           imageAlt: imageInfo?.title,
-          layoutStyle: blockFields.layoutStyle || "Image Left", // default fallback
-          buttonText: blockFields.buttonText,
-          buttonLink: blockFields.buttonLink,
+          layoutStyle: (blockFields.layoutStyle as string | undefined) || "Image Left",
+          buttonText: blockFields.buttonText as string | undefined,
+          buttonLink: blockFields.buttonLink as string | undefined,
         };
       });
     }
-
+    
     return {
       title: fields.title as string,
       slug: fields.slug as string,
