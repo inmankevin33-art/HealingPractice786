@@ -93,11 +93,12 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     const item = response.items[0] as Record<string, unknown>;
     const fields = item.fields as Record<string, unknown>;
 
-    // Map our new Article Blocks array safely
+   // Map our new Article Blocks array safely
     let parsedBlocks: ArticleBlock[] = [];
     if (fields.articleBlocks && Array.isArray(fields.articleBlocks)) {
-      parsedBlocks = fields.articleBlocks.map((block: any) => {
-        const blockFields = block.fields || {};
+      parsedBlocks = fields.articleBlocks.map((block: unknown) => {
+        const safeBlock = block as { fields?: Record<string, unknown> };
+        const blockFields = safeBlock.fields || {};
         const imageInfo = extractImageUrl(blockFields.image);
 
         return {
