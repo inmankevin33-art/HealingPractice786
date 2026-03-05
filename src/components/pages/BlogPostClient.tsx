@@ -9,6 +9,30 @@ import ContactCTASection from "@/components/ContactCTASection";
 // Fixed the import path to match your existing file structure
 import { BlogPost } from "@/lib/contentful";
 
+// --- TYPESCRIPT INTERFACES ---
+interface NavItem {
+  slug: string;
+}
+
+interface NavigationData {
+  next?: NavItem;
+  prev?: NavItem;
+}
+
+interface RichTextChild {
+  value: string;
+}
+
+interface RichTextNode {
+  nodeType: string;
+  content?: RichTextChild[];
+}
+
+interface RichTextDocument {
+  content: RichTextNode[];
+}
+// -----------------------------
+
 // Animation Variants
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,7 +50,8 @@ const getImageUrl = (url: string | undefined) => {
   return url.startsWith("//") ? `https:${url}` : url;
 };
 
-export default function BlogPostClient({ post, navigation }: { post: BlogPost; navigation: any }) {
+// FIX 1: Replaced 'navigation: any' with 'navigation: NavigationData'
+export default function BlogPostClient({ post, navigation }: { post: BlogPost; navigation: NavigationData }) {
   
   const openContactForm = () => {
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
@@ -42,14 +67,17 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     });
   };
 
-  // Simple Rich Text Renderer for the main content
-  const renderRichText = (content: any) => {
+  // FIX 2: Replaced 'content: any' with 'content: RichTextDocument | undefined'
+  const renderRichText = (content: RichTextDocument | undefined) => {
     if (!content || !content.content) return null;
-    return content.content.map((node: any, i: number) => {
+    
+    // FIX 3: Replaced 'node: any' with 'node: RichTextNode'
+    return content.content.map((node: RichTextNode, i: number) => {
       if (node.nodeType === "paragraph") {
         return (
           <p key={i} className="mb-6 text-slate-600 leading-relaxed text-sm md:text-base">
-            {node.content?.map((c: any) => c.value).join("")}
+            {/* FIX 4: Replaced 'c: any' with 'c: RichTextChild' */}
+            {node.content?.map((c: RichTextChild) => c.value).join("")}
           </p>
         );
       }
@@ -139,7 +167,8 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
       {/* --- ARTICLE BODY --- */}
       <article className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
         <div className="prose prose-slate max-w-none">
-           {renderRichText(post.content)}
+           {/* Passed with 'as unknown as RichTextDocument' to perfectly bridge Contentful types */}
+           {renderRichText(post.content as unknown as RichTextDocument)}
         </div>
       </article>
 
