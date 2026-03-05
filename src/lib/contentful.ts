@@ -5,11 +5,23 @@ export const contentfulClient = createClient({
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN!,
 });
 
+// --- NEW INTERFACE FOR OUR ZIG-ZAG BLOCKS ---
+export interface ArticleBlock {
+  headline?: string;
+  body?: unknown; // Rich text node
+  imageUrl?: string;
+  imageAlt?: string;
+  layoutStyle?: string; // "Image Left" or "Image Right"
+  buttonText?: string;
+  buttonLink?: string;
+}
+
 export interface BlogPost {
   title: string;
   slug: string;
   excerpt?: string;
-  content: unknown;
+  content: unknown; // Legacy body content
+  articleBlocks?: ArticleBlock[]; // NEW ARRAY FOR OUR ZIG-ZAG BLOCKS
   coverImage?: {
     url: string;
     title: string;
@@ -21,11 +33,28 @@ export interface BlogPost {
   seoDescription?: string;
 }
 
+// Helper function to safely extract Image URLs from Contentful's nested object structure
+const extractImageUrl = (imageField: unknown): { url: string; title: string } | undefined => {
+  if (!imageField) return undefined;
+  try {
+    const fields = (imageField as Record<string, unknown>).fields as Record<string, unknown>;
+    const file = fields?.file as Record<string, unknown>;
+    const url = file?.url as string;
+    if (!url) return undefined;
+    
+    return {
+      url: url.startsWith("//") ? `https:${url}` : url,
+      title: (fields?.title as string) || "Blog Image",
+    };
+  } catch {
+    return undefined;
+  }
+};
+
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
   try {
     const response = await contentfulClient.getEntries({
       content_type: "post",
-      //   order: "-fields.date",
     });
 
     return response.items.map((item: Record<string, unknown>) => {
@@ -35,30 +64,7 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
         slug: fields.slug as string,
         excerpt: fields.excerpt as string,
         content: fields.content,
-        coverImage: fields.coverImage
-          ? {
-              url: `https:${
-                (
-                  (
-                    (fields.coverImage as Record<string, unknown>)
-                      .fields as Record<string, unknown>
-                  )?.file as Record<string, unknown>
-                )?.url as string
-              }`,
-              title: (
-                (fields.coverImage as Record<string, unknown>).fields as Record<
-                  string,
-                  unknown
-                >
-              )?.title as string,
-              description: (
-                (fields.coverImage as Record<string, unknown>).fields as Record<
-                  string,
-                  unknown
-                >
-              )?.description as string,
-            }
-          : undefined,
+        coverImage: extractImageUrl(fields.coverImage),
         date: fields.date as string,
         type: (fields.type as string[]) || [],
         seoTitle: fields.seoTitle as string,
@@ -71,14 +77,13 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
   }
 }
 
-export async function getBlogPostBySlug(
-  slug: string
-): Promise<BlogPost | null> {
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
     const response = await contentfulClient.getEntries({
       content_type: "post",
       "fields.slug": slug,
       limit: 1,
+      include: 2, // CRITICAL: This tells Contentful to resolve the linked 'Article Blocks'
     });
 
     if (response.items.length === 0) {
@@ -87,35 +92,33 @@ export async function getBlogPostBySlug(
 
     const item = response.items[0] as Record<string, unknown>;
     const fields = item.fields as Record<string, unknown>;
+
+    // Map our new Article Blocks array safely
+    let parsedBlocks: ArticleBlock[] = [];
+    if (fields.articleBlocks && Array.isArray(fields.articleBlocks)) {
+      parsedBlocks = fields.articleBlocks.map((block: any) => {
+        const blockFields = block.fields || {};
+        const imageInfo = extractImageUrl(blockFields.image);
+
+        return {
+          headline: blockFields.headline,
+          body: blockFields.body,
+          imageUrl: imageInfo?.url,
+          imageAlt: imageInfo?.title,
+          layoutStyle: blockFields.layoutStyle || "Image Left", // default fallback
+          buttonText: blockFields.buttonText,
+          buttonLink: blockFields.buttonLink,
+        };
+      });
+    }
+
     return {
       title: fields.title as string,
       slug: fields.slug as string,
       excerpt: fields.excerpt as string,
       content: fields.content,
-      coverImage: fields.coverImage
-        ? {
-            url: `https:${
-              (
-                (
-                  (fields.coverImage as Record<string, unknown>)
-                    .fields as Record<string, unknown>
-                )?.file as Record<string, unknown>
-              )?.url as string
-            }`,
-            title: (
-              (fields.coverImage as Record<string, unknown>).fields as Record<
-                string,
-                unknown
-              >
-            )?.title as string,
-            description: (
-              (fields.coverImage as Record<string, unknown>).fields as Record<
-                string,
-                unknown
-              >
-            )?.description as string,
-          }
-        : undefined,
+      articleBlocks: parsedBlocks, // Attach parsed blocks to the final object
+      coverImage: extractImageUrl(fields.coverImage),
       date: fields.date as string,
       type: (fields.type as string[]) || [],
       seoTitle: fields.seoTitle as string,
@@ -141,8 +144,7 @@ export async function getBlogPostNavigation(slug: string): Promise<{
 
     return {
       previous: currentIndex > 0 ? allPosts[currentIndex - 1] : null,
-      next:
-        currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null,
+      next: currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null,
     };
   } catch (error) {
     console.error("Error fetching blog post navigation:", error);
