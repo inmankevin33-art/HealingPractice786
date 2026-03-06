@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import GlobalStickyCTAs from "@/components/GlobalStickyCTAs";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway" });
@@ -59,6 +60,8 @@ export default function RootLayout({
         {/* Footer is typically called within page.tsx to allow for 
             location-specific footer details, but can be added here 
             if you want a universal one. */}
+        {/* NEW: The Global Sticky Buttons */}
+        <GlobalStickyCTAs />
       </body>
     </html>
   );
