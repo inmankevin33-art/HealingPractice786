@@ -92,10 +92,15 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     }
   };
 
+  // UPGRADED: True Horizontal Zig-Zag Renderer
   const renderRichText = (content: RichTextDocument | undefined) => {
     if (!content || !content.content) return null;
     
+    let imageCounter = 0; // Tracks how many images we have rendered
+
     return content.content.map((node: RichTextNode, i: number) => {
+      
+      // 1. Render Paragraphs
       if (node.nodeType === "paragraph") {
         return (
           <p key={i} className="mb-8 text-slate-700 leading-loose text-base md:text-[17px]">
@@ -104,13 +109,24 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
         );
       }
       
+      // 2. Render Embedded Images (Alternating Left/Right)
       if (node.nodeType === "embedded-asset-block") {
         const url = node.data?.target?.fields?.file?.url;
         const title = node.data?.target?.fields?.title || "Article Image";
         if (!url) return null;
         
+        imageCounter++; // Increase count for every image found
+        const isEven = imageCounter % 2 === 0; // Check if it is the 2nd, 4th, 6th image, etc.
+        
         return (
-          <div key={i} className="my-12 rounded-2xl overflow-hidden bg-slate-50 shadow-md border border-slate-100">
+          <div 
+            key={i} 
+            className={`
+              mb-8 rounded-2xl overflow-hidden bg-slate-50 shadow-md border border-slate-100 
+              w-full md:w-[45%] /* Full width on mobile, 45% width on desktop */
+              ${isEven ? "md:float-right md:ml-8" : "md:float-left md:mr-8"} /* The Zig-Zag Magic */
+            `}
+          >
             <img src={getImageUrl(url)} alt={title} className="w-full h-auto object-cover" />
           </div>
         );
