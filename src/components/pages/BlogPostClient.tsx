@@ -85,7 +85,7 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     else return "text-3xl md:text-4xl lg:text-[44px]";
   };
 
-  // --- UPGRADED: FULL-BLEED EDITORIAL EZRA GRID ---
+  // --- UPGRADED: FULL-BLEED UNLOCKED GRID ---
   const renderRichText = (content: RichTextDocument | undefined) => {
     if (!content || !content.content) return null;
     
@@ -116,11 +116,9 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     // 2. Render the chunks
     return sections.map((section, index) => {
       
-      // UPGRADE: Helper to render inline formatting (links, bold text, etc.) strictly typed
       const renderInlineContent = (contentArray: RichTextChild[] | undefined) => {
         return contentArray?.map((child, idx) => {
           
-          // Handle standard text and bold/italic formatting
           if (child.nodeType === "text") {
             let element: React.ReactNode = child.value;
             
@@ -133,7 +131,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
             return <React.Fragment key={idx}>{element}</React.Fragment>;
           }
           
-          // Handle Hyperlinks
           if (child.nodeType === "hyperlink") {
             return (
               <a 
@@ -192,12 +189,9 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
         <div key={index} className="w-full mb-16 md:mb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 items-center">
             
-            {/* IMAGE COLUMN (Controlled Editorial Sizing) */}
-            <div className={`w-full ${isEven ? "md:order-2" : "md:order-1"}`}>
-              {/* Locks the image into a beautiful, consistent 4:3 magazine proportion */}
-              <div className="w-full aspect-square md:aspect-[4/3] bg-slate-50 overflow-hidden flex items-center justify-center">
-                {imgUrl && <img src={imgUrl} alt={title} className="w-full h-full object-cover object-center" />}
-              </div>
+            {/* IMAGE COLUMN (Natural Shape - No Cropping) */}
+            <div className={`w-full ${isEven ? "md:order-2" : "md:order-1"} bg-slate-50 flex items-center justify-center`}>
+              {imgUrl && <img src={imgUrl} alt={title} className="w-full h-auto" />}
             </div>
 
             {/* TEXT COLUMN (Carefully padded so it doesn't touch the edges) */}
@@ -319,17 +313,17 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
       {/* --- MAIN ARTICLE BODY --- */}
       <article className="flex-grow w-full py-12 md:py-20">
         
-        {/* Lead Cover Image */}
+        {/* Lead Cover Image (Natural Shape) */}
         {post.coverImage && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
             className="max-w-7xl mx-auto w-full mb-16 md:px-6"
           >
-            <div className="w-full bg-slate-50">
+            <div className="w-full bg-slate-50 flex justify-center">
               <img 
                 src={getImageUrl(post.coverImage.url)} 
                 alt={post.coverImage.title || "Cover"} 
-                className="w-full max-h-[70vh] object-cover"
+                className="w-full h-auto"
               />
             </div>
           </motion.div>
