@@ -85,7 +85,7 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     else return "text-3xl md:text-4xl lg:text-[44px]";
   };
 
-  // --- UPGRADED: TRUE 50/50 EZRA GRID RENDERER ---
+  // --- UPGRADED: FULL-BLEED EDITORIAL EZRA GRID ---
   const renderRichText = (content: RichTextDocument | undefined) => {
     if (!content || !content.content) return null;
     
@@ -96,7 +96,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
 
     content.content.forEach((node: RichTextNode) => {
       if (node.nodeType === "embedded-asset-block") {
-        // If we hit a new image, save the previous chunk and start a new one
         if (currentText.length > 0 || currentImage) {
           sections.push({ image: currentImage, text: currentText });
           currentText = [];
@@ -108,7 +107,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
       }
     });
 
-    // Push the final chunk
     if (currentText.length > 0 || currentImage) {
       sections.push({ image: currentImage, text: currentText });
     }
@@ -118,7 +116,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     // 2. Render the chunks
     return sections.map((section, index) => {
       
-      // Helper to render the text nodes beautifully
       const renderText = (nodes: RichTextNode[]) => (
         nodes.map((n, i) => {
           if (n.nodeType === "paragraph") {
@@ -128,7 +125,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
               </p>
             );
           }
-          // Catch all for headings inside the rich text if you ever use them
           if (n.nodeType.includes("heading")) {
              return (
                <h3 key={i} className="text-2xl font-serif text-slate-900 mb-4 mt-8">
@@ -140,7 +136,7 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
         })
       );
 
-      // --- LAYOUT A: TEXT ONLY (Usually the intro before the first image) ---
+      // --- LAYOUT A: TEXT ONLY ---
       if (!section.image) {
         return (
           <div key={index} className="max-w-3xl mx-auto px-4 sm:px-6 w-full mb-16">
@@ -149,7 +145,7 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
         );
       }
 
-      // --- LAYOUT B: THE 50/50 EZRA GRID ---
+      // --- LAYOUT B: FULL-BLEED 50/50 GRID ---
       imageCounter++;
       const isEven = imageCounter % 2 === 0;
       
@@ -158,19 +154,24 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
       const imgUrl = getImageUrl(url);
 
       return (
-        <div key={index} className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-12 md:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div key={index} className="w-full mb-16 md:mb-24">
+          {/* Removed max-w-7xl and padding to allow edge-to-edge stretching */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 items-center">
             
-            {/* IMAGE COLUMN (Alternates left/right based on even/odd) */}
+            {/* IMAGE COLUMN (Controlled Editorial Sizing) */}
             <div className={`w-full ${isEven ? "md:order-2" : "md:order-1"}`}>
-              <div className="rounded-2xl overflow-hidden shadow-xl border border-slate-100 bg-slate-50">
-                {imgUrl && <img src={imgUrl} alt={title} className="w-full h-auto object-cover" />}
+              {/* Locks the image into a beautiful, consistent 4:3 magazine proportion */}
+              <div className="w-full aspect-square md:aspect-[4/3] bg-slate-50 overflow-hidden flex items-center justify-center">
+                {imgUrl && <img src={imgUrl} alt={title} className="w-full h-full object-cover object-center" />}
               </div>
             </div>
 
-            {/* TEXT COLUMN */}
-            <div className={`w-full flex flex-col justify-center ${isEven ? "md:order-1" : "md:order-2"}`}>
-              {renderText(section.text)}
+            {/* TEXT COLUMN (Carefully padded so it doesn't touch the edges) */}
+            <div className={`w-full flex flex-col justify-center px-4 sm:px-8 lg:px-16 xl:px-24 py-12 ${isEven ? "md:order-1" : "md:order-2"}`}>
+               {/* Inner wrapper to keep text line-length readable */}
+               <div className="max-w-xl mx-auto md:mx-0 w-full">
+                 {renderText(section.text)}
+               </div>
             </div>
 
           </div>
@@ -212,19 +213,16 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
         <div className="relative z-10 max-w-[1200px] mx-auto px-4 text-center">
           <motion.div variants={containerVariants} initial="hidden" animate="visible">
 
-            {/* Title: Smart Scaling */}
             <motion.h1 variants={itemVariants} className={`${getTitleSizeClasses(post.title)} font-serif font-normal text-white mb-6 leading-[1.2] mx-auto max-w-4xl transition-all duration-300`}>
               {post.title}
             </motion.h1>
 
-            {/* Author & Date */}
             <motion.div variants={itemVariants} className="mb-10">
               <span className="text-sm md:text-base font-inter text-slate-300">
                 Dr. Syed Abdi, {formatDate(post.date)}
               </span>
             </motion.div>
 
-            {/* --- TRUST BAR --- */}
             <motion.div variants={itemVariants} className="max-w-4xl mx-auto bg-[#0f172a]/60 backdrop-blur-md border border-white/10 rounded-2xl p-4 md:p-5 shadow-2xl">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-2 divide-y md:divide-y-0 md:divide-x divide-white/10">
                 
@@ -286,20 +284,20 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
       </header>
 
       {/* --- MAIN ARTICLE BODY --- */}
-      {/* Notice the container is now w-full instead of max-w-3xl! */}
       <article className="flex-grow w-full py-12 md:py-20">
         
-        {/* Lead Cover Image (If present) */}
+        {/* Lead Cover Image - Now sleek and full width on mobile, max-w-7xl on desktop */}
         {post.coverImage && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="max-w-5xl mx-auto mb-16 px-4 sm:px-6"
+            className="max-w-7xl mx-auto w-full mb-16 md:px-6"
           >
-            <div className="rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 shadow-md">
+            {/* Removed rounded borders and shadow for a cleaner, editorial look */}
+            <div className="w-full bg-slate-50">
               <img 
                 src={getImageUrl(post.coverImage.url)} 
                 alt={post.coverImage.title || "Cover"} 
-                className="w-full h-auto object-cover"
+                className="w-full max-h-[70vh] object-cover"
               />
             </div>
           </motion.div>
