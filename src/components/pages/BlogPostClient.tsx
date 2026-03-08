@@ -21,7 +21,13 @@ interface NavigationData {
 }
 
 interface RichTextChild {
-  value: string;
+  nodeType?: string;
+  value?: string;
+  marks?: { type: string }[];
+  content?: RichTextChild[];
+  data?: {
+    uri?: string;
+  };
 }
 
 interface RichTextData {
@@ -116,19 +122,52 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     // 2. Render the chunks
     return sections.map((section, index) => {
       
+      // UPGRADE: Helper to render inline formatting (links, bold text, etc.)
+      const renderInlineContent = (contentArray: any[]) => {
+        return contentArray?.map((child, idx) => {
+          // Handle standard text and bold/italic formatting
+          if (child.nodeType === "text") {
+            let element: any = child.value;
+            if (child.marks && child.marks.length > 0) {
+              child.marks.forEach((mark: any) => {
+                if (mark.type === "bold") element = <strong key={idx} className="font-semibold text-slate-900">{element}</strong>;
+                if (mark.type === "italic") element = <em key={idx}>{element}</em>;
+              });
+            }
+            return <React.Fragment key={idx}>{element}</React.Fragment>;
+          }
+          
+          // Handle Hyperlinks!
+          if (child.nodeType === "hyperlink") {
+            return (
+              <a 
+                key={idx} 
+                href={child.data?.uri} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#4041d1] font-semibold underline decoration-2 decoration-[#4041d1]/30 hover:decoration-[#4041d1] transition-all"
+              >
+                {child.content?.[0]?.value || "link"}
+              </a>
+            );
+          }
+          return null;
+        });
+      };
+
       const renderText = (nodes: RichTextNode[]) => (
         nodes.map((n, i) => {
           if (n.nodeType === "paragraph") {
             return (
               <p key={i} className="mb-6 text-slate-700 leading-relaxed text-base md:text-lg font-light font-inter">
-                {n.content?.map((c: RichTextChild) => c.value).join("")}
+                {renderInlineContent(n.content || [])}
               </p>
             );
           }
           if (n.nodeType.includes("heading")) {
              return (
                <h3 key={i} className="text-2xl font-serif text-slate-900 mb-4 mt-8">
-                 {n.content?.map((c: RichTextChild) => c.value).join("")}
+                 {renderInlineContent(n.content || [])}
                </h3>
              )
           }
@@ -155,7 +194,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
 
       return (
         <div key={index} className="w-full mb-16 md:mb-24">
-          {/* Removed max-w-7xl and padding to allow edge-to-edge stretching */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 items-center">
             
             {/* IMAGE COLUMN (Controlled Editorial Sizing) */}
@@ -184,7 +222,6 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     <div className="bg-white min-h-screen font-inter flex flex-col">
       
       <header className="relative pt-8 md:pt-10 pb-12 md:pb-16 bg-[#0A1128] overflow-hidden">
-        {/* Background Overlay */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[#0A1128]/90 z-10"></div>
           <img src="/hero_img.png" alt="Background" className="w-full h-full object-cover opacity-20 mix-blend-overlay" />
@@ -286,13 +323,12 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
       {/* --- MAIN ARTICLE BODY --- */}
       <article className="flex-grow w-full py-12 md:py-20">
         
-        {/* Lead Cover Image - Now sleek and full width on mobile, max-w-7xl on desktop */}
+        {/* Lead Cover Image */}
         {post.coverImage && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
             className="max-w-7xl mx-auto w-full mb-16 md:px-6"
           >
-            {/* Removed rounded borders and shadow for a cleaner, editorial look */}
             <div className="w-full bg-slate-50">
               <img 
                 src={getImageUrl(post.coverImage.url)} 
