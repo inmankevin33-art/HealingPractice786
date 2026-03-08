@@ -3,8 +3,8 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, ChevronRight, Phone } from "lucide-react";
-import { FaWhatsapp, FaGoogle, FaStar, FaLock } from "react-icons/fa"; 
+import { ArrowLeft, ChevronRight } from "lucide-react";
+import { FaGoogle, FaStar, FaLock } from "react-icons/fa"; 
 import ContactCTASection from "@/components/ContactCTASection";
 import TrustReviews from "@/components/TrustReviews";
 import Footer from "@/components/Footer";
@@ -67,12 +67,6 @@ const getImageUrl = (url: string | undefined) => {
 
 export default function BlogPostClient({ post, navigation }: { post: BlogPost; navigation: NavigationData }) {
   
-  const openContactForm = () => {
-    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-    const element = document.getElementById("contact-form-section");
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-GB", {
       day: "numeric",
@@ -122,14 +116,16 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
     // 2. Render the chunks
     return sections.map((section, index) => {
       
-      // UPGRADE: Helper to render inline formatting (links, bold text, etc.)
-      const renderInlineContent = (contentArray: any[]) => {
+      // UPGRADE: Helper to render inline formatting (links, bold text, etc.) strictly typed
+      const renderInlineContent = (contentArray: RichTextChild[] | undefined) => {
         return contentArray?.map((child, idx) => {
+          
           // Handle standard text and bold/italic formatting
           if (child.nodeType === "text") {
-            let element: any = child.value;
+            let element: React.ReactNode = child.value;
+            
             if (child.marks && child.marks.length > 0) {
-              child.marks.forEach((mark: any) => {
+              child.marks.forEach((mark: { type: string }) => {
                 if (mark.type === "bold") element = <strong key={idx} className="font-semibold text-slate-900">{element}</strong>;
                 if (mark.type === "italic") element = <em key={idx}>{element}</em>;
               });
@@ -137,7 +133,7 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
             return <React.Fragment key={idx}>{element}</React.Fragment>;
           }
           
-          // Handle Hyperlinks!
+          // Handle Hyperlinks
           if (child.nodeType === "hyperlink") {
             return (
               <a 
@@ -160,14 +156,14 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
           if (n.nodeType === "paragraph") {
             return (
               <p key={i} className="mb-6 text-slate-700 leading-relaxed text-base md:text-lg font-light font-inter">
-                {renderInlineContent(n.content || [])}
+                {renderInlineContent(n.content)}
               </p>
             );
           }
           if (n.nodeType.includes("heading")) {
              return (
                <h3 key={i} className="text-2xl font-serif text-slate-900 mb-4 mt-8">
-                 {renderInlineContent(n.content || [])}
+                 {renderInlineContent(n.content)}
                </h3>
              )
           }
