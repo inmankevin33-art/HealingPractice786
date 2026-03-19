@@ -396,9 +396,9 @@ export default function ShockwaveTherapyClient({
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-slate-50 rounded-[2rem] transform rotate-3 scale-105 -z-10"></div>
               <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-200 flex items-center justify-center min-h-[400px]">
-                {/* Save the Storz image as 'storz-duolith.png' or '.jpg' in your public folder */}
+                {/* Save the Storz image as 'storz-duolith.webp' or '.jpg' in your public folder */}
                 <img 
-                  src="/storz-duolith.png" 
+                  src="/storz-duolith.webp" 
                   alt="STORZ MEDICAL DUOLITH SD1 T-TOP ULTRA" 
                   className="w-full max-w-md h-auto object-contain mix-blend-multiply"
                   onError={(e) => {
