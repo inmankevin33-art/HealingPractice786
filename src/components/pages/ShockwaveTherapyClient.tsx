@@ -315,7 +315,7 @@ export default function ShockwaveTherapyClient({
                     <FaBolt className="text-[#4041d1]" /> The Difference: Focused vs. Radial Shockwaves
                   </h4>
                   <p className="text-sm md:text-base font-inter text-slate-600 leading-relaxed mb-5">
-                    Many high-street men&apos;s clinics use "Radial" shockwave devices, which are essentially acoustic massage guns designed for superficial physiotherapy. At Healing-PRP, our GMC-registered doctors use <strong>Medical-Grade Focused Shockwaves</strong>. These penetrate deeply and precisely into the corpus cavernosum to stimulate <em>angiogenesis</em> (the growth of new blood vessels) and actively break down the fibrous scar tissue associated with Peyronie&apos;s disease.
+                    Many high-street men&apos;s clinics use &quot;Radial&quot; shockwave devices, which are essentially acoustic massage guns designed for superficial physiotherapy. At Healing-PRP, our GMC-registered doctors use <strong>Medical-Grade Focused Shockwaves</strong>. These penetrate deeply and precisely into the corpus cavernosum to stimulate <em>angiogenesis</em> (the growth of new blood vessels) and actively break down the fibrous scar tissue associated with Peyronie&apos;s disease.
                   </p>
                   
                   <Link 
@@ -358,7 +358,7 @@ export default function ShockwaveTherapyClient({
               <div className="space-y-6">
                 <div className="text-base md:text-lg font-inter text-slate-700 leading-relaxed font-medium space-y-4">
                   <p>
-                    Because Li-ESWT is a powerful medical treatment, it requires a robust clinical assessment. We are a doctor-led practice; we do not offer blind "walk-in" treatments without understanding your unique medical profile.
+                    Because Li-ESWT is a powerful medical treatment, it requires a robust clinical assessment. We are a doctor-led practice; we do not offer blind &quot;walk-in&quot; treatments without understanding your unique medical profile.
                   </p>
                   <p>
                     During your confidential, 1:1 consultation, our doctor will evaluate your vascular health, symptom history, and any existing plaque formation (for Peyronie&apos;s patients). This ensures you are a suitable candidate and allows us to formulate an evidence-led treatment protocol tailored strictly to your physiology.
