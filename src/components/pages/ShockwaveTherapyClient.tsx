@@ -400,7 +400,7 @@ export default function ShockwaveTherapyClient({
               {/* Removed the white box and padding. Added overflow-hidden so the image corners curve perfectly. */}
               <div className="rounded-[2rem] shadow-xl border border-slate-200/60 overflow-hidden flex items-center justify-center bg-[#f2f2f2]">
                 <img 
-                  src="/storz-duolith.jpg" 
+                  src="/storz-duolith.webp" 
                   alt="STORZ MEDICAL DUOLITH SD1 T-TOP ULTRA" 
                   className="w-full h-auto object-cover mix-blend-multiply"
                   onError={(e) => {
