@@ -392,17 +392,18 @@ export default function ShockwaveTherapyClient({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative lg:ml-8"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-slate-50 rounded-[2rem] transform rotate-3 scale-105 -z-10"></div>
-              <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-200 flex items-center justify-center min-h-[400px]">
-                {/* Save the Storz image as 'storz-duolith.webp' or '.jpg' in your public folder */}
+              {/* Tilted background accent to give it a premium 3D feel */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#4041d1]/20 to-blue-50 rounded-[2rem] transform rotate-3 scale-105 -z-10"></div>
+              
+              {/* Removed the white box and padding. Added overflow-hidden so the image corners curve perfectly. */}
+              <div className="rounded-[2rem] shadow-xl border border-slate-200/60 overflow-hidden flex items-center justify-center bg-[#f2f2f2]">
                 <img 
-                  src="/storz-duolith.webp" 
+                  src="/storz-duolith.jpg" 
                   alt="STORZ MEDICAL DUOLITH SD1 T-TOP ULTRA" 
-                  className="w-full max-w-md h-auto object-contain mix-blend-multiply"
+                  className="w-full h-auto object-cover mix-blend-multiply"
                   onError={(e) => {
-                    // Fallback placeholder just in case the image hasn't been uploaded yet
                     e.currentTarget.src = 'https://placehold.co/600x400/f8fafc/4041d1?text=STORZ+DUOLITH+Machine';
                   }}
                 />
