@@ -351,7 +351,7 @@ export default function ShockwaveTherapyClient({
                 Powered by STORZ MEDICAL DUOLITH®
               </motion.h2>
               <motion.p variants={itemVariants} className="text-slate-600 text-base md:text-lg font-inter leading-relaxed mb-8">
-                We invest exclusively in the <strong>DUOLITH SD1 T-TOP ULTRA</strong>—widely recognised as the most advanced focused shockwave system on the market. Decades of Swiss-engineered research ensure you receive genuine, medical-grade Li-ESWT, not superficial physiotherapy.
+                Dr. Syed Abdi exclusively utilizes the <strong>DUOLITH SD1 T-TOP ULTRA</strong>—widely recognised as the most advanced focused shockwave system on the market. Decades of Swiss-engineered research ensure you receive genuine, medical-grade Li-ESWT under expert doctor supervision, not superficial physiotherapy.
               </motion.p>
               
               <motion.ul variants={containerVariants} className="space-y-5">
