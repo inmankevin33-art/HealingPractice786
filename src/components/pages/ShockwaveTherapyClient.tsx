@@ -262,6 +262,7 @@ export default function ShockwaveTherapyClient({
           >
             {[
               { label: "Understanding Li-ESWT", href: "#understanding" },
+              { label: "Our Technology", href: "#technology" },
               { label: "Our Approach", href: "#approach" },
               { label: "Who Is It For", href: "#who-is-it-for" },
               { label: "Treatment Process", href: "#treatment-components" },
@@ -281,7 +282,7 @@ export default function ShockwaveTherapyClient({
       </section>
 
       {/* 1. Understanding Shockwave Therapy Section */}
-      <section id="understanding" className="py-20 lg:py-28 bg-white">
+      <section id="understanding" className="py-20 lg:py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
@@ -329,6 +330,86 @@ export default function ShockwaveTherapyClient({
               </div>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* 1.5. NEW: Our Technology (Storz Medical) Section */}
+      <section id="technology" className="py-20 lg:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={containerVariants}
+            >
+              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-inter font-bold uppercase tracking-wider mb-6">
+                 Global Gold Standard
+              </motion.div>
+              <motion.h2 variants={itemVariants} className="text-3xl lg:text-4xl font-raleway font-bold text-slate-900 mb-6">
+                Powered by STORZ MEDICAL DUOLITH®
+              </motion.h2>
+              <motion.p variants={itemVariants} className="text-slate-600 text-base md:text-lg font-inter leading-relaxed mb-8">
+                We invest exclusively in the <strong>DUOLITH SD1 T-TOP ULTRA</strong>—widely recognised as the most advanced focused shockwave system on the market. Decades of Swiss-engineered research ensure you receive genuine, medical-grade Li-ESWT, not superficial physiotherapy.
+              </motion.p>
+              
+              <motion.ul variants={containerVariants} className="space-y-5">
+                <motion.li variants={itemVariants} className="flex items-start gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                  <div className="mt-1 bg-blue-50 rounded-full p-2 shrink-0">
+                    <FaCheck className="w-3 h-3 text-[#4041d1]" />
+                  </div>
+                  <div>
+                    <strong className="text-slate-900 font-inter text-sm md:text-base">Up to 125mm Penetration Depth</strong>
+                    <p className="text-slate-600 text-sm font-inter mt-1 leading-relaxed">Reaches deep into the corpus cavernosum to safely target root vascular issues and fibrous plaque, far beyond the reach of standard radial devices.</p>
+                  </div>
+                </motion.li>
+                
+                <motion.li variants={itemVariants} className="flex items-start gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                  <div className="mt-1 bg-blue-50 rounded-full p-2 shrink-0">
+                    <FaCheck className="w-3 h-3 text-[#4041d1]" />
+                  </div>
+                  <div>
+                    <strong className="text-slate-900 font-inter text-sm md:text-base">High Energy Flux Density</strong>
+                    <p className="text-slate-600 text-sm font-inter mt-1 leading-relaxed">Delivers pinpoint treatment accuracy and powerful regenerative stimulation, providing highly effective treatment in fewer sessions.</p>
+                  </div>
+                </motion.li>
+                
+                <motion.li variants={itemVariants} className="flex items-start gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                  <div className="mt-1 bg-blue-50 rounded-full p-2 shrink-0">
+                    <FaCheck className="w-3 h-3 text-[#4041d1]" />
+                  </div>
+                  <div>
+                    <strong className="text-slate-900 font-inter text-sm md:text-base">Maximum Patient Comfort</strong>
+                    <p className="text-slate-600 text-sm font-inter mt-1 leading-relaxed">Ergonomic design and precise targeting mean a virtually painless experience with zero downtime required.</p>
+                  </div>
+                </motion.li>
+              </motion.ul>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-slate-50 rounded-[2rem] transform rotate-3 scale-105 -z-10"></div>
+              <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-200 flex items-center justify-center min-h-[400px]">
+                {/* Save the Storz image as 'storz-duolith.png' or '.jpg' in your public folder */}
+                <img 
+                  src="/storz-duolith.png" 
+                  alt="STORZ MEDICAL DUOLITH SD1 T-TOP ULTRA" 
+                  className="w-full max-w-md h-auto object-contain mix-blend-multiply"
+                  onError={(e) => {
+                    // Fallback placeholder just in case the image hasn't been uploaded yet
+                    e.currentTarget.src = 'https://placehold.co/600x400/f8fafc/4041d1?text=STORZ+DUOLITH+Machine';
+                  }}
+                />
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
