@@ -12,6 +12,7 @@ interface MenuItem {
   href: string;
   isContact?: boolean;
   isSubItem?: boolean;
+  isSpacer?: boolean; // Used to add a little margin above new main sections
 }
 
 const Header = () => {
@@ -21,6 +22,7 @@ const Header = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  // Prevent background scrolling when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -29,60 +31,27 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
-  const menuItems: MenuItem[] = [
-    // FACIAL AESTHETICS & SUB-ITEMS
-    { name: "Facial Aesthetics", href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics" },
-    { 
-      name: "Polynucleotides", 
-      href: isBirmingham ? "/birmingham/polynucleotides" : "/polynucleotides",
-      isSubItem: true 
-    },
-    
-    // OTHER MAIN CATEGORIES
-    { name: "Joint Injections", href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections" },
-    { name: "Hair Restoration", href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration" },
-    
-    // SEXUAL REJUVENATION & SUB-ITEMS
+  // We split the menu into two columns for desktop to use space better
+  const menuColumn1: MenuItem[] = [
     { name: "Sexual Rejuvenation", href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation" },
-    { 
-      name: "P-Shot® Treatment", 
-      href: isBirmingham ? "/birmingham/p-shot" : "/p-shot",
-      isSubItem: true 
-    },
-    { 
-      name: "O-Shot® Treatment", 
-      href: isBirmingham ? "/birmingham/o-shot" : "/o-shot",
-      isSubItem: true 
-    },
-    { 
-      name: "Erectile Dysfunction", 
-      href: isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction",
-      isSubItem: true 
-    },
-    { 
-      name: "Premature Ejaculation", 
-      href: isBirmingham ? "/birmingham/premature-ejaculation" : "/premature-ejaculation",
-      isSubItem: true 
-    },
-    { 
-      name: "Peyronie's Disease", 
-      href: isBirmingham ? "/birmingham/peyronies-disease" : "/peyronies-disease",
-      isSubItem: true 
-    },
-    { 
-      name: "Personalised Medication", 
-      href: isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication",
-      isSubItem: true 
-    },
+    { name: "P-Shot Treatment", href: isBirmingham ? "/birmingham/p-shot" : "/p-shot", isSubItem: true },
+    { name: "O-Shot Treatment", href: isBirmingham ? "/birmingham/o-shot" : "/o-shot", isSubItem: true },
+    { name: "Erectile Dysfunction", href: isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction", isSubItem: true },
+    { name: "Shockwave Therapy", href: isBirmingham ? "/birmingham/shockwave-therapy-erectile-dysfunction" : "/shockwave-therapy-erectile-dysfunction", isSubItem: true },
+    { name: "Premature Ejaculation", href: isBirmingham ? "/birmingham/premature-ejaculation" : "/premature-ejaculation", isSubItem: true },
+    { name: "Peyronie's Disease", href: isBirmingham ? "/birmingham/peyronies-disease" : "/peyronies-disease", isSubItem: true },
+    { name: "Personalised Medication", href: isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication", isSubItem: true },
+  ];
 
-    { name: "Prices", href: isBirmingham ? "/birmingham/prices" : "/prices" },
-    { name: "FAQs", href: isBirmingham ? "/birmingham/faq" : "/faq" },
-    { name: "Health Blog", href: "/blog" },
-    { 
-      name: "Contact Us", 
-      href: isBirmingham ? "/birmingham/contact" : "/contact", 
-      isContact: true 
-    },
+  const menuColumn2: MenuItem[] = [
+    { name: "Facial Aesthetics", href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics" },
+    { name: "Polynucleotides", href: isBirmingham ? "/birmingham/polynucleotides" : "/polynucleotides", isSubItem: true },
+    { name: "Joint Injections", href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections", isSpacer: true },
+    { name: "Hair Restoration", href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration", isSpacer: true },
+    { name: "Prices", href: isBirmingham ? "/birmingham/prices" : "/prices", isSpacer: true },
+    { name: "FAQs", href: isBirmingham ? "/birmingham/faq" : "/faq", isSpacer: true },
+    { name: "Health Blog", href: "/blog", isSpacer: true },
+    { name: "Contact Us", href: isBirmingham ? "/birmingham/contact" : "/contact", isContact: true, isSpacer: true },
   ];
 
   return (
@@ -155,57 +124,86 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-[#0f172a] pt-24 overflow-y-auto"
+            // Added pb-12 to container and pb-32 to inner div to ensure mobile scrolling never cuts off
+            className="fixed inset-0 z-40 bg-[#0f172a] pt-20 pb-12 overflow-y-auto"
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-4">
               
               {/* Location Selectors */}
-              <div className="mb-10 border-b border-white/10 pb-10">
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-6 font-inter">Select Your Location</p>
+              <div className="mb-8 border-b border-white/10 pb-8">
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-4 font-inter">Select Your Location</p>
                 <div className="flex flex-col sm:flex-row gap-4 max-w-xl">
+                  {/* Removed onClick={() => setIsMenuOpen(false)} so it seamlessly switches without closing */}
                   <Link 
                     href="/" 
-                    onClick={() => setIsMenuOpen(false)} 
-                    className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter ${!isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20'}`}
+                    className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter ${!isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
                     St Albans Clinic
                   </Link>
                   <Link 
                     href="/birmingham" 
-                    onClick={() => setIsMenuOpen(false)} 
-                    className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter ${isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20'}`}
+                    className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter ${isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
                     Birmingham Clinic
                   </Link>
                 </div>
               </div>
 
-              {/* Navigation Items */}
-              <nav className="flex flex-col space-y-3 md:space-y-4">
-                {menuItems.map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.05 }}
-                    // Add indentation for sub-items
-                    className={item.isSubItem ? "pl-6 border-l-2 border-white/10 ml-1" : ""}
-                  >
-                    <Link 
-                      href={item.href} 
-                      className={`text-xl md:text-3xl font-raleway transition-colors inline-block ${
-                        item.isContact 
-                          ? "text-[#4041d1] font-bold border-b-2 border-[#4041d1]/30 pb-1 mt-4" 
-                          : item.isSubItem 
-                            ? "font-medium text-slate-300 hover:text-[#4041d1]" 
-                            : "font-medium text-white hover:text-[#4041d1]"
-                      }`}
-                      onClick={() => setIsMenuOpen(false)}
+              {/* Navigation Grid (2 Columns on Desktop, 1 on Mobile) */}
+              <nav className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
+                
+                {/* Column 1 */}
+                <div className="flex flex-col space-y-3">
+                  {menuColumn1.map((item, idx) => (
+                    <motion.div
+                      key={`col1-${idx}`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.05 }}
+                      className={`${item.isSubItem ? "pl-6 border-l-2 border-white/10 ml-1" : ""} ${item.isSpacer ? "mt-4" : ""}`}
                     >
-                      {item.name}
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link 
+                        href={item.href} 
+                        className={`text-xl md:text-2xl font-raleway transition-colors inline-block ${
+                          item.isSubItem 
+                            ? "font-medium text-slate-400 hover:text-[#4041d1]" 
+                            : "font-medium text-white hover:text-[#4041d1]"
+                        }`}
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Column 2 */}
+                <div className="flex flex-col space-y-3 mt-6 md:mt-0">
+                  {menuColumn2.map((item, idx) => (
+                    <motion.div
+                      key={`col2-${idx}`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: (menuColumn1.length + idx) * 0.05 }}
+                      className={`${item.isSubItem ? "pl-6 border-l-2 border-white/10 ml-1" : ""} ${item.isSpacer ? "pt-4" : ""}`}
+                    >
+                      <Link 
+                        href={item.href} 
+                        className={`text-xl md:text-2xl font-raleway transition-colors inline-block ${
+                          item.isContact 
+                            ? "text-[#4041d1] font-bold border-b-2 border-[#4041d1]/30 pb-1" 
+                            : item.isSubItem 
+                              ? "font-medium text-slate-400 hover:text-[#4041d1]" 
+                              : "font-medium text-white hover:text-[#4041d1]"
+                        }`}
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
               </nav>
             </div>
           </motion.div>
