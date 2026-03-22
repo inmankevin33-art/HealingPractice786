@@ -72,10 +72,22 @@ export default function Footer() {
     },
   ];
 
-  const treatments = [
-    { name: "Sexual Rejuvenation", href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation" },
+  // --- NEW SEO LINK HUBS ---
+  const sexualWellnessLinks = [
+    { name: "Sexual Rejuvenation Hub", href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation" },
+    { name: "Erectile Dysfunction", href: isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction" },
+    { name: "Premature Ejaculation", href: isBirmingham ? "/birmingham/premature-ejaculation" : "/premature-ejaculation" },
+    { name: "Peyronie's Disease", href: isBirmingham ? "/birmingham/peyronies-disease" : "/peyronies-disease" },
+    { name: "P-Shot (Male Rejuvenation)", href: isBirmingham ? "/birmingham/p-shot" : "/p-shot" },
+    { name: "O-Shot (Women's Health)", href: isBirmingham ? "/birmingham/o-shot" : "/o-shot" },
+    { name: "Shockwave Therapy", href: isBirmingham ? "/birmingham/shockwave-therapy-erectile-dysfunction" : "/shockwave-therapy-erectile-dysfunction" },
+  ];
+
+  const clinicServicesLinks = [
     { name: "Joint Injections", href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections" },
     { name: "Facial Aesthetics", href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics" },
+    { name: "Hair Restoration", href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration" },
+    { name: "Treatment Prices", href: "/prices" },
     { name: "Health Blog", href: "/blog" },
     { name: "Contact Us", href: "/contact", isContact: true },
   ];
@@ -87,8 +99,9 @@ export default function Footer() {
       
       <footer className="bg-[#0f172a] text-white font-inter border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Expanded to lg:grid-cols-5 to accommodate the new column without breaking the layout */}
           <motion.div
-            className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8"
+            className="py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
@@ -132,13 +145,32 @@ export default function Footer() {
               </div>
             </motion.div>
 
-            {/* Quick Links */}
+            {/* NEW SEO HUB 1: Sexual Wellness */}
             <motion.div variants={itemVariants}>
               <h4 className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-5">
-                Our Treatments
+                Sexual Wellness
               </h4>
               <ul className="space-y-3">
-                {treatments.map((item, idx) => (
+                {sexualWellnessLinks.map((item, idx) => (
+                  <li key={idx}>
+                    <Link 
+                      href={item.href} 
+                      className="text-xs text-slate-400 hover:text-white transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* NEW SEO HUB 2: Clinic Services */}
+            <motion.div variants={itemVariants}>
+              <h4 className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-5">
+                Clinic Services
+              </h4>
+              <ul className="space-y-3">
+                {clinicServicesLinks.map((item, idx) => (
                   <li key={idx}>
                     <Link 
                       href={item.href} 
