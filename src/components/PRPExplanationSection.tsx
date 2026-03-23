@@ -89,7 +89,7 @@ export default function PRPExplanationSection() {
       ],
       treatments: [
         { name: "Vampire Facial", href: `${prefix}/facial-aesthetics` },
-        { name: "Polynucleotides", href: `${prefix}/facial-aesthetics` },
+        { name: "Polynucleotides", href: `${prefix}/polynucleotides` },
         { name: "Botox & Fillers", href: `${prefix}/facial-aesthetics` }
       ]
     },
