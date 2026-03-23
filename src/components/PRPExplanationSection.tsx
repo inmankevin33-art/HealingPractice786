@@ -2,10 +2,15 @@
 
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";
-import { FaSyringe, FaSync, FaGem, FaStar, FaCheckCircle } from "react-icons/fa";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaSyringe, FaSync, FaGem, FaStar, FaCheckCircle, FaArrowRight } from "react-icons/fa";
 
 export default function PRPExplanationSection() {
   const [activeStep, setActiveStep] = useState(0);
+  const pathname = usePathname();
+  const isBirmingham = pathname?.startsWith("/birmingham");
+  const prefix = isBirmingham ? "/birmingham" : "";
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -31,11 +36,46 @@ export default function PRPExplanationSection() {
     { number: 4, icon: FaStar, title: "Injection & Healing", description: "PRP is injected into the target area to stimulate natural repair and regeneration." },
   ];
 
+  // UPDATED: Applications now include deep links to high-value treatments
   const applications = [
-    { title: "Hair Restoration", desc: "Supports scalp health and follicle density." },
-    { title: "Facial Aesthetics", desc: "Improves skin quality, texture, and collagen." },
-    { title: "Joint & Soft Tissue", desc: "Aids recovery and reduces discomfort." },
-    { title: "Sexual Wellness", desc: "Supports tissue health and blood flow." },
+    { 
+      title: "Sexual Wellness", 
+      desc: "Supports tissue health and blood flow.",
+      treatments: [
+        { name: "Erectile Dysfunction", href: `${prefix}/erectile-dysfunction` },
+        { name: "P-Shot (Priapus Shot)", href: `${prefix}/p-shot` },
+        { name: "Peyronie's Disease", href: `${prefix}/peyronies-disease` },
+        { name: "O-Shot (Women's Health)", href: `${prefix}/o-shot` },
+        { name: "Shockwave Therapy", href: `${prefix}/shockwave-therapy-erectile-dysfunction` }
+      ]
+    },
+    { 
+      title: "Hair Restoration", 
+      desc: "Supports scalp health and follicle density.",
+      treatments: [
+        { name: "PRP Hair Therapy", href: `${prefix}/hair-restoration` },
+        { name: "Thinning Hair Treatment", href: `${prefix}/hair-restoration` },
+        { name: "Exosome Therapy", href: `${prefix}/hair-restoration` }
+      ]
+    },
+    { 
+      title: "Joint & Soft Tissue", 
+      desc: "Aids recovery and reduces discomfort.",
+      treatments: [
+        { name: "Osteoarthritis Injections", href: `${prefix}/joint-injections` },
+        { name: "Tennis Elbow (PRP)", href: `${prefix}/joint-injections` },
+        { name: "Sports Injury Recovery", href: `${prefix}/joint-injections` }
+      ]
+    },
+    { 
+      title: "Facial Aesthetics", 
+      desc: "Improves skin quality and collagen.",
+      treatments: [
+        { name: "Vampire Facial", href: `${prefix}/facial-aesthetics` },
+        { name: "Polynucleotides", href: `${prefix}/facial-aesthetics` },
+        { name: "Natural Rejuvenation", href: `${prefix}/facial-aesthetics` }
+      ]
+    },
   ];
 
   return (
@@ -46,14 +86,13 @@ export default function PRPExplanationSection() {
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
           <motion.div
-            // BRAND COLOR LOCK: Lightened #4041d1 for contrast against dark mode
             className="inline-block px-4 py-1.5 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-[10px] font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway"
             variants={itemVariants}
           >
@@ -67,9 +106,9 @@ export default function PRPExplanationSection() {
             What is Platelet-Rich Plasma?
           </motion.h2>
 
-          <div className="max-w-4xl mx-auto space-y-8">
+          <div className="max-w-5xl mx-auto">
             <motion.p
-              className="text-base text-slate-200 leading-relaxed font-medium font-inter"
+              className="text-base text-slate-200 leading-relaxed font-medium font-inter mb-12"
               variants={itemVariants}
             >
               Platelet-Rich Plasma (PRP) is prepared using a small sample of your own blood, 
@@ -78,22 +117,41 @@ export default function PRPExplanationSection() {
             </motion.p>
 
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
               variants={itemVariants}
             >
               {applications.map((app, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 bg-white/[0.03] rounded-2xl border border-white/10 hover:border-[#4041d1]/40 transition-colors duration-300">
-                  <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-3.5 h-3.5" />
-                  <div>
-                    <span className="text-white font-bold block text-sm font-raleway">{app.title}</span>
-                    <span className="text-slate-400 text-xs font-inter">{app.desc}</span>
+                <div key={i} className="flex flex-col p-6 bg-white/[0.03] rounded-[2rem] border border-white/10 hover:border-[#4041d1]/40 transition-all duration-300">
+                  <div className="flex items-start gap-3 mb-4">
+                    <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-4 h-4" />
+                    <div>
+                      <span className="text-white font-bold block text-lg font-raleway">{app.title}</span>
+                      <span className="text-slate-400 text-xs font-inter">{app.desc}</span>
+                    </div>
+                  </div>
+                  
+                  {/* NEW Treatment Link Hub */}
+                  <div className="mt-2 space-y-2 border-t border-white/5 pt-4">
+                    <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Targeted Conditions:</p>
+                    <div className="grid grid-cols-1 gap-y-2">
+                      {app.treatments.map((t, idx) => (
+                        <Link 
+                          key={idx} 
+                          href={t.href}
+                          className="text-xs text-[#8ea3ff] hover:text-white flex items-center gap-2 group/link transition-colors"
+                        >
+                          <FaArrowRight className="w-2 h-2 text-[#4041d1] group-hover/link:translate-x-1 transition-transform" />
+                          {t.name}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
             </motion.div>
 
             <motion.p
-              className="text-xs text-slate-400 italic font-inter"
+              className="text-xs text-slate-400 italic font-inter mt-10"
               variants={itemVariants}
             >
               Because PRP is derived from your own blood, it is biocompatible and tailored to your body’s natural healing processes.
@@ -111,7 +169,6 @@ export default function PRPExplanationSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.2 }}
-                // UPDATED: Increased padding, larger border, and bigger text
                 className="inline-flex items-center gap-3 px-6 py-3 bg-[#4041d1]/10 border border-[#4041d1]/40 rounded-full shadow-[0_0_15px_rgba(64,65,209,0.25)] backdrop-blur-md"
               >
                 <span className="flex h-2 w-2 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_8px_#4041d1]" />
@@ -145,7 +202,6 @@ export default function PRPExplanationSection() {
                   <div
                     className={`p-6 rounded-[2rem] border transition-all duration-300 cursor-pointer h-full flex flex-col ${
                       isActive
-                        // BRAND COLOR LOCK: Active state border uses Brand Blue
                         ? "border-[#4041d1] bg-white shadow-xl shadow-[#4041d1]/20 scale-105 z-20"
                         : "border-white/10 bg-white/[0.04] opacity-70 hover:opacity-100"
                     }`}
