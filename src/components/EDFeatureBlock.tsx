@@ -18,8 +18,8 @@ export default function EDFeatureBlock() {
   };
 
   return (
-    {/* ADJUSTED PADDING: pt-12 pulls the text up so it peeks above the fold */}
     <section className="pt-12 pb-24 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
+      {/* ADJUSTED PADDING: pt-12 pulls the text up so it peeks above the fold */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
@@ -82,7 +82,6 @@ export default function EDFeatureBlock() {
                 </div>
               </div>
               
-              {/* FIXED QUOTATION MARKS HERE */}
               <blockquote className="text-slate-600 italic font-inter text-sm md:text-base leading-relaxed mb-8 border-l-4 border-[#4041d1]/20 pl-6">
                 &ldquo;ED is often a vascular or metabolic issue that requires a medical perspective, not just a pill. Our goal is to restore natural function and confidence through evidence-based regenerative care.&rdquo;
               </blockquote>
