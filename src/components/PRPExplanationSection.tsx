@@ -36,44 +36,61 @@ export default function PRPExplanationSection() {
     { number: 4, icon: FaStar, title: "Injection & Healing", description: "PRP is injected into the target area to stimulate natural repair and regeneration." },
   ];
 
-  // UPDATED: Applications now include deep links to high-value treatments
   const applications = [
     { 
       title: "Sexual Wellness", 
-      desc: "Supports tissue health and blood flow.",
-      treatments: [
+      desc: "Restoring function and sensitivity.",
+      conditions: [
         { name: "Erectile Dysfunction", href: `${prefix}/erectile-dysfunction` },
-        { name: "P-Shot (Priapus Shot)", href: `${prefix}/p-shot` },
         { name: "Peyronie's Disease", href: `${prefix}/peyronies-disease` },
-        { name: "O-Shot (Women's Health)", href: `${prefix}/o-shot` },
+        { name: "Premature Ejaculation", href: `${prefix}/premature-ejaculation` },
+      ],
+      treatments: [
+        { name: "P-Shot", href: `${prefix}/p-shot` },
+        { name: "O-Shot", href: `${prefix}/o-shot` },
         { name: "Shockwave Therapy", href: `${prefix}/shockwave-therapy-erectile-dysfunction` }
       ]
     },
     { 
       title: "Hair Restoration", 
-      desc: "Supports scalp health and follicle density.",
+      desc: "Targeting follicle health.",
+      conditions: [
+        { name: "Male Pattern Baldness", href: `${prefix}/hair-restoration` },
+        { name: "Thinning Hair", href: `${prefix}/hair-restoration` },
+        { name: "Scalp Inflammation", href: `${prefix}/hair-restoration` }
+      ],
       treatments: [
         { name: "PRP Hair Therapy", href: `${prefix}/hair-restoration` },
-        { name: "Thinning Hair Treatment", href: `${prefix}/hair-restoration` },
-        { name: "Exosome Therapy", href: `${prefix}/hair-restoration` }
+        { name: "Exosome Therapy", href: `${prefix}/hair-restoration` },
+        { name: "Mesotherapy", href: `${prefix}/hair-restoration` }
       ]
     },
     { 
       title: "Joint & Soft Tissue", 
-      desc: "Aids recovery and reduces discomfort.",
+      desc: "Managing pain and recovery.",
+      conditions: [
+        { name: "Osteoarthritis", href: `${prefix}/joint-injections` },
+        { name: "Tennis/Golfer's Elbow", href: `${prefix}/joint-injections` },
+        { name: "Sports Injuries", href: `${prefix}/joint-injections` }
+      ],
       treatments: [
-        { name: "Osteoarthritis Injections", href: `${prefix}/joint-injections` },
-        { name: "Tennis Elbow (PRP)", href: `${prefix}/joint-injections` },
-        { name: "Sports Injury Recovery", href: `${prefix}/joint-injections` }
+        { name: "Joint PRP Injections", href: `${prefix}/joint-injections` },
+        { name: "Steroid Therapy", href: `${prefix}/joint-injections` },
+        { name: "Ostenil Injections", href: `${prefix}/joint-injections` }
       ]
     },
     { 
       title: "Facial Aesthetics", 
-      desc: "Improves skin quality and collagen.",
+      desc: "Natural skin rejuvenation.",
+      conditions: [
+        { name: "Fine Lines & Wrinkles", href: `${prefix}/facial-aesthetics` },
+        { name: "Acne Scarring", href: `${prefix}/facial-aesthetics` },
+        { name: "Skin Laxity", href: `${prefix}/facial-aesthetics` }
+      ],
       treatments: [
         { name: "Vampire Facial", href: `${prefix}/facial-aesthetics` },
         { name: "Polynucleotides", href: `${prefix}/facial-aesthetics` },
-        { name: "Natural Rejuvenation", href: `${prefix}/facial-aesthetics` }
+        { name: "Botox & Fillers", href: `${prefix}/facial-aesthetics` }
       ]
     },
   ];
@@ -106,23 +123,21 @@ export default function PRPExplanationSection() {
             What is Platelet-Rich Plasma?
           </motion.h2>
 
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <motion.p
               className="text-base text-slate-200 leading-relaxed font-medium font-inter mb-12"
               variants={itemVariants}
             >
-              Platelet-Rich Plasma (PRP) is prepared using a small sample of your own blood, 
-              carefully processed to concentrate platelets, growth factors, and healing proteins. 
-              These components play a key role in supporting tissue repair and collagen production.
+              PRP is prepared using a small sample of your own blood, carefully processed to concentrate platelets and growth factors to support natural tissue repair.
             </motion.p>
 
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-left"
               variants={itemVariants}
             >
               {applications.map((app, i) => (
                 <div key={i} className="flex flex-col p-6 bg-white/[0.03] rounded-[2rem] border border-white/10 hover:border-[#4041d1]/40 transition-all duration-300">
-                  <div className="flex items-start gap-3 mb-4">
+                  <div className="flex items-start gap-3 mb-6">
                     <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-4 h-4" />
                     <div>
                       <span className="text-white font-bold block text-lg font-raleway">{app.title}</span>
@@ -130,36 +145,40 @@ export default function PRPExplanationSection() {
                     </div>
                   </div>
                   
-                  {/* NEW Treatment Link Hub */}
-                  <div className="mt-2 space-y-2 border-t border-white/5 pt-4">
-                    <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Targeted Conditions:</p>
-                    <div className="grid grid-cols-1 gap-y-2">
-                      {app.treatments.map((t, idx) => (
-                        <Link 
-                          key={idx} 
-                          href={t.href}
-                          className="text-xs text-[#8ea3ff] hover:text-white flex items-center gap-2 group/link transition-colors"
-                        >
-                          <FaArrowRight className="w-2 h-2 text-[#4041d1] group-hover/link:translate-x-1 transition-transform" />
-                          {t.name}
-                        </Link>
-                      ))}
+                  <div className="grid grid-cols-2 gap-4 border-t border-white/5 pt-5">
+                    {/* COLUMN 1: CONDITIONS */}
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Conditions</p>
+                      <div className="space-y-2">
+                        {app.conditions.map((c, idx) => (
+                          <Link key={idx} href={c.href} className="text-[11px] text-[#8ea3ff] hover:text-white flex items-center gap-2 group/link transition-colors leading-tight">
+                            <FaArrowRight className="w-1.5 h-1.5 text-[#4041d1]/60 group-hover/link:translate-x-1 transition-transform" />
+                            {c.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* COLUMN 2: TREATMENTS */}
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Treatments</p>
+                      <div className="space-y-2">
+                        {app.treatments.map((t, idx) => (
+                          <Link key={idx} href={t.href} className="text-[11px] text-slate-300 hover:text-white flex items-center gap-2 group/link transition-colors leading-tight">
+                            <FaArrowRight className="w-1.5 h-1.5 text-[#4041d1]/60 group-hover/link:translate-x-1 transition-transform" />
+                            {t.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </motion.div>
-
-            <motion.p
-              className="text-xs text-slate-400 italic font-inter mt-10"
-              variants={itemVariants}
-            >
-              Because PRP is derived from your own blood, it is biocompatible and tailored to your body’s natural healing processes.
-            </motion.p>
           </div>
         </motion.div>
 
-        {/* Process Steps */}
+        {/* Process Steps Section (Kept for the visual flow) */}
         <div className="max-w-6xl mx-auto mt-16 relative">
           <div className="text-center mb-10">
             <AnimatePresence mode="wait">
