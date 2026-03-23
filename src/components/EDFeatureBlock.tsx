@@ -18,8 +18,8 @@ export default function EDFeatureBlock() {
   };
 
   return (
-    <section className="pt-12 pb-24 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
-      {/* ADJUSTED PADDING: pt-12 pulls the text up so it peeks above the fold */}
+    {/* ADJUSTED PADDING: pt-6 pulls the headline up to break the fold */}
+    <section className="pt-6 pb-24 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
@@ -31,7 +31,7 @@ export default function EDFeatureBlock() {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-[#4041d1]/20 rounded-lg text-[#4041d1] text-[10px] font-bold uppercase tracking-widest font-inter shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-[#4041d1]/20 rounded-lg text-[#4041d1] text-[10px] font-bold uppercase tracking-widest font-inter shadow-sm mt-4">
                 <FaShieldAlt className="w-3 h-3" /> Private & Confidential
               </div>
               
