@@ -49,8 +49,8 @@ export default function Hero() {
     }),
   };
 
+  // ADJUSTED HEIGHT: 82vh to let the ED block peek above the fold
   return (
-    {/* ADJUSTED HEIGHT: 82vh to let the ED block peek above the fold */}
     <div className="relative min-h-[90vh] md:min-h-[82vh] lg:h-[82vh] overflow-hidden flex items-center justify-center">
       {/* Background Section */}
       <div className="absolute inset-0 z-0">
