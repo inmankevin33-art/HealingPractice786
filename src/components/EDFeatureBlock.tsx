@@ -17,8 +17,8 @@ export default function EDFeatureBlock() {
     if (section) section.scrollIntoView({ behavior: "smooth" });
   };
 
+  // ADJUSTED PADDING: pt-6 pulls the headline up to break the fold
   return (
-    {/* ADJUSTED PADDING: pt-6 pulls the headline up to break the fold */}
     <section className="pt-6 pb-24 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
