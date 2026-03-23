@@ -18,7 +18,8 @@ export default function EDFeatureBlock() {
   };
 
   return (
-    <section className="py-24 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
+    {/* ADJUSTED PADDING: pt-12 pulls the text up so it peeks above the fold */}
+    <section className="pt-12 pb-24 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
@@ -80,9 +81,12 @@ export default function EDFeatureBlock() {
                   <p className="text-[11px] text-slate-500 font-bold uppercase tracking-wider font-inter mt-1">Medical Director • GMC 6083294</p>
                 </div>
               </div>
+              
+              {/* FIXED QUOTATION MARKS HERE */}
               <blockquote className="text-slate-600 italic font-inter text-sm md:text-base leading-relaxed mb-8 border-l-4 border-[#4041d1]/20 pl-6">
-                "ED is often a vascular or metabolic issue that requires a medical perspective, not just a pill. Our goal is to restore natural function and confidence through evidence-based regenerative care."
+                &ldquo;ED is often a vascular or metabolic issue that requires a medical perspective, not just a pill. Our goal is to restore natural function and confidence through evidence-based regenerative care.&rdquo;
               </blockquote>
+              
               <div className="flex items-center gap-3 text-[10px] font-bold text-[#4041d1] uppercase tracking-widest font-inter bg-blue-50/50 p-3 rounded-xl border border-blue-100/50">
                 <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_5px_rgba(34,197,94,0.5)]" /> 
                 Now accepting private patients
