@@ -10,11 +10,15 @@ import {
   FaGoogle, 
   FaStar, 
   FaLock,
-  FaArrowRight 
+  FaArrowRight,
+  FaClipboardList // <-- Added for the Assessment link
 } from "react-icons/fa";
+import OnlineAssessmentModal from "./OnlineAssessmentModal"; // <-- Imported Modal
 
 export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false); // <-- Modal State
+
   const pathname = usePathname();
   const isBirmingham = pathname?.startsWith("/birmingham");
   const prefix = isBirmingham ? "/birmingham" : "";
@@ -88,7 +92,7 @@ export default function Hero() {
           Doctor-Led Intimate Health & <br /> Regenerative Treatments
         </motion.h1>
 
-        {/* NEW Combined Description & Sub-headline - Forced Break & Expanded Width */}
+        {/* Combined Description & Sub-headline */}
         <motion.h2 
           custom={3}
           initial="hidden"
@@ -125,7 +129,7 @@ export default function Hero() {
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={fadeUpVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6" // <-- Added mb-6 to create space for the link below
         >
           <button 
             onClick={handleAction}
@@ -141,6 +145,24 @@ export default function Hero() {
             Explore ED Treatment <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
           </Link>
         </motion.div>
+
+        {/* --- NEW STACKED ASSESSMENT LINK --- */}
+        <motion.div
+          custom={5}
+          initial="hidden"
+          animate={isLoaded ? "visible" : "hidden"}
+          variants={fadeUpVariants}
+          className="text-center"
+        >
+          <button
+            onClick={() => setIsAssessmentOpen(true)}
+            className="inline-flex items-center gap-2 text-slate-300 text-sm font-medium font-inter hover:text-white transition-colors cursor-pointer group"
+          >
+            <FaClipboardList className="text-slate-400 group-hover:text-[#4041d1] transition-colors" />
+            Not sure where to start? <span className="underline decoration-slate-500 underline-offset-4 group-hover:decoration-white transition-colors">Take our 2-minute clinical assessment.</span>
+          </button>
+        </motion.div>
+
       </div>
 
       {/* --- HERO TRUST BADGES (FULLY EXPANDED TO MATCH YOUR ORIGINAL) --- */}
@@ -210,6 +232,13 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* --- THE HIDDEN MODAL COMPONENT --- */}
+      <OnlineAssessmentModal 
+        isOpen={isAssessmentOpen} 
+        onClose={() => setIsAssessmentOpen(false)} 
+      />
+
     </div>
   );
 }
