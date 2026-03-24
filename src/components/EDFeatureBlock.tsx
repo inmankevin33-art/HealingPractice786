@@ -83,7 +83,7 @@ export default function EDFeatureBlock() {
               </div>
               
               <blockquote className="text-slate-600 italic font-inter text-sm md:text-base leading-relaxed mb-8 border-l-4 border-[#4041d1]/20 pl-6">
-                &ldquo;ED is often a vascular or metabolic issue that requires a medical perspective, not just a pill. Our goal is to restore natural function and confidence through evidence-based regenerative care.&rdquo;
+                &ldquo;Erectile dysfunction is often linked to vascular, metabolic, hormonal, or lifestyle factors. Our aim is to assess the wider picture and create a treatment plan tailored to the individual.&rdquo;
               </blockquote>
               
               <div className="flex items-center gap-3 text-[10px] font-bold text-[#4041d1] uppercase tracking-widest font-inter bg-blue-50/50 p-3 rounded-xl border border-blue-100/50">
