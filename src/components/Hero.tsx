@@ -88,7 +88,7 @@ export default function Hero() {
           Doctor-Led Intimate Health & <br /> Regenerative Treatments
         </motion.h1>
 
-       {/* NEW Combined Description & Sub-headline - Larger Font, Reordered & BOLD Links */}
+        {/* NEW Combined Description & Sub-headline - ED Added & Linked */}
         <motion.h2 
           custom={3}
           initial="hidden"
@@ -97,6 +97,10 @@ export default function Hero() {
           className="mt-2 text-lg md:text-xl font-medium font-raleway text-blue-100 leading-relaxed max-w-3xl mx-auto mb-10"
         >
           Discreet, private care and evidence-based treatment plans for{" "}
+          <Link href={`${prefix}/erectile-dysfunction`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+            erectile dysfunction
+          </Link>
+          {", "}
           <Link href={`${prefix}/sexual-rejuvenation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
             sexual wellness
           </Link>
