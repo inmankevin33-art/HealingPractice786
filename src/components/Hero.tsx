@@ -51,12 +51,12 @@ export default function Hero() {
   };
 
   return (
-    {/* LAYOUT FIXES APPLIED HERE: 
-      1. mt-0 pt-0 w-full prevents margin collapse (fixes the white gap).
-      2. min-h-[calc(100vh-8rem)] ensures it's exactly the screen height MINUS the header and ED peek space. 
-    */}
     <div className="relative w-full mt-0 pt-0 min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-8rem)] overflow-hidden flex flex-col items-center justify-center bg-[#0A1128]">
-      
+      {/* LAYOUT FIXES APPLIED HERE: 
+        1. mt-0 pt-0 w-full prevents margin collapse (fixes the white gap).
+        2. min-h-[calc(100vh-8rem)] ensures it's exactly the screen height MINUS the header and ED peek space. 
+      */}
+
       {/* Background Section */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.webp')" }}></div>
