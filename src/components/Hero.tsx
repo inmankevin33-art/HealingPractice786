@@ -20,6 +20,9 @@ export default function Hero() {
   const pathname = usePathname();
   const isBirmingham = pathname?.startsWith("/birmingham");
   const prefix = isBirmingham ? "/birmingham" : "";
+  
+  // --- DYNAMIC LOCATION TEXT ---
+  const locationSuffix = isBirmingham ? "in Birmingham" : "in St Albans";
 
   useEffect(() => {
     setIsLoaded(true);
@@ -74,6 +77,7 @@ export default function Hero() {
             : "St Albans • Harpenden • Luton • London"}
         </motion.div>
 
+        {/* --- DYNAMIC H1 HEADING --- */}
         <motion.h1 
           custom={2}
           initial="hidden"
@@ -81,7 +85,7 @@ export default function Hero() {
           variants={fadeUpVariants}
           className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
         >
-          Doctor-Led Intimate Health & <br /> Regenerative Treatments
+          Doctor-Led Intimate Health & <br /> Regenerative Treatments {locationSuffix}
         </motion.h1>
 
         <motion.h2 
