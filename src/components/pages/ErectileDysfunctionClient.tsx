@@ -20,12 +20,15 @@ import {
   FaGoogle,
   FaStar,
   FaLock,
-  FaChevronDown 
+  FaChevronDown,
+  FaHeartbeat,
+  FaUserMd
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import TrustReviews from "@/components/TrustReviews";
+import OnlineAssessmentModal from "@/components/OnlineAssessmentModal"; // <-- IMPORTED MODAL DIRECTLY
 
 // --- INTERFACE FOR DYNAMIC PROPS ---
 type FaqType = {
@@ -51,6 +54,7 @@ export default function ErectileDysfunctionClient({
   const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showAllFaqs, setShowAllFaqs] = useState(false); 
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false); // <-- ADDED MODAL STATE
 
   const isBirmingham = locationName === "Birmingham";
 
@@ -67,11 +71,8 @@ export default function ErectileDysfunctionClient({
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    // --- NEW GA4 CONVERSION TRACKING (Strict TypeScript Compliant) ---
     if (typeof window !== "undefined") {
-      // Safely tell TypeScript that window might have a gtag function
       const w = window as Window & { gtag?: (...args: unknown[]) => void };
-      
       if (w.gtag) {
         w.gtag("event", "generate_lead", {
           event_category: "engagement",
@@ -80,7 +81,6 @@ export default function ErectileDysfunctionClient({
         });
       }
     }
-    // -----------------------------------------------------------------
 
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
     setTimeout(() => {
@@ -97,26 +97,18 @@ export default function ErectileDysfunctionClient({
     }, 100);
   };
   
-  // --- ANIMATION VARIANTS ---
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        delay: i * 0.15,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
     }),
   };
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
   };
 
   const itemVariants = {
@@ -126,67 +118,25 @@ export default function ErectileDysfunctionClient({
 
   // --- DATA SECTIONS ---
   const symptoms = [
-    {
-      title: "Difficulty Achieving",
-      description: "Struggling to get a full erection when you want to, causing frustration.",
-      icon: FaBatteryQuarter,
-      color: "bg-rose-50 text-rose-600",
-    },
-    {
-      title: "Losing Maintenance",
-      description: "Erection becomes soft or is lost during intercourse.",
-      icon: FaHourglassEnd,
-      color: "bg-indigo-50 text-indigo-600",
-    },
-    {
-      title: "Reduced Sensation",
-      description: "Feeling less pleasure or reduced sensitivity, often linked to blood flow.",
-      icon: FaFeather,
-      color: "bg-teal-50 text-teal-600",
-    },
-    {
-      title: "Reliance on Pills",
-      description: "Needing Viagra or Cialis for confidence, and wanting a longer-term approach.",
-      icon: FaPills,
-      color: "bg-[#f0f0ff] text-[#4041d1]",
-    },
+    { title: "Difficulty Achieving", description: "Struggling to get a full erection when you want to, causing frustration.", icon: FaBatteryQuarter, color: "bg-rose-50 text-rose-600" },
+    { title: "Losing Maintenance", description: "Erection becomes soft or is lost during intercourse.", icon: FaHourglassEnd, color: "bg-indigo-50 text-indigo-600" },
+    { title: "Reduced Sensation", description: "Feeling less pleasure or reduced sensitivity, often linked to blood flow.", icon: FaFeather, color: "bg-teal-50 text-teal-600" },
+    { title: "Reliance on Pills", description: "Needing Viagra or Cialis for confidence, and wanting a longer-term approach.", icon: FaPills, color: "bg-[#f0f0ff] text-[#4041d1]" },
   ];
 
   const protocolSteps = [
-    {
-      number: 1,
-      icon: FaWaveSquare,
-      title: "Shockwave Therapy",
-      description: "Low-intensity acoustic waves may stimulate new blood vessel growth (angiogenesis) and support healthier circulation.",
-    },
-    {
-      number: 2,
-      icon: FaSyringe,
-      title: "PRP (P-Shot®)",
-      description: "Platelet-rich plasma from your own blood is injected to support tissue repair and nerve responsiveness.",
-    },
-    {
-      number: 3,
-      icon: FaDna,
-      title: "Hormone Review",
-      description: "If appropriate, we review blood tests (including testosterone) to ensure contributing factors are addressed.",
-    },
-    {
-      number: 4,
-      icon: FaCheckCircle,
-      title: "Recovery & Restoration",
-      description: "Regeneration takes time. Many men notice gradual improvement over weeks as tissue health returns.",
-    },
+    { number: 1, icon: FaWaveSquare, title: "Shockwave Therapy", description: "Low-intensity acoustic waves may stimulate new blood vessel growth (angiogenesis) and support healthier circulation." },
+    { number: 2, icon: FaSyringe, title: "PRP (P-Shot®)", description: "Platelet-rich plasma from your own blood is injected to support tissue repair and nerve responsiveness." },
+    { number: 3, icon: FaDna, title: "Hormone Review", description: "If appropriate, we review blood tests (including testosterone) to ensure contributing factors are addressed." },
+    { number: 4, icon: FaCheckCircle, title: "Recovery & Restoration", description: "Regeneration takes time. Many men notice gradual improvement over weeks as tissue health returns." },
   ];
 
-  // Slice FAQs based on state
   const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   return (
     <>
       {/* --- HERO SECTION --- */}
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
-        {/* Background Section */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
@@ -197,73 +147,48 @@ export default function ErectileDysfunctionClient({
           />
         </div>
 
-        {/* Main Content */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
           
-          {/* Top Sleek Badge */}
-          <motion.div 
-            custom={0}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
-          >
+          <motion.div custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants} className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu">
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Doctor-Led Private Clinic</span>
           </motion.div>
 
-          {/* Headline */}
-          <motion.h1 
-            custom={1}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
-          >
+          <motion.h1 custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants} className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight">
             Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {locationName}
           </motion.h1>
 
-          {/* Simplified Description */}
-          <motion.p 
-            custom={2}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="mt-2 text-base md:text-xl text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
-          >
+          <motion.p custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants} className="mt-2 text-base md:text-xl text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium">
             A discreet, non-judgemental approach to restoring natural function, performance, and confidence.
           </motion.p>
 
-          {/* CTA Button */}
-          <motion.div 
-            custom={3}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
+          {/* DUAL CTA BUTTONS */}
+          <motion.div custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            {/* NEW ASSESSMENT BUTTON */}
+            <button 
+              onClick={() => setIsAssessmentOpen(true)}
+              className="px-6 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
+            >
+               Take Free Online Assessment
+            </button>
+
+            {/* EXISTING BOOK BUTTON */}
             <button 
               onClick={handleAction}
-              className="px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+              className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1]/80 hover:bg-[#4041d1] backdrop-blur-md text-white border border-white/20 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
             >
               <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
           </motion.div>
 
-          {/* LOCATION BADGE (Sleek Style) */}
-          <motion.div 
-            custom={4}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1]/10 text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter border border-white/10 backdrop-blur-sm"
-          >
+          <motion.div custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants} className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1]/10 text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter border border-white/10 backdrop-blur-sm">
              <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
              <span>Serving: {servingAreas}</span>
           </motion.div>
 
         </div>
 
-        {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
+        {/* --- HERO TRUST BADGES --- */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
@@ -518,7 +443,6 @@ export default function ErectileDysfunctionClient({
       <section className="py-24 bg-white font-inter">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
               What PRP & Shockwave Therapy Can — and Cannot — Do
@@ -536,10 +460,8 @@ export default function ErectileDysfunctionClient({
             </p>
           </div>
 
-          {/* TWO-COLUMN GRID: Benefits vs. Limitations */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             
-            {/* COLUMN 1: What it aims to support */}
             <div className="bg-blue-50/50 p-8 rounded-3xl border border-blue-100">
               <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
                 <span className="w-2 h-8 bg-[#4041d1] rounded-full block"></span>
@@ -568,7 +490,6 @@ export default function ErectileDysfunctionClient({
               </div>
             </div>
 
-            {/* COLUMN 2: Important Limitations */}
             <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
               <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
                 <span className="w-2 h-8 bg-slate-400 rounded-full block"></span>
@@ -582,7 +503,6 @@ export default function ErectileDysfunctionClient({
                   "A medical consultation is essential to assess suitability and identify contributing factors.",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    {/* Grey Checkmark for Neutral/Cautionary items */}
                     <div className="mt-1 shrink-0 text-slate-400">
                        <FaCheckCircle className="text-slate-400" /> 
                     </div>
@@ -600,7 +520,6 @@ export default function ErectileDysfunctionClient({
             </div>
           </div>
 
-          {/* LINK TO P-SHOT PAGE (CTA Box) */}
           <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
@@ -623,11 +542,10 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- DOCTOR & PRIVACY SECTION (Text-Only + 3 Buttons) --- */}
+      {/* --- DOCTOR & PRIVACY SECTION --- */}
       <section className="py-24 bg-slate-50 font-inter">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
-          {/* Badge & Heading */}
           <div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">
             Patient Privacy Priority
           </div>
@@ -635,7 +553,6 @@ export default function ErectileDysfunctionClient({
             Discreet, Private & Professional
           </h3>
 
-          {/* New Text Content */}
           <div className="prose prose-lg prose-slate mx-auto mb-12">
             <p className="text-slate-600 font-inter text-lg leading-relaxed mb-6">
               We understand that discussing sexual health can feel uncomfortable. 
@@ -652,7 +569,6 @@ export default function ErectileDysfunctionClient({
             </p>
           </div>
 
-          {/* Key Features Grid (Horizontal) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-left">
             {[
               "Direct access to GMC-Registered Doctors",
@@ -671,7 +587,6 @@ export default function ErectileDysfunctionClient({
             ))}
           </div>
 
-          {/* Pricing Note */}
           <div className="max-w-3xl mx-auto p-6 bg-white rounded-2xl border border-slate-200 mb-10 shadow-sm">
             <p className="text-slate-600 text-sm leading-relaxed font-medium">
               Our pricing is intentionally kept accessible compared with many
@@ -680,10 +595,7 @@ export default function ErectileDysfunctionClient({
             </p>
           </div>
 
-          {/* --- ACTION BUTTONS ROW --- */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full">
-            
-            {/* 1. Book Consultation (Main Action) */}
             <button
               onClick={handleAction}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
@@ -691,7 +603,6 @@ export default function ErectileDysfunctionClient({
               <FaEnvelope className="w-4 h-4" /> Book Consultation
             </button>
 
-            {/* 2. Prices Link (Logic: Checks if Birmingham) */}
             <Link
               href={isBirmingham ? "/birmingham/prices" : "/prices"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
@@ -699,14 +610,12 @@ export default function ErectileDysfunctionClient({
               View Treatment Prices
             </Link>
             
-            {/* 3. FAQ Link (Logic: Checks if Birmingham) */}
             <Link
               href={isBirmingham ? "/birmingham/faq" : "/faq"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
             >
               View Clinic FAQs
             </Link>
-            
           </div>
 
         </div>
@@ -761,7 +670,6 @@ export default function ErectileDysfunctionClient({
             ))}
           </div>
 
-          {/* --- TOGGLE ALL FAQS BUTTON --- */}
           {faqs.length > 5 && (
             <div className="mt-8 text-center">
               <button
@@ -773,7 +681,6 @@ export default function ErectileDysfunctionClient({
               </button>
             </div>
           )}
-
         </div>
       </section>
 
@@ -793,6 +700,12 @@ export default function ErectileDysfunctionClient({
       <LocationSection /> 
 
       <Footer />
+
+      {/* --- THE HIDDEN MODAL COMPONENT --- */}
+      <OnlineAssessmentModal 
+        isOpen={isAssessmentOpen} 
+        onClose={() => setIsAssessmentOpen(false)} 
+      />
     </>
   );
 }
