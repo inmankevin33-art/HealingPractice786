@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaArrowRight, FaUserMd, FaShieldAlt } from "react-icons/fa";
+import { FaArrowRight, FaUserMd } from "react-icons/fa";
 
 export default function EDFeatureBlock() {
   const pathname = usePathname();
@@ -31,11 +31,9 @@ export default function EDFeatureBlock() {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-[#4041d1]/20 rounded-lg text-[#4041d1] text-[10px] font-bold uppercase tracking-widest font-inter shadow-sm mt-4">
-                <FaShieldAlt className="w-3 h-3" /> Private & Confidential
-              </div>
               
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-slate-900 leading-tight tracking-tight">
+              {/* HEADLINE MOVED TO TOP FOR HERO "PEEK" EFFECT */}
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-raleway font-bold text-slate-900 leading-tight tracking-tight mt-4">
                 Private Doctor-Led Help for Erectile Dysfunction
               </h2>
               
