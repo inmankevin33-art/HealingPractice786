@@ -49,7 +49,7 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[78vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-center bg-[#0A1128]">
+    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-center bg-[#0A1128]">
       {/* LAYOUT FIXES APPLIED: 
         - h-[85vh] lg:h-[78vh] explicitly shortens the hero so the next section peeks up.
         - flex flex-col items-center justify-center naturally centers the content.
