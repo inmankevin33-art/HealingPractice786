@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import EDFeatureBlock from "@/components/EDFeatureBlock"; // <-- IMPORTED ED FEATURE BLOCK
+import EDFeatureBlock from "@/components/EDFeatureBlock";
 import ServiceOverview from "@/components/ServiceOverview";
 import PRPExplanationSection from "@/components/PRPExplanationSection";
 import DynamicFAQ from "@/components/DynamicFAQ";
@@ -13,7 +13,6 @@ import TrustReviews from "@/components/TrustReviews";
 
 // --- SEO OPTIMISATION ---
 export const metadata: Metadata = {
-  // Title reduced to 57 characters to prevent truncation!
   title: {
     absolute: "Doctor-Led PRP, P-Shot & ED Clinic St Albans | Healing-PRP",
   },
@@ -27,7 +26,7 @@ export const metadata: Metadata = {
     "Private medical clinic St Albans",
     "Regenerative Medicine UK",
     
-    // --- MEN'S HEALTH, ED, PE & PEYRONIE'S (Primary Focus) ---
+    // --- MEN'S HEALTH, ED, PE & PEYRONIE'S ---
     "Erectile Dysfunction Treatment St Albans",
     "ED clinic Hertfordshire",
     "Erectile dysfunction help Harpenden",
@@ -56,6 +55,8 @@ export const metadata: Metadata = {
     "Arthritis injections Berkhamsted",
     "Sports injury clinic Watford",
     "PRP for joint pain St Albans",
+    "HA joint injections Hertfordshire",
+    "Ostenil injections St Albans",
     
     // --- SKIN & AESTHETICS ---
     "Vampire Facial Hertfordshire",
@@ -153,6 +154,48 @@ export default function Home() {
         "https://www.gmc-uk.org/registrants/6083294"
       ]
     },
+    // --- THE NEW MASTER HUB SERVICES ARRAY ---
+    "availableService": [
+      {
+        "@type": "MedicalTherapy",
+        "name": "Erectile Dysfunction Treatment",
+        "alternateName": "P-Shot & Shockwave Therapy",
+        "url": "https://www.healing-prp.co.uk/erectile-dysfunction",
+        "description": "Doctor-led restorative treatments for ED including Li-ESWT and PRP (P-Shot).",
+        "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Urology" }
+      },
+      {
+        "@type": "MedicalTherapy",
+        "name": "Women's Sexual Wellness",
+        "alternateName": "O-Shot",
+        "url": "https://www.healing-prp.co.uk/o-shot",
+        "description": "Regenerative PRP treatments for female sexual health and rejuvenation.",
+        "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Urology" }
+      },
+      {
+        "@type": "MedicalTherapy",
+        "name": "PRP & HA Joint Injections",
+        "alternateName": "Hyaluronic Acid & Ostenil Injections",
+        "url": "https://www.healing-prp.co.uk/joint-injections",
+        "description": "Non-surgical PRP, Hyaluronic Acid (HA), and steroid injections for arthritis and sports injuries.",
+        "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Orthopaedic" }
+      },
+      {
+        "@type": "MedicalTherapy",
+        "name": "PRP Hair Restoration",
+        "url": "https://www.healing-prp.co.uk/hair-restoration",
+        "description": "Advanced PRP and Exosome therapy to stimulate natural hair regrowth.",
+        "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Dermatology" }
+      },
+      {
+        "@type": "MedicalTherapy",
+        "name": "Facial Aesthetics",
+        "alternateName": "Vampire Facial & Polynucleotides",
+        "url": "https://www.healing-prp.co.uk/facial-aesthetics",
+        "description": "Natural skin rejuvenation using Platelet-Rich Plasma, Polynucleotides, and Botox.",
+        "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Dermatology" }
+      }
+    ],
     "priceRange": "££",
     "openingHoursSpecification": [
       {
@@ -191,24 +234,28 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* FIXED: Added flex flex-col w-full to prevent layout collapse */}
       <main className="flex flex-col w-full">
         <Hero />
         
         {/* --- INJECTED ED FEATURE BLOCK --- */}
         <EDFeatureBlock />
 
-        <ServiceOverview />
+        {/* Adding an ID here so the button below can anchor to it smoothly */}
+        <div id="treatments">
+          <ServiceOverview />
+        </div>
+        
         <PRPExplanationSection />
 
         <section className="py-12 bg-white border-t border-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
             
+            {/* Swapped "Meet Your Doctor" for "Explore All Treatments" */}
             <Link
-              href="/our-doctor"
+              href="#treatments"
               className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm bg-[#0A1128] hover:bg-slate-800 text-white rounded-xl font-bold transition-all shadow-lg active:scale-95 gap-2"
             >
-              Meet Your Doctor
+              Explore All Treatments
             </Link>
 
             <Link
