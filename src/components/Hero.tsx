@@ -88,37 +88,37 @@ export default function Hero() {
           Doctor-Led Intimate Health & <br /> Regenerative Treatments
         </motion.h1>
 
-        {/* NEW Combined Description & Sub-headline - ED Added & Linked */}
+        {/* NEW Combined Description & Sub-headline - Forced Break & Expanded Width */}
         <motion.h2 
           custom={3}
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={fadeUpVariants}
-          className="mt-2 text-lg md:text-xl font-medium font-raleway text-blue-100 leading-relaxed max-w-3xl mx-auto mb-10"
+          className="mt-2 text-lg md:text-xl font-medium font-raleway text-blue-100 leading-relaxed max-w-4xl mx-auto mb-10"
         >
-          Discreet, private care and evidence-based treatment plans for{" "}
+          Discreet, private care and evidence-based treatment plans for <br className="hidden md:block" />
           <Link href={`${prefix}/erectile-dysfunction`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            erectile dysfunction
+            Erectile dysfunction
           </Link>
           {", "}
           <Link href={`${prefix}/sexual-rejuvenation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            sexual wellness
+            Sexual wellness
           </Link>
           {", "}
           <Link href={`${prefix}/joint-injections`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            joint injections
+            Joint injections
           </Link>
           {", "}
           <Link href={`${prefix}/hair-restoration`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            hair restoration
+            Hair restoration
           </Link>
           {", and "}
           <Link href={`${prefix}/facial-aesthetics`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            facial aesthetics
+            Facial aesthetics
           </Link>
           .
         </motion.h2>
-
+        
         {/* CTA Buttons - Dual Path Strategy */}
         <motion.div 
           custom={4}
