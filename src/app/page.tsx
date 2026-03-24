@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     absolute: "Doctor-Led PRP, P-Shot & ED Clinic St Albans | Healing-PRP",
   },
   description:
-    "Doctor-led private medical clinic in St Albans. Expert doctor-led treatments for Erectile Dysfunction (ED), P-Shot®, Joint Injections, and PRP Hair Restoration.",
+    "Doctor-led private medical clinic in St Albans. Expert doctor-led treatments for Erectile Dysfunction (ED), P-Shot, Joint Injections, and PRP Hair Restoration.",
   keywords: [
     // --- CORE CLINIC & REGENERATIVE MEDICINE ---
     "PRP Clinic St Albans",
