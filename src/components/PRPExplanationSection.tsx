@@ -2,15 +2,10 @@
 
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { FaSyringe, FaSync, FaGem, FaStar, FaCheckCircle, FaArrowRight } from "react-icons/fa";
+import { FaSyringe, FaSync, FaGem, FaStar, FaCheckCircle } from "react-icons/fa";
 
 export default function PRPExplanationSection() {
   const [activeStep, setActiveStep] = useState(0);
-  const pathname = usePathname();
-  const isBirmingham = pathname?.startsWith("/birmingham");
-  const prefix = isBirmingham ? "/birmingham" : "";
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -37,62 +32,10 @@ export default function PRPExplanationSection() {
   ];
 
   const applications = [
-    { 
-      title: "Sexual Wellness", 
-      desc: "Restoring function and sensitivity.",
-      conditions: [
-        { name: "Erectile Dysfunction", href: `${prefix}/erectile-dysfunction` },
-        { name: "Peyronie's Disease", href: `${prefix}/peyronies-disease` },
-        { name: "Premature Ejaculation", href: `${prefix}/premature-ejaculation` },
-      ],
-      treatments: [
-        { name: "P-Shot", href: `${prefix}/p-shot` },
-        { name: "O-Shot", href: `${prefix}/o-shot` },
-        { name: "Shockwave Therapy", href: `${prefix}/shockwave-therapy-erectile-dysfunction` }
-      ]
-    },
-    { 
-      title: "Hair Restoration", 
-      desc: "Targeting follicle health.",
-      conditions: [
-        { name: "Male Pattern Baldness", href: `${prefix}/hair-restoration` },
-        { name: "Thinning Hair", href: `${prefix}/hair-restoration` },
-        { name: "Scalp Inflammation", href: `${prefix}/hair-restoration` }
-      ],
-      treatments: [
-        { name: "PRP Hair Therapy", href: `${prefix}/hair-restoration` },
-        { name: "Exosome Therapy", href: `${prefix}/hair-restoration` },
-        { name: "Mesotherapy", href: `${prefix}/hair-restoration` }
-      ]
-    },
-    { 
-      title: "Joint & Soft Tissue", 
-      desc: "Managing pain and recovery.",
-      conditions: [
-        { name: "Osteoarthritis", href: `${prefix}/joint-injections` },
-        { name: "Tennis/Golfer's Elbow", href: `${prefix}/joint-injections` },
-        { name: "Sports Injuries", href: `${prefix}/joint-injections` }
-      ],
-      treatments: [
-        { name: "Joint PRP Injections", href: `${prefix}/joint-injections` },
-        { name: "Steroid Therapy", href: `${prefix}/joint-injections` },
-        { name: "Ostenil Injections", href: `${prefix}/joint-injections` }
-      ]
-    },
-    { 
-      title: "Facial Aesthetics", 
-      desc: "Natural skin rejuvenation.",
-      conditions: [
-        { name: "Fine Lines & Wrinkles", href: `${prefix}/facial-aesthetics` },
-        { name: "Acne Scarring", href: `${prefix}/facial-aesthetics` },
-        { name: "Skin Laxity", href: `${prefix}/facial-aesthetics` }
-      ],
-      treatments: [
-        { name: "Vampire Facial", href: `${prefix}/facial-aesthetics` },
-        { name: "Polynucleotides", href: `${prefix}/polynucleotides` },
-        { name: "Botox & Fillers", href: `${prefix}/facial-aesthetics` }
-      ]
-    },
+    { title: "Hair Restoration", desc: "Supports scalp health and follicle density." },
+    { title: "Facial Aesthetics", desc: "Improves skin quality, texture, and collagen." },
+    { title: "Joint & Soft Tissue", desc: "Aids recovery and reduces discomfort." },
+    { title: "Sexual Wellness", desc: "Supports tissue health and blood flow." },
   ];
 
   return (
@@ -103,13 +46,14 @@ export default function PRPExplanationSection() {
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
           <motion.div
+            // BRAND COLOR LOCK: Lightened #4041d1 for contrast against dark mode
             className="inline-block px-4 py-1.5 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-[10px] font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway"
             variants={itemVariants}
           >
@@ -123,62 +67,41 @@ export default function PRPExplanationSection() {
             What is Platelet-Rich Plasma?
           </motion.h2>
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-4xl mx-auto space-y-8">
             <motion.p
-              className="text-base text-slate-200 leading-relaxed font-medium font-inter mb-12"
+              className="text-base text-slate-200 leading-relaxed font-medium font-inter"
               variants={itemVariants}
             >
-              PRP is prepared using a small sample of your own blood, carefully processed to concentrate platelets and growth factors to support natural tissue repair.
+              Platelet-Rich Plasma (PRP) is prepared using a small sample of your own blood, 
+              carefully processed to concentrate platelets, growth factors, and healing proteins. 
+              These components play a key role in supporting tissue repair and collagen production.
             </motion.p>
 
             <motion.div 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-left"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left"
               variants={itemVariants}
             >
               {applications.map((app, i) => (
-                <div key={i} className="flex flex-col p-6 bg-white/[0.03] rounded-[2rem] border border-white/10 hover:border-[#4041d1]/40 transition-all duration-300">
-                  <div className="flex items-start gap-3 mb-6">
-                    <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-4 h-4" />
-                    <div>
-                      <span className="text-white font-bold block text-lg font-raleway">{app.title}</span>
-                      <span className="text-slate-400 text-xs font-inter">{app.desc}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 border-t border-white/5 pt-5">
-                    {/* COLUMN 1: CONDITIONS */}
-                    <div>
-                      <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Conditions</p>
-                      <div className="space-y-2">
-                        {app.conditions.map((c, idx) => (
-                          <Link key={idx} href={c.href} className="text-[11px] text-[#8ea3ff] hover:text-white flex items-center gap-2 group/link transition-colors leading-tight">
-                            <FaArrowRight className="w-1.5 h-1.5 text-[#4041d1]/60 group-hover/link:translate-x-1 transition-transform" />
-                            {c.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* COLUMN 2: TREATMENTS */}
-                    <div>
-                      <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Treatments</p>
-                      <div className="space-y-2">
-                        {app.treatments.map((t, idx) => (
-                          <Link key={idx} href={t.href} className="text-[11px] text-slate-300 hover:text-white flex items-center gap-2 group/link transition-colors leading-tight">
-                            <FaArrowRight className="w-1.5 h-1.5 text-[#4041d1]/60 group-hover/link:translate-x-1 transition-transform" />
-                            {t.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
+                <div key={i} className="flex items-start gap-3 p-4 bg-white/[0.03] rounded-2xl border border-white/10 hover:border-[#4041d1]/40 transition-colors duration-300">
+                  <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-3.5 h-3.5" />
+                  <div>
+                    <span className="text-white font-bold block text-sm font-raleway">{app.title}</span>
+                    <span className="text-slate-400 text-xs font-inter">{app.desc}</span>
                   </div>
                 </div>
               ))}
             </motion.div>
+
+            <motion.p
+              className="text-xs text-slate-400 italic font-inter"
+              variants={itemVariants}
+            >
+              Because PRP is derived from your own blood, it is biocompatible and tailored to your body’s natural healing processes.
+            </motion.p>
           </div>
         </motion.div>
 
-        {/* Process Steps Section (Kept for the visual flow) */}
+        {/* Process Steps */}
         <div className="max-w-6xl mx-auto mt-16 relative">
           <div className="text-center mb-10">
             <AnimatePresence mode="wait">
@@ -188,6 +111,7 @@ export default function PRPExplanationSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.2 }}
+                // UPDATED: Increased padding, larger border, and bigger text
                 className="inline-flex items-center gap-3 px-6 py-3 bg-[#4041d1]/10 border border-[#4041d1]/40 rounded-full shadow-[0_0_15px_rgba(64,65,209,0.25)] backdrop-blur-md"
               >
                 <span className="flex h-2 w-2 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_8px_#4041d1]" />
@@ -221,6 +145,7 @@ export default function PRPExplanationSection() {
                   <div
                     className={`p-6 rounded-[2rem] border transition-all duration-300 cursor-pointer h-full flex flex-col ${
                       isActive
+                        // BRAND COLOR LOCK: Active state border uses Brand Blue
                         ? "border-[#4041d1] bg-white shadow-xl shadow-[#4041d1]/20 scale-105 z-20"
                         : "border-white/10 bg-white/[0.04] opacity-70 hover:opacity-100"
                     }`}
