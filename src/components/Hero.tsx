@@ -58,8 +58,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
-      {/* Main Content - Shifted to the lower half using pb-32 / pb-40 */}
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-32 md:pb-40">
+      {/* Main Content - Increased padding-bottom to pb-48 md:pb-56 to lift it up nicely! */}
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-48 md:pb-56">
         
         <motion.div 
           custom={1}
