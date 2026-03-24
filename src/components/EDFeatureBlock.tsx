@@ -58,7 +58,7 @@ export default function EDFeatureBlock() {
                   onClick={handleContactClick}
                   className="px-8 py-4 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-[#4041d1]/20 font-inter"
                 >
-                  Book Confidential Consultation
+                  Book Free Initial Consultation
                 </button>
               </div>
             </motion.div>
@@ -88,7 +88,7 @@ export default function EDFeatureBlock() {
               
               <div className="flex items-center gap-3 text-[10px] font-bold text-[#4041d1] uppercase tracking-widest font-inter bg-blue-50/50 p-3 rounded-xl border border-blue-100/50">
                 <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_5px_rgba(34,197,94,0.5)]" /> 
-                Now accepting private patients
+                Doctor-led assessment
               </div>
             </motion.div>
 
