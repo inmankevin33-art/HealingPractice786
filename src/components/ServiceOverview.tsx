@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaArrowRight, FaVenusMars, FaSyringe, FaRunning, FaSmile } from "react-icons/fa";
+import { FaVenusMars, FaSyringe, FaRunning, FaSmile } from "react-icons/fa";
 
 export default function ServiceOverview() {
   const pathname = usePathname();
@@ -104,7 +104,6 @@ export default function ServiceOverview() {
                   <service.icon />
                 </div>
                 
-                {/* Title is now a link */}
                 <Link href={service.link}>
                   <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 hover:text-[#4041d1] transition-colors cursor-pointer">
                     {service.title}
@@ -128,9 +127,9 @@ export default function ServiceOverview() {
                   ))}
                 </div>
                 
-                {/* View Treatments Button (Forced to Bottom via mt-auto container above) */}
-                <Link href={service.link} className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-[#4041d1] group-hover:gap-3 transition-all w-max mt-auto">
-                  View Treatments <FaArrowRight className="ml-2 w-3 h-3 transition-transform" />
+                {/* View Treatments Link (Cleaned up, no arrow) */}
+                <Link href={service.link} className="inline-block text-xs font-bold uppercase tracking-widest text-[#4041d1] hover:text-[#2a2bb8] transition-colors w-max mt-auto">
+                  View Treatments
                 </Link>
               </motion.div>
             </motion.div>
