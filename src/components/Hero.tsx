@@ -49,21 +49,17 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-center bg-[#0A1128]">
-      {/* LAYOUT FIXES APPLIED: 
-        - h-[85vh] lg:h-[78vh] explicitly shortens the hero so the next section peeks up.
-        - flex flex-col items-center justify-center naturally centers the content.
-      */}
+    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[78vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
       
-      {/* Background Section */}
+      {/* Background Section - Shifted slightly down using bg-[center_top_15%] */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.webp')" }}></div>
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden sm:block" style={{ backgroundImage: "url('/herobg.webp')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-[center_top_15%] bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.webp')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-[center_top_15%] bg-no-repeat hidden sm:block" style={{ backgroundImage: "url('/herobg.webp')" }}></div>
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
-      {/* Main Content (Added pt-12 to shift content slightly lower, pb-24 leaves room for badges) */}
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 pb-24 md:pb-28">
+      {/* Main Content - Shifted to the lower half using pb-32 / pb-40 */}
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-32 md:pb-40">
         
         <motion.div 
           custom={1}
@@ -118,7 +114,6 @@ export default function Hero() {
           .
         </motion.h2>
         
-        {/* NEW UNIFIED BUTTONS (Matches Personalised ED Page) */}
         <motion.div 
           custom={4}
           initial="hidden"
