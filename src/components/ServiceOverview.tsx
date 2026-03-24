@@ -1,4 +1,5 @@
 "use client";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -114,31 +115,24 @@ export default function ServiceOverview() {
                   {service.description}
                 </p>
 
-                {/* NEW SEO SUB-LINKS (The "Pills") */}
-                <div className="flex flex-wrap gap-2 mb-8 flex-grow">
+                {/* PREMIUM SEO SUB-LINKS (Interactive Pills) */}
+                <div className="flex flex-wrap gap-2 mb-8 mt-auto pt-4">
                   {service.subLinks.map((subLink, idx) => (
                     <Link 
                       key={idx} 
                       href={subLink.href}
-                      className="inline-flex items-center justify-center text-[10px] font-bold uppercase tracking-wider bg-slate-50 text-slate-500 px-3 py-1.5 rounded-md hover:bg-[#4041d1] hover:text-white transition-colors"
+                      className="inline-flex items-center justify-center text-[11px] font-bold uppercase tracking-wider bg-blue-50/50 border border-blue-100 text-[#4041d1] px-4 py-2 rounded-lg hover:bg-[#4041d1] hover:border-[#4041d1] hover:text-white hover:shadow-md transition-all duration-300"
                     >
                       {subLink.name}
                     </Link>
                   ))}
                 </div>
                 
-                {/* View Treatments Button */}
-                <Link href={service.link} className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-[#4041d1] group-hover:gap-3 transition-all mt-auto w-max">
+                {/* View Treatments Button (Forced to Bottom via mt-auto container above) */}
+                <Link href={service.link} className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-[#4041d1] group-hover:gap-3 transition-all w-max mt-auto">
                   View Treatments <FaArrowRight className="ml-2 w-3 h-3 transition-transform" />
                 </Link>
               </motion.div>
-
-              {/* VISUAL ENHANCEMENT: Directional Arrows between cards (Desktop) */}
-              {index < services.length - 1 && (
-                <div className="hidden lg:flex absolute -right-6 z-10 opacity-20 group-hover:opacity-100 transition-opacity">
-                   <FaArrowRight className="text-slate-400 w-5 h-5" />
-                </div>
-              )}
             </motion.div>
           ))}
         </div>
