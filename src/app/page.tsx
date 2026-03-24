@@ -84,24 +84,24 @@ export const metadata: Metadata = {
 // --- SEO RICH FAQS (St Albans Focus) ---
 const faqs = [
   {
-    question: "Do I need a GP referral for treatment at your St Albans clinic?",
-    answer: "No, a GP referral is not required. You can book a private, confidential consultation directly with Dr Syed Abdi at our St Albans clinic for any of our regenerative treatments."
+    question: "Do I need a GP referral before booking treatment?",
+    answer: "No. You can book a private, confidential consultation directly with Healing-PRP Clinics without a GP referral for erectile dysfunction treatment, intimate health concerns, PRP treatments, and other doctor-led services."
   },
   {
-    question: "Who will perform my consultation and treatment?",
-    answer: "All consultations and treatments are performed exclusively by Dr Syed Abdi, our GMC-registered Medical Director with over 10 years of clinical experience, including NHS practice at the Royal Free Hospital and advanced orthopaedic fellowships."
+    question: "Who carries out the consultation and treatment at Healing-PRP Clinics?",
+    answer: "All consultations and treatments at Healing-PRP Clinics are doctor-led and carried out by Dr Syed Abdi, GMC-registered Medical Director of the clinic."
   },
   {
-    question: "Is the P-Shot® available at the St Albans location?",
-    answer: "Yes, Dr Abdi is an officially licensed and CMA-certified provider of the P-Shot® and O-Shot®, having successfully performed over 200 of these specific regenerative procedures."
+    question: "Do you offer treatment for erectile dysfunction and men’s intimate health concerns?",
+    answer: "Yes. We provide doctor-led assessment and treatment for erectile dysfunction, Peyronie’s disease, premature ejaculation, and other men’s intimate health concerns, depending on individual suitability."
   },
   {
-    question: "How long does a PRP procedure take?",
-    answer: "Most PRP treatments, including the P-Shot and joint injections, take between 45 to 60 minutes in our St Albans clinic. This includes a thorough medical review, blood draw, premium double-spin centrifugation, and the treatment itself."
+    question: "What happens during the first consultation for erectile dysfunction or intimate health treatment?",
+    answer: "Your first consultation includes a confidential discussion about your symptoms, medical history, goals, and possible contributing factors. Where appropriate, treatment options such as PRP-based treatment, shockwave therapy, or personalised medical care will be explained."
   },
   {
-    question: "What conditions do you treat at Healing-PRP St Albans?",
-    answer: "As a strictly doctor-led clinic, we specialise in regenerative medicine. This includes erectile dysfunction (ED), Peyronie's disease, joint pain, sports injuries, and advanced facial and hair aesthetics using Platelet-Rich Plasma (PRP)."
+    question: "Is treatment at Healing-PRP Clinics confidential?",
+    answer: "Yes. Healing-PRP Clinics provides discreet, private, doctor-led care for sensitive concerns including erectile dysfunction, intimate health, PRP treatment, and related regenerative medicine services."
   }
 ];
 
