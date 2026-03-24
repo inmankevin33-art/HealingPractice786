@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import EDFeatureBlock from "@/components/EDFeatureBlock"; // <-- IMPORTED ED FEATURE BLOCK
 import ServiceOverview from "@/components/ServiceOverview";
 import PRPExplanationSection from "@/components/PRPExplanationSection";
 import DynamicFAQ from "@/components/DynamicFAQ";
 import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
-import TrustReviews from "@/components/TrustReviews";
+import TrustReviews from "@/components/TrustReviews"; // <-- Imported TrustReviews widget
 
 // --- SEO OPTIMISATION ---
 export const metadata: Metadata = {
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
     absolute: "Doctor-Led PRP, P-Shot & ED Clinic St Albans | Healing-PRP",
   },
   description:
-    "Doctor-led private medical clinic in St Albans. Expert doctor-led treatments for Erectile Dysfunction (ED), P-Shot, Joint Injections, and PRP Hair Restoration.",
+    "Doctor-led private medical clinic in St Albans. Expert doctor-led treatments for Erectile Dysfunction (ED), P-Shot®, Joint Injections, and PRP Hair Restoration.",
   keywords: [
     // --- CORE CLINIC & REGENERATIVE MEDICINE ---
     "PRP Clinic St Albans",
@@ -67,6 +66,7 @@ export const metadata: Metadata = {
     description:
       "Expert private care for Hair Restoration, Sexual Wellness & Pain Relief. Specialists in P-Shot and PRP therapy.",
     url: "https://www.healing-prp.co.uk",
+    // Type, locale, and siteName are automatically inherited from layout.tsx
     images: [
       {
         url: "/hero_img.png",
@@ -193,10 +193,6 @@ export default function Home() {
 
       <main>
         <Hero />
-        
-        {/* --- INJECTED ED FEATURE BLOCK --- */}
-        <EDFeatureBlock />
-
         <ServiceOverview />
         <PRPExplanationSection />
 
