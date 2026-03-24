@@ -54,34 +54,46 @@ export default function Hero() {
   return (
     <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
       
-      {/* Background Section - Upgraded with bottom-weighted cinematic gradient */}
+      {/* Background Section - bg-[center_15%] reveals the doctors' heads */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-cover bg-[center_15%] bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.webp')" }}></div>
         <div className="absolute inset-0 bg-cover bg-[center_15%] bg-no-repeat hidden sm:block" style={{ backgroundImage: "url('/herobg.webp')" }}></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/80 to-transparent z-10"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
-      {/* Main Content - Pushed down into the lower third */}
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 pb-20 md:pb-24">
+      {/* Main Content - pb-32 md:pb-40 pushes content lower, creating a cinematic feel */}
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-32 md:pb-40">
         
-        {/* --- DYNAMIC H1 HEADING (Moved to custom={1}) --- */}
-        <motion.h1 
+        <motion.div 
           custom={1}
+          initial="hidden"
+          animate={isLoaded ? "visible" : "hidden"}
+          variants={fadeUpVariants}
+          className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter"
+        >
+          <FaMapMarkerAlt className="inline-block mr-2 mb-0.5 text-white/70" />
+          {isBirmingham 
+            ? "Birmingham • Edgbaston • Solihull • Midlands" 
+            : "St Albans • Harpenden • Luton • London"}
+        </motion.div>
+
+        {/* --- DYNAMIC H1 HEADING --- */}
+        <motion.h1 
+          custom={2}
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={fadeUpVariants}
           className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
         >
-          Doctor-Led Intimate Health & <br className="hidden md:block" /> Regenerative Treatments {locationSuffix}
+          Doctor-Led Intimate Health & <br /> Regenerative Treatments {locationSuffix}
         </motion.h1>
 
-        {/* --- DYNAMIC H2 SUBTITLE (Moved to custom={2}) --- */}
         <motion.h2 
-          custom={2}
+          custom={3}
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={fadeUpVariants}
-          className="mt-3 text-sm md:text-lg font-medium font-inter text-blue-50/90 leading-relaxed max-w-3xl mx-auto mb-8"
+          className="mt-2 text-lg md:text-xl font-medium font-raleway text-blue-100 leading-relaxed max-w-4xl mx-auto mb-10"
         >
           Discreet, private care and evidence-based treatment plans for <br className="hidden md:block" />
           <Link href={`${prefix}/erectile-dysfunction`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
@@ -106,9 +118,9 @@ export default function Hero() {
           .
         </motion.h2>
         
-        {/* --- BUTTONS (Moved to custom={3}) --- */}
+        {/* The Exact Two Buttons: Assessment (White) + Book (Blue) */}
         <motion.div 
-          custom={3}
+          custom={4}
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={fadeUpVariants}
@@ -129,26 +141,10 @@ export default function Hero() {
           </button>
         </motion.div>
 
-        {/* --- NEW LOCATION BADGE BOTTOM STRIP (custom={4}) --- */}
-        <motion.div 
-          custom={4}
-          initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
-          variants={fadeUpVariants}
-          className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1]/20 text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter shadow-lg border border-white/10 backdrop-blur-sm"
-        >
-          <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
-          <span>
-            {isBirmingham 
-              ? "Birmingham • Edgbaston • Solihull • Midlands" 
-              : "St Albans • Harpenden • Luton • London"}
-          </span>
-        </motion.div>
-
       </div>
 
       {/* --- HERO TRUST BADGES --- */}
-      <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/95 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} z-30`}>
+      <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} z-30`}>
         <div className="px-2 py-4 max-w-7xl mx-auto">
           <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
             
