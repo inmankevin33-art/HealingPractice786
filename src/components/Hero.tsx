@@ -49,11 +49,11 @@ export default function Hero() {
   };
 
   return (
-    {/* LAYOUT FIXES APPLIED: 
-      - h-[85vh] lg:h-[78vh] explicitly shortens the hero so the next section peeks up.
-      - flex flex-col items-center justify-center naturally centers the content.
-    */}
     <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[78vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-center bg-[#0A1128]">
+      {/* LAYOUT FIXES APPLIED: 
+        - h-[85vh] lg:h-[78vh] explicitly shortens the hero so the next section peeks up.
+        - flex flex-col items-center justify-center naturally centers the content.
+      */}
       
       {/* Background Section */}
       <div className="absolute inset-0 z-0">
