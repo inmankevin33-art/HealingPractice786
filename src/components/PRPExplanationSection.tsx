@@ -2,9 +2,16 @@
 
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";
-import { FaSyringe, FaSync, FaGem, FaStar, FaCheckCircle } from "react-icons/fa";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaSyringe, FaSync, FaGem, FaStar, FaCheckCircle, FaArrowRight } from "react-icons/fa";
 
 export default function PRPExplanationSection() {
+  // DYNAMIC ROUTING LOGIC
+  const pathname = usePathname();
+  const isBirmingham = pathname?.startsWith("/birmingham");
+  const prefix = isBirmingham ? "/birmingham" : "";
+
   const [activeStep, setActiveStep] = useState(0);
 
   const containerVariants: Variants = {
@@ -31,11 +38,12 @@ export default function PRPExplanationSection() {
     { number: 4, icon: FaStar, title: "Injection & Healing", description: "PRP is injected into the target area to stimulate natural repair and regeneration." },
   ];
 
+  // UPDATED WITH DIRECT LINKS
   const applications = [
-    { title: "Hair Restoration", desc: "Supports scalp health and follicle density." },
-    { title: "Facial Aesthetics", desc: "Improves skin quality, texture, and collagen." },
-    { title: "Joint & Soft Tissue", desc: "Aids recovery and reduces discomfort." },
-    { title: "Sexual Wellness", desc: "Supports tissue health and blood flow." },
+    { title: "Hair Restoration", desc: "Supports scalp health and follicle density.", href: `${prefix}/hair-restoration` },
+    { title: "Facial Aesthetics", desc: "Improves skin quality, texture, and collagen.", href: `${prefix}/facial-aesthetics` },
+    { title: "Joint & Soft Tissue", desc: "Aids recovery and reduces discomfort.", href: `${prefix}/joint-injections` },
+    { title: "Sexual Wellness", desc: "Supports tissue health and blood flow.", href: `${prefix}/erectile-dysfunction` }, // Routes to ED as primary sexual wellness funnel
   ];
 
   return (
@@ -53,7 +61,6 @@ export default function PRPExplanationSection() {
           variants={containerVariants}
         >
           <motion.div
-            // BRAND COLOR LOCK: Lightened #4041d1 for contrast against dark mode
             className="inline-block px-4 py-1.5 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-[10px] font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway"
             variants={itemVariants}
           >
@@ -77,18 +84,25 @@ export default function PRPExplanationSection() {
               These components play a key role in supporting tissue repair and collagen production.
             </motion.p>
 
+            {/* INTERACTIVE APPLICATION CARDS */}
             <motion.div 
               className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left"
               variants={itemVariants}
             >
               {applications.map((app, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 bg-white/[0.03] rounded-2xl border border-white/10 hover:border-[#4041d1]/40 transition-colors duration-300">
-                  <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-3.5 h-3.5" />
-                  <div>
-                    <span className="text-white font-bold block text-sm font-raleway">{app.title}</span>
-                    <span className="text-slate-400 text-xs font-inter">{app.desc}</span>
+                <Link href={app.href} key={i}>
+                  <div className="group flex items-center justify-between p-5 bg-white/[0.03] rounded-2xl border border-white/10 hover:border-[#4041d1]/60 hover:bg-[#4041d1]/10 hover:shadow-[0_0_20px_rgba(64,65,209,0.15)] transition-all duration-300 cursor-pointer overflow-hidden">
+                    <div className="flex items-start gap-3">
+                      <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-3.5 h-3.5" />
+                      <div>
+                        <span className="text-white font-bold block text-sm font-raleway group-hover:text-[#8ea3ff] transition-colors">{app.title}</span>
+                        <span className="text-slate-400 text-xs font-inter">{app.desc}</span>
+                      </div>
+                    </div>
+                    {/* Sliding Arrow for Interaction Cue */}
+                    <FaArrowRight className="text-[#8ea3ff] w-4 h-4 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shrink-0 ml-4" />
                   </div>
-                </div>
+                </Link>
               ))}
             </motion.div>
 
@@ -111,7 +125,6 @@ export default function PRPExplanationSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.2 }}
-                // UPDATED: Increased padding, larger border, and bigger text
                 className="inline-flex items-center gap-3 px-6 py-3 bg-[#4041d1]/10 border border-[#4041d1]/40 rounded-full shadow-[0_0_15px_rgba(64,65,209,0.25)] backdrop-blur-md"
               >
                 <span className="flex h-2 w-2 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_8px_#4041d1]" />
@@ -145,7 +158,6 @@ export default function PRPExplanationSection() {
                   <div
                     className={`p-6 rounded-[2rem] border transition-all duration-300 cursor-pointer h-full flex flex-col ${
                       isActive
-                        // BRAND COLOR LOCK: Active state border uses Brand Blue
                         ? "border-[#4041d1] bg-white shadow-xl shadow-[#4041d1]/20 scale-105 z-20"
                         : "border-white/10 bg-white/[0.04] opacity-70 hover:opacity-100"
                     }`}
