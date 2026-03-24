@@ -38,12 +38,12 @@ export default function PRPExplanationSection() {
     { number: 4, icon: FaStar, title: "Injection & Healing", description: "PRP is injected into the target area to stimulate natural repair and regeneration." },
   ];
 
-  // UPDATED WITH DIRECT LINKS
+  // REORDERED & RENAMED APPLICATION CARDS
   const applications = [
+    { title: "Men's Health", desc: "Supports tissue health and optimized blood flow.", href: `${prefix}/erectile-dysfunction` },
+    { title: "Women's Health", desc: "Enhances sensitivity and natural tissue regeneration.", href: `${prefix}/o-shot` },
+    { title: "Joint Injections", desc: "Aids recovery and reduces joint discomfort.", href: `${prefix}/joint-injections` },
     { title: "Hair Restoration", desc: "Supports scalp health and follicle density.", href: `${prefix}/hair-restoration` },
-    { title: "Facial Aesthetics", desc: "Improves skin quality, texture, and collagen.", href: `${prefix}/facial-aesthetics` },
-    { title: "Joint & Soft Tissue", desc: "Aids recovery and reduces discomfort.", href: `${prefix}/joint-injections` },
-    { title: "Sexual Wellness", desc: "Supports tissue health and blood flow.", href: `${prefix}/erectile-dysfunction` }, // Routes to ED as primary sexual wellness funnel
   ];
 
   return (
@@ -91,7 +91,7 @@ export default function PRPExplanationSection() {
             >
               {applications.map((app, i) => (
                 <Link href={app.href} key={i}>
-                  <div className="group flex items-center justify-between p-5 bg-white/[0.03] rounded-2xl border border-white/10 hover:border-[#4041d1]/60 hover:bg-[#4041d1]/10 hover:shadow-[0_0_20px_rgba(64,65,209,0.15)] transition-all duration-300 cursor-pointer overflow-hidden">
+                  <div className="group flex items-center justify-between p-5 bg-white/[0.03] rounded-2xl border border-white/10 hover:border-[#4041d1]/60 hover:bg-[#4041d1]/10 hover:shadow-[0_0_20px_rgba(64,65,209,0.15)] transition-all duration-300 cursor-pointer overflow-hidden h-full">
                     <div className="flex items-start gap-3">
                       <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-3.5 h-3.5" />
                       <div>
