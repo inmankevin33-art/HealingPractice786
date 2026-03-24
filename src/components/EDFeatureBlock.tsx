@@ -61,8 +61,8 @@ export default function EDFeatureBlock() {
             </motion.div>
           </div>
 
-          {/* Right Column: Doctor Trust Card */}
-          <div className="lg:col-span-5 relative mt-10 lg:mt-0">
+          {/* Right Column: Doctor Trust Card (Shifted Upwards) */}
+          <div className="lg:col-span-5 relative mt-10 lg:-mt-12">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -74,16 +74,15 @@ export default function EDFeatureBlock() {
                   <FaUserMd className="w-7 h-7" />
                 </div>
                 <div>
-                  <h4 className="font-raleway font-bold text-lg text-slate-900">Dr Syed Abdi</h4>
-                  <p className="text-[11px] text-slate-500 font-bold uppercase tracking-wider font-inter mt-1">Medical Director • GMC 6083294</p>
+                  <h4 className="font-raleway font-bold text-xl md:text-2xl text-slate-900">Dr Syed Abdi</h4>
+                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wider font-inter mt-1">Medical Director • GMC 6083294</p>
                 </div>
               </div>
               
-              <blockquote className="text-slate-600 italic font-inter text-sm md:text-base leading-relaxed mb-8 border-l-4 border-[#4041d1]/20 pl-6">
+              <blockquote className="text-slate-600 italic font-inter text-base md:text-lg leading-relaxed mb-8 border-l-4 border-[#4041d1]/20 pl-6">
                 &ldquo;Erectile dysfunction is often linked to vascular, metabolic, hormonal, or lifestyle factors. Our aim is to assess the wider picture and create a treatment plan tailored to the individual.&rdquo;
               </blockquote>
               
-              {/* NEW DOCTOR LINK (Replacing the static badge) */}
               <Link 
                 href={`${prefix}/our-doctor`}
                 className="inline-flex items-center gap-2 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors font-inter group"
