@@ -22,54 +22,36 @@ const birminghamFaqs = [
   },
   {
     question: "What areas does the Birmingham clinic serve?",
-    answer: "Our Birmingham clinic is conveniently located to serve patients across the West Midlands, including Solihull, Sutton Coldfield, Wolverhampton, and Dudley."
+    answer: "Our Birmingham clinic is conveniently located in Edgbaston to serve patients across the West Midlands, including Solihull, Sutton Coldfield, Wolverhampton, and Dudley."
   }
 ];
 
 export const metadata: Metadata = {
   // FIXED TITLE: Using absolute ensures the layout doesn't override it.
   title: {
-    absolute: "Doctor-Led PRP & ED Treatments Birmingham | Healing-PRP",
+    absolute: "Doctor-Led PRP & ED Clinic Birmingham | Healing-PRP Clinics",
   },
   
   description:
-    "Leading private clinic in Birmingham for PRP Hair Restoration, Joint Injections & Sexual Rejuvenation. Specialist Erectile Dysfunction (ED) solutions and P-Shot® therapy. Doctor-led care serving Birmingham, Solihull & Sutton Coldfield.",
+    "Private, doctor-led clinic in Birmingham for sexual rejuvenation and P-Shot® (PRP), plus PRP hair restoration and PRP joint injections. Discreet consultations in Edgbaston.",
   
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham",
   },
   
   keywords: [
-    // --- CORE CLINIC KEYWORDS ---
     "PRP Clinic Birmingham",
     "Private Doctor Birmingham",
     "Regenerative Medicine Birmingham",
     "Private medical clinic Edgbaston",
-    
-    // --- MEN'S HEALTH & ED ---
     "Erectile Dysfunction treatment Birmingham", 
     "ED clinic West Midlands",                    
     "P-Shot Birmingham",
-    "Mens health clinic Solihull",
-    
-    // --- WOMEN'S HEALTH ---
     "O-Shot Birmingham",
-    "Womens sexual wellness clinic West Midlands",
-    
-    // --- HAIR RESTORATION ---
     "Hair Loss Treatment Birmingham",
-    "Hair restoration Wolverhampton",            
-    "PRP hair therapy Sutton Coldfield",
-    
-    // --- JOINT PAIN ---
     "Joint Pain Clinic Birmingham",
-    "Joint injections Sutton Coldfield",        
-    "PRP for joint pain West Midlands",
-    
-    // --- SKIN & AESTHETICS ---
-    "Vampire Facial Dudley",                    
     "Polynucleotides Birmingham",
-    "Exosome therapy West Midlands"
+    "Edgbaston Medical Quarter clinic"
   ],
   
   openGraph: {
@@ -83,44 +65,107 @@ export const metadata: Metadata = {
   },
 };
 
-// --- JSON-LD SCHEMA: Master Medical Clinic (Birmingham) ---
+// --- UPGRADED JSON-LD SCHEMA: Master Medical Clinic (Birmingham) ---
 const birminghamHomeSchema = {
   "@context": "https://schema.org",
-  "@type": "MedicalClinic",
-  "name": "Healing-PRP Clinics Birmingham",
-  "description": "Leading private doctor-led clinic in Birmingham specialising in regenerative medicine, PRP, Erectile Dysfunction, Joint Injections, and Hair Restoration.",
-  "url": "https://www.healing-prp.co.uk/birmingham",
-  "logo": "https://www.healing-prp.co.uk/Logo2.png",
-  "image": "https://www.healing-prp.co.uk/Logo2.png",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Birmingham",
-    "addressRegion": "West Midlands",
-    "addressCountry": "UK"
-  },
-  // The "Power Move" for Local SEO:
-  "areaServed": {
-    "@type": "City",
-    "name": "Birmingham"
-  },
-  // Broad medical specialties to capture wide local search intent
-  "medicalSpecialty": [
-    "Urology", 
-    "Men's Health", 
-    "Women's Health", 
-    "Dermatology", 
-    "Rheumatology"
-  ],
-  // --- E-E-A-T UPGRADE: Connecting the Doctor to the Birmingham clinic ---
-  "medicalDirector": {
-    "@type": "Physician",
-    "name": "Dr Syed Abdi",
-    "url": "https://www.healing-prp.co.uk/our-doctor"
-  }
+  "@graph": [
+    {
+      "@type": "MedicalClinic",
+      "@id": "https://www.healing-prp.co.uk/birmingham/#clinic",
+      "name": "Healing-PRP Clinics",
+      "alternateName": "Healing-PRP Birmingham",
+      "description": "Leading private doctor-led clinic in Birmingham specialising in regenerative medicine, PRP, Erectile Dysfunction, Joint Injections, and Hair Restoration.",
+      "url": "https://www.healing-prp.co.uk/birmingham",
+      "logo": "https://www.healing-prp.co.uk/Logo2.png",
+      "image": "https://www.healing-prp.co.uk/Logo2.png",
+      "telephone": "+44 7990 364147", 
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "38 Harborne Rd",
+        "addressLocality": "Birmingham",
+        "postalCode": "B15 3EB",
+        "addressRegion": "West Midlands",
+        "addressCountry": "UK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.4674,
+        "longitude": -1.9275
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Birmingham" },
+        { "@type": "AdministrativeArea", "name": "West Midlands" },
+        { "@type": "Neighborhood", "name": "Edgbaston" }
+      ],
+      "medicalSpecialty": [
+        "Urology", 
+        "Men's Health", 
+        "Women's Health", 
+        "Dermatology", 
+        "Orthopaedic"
+      ],
+      "medicalDirector": {
+        "@type": "Physician",
+        "name": "Dr Syed Abdi",
+        "jobTitle": "Medical Director",
+        "telephone": "+44 7990 364147",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "GMC Reference Number",
+          "value": "6083294"
+        },
+        "url": "https://www.healing-prp.co.uk/our-doctor",
+        "sameAs": [
+          "https://www.gmc-uk.org/registrants/6083294"
+        ]
+      },
+      // --- THE NEW MASTER HUB SERVICES ARRAY (BIRMINGHAM ROUTES) ---
+      "availableService": [
+        {
+          "@type": "MedicalTherapy",
+          "name": "Erectile Dysfunction Treatment",
+          "alternateName": "P-Shot & Shockwave Therapy",
+          "url": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction",
+          "description": "Doctor-led restorative treatments for ED including Li-ESWT and PRP (P-Shot) in Birmingham.",
+          "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Urology" }
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Women's Sexual Wellness",
+          "alternateName": "O-Shot",
+          "url": "https://www.healing-prp.co.uk/birmingham/o-shot",
+          "description": "Regenerative PRP treatments for female sexual health and rejuvenation in Birmingham.",
+          "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Urology" }
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "PRP & HA Joint Injections",
+          "alternateName": "Hyaluronic Acid & Ostenil Injections",
+          "url": "https://www.healing-prp.co.uk/birmingham/joint-injections",
+          "description": "Non-surgical PRP, Hyaluronic Acid (HA), and steroid injections for arthritis and sports injuries in Birmingham.",
+          "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Orthopaedic" }
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "PRP Hair Restoration",
+          "url": "https://www.healing-prp.co.uk/birmingham/hair-restoration",
+          "description": "Advanced PRP and Exosome therapy to stimulate natural hair regrowth in Birmingham.",
+          "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Dermatology" }
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Facial Aesthetics",
+          "alternateName": "Vampire Facial & Polynucleotides",
+          "url": "https://www.healing-prp.co.uk/birmingham/facial-aesthetics",
+          "description": "Natural skin rejuvenation using Platelet-Rich Plasma, Polynucleotides, and Botox in Birmingham.",
+          "relevantSpecialty": { "@type": "MedicalSpecialty", "name": "Dermatology" }
+        }
+      ]
+    }
+  ]
 };
 
 export default function BirminghamPage() {
-  // --- GENERATE JSON-LD SCHEMA FOR FAQS ---
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -147,7 +192,6 @@ export default function BirminghamPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       
-      {/* Passing the FAQs down as a prop so DynamicFAQ can render them inside the client */}
       <BirminghamHomeClient faqs={birminghamFaqs} />
     </>
   );
