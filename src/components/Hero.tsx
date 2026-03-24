@@ -49,21 +49,17 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-center bg-[#0A1128]">
-      {/* LAYOUT FIXES APPLIED: 
-        - h-[85vh] lg:h-[78vh] explicitly shortens the hero so the next section peeks up.
-        - flex flex-col items-center justify-center naturally centers the content.
-      */}
+    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
       
-      {/* Background Section */}
+      {/* Background Section - bg-[center_15%] reveals the doctors' heads */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.webp')" }}></div>
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden sm:block" style={{ backgroundImage: "url('/herobg.webp')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-[center_15%] bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.webp')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-[center_15%] bg-no-repeat hidden sm:block" style={{ backgroundImage: "url('/herobg.webp')" }}></div>
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
-      {/* Main Content (Added pt-12 to shift content slightly lower, pb-24 leaves room for badges) */}
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 pb-24 md:pb-28">
+      {/* Main Content - pb-32 md:pb-40 pushes content lower, creating a cinematic feel */}
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-32 md:pb-40">
         
         <motion.div 
           custom={1}
@@ -118,7 +114,7 @@ export default function Hero() {
           .
         </motion.h2>
         
-        {/* NEW UNIFIED BUTTONS (Matches Personalised ED Page) */}
+        {/* The Exact Two Buttons: Assessment (White) + Book (Blue) */}
         <motion.div 
           custom={4}
           initial="hidden"
@@ -135,7 +131,7 @@ export default function Hero() {
 
           <button 
             onClick={handleAction}
-            className="w-full sm:w-auto px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1]/80 hover:bg-[#4041d1] backdrop-blur-md text-white border border-white/20 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
+            className="w-full sm:w-auto px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
           >
             <FaEnvelope className="w-4 h-4" /> Book Consultation
           </button>
@@ -207,7 +203,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* --- THE HIDDEN MODAL COMPONENT --- */}
       <OnlineAssessmentModal 
         isOpen={isAssessmentOpen} 
         onClose={() => setIsAssessmentOpen(false)} 
