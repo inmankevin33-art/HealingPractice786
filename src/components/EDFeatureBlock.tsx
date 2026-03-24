@@ -17,7 +17,6 @@ export default function EDFeatureBlock() {
     if (section) section.scrollIntoView({ behavior: "smooth" });
   };
 
-  // ADJUSTED PADDING: pt-6 pulls the headline up to break the fold
   return (
     <section className="pt-6 pb-24 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,10 +83,13 @@ export default function EDFeatureBlock() {
                 &ldquo;Erectile dysfunction is often linked to vascular, metabolic, hormonal, or lifestyle factors. Our aim is to assess the wider picture and create a treatment plan tailored to the individual.&rdquo;
               </blockquote>
               
-              <div className="flex items-center gap-3 text-[10px] font-bold text-[#4041d1] uppercase tracking-widest font-inter bg-blue-50/50 p-3 rounded-xl border border-blue-100/50">
-                <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_5px_rgba(34,197,94,0.5)]" /> 
-                Doctor-led assessment
-              </div>
+              {/* NEW DOCTOR LINK (Replacing the static badge) */}
+              <Link 
+                href={`${prefix}/our-doctor`}
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors font-inter group"
+              >
+                Meet Dr Syed Abdi <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+              </Link>
             </motion.div>
 
             {/* Subtle Background Blobs for depth */}
