@@ -83,52 +83,41 @@ export default function Hero() {
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={fadeUpVariants}
-          className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-3 tracking-tight"
+          className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
         >
           Doctor-Led Intimate Health & <br /> Regenerative Treatments
         </motion.h1>
 
-        {/* Sub-headline */}
+        {/* NEW Combined Description & Sub-headline - Larger Font, Reordered Links */}
         <motion.h2 
           custom={3}
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={fadeUpVariants}
-          className="mt-1 md:text-lg text-base text-blue-100 font-medium font-raleway leading-relaxed"
+          className="mt-2 text-lg md:text-xl font-medium font-raleway text-blue-100 leading-relaxed max-w-3xl mx-auto mb-10"
         >
-          Private care for erectile dysfunction, sexual wellness, hair restoration, and joint pain.
-        </motion.h2>
-
-        {/* Description with Inline SEO Links */}
-        <motion.p 
-          custom={4}
-          initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
-          variants={fadeUpVariants}
-          className="mt-3 text-sm md:text-base text-white/80 font-inter leading-relaxed max-w-2xl mx-auto mb-8"
-        >
-          Discreet, evidence-based treatment plans for{" "}
+          Discreet, private care and evidence-based treatment plans for{" "}
           <Link href={`${prefix}/sexual-rejuvenation`} className="text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
             sexual wellness
           </Link>
           {", "}
           <Link href={`${prefix}/joint-injections`} className="text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            joint pain relief
+            joint injections
           </Link>
           {", "}
-          <Link href={`${prefix}/facial-aesthetics`} className="text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            facial aesthetics
-          </Link>
-          {", and "}
           <Link href={`${prefix}/hair-restoration`} className="text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
             hair restoration
           </Link>
+          {", and "}
+          <Link href={`${prefix}/facial-aesthetics`} className="text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+            facial aesthetics
+          </Link>
           .
-        </motion.p>
+        </motion.h2>
 
         {/* CTA Buttons - Dual Path Strategy */}
         <motion.div 
-          custom={5}
+          custom={4}
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={fadeUpVariants}
