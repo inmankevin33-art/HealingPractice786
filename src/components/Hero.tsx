@@ -52,17 +52,17 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
+    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[85vh] md:min-h-[600px] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
       
-      {/* Background Section - bg-[center_15%] reveals the doctors' heads */}
+      {/* Background Section - Mobile adjusted to top to keep faces visible */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-cover bg-[center_15%] bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.webp')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-[center_top] bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.webp')" }}></div>
         <div className="absolute inset-0 bg-cover bg-[center_15%] bg-no-repeat hidden sm:block" style={{ backgroundImage: "url('/herobg.webp')" }}></div>
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
-      {/* Main Content - pb-32 md:pb-40 pushes content lower, creating a cinematic feel */}
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-32 md:pb-40">
+      {/* Main Content - pt-[35vh] pushes text down ONLY on mobile to clear faces */}
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-[35vh] md:pt-0 pb-32 md:pb-40">
         
         <motion.div 
           custom={1}
