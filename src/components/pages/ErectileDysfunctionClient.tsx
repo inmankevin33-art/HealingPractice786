@@ -245,7 +245,7 @@ export default function ErectileDysfunctionClient({
             variants={fadeUpVariants}
             className="mt-2 text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-3xl mx-auto mb-8 font-medium"
           >
-            Private, doctor-led care for men experiencing reduced firmness, difficulty maintaining erections, or increasing reliance on tablets. Your consultation is designed to explore what may be contributing to your symptoms and whether options such as medication review, shockwave therapy, PRP-based treatment, or hormone assessment may be appropriate.
+            Private, doctor-led care for men with erection difficulties, reduced firmness, or increasing reliance on tablets. Consultations assess possible causes and suitable treatment options, including shockwave therapy, PRP, medication review, or hormone assessment.
           </motion.p>
 
           <motion.div 
