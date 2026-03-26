@@ -350,23 +350,21 @@ export default function ErectileDysfunctionClient({
       {/* --- SECTION 1: INTRO / PATIENT CENTRED APPROACH --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-2 block">Why Patients Choose Us</span>
+            {/* Increased font size to text-sm md:text-base */}
+            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Why Patients Choose Us</span>
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
               A Personalised, Respectful Approach to Erectile Dysfunction
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              Erectile dysfunction is common, but that does not make it any easier to talk about. For many men, it affects confidence, relationships, and overall wellbeing long before they feel comfortable seeking help.
-            </p>
-            <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              At Healing-PRP Clinics, we take a discreet, doctor-led approach focused on understanding the bigger picture rather than offering a one-size-fits-all solution. During your consultation, we take time to listen, review your symptoms and medical history, and assess possible contributing factors such as circulation, diabetes, blood pressure, medication side effects, hormonal changes, stress, or lifestyle factors.
+              Erectile dysfunction is common, but many men still find it difficult to talk about. It can affect confidence, relationships, and overall wellbeing long before they seek help.
             </p>
             <p className="text-slate-600 text-lg leading-relaxed">
-              The aim is not simply to discuss one treatment in isolation. It is to understand what may be driving the problem and build a personalised plan based on medical suitability, realistic expectations, and your own goals. Where appropriate, treatment options may include medication support, shockwave therapy, PRP-based treatment such as the P-Shot, hormone review, and wider health optimisation.
+              At Healing-PRP Clinics, we take a discreet, doctor-led approach focused on understanding the cause rather than offering a one-size-fits-all solution. Your consultation includes a review of symptoms, medical history, and possible contributing factors, with treatment options tailored to your needs and goals.
             </p>
             <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full transform-gpu"></div>
         </div>
       </section>
-
+      
       {/* --- SECTION 2: SYMPTOMS GRID (Expanded to 6 Cards) --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
