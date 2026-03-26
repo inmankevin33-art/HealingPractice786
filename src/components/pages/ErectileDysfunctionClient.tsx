@@ -245,7 +245,7 @@ export default function ErectileDysfunctionClient({
             variants={fadeUpVariants}
             className="mt-2 text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-3xl mx-auto mb-8 font-medium"
           >
-            Private, doctor-led care for men with erection difficulties, reduced firmness, or increasing reliance on tablets. Consultations assess possible causes and suitable treatment options, including shockwave therapy, PRP, medication review, or hormone assessment.
+            Private, doctor-led care for men experiencing reduced firmness, difficulty maintaining erections, or increasing reliance on tablets. Your consultation is designed to explore what may be contributing to your symptoms and whether options such as medication review, shockwave therapy, PRP-based treatment, or hormone assessment may be appropriate.
           </motion.p>
 
           <motion.div 
@@ -350,7 +350,6 @@ export default function ErectileDysfunctionClient({
       {/* --- SECTION 1: INTRO / PATIENT CENTRED APPROACH --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            {/* Increased font size to text-sm md:text-base */}
             <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Why Patients Choose Us</span>
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
               A Personalised, Respectful Approach to Erectile Dysfunction
@@ -364,61 +363,9 @@ export default function ErectileDysfunctionClient({
             <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full transform-gpu"></div>
         </div>
       </section>
-      
-      {/* --- SECTION 2: SYMPTOMS GRID (Expanded to 6 Cards) --- */}
-      <section className="py-24 bg-slate-50 font-inter relative z-30 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6"
-            >
-              Signs You May Benefit From ED Assessment and Treatment
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-slate-600 text-lg leading-relaxed font-inter"
-            >
-              If any of the following feel familiar, a confidential doctor-led assessment may help clarify the cause and the most suitable next steps.
-            </motion.p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {symptoms.map((symptom, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group cursor-default"
-              >
-                <div
-                  className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
-                >
-                  <symptom.icon />
-                </div>
-                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
-                  {symptom.title}
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed font-inter">
-                  {symptom.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- SECTION 3 & 4: ASSESSMENT & WHAT IMPROVES (New Split UI) --- */}
-      <section className="py-24 bg-white font-inter">
+      {/* --- SECTION 3 & 4: ASSESSMENT & WHAT IMPROVES (MOVED UP) --- */}
+      <section className="py-24 bg-white font-inter border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             
@@ -469,6 +416,58 @@ export default function ErectileDysfunctionClient({
               </p>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECTION 2: SYMPTOMS GRID (MOVED DOWN) --- */}
+      <section className="py-24 bg-slate-50 font-inter relative z-30 border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6"
+            >
+              Signs You May Benefit From ED Assessment and Treatment
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-slate-600 text-lg leading-relaxed font-inter"
+            >
+              If any of the following feel familiar, a confidential doctor-led assessment may help clarify the cause and the most suitable next steps.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {symptoms.map((symptom, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group cursor-default"
+              >
+                <div
+                  className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
+                >
+                  <symptom.icon />
+                </div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                  {symptom.title}
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed font-inter">
+                  {symptom.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
