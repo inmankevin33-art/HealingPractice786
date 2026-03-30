@@ -3,12 +3,14 @@ import PShotClient from "@/components/pages/PShotClient";
 import Script from "next/script";
 
 export const metadata: Metadata = {
+  // FIX: Perfectly compatible with your layout.tsx template!
+  // Next.js will output: "P-Shot (Priapus Shot) Treatment | Birmingham Clinic"
   title: {
-    // Strong, location-first title for Google ranking
-    absolute: "P-Shot Birmingham | Doctor-Led PRP (Priapus Shot®) | Healing-PRP Clinics",
+    absolute: "P-Shot Birmingham | Doctor-Led Priapus Shot Treatment",
   },
+  
   description:
-    "Official P-Shot® (Priapus Shot) clinic in Birmingham. GMC-registered doctor offering PRP & Exo-P therapy for erectile rejuvenation. Private clinic in Edgbaston.",
+    "Private doctor-led P-Shot (Priapus Shot) treatment in Birmingham. PRP-based erectile dysfunction and penile rejuvenation care at our Edgbaston clinic.",
   keywords: [
     // Core Service Keywords
     "P-Shot Birmingham",
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
     canonical: "https://www.healing-prp.co.uk/birmingham/p-shot",
   },
   openGraph: {
-    title: "P-Shot Treatment (Priapus Shot) | Birmingham",
+    title: "Doctor-Led P-Shot Treatment (Priapus Shot) | Birmingham",
     description: "Doctor-led P-Shot & Exo-P clinic in Birmingham. Advanced PRP therapy for performance and rejuvenation.",
     url: "https://www.healing-prp.co.uk/birmingham/p-shot",
     siteName: "Healing-PRP Clinics",
@@ -90,38 +92,81 @@ const faqs = [
   },
 ];
 
-// --- JSON-LD SCHEMA: Medical Clinic & Medical Therapy (Birmingham) ---
-const pShotSchemaBirmingham = [
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalClinic",
-    "name": "Healing-PRP Clinics Birmingham",
-    "description": "Doctor-led clinic in Edgbaston, Birmingham providing the official P-Shot® (Priapus Shot) and advanced Exo-P male rejuvenation therapies.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Birmingham",
-      "addressRegion": "West Midlands",
-      "addressCountry": "UK"
+// --- UPGRADED JSON-LD SCHEMA: Medical Clinic & Medical Therapy (Birmingham) ---
+const pShotSchemaBirmingham = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalClinic",
+      "@id": "https://www.healing-prp.co.uk/birmingham/#clinic",
+      "name": "Healing-PRP Clinics",
+      "description": "Doctor-led clinic in Edgbaston, Birmingham providing the official P-Shot (Priapus Shot) and advanced Exo-P male rejuvenation therapies.",
+      "telephone": "+44 7990 364147",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "38 Harborne Rd",
+        "addressLocality": "Birmingham",
+        "addressRegion": "West Midlands",
+        "postalCode": "B15 3EB",
+        "addressCountry": "UK"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Birmingham"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "West Midlands"
+        }
+      ],
+      "medicalSpecialty": ["Urology", "RegenerativeMedicine"],
+      "medicalDirector": {
+        "@type": "Physician",
+        "name": "Dr Syed Abdi",
+        "jobTitle": "Medical Director",
+        "telephone": "+44 7990 364147",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "GMC Reference Number",
+          "value": "6083294"
+        },
+        "url": "https://www.healing-prp.co.uk/our-doctor",
+        "sameAs": [
+          "https://www.gmc-uk.org/registrants/6083294"
+        ]
+      },
+      "availableService": [
+        {
+          "@id": "https://www.healing-prp.co.uk/birmingham/p-shot/#therapy"
+        }
+      ]
     },
-    // The "Power Move" for Local SEO:
-    "areaServed": {
-      "@type": "City",
-      "name": "Birmingham"
-    },
-    "medicalSpecialty": ["Urology", "Men's Health"]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalTherapy",
-    "name": "P-Shot® (Priapus Shot) & Exo-P Shot",
-    "alternateName": ["Platelet-Rich Plasma (PRP) Male Rejuvenation", "Exosome Penile Therapy", "Peyronie's Disease PRP Treatment"],
-    "description": "Advanced autologous Platelet-Rich Plasma (PRP) and Exosome injection therapies designed to improve penile health, tissue regeneration, blood flow, and treat conditions like Peyronie's disease and Erectile Dysfunction in Birmingham.",
-    "relevantSpecialty": {
-      "@type": "MedicalSpecialty",
-      "name": "Urology"
+    {
+      "@type": "MedicalTherapy",
+      "@id": "https://www.healing-prp.co.uk/birmingham/p-shot/#therapy",
+      "name": "P-Shot (Priapus Shot) & Exo-P Shot",
+      "alternateName": ["Platelet-Rich Plasma (PRP) Male Rejuvenation", "Exosome Penile Therapy", "Peyronie's Disease PRP Treatment"],
+      "description": "Advanced autologous Platelet-Rich Plasma (PRP) and Exosome injection therapies designed to improve penile health, tissue regeneration, blood flow, and treat conditions like Peyronie's disease and Erectile Dysfunction in Birmingham.",
+      "relevantSpecialty": {
+        "@type": "MedicalSpecialty",
+        "name": "Urology"
+      },
+      "indication": [
+        {
+          "@type": "MedicalCondition",
+          "name": "Erectile Dysfunction",
+          "url": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction"
+        },
+        {
+          "@type": "MedicalCondition",
+          "name": "Peyronie's Disease",
+          "url": "https://www.healing-prp.co.uk/peyronies-disease"
+        }
+      ]
     }
-  }
-];
+  ]
+};
 
 export default function BirminghamPShotPage() {
   // --- GENERATE JSON-LD SCHEMA FOR FAQS ---
@@ -130,10 +175,10 @@ export default function BirminghamPShotPage() {
     "@type": "FAQPage",
     "mainEntity": faqs.map((faq) => ({
       "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
+      "name": faq.question,
+      "acceptedAnswer": {
         "@type": "Answer",
-        text: faq.answer,
+        "text": faq.answer,
       },
     })),
   };
@@ -158,7 +203,7 @@ export default function BirminghamPShotPage() {
       <PShotClient
         locationName="Birmingham"
         servingAreas="Edgbaston • Solihull • Sutton Coldfield • West Midlands"
-        faqs={faqs} // <--- Pass the FAQs here!
+        faqs={faqs}
       />
     </main>
   );
