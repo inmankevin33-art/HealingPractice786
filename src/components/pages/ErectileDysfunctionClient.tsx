@@ -366,7 +366,7 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
       
-      {/* --- SECTION 3 & 4: ASSESSMENT & WHAT IMPROVES (MOVED UP) --- */}
+      {/* --- SECTION 3 & 4: ASSESSMENT & WHAT IMPROVES --- */}
       <section className="py-24 bg-white font-inter border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
@@ -433,7 +433,7 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- SECTION 2: SYMPTOMS GRID (MOVED DOWN) --- */}
+      {/* --- SECTION 2: SYMPTOMS GRID --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -482,6 +482,126 @@ export default function ErectileDysfunctionClient({
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* --- SECTION 7: WHAT IT CAN / CANNOT DO (MOVED HERE) --- */}
+      <section className="py-24 bg-white font-inter border-t border-slate-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+              What PRP and Shockwave Therapy Can — and Cannot — Do
+            </h3>
+            <p className="text-slate-600 text-lg leading-relaxed mb-6">
+              PRP and low-intensity shockwave therapy are doctor-led, non-surgical options that may support vascular health, tissue repair, and erectile function in selected patients, particularly where reduced blood flow is a contributing factor.
+            </p>
+            <p className="text-slate-600 text-base leading-relaxed">
+              For some men, these treatments form part of a broader plan aimed at improving function more naturally rather than relying only on symptom-based solutions. However, honest assessment is essential, because not every patient will respond in the same way.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {/* COLUMN 1 */}
+            <div className="bg-blue-50/50 p-8 rounded-3xl border border-blue-100">
+              <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <span className="w-2 h-8 bg-[#4041d1] rounded-full block"></span>
+                What these treatments may help support
+              </h4>
+              <ul className="space-y-4">
+                {[
+                  "Improved penile blood flow and vascular responsiveness over time",
+                  "Healthier erectile tissue and smooth muscle support",
+                  "Improved sensitivity or responsiveness in selected cases",
+                  "Greater confidence and more reliable function as tissue health improves",
+                  "Support for men seeking a broader plan beyond tablets alone",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
+                    <span className="text-slate-700 text-sm md:text-base font-medium leading-relaxed">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* COLUMN 2 */}
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
+              <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <span className="w-2 h-8 bg-slate-400 rounded-full block"></span>
+                Important limitations to understand
+              </h4>
+              <ul className="space-y-4">
+                {[
+                  "Results vary between individuals and depend on age, overall health, diabetes control, circulation, medications, and the underlying cause.",
+                  "These treatments are not an instant fix and improvement is usually gradual.",
+                  "May be less effective where there is advanced structural disease, severe nerve damage, or irreversible loss of blood supply.",
+                  "Not every patient is suitable for PRP or shockwave therapy.",
+                  "A medical consultation is important to assess suitability and identify contributing factors properly."
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="mt-1 shrink-0 text-slate-400">
+                       <FaCheckCircle className="text-slate-400" /> 
+                    </div>
+                    <span className="text-slate-700 text-sm md:text-base font-medium leading-relaxed">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
+          <div className="text-center max-w-3xl mx-auto mt-6 pt-6 border-t border-slate-100">
+            <p className="text-sm text-slate-500 italic">
+              Any regenerative treatment should be considered in the context of your wider medical history, current medication, and treatment goals. Recommendations are always based on individual assessment.
+            </p>
+          </div>
+          
+          {/* --- DEDICATED TREATMENT LINKS (SIDE-BY-SIDE) --- */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+            
+            {/* P-Shot Card */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-left flex flex-col h-full justify-between gap-6 hover:shadow-md transition-shadow duration-300">
+              <div>
+                <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
+                  Interested in P-Shot specifically?
+                </h4>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  For patients interested in P-Shot treatment specifically, further details about the procedure, process, and suitability are available on our dedicated page.
+                </p>
+              </div>
+              <Link 
+                href={pShotLink} 
+                className="w-full sm:w-max px-8 py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+              >
+                View P-Shot Treatment
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            {/* Shockwave Card */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-left flex flex-col h-full justify-between gap-6 hover:shadow-md transition-shadow duration-300">
+              <div>
+                <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
+                  Interested in Shockwave Therapy?
+                </h4>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  For patients interested in low-intensity shockwave therapy, further details about the mechanism, process, and suitability are available on our dedicated page.
+                </p>
+              </div>
+              <Link 
+                href={`${basePath}/shockwave-therapy-erectile-dysfunction`} 
+                className="w-full sm:w-max px-8 py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+              >
+                View Shockwave Treatment
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
@@ -615,128 +735,8 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- SECTION 7: WHAT IT CAN / CANNOT DO --- */}
-      <section className="py-24 bg-white font-inter">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              What PRP and Shockwave Therapy Can — and Cannot — Do
-            </h3>
-            <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              PRP and low-intensity shockwave therapy are doctor-led, non-surgical options that may support vascular health, tissue repair, and erectile function in selected patients, particularly where reduced blood flow is a contributing factor.
-            </p>
-            <p className="text-slate-600 text-base leading-relaxed">
-              For some men, these treatments form part of a broader plan aimed at improving function more naturally rather than relying only on symptom-based solutions. However, honest assessment is essential, because not every patient will respond in the same way.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {/* COLUMN 1 */}
-            <div className="bg-blue-50/50 p-8 rounded-3xl border border-blue-100">
-              <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <span className="w-2 h-8 bg-[#4041d1] rounded-full block"></span>
-                What these treatments may help support
-              </h4>
-              <ul className="space-y-4">
-                {[
-                  "Improved penile blood flow and vascular responsiveness over time",
-                  "Healthier erectile tissue and smooth muscle support",
-                  "Improved sensitivity or responsiveness in selected cases",
-                  "Greater confidence and more reliable function as tissue health improves",
-                  "Support for men seeking a broader plan beyond tablets alone",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
-                    <span className="text-slate-700 text-sm md:text-base font-medium leading-relaxed">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* COLUMN 2 */}
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
-              <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <span className="w-2 h-8 bg-slate-400 rounded-full block"></span>
-                Important limitations to understand
-              </h4>
-              <ul className="space-y-4">
-                {[
-                  "Results vary between individuals and depend on age, overall health, diabetes control, circulation, medications, and the underlying cause.",
-                  "These treatments are not an instant fix and improvement is usually gradual.",
-                  "May be less effective where there is advanced structural disease, severe nerve damage, or irreversible loss of blood supply.",
-                  "Not every patient is suitable for PRP or shockwave therapy.",
-                  "A medical consultation is important to assess suitability and identify contributing factors properly."
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="mt-1 shrink-0 text-slate-400">
-                       <FaCheckCircle className="text-slate-400" /> 
-                    </div>
-                    <span className="text-slate-700 text-sm md:text-base font-medium leading-relaxed">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          
-          <div className="text-center max-w-3xl mx-auto mt-6 pt-6 border-t border-slate-100">
-            <p className="text-sm text-slate-500 italic">
-              Any regenerative treatment should be considered in the context of your wider medical history, current medication, and treatment goals. Recommendations are always based on individual assessment.
-            </p>
-          </div>
-          
-          {/* --- DEDICATED TREATMENT LINKS (SIDE-BY-SIDE) --- */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-            
-            {/* P-Shot Card */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-left flex flex-col h-full justify-between gap-6 hover:shadow-md transition-shadow duration-300">
-              <div>
-                <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
-                  Interested in P-Shot specifically?
-                </h4>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  For patients interested in P-Shot treatment specifically, further details about the procedure, process, and suitability are available on our dedicated page.
-                </p>
-              </div>
-              <Link 
-                href={pShotLink} 
-                className="w-full sm:w-max px-8 py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
-              >
-                View P-Shot Treatment
-                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
-            {/* Shockwave Card */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-left flex flex-col h-full justify-between gap-6 hover:shadow-md transition-shadow duration-300">
-              <div>
-                <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
-                  Interested in Shockwave Therapy?
-                </h4>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  For patients interested in low-intensity shockwave therapy, further details about the mechanism, process, and suitability are available on our dedicated page.
-                </p>
-              </div>
-              <Link 
-                href={`${basePath}/shockwave-therapy-erectile-dysfunction`} 
-                className="w-full sm:w-max px-8 py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
-              >
-                View Shockwave Treatment
-                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
       {/* --- SECTIONS 8 & 9: FIRST VISIT & EARLY ASSESSMENT --- */}
-      <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
+      <section className="py-24 bg-slate-50 font-inter border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             
@@ -788,7 +788,7 @@ export default function ErectileDysfunctionClient({
       </section>
 
       {/* --- SECTION 10 & 11: PRIVACY & DISCREET CARE --- */}
-      <section className="py-24 bg-white font-inter">
+      <section className="py-24 bg-white font-inter border-t border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
           <div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">
