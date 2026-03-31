@@ -372,20 +372,31 @@ export default function ErectileDysfunctionClient({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             
             {/* Left Side: Assessment */}
-            <div className="bg-blue-50/50 p-10 rounded-3xl border border-blue-100 h-full">
-              <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Private ED Assessment</span>
-              <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
-                The right treatment depends on the cause
-              </h3>
-              <p className="text-slate-600 text-lg leading-relaxed mb-4">
-                Not every case of erectile dysfunction is the same, and not every patient is suited to the same treatment.
-              </p>
-              <p className="text-slate-600 text-base leading-relaxed mb-4">
-                Some men are better suited to medication optimisation. Some may be more appropriate for shockwave-led treatment where circulation is a contributing factor. Some may be suitable for PRP-based options, while others may benefit most from a combined plan.
-              </p>
-              <p className="text-slate-600 text-base leading-relaxed">
-                A proper doctor-led assessment helps decide what may be most appropriate in your case, rather than pushing one treatment for everyone.
-              </p>
+            <div className="bg-blue-50/50 p-10 rounded-3xl border border-blue-100 h-full flex flex-col">
+              <div className="flex-grow">
+                <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Private ED Assessment</span>
+                <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
+                  The right treatment depends on the cause
+                </h3>
+                <p className="text-slate-600 text-lg leading-relaxed mb-4">
+                  Not every case of erectile dysfunction is the same, and not every patient is suited to the same treatment.
+                </p>
+                <p className="text-slate-600 text-base leading-relaxed mb-4">
+                  Some men are better suited to medication optimisation. Some may be more appropriate for shockwave-led treatment where circulation is a contributing factor. Some may be suitable for PRP-based options, while others may benefit most from a combined plan.
+                </p>
+                <p className="text-slate-600 text-base leading-relaxed mb-8">
+                  A proper doctor-led assessment helps decide what may be most appropriate in your case, rather than pushing one treatment for everyone.
+                </p>
+              </div>
+
+              {/* Assessment CTA Button */}
+              <button 
+                onClick={() => setIsAssessmentOpen(true)}
+                className="w-full sm:w-max px-8 py-3.5 bg-white text-[#4041d1] border border-blue-200 hover:border-[#4041d1]/50 hover:bg-blue-50/80 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-sm active:scale-95 font-inter mt-auto"
+              >
+                Take Free Online Assessment
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
 
             {/* Right Side: What Improves */}
