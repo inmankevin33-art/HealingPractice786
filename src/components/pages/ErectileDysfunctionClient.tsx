@@ -30,6 +30,7 @@ import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import TrustReviews from "@/components/TrustReviews";
+import OnlineAssessmentModal from "@/components/OnlineAssessmentModal";
 
 // --- INTERFACE FOR DYNAMIC PROPS ---
 type FaqType = {
@@ -55,8 +56,10 @@ export default function ErectileDysfunctionClient({
   const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showAllFaqs, setShowAllFaqs] = useState(false); 
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   const isBirmingham = locationName === "Birmingham";
+  const basePath = isBirmingham ? "/birmingham" : "";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -67,7 +70,7 @@ export default function ErectileDysfunctionClient({
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-  // --- UNIFIED ACTION HANDLER ---
+  // --- UNIFIED ACTION HANDLER (Contact Drawer) ---
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
 
@@ -82,7 +85,6 @@ export default function ErectileDysfunctionClient({
         });
       }
     }
-    // -----------------------------------------------------------------
 
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
     setTimeout(() => {
@@ -208,7 +210,7 @@ export default function ErectileDysfunctionClient({
       <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90 z-10" />
           <img 
             src="/ed-doctor-consultation.webp" 
             alt="Erectile dysfunction treatment consultation" 
@@ -223,9 +225,9 @@ export default function ErectileDysfunctionClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
+            className="inline-block px-5 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md transform-gpu shadow-lg"
           >
-            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Doctor-Led Private Clinic</span>
+            <span className="text-blue-100 text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase font-inter">Doctor-Led Private Clinic</span>
           </motion.div>
 
           <motion.h1 
@@ -233,7 +235,7 @@ export default function ErectileDysfunctionClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
+            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight drop-shadow-lg"
           >
             Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {locationName}
           </motion.h1>
@@ -243,9 +245,9 @@ export default function ErectileDysfunctionClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-2 text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-3xl mx-auto mb-8 font-medium"
+            className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
           >
-            Private, doctor-led care for men experiencing reduced firmness, difficulty maintaining erections, or increasing reliance on tablets. Your consultation is designed to explore what may be contributing to your symptoms and whether options such as medication review, shockwave therapy, PRP-based treatment, or hormone assessment may be appropriate.
+            Private, doctor-led care for men with erection difficulties, reduced firmness, or increasing reliance on tablets. Treatment may include <Link href={`${basePath}/shockwave-therapy-erectile-dysfunction`} className="underline decoration-white/40 hover:decoration-white hover:text-white transition-all duration-300">shockwave therapy</Link>, <Link href={`${basePath}/p-shot`} className="underline decoration-white/40 hover:decoration-white hover:text-white transition-all duration-300">P-Shot®</Link>, and <Link href={`${basePath}/personalised-ed-medication`} className="underline decoration-white/40 hover:decoration-white hover:text-white transition-all duration-300">personalised ED medication</Link> where appropriate.
           </motion.p>
 
           <motion.div 
@@ -253,20 +255,23 @@ export default function ErectileDysfunctionClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
+            {/* Low-Friction Assessment Button (White) */}
+            <button 
+              onClick={() => setIsAssessmentOpen(true)}
+              className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] active:scale-95 font-inter"
+            >
+              Take Free Online Assessment
+            </button>
+            
+            {/* High-Intent Contact Button (Blue) */}
             <button 
               onClick={handleAction}
-              className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+              className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] hover:shadow-[0_0_25px_rgba(64,65,209,0.5)] active:scale-95 font-inter"
             >
               <FaEnvelope className="w-4 h-4" /> Book a Confidential Consultation
             </button>
-            <Link 
-              href={isBirmingham ? "/birmingham/prices" : "/prices"}
-              className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer border-2 border-white text-white hover:bg-white/10 rounded-xl font-bold transition-all duration-300 gap-2 active:scale-95 font-inter"
-            >
-              View Treatment Prices
-            </Link>
           </motion.div>
 
           <motion.div 
@@ -274,7 +279,7 @@ export default function ErectileDysfunctionClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-[#4041d1]/10 text-white rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter border border-white/10 backdrop-blur-sm"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-white/5 text-white rounded-full text-[10px] md:text-xs mt-12 font-bold uppercase tracking-widest font-inter border border-white/10 backdrop-blur-md shadow-sm"
           >
              <FaMapMarkerAlt className="text-white/80 mb-0.5" /> 
              <span>Serving: {servingAreas}</span>
@@ -283,7 +288,7 @@ export default function ErectileDysfunctionClient({
         </div>
 
         {/* --- HERO TRUST BADGES --- */}
-        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0A1128]/95 backdrop-blur-xl border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} shadow-[0_-10px_40px_rgba(0,0,0,0.3)]`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
               
@@ -895,6 +900,12 @@ export default function ErectileDysfunctionClient({
       <LocationSection /> 
 
       <Footer />
+
+      {/* --- ASSESSMENT MODAL --- */}
+      <OnlineAssessmentModal 
+        isOpen={isAssessmentOpen} 
+        onClose={() => setIsAssessmentOpen(false)} 
+      />
     </>
   );
 }
