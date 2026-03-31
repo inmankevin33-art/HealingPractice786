@@ -605,29 +605,7 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- SECTION 5: BLOOD TESTS / HORMONE REVIEW BANNER --- */}
-      <section className="py-16 bg-[#0A1128] font-inter relative overflow-hidden">
-        {/* Subtle background decoration */}
-        <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-[#4041d1] rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center md:text-left flex flex-col md:flex-row items-center gap-10">
-          
-          <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center shrink-0 border border-white/20">
-            <FaVial className="text-[#8ea3ff] text-3xl" />
-          </div>
-
-          <div>
-            <span className="text-[#8ea3ff] font-bold tracking-widest text-xs uppercase mb-2 block">Assessing The Bigger Picture</span>
-            <h3 className="text-2xl md:text-3xl font-raleway font-bold text-white mb-4">
-              Could blood tests or hormone review help?
-            </h3>
-            <p className="text-slate-300 text-base md:text-lg leading-relaxed max-w-3xl">
-              In some men, erectile dysfunction may be influenced by testosterone levels, diabetes, metabolic health, cardiovascular risk, medication effects, or other wider medical factors. Where appropriate, doctor-led assessment may include discussion of blood tests and hormone review. This can be especially relevant if symptoms are worsening over time, tablets are becoming less effective, or there are other signs such as reduced energy or lower libido.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* --- SECTION 6: PROTOCOL SECTION (Expanded to 5 Steps) --- */}
+      {/* --- SE{/* --- SECTION 6: PROTOCOL SECTION (MOVED ABOVE BLOOD TESTS) --- */}
       <section
         className="relative py-20 lg:py-28 bg-slate-50 overflow-hidden font-inter border-y border-slate-200"
       >
@@ -731,6 +709,54 @@ export default function ErectileDysfunctionClient({
                 );
               })}
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECTION 5: BLOOD TESTS / HORMONE REVIEW BANNER (ENHANCED & MOVED DOWN) --- */}
+      <section className="py-20 bg-[#0A1128] font-inter relative overflow-hidden border-b border-[#1a2342]">
+        {/* Subtle background decorations */}
+        <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-[#4041d1] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-teal-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-12">
+          
+          {/* Enhanced Icon Column */}
+          <div className="md:w-1/3 flex justify-center md:justify-end">
+            <div className="relative">
+              <div className="absolute inset-0 bg-[#4041d1] blur-2xl opacity-40 rounded-full animate-pulse"></div>
+              <div className="w-28 h-28 bg-[#151e32] rounded-full flex items-center justify-center shrink-0 border border-white/10 relative z-10 shadow-2xl">
+                <FaVial className="text-[#8ea3ff] text-5xl" />
+              </div>
+            </div>
+          </div>
+
+          {/* Enhanced Content Column */}
+          <div className="md:w-2/3 text-center md:text-left">
+            <span className="text-[#8ea3ff] font-bold tracking-widest text-xs md:text-sm uppercase mb-3 block">Assessing The Bigger Picture</span>
+            <h3 className="text-3xl md:text-4xl font-raleway font-bold text-white mb-6 leading-tight">
+              Could blood tests or hormone review help?
+            </h3>
+            <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
+              In some men, erectile dysfunction may be influenced by wider medical factors. Where appropriate, doctor-led assessment may include discussion of blood tests and hormone review. This is especially relevant if symptoms are worsening, tablets are becoming less effective, or you notice reduced energy or lower libido.
+            </p>
+            
+            {/* Health Markers Tags */}
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-8">
+              {['Testosterone Levels', 'Cardiovascular Risk', 'Diabetes & HbA1c', 'Metabolic Health'].map((tag, i) => (
+                <span key={i} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-slate-300 text-xs md:text-sm font-medium tracking-wide">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <button 
+              onClick={() => setIsAssessmentOpen(true)}
+              className="px-8 py-3.5 bg-white hover:bg-slate-100 text-[#0A1128] rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-lg active:scale-95 font-inter mx-auto md:mx-0 w-full sm:w-max"
+            >
+              Start Free Online Assessment
+              <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
