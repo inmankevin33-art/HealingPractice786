@@ -491,10 +491,10 @@ export default function ErectileDysfunctionClient({
           
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              What PRP and Shockwave Therapy Can — and Cannot — Do
+              What P-Shot and Shockwave Therapy Can — and Cannot — Do
             </h3>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              PRP and low-intensity shockwave therapy are doctor-led, non-surgical options that may support vascular health, tissue repair, and erectile function in selected patients, particularly where reduced blood flow is a contributing factor.
+              P-Shot and low-intensity shockwave therapy are doctor-led, non-surgical options that may support vascular health, tissue repair, and erectile function in selected patients, particularly where reduced blood flow is a contributing factor.
             </p>
             <p className="text-slate-600 text-base leading-relaxed">
               For some men, these treatments form part of a broader plan aimed at improving function more naturally rather than relying only on symptom-based solutions. However, honest assessment is essential, because not every patient will respond in the same way.
@@ -537,7 +537,7 @@ export default function ErectileDysfunctionClient({
                   "Results vary between individuals and depend on age, overall health, diabetes control, circulation, medications, and the underlying cause.",
                   "These treatments are not an instant fix and improvement is usually gradual.",
                   "May be less effective where there is advanced structural disease, severe nerve damage, or irreversible loss of blood supply.",
-                  "Not every patient is suitable for PRP or shockwave therapy.",
+                  "Not every patient is suitable for P-Shot or shockwave therapy.",
                   "A medical consultation is important to assess suitability and identify contributing factors properly."
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
