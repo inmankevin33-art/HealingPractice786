@@ -394,7 +394,7 @@ export default function ErectileDysfunctionClient({
                 onClick={() => setIsAssessmentOpen(true)}
                 className="w-full sm:w-max px-8 py-3.5 bg-white text-[#4041d1] border border-blue-200 hover:border-[#4041d1]/50 hover:bg-blue-50/80 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-sm active:scale-95 font-inter mt-auto"
               >
-                Take Free Online Assessment
+                Free Confidential Online Assessment
                 <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
