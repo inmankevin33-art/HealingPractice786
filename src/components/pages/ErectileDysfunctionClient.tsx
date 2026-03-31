@@ -352,7 +352,7 @@ export default function ErectileDysfunctionClient({
         </div>
       </div>
 
-    {/* --- SECTION 1: INTRO / PATIENT CENTRED APPROACH --- */}
+   {/* --- SECTION 1: INTRO / PATIENT CENTRED APPROACH --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Why Patients Choose Us</span>
@@ -360,12 +360,12 @@ export default function ErectileDysfunctionClient({
               A Personalised, Respectful Approach to Erectile Dysfunction
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed">
-              At Healing-PRP Clinics, we take a discreet, doctor-led approach focused on understanding the cause rather than offering a one-size-fits-all solution. Your consultation includes a review of symptoms, medical history, and possible contributing factors, with treatment options tailored to your needs and goals.
+              At Healing-PRP Clinics, <Link href={`${basePath}/our-doctor`} className="text-[#4041d1] font-bold hover:underline transition-all duration-300">Dr Syed Abdi</Link> takes a discreet, patient-centred approach focused on understanding the cause rather than offering a one-size-fits-all solution. Your consultation includes a review of your symptoms, medical history, and possible contributing factors, with treatment options tailored to your needs and goals.
             </p>
             <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full transform-gpu"></div>
         </div>
       </section>
-
+      
       {/* --- SECTION 3 & 4: ASSESSMENT & WHAT IMPROVES (MOVED UP) --- */}
       <section className="py-24 bg-white font-inter border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
