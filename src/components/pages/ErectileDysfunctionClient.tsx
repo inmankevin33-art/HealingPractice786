@@ -677,24 +677,48 @@ export default function ErectileDysfunctionClient({
               Any regenerative treatment should be considered in the context of your wider medical history, current medication, and treatment goals. Recommendations are always based on individual assessment.
             </p>
           </div>
-
-          {/* LINK TO P-SHOT PAGE */}
-          <div className="bg-white mt-12 rounded-2xl border border-slate-200 p-8 shadow-sm text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
-                Interested in P-Shot specifically?
-              </h4>
-              <p className="text-slate-600 text-sm leading-relaxed max-w-2xl">
-                For patients interested in P-Shot treatment specifically, further details about the procedure, process, and suitability are available on our dedicated page.
-              </p>
+          
+          {/* --- DEDICATED TREATMENT LINKS (SIDE-BY-SIDE) --- */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+            
+            {/* P-Shot Card */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-left flex flex-col h-full justify-between gap-6 hover:shadow-md transition-shadow duration-300">
+              <div>
+                <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
+                  Interested in P-Shot specifically?
+                </h4>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  For patients interested in P-Shot treatment specifically, further details about the procedure, process, and suitability are available on our dedicated page.
+                </p>
+              </div>
+              <Link 
+                href={pShotLink} 
+                className="w-full sm:w-max px-8 py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+              >
+                View P-Shot Treatment
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
-            <Link 
-              href={pShotLink} 
-              className="shrink-0 px-8 py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center gap-2 group whitespace-nowrap shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
-            >
-              View P-Shot Treatment
-              <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
+
+            {/* Shockwave Card */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-left flex flex-col h-full justify-between gap-6 hover:shadow-md transition-shadow duration-300">
+              <div>
+                <h4 className="text-lg font-raleway font-bold text-slate-900 mb-2">
+                  Interested in Shockwave Therapy?
+                </h4>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  For patients interested in low-intensity shockwave therapy, further details about the mechanism, process, and suitability are available on our dedicated page.
+                </p>
+              </div>
+              <Link 
+                href={`${basePath}/shockwave-therapy-erectile-dysfunction`} 
+                className="w-full sm:w-max px-8 py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+              >
+                View Shockwave Treatment
+                <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
           </div>
 
         </div>
