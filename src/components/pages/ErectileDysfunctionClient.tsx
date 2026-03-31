@@ -262,7 +262,7 @@ export default function ErectileDysfunctionClient({
               onClick={() => setIsAssessmentOpen(true)}
               className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] active:scale-95 font-inter"
             >
-              Take Free Online Assessment
+              Free Confidential Online Assessment
             </button>
             
             {/* High-Intent Contact Button (Blue) */}
