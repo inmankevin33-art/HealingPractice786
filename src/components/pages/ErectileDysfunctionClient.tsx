@@ -287,7 +287,7 @@ export default function ErectileDysfunctionClient({
 
         </div>
 
-        {/* --- HERO TRUST BADGES --- */}
+      {/* --- HERO TRUST BADGES --- */}
         <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0A1128]/95 backdrop-blur-xl border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} shadow-[0_-10px_40px_rgba(0,0,0,0.3)]`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
@@ -329,8 +329,8 @@ export default function ErectileDysfunctionClient({
                     GMC
                   </div>
                   <div className="flex flex-col items-start">
-                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Registered Doctor</span>
-                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Tailored To You</span>
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Dr Syed Abdi</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">GMC Registered</span>
                   </div>
                 </div>
               </div>
