@@ -713,54 +713,51 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- SECTION 5: BLOOD TESTS / HORMONE REVIEW BANNER (ENHANCED & MOVED DOWN) --- */}
-      <section className="py-20 bg-[#0A1128] font-inter relative overflow-hidden border-b border-[#1a2342]">
+      {/* --- SECTION 5: BLOOD TESTS / HORMONE REVIEW BANNER (FULLY CENTERED) --- */}
+      <section className="py-24 bg-[#0A1128] font-inter relative overflow-hidden border-b border-[#1a2342]">
         {/* Subtle background decorations */}
         <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-[#4041d1] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-teal-600/20 rounded-full blur-[100px] pointer-events-none"></div>
         
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
           
-          {/* Enhanced Icon Column */}
-          <div className="md:w-1/3 flex justify-center md:justify-end">
-            <div className="relative">
-              <div className="absolute inset-0 bg-[#4041d1] blur-2xl opacity-40 rounded-full animate-pulse"></div>
-              <div className="w-28 h-28 bg-[#151e32] rounded-full flex items-center justify-center shrink-0 border border-white/10 relative z-10 shadow-2xl">
-                <FaVial className="text-[#8ea3ff] text-5xl" />
-              </div>
+          {/* Centered Glowing Icon */}
+          <div className="mb-10 relative">
+            <div className="absolute inset-0 bg-[#4041d1] blur-2xl opacity-40 rounded-full animate-pulse"></div>
+            <div className="w-24 h-24 bg-[#151e32] rounded-full flex items-center justify-center border border-white/10 relative z-10 shadow-2xl mx-auto">
+              <FaVial className="text-[#8ea3ff] text-4xl" />
             </div>
           </div>
 
-          {/* Enhanced Content Column */}
-          <div className="md:w-2/3 text-center md:text-left">
-            <span className="text-[#8ea3ff] font-bold tracking-widest text-xs md:text-sm uppercase mb-3 block">Assessing The Bigger Picture</span>
-            <h3 className="text-3xl md:text-4xl font-raleway font-bold text-white mb-6 leading-tight">
-              Could blood tests or hormone review help?
-            </h3>
-            <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
-              In some men, erectile dysfunction may be influenced by wider medical factors. Where appropriate, doctor-led assessment may include discussion of blood tests and hormone review. This is especially relevant if symptoms are worsening, tablets are becoming less effective, or you notice reduced energy or lower libido.
-            </p>
-            
-            {/* Health Markers Tags */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-8">
-              {['Testosterone Levels', 'Cardiovascular Risk', 'Diabetes & HbA1c', 'Metabolic Health'].map((tag, i) => (
-                <span key={i} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-slate-300 text-xs md:text-sm font-medium tracking-wide">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <button 
-              onClick={() => setIsAssessmentOpen(true)}
-              className="px-8 py-3.5 bg-white hover:bg-slate-100 text-[#0A1128] rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-lg active:scale-95 font-inter mx-auto md:mx-0 w-full sm:w-max"
-            >
-              Start Free Online Assessment
-              <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-            </button>
+          {/* Text Content */}
+          <span className="text-[#8ea3ff] font-bold tracking-widest text-xs md:text-sm uppercase mb-4 block">Assessing The Bigger Picture</span>
+          <h3 className="text-3xl md:text-5xl font-raleway font-bold text-white mb-6 leading-tight max-w-3xl">
+            Could blood tests or hormone review help?
+          </h3>
+          <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+            In some men, erectile dysfunction may be influenced by wider medical factors. Where appropriate, doctor-led assessment may include discussion of blood tests and hormone review. This is especially relevant if symptoms are worsening, tablets are becoming less effective, or you notice reduced energy or lower libido.
+          </p>
+          
+          {/* Centered Health Markers Tags */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {['Testosterone Levels', 'Cardiovascular Risk', 'Diabetes & HbA1c', 'Metabolic Health'].map((tag, i) => (
+              <span key={i} className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-slate-300 text-sm font-medium tracking-wide">
+                {tag}
+              </span>
+            ))}
           </div>
+
+          {/* Centered Button */}
+          <button 
+            onClick={() => setIsAssessmentOpen(true)}
+            className="px-8 py-4 bg-white hover:bg-slate-100 text-[#0A1128] rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-lg active:scale-95 font-inter w-full sm:w-max mx-auto"
+          >
+            Free Confidential Online Assessment
+            <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </section>
-
+      
       {/* --- SECTIONS 8 & 9: FIRST VISIT & EARLY ASSESSMENT --- */}
       <section className="py-24 bg-slate-50 font-inter border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
