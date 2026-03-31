@@ -352,16 +352,13 @@ export default function ErectileDysfunctionClient({
         </div>
       </div>
 
-      {/* --- SECTION 1: INTRO / PATIENT CENTRED APPROACH --- */}
+    {/* --- SECTION 1: INTRO / PATIENT CENTRED APPROACH --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Why Patients Choose Us</span>
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
               A Personalised, Respectful Approach to Erectile Dysfunction
             </h2>
-            <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              Erectile dysfunction is common, but many men still find it difficult to talk about. It can affect confidence, relationships, and overall wellbeing long before they seek help.
-            </p>
             <p className="text-slate-600 text-lg leading-relaxed">
               At Healing-PRP Clinics, we take a discreet, doctor-led approach focused on understanding the cause rather than offering a one-size-fits-all solution. Your consultation includes a review of symptoms, medical history, and possible contributing factors, with treatment options tailored to your needs and goals.
             </p>
