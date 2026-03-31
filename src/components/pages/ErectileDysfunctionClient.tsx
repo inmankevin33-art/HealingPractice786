@@ -805,7 +805,7 @@ export default function ErectileDysfunctionClient({
               onClick={handleAction}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
             >
-              <FaEnvelope className="w-4 h-4" /> Book a Confidential Consultation
+              <FaEnvelope className="w-4 h-4" /> Book a Confidential Consultation with Dr Syed Abdi
             </button>
             <Link
               href={isBirmingham ? "/birmingham/prices" : "/prices"}
@@ -817,7 +817,7 @@ export default function ErectileDysfunctionClient({
 
         </div>
       </section>
-
+      
       {/* --- FAQs (Section 14) --- */}
       <section id="faqs" className="py-24 bg-slate-50 font-inter border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
