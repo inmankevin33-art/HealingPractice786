@@ -247,7 +247,7 @@ export default function ErectileDysfunctionClient({
             variants={fadeUpVariants}
             className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
           >
-            Private, doctor-led care for men with erection difficulties, reduced firmness, or increasing reliance on tablets. Treatment may include <Link href={`${basePath}/shockwave-therapy-erectile-dysfunction`} className="underline decoration-white/40 hover:decoration-white hover:text-white transition-all duration-300">shockwave therapy</Link>, <Link href={`${basePath}/p-shot`} className="underline decoration-white/40 hover:decoration-white hover:text-white transition-all duration-300">P-Shot®</Link>, and <Link href={`${basePath}/personalised-ed-medication`} className="underline decoration-white/40 hover:decoration-white hover:text-white transition-all duration-300">personalised ED medication</Link> where appropriate.
+            Private, doctor-led care for men with erection difficulties, reduced firmness, or increasing reliance on tablets. Treatment may include <Link href={`${basePath}/shockwave-therapy-erectile-dysfunction`} className="underline decoration-white/40 hover:decoration-white hover:text-white transition-all duration-300">shockwave therapy</Link>, <Link href={`${basePath}/p-shot`} className="underline decoration-white/40 hover:decoration-white hover:text-white transition-all duration-300">P-Shot</Link>, and <Link href={`${basePath}/personalised-ed-medication`} className="underline decoration-white/40 hover:decoration-white hover:text-white transition-all duration-300">personalised ED medication</Link> where appropriate.
           </motion.p>
 
           <motion.div 
