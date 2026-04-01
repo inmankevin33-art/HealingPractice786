@@ -44,45 +44,25 @@ export const metadata: Metadata = {
   },
 };
 
-// --- SEO RICH FAQS (Birmingham & West Midlands Focus) ---
-// NOTE: Kept for visual rendering in PShotClient, but removed from JSON-LD to prevent cross-page duplication penalty
+// --- UNIQUE SEO RICH FAQS (Birmingham & West Midlands Focus) ---
+// Safely marked up with JSON-LD below since these are unique to the Birmingham clinic
 const faqs = [
   {
-    question: "What is the P-Shot and is it available in Birmingham?",
-    answer: "Yes, the P-Shot (Priapus Shot) is available at our private Birmingham clinic. It is a doctor-led treatment using platelet-rich plasma (PRP), discussed during consultation for suitable men seeking support for erectile dysfunction, reduced firmness, or penile rejuvenation.",
+    question: "Where exactly is your Birmingham P-Shot clinic located, and is parking discreet?",
+    answer: "Our clinic is located at 38 Harborne Rd in Edgbaston (B15 3EB). We offer a highly discreet, private setting with accessible parking nearby, ensuring your visit from anywhere in the West Midlands is stress-free and confidential.",
   },
   {
-    question: "Where can I get the P-Shot in Birmingham?",
-    answer: "We offer private doctor-led P-Shot treatment in Birmingham, with consultation and treatment carried out in a discreet clinical setting. Our clinic welcomes patients from Edgbaston, Solihull, Sutton Coldfield, and the wider West Midlands.",
+    question: "Who administers the P-Shot at the Edgbaston clinic?",
+    answer: "All P-Shot consultations and treatments in Birmingham are personally conducted by our Medical Director, Dr. Syed Abdi. He is a GMC-registered doctor with extensive experience in regenerative urological treatments.",
   },
   {
-    question: "Is the P-Shot painful?",
-    answer: "A local anaesthetic cream is applied before treatment to improve comfort. Most patients find the P-Shot well tolerated, although individual experience can vary.",
+    question: "How quickly can I get a consultation in Birmingham?",
+    answer: "We strive to accommodate our West Midlands patients as efficiently as possible. We often have same-week availability for private P-Shot assessments at our Edgbaston clinic. Please call our direct line to secure the earliest slot.",
   },
   {
-    question: "How long does the P-Shot appointment take?",
-    answer: "A P-Shot appointment usually takes around 45 to 60 minutes. This includes the consultation, blood draw, PRP preparation, and treatment.",
-  },
-  {
-    question: "Is there any downtime after the P-Shot?",
-    answer: "Most men can return to normal daily activities shortly after their P-Shot appointment. You will be given personalised aftercare advice based on your treatment plan.",
-  },
-  {
-    question: "Can the P-Shot be used for erectile dysfunction?",
-    answer: "The P-Shot may be considered for some men with erectile dysfunction, depending on the underlying cause, severity of symptoms, and overall health. A private consultation is important to assess suitability and discuss whether PRP treatment is appropriate for you.",
-  },
-  {
-    question: "Can the P-Shot help with Peyronie’s disease?",
-    answer: "Some men ask about the P-Shot as part of treatment planning for Peyronie’s disease. Suitability depends on your symptoms, examination findings, and overall goals, so this is assessed individually during consultation.",
-  },
-  {
-    question: "How long do P-Shot results last?",
-    answer: "Results vary from person to person. Duration can depend on baseline vascular health, underlying medical conditions, lifestyle factors, and whether additional treatment sessions are recommended.",
-  },
-  {
-    question: "Do I need a consultation before getting the P-Shot in Birmingham?",
-    answer: "Yes. A private doctor-led consultation is required before P-Shot treatment in Birmingham to review your medical history, symptoms, and goals, and to assess whether the treatment is suitable for you.",
-  },
+    question: "Can I drive home to Solihull or Sutton Coldfield immediately after the procedure?",
+    answer: "Yes. Because the P-Shot only requires a topical local anaesthetic cream (no general sedation or gas), you are perfectly safe to drive yourself home anywhere in the Birmingham area immediately following your appointment.",
+  }
 ];
 
 // --- UPGRADED JSON-LD SCHEMA: Compliant & Corrected ---
@@ -217,6 +197,20 @@ const breadcrumbSchema = {
 };
 
 export default function BirminghamPShotPage() {
+  // --- GENERATE JSON-LD SCHEMA FOR FAQS ---
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  };
+
   return (
     <main>
       {/* 1. Inject Medical Entity Schema safely via plain script per Next.js best practices */}
@@ -231,7 +225,13 @@ export default function BirminghamPShotPage() {
         dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema) }}
       />
 
-      {/* 3. Render Client Component (Visual FAQs are passed down to be visible to humans) */}
+      {/* 3. Inject FAQ Schema safely */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema) }}
+      />
+
+      {/* 4. Render Client Component (Visual FAQs are passed down to be visible to humans) */}
       <PShotClient
         locationName="Birmingham"
         servingAreas="Edgbaston • Solihull • Sutton Coldfield • West Midlands"
