@@ -216,7 +216,7 @@ export default function PShotClient({
           >
             {isBirmingham 
               ? "The P-Shot (Priapus Shot) is a clinician-delivered PRP procedure offered at our Edgbaston clinic in Birmingham. It uses platelet-rich plasma prepared from your own blood and is designed to support tissue health and blood flow in selected patients. A consultation is required to assess suitability and discuss alternatives."
-              : "A natural, non-surgical treatment designed to rejuvenate tissue, enhance performance, and improve vascular health using your body’s own healing factors. A clinical consultation is required to assess suitability."
+              : "A doctor-led PRP-based procedure using your own platelet-rich plasma. It is discussed during consultation for suitable patients seeking non-surgical treatment options. A clinical consultation is required to assess suitability and discuss alternatives."
             }
           </motion.p>
 
