@@ -8,11 +8,11 @@ const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c"
 export const metadata: Metadata = {
   // Absolute ignores parent layout templates to ensure precise local matching
   title: {
-    absolute: "P-Shot (PRP) in Birmingham | Doctor-Led Priapus Shot | Edgbaston",
+    absolute: "P-Shot Birmingham | Doctor-Led Priapus Shot in Edgbaston",
   },
   
   description:
-    "Private, doctor-led consultation for PRP-based P-Shot options in Edgbaston, Birmingham. Suitability is assessed individually and outcomes vary.",
+     "Private doctor-led P-Shot consultation in Edgbaston, Birmingham. PRP-based treatment options discussed for suitable men. Consultation required. Outcomes vary.",
   
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/p-shot",
@@ -53,7 +53,7 @@ const faqs = [
   },
   {
     question: "Who administers the P-Shot at the Edgbaston clinic?",
-    answer: "All P-Shot consultations and treatments in Birmingham are personally conducted by our Medical Director, Dr. Syed Abdi. He is a GMC-registered doctor with extensive experience in regenerative urological treatments.",
+    answer: "All P-Shot consultations and treatments in Birmingham are personally conducted by our Medical Director, Dr. Syed Abdi. He is a GMC-registered doctor with experience in private regenerative and sexual health treatments.",
   },
   {
     question: "How quickly can I get a consultation in Birmingham?",
