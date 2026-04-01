@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
@@ -15,8 +16,7 @@ import {
   FaExpandArrowsAlt,
   FaShieldAlt,
   FaArrowRight,
-  FaRegClock, 
-  FaLeaf,     
+  FaRegClock,     
   FaWalking,  
   FaUserMd,   
   FaMicroscope, 
@@ -174,11 +174,12 @@ export default function PShotClient({
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
-          <img 
+          <Image 
             src="/ed-doctor-consultation.webp" 
             alt="P-Shot treatment consultation" 
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => (e.currentTarget.src = "/ed-doctor-consultation.webp")}
+            fill
+            className="object-cover"
+            priority
           />
         </div>
 
@@ -696,7 +697,7 @@ export default function PShotClient({
             </h4>
             <div className="space-y-4">
               <p className="text-slate-700 text-sm md:text-base leading-relaxed">
-                <strong>Evidence and limitations:</strong> While PRP is widely used in other medical contexts, clinical evidence for PRP injections specifically for erectile dysfunction and "P-Shot" outcomes is currently limited, and it is considered by many professional bodies to be an experimental treatment. Results can vary significantly between patients.
+                <strong>Evidence and limitations:</strong> While PRP is widely used in other medical contexts, clinical evidence for PRP injections specifically for erectile dysfunction and &quot;P-Shot&quot; outcomes is currently limited, and it is considered by many professional bodies to be an experimental treatment. Results can vary significantly between patients.
               </p>
               <p className="text-slate-700 text-sm md:text-base leading-relaxed">
                 <strong>Safety profile:</strong> The procedure uses your own blood (autologous PRP) and is performed with strict sterile techniques. While downtime is minimal, short-term side effects can include temporary bruising, swelling, and localized discomfort. Results are not guaranteed. We will discuss what is known, what is uncertain, and realistic outcomes during your comprehensive consultation.
@@ -771,7 +772,7 @@ export default function PShotClient({
               <FaEnvelope className="w-4 h-4" /> Speak To A Specialist
             </button>
             <Link
-              href={isBirmingham ? "/birmingham/prices" : "/prices"}
+              href={isBirmingham ? "/birmingham/faq" : "/faq"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-slate-200 text-slate-700 hover:border-[#4041d1] hover:text-[#4041d1] bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
             >
               View Clinic FAQs
