@@ -1,50 +1,24 @@
 import type { Metadata } from "next";
 import ErectileDysfunctionClient from "@/components/pages/ErectileDysfunctionClient";
-import Script from "next/script";
+
+// Helper recommended pattern: sanitize JSON-LD to mitigate XSS vectors.
+// Next.js recommends replacing "<" with "\u003c".
+const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c");
 
 export const metadata: Metadata = {
   title: {
-    // FIX: Focused on Birmingham & Midlands for browser tab
-    absolute: "Erectile Dysfunction Treatment Birmingham | Healing-PRP",
+    absolute: "Doctor-Led Erectile Dysfunction (ED) Treatment | Birmingham",
   },
 
   description:
     "Specialist erectile dysfunction clinic in Birmingham. GMC-registered doctor offering non-surgical Shockwave Therapy & P-Shot (PRP). Confidential ED treatment in Edgbaston.",
 
   alternates: {
-    // NOTE: Ensures Google knows this is the Birmingham specific page
     canonical: "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction",
   },
 
-  keywords: [
-    // --- CORE BIRMINGHAM KEYWORDS ---
-    "Erectile dysfunction treatment Birmingham",
-    "ED clinic Birmingham",
-    "P-Shot Birmingham",
-    "Shockwave therapy Birmingham",
-    
-    // --- HIDDEN REACH KEYWORDS (Manchester / Midlands) ---
-    "Mens health clinic Manchester",
-    "ED treatment Manchester",
-    "Erectile dysfunction clinic Midlands",
-    "Shockwave therapy West Midlands",
-    
-    // --- HYPER-LOCAL KEYWORDS ---
-    "Private ED clinic Edgbaston",
-    "Erectile dysfunction clinic Solihull",
-    "ED treatment Sutton Coldfield",
-    
-    // --- INTENT & COST KEYWORDS ---
-    "Non-surgical impotence treatment",
-    "GMC registered male health doctor",
-    "Male performance clinic Birmingham",
-    "Private impotence doctor West Midlands",
-    "ED treatment cost Birmingham",
-    "Erectile dysfunction clinic consultation West Midlands"
-  ],
-
   openGraph: {
-    title: "Erectile Dysfunction Treatment | Birmingham & Midlands",
+    title: "Doctor-Led Erectile Dysfunction Treatment | Birmingham & Midlands",
     description:
       "Confidential, doctor-led ED treatments in Birmingham. Shockwave & PRP therapy. Conveniently serving Edgbaston, Solihull & Sutton Coldfield.",
     url: "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction",
@@ -59,6 +33,13 @@ export const metadata: Metadata = {
         alt: "Private ED Consultation Birmingham",
       },
     ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Doctor-Led Erectile Dysfunction Treatment | Birmingham",
+    description: "Confidential, doctor-led ED treatments in Birmingham. Shockwave & PRP therapy in Edgbaston.",
+    images: ["/ed-doctor-consultation.webp"],
   },
 };
 
@@ -94,38 +75,139 @@ const faqs = [
   },
 ];
 
-// --- JSON-LD SCHEMA: Medical Clinic & Medical Therapy (Birmingham) ---
-const edSchemaBirmingham = [
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalClinic",
-    "name": "Healing-PRP Clinics Birmingham",
-    "description": "Specialist erectile dysfunction clinic in Birmingham offering Shockwave Therapy, PRP, and personalised medication for ED treatment.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Birmingham",
-      "addressRegion": "West Midlands",
-      "addressCountry": "UK"
+// --- UPGRADED JSON-LD SCHEMA: Medical Clinic, Condition & Interconnected Therapies ---
+const edSchemaBirmingham = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalClinic",
+      "@id": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction#clinic",
+      "name": "Healing-PRP Clinics Birmingham",
+      "description": "Specialist erectile dysfunction clinic in Birmingham offering Shockwave Therapy, PRP, and personalised medication for ED treatment.",
+      "telephone": "+44 7990 364147",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "38 Harborne Rd",
+        "addressLocality": "Birmingham",
+        "addressRegion": "West Midlands",
+        "postalCode": "B15 3EB",
+        "addressCountry": "GB"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Birmingham"
+        },
+        {
+          "@type": "City",
+          "name": "Edgbaston"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "West Midlands"
+        }
+      ],
+      "medicalSpecialty": "Urologic",
+      "availableService": [
+        {
+          "@id": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction#therapy"
+        }
+      ],
+      "employee": [
+        {
+          "@id": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction#dr"
+        }
+      ]
     },
-    // The "Power Move" for Local SEO:
-    "areaServed": {
-      "@type": "City",
-      "name": "Birmingham"
+    {
+      "@type": "Person",
+      "@id": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction#dr",
+      "name": "Dr Syed Abdi",
+      "jobTitle": "Medical Director",
+      "telephone": "+44 7990 364147",
+      "url": "https://www.healing-prp.co.uk/our-doctor",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "GMC Reference Number",
+        "value": "6083294"
+      },
+      "sameAs": [
+        "https://www.gmc-uk.org/registrants/6083294"
+      ],
+      "worksFor": {
+        "@id": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction#clinic"
+      }
     },
-    "medicalSpecialty": "Urology"
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalTherapy",
-    "name": "Erectile Dysfunction Treatment",
-    "alternateName": ["Shockwave Therapy for ED", "P-Shot®", "PRP for ED", "Personalised ED Medication"],
-    "description": "Non-surgical, restorative treatments for erectile dysfunction including Low-Intensity Extracorporeal Shockwave Therapy (Li-ESWT), Platelet-Rich Plasma (P-Shot), and bespoke medication protocols in Birmingham.",
-    "relevantSpecialty": {
-      "@type": "MedicalSpecialty",
-      "name": "Urology"
+    {
+      "@type": "MedicalTherapy",
+      "@id": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction#therapy",
+      "name": "Erectile Dysfunction Treatment",
+      "url": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction",
+      "relevantSpecialty": "Urologic"
+    },
+    {
+      "@type": "MedicalCondition",
+      "@id": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction#condition",
+      "name": "Erectile Dysfunction",
+      "alternateName": ["ED", "Impotence"],
+      "url": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction",
+      "associatedAnatomy": {
+        "@type": "AnatomicalStructure",
+        "name": "Penis"
+      },
+      "possibleTreatment": [
+        {
+          "@type": "MedicalTherapy",
+          "name": "Low-Intensity Extracorporeal Shockwave Therapy (Li-ESWT)",
+          "url": "https://www.healing-prp.co.uk/birmingham/shockwave-therapy-erectile-dysfunction",
+          "description": "Non-surgical acoustic wave therapy to improve blood flow and vascular health.",
+          "relevantSpecialty": "Urologic"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "P-Shot (Priapus Shot)",
+          "alternateName": "Platelet-Rich Plasma (PRP) for ED",
+          "url": "https://www.healing-prp.co.uk/birmingham/p-shot",
+          "description": "Regenerative injection therapy using the patient's own platelet-rich plasma to stimulate tissue repair.",
+          "relevantSpecialty": "Urologic"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Personalised ED Medication",
+          "url": "https://www.healing-prp.co.uk/birmingham/personalised-ed-medication",
+          "description": "Bespoke pharmacological treatment plans tailored to the patient's specific cardiovascular and metabolic profile.",
+          "relevantSpecialty": "Urologic"
+        }
+      ]
     }
-  }
-];
+  ]
+};
+
+// --- BREADCRUMB SCHEMA ---
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.healing-prp.co.uk/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Birmingham Clinic",
+      "item": "https://www.healing-prp.co.uk/birmingham"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Erectile Dysfunction Treatment",
+      "item": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction"
+    }
+  ]
+};
 
 export default function BirminghamEDPage() {
   // --- GENERATE JSON-LD SCHEMA FOR FAQS ---
@@ -134,41 +216,38 @@ export default function BirminghamEDPage() {
     "@type": "FAQPage",
     "mainEntity": faqs.map((faq) => ({
       "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
+      "name": faq.question,
+      "acceptedAnswer": {
         "@type": "Answer",
-        text: faq.answer,
+        "text": faq.answer,
       },
     })),
   };
 
   return (
     <main>
-      {/* Clinic & Therapy Schema */}
-      <Script
-        id="ed-schema-birmingham"
+      {/* 1. Inject Clinic & Therapy Schema */}
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(edSchemaBirmingham) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(edSchemaBirmingham) }}
       />
       
-      {/* FAQ Schema */}
-      <Script
-        id="ed-faq-schema-birmingham"
+      {/* 2. Inject Breadcrumb Schema */}
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema) }}
+      />
+
+      {/* 3. Inject FAQ Schema (Safe due to unique local content) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema) }}
       />
 
       <ErectileDysfunctionClient 
-        // 1. HEADLINE: "Healing-PRP Clinics, Birmingham"
         locationName="Birmingham"
-        
-        // 2. BADGE: Local catchment areas
         servingAreas="Edgbaston • Solihull • Sutton Coldfield • West Midlands"
-        
-        // 3. LINK: Points to your BIRMINGHAM P-Shot page (crucial for navigation)
         pShotLink="/birmingham/p-shot"
-
-        // 4. FAQS: Passed down for dropdown functionality
         faqs={faqs}
       />
     </main>
