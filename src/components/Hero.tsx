@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image"; // <-- ADDED: Next.js Image component
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { 
   FaEnvelope, 
@@ -15,7 +15,6 @@ import {
 import OnlineAssessmentModal from "./OnlineAssessmentModal"; 
 
 export default function Hero() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false); 
 
   const pathname = usePathname();
@@ -24,10 +23,6 @@ export default function Hero() {
   
   // --- DYNAMIC LOCATION TEXT ---
   const locationSuffix = isBirmingham ? "in Birmingham" : "in St Albans";
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
 
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -62,7 +57,7 @@ export default function Hero() {
           src="/mobilehero.webp" 
           alt="Healing-PRP Clinics Mobile" 
           fill 
-          priority // Forces instant download for Googlebot & CWV
+          priority 
           className="object-cover object-top sm:hidden" 
         />
         {/* Desktop Image */}
@@ -70,7 +65,7 @@ export default function Hero() {
           src="/herobg.webp" 
           alt="Healing-PRP Clinics" 
           fill 
-          priority // Forces instant download for Googlebot & CWV
+          priority 
           className="object-cover object-[center_15%] hidden sm:block" 
         />
         {/* Dark Overlay */}
@@ -83,7 +78,7 @@ export default function Hero() {
         <motion.div 
           custom={1}
           initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
+          animate="visible"
           variants={fadeUpVariants}
           className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter"
         >
@@ -97,7 +92,7 @@ export default function Hero() {
         <motion.h1 
           custom={2}
           initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
+          animate="visible"
           variants={fadeUpVariants}
           className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
         >
@@ -107,7 +102,7 @@ export default function Hero() {
         <motion.h2 
           custom={3}
           initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
+          animate="visible"
           variants={fadeUpVariants}
           className="mt-2 text-lg md:text-xl font-medium font-raleway text-blue-100 leading-relaxed max-w-4xl mx-auto mb-10"
         >
@@ -138,7 +133,7 @@ export default function Hero() {
         <motion.div 
           custom={4}
           initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
+          animate="visible"
           variants={fadeUpVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center" 
         >
@@ -160,7 +155,13 @@ export default function Hero() {
       </div>
 
       {/* --- HERO TRUST BADGES --- */}
-      <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} z-30`}>
+      <motion.div 
+        custom={5}
+        initial="hidden"
+        animate="visible"
+        variants={fadeUpVariants}
+        className="md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 z-30"
+      >
         <div className="px-2 py-4 max-w-7xl mx-auto">
           <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
             
@@ -221,7 +222,7 @@ export default function Hero() {
 
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <OnlineAssessmentModal 
         isOpen={isAssessmentOpen} 
