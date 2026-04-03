@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image"; // <-- ADDED: Next.js Image component
 import { usePathname } from "next/navigation";
 import { 
   FaEnvelope, 
@@ -52,17 +53,32 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[85vh] md:min-h-[600px] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
+    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
       
-      {/* Background Section - Mobile adjusted to top to keep faces visible */}
+      {/* --- UPGRADED BACKGROUND SECTION --- */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-cover bg-[center_top] bg-no-repeat sm:hidden" style={{ backgroundImage: "url('/mobilehero.webp')" }}></div>
-        <div className="absolute inset-0 bg-cover bg-[center_15%] bg-no-repeat hidden sm:block" style={{ backgroundImage: "url('/herobg.webp')" }}></div>
-        <div className="absolute inset-0 bg-black/60"></div>
+        {/* Mobile Image */}
+        <Image 
+          src="/mobilehero.webp" 
+          alt="Healing-PRP Clinics Mobile" 
+          fill 
+          priority // Forces instant download for Googlebot & CWV
+          className="object-cover object-top sm:hidden" 
+        />
+        {/* Desktop Image */}
+        <Image 
+          src="/herobg.webp" 
+          alt="Healing-PRP Clinics" 
+          fill 
+          priority // Forces instant download for Googlebot & CWV
+          className="object-cover object-[center_15%] hidden sm:block" 
+        />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
       </div>
 
-      {/* Main Content - pt-[35vh] pushes text down ONLY on mobile to clear faces */}
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-[35vh] md:pt-0 pb-32 md:pb-40">
+      {/* Main Content - pb-32 md:pb-40 pushes content lower, creating a cinematic feel */}
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-32 md:pb-40">
         
         <motion.div 
           custom={1}
