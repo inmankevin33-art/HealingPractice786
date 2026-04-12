@@ -25,7 +25,9 @@ import {
   FaUserShield,
   FaVial,
   FaUserMd,
-  FaFileAlt
+  FaFileAlt,
+  FaShieldAlt,
+  FaInfoCircle
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
@@ -265,27 +267,27 @@ export default function ErectileDysfunctionClient({
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">10+</div>
-                  <div className="flex flex-col items-start">
-                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Years Experience</span>
-                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Doctor-Led Care</span>
+                  <div className="flex flex-col items-start font-inter">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight">Years Experience</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5">Doctor-Led Care</span>
                   </div>
                 </div>
               </div>
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 font-inter">
                   <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">GMC</div>
                   <div className="flex flex-col items-start">
-                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Dr Syed Abdi</span>
-                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">GMC Registered</span>
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight">Dr Syed Abdi</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5">GMC Registered</span>
                   </div>
                 </div>
               </div>
               <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 font-inter">
                   <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10"><FaLock className="w-3.5 h-3.5" /></div>
                   <div className="flex flex-col items-start">
-                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Strictly 1:1</span>
-                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Discreet Care</span>
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight">Strictly 1:1</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5">Discreet Care</span>
                   </div>
                 </div>
               </div>
@@ -437,9 +439,31 @@ export default function ErectileDysfunctionClient({
       {/* --- SECTION 7: WHAT IT CAN / CANNOT DO --- */}
       <section className="py-24 bg-white font-inter">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">What P-Shot and Shockwave Therapy Can — and Cannot — Do</h3>
-            <p className="text-slate-600 text-lg mb-6">These treatments may support erectile function in selected patients, particularly where reduced blood flow or tissue health is part of the picture. Honest assessment is essential, because not every patient will respond in the same way.</p>
+            <p className="text-slate-600 text-lg mb-8">
+              These treatments may support erectile function in selected patients, particularly where reduced blood flow or tissue health is part of the picture. Honest assessment is essential, because not every patient will respond in the same way.
+            </p>
+
+            {/* --- NEW TIME & SAFETY METRICS BAR --- */}
+            <div className="inline-flex flex-wrap justify-center items-center gap-4 md:gap-8 px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl">
+              <div className="flex items-center gap-2.5">
+                 <FaShieldAlt className="text-[#4041d1] w-5 h-5" />
+                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Non-Surgical</span>
+              </div>
+              <div className="hidden md:block w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+              <div className="flex items-center gap-2.5">
+                 <FaCheckCircle className="text-[#4041d1] w-5 h-5" />
+                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">No Downtime</span>
+              </div>
+              <div className="hidden md:block w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+              <div className="flex items-center gap-2.5">
+                 <FaHourglassEnd className="text-[#4041d1] w-5 h-5" />
+                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Takes ~30 Mins</span>
+              </div>
+            </div>
+            {/* ------------------------------------- */}
+            
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
