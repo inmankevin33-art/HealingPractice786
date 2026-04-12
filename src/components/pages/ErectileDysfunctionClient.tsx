@@ -104,17 +104,6 @@ export default function ErectileDysfunctionClient({
     }),
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
-  // --- UPDATED QUICK STEPS PER ADVICE ---
   const quickSteps = [
     {
       title: "Complete a confidential assessment",
@@ -122,13 +111,13 @@ export default function ErectileDysfunctionClient({
       icon: FaFileAlt,
     },
     {
-      title: "Free doctor-led consultation",
+      title: "Doctor-led consultation",
       description: "We review likely contributing factors and discuss the most suitable options.",
       icon: FaUserMd,
     },
     {
       title: "Move forward with a tailored plan",
-      description: "This may include medication support, shockwave therapy, P-Shot, or a combined approach.",
+      description: "This may include medication support, shockwave therapy, P-Shot, or a combined approach where appropriate.",
       icon: FaCheckCircle,
     },
   ];
@@ -166,7 +155,7 @@ export default function ErectileDysfunctionClient({
     },
     {
       title: "You want a medically guided plan",
-      description: "For men not looking for a quick online prescription, but a proper assessment and tailored strategy.",
+      description: "You are not looking for a quick online prescription, but a proper assessment and a tailored treatment strategy.",
       icon: FaStethoscope,
       color: "bg-emerald-50 text-emerald-600",
     },
@@ -215,7 +204,7 @@ export default function ErectileDysfunctionClient({
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
           >
-            Private, doctor-led care for men with erection difficulties, reduced firmness, or side effects from tablets. Start with a <strong>free confidential consultation</strong> to assess the likely cause and discuss a personalised plan including Shockwave, P-Shot, or medication support.
+            Private, doctor-led care for men with erection difficulties, reduced firmness, inconsistent response to tablets, or unwanted side effects. Start with a <strong>free confidential consultation</strong> to assess the likely cause and discuss the most suitable treatment plan, which may include medication support, shockwave therapy, or P-Shot treatment where appropriate.
           </motion.p>
 
           <motion.div 
@@ -241,7 +230,7 @@ export default function ErectileDysfunctionClient({
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-3 mt-10"
           >
-            {["Tablets not working?", "Doctor-led alternatives", "Free initial consultation", "Discreet & Private"].map((chip) => (
+            {["Tablets not working as well?", "Doctor-led treatment options", "Free confidential consultation", "Discreet private care"].map((chip) => (
               <div key={chip} className="flex items-center gap-1.5 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm">
                 <FaCheckCircle className="text-blue-400" /> {chip}
               </div>
@@ -308,31 +297,31 @@ export default function ErectileDysfunctionClient({
    {/* --- SECTION 1: PERSONALIZED APPROACH --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">A More Personalised Approach</span>
+            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Doctor-Led ED Assessment</span>
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              Expert ED Assessment with Dr Syed Abdi
+              A More Personalised Approach to ED Treatment
             </h2>
             <div className="text-slate-600 text-lg leading-relaxed space-y-6">
               <p>
                 At Healing-PRP Clinics, <Link href={`${basePath}/our-doctor`} className="text-[#4041d1] font-bold hover:underline transition-all duration-300">Dr Syed Abdi</Link> offers discreet, doctor-led assessment for men experiencing erectile dysfunction, reduced firmness, or loss of sexual confidence.
               </p>
               <p>
-                Your journey starts with a <strong>free initial consultation</strong>, designed to understand the wider picture rather than offer the same treatment to every patient. This includes your medical history and possible contributing factors such as diabetes, circulation, or stress.
+                Your journey starts with a <strong>free confidential consultation</strong>, designed to understand the wider picture rather than offer the same treatment to every patient. This includes your symptoms, medical history, current medication, and possible contributing factors such as diabetes, circulation, hormonal changes, or stress.
               </p>
               <p>
-                The aim is to give you clarity on what may be causing the problem and which treatment options—such as medication optimisation, shockwave therapy, or P-Shot—are most appropriate in your case.
+                The aim is to give you clarity on what may be causing the problem and which treatment options, such as medication optimisation, shockwave therapy, or P-Shot treatment, may be most appropriate in your case.
               </p>
             </div>
             <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full transform-gpu"></div>
         </div>
       </section>
 
-      {/* --- HOW IT WORKS (THE ADVICE RE-STRUCTURE) --- */}
+      {/* --- HOW IT WORKS --- */}
       <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">How the process works</h2>
-            <p className="text-slate-600 text-lg">The aim is to make things clear, discreet, and medically guided from the start.</p>
+            <p className="text-slate-600 text-lg">The aim is to make the process clear, discreet, and medically guided from the start.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -349,13 +338,13 @@ export default function ErectileDysfunctionClient({
           
           <div className="mt-12 p-8 bg-blue-600 rounded-2xl text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-blue-900/20">
             <p className="text-lg font-medium max-w-2xl">
-              There is no pressure to proceed. The purpose of the <strong>free consultation</strong> is to help you understand the cause and your suitable treatment options.
+              There is no pressure to proceed. The purpose of the consultation is to help you understand the likely cause of the problem and which treatment options may be suitable for you.
             </p>
             <button 
               onClick={handleAction}
               className="px-8 py-4 bg-white text-[#4041d1] rounded-xl font-bold whitespace-nowrap hover:bg-slate-100 transition-colors shadow-lg active:scale-95"
             >
-              Book My Free Review
+              Book Free Confidential Consultation
             </button>
           </div>
         </div>
@@ -366,19 +355,21 @@ export default function ErectileDysfunctionClient({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="bg-blue-50/50 p-10 rounded-3xl border border-blue-100">
-                <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Specialist ED Review</span>
+                <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Treatment Planning</span>
                 <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
                   The right treatment depends on the cause
                 </h3>
                 <p className="text-slate-600 text-base leading-relaxed mb-6">
-                  Not every case of erectile dysfunction is the same. Some men are better suited to medication optimisation, while others benefit from circulation-focused treatments like shockwave or tissue-repair options like the P-Shot.
+                  Not every case of erectile dysfunction is the same. Some men are better suited to medication optimisation, while others may benefit from circulation-focused treatment such as shockwave therapy or PRP-based options such as the P-Shot.
                 </p>
                 <ul className="space-y-4 mb-8">
                   {[
                     "Erection quality and firmness",
                     "Response to Viagra or Cialis",
                     "Circulation and vascular factors",
-                    "Hormonal and metabolic health"
+                    "Hormonal and metabolic health",
+                    "Medication side effects",
+                    "Confidence and relationship impact",
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-700 font-medium">
                       <FaCheckCircle className="text-[#4041d1] shrink-0" /> {item}
@@ -395,18 +386,18 @@ export default function ErectileDysfunctionClient({
             </div>
 
             <div className="p-10">
-              <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">Our goal is clarity</h3>
+              <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">Why choose a doctor-led review?</h3>
               <p className="text-slate-600 text-base leading-relaxed mb-6">
-                A proper doctor-led assessment helps decide what may be most appropriate in your case, rather than pushing one treatment for everyone.
+                A proper doctor-led assessment helps identify contributing factors, review treatment suitability properly, and avoid a one-size-fits-all approach.
               </p>
               <div className="space-y-4">
                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <h4 className="font-bold text-slate-900 mb-1 italic">Personalised Strategy</h4>
-                    <p className="text-sm text-slate-600">We analyze circulation, nerve health, and lifestyle to build a plan that works for you.</p>
+                    <h4 className="font-bold text-slate-900 mb-1 italic">Medical assessment first</h4>
+                    <p className="text-sm text-slate-600">Treatment recommendations are based on your symptoms, medical history, current medication, and wider health factors.</p>
                  </div>
                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <h4 className="font-bold text-slate-900 mb-1 italic">No-Obligation Discussion</h4>
-                    <p className="text-sm text-slate-600">Your consultation is for information and medical guidance. You decide when to move forward.</p>
+                    <h4 className="font-bold text-slate-900 mb-1 italic">Options beyond standard tablets</h4>
+                    <p className="text-sm text-slate-600">Where appropriate, your plan may include medication support, shockwave therapy, P-Shot treatment, or a combined approach.</p>
                  </div>
               </div>
             </div>
@@ -414,13 +405,13 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- SYMPTOMS GRID (UPDATED TEXT) --- */}
+      {/* --- SYMPTOMS GRID --- */}
       <section className="py-24 bg-slate-50 font-inter border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Who this page is for</h2>
             <p className="text-slate-600 text-lg">
-              This service is appropriate for men wanting a <strong>free, confidential first discussion</strong> about any of the following:
+              This service may be appropriate for men who recognise one or more of the following and want a confidential doctor-led discussion about the next step:
             </p>
           </div>
 
@@ -448,7 +439,7 @@ export default function ErectileDysfunctionClient({
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">What P-Shot and Shockwave Therapy Can — and Cannot — Do</h3>
-            <p className="text-slate-600 text-lg mb-6">Honest assessment is essential, because not every patient will respond in the same way.</p>
+            <p className="text-slate-600 text-lg mb-6">These treatments may support erectile function in selected patients, particularly where reduced blood flow or tissue health is part of the picture. Honest assessment is essential, because not every patient will respond in the same way.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -457,7 +448,12 @@ export default function ErectileDysfunctionClient({
                 <span className="w-2 h-8 bg-[#4041d1] rounded-full block"></span> What these support
               </h4>
               <ul className="space-y-4">
-                {["Improved penile blood flow", "Healthier erectile tissue", "Improved sensitivity", "Greater sexual confidence"].map((item, i) => (
+                {[
+                  "May support penile blood flow in selected patients",
+                  "May support tissue health and vascular responsiveness",
+                  "May help improve erectile function over time",
+                  "May form part of a broader doctor-led treatment plan",
+                ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
                     <span className="text-slate-700 font-medium">{item}</span>
@@ -470,7 +466,12 @@ export default function ErectileDysfunctionClient({
                 <span className="w-2 h-8 bg-slate-400 rounded-full block"></span> Limitations
               </h4>
               <ul className="space-y-4">
-                {["Results vary individually", "Not an instant fix", "Depends on underlying health", "Requires medical suitability review"].map((item, i) => (
+                {[
+                  "Results vary between individuals",
+                  "Improvement is usually gradual, not instant",
+                  "Suitability depends on the underlying cause",
+                  "A medical review is needed before treatment is recommended",
+                ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-slate-500">
                     <FaCheckCircle className="mt-1 shrink-0" />
                     <span className="text-sm font-medium">{item}</span>
@@ -486,8 +487,8 @@ export default function ErectileDysfunctionClient({
       <section className="relative py-20 lg:py-28 bg-slate-50 overflow-hidden font-inter border-y border-slate-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-block px-5 py-2 bg-white text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-slate-200 font-raleway shadow-sm">Advanced Protocols</div>
-            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8 tracking-tight">Tailored Doctor-Led Care</h2>
+            <div className="inline-block px-5 py-2 bg-white text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-slate-200 font-raleway shadow-sm">Our Treatment Approach</div>
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8 tracking-tight">A Structured Doctor-Led Treatment Plan</h2>
           </div>
 
           <div className="max-w-7xl mx-auto mt-12 relative">
@@ -560,7 +561,7 @@ export default function ErectileDysfunctionClient({
               onClick={handleAction}
               className="px-10 py-5 w-full md:w-auto bg-[#4041d1] text-white rounded-xl font-bold text-lg hover:bg-[#2a2bb8] transition-all shadow-xl shadow-blue-900/20 active:scale-95"
             >
-              Book Free Initial Discussion
+              Book Free Confidential Consultation
             </button>
             <Link
               href={isBirmingham ? "/birmingham/prices" : "/prices"}
@@ -575,7 +576,7 @@ export default function ErectileDysfunctionClient({
       {/* --- FAQs --- */}
       <section id="faqs" className="py-24 bg-slate-50 font-inter border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16"><h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">Common Questions</h2></div>
+          <div className="text-center mb-16"><h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">Common Questions About Erectile Dysfunction Treatment</h2></div>
           <div className="space-y-4">
             {displayedFaqs.map((faq, index) => (
               <div key={index} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
