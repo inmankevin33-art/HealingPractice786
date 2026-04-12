@@ -176,7 +176,7 @@ export default function ErectileDysfunctionClient({
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90 z-10" />
@@ -187,7 +187,8 @@ export default function ErectileDysfunctionClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
+        {/* Added pb-48 here to ensure content doesn't get hidden behind the trust badges on mobile */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-48 md:pb-24">
           <motion.div 
             custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="inline-block px-5 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md shadow-lg"
@@ -202,11 +203,12 @@ export default function ErectileDysfunctionClient({
             Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {locationName}
           </motion.h1>
 
+          {/* Shortened Hero Paragraph */}
          <motion.p 
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
           >
-            Private, doctor-led care for men with erection difficulties, reduced firmness, inconsistent response to tablets, or unwanted side effects. Start with a <strong>free confidential consultation</strong> to assess the likely cause and discuss the most suitable treatment plan, which may include medication support, shockwave therapy, or P-Shot treatment where appropriate.
+            Private, doctor-led care for erection difficulties, reduced firmness, or tablet side effects. Start with a <strong>free confidential consultation</strong> to assess the cause and discuss tailored options like medication, Shockwave, or P-Shot treatment.
           </motion.p>
 
           <motion.div 
@@ -241,15 +243,15 @@ export default function ErectileDysfunctionClient({
 
           <motion.div 
             custom={5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 text-white/60 rounded-full text-[10px] md:text-xs mt-8 font-bold uppercase tracking-widest font-inter"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 text-white/60 rounded-full text-[10px] md:text-xs mt-6 font-bold uppercase tracking-widest font-inter"
           >
              <FaMapMarkerAlt className="mb-0.5" /> 
              <span>Serving: {servingAreas}</span>
           </motion.div>
         </div>
 
-        {/* --- HERO TRUST BADGES --- */}
-        <div className={`w-full relative md:absolute bottom-0 left-0 right-0 bg-[#0A1128]/95 backdrop-blur-xl border-t border-white/10 transition-all duration-1000 mt-8 md:mt-0 z-20 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        {/* --- HERO TRUST BADGES (Fixed for Mobile) --- */}
+        <div className={`absolute bottom-0 left-0 w-full z-30 bg-[#0A1128]/95 backdrop-blur-xl border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 divide-none md:divide-x divide-white/10">
               <a href="#reviews" onClick={(e) => {
@@ -445,7 +447,7 @@ export default function ErectileDysfunctionClient({
               These treatments may support erectile function in selected patients, particularly where reduced blood flow or tissue health is part of the picture. Honest assessment is essential, because not every patient will respond in the same way.
             </p>
 
-            {/* --- NEW TIME & SAFETY METRICS BAR --- */}
+            {/* --- TIME & SAFETY METRICS BAR --- */}
             <div className="inline-flex flex-wrap justify-center items-center gap-4 md:gap-8 px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl">
               <div className="flex items-center gap-2.5">
                  <FaShieldAlt className="text-[#4041d1] w-5 h-5" />
@@ -462,7 +464,6 @@ export default function ErectileDysfunctionClient({
                  <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Takes ~30 Mins</span>
               </div>
             </div>
-            {/* ------------------------------------- */}
             
           </div>
 
