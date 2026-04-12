@@ -227,7 +227,6 @@ export default function ErectileDysfunctionClient({
             </button>
           </motion.div>
 
-          {/* REFINED CHIPS */}
           <motion.div 
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-3 mt-10"
@@ -460,7 +459,6 @@ export default function ErectileDysfunctionClient({
                     <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
                     <span className="text-slate-700 font-medium">{item}</span>
                   </li>
-                </li>
                 ))}
               </ul>
             </div>
