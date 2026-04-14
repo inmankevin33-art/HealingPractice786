@@ -1,512 +1,494 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
-  FaCheck,
   FaPlus,
   FaMinus,
+  FaCheck,
+  FaCheckCircle,
   FaEnvelope,
+  FaMapMarkerAlt,
+  FaArrowRight,
+  FaGoogle,
+  FaStar,
+  FaLock,
+  FaShieldAlt,
+  FaHourglassEnd,
+  FaUserMd,
+  FaFileAlt,
+  FaSyringe,
+  FaWaveSquare
 } from "react-icons/fa";
+import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
-import Link from "next/link";
+import TrustReviews from "@/components/TrustReviews";
+import OnlineAssessmentModal from "@/components/OnlineAssessmentModal";
 
-export default function PeyroniesClient() {
+type FaqType = {
+  question: string;
+  answer: string;
+};
+
+interface PeyroniesProps {
+  locationName?: string;
+  servingAreas?: string;
+  pShotLink?: string;
+  faqs: FaqType[]; 
+}
+
+export default function PeyroniesClient({
+  locationName = "St Albans",
+  servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
+  pShotLink = "/p-shot",
+  faqs, 
+}: PeyroniesProps) {
+  
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+
+  const isBirmingham = locationName === "Birmingham";
+  const basePath = isBirmingham ? "/birmingham" : "";
+  const shockwaveLink = `${basePath}/shockwave-therapy-erectile-dysfunction`; // Adjust if your URL slug is different for PD
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setIsLoaded(true);
+  }, []);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
-  }, []);
+  const handleAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof window !== "undefined") {
+      const w = window as Window & { gtag?: (...args: unknown[]) => void };
+      if (w.gtag) {
+        w.gtag("event", "generate_lead", {
+          event_category: "engagement",
+          event_label: "opened_contact_drawer",
+          page_path: window.location.pathname,
+        });
+      }
+    }
+    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    setTimeout(() => {
+      const section = document.getElementById("contact-form-section");
+      if (section) {
+        const headerOffset = 100;
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      }
+    }, 100);
+  };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
+  const fadeUpVariants: Variants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: (i: number) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-    },
+      y: 0,
+      transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
+    }),
   };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
-  const benefits = [
-    "Reduces curvature and penile pain",
-    "Supports plaque remodelling & blood flow",
-    "Improves erectile quality & sensitivity",
-  ];
 
   const symptoms = [
-    "Curvature or indentation during erection",
-    "Penile pain (usually early phase)",
-    "Perceived shortening or loss of elasticity",
-    "Erectile difficulties and confidence issues",
-  ];
-
-  const whoIsItFor = [
-    "Men with stable or active Peyronie's seeking non‑surgical options",
-    "Those with painful erections or progressive curvature",
-    "Erectile dysfunction linked to plaque and reduced blood flow",
-    "Patients aiming to improve function, confidence and comfort",
-  ];
-
-  const treatmentDetails = [
     {
-      title: "Platelet‑Rich Plasma (PRP) — P‑Shot®",
-      description:
-        "Concentrated growth factors from your own blood support tissue repair and elasticity. Targeted PRP (P‑Shot®) may help soften plaques, improve curvature over time, and enhance erectile quality.",
+      title: "Curvature or Indentation",
+      description: "A noticeable bend or hourglass shape in the penis during an erection.",
     },
     {
-      title: "Low‑Intensity Shockwave Therapy (LiSWT)",
-      description:
-        "Acoustic waves stimulate angiogenesis and collagen remodelling. In combination with PRP, it can further reduce plaque stiffness and support healthier erections. Typically a course of 6 or more sessions is advised, adjusted to each patient's response and condition.",
+      title: "Penile Pain",
+      description: "Discomfort or pain during erections, particularly in the early (active) phase of the condition.",
     },
     {
-      title: "Supportive Measures",
-      description:
-        "Penile traction / vacuum protocols to maintain length and symmetry. Lifestyle and hormonal optimisation where appropriate. Referral pathways for specialist injections or surgery if needed.",
-    },
-  ];
-
-  const faqs = [
-    {
-      question: "How many sessions will I need?",
-      answer:
-        "A course of 6 or more shockwave sessions is commonly recommended, along with PRP treatments, tailored to curvature angle, plaque characteristics, pain, and erectile function.",
+      title: "Loss of Length or Girth",
+      description: "Perceived shortening or a loss of elasticity and thickness.",
     },
     {
-      question: "When should I start treatment?",
-      answer:
-        "Early intervention during the active phase can help with pain and may limit progression; we assess phase status during consultation.",
+      title: "Erectile Difficulties",
+      description: "Trouble getting or maintaining firmness, often linked to the plaque or reduced blood flow.",
     },
     {
-      question: "Is there downtime?",
-      answer:
-        "PRP (P‑Shot®) and LiSWT are outpatient treatments with minimal downtime. Most people resume normal activity the same day.",
+      title: "Palpable Lumps",
+      description: "Feeling hard tissue or plaques beneath the skin of the penis.",
     },
     {
-      question: "Will it fully straighten my penis?",
-      answer:
-        "Responses vary. Many notice functional improvements and curvature reduction; complete straightening cannot be guaranteed. We'll discuss additional options if indicated.",
-    },
+      title: "Loss of Confidence",
+      description: "Anxiety and stress impacting intimacy and your relationship.",
+    }
   ];
 
   return (
     <>
-      {/* Hero Section - Standardized Twin Style */}
-      <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden">
-        {/* Background Elements */}
+      {/* --- HERO SECTION --- */}
+      <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-10" />
-          <img
-            src="/hero_img.png"
-            alt="Background"
-            className="w-full h-full object-cover"
+          <div className="absolute inset-0 bg-black/60 z-10" /> 
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90 z-10" />
+          <img 
+            src="/hero_img.png" // Update with an appropriate intimate health/doctor image if preferred
+            alt="Peyronie's Disease Treatment Consultation" 
+            className="absolute inset-0 w-full h-full object-cover opacity-90"
           />
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-20 flex h-full w-full items-center mt-10 md:mt-0">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-              className="text-center max-w-4xl mx-auto"
+        {/* pb-48 pushes content higher on mobile to clear the 2x2 trust badges */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-48 md:pb-24">
+          <motion.div 
+            custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="inline-block px-5 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md shadow-lg"
+          >
+            <span className="text-blue-100 text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase font-inter">Doctor-Led Private Clinic</span>
+          </motion.div>
+
+          <motion.h1 
+            custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight drop-shadow-lg"
+          >
+            Peyronie's Disease <br className="hidden sm:block"/> Treatment in {locationName}
+          </motion.h1>
+
+         <motion.p 
+            custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
+          >
+            Private, doctor-led care for men experiencing penile curvature, pain, or reduced elasticity. Start with a <strong>free confidential consultation</strong> to assess the condition and discuss tailored non-surgical options like P-Shot or Shockwave therapy.
+          </motion.p>
+
+          <motion.div 
+            custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <button 
+              onClick={handleAction}
+              className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] active:scale-95 font-inter"
             >
-              <motion.div
-                // BRAND COLOR LOCK: bg-[#4041d1]/10 text-[#4041d1]
-                className="inline-block px-4 py-2 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-inter font-bold mb-4 uppercase tracking-wider"
-                variants={itemVariants}
-              >
-                Male Sexual Health
-              </motion.div>
+              <FaEnvelope className="w-4 h-4" /> Book Free Confidential Consultation
+            </button>
+            <button 
+              onClick={() => setIsAssessmentOpen(true)}
+              className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
+            >
+              Start Free Online Assessment
+            </button>
+          </motion.div>
 
-              <motion.h1
-                className="text-2xl lg:text-4xl font-raleway text-slate-900 font-bold leading-snug mb-4"
-                variants={itemVariants}
-              >
-                Peyronie&apos;s Disease Treatment
-                <span className="block mt-1 text-slate-700">Healing-PRP Clinics</span>
-              </motion.h1>
+          {/* AD BENEFIT CHIPS */}
+          <motion.div 
+            custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="flex flex-wrap justify-center gap-3 mt-10"
+          >
+            {["Curvature & Pain Relief", "Non-Surgical Options", "Free Confidential Consultation", "Discreet Private Care"].map((chip) => (
+              <div key={chip} className="flex items-center gap-1.5 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm">
+                <FaCheckCircle className="text-blue-400" /> {chip}
+              </div>
+            ))}
+          </motion.div>
 
-              <motion.p
-                className="text-sm md:text-base font-inter text-slate-600 leading-relaxed max-w-2xl mx-auto mb-8"
-                variants={itemVariants}
-              >
-                Advanced male sexual rejuvenation with regenerative therapies. Doctor-led care using your body&apos;s natural healing ability.
-              </motion.p>
+          <motion.div 
+            custom={5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="inline-flex items-center justify-center gap-2 px-6 py-2 text-white/60 rounded-full text-[10px] md:text-xs mt-6 font-bold uppercase tracking-widest font-inter"
+          >
+             <FaMapMarkerAlt className="mb-0.5" /> 
+             <span>Serving: {servingAreas}</span>
+          </motion.div>
+        </div>
 
-              <motion.div
-                className="hidden md:flex flex-row justify-center gap-4 mb-8"
-                variants={itemVariants}
-              >
-                {benefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm"
-                  >
-                    <FaCheck className="w-3 h-3 text-[#4041d1]" />
-                    <span className="text-sm font-inter text-slate-700 font-medium">
-                      {benefit}
-                    </span>
+        {/* --- HERO TRUST BADGES (Mobile Fixed) --- */}
+        <div className={`absolute bottom-0 left-0 w-full z-30 bg-[#0A1128]/95 backdrop-blur-xl border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="px-2 py-4 max-w-7xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 divide-none md:divide-x divide-white/10">
+              <a href="#reviews" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
+              }} className="flex justify-center items-center group cursor-pointer px-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-[#4285F4] group-hover:scale-110 transition-transform shadow-md"><FaGoogle className="w-4 h-4" /></div>
+                  <div className="flex flex-col items-start">
+                    <div className="flex text-amber-400 text-[10px] mb-0.5"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
+                    <span className="text-white text-[9px] font-bold tracking-widest uppercase opacity-90 group-hover:opacity-100 font-inter">5.0 Patient Rating</span>
                   </div>
-                ))}
-              </motion.div>
+                </div>
+              </a>
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">10+</div>
+                  <div className="flex flex-col items-start font-inter">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight">Years Experience</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5">Doctor-Led Care</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3 font-inter">
+                  <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">GMC</div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight">Dr Syed Abdi</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5">GMC Registered</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-3 font-inter">
+                  <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10"><FaLock className="w-3.5 h-3.5" /></div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight">Strictly 1:1</span>
+                    <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5">Discreet Care</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              {/* Standardized Single Button */}
+      {/* --- UNDERSTANDING PD --- */}
+      <section className="py-20 bg-white font-inter">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Doctor-Led Assessment</span>
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+              Understanding Peyronie's Disease
+            </h2>
+            <div className="text-slate-600 text-lg leading-relaxed space-y-6">
+              <p>
+                Peyronie's Disease occurs when fibrous scar tissue (plaques) forms in the tunica albuginea, causing penile curvature, indentation, pain, and sometimes shortening. It often follows micro‑trauma, though in many cases, the cause is unclear. 
+              </p>
+              <p>
+                Your journey starts with a <strong>free confidential consultation</strong>. Dr Syed Abdi will review your symptoms, medical history, and the active or stable phase of your condition to determine the safest, most effective approach.
+              </p>
+            </div>
+            <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full"></div>
+        </div>
+      </section>
+
+      {/* --- SYMPTOMS GRID --- */}
+      <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Common Symptoms & Who This Is For</h2>
+            <p className="text-slate-600 text-lg">
+              This service is for men seeking non-surgical options who recognise any of the following and want a <strong>free, confidential first discussion</strong>:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {symptoms.map((symptom, index) => (
               <motion.div
-                variants={itemVariants}
-                className="flex justify-center"
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm flex flex-col h-full"
               >
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-                    const section = document.getElementById("contact-form-section");
-                    if (section) section.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  // BRAND COLOR LOCK: #4041d1
-                  className="px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 shadow-xl shadow-blue-500/25 gap-2 group"
-                >
-                  <FaEnvelope className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                  Book Consultation
-                </button>
+                <div className="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center mb-6 text-xl text-indigo-600"><FaCheckCircle /></div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3">{symptom.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{symptom.description}</p>
               </motion.div>
-            </motion.div>
+            ))}
+          </div>
+
+          <div className="flex justify-center">
+            <button 
+              onClick={handleAction}
+              className="px-8 py-4 w-full sm:w-auto bg-[#4041d1] text-white rounded-xl font-bold transition-all duration-300 shadow-lg active:scale-95 text-sm md:text-base"
+            >
+              Book Free Confidential Consultation
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Navigation */}
-      <section className="py-8 border-b border-t shadow-xs border-slate-100 relative">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="flex flex-wrap justify-center gap-4"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            {[
-              { label: "Understanding PD", href: "#understanding" },
-              { label: "Symptoms", href: "#symptoms" },
-              { label: "How It Works", href: "#how-it-works" },
-              { label: "Who Is It For", href: "#who-is-it-for" },
-              { label: "Treatment Details", href: "#treatment-details" },
-              { label: "FAQs", href: "#faqs" },
-            ].map((link, idx) => (
-              <motion.a
-                key={idx}
-                href={link.href}
-                className="px-4 py-2 text-sm border border-slate-100 shadow-xs bg-white text-[#4041d1] rounded-lg font-inter font-bold hover:bg-[#4041d1]/5 transition-colors duration-300"
-                variants={itemVariants}
-              >
-                {link.label}
-              </motion.a>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      {/* --- TREATMENT APPROACH (METRICS + DETAILS) --- */}
+      <section className="py-24 bg-white font-inter">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Non-Surgical Solutions</span>
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">Our Treatment Approach</h2>
+            <p className="text-slate-600 text-lg leading-relaxed mb-10">
+              We combine regenerative therapies to encourage plaque remodelling and vascular regeneration. Depending on your assessment, treatment may include one or both of the following options.
+            </p>
 
-      {/* Understanding Peyronie's Disease Section */}
-      <section id="understanding" className="py-20 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-6"
-              variants={itemVariants}
-            >
-              Understanding Peyronie&apos;s Disease
-            </motion.h2>
-
-            <motion.p
-              className="text-sm md:text-base font-inter text-slate-600 max-w-4xl leading-relaxed"
-              variants={itemVariants}
-            >
-              Peyronie&apos;s Disease occurs when fibrous scar tissue (plaques)
-              forms in the tunica albuginea, causing penile curvature,
-              indentation, pain, and sometimes shortening. It often follows
-              micro‑trauma; in many cases, the cause is unclear. Emotional
-              impact is common and treatable.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Symptoms Section */}
-      <section id="symptoms" className="py-20 lg:py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-6"
-              variants={itemVariants}
-            >
-              Common Symptoms
-            </motion.h2>
-
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
-              variants={containerVariants}
-            >
-              {symptoms.map((symptom, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm border border-slate-200"
-                  variants={itemVariants}
-                >
-                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[#4041d1] flex-shrink-0" />
-                  <span className="text-sm font-inter text-slate-700 leading-relaxed">
-                    {symptom}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-6"
-              variants={itemVariants}
-            >
-              How It Works
-            </motion.h2>
-
-            <motion.p
-              className="text-sm md:text-base font-inter text-slate-600 max-w-4xl leading-relaxed"
-              variants={itemVariants}
-            >
-              We combine Platelet‑Rich Plasma (PRP) — P‑Shot® with Low‑Intensity
-              Shockwave Therapy (LiSWT) to encourage plaque remodelling and
-              vascular regeneration. A small blood sample is processed into PRP;
-              after topical anaesthetic, targeted injections are performed
-              alongside scheduled shockwave sessions. Most patients return to
-              normal activities the same day. A course of 6 or more shockwave
-              sessions may be recommended depending on the individual case,
-              curvature, and symptom severity.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Who Is It For Section */}
-      <section id="who-is-it-for" className="py-20 lg:py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-6"
-              variants={itemVariants}
-            >
-              Who Is It For?
-            </motion.h2>
-
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
-              variants={containerVariants}
-            >
-              {whoIsItFor.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm border border-slate-200"
-                  variants={itemVariants}
-                >
-                  <FaCheck className="w-4 h-4 mt-[0.2rem] text-[#4041d1] flex-shrink-0" />
-                  <span className="text-sm font-inter text-slate-700 leading-relaxed">
-                    {item}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Treatment Details Section */}
-      <section id="treatment-details" className="py-20 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 mb-12 text-center"
-              variants={itemVariants}
-            >
-              Treatment Components
-            </motion.h2>
-
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={containerVariants}
-            >
-              {treatmentDetails.map((detail, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-slate-50 rounded-xl p-6 shadow-sm border border-slate-100"
-                  variants={itemVariants}
-                >
-                  <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3">
-                    {detail.title}
-                  </h3>
-                  <p className="text-sm font-inter text-slate-600 leading-relaxed">
-                    {detail.description}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* NEW: Reusable CTA Bar (Standardized) */}
-      <section className="py-12 bg-white border-t border-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-center items-center gap-4">
-          <Link
-            href="/prices"
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
-          >
-            View Treatment Prices
-          </Link>
-          
-          <Link
-            href="/faq"
-            className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
-          >
-            View Clinic FAQs
-          </Link>
-        </div>
-      </section>
-
-      {/* FAQs Section */}
-      <section id="faqs" className="py-20 lg:py-24 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <motion.div
-              className="flex justify-center mb-2"
-              variants={itemVariants}
-            >
-              <div className="inline-block px-4 py-2 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-inter font-bold uppercase tracking-wider">
-                Frequently Asked Questions
+            {/* --- TIME & SAFETY METRICS BAR --- */}
+            <div className="inline-flex flex-wrap justify-center items-center gap-4 md:gap-8 px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl">
+              <div className="flex items-center gap-2.5">
+                 <FaShieldAlt className="text-[#4041d1] w-5 h-5" />
+                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">100% Non-Surgical</span>
               </div>
-            </motion.div>
-            <motion.h2
-              className="text-2xl lg:text-3xl font-raleway font-bold text-slate-900 leading-tight text-center mb-4"
-              variants={itemVariants}
-            >
-              Common Questions
-            </motion.h2>
+              <div className="hidden md:block w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+              <div className="flex items-center gap-2.5">
+                 <FaCheckCircle className="text-[#4041d1] w-5 h-5" />
+                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Zero Downtime</span>
+              </div>
+              <div className="hidden md:block w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+              <div className="flex items-center gap-2.5">
+                 <FaHourglassEnd className="text-[#4041d1] w-5 h-5" />
+                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Fast Clinic Visits</span>
+              </div>
+            </div>
+          </div>
 
-            <motion.div
-              className="space-y-4 mt-8"
-              initial="hidden"
-              whileInView="visible"
-              variants={containerVariants}
-            >
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-                  variants={itemVariants}
-                >
-                  <motion.button
-                    className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
-                    onClick={() => toggleFAQ(index)}
-                  >
-                    <h3 className="font-raleway font-bold text-slate-900 pr-4 leading-relaxed text-sm md:text-base">
-                      {faq.question}
-                    </h3>
-                    <motion.div
-                      className="flex-shrink-0 w-8 h-8 bg-[#4041d1]/10 rounded-full flex items-center justify-center relative"
-                      animate={{ rotate: openFAQIndex === index ? 180 : 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                      <motion.div
-                        animate={{ opacity: openFAQIndex === index ? 0 : 1, scale: openFAQIndex === index ? 0 : 1 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute"
-                      >
-                        <FaPlus className="w-3 h-3 text-[#4041d1]" />
-                      </motion.div>
-                      <motion.div
-                        animate={{ opacity: openFAQIndex === index ? 1 : 0, scale: openFAQIndex === index ? 1 : 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <FaMinus className="w-3 h-3 text-[#4041d1]" />
-                      </motion.div>
-                    </motion.div>
-                  </motion.button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* P-Shot Card */}
+            <div className="bg-slate-50 rounded-3xl p-8 lg:p-10 border border-slate-200 flex flex-col">
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                <FaSyringe className="text-[#4041d1] text-2xl" />
+              </div>
+              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Platelet‑Rich Plasma (P‑Shot)</h3>
+              <p className="text-slate-600 leading-relaxed mb-6 flex-grow">
+                Concentrated growth factors from your own blood support tissue repair and elasticity. Targeted PRP may help soften plaques, improve curvature over time, and enhance overall erectile quality.
+              </p>
+              
+              <ul className="space-y-3 mb-8 bg-white p-4 rounded-xl border border-slate-100">
+                <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                  <FaHourglassEnd className="text-[#4041d1] shrink-0" /> Takes approx. 30 Minutes
+                </li>
+                <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                  <FaCheckCircle className="text-[#4041d1] shrink-0" /> Zero downtime
+                </li>
+              </ul>
 
-                  <AnimatePresence>
-                    {openFAQIndex === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-6">
-                          <div className="border-t border-slate-100 pt-4">
-                            <p className="font-inter text-sm text-slate-600 leading-relaxed">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button onClick={handleAction} className="w-full text-center px-6 py-3 bg-[#4041d1] text-white font-bold rounded-xl text-sm transition-all hover:bg-[#2a2bb8]">
+                  Book Free Consultation
+                </button>
+                <Link href={pShotLink} className="w-full text-center px-6 py-3 bg-white text-[#4041d1] font-bold rounded-xl text-sm border border-slate-200 transition-all hover:bg-slate-100">
+                  Read More
+                </Link>
+              </div>
+            </div>
+
+            {/* Shockwave Card */}
+            <div className="bg-slate-50 rounded-3xl p-8 lg:p-10 border border-slate-200 flex flex-col">
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                <FaWaveSquare className="text-[#4041d1] text-2xl" />
+              </div>
+              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Low‑Intensity Shockwave</h3>
+              <p className="text-slate-600 leading-relaxed mb-6 flex-grow">
+                Acoustic waves stimulate angiogenesis and collagen remodelling. In combination with PRP, it can further reduce plaque stiffness. Typically a course of 6 sessions is advised, adjusted to your specific curvature.
+              </p>
+              
+              <ul className="space-y-3 mb-8 bg-white p-4 rounded-xl border border-slate-100">
+                <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                  <FaHourglassEnd className="text-[#4041d1] shrink-0" /> Takes approx. 20 Minutes
+                </li>
+                <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                  <FaCheckCircle className="text-[#4041d1] shrink-0" /> Pain-free & Zero downtime
+                </li>
+              </ul>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button onClick={handleAction} className="w-full text-center px-6 py-3 bg-[#4041d1] text-white font-bold rounded-xl text-sm transition-all hover:bg-[#2a2bb8]">
+                  Book Free Consultation
+                </button>
+                <Link href={shockwaveLink} className="w-full text-center px-6 py-3 bg-white text-[#4041d1] font-bold rounded-xl text-sm border border-slate-200 transition-all hover:bg-slate-100">
+                  Read More
+                </Link>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      <ContactCTASection />
+      {/* --- PRIVACY & REASSURANCE --- */}
+      <section className="py-24 bg-white font-inter border-t border-slate-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-block px-4 py-1.5 bg-blue-50 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">100% Confidential & Private</div>
+          <h3 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8">No-Obligation Doctor-Led Review</h3>
+          <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto mb-12">
+            We understand that discussing Peyronie's Disease can feel uncomfortable. Our clinics provide a private, respectful, and judgement-free environment where concerns are taken seriously and addressed with sensitivity.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 text-left">
+            {["GMC-registered doctors", "Personalised treatment planning", "No GP referral required", "Discreet messaging & booking"].map((item, i) => (
+              <div key={i} className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-center gap-3">
+                <FaCheckCircle className="text-[#4041d1] text-xl shrink-0" /> 
+                <span className="text-slate-800 font-medium text-sm">{item}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
+            <button
+              onClick={handleAction}
+              className="px-10 py-5 w-full md:w-auto bg-[#4041d1] text-white rounded-xl font-bold text-lg hover:bg-[#2a2bb8] transition-all shadow-xl active:scale-95"
+            >
+              Book Free Confidential Consultation
+            </button>
+            <button
+              onClick={() => setIsAssessmentOpen(true)}
+              className="px-10 py-5 w-full md:w-auto border-2 border-slate-200 text-slate-600 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all"
+            >
+              Start Free Online Assessment
+            </button>
+          </div>
+        </div>
+      </section>
 
+      {/* --- FAQs Section --- */}
+      <section id="faqs" className="py-20 lg:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 leading-tight">
+              Common Questions About PD Treatment
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-slate-50 transition-colors duration-300"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  <h3 className="font-raleway font-bold text-slate-900 pr-4 leading-relaxed text-sm md:text-base">
+                    {faq.question}
+                  </h3>
+                  <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${openFAQIndex === index ? 'bg-[#4041d1] text-white' : 'bg-[#4041d1]/10 text-[#4041d1]'}`}>
+                    {openFAQIndex === index ? <FaMinus /> : <FaPlus />}
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {openFAQIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6">
+                        <div className="border-t border-slate-100 pt-4">
+                          <p className="font-inter text-sm md:text-base text-slate-600 leading-relaxed italic">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+             <button onClick={handleAction} className="text-[#4041d1] font-bold text-sm underline hover:no-underline">Speak with our doctor during a free initial discussion</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="reviews-section">
+        <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
+      </div>
+      <ContactCTASection />
+      <LocationSection /> 
       <Footer />
+      <OnlineAssessmentModal isOpen={isAssessmentOpen} onClose={() => setIsAssessmentOpen(false)} />
     </>
   );
 }
