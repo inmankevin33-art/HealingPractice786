@@ -438,7 +438,7 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- SECTION 7: WHAT IT CAN / CANNOT DO --- */}
+     {/* --- SECTION 7: WHAT IT CAN / CANNOT DO --- */}
       <section className="py-24 bg-white font-inter">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
@@ -505,9 +505,26 @@ export default function ErectileDysfunctionClient({
               </ul>
             </div>
           </div>
+
+          {/* --- NEW INTERNAL LINKS --- */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <Link 
+              href={pShotLink || "/p-shot"} 
+              className="px-8 py-4 w-full sm:w-auto bg-[#4041d1] hover:bg-[#2a2bb8] text-white text-center rounded-xl font-bold transition-all duration-300 shadow-lg active:scale-95 text-sm md:text-base"
+            >
+              Learn more about P-Shot
+            </Link>
+            <Link 
+              href={typeof shockwaveLink !== "undefined" ? shockwaveLink : "/shockwave-therapy-erectile-dysfunction"} 
+              className="px-8 py-4 w-full sm:w-auto bg-[#4041d1] hover:bg-[#2a2bb8] text-white text-center rounded-xl font-bold transition-all duration-300 shadow-lg active:scale-95 text-sm md:text-base"
+            >
+              Learn more about Shockwave
+            </Link>
+          </div>
+
         </div>
       </section>
-
+      
       {/* --- SECTION 6: THE PROTOCOL --- */}
       <section className="relative py-20 lg:py-28 bg-slate-50 overflow-hidden font-inter border-y border-slate-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
