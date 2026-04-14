@@ -52,7 +52,7 @@ export default function PeyroniesClient({
 
   const isBirmingham = locationName === "Birmingham";
   const basePath = isBirmingham ? "/birmingham" : "";
-  const shockwaveLink = `${basePath}/shockwave-therapy-erectile-dysfunction`; // Adjust if your URL slug is different for PD
+  const shockwaveLink = `${basePath}/shockwave-therapy-erectile-dysfunction`; 
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -131,7 +131,7 @@ export default function PeyroniesClient({
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90 z-10" />
           <img 
-            src="/hero_img.png" // Update with an appropriate intimate health/doctor image if preferred
+            src="/hero_img.png" 
             alt="Peyronie's Disease Treatment Consultation" 
             className="absolute inset-0 w-full h-full object-cover opacity-90"
           />
@@ -150,7 +150,7 @@ export default function PeyroniesClient({
             custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight drop-shadow-lg"
           >
-            Peyronie's Disease <br className="hidden sm:block"/> Treatment in {locationName}
+            Peyronie&apos;s Disease <br className="hidden sm:block"/> Treatment in {locationName}
           </motion.h1>
 
          <motion.p 
@@ -252,11 +252,11 @@ export default function PeyroniesClient({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Doctor-Led Assessment</span>
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              Understanding Peyronie's Disease
+              Understanding Peyronie&apos;s Disease
             </h2>
             <div className="text-slate-600 text-lg leading-relaxed space-y-6">
               <p>
-                Peyronie's Disease occurs when fibrous scar tissue (plaques) forms in the tunica albuginea, causing penile curvature, indentation, pain, and sometimes shortening. It often follows micro‑trauma, though in many cases, the cause is unclear. 
+                Peyronie&apos;s Disease occurs when fibrous scar tissue (plaques) forms in the tunica albuginea, causing penile curvature, indentation, pain, and sometimes shortening. It often follows micro‑trauma, though in many cases, the cause is unclear. 
               </p>
               <p>
                 Your journey starts with a <strong>free confidential consultation</strong>. Dr Syed Abdi will review your symptoms, medical history, and the active or stable phase of your condition to determine the safest, most effective approach.
@@ -403,7 +403,7 @@ export default function PeyroniesClient({
           <div className="inline-block px-4 py-1.5 bg-blue-50 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">100% Confidential & Private</div>
           <h3 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8">No-Obligation Doctor-Led Review</h3>
           <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto mb-12">
-            We understand that discussing Peyronie's Disease can feel uncomfortable. Our clinics provide a private, respectful, and judgement-free environment where concerns are taken seriously and addressed with sensitivity.
+            We understand that discussing Peyronie&apos;s Disease can feel uncomfortable. Our clinics provide a private, respectful, and judgement-free environment where concerns are taken seriously and addressed with sensitivity.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 text-left">
             {["GMC-registered doctors", "Personalised treatment planning", "No GP referral required", "Discreet messaging & booking"].map((item, i) => (
