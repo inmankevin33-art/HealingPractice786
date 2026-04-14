@@ -259,7 +259,7 @@ export default function PeyroniesClient({
                 Peyronie&apos;s Disease occurs when fibrous scar tissue (plaques) forms in the tunica albuginea, causing penile curvature, indentation, pain, and sometimes shortening. It often follows micro‑trauma, though in many cases, the cause is unclear. 
               </p>
               <p>
-                Your journey starts with a <strong>free confidential consultation</strong>. Dr Syed Abdi will review your symptoms, medical history, and the active or stable phase of your condition to determine the safest, most effective approach.
+                Your journey starts with a <strong>free confidential consultation</strong>. <Link href={`${basePath}/our-doctor`} className="text-[#4041d1] font-bold hover:underline transition-all duration-300">Dr Syed Abdi</Link> will review your symptoms, medical history, and the active or stable phase of your condition to determine the safest, most effective approach.
               </p>
             </div>
             <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full"></div>
