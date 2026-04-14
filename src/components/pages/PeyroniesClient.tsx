@@ -25,7 +25,6 @@ import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import TrustReviews from "@/components/TrustReviews";
-import OnlineAssessmentModal from "@/components/OnlineAssessmentModal";
 
 type FaqType = {
   question: string;
@@ -48,7 +47,6 @@ export default function PeyroniesClient({
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   const isBirmingham = locationName === "Birmingham";
   const basePath = isBirmingham ? "/birmingham" : "";
@@ -169,12 +167,6 @@ export default function PeyroniesClient({
               className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] active:scale-95 font-inter"
             >
               <FaEnvelope className="w-4 h-4" /> Book Free Confidential Consultation
-            </button>
-            <button 
-              onClick={() => setIsAssessmentOpen(true)}
-              className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl active:scale-95 font-inter"
-            >
-              Start Free Online Assessment
             </button>
           </motion.div>
 
@@ -298,7 +290,7 @@ export default function PeyroniesClient({
               onClick={handleAction}
               className="px-8 py-4 w-full sm:w-auto bg-[#4041d1] text-white rounded-xl font-bold transition-all duration-300 shadow-lg active:scale-95 text-sm md:text-base"
             >
-              Book Free Confidential Consultation
+              Schedule Free Confidential Consultation
             </button>
           </div>
         </div>
@@ -356,10 +348,10 @@ export default function PeyroniesClient({
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <button onClick={handleAction} className="w-full text-center px-6 py-3 bg-[#4041d1] text-white font-bold rounded-xl text-sm transition-all hover:bg-[#2a2bb8]">
-                  Book Free Consultation
+                  Arrange Free Confidential Consult
                 </button>
                 <Link href={pShotLink} className="w-full text-center px-6 py-3 bg-white text-[#4041d1] font-bold rounded-xl text-sm border border-slate-200 transition-all hover:bg-slate-100">
-                  Read More
+                  More info about P-Shot
                 </Link>
               </div>
             </div>
@@ -385,10 +377,10 @@ export default function PeyroniesClient({
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <button onClick={handleAction} className="w-full text-center px-6 py-3 bg-[#4041d1] text-white font-bold rounded-xl text-sm transition-all hover:bg-[#2a2bb8]">
-                  Book Free Consultation
+                  Arrange Free Confidential Consult
                 </button>
                 <Link href={shockwaveLink} className="w-full text-center px-6 py-3 bg-white text-[#4041d1] font-bold rounded-xl text-sm border border-slate-200 transition-all hover:bg-slate-100">
-                  Read More
+                  More info about Shockwave
                 </Link>
               </div>
             </div>
@@ -413,18 +405,12 @@ export default function PeyroniesClient({
               </div>
             ))}
           </div>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
+          <div className="flex justify-center">
             <button
               onClick={handleAction}
               className="px-10 py-5 w-full md:w-auto bg-[#4041d1] text-white rounded-xl font-bold text-lg hover:bg-[#2a2bb8] transition-all shadow-xl active:scale-95"
             >
-              Book Free Confidential Consultation
-            </button>
-            <button
-              onClick={() => setIsAssessmentOpen(true)}
-              className="px-10 py-5 w-full md:w-auto border-2 border-slate-200 text-slate-600 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all"
-            >
-              Start Free Online Assessment
+              Request Free Confidential Consultation
             </button>
           </div>
         </div>
@@ -488,7 +474,6 @@ export default function PeyroniesClient({
       <ContactCTASection />
       <LocationSection /> 
       <Footer />
-      <OnlineAssessmentModal isOpen={isAssessmentOpen} onClose={() => setIsAssessmentOpen(false)} />
     </>
   );
 }
