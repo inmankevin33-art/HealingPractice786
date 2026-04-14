@@ -62,6 +62,7 @@ export default function ErectileDysfunctionClient({
 
   const isBirmingham = locationName === "Birmingham";
   const basePath = isBirmingham ? "/birmingham" : "";
+  const shockwaveLink = `${basePath}/shockwave-therapy-erectile-dysfunction`;
 
   useEffect(() => {
     window.scrollTo(0, 0);
