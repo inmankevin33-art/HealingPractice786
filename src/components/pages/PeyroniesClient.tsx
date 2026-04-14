@@ -131,7 +131,7 @@ export default function PeyroniesClient({
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90 z-10" />
           <img 
-            src="/hero_img.png" 
+            src="/ed-doctor-consultation.webp" 
             alt="Peyronie's Disease Treatment Consultation" 
             className="absolute inset-0 w-full h-full object-cover opacity-90"
           />
