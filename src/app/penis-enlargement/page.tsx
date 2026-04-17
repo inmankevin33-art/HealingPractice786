@@ -6,19 +6,20 @@ const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c"
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Non-Surgical Penis Enlargement St Albans | HA Fillers",
+    absolute: "Non-Surgical Penis Enlargement St Albans | Doctor-Led HA Fillers",
   },
-  
+
   description:
-    "Private doctor-led non-surgical penis enlargement in St Albans. Premium Hyaluronic Acid (HA) fillers for immediate girth enhancement. Zero downtime. Serving Hertfordshire.",
-  
+    "Private doctor-led non-surgical penis enlargement in St Albans using premium hyaluronic acid (HA) fillers. Designed to enhance penis girth with immediate visible results and minimal downtime.",
+
   alternates: {
     canonical: "https://www.healing-prp.co.uk/penis-enlargement",
   },
-  
+
   openGraph: {
-    title: "Non-Surgical Penis Enlargement in St Albans | Healing-PRP Clinics",
-    description: "Doctor-led consultation for HA Filler penile girth enhancement in St Albans. Immediate, natural-feeling results with zero surgical downtime.",
+    title: "Non-Surgical Penis Enlargement St Albans | Healing-PRP Clinics",
+    description:
+      "Private doctor-led non-surgical penis enlargement in St Albans using hyaluronic acid (HA) fillers. Designed to enhance penis girth with immediate visible results and minimal downtime.",
     url: "https://www.healing-prp.co.uk/penis-enlargement",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
@@ -28,15 +29,16 @@ export const metadata: Metadata = {
         url: "/hero_img.png",
         width: 1200,
         height: 630,
-        alt: "Non-Surgical Penis Enlargement Consultation St Albans",
+        alt: "Non-Surgical Penis Enlargement St Albans | Healing-PRP Clinics",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Non-Surgical Penis Enlargement St Albans | Doctor-Led Clinic",
-    description: "Doctor-led HA filler girth enhancement in St Albans. Safe, reversible, and natural-feeling results.",
+    title: "Non-Surgical Penis Enlargement St Albans | Doctor-Led HA Fillers",
+    description:
+      "Doctor-led non-surgical penis enlargement in St Albans using hyaluronic acid (HA) fillers with minimal downtime.",
     images: ["/hero_img.png"],
   },
 };
@@ -45,27 +47,27 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: "What is non-surgical penis enlargement?",
-    answer: "Available at our St Albans clinic, this is a doctor-led procedure that uses premium, bio-compatible Hyaluronic Acid (HA) fillers to instantly increase the girth (thickness) of the penis. The added weight can also support increased flaccid length.",
+    answer: "At our St Albans clinic, non-surgical penis enlargement is a doctor-led procedure using premium hyaluronic acid (HA) filler to increase penis girth. In some men, the added volume and weight may also contribute to a fuller flaccid appearance.",
   },
   {
     question: "Is the procedure painful?",
-    answer: "Not at all. We prioritise your comfort by applying a highly effective local anaesthetic cream before the procedure begins. Most men report feeling only mild pressure during the injection.",
+    answer: "We prioritise comfort throughout the procedure. A strong local anaesthetic cream is applied before treatment, so most men describe the injections as very tolerable, with only mild pressure or brief discomfort.",
   },
   {
     question: "How long does the treatment take and is there downtime?",
-    answer: "The entire appointment takes less than an hour. Because this is a non-surgical procedure using a blunt cannula technique, there is zero clinical downtime. You can walk out of our Hertfordshire clinic and resume your normal daily activities immediately.",
+    answer: "The appointment usually takes around 45 to 60 minutes. As this is a non-surgical treatment performed with a cannula technique, most patients can return to normal daily activities shortly afterwards, although specific aftercare advice should be followed.",
   },
   {
-    question: "How long do the HA filler results last?",
-    answer: "Results typically last up to 18 months, though this depends on your individual metabolism and lifestyle. Because HA is naturally broken down by the body over time, the results are completely reversible if desired.",
+    question: "How long do HA filler results last?",
+    answer: "Results commonly last around 12 to 18 months, depending on factors such as metabolism, lifestyle, and the amount of filler used. Because hyaluronic acid is gradually broken down by the body, maintenance treatments may be considered over time.",
   },
   {
-    question: "Are HA fillers safer than surgical fat transfer?",
-    answer: "Yes. Surgical fat transfer requires liposuction, carries surgical risks, has a long recovery period, and can result in permanent, lumpy fat necrosis. HA fillers are non-surgical, provide smooth and predictable volume, require no downtime, and can be dissolved instantly if needed.",
+    question: "How do HA fillers compare with surgical fat transfer?",
+    answer: "HA filler treatment is a non-surgical option that avoids liposuction and a surgical recovery period. It can offer a more controlled and predictable approach to penis enlargement, and in experienced hands it also allows adjustment or reversal if required.",
   },
   {
-    question: "What aftercare is required to ensure smooth results?",
-    answer: "Success is a two-part process. Dr Abdi ensures precision placement, but you must follow our prescribed daily massage routine and briefly abstain from sexual activity to ensure the filler integrates smoothly into the tissue without irregularities.",
+    question: "What aftercare is required after non-surgical penis enlargement?",
+    answer: "Aftercare is an important part of treatment. You may be advised to carry out gentle massage as instructed and avoid sexual activity for a short period. Following your personalised aftercare plan helps support even filler distribution and the best possible outcome.",
   }
 ];
 
@@ -78,7 +80,7 @@ const enlargementSchema = {
       "@id": "https://www.healing-prp.co.uk/penis-enlargement#clinic",
       "name": "Healing-PRP Clinics St Albans",
       "url": "https://www.healing-prp.co.uk/penis-enlargement",
-      "description": "Doctor-led private clinic in St Albans providing non-surgical penile girth enhancement using premium HA fillers.",
+      "description": "Doctor-led private clinic in St Albans providing non-surgical penis enlargement using premium HA fillers.",
       "telephone": "+447990364147",
       "address": {
         "@type": "PostalAddress",
@@ -124,9 +126,9 @@ const enlargementSchema = {
       "@type": "MedicalTherapy",
       "@id": "https://www.healing-prp.co.uk/penis-enlargement#therapy",
       "name": "Non-Surgical Penis Enlargement (HA Fillers)",
-      "alternateName": ["Penile Girth Enhancement", "Penis Fillers", "Non-Surgical Phalloplasty"],
+      "alternateName": ["Penis Enlargement", "Penis Fillers", "Non-Surgical Phalloplasty"],
       "url": "https://www.healing-prp.co.uk/penis-enlargement",
-      "description": "Doctor-led procedure using Hyaluronic Acid (HA) dermal fillers to safely increase penile girth and support flaccid length.",
+      "description": "Doctor-led procedure using Hyaluronic Acid (HA) dermal fillers for safe non-surgical penis enlargement.",
       "relevantSpecialty": "Urologic",
       "offers": {
         "@type": "Offer",
