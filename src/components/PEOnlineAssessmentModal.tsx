@@ -53,9 +53,9 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
     },
     {
       id: 5,
-      title: "Are you prepared to commit to the required aftercare?",
-      options: ["Yes, I understand", "No", "I need more information first"],
-      note: "Aftercare involves daily massage for a short period and temporary abstinence from sexual activity to ensure smooth results.",
+      title: "What is your age group?",
+      options: ["18 - 25", "26 - 39", "40 - 55", "56+"],
+      note: "You must be over 18 to receive this treatment.",
     },
     {
       id: 6,
