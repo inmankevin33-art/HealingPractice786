@@ -117,59 +117,59 @@ export default function PenisEnlargementClient({
   // --- DATA ---
   const benefits = [
     {
-      title: "Immediate Girth Increase",
+      title: "Immediate Visible Penis Enlargement",
       description:
-        "Notice a visible, natural-feeling increase in thickness (girth) both when flaccid and erect immediately after treatment.",
+        "Notice a visible increase in penis girth immediately after treatment, with results designed to look proportionate and natural.",
       icon: FaExpandArrowsAlt,
       color: "bg-blue-50 text-blue-600",
     },
     {
-      title: "Flaccid Length Support",
+      title: "Fuller Flaccid Appearance",
       description:
-        "The added weight of the premium filler can help increase the resting (flaccid) length, reducing the 'shrinkage' effect.",
+        "In some men, the added volume and weight of the filler may contribute to a fuller flaccid appearance and less visible shrinkage.",
       icon: FaArrowRight,
       color: "bg-indigo-50 text-indigo-600",
     },
     {
-      title: "Partner Satisfaction",
+      title: "Improved Intimate Confidence",
       description:
-        "A thicker profile is often reported to provide greater surface contact and enhanced stimulation for your partner.",
+        "An increase in penis girth may help some men feel more confident during intimacy and more positive about their overall appearance.",
       icon: FaHeart,
       color: "bg-rose-50 text-rose-600",
     },
     {
-      title: "Boosted Confidence",
+      title: "Doctor-Led, Non-Surgical Option",
       description:
-        "Feel more comfortable and confident in intimate moments, changing rooms, and in your daily life.",
+        "This doctor-led non-surgical penis enlargement treatment offers a discreet option for men seeking visible enhancement without surgery.",
       icon: FaShieldAlt,
       color: "bg-teal-50 text-teal-600",
     },
   ];
 
-  const protocolSteps = [
+ const protocolSteps = [
     {
       number: 1,
       icon: FaUserMd,
       title: "Discreet Consultation",
-      description: "A private discussion to outline your specific aesthetic goals, determine the appropriate ml volume, and ensure suitability.",
+      description: "A private consultation to discuss your goals, assess suitability, and decide on the most appropriate filler volume for your treatment.",
     },
     {
       number: 2,
       icon: FaShieldAlt,
       title: "Topical Numbing",
-      description: "A highly effective local anaesthetic is applied to ensure the procedure is entirely pain-free and comfortable.",
+      description: "A strong local anaesthetic is applied before treatment to maximise comfort throughout the procedure.",
     },
     {
       number: 3,
       icon: FaSyringe,
-      title: "Precision Injection",
-      description: "Using a blunt cannula for safety, Dr Abdi carefully distributes the HA filler to create a smooth, proportionate shape.",
+      title: "Precise Filler Placement",
+      description: "Using a cannula technique, Dr Abdi carefully places the hyaluronic acid filler to achieve a smooth, proportionate result.",
     },
     {
       number: 4,
       icon: FaWalking,
-      title: "Zero Downtime",
-      description: "The entire process takes under an hour. You will be briefed on your aftercare massage routine and can walk out the same day.",
+      title: "Minimal Downtime",
+      description: "The appointment usually takes under an hour. You will be given personalised aftercare advice, including massage guidance, and most patients can return to normal daily activities shortly afterwards.",
     },
   ];
 
@@ -222,7 +222,7 @@ export default function PenisEnlargementClient({
             variants={fadeUpVariants}
             className="mt-4 text-sm md:text-base text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
-            Enhance your girth and flaccid length safely with premium, bio-compatible Hyaluronic Acid (HA) fillers. A 100% reversible, doctor-led procedure with zero surgical downtime.
+           Enhance your girth and flaccid length safely with premium, bio-compatible Hyaluronic Acid (HA) fillers. A 100% reversible, doctor-led procedure with minimum downtime.
           </motion.p>
 
           <motion.div 
@@ -486,7 +486,7 @@ export default function PenisEnlargementClient({
               </div>
               <h3 className="text-2xl font-bold font-raleway text-white mb-4">Part 2: The Aftercare</h3>
               <p className="text-slate-300 leading-relaxed mb-6">
-                Your role is just as crucial. Once you leave the clinic, the filler remains malleable. You must commit to our daily massage protocol and abstain from sexual activity for a short period to ensure the filler integrates smoothly without irregularities.
+                Aftercare is an important part of treatment. Following the procedure, the filler remains mouldable for a short period. You will be advised to carry out daily massage as instructed and avoid sexual activity temporarily to help support smooth filler settling and an even result.              
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-sm text-slate-400 font-medium"><FaCheckCircle className="text-blue-400" /> Daily Prescribed Massage</li>
