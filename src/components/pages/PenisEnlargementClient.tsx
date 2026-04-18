@@ -201,7 +201,7 @@ export default function PenisEnlargementClient({
             variants={fadeUpVariants}
             className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
           >
-            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Premium HA Fillers</span>
+            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Doctor-Led HA Fillers</span>
           </motion.div>
 
           <motion.h1
