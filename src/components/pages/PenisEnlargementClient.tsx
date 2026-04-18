@@ -163,7 +163,7 @@ export default function PenisEnlargementClient({
       number: 3,
       icon: FaSyringe,
       title: "Precise Filler Placement",
-      description: "Using a cannula technique, Dr. Abdi carefully places the hyaluronic acid filler to achieve a smooth, proportionate result.",
+      description: "Using a cannula technique, Dr Abdi carefully places the hyaluronic acid filler to achieve a smooth, proportionate result.",
     },
     {
       number: 4,
@@ -474,7 +474,7 @@ export default function PenisEnlargementClient({
               </div>
               <h3 className="text-2xl font-bold font-raleway text-white mb-4">Part 1: The Precision</h3>
               <p className="text-slate-300 leading-relaxed mb-6">
-                Dr. Abdi handles the complex medical work. Using a blunt cannula technique to protect delicate structures, he meticulously layers premium Hyaluronic Acid to create a symmetrical, proportionate enhancement.
+                Dr Abdi handles the complex medical work. Using a blunt cannula technique to protect delicate structures, he meticulously layers premium Hyaluronic Acid to create a symmetrical, proportionate enhancement.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-sm text-slate-400 font-medium"><FaCheckCircle className="text-[#4041d1]" /> GMC-Registered Doctor</li>
