@@ -180,14 +180,18 @@ export default function PenisEnlargementClient({
     {/* --- HERO SECTION --- */}
       <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         
-        {/* 1. Background */}
-        <div className="absolute inset-0 z-0">
+       {/* 1. Background */}
+        <div className="absolute inset-0 z-0 bg-[#0A1128]">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
-          <img 
+          <Image 
             src="/PEnlargement.webp" 
             alt="Non-Surgical Penis Enlargement Consultation" 
-            className="absolute inset-0 w-full h-full object-cover opacity-90"
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="object-cover opacity-90"
           />
         </div>
 
