@@ -163,7 +163,7 @@ export default function PenisEnlargementClient({
       number: 3,
       icon: FaSyringe,
       title: "Precise Filler Placement",
-      description: "Using a cannula technique, Dr Abdi carefully places the hyaluronic acid filler to achieve a smooth, proportionate result.",
+      description: "Using a cannula technique, Dr. Abdi carefully places the hyaluronic acid filler to achieve a smooth, proportionate result.",
     },
     {
       number: 4,
@@ -666,7 +666,7 @@ export default function PenisEnlargementClient({
               Investment in Yourself
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              Because every patient’s anatomy and aesthetic goals are different, we price strictly by the milliliter (ml) of premium HA filler required. The exact volume you need will be determined during your free consultation with Dr Abdi.
+              Because every patient’s anatomy and aesthetic goals are different, we price strictly by the milliliter (ml) of premium HA filler required. The exact volume you need will be determined during your free consultation with Dr. Abdi.
             </p>
           </div>
 
@@ -724,7 +724,7 @@ export default function PenisEnlargementClient({
           </div>
 
           <p className="text-sm text-slate-500 italic max-w-2xl mx-auto">
-            * Prices shown are indicative. Depending on your goals and baseline anatomy, Dr. Syed Abdi may recommend a different volume. All costs will be confirmed with you in writing before any procedure takes place.
+            * Prices shown are indicative. Depending on your goals and baseline anatomy, Dr. Abdi may recommend a different volume. All costs will be confirmed with you in writing before any procedure takes place.
           </p>
 
         </div>
