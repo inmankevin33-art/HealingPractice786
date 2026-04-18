@@ -724,7 +724,7 @@ export default function PenisEnlargementClient({
           </div>
 
           <p className="text-sm text-slate-500 italic max-w-2xl mx-auto">
-            * Prices shown are indicative. Depending on your goals and baseline anatomy, Dr. Abdi may recommend a different volume. All costs will be confirmed with you in writing before any procedure takes place.
+            * Prices shown are indicative. Depending on your goals and baseline anatomy, Dr. Syed Abdi may recommend a different volume. All costs will be confirmed with you in writing before any procedure takes place.
           </p>
 
         </div>
