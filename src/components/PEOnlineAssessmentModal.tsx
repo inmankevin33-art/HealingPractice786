@@ -57,12 +57,6 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
       options: ["18 - 25", "26 - 39", "40 - 55", "56+"],
       note: "You must be over 18 to receive this treatment.",
     },
-    {
-      id: 6,
-      title: "What is your age group?",
-      options: ["18 - 25", "26 - 39", "40 - 55", "56+"],
-      note: "You must be over 18 to receive this treatment.",
-    },
   ];
 
   const handleSelect = (answer: string | number) => {
