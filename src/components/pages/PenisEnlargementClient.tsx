@@ -177,7 +177,7 @@ export default function PenisEnlargementClient({
 
   return (
     <>
-      {/* --- HERO SECTION --- */}
+    {/* --- HERO SECTION --- */}
       <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         
         {/* 1. Background */}
@@ -199,9 +199,12 @@ export default function PenisEnlargementClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
+            className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
           >
-            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Doctor-Led HA Fillers</span>
+            <FaUserMd className="text-blue-300 w-3 h-3" aria-hidden="true" />
+            <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">
+              Led by Dr Syed Abdi
+            </span>
           </motion.div>
 
           <motion.h1
@@ -224,7 +227,7 @@ export default function PenisEnlargementClient({
           >
            Private doctor-led non-surgical penis enlargement using premium hyaluronic acid (HA) fillers. Designed to enhance penis girth and, in some men, contribute to a fuller flaccid appearance with minimal downtime.
           </motion.p>
-
+          
           <motion.div 
             custom={3}
             initial="hidden"
