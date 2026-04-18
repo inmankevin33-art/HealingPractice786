@@ -244,7 +244,7 @@ export default function PenisEnlargementClient({
               aria-label="Book Consultation"
               className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] hover:shadow-[0_0_25px_rgba(64,65,209,0.5)] active:scale-95 font-inter"
             >
-              <FaEnvelope className="w-4 h-4" aria-hidden="true" /> Book Consultation
+              <FaEnvelope className="w-4 h-4" aria-hidden="true" /> Book Free Confidential Consultation
             </button>
           </motion.div>
 
