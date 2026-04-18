@@ -1,9 +1,41 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaArrowLeft, FaCheckCircle, FaUserMd, FaUser, FaEnvelope, FaPhone } from "react-icons/fa";
-import emailjs from "@emailjs/browser";
+
+// 1. MOVED OUTSIDE COMPONENT: Prevents re-creation on every state change/keystroke
+const questions = [
+  {
+    id: 1,
+    title: "What is your primary aesthetic goal for this treatment?",
+    options: ["Increase girth/thickness", "Increase resting (flaccid) length", "Both girth and length"],
+    note: "HA fillers primarily increase girth, but the added weight often naturally increases flaccid length.",
+  },
+  {
+    id: 2,
+    title: "Have you ever had any previous penis enlargement procedures?",
+    options: ["No previous treatments", "Yes - Surgical Fat Transfer", "Yes - HA Fillers previously", "Yes - Suspensory ligament surgery"],
+    note: "It is crucial for our doctor to know your surgical history to ensure safe placement of the filler.",
+  },
+  {
+    id: 3,
+    title: "Are you currently experiencing any issues with erectile function or curvature?",
+    options: ["No issues, everything is fine", "Occasional trouble maintaining firmness", "Noticeable curvature (Peyronie's)", "Both ED and curvature"],
+  },
+  {
+    id: 4,
+    title: "Do you have any diagnosed medical conditions such as diabetes, high blood pressure, or bleeding disorders?",
+    options: ["Yes", "No"],
+    note: "This helps our doctor determine medical suitability and safety for the procedure.",
+  },
+  {
+    id: 5,
+    title: "What is your age group?",
+    options: ["18 - 25", "26 - 39", "40 - 55", "56+"],
+    note: "You must be over 18 to receive this treatment.",
+  },
+];
 
 interface PEOnlineAssessmentModalProps {
   isOpen: boolean;
@@ -20,56 +52,47 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // 2. TIMEOUT REF: To prevent memory leaks if component unmounts quickly
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   // Lock body scroll when open
   useEffect(() => {
-    if (isOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "unset";
-    return () => { document.body.style.overflow = "unset"; };
-  }, [isOpen]);
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+      // Reset state silently when closed so it's fresh next time
+      setTimeout(() => {
+        if (isSubmitted) {
+            setStep(0);
+            setIsComplete(false);
+            setIsSubmitted(false);
+            setAnswers({});
+            setFormData({ name: "", email: "", phone: "" });
+        }
+      }, 500);
+    }
+    
+    return () => { 
+      document.body.style.overflow = "unset"; 
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [isOpen, isSubmitted]);
 
-  const questions = [
-    {
-      id: 1,
-      title: "What is your primary aesthetic goal for this treatment?",
-      options: ["Increase girth/thickness", "Increase resting (flaccid) length", "Both girth and length"],
-      note: "HA fillers primarily increase girth, but the added weight often naturally increases flaccid length.",
-    },
-    {
-      id: 2,
-      title: "Have you ever had any previous penis enlargement procedures?",
-      options: ["No previous treatments", "Yes - Surgical Fat Transfer", "Yes - HA Fillers previously", "Yes - Suspensory ligament surgery"],
-      note: "It is crucial for our doctor to know your surgical history to ensure safe placement of the filler.",
-    },
-    {
-      id: 3,
-      title: "Are you currently experiencing any issues with erectile function or curvature?",
-      options: ["No issues, everything is fine", "Occasional trouble maintaining firmness", "Noticeable curvature (Peyronie's)", "Both ED and curvature"],
-    },
-    {
-      id: 4,
-      title: "Do you have any diagnosed medical conditions such as diabetes, high blood pressure, or bleeding disorders?",
-      options: ["Yes", "No"],
-      note: "This helps our doctor determine medical suitability and safety for the procedure.",
-    },
-    {
-      id: 5,
-      title: "What is your age group?",
-      options: ["18 - 25", "26 - 39", "40 - 55", "56+"],
-      note: "You must be over 18 to receive this treatment.",
-    },
-  ];
-
-  const handleSelect = (answer: string | number) => {
+  // 3. USECALLBACK: Memoize the selection handler
+  const handleSelect = useCallback((answer: string | number) => {
     setAnswers((prev) => ({ ...prev, [step]: answer }));
     
-    setTimeout(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    
+    timeoutRef.current = setTimeout(() => {
       if (step < questions.length - 1) {
         setStep((prev) => prev + 1);
       } else {
         setIsComplete(true);
       }
     }, 300);
-  };
+  }, [step]);
 
   const handleBack = () => {
     if (step > 0) setStep((prev) => prev - 1);
@@ -108,6 +131,10 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
       : "St Albans";
 
     try {
+      // 4. DYNAMIC IMPORT: Only load EmailJS when the user actually hits submit.
+      // This saves ~30kb of JavaScript parsing on initial page load.
+      const emailjs = (await import("@emailjs/browser")).default;
+      
       emailjs.init(publicKey);
       await emailjs.send(serviceId, templateId, {
         from_name: formData.name,
@@ -120,16 +147,9 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
 
       setIsSubmitted(true);
       
-      // Close modal and reset state after a short delay so they see the success message
-      setTimeout(() => {
+      // Close modal after seeing success screen
+      timeoutRef.current = setTimeout(() => {
         onClose();
-        setTimeout(() => {
-          setStep(0);
-          setIsComplete(false);
-          setIsSubmitted(false);
-          setAnswers({});
-          setFormData({ name: "", email: "", phone: "" });
-        }, 500);
       }, 3000);
 
     } catch (error) {
@@ -178,12 +198,12 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
 
           {/* Progress Bar */}
           {!isComplete && (
-            <div className="w-full bg-slate-100 h-1.5">
+            <div className="w-full bg-slate-100 h-1.5 transform-gpu">
               <motion.div
                 className="h-full bg-[#4041d1]"
                 initial={{ width: 0 }}
                 animate={{ width: `${((step + 1) / questions.length) * 100}%` }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               />
             </div>
           )}
@@ -194,12 +214,12 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
               {!isComplete ? (
                 /* QUESTION SCREEN */
                 <motion.div
-                  key={step}
+                  key={`step-${step}`}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="flex flex-col h-full"
+                  className="flex flex-col h-full transform-gpu"
                 >
                   <span className="text-[#4041d1] font-bold font-inter text-sm mb-3 block">
                     Question {step + 1} of {questions.length}
@@ -209,24 +229,27 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
                   </h2>
 
                   <div className="grid gap-3">
-                    {questions[step].options.map((option) => (
-                      <button
-                        key={option}
-                        onClick={() => handleSelect(option)}
-                        className={`p-5 rounded-xl border-2 text-left font-inter font-medium text-lg transition-all duration-200 group flex justify-between items-center ${
-                          answers[step] === option
-                            ? "border-[#4041d1] bg-blue-50/50 text-[#4041d1]"
-                            : "border-slate-100 text-slate-700 hover:border-[#4041d1]/30 hover:bg-slate-50"
-                        }`}
-                      >
-                        {option}
-                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                          answers[step] === option ? "border-[#4041d1] bg-[#4041d1]" : "border-slate-300 group-hover:border-[#4041d1]/50"
-                        }`}>
-                          {answers[step] === option && <div className="w-2 h-2 bg-white rounded-full" />}
-                        </div>
-                      </button>
-                    ))}
+                    {questions[step].options.map((option) => {
+                      const isSelected = answers[step] === option;
+                      return (
+                        <button
+                          key={option}
+                          onClick={() => handleSelect(option)}
+                          className={`p-5 rounded-xl border-2 text-left font-inter font-medium text-lg transition-all duration-200 group flex justify-between items-center ${
+                            isSelected
+                              ? "border-[#4041d1] bg-blue-50/50 text-[#4041d1]"
+                              : "border-slate-100 text-slate-700 hover:border-[#4041d1]/30 hover:bg-slate-50"
+                          }`}
+                        >
+                          {option}
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+                            isSelected ? "border-[#4041d1] bg-[#4041d1]" : "border-slate-300 group-hover:border-[#4041d1]/50"
+                          }`}>
+                            {isSelected && <div className="w-2 h-2 bg-white rounded-full" />}
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
                   
                   {questions[step].note && (
@@ -241,7 +264,7 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
                   key="form"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="py-4"
+                  className="py-4 transform-gpu"
                 >
                   <div className="text-center mb-8">
                     <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">
@@ -312,7 +335,7 @@ export default function PEOnlineAssessmentModal({ isOpen, onClose }: PEOnlineAss
                   key="success"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-12"
+                  className="text-center py-12 transform-gpu"
                 >
                   <motion.div 
                     initial={{ scale: 0 }}
