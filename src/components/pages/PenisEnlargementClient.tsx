@@ -222,7 +222,7 @@ export default function PenisEnlargementClient({
             variants={fadeUpVariants}
             className="mt-4 text-sm md:text-base text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
-           Enhance your girth and flaccid length safely with premium, bio-compatible Hyaluronic Acid (HA) fillers. A reversible, doctor-led procedure with minimum downtime.
+           Private doctor-led non-surgical penis enlargement using premium hyaluronic acid (HA) fillers. Designed to enhance penis girth and, in some men, contribute to a fuller flaccid appearance with minimal downtime.
           </motion.p>
 
           <motion.div 
