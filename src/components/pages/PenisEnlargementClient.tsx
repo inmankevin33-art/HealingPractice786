@@ -683,7 +683,7 @@ export default function PenisEnlargementClient({
               </p>
               <button 
                 onClick={handleAction}
-                className="w-full py-3 border-2 border-slate-200 text-slate-700 hover:border-[#4041d1] hover:text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition-colors text-sm"
+                className="w-full py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-colors text-sm shadow-lg shadow-[#4041d1]/20"
               >
                 Discuss 10ml Plan
               </button>
@@ -715,7 +715,7 @@ export default function PenisEnlargementClient({
               </p>
               <button 
                 onClick={handleAction}
-                className="w-full py-3 border-2 border-slate-200 text-slate-700 hover:border-[#4041d1] hover:text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition-colors text-sm"
+                className="w-full py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-colors text-sm shadow-lg shadow-[#4041d1]/20"
               >
                 Discuss 20ml Plan
               </button>
