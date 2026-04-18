@@ -654,7 +654,23 @@ export default function PenisEnlargementClient({
         </div>
       </section>
 
-      {/* Pricing Tiers */}
+     {/* --- PRICING SECTION --- */}
+      <section className="py-24 bg-slate-50 font-inter border-t border-slate-200">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              Clear & Transparent
+            </div>
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">
+              Investment in Yourself
+            </h2>
+            <p className="text-slate-600 text-lg leading-relaxed mb-6">
+              Because every patient’s anatomy and aesthetic goals are different, we price strictly by the milliliter (ml) of premium HA filler required. The exact volume you need will be determined during your free consultation with Dr Abdi.
+            </p>
+          </div>
+
+          {/* Pricing Tiers */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             
             {/* Tier 1 */}
@@ -713,7 +729,7 @@ export default function PenisEnlargementClient({
 
         </div>
       </section>
-
+      
       {/* --- FAQs --- */}
       <section id="faqs" className="py-24 bg-slate-50 font-inter border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
