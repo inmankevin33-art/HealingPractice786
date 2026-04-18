@@ -222,7 +222,7 @@ export default function PenisEnlargementClient({
             variants={fadeUpVariants}
             className="mt-4 text-sm md:text-base text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
-           Enhance your girth and flaccid length safely with premium, bio-compatible Hyaluronic Acid (HA) fillers. A 100% reversible, doctor-led procedure with minimum downtime.
+           Enhance your girth and flaccid length safely with premium, bio-compatible Hyaluronic Acid (HA) fillers. A reversible, doctor-led procedure with minimum downtime.
           </motion.p>
 
           <motion.div 
