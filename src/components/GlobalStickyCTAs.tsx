@@ -32,7 +32,7 @@ export default function GlobalStickyCTAs() {
         className="flex items-center gap-3 px-6 py-3.5 bg-[#4041d1] text-white rounded-full font-bold text-[11px] shadow-2xl hover:bg-[#2a2bb8] transition-colors group pointer-events-auto uppercase tracking-wider"
       >
         <Phone className="w-3.5 h-3.5 text-white group-hover:rotate-12 transition-transform" />
-        Book free connsultation
+        Book free consultation
       </button>
     </div>
   );
