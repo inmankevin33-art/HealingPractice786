@@ -663,13 +663,13 @@ export default function PenisEnlargementClient({
               Clear & Transparent
             </div>
             <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">
-              Investment in Yourself
+              Treatment Pricing
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              Because every patient’s anatomy and aesthetic goals are different, we price strictly by the milliliter (ml) of premium HA filler required. The exact volume you need will be determined during your free consultation with Dr. Abdi.
+              Because every patient’s anatomy and treatment goals are different, pricing is based on the number of millilitres (ml) of premium hyaluronic acid (HA) filler required. The most appropriate volume will be discussed during your consultation with Dr Abdi.
             </p>
           </div>
-
+      
           {/* Pricing Tiers */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             
@@ -679,54 +679,54 @@ export default function PenisEnlargementClient({
               <div className="text-4xl font-raleway font-bold text-slate-900 mb-2">10ml</div>
               <div className="text-[#4041d1] font-bold text-xl mb-6">From £995</div>
               <p className="text-slate-600 text-sm leading-relaxed mb-8 flex-grow">
-                A great starting point for patients looking for a subtle, natural increase in girth.
+                A suitable starting point for men seeking a more subtle increase in penis girth.
               </p>
               <button 
                 onClick={handleAction}
                 className="w-full py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-colors text-sm shadow-lg shadow-[#4041d1]/20"
               >
-                Discuss 10ml Plan
+                Discuss 10ml Option
               </button>
             </div>
-
+      
             {/* Tier 2 */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-lg transition-shadow relative flex flex-col h-full">
               <h3 className="text-slate-500 font-bold uppercase tracking-widest text-xs mb-2">Standard Enhancement</h3>
               <div className="text-4xl font-raleway font-bold text-slate-900 mb-2">15ml</div>
               <div className="text-[#4041d1] font-bold text-xl mb-6">From £1,450</div>
               <p className="text-slate-600 text-sm leading-relaxed mb-8 flex-grow">
-                Our most popular volume. Provides a highly noticeable, proportionate increase in thickness.
+                A popular option for men looking for a more noticeable yet proportionate increase in penis girth.
               </p>
               <button 
                 onClick={handleAction}
                 className="w-full py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-colors text-sm shadow-lg shadow-[#4041d1]/20"
               >
-                Discuss 15ml Plan
+                Discuss 15ml Option
               </button>
             </div>
-
+      
             {/* Tier 3 */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-lg transition-shadow relative flex flex-col h-full">
-              <h3 className="text-slate-500 font-bold uppercase tracking-widest text-xs mb-2">Maximum Profile</h3>
+              <h3 className="text-slate-500 font-bold uppercase tracking-widest text-xs mb-2">Advanced Enhancement</h3>
               <div className="text-4xl font-raleway font-bold text-slate-900 mb-2">20ml+</div>
               <div className="text-[#4041d1] font-bold text-xl mb-6">From £1,850</div>
               <p className="text-slate-600 text-sm leading-relaxed mb-8 flex-grow">
-                For patients seeking maximum safe volume in a single session, or returning for a top-up.
+                For men seeking greater volume in a single session, or for those returning for further enhancement.
               </p>
               <button 
                 onClick={handleAction}
                 className="w-full py-3 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-colors text-sm shadow-lg shadow-[#4041d1]/20"
               >
-                Discuss 20ml Plan
+                Discuss 20ml+ Option
               </button>
             </div>
-
+      
           </div>
-
+      
           <p className="text-sm text-slate-500 italic max-w-2xl mx-auto">
-            * Prices shown are indicative. Depending on your goals and baseline anatomy, Dr. Abdi may recommend a different volume. All costs will be confirmed with you in writing before any procedure takes place.
+            * Prices shown are indicative. Depending on your anatomy and treatment goals, Dr Abdi may recommend a different volume. All costs will be confirmed with you in writing before any procedure takes place.
           </p>
-
+      
         </div>
       </section>
       
