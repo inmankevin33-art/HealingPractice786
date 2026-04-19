@@ -41,6 +41,7 @@ const Header = () => {
     { name: "Premature Ejaculation", href: isBirmingham ? "/birmingham/premature-ejaculation" : "/premature-ejaculation", isSubItem: true },
     { name: "Peyronie's Disease", href: isBirmingham ? "/birmingham/peyronies-disease" : "/peyronies-disease", isSubItem: true },
     { name: "Personalised Medication", href: isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication", isSubItem: true },
+    { name: "Penis Enlargement", href: isBirmingham ? "/birmingham/penis-enlargement" : "/penis-enlargement", isSubItem: true },
   ];
 
   const menuColumn2: MenuItem[] = [
