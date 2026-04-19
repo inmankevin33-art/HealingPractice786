@@ -163,14 +163,25 @@ export default function OurDoctorClient() {
               </p>
             </motion.div>
 
-            {/* Right: The Portrait Placement (Crucial for the Ezra look) */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants} custom={1} className="relative h-[600px] w-full bg-slate-100 rounded-2xl overflow-hidden group">
-               {/* INSTRUCTION: Replace this div with a Next/Image of Dr. Abdi in a suit or scrubs. A black & white filter works beautifully here. */}
-               <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 p-8 text-center border-2 border-dashed border-slate-300 rounded-2xl m-4">
-                  <FaRegIdCard className="text-5xl mb-4 opacity-50" />
-                  <p className="font-inter text-sm font-bold uppercase tracking-widest">Portrait Placement</p>
-                  <p className="font-inter text-xs mt-2 max-w-xs">Upload a high-quality, professional headshot or clinical photograph of Dr. Abdi here to complete the aesthetic.</p>
-               </div>
+            {/* Right: The Portrait Placement */}
+            <motion.div 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }} 
+              variants={fadeUpVariants} 
+              custom={1} 
+              className="relative h-[600px] w-full bg-slate-100 rounded-2xl overflow-hidden group shadow-xl"
+            >
+               <Image 
+                 src="/DrAbdi.webp"
+                 alt="Dr Syed Abdi - Lead Clinician"
+                 fill
+                 sizes="(max-width: 768px) 100vw, 50vw"
+                 className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+               />
+               
+               {/* Optional: A subtle gradient overlay at the bottom so it blends nicely into the page */}
+               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </motion.div>
 
           </div>
