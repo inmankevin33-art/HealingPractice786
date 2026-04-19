@@ -468,7 +468,7 @@ export default function PenisEnlargementClient({
               A Two-Part Success Formula
             </h2>
             <p className="text-slate-300 text-lg leading-relaxed max-w-3xl mx-auto">
-              We do not believe in &quot;magic wands.&quot; Achieving a smooth, natural, and lasting result requires a partnership between our medical expertise and your commitment to aftercare.
+              There is no single quick fix. A smooth, natural-looking, and lasting result depends on a partnership between expert treatment and careful aftercare.
             </p>
           </div>
 
@@ -479,7 +479,7 @@ export default function PenisEnlargementClient({
               </div>
               <h3 className="text-2xl font-bold font-raleway text-white mb-4">Part 1: The Precision</h3>
               <p className="text-slate-300 leading-relaxed mb-6">
-                Dr Abdi handles the complex medical work. Using a blunt cannula technique to protect delicate structures, he meticulously layers premium Hyaluronic Acid to create a symmetrical, proportionate enhancement.
+                Dr Abdi performs the technical medical treatment. A blunt cannula technique is used to help protect delicate structures, while premium hyaluronic acid is placed in careful layers to support a balanced, proportionate enhancement.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-sm text-slate-400 font-medium"><FaCheckCircle className="text-[#4041d1]" /> GMC-Registered Doctor</li>
@@ -494,7 +494,7 @@ export default function PenisEnlargementClient({
               </div>
               <h3 className="text-2xl font-bold font-raleway text-white mb-4">Part 2: The Aftercare</h3>
               <p className="text-slate-300 leading-relaxed mb-6">
-                Aftercare is an important part of treatment. Following the procedure, the filler remains mouldable for a short period. You will be advised to carry out daily massage as instructed and avoid sexual activity temporarily to help support smooth filler settling and an even result.              
+                 Aftercare is a key part of treatment. Following the procedure, the filler remains mouldable for a short period. You will be advised to perform daily massage exactly as instructed and to avoid sexual activity for a temporary period, helping the filler settle smoothly and evenly.              
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-sm text-slate-400 font-medium"><FaCheckCircle className="text-blue-400" /> Daily Prescribed Massage</li>
