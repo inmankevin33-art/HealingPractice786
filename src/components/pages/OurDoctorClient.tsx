@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import Script from "next/script";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function OurDoctorClient() {
   const [isLoaded, setIsLoaded] = useState(false);
