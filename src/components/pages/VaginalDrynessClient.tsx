@@ -240,13 +240,16 @@ export default function VaginalDrynessClient({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-block px-4 py-1.5 bg-[#4041d1]/10 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-              Our Hydration Menu
+              Our Clinical Hydration Menu
             </div>
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              The "Good, Better, Best" of Intimate Rehydration
+              The &quot;Good, Better, Best&quot; of Intimate Rehydration
             </h2>
+            <p className="text-slate-600 text-sm md:text-base font-medium max-w-2xl mx-auto">
+              From immediate surface moisture to deep cellular repair, we offer three tiers of injectable care tailored to the severity of your symptoms.
+            </p>
           </div>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {treatmentLevels.map((level, index) => (
               <motion.div
