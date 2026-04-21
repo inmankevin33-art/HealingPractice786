@@ -180,7 +180,8 @@ export default function ContactCTASection() {
                         <div className="md:col-span-2 space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Treatment</label>
                           <select name="treatment" value={formData.treatment} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-slate-600 appearance-none text-sm">
-                            <option>Sexual Rejuvenation (P-Shot/O-Shot)</option>
+                            <option>Mens Health</option>
+                            <option>Womens Health</option>
                             <option>Hair Restoration</option>
                             <option>Joint Pain Relief</option>
                             <option>Facial Aesthetics</option>
