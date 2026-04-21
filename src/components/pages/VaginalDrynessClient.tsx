@@ -228,7 +228,7 @@ export default function VaginalDrynessClient({
             <div>
               <h3 className="text-xl font-bold font-raleway text-slate-900 mb-2">A Medical-First Approach</h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Vaginal dryness isn't always caused by menopause. Infection, skin conditions, and irritation must be ruled out. Every patient at our clinic undergoes a 1:1 medical assessment with <strong>Dr Syed Abdi</strong> to ensure a safe and effective plan.
+                Vaginal dryness isn&apos;t always caused by menopause. Infection, skin conditions, and irritation must be ruled out. Every patient at our clinic undergoes a 1:1 medical assessment with <strong>Dr Syed Abdi</strong> to ensure a safe and effective plan.
               </p>
             </div>
           </div>
