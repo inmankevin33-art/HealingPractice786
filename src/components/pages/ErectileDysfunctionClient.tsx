@@ -73,31 +73,52 @@ export default function ErectileDysfunctionClient({
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-  const handleAction = (e: React.MouseEvent) => {
+   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    // 1. TRACKING FIX: Log intent, not the final lead
     if (typeof window !== "undefined") {
       const w = window as Window & { gtag?: (...args: unknown[]) => void };
       if (w.gtag) {
-        w.gtag("event", "generate_lead", {
+        // Changed from "generate_lead" to a custom intent event.
+        // This stops Google Ads from optimizing for clickers instead of form fillers.
+        w.gtag("event", "contact_initiated", { 
           event_category: "engagement",
-          event_label: "opened_contact_drawer",
+          event_label: "clicked_book_consultation",
           page_path: window.location.pathname,
         });
       }
     }
 
+    // 2. DISPATCH EVENT
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-    setTimeout(() => {
+
+    // 3. SCROLLING FIX: More robust scroll handling
+    // We use requestAnimationFrame to ensure the browser has painted the current frame.
+    // If the section is already on the page, it scrolls immediately. 
+    // We also include a safer fallback just in case the component mounts lazily.
+    requestAnimationFrame(() => {
       const section = document.getElementById("contact-form-section");
+      const headerOffset = 100; // Adjust this to match your sticky header height
+
       if (section) {
-        const headerOffset = 100;
         const elementPosition = section.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.scrollY - headerOffset;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      } else {
+        // Fallback for lazily rendered elements
+        setTimeout(() => {
+          const delayedSection = document.getElementById("contact-form-section");
+          if (delayedSection) {
+            const elementPosition = delayedSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.scrollY - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+          }
+        }, 150); 
       }
-    }, 100);
+    });
   };
-
+  
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
     visible: (i: number) => ({
