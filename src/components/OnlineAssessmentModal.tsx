@@ -141,6 +141,19 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
         clinic_location: clinicLocation,
       });
 
+      // --- GOOGLE ADS CONVERSION TRACKING ---
+      if (typeof window !== "undefined") {
+        const w = window as Window & { gtag?: (...args: unknown[]) => void };
+        if (w.gtag) {
+          w.gtag("event", "generate_lead", {
+            event_category: "form_submission",
+            event_label: "online_assessment_completed",
+            value: 1, 
+          });
+        }
+      }
+      // ---------------------------------------
+
       setIsSubmitted(true);
       
       // Close modal and reset state after a short delay so they see the success message
@@ -299,6 +312,7 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
                       <input 
                         type="text" 
                         name="name"
+                        autoComplete="name"
                         required
                         value={formData.name}
                         onChange={handleInputChange}
@@ -311,6 +325,7 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
                       <input 
                         type="tel" 
                         name="phone"
+                        autoComplete="tel"
                         required
                         value={formData.phone}
                         onChange={handleInputChange}
@@ -323,6 +338,7 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
                       <input 
                         type="email" 
                         name="email"
+                        autoComplete="email"
                         required
                         value={formData.email}
                         onChange={handleInputChange}
