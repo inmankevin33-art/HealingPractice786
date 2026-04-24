@@ -25,6 +25,7 @@ import {
   FaUserMd,
   FaFileAlt,
   FaShieldAlt,
+  FaTint,
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
@@ -50,7 +51,6 @@ export default function ErectileDysfunctionTreatmentClient({
 }: ErectileDysfunctionProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-  const [activeStep, setActiveStep] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
@@ -69,7 +69,7 @@ export default function ErectileDysfunctionTreatmentClient({
     },
     {
       question: "Are your treatments surgical?",
-      answer: "No. Our clinics focus entirely on non-surgical, minimally invasive treatments such as advanced shockwave therapy and personalised health & medication review."
+      answer: "No. Our clinics focus entirely on non-surgical, minimally invasive treatments such as advanced shockwave therapy and personalised medical management."
     },
     {
       question: "How do I know which treatment is right for me?",
@@ -134,69 +134,62 @@ export default function ErectileDysfunctionTreatmentClient({
     }),
   };
 
+  const treatmentOptions = [
+    { icon: FaWaveSquare, title: "Shockwave Therapy", description: "Low-intensity acoustic wave therapy that may support penile blood flow in selected patients." },
+    { icon: FaTint, title: "Plasma Therapy", description: "Doctor-prepared treatment using a concentrated sample from your own blood to support local tissue health." },
+    { icon: FaSyringe, title: "Plasma Shot", description: "A localised plasma-based treatment option that may be discussed where suitable after medical assessment." },
+    { icon: FaDna, title: "Hormone & Blood Review", description: "Assessment of testosterone, diabetes, cardiovascular risk, and metabolic health where appropriate." },
+  ];
+
   const quickSteps = [
     {
-      title: "Complete a confidential assessment",
-      description: "Tell us about your symptoms, medical history, and any current treatments.",
+      title: "Free Confidential Assessment",
+      description: "Tell us about your symptoms, medical history, and previous treatments in a private setting.",
       icon: FaFileAlt,
     },
     {
-      title: "Doctor-led consultation",
-      description: "We review likely contributing factors and discuss the most suitable clinical options.",
+      title: "Doctor-Led Consultation",
+      description: "We review possible causes and discuss suitable treatment options.",
       icon: FaUserMd,
     },
     {
-      title: "Move forward with a tailored plan",
-      description: "This may include advanced medical support, shockwave therapy, or a combined approach where appropriate.",
+      title: "Tailored Plan Where Appropriate",
+      description: "This may include shockwave therapy, plasma therapy, Plasma Shot, health review, or a combined approach depending on suitability.",
       icon: FaCheckCircle,
     },
   ];
 
   const symptoms = [
     {
-      title: "Struggling to get an erection",
-      description: "You may find it harder than before to achieve an erection even when desire is still there.",
+      title: "Difficulty Getting or Maintaining",
+      description: "Struggling to achieve or keep an erection during intimacy.",
       icon: FaBatteryQuarter,
       color: "bg-rose-50 text-rose-600",
     },
     {
-      title: "Losing firmness during intimacy",
-      description: "An erection may start but become softer or harder to maintain.",
+      title: "Reduced Firmness",
+      description: "Experiencing less firmness compared with your previous baseline.",
       icon: FaHourglassEnd,
       color: "bg-indigo-50 text-indigo-600",
     },
     {
-      title: "Tablets no longer feel enough",
-      description: "Standard oral tablets may still help, but the response may feel weaker or less reliable than before.",
+      title: "Less Reliable Response",
+      description: "Finding that previous treatments or tablets are no longer as effective.",
       icon: FaPills,
       color: "bg-[#f0f0ff] text-[#4041d1]",
     },
     {
-      title: "Side effects from oral medication",
-      description: "Some men want an alternative approach because of headaches, flushing, or other unwanted effects from drug therapies.",
+      title: "Concerns About Side Effects",
+      description: "Dissatisfaction with current options due to headaches, flushing, or other effects.",
       icon: FaVial,
       color: "bg-teal-50 text-teal-600",
     },
     {
-      title: "Confidence has dropped",
-      description: "ED often affects more than physical function and can begin to impact self-esteem and relationships.",
+      title: "Reduced Confidence",
+      description: "The impact of symptoms is affecting your relationships or self-esteem.",
       icon: FaUserShield,
       color: "bg-amber-50 text-amber-600",
     },
-    {
-      title: "You want a medically guided plan",
-      description: "You are not looking for a quick online prescription, but a proper assessment and a tailored treatment strategy.",
-      icon: FaStethoscope,
-      color: "bg-emerald-50 text-emerald-600",
-    },
-  ];
-
-  const protocolSteps = [
-    { number: 1, icon: FaWaveSquare, title: "Shockwave Therapy", description: "Low-intensity sound waves supporting natural blood vessel health." },
-    { number: 2, icon: FaSyringe, title: "Advanced Localised Therapy", description: "Non-surgical, clinically-prepared treatments targeting local tissue support." },
-    { number: 3, icon: FaDna, title: "Hormone & Blood Review", description: "Reviewing health markers to identify underlying limiting factors." },
-    { number: 4, icon: FaPills, title: "Health & Medication Review", description: "Reviewing current medication, risk factors, and wider health where relevant." },
-    { number: 5, icon: FaCheckCircle, title: "Recovery Over Time", description: "A structured follow-up plan focusing on gradual improvement." },
   ];
 
   return (
@@ -223,16 +216,22 @@ export default function ErectileDysfunctionTreatmentClient({
 
           <motion.h1 
             custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight drop-shadow-lg"
+            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight drop-shadow-lg"
           >
             Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {locationName}
           </motion.h1>
 
           <motion.p 
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
+            className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-2 font-medium drop-shadow-md"
           >
-            Private, doctor-led care for erection difficulties, reduced firmness, or medication side effects. Start with a <strong>free confidential consultation</strong> to assess the root cause and discuss tailored clinical options.
+            Doctor-led, non-surgical treatment options for erection difficulties, reduced firmness, and confidence concerns.
+          </motion.p>
+          <motion.p 
+            custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="text-base md:text-lg text-white font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
+          >
+            Start with a <strong>free confidential consultation</strong> to understand possible causes and explore suitable options including shockwave therapy, plasma therapy, Plasma Shot, and personalised health review.
           </motion.p>
 
           <motion.div 
@@ -243,7 +242,7 @@ export default function ErectileDysfunctionTreatmentClient({
               onClick={handleAction}
               className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] hover:shadow-[0_0_25px_rgba(64,65,209,0.5)] active:scale-95 font-inter"
             >
-              <FaEnvelope className="w-4 h-4" /> Book Free Confidential Consultation
+              <FaEnvelope className="w-4 h-4" /> Book Free Confidential ED Consultation
             </button>
             <button 
               onClick={() => setIsAssessmentOpen(true)}
@@ -257,7 +256,7 @@ export default function ErectileDysfunctionTreatmentClient({
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-3 mt-10"
           >
-            {["Doctor-Led Care", "Quick In-Clinic Procedure", "No Planned Downtime", "Discreet & Confidential"].map((chip) => (
+            {["GMC-registered doctor", "Discreet 1:1 care", "No GP referral required", "Free initial consultation"].map((chip) => (
               <div key={chip} className="flex items-center gap-1.5 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm">
                 <FaCheckCircle className="text-blue-400" /> {chip}
               </div>
@@ -321,40 +320,135 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </div>
 
-   {/* --- SECTION 1: PERSONALIZED APPROACH --- */}
-      <section className="py-20 bg-white font-inter">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Doctor-Led Assessment</span>
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              A More Personalised Approach to Treatment
-            </h2>
-            <div className="text-slate-600 text-lg leading-relaxed space-y-6">
-              <p>
-                At Healing-PRP Clinics, <Link href={`${basePath}/our-doctor`} className="text-[#4041d1] font-bold hover:underline transition-all duration-300">Dr Syed Abdi</Link> offers discreet, doctor-led assessment for men experiencing physical health concerns, reduced firmness, or a loss of confidence.
-              </p>
-              <p>
-                Your journey starts with a <strong>free confidential consultation</strong>, designed to understand the wider picture rather than offer the same treatment to every patient. This includes your symptoms, medical history, current medication, and possible contributing factors such as diabetes, circulation, hormonal changes, or stress.
-              </p>
-              <p>
-                The aim is to give you clarity on what may be causing the problem and which treatment options, such as tailored medical support, shockwave therapy, or advanced localised therapies, may be most appropriate in your case.
-              </p>
-            </div>
-            <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full transform-gpu"></div>
+      {/* --- SECTION 1: TREATMENT OPTIONS --- */}
+      <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-b border-slate-200">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Available Treatments</span>
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6 tracking-tight">Available Erectile Dysfunction Treatment Options</h2>
+            <p className="text-slate-600 text-lg">
+              Treatment is not one-size-fits-all. After a doctor-led assessment, suitable non-surgical options may include:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mt-12">
+            {treatmentOptions.map((step, index) => (
+                <div key={index} className="p-8 rounded-[2rem] border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-[#4041d1]/30 transition-all duration-300 flex flex-col group">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-blue-50 text-[#4041d1] group-hover:scale-110 transition-transform">
+                    <step.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-raleway font-bold mb-3 text-xl text-slate-900">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-600 font-inter">{step.description}</p>
+                </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <p className="text-slate-600 font-medium italic">
+              The most appropriate approach depends on your symptoms, medical history, and treatment goals.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* --- HOW IT WORKS --- */}
+      {/* --- SECTION 2: DOCTOR-LED APPROACH --- */}
+      <section className="py-24 bg-white font-inter">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="order-2 md:order-1 relative">
+               <div className="absolute inset-0 bg-[#4041d1] rounded-3xl transform translate-x-4 translate-y-4 opacity-10"></div>
+               <div className="bg-slate-50 p-10 rounded-3xl border border-slate-200 relative z-10">
+                 <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 border-b border-slate-200 pb-4">Your consultation focuses on:</h4>
+                 <ul className="space-y-5">
+                  {[
+                    "Your symptoms and concerns",
+                    "Previous treatments and response so far",
+                    "Medical history and current medication",
+                    "Possible contributing factors such as circulation, diabetes, hormonal changes, or stress"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-4">
+                      <FaStethoscope className="text-[#4041d1] mt-1 shrink-0 text-lg" />
+                      <span className="text-slate-700 font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+               </div>
+            </div>
+
+            <div className="order-1 md:order-2">
+                <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Medical Expertise</span>
+                <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+                  A Doctor-Led, Personalised Approach
+                </h3>
+                <div className="text-slate-600 text-lg leading-relaxed space-y-6 mb-8">
+                  <p>
+                    At Healing-PRP Clinics, consultations and treatments are carried out by <Link href={`${basePath}/our-doctor`} className="text-[#4041d1] font-bold hover:underline transition-all duration-300">Dr Syed Abdi</Link>, a GMC-registered doctor with over 10 years of clinical experience.
+                  </p>
+                  <p>
+                    <strong>This is not a one-size-fits-all service or an online-only approach.</strong>
+                  </p>
+                  <p>
+                    The aim is to identify the likely underlying cause and guide you toward suitable treatment options, with no pressure to proceed.
+                  </p>
+                </div>
+                <button 
+                  onClick={handleAction}
+                  className="w-full sm:w-max px-8 py-4 bg-[#4041d1] text-white rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95"
+                >
+                  Book Free Confidential Consultation
+                  <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECTION 3: WHO THIS SERVICE MAY HELP --- */}
       <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Who This Service May Help</h2>
+            <p className="text-slate-600 text-lg">
+              This service may be suitable for men who want a confidential, doctor-led discussion about erection difficulties and possible treatment options. You may benefit from a consultation if you are experiencing:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+            {symptoms.map((symptom, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group ${index === 4 ? "lg:col-start-2" : ""}`}
+              >
+                <div className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform group-hover:scale-110`}><symptom.icon /></div>
+                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">{symptom.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{symptom.description}</p>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="mt-16 text-center max-w-3xl mx-auto">
+             <p className="text-slate-600 font-medium">
+               Erectile dysfunction is common, particularly with age, stress, or medical conditions. A structured medical approach can help identify the cause and guide the next step.
+             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECTION 4: HOW THE PROCESS WORKS --- */}
+      <section className="py-24 bg-white font-inter">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">How the process works</h2>
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">How the Process Works</h2>
             <p className="text-slate-600 text-lg">The aim is to make the process clear, discreet, and medically guided from the start.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {quickSteps.map((step, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm relative group hover:shadow-md transition-shadow">
-                <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-[#4041d1] text-2xl group-hover:scale-110 transition-transform">
+              <div key={idx} className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100 shadow-sm relative group hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 text-[#4041d1] text-2xl shadow-sm group-hover:scale-110 transition-transform">
                   <step.icon />
                 </div>
                 <h3 className="text-xl font-bold mb-3 font-raleway">Step {idx + 1}: {step.title}</h3>
@@ -365,7 +459,7 @@ export default function ErectileDysfunctionTreatmentClient({
           
           <div className="mt-12 p-8 bg-blue-600 rounded-2xl text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-blue-900/20">
             <p className="text-lg font-medium max-w-2xl">
-              There is no pressure to proceed. The purpose of the consultation is to help you understand the likely cause of the problem and which treatment options may be suitable for you.
+              There is no pressure to proceed. The purpose of the consultation is to help you understand the likely cause and which treatment options may be suitable.
             </p>
             <button 
               onClick={handleAction}
@@ -376,269 +470,165 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </section>
-      
-      {/* --- SECTION 3 & 4: THE CAUSE --- */}
-      <section className="py-24 bg-white font-inter">
+
+      {/* --- SECTION 5: WHY THE CAUSE MATTERS --- */}
+      <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="bg-blue-50/50 p-10 rounded-3xl border border-blue-100">
-                <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Treatment Planning</span>
-                <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
-                  The right treatment depends on the cause
-                </h3>
-                <p className="text-slate-600 text-base leading-relaxed mb-6">
-                  Not every individual is the same. Some men are better suited to medication optimisation, while others may benefit from circulation-focused treatment such as shockwave therapy or natural tissue support options.
-                </p>
-                <ul className="space-y-4 mb-8">
+            <div className="p-4 md:p-10">
+              <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">The Right Treatment Depends on the Cause</h3>
+              <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                Erectile dysfunction can be linked to several factors, including circulation, diabetes, testosterone levels, stress, medication, and wider metabolic health.
+              </p>
+              <p className="text-slate-600 text-lg leading-relaxed mb-8 font-semibold text-[#4041d1]">
+                That is why a doctor-led review is important before recommending treatment.
+              </p>
+              <p className="text-slate-600 italic">
+                A personalised approach helps avoid generic treatment and supports better clinical decision-making.
+              </p>
+            </div>
+
+            <div className="bg-white p-10 rounded-3xl border border-slate-200 shadow-sm">
+                <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Your Assessment May Consider:</span>
+                <ul className="space-y-5 mt-6">
                   {[
                     "Erection quality and firmness",
-                    "Response to previous treatment options",
+                    "Previous treatments and response so far",
                     "Circulation and vascular factors",
                     "Hormonal and metabolic health",
-                    "Medication side effects",
+                    "Medication and wider health factors",
                     "Confidence and relationship impact",
                   ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-700 font-medium">
-                      <FaCheckCircle className="text-[#4041d1] shrink-0" /> {item}
+                    <li key={i} className="flex items-center gap-4 text-slate-700 font-medium">
+                      <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                        <FaCheckCircle className="text-[#4041d1]" />
+                      </div>
+                      {item}
                     </li>
                   ))}
                 </ul>
-                <button 
-                  onClick={handleAction}
-                  className="w-full sm:w-max px-8 py-3.5 bg-[#4041d1] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95"
-                >
-                  Book Free Confidential Consultation
-                  <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                </button>
-            </div>
-
-            <div className="p-10">
-              <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">Why choose a doctor-led review?</h3>
-              <p className="text-slate-600 text-base leading-relaxed mb-6">
-                A proper doctor-led assessment helps identify contributing factors, review treatment suitability properly, and avoid a one-size-fits-all approach.
-              </p>
-              <div className="space-y-4">
-                 <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <h4 className="font-bold text-slate-900 mb-1 italic">Medical assessment first</h4>
-                    <p className="text-sm text-slate-600">Treatment recommendations are based on your symptoms, medical history, current medication, and wider health factors.</p>
-                 </div>
-                 <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <h4 className="font-bold text-slate-900 mb-1 italic">Options beyond standard tablets</h4>
-                    <p className="text-sm text-slate-600">Where appropriate, your plan may include tailored health & medication review, shockwave therapy, or a combined approach.</p>
-                 </div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- SYMPTOMS GRID --- */}
-      <section className="py-24 bg-slate-50 font-inter border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Who this page is for</h2>
-            <p className="text-slate-600 text-lg">
-              This service may be appropriate for men who recognise one or more of the following and want a confidential doctor-led discussion about the next step:
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {symptoms.map((symptom, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group"
-              >
-                <div className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform group-hover:scale-110`}><symptom.icon /></div>
-                <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">{symptom.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">{symptom.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-     {/* --- SECTION 7: WHAT IT CAN / CANNOT DO --- */}
+     {/* --- SECTION 6: WHAT TREATMENTS MAY SUPPORT --- */}
       <section className="py-24 bg-white font-inter">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="text-center max-w-3xl mx-auto mb-16">
             <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">What Doctor-Led Treatments Can — and Cannot — Do</h3>
             <p className="text-slate-600 text-lg mb-8">
-              Advanced therapies may support healthy function in selected patients, particularly where reduced blood flow or tissue health is part of the picture. Honest assessment is essential, because not every patient will respond in the same way.
+              Advanced non-surgical options may support healthy function in selected patients, particularly where blood flow, tissue health, or wider health factors are part of the picture.
             </p>
-
-            {/* --- TIME & SAFETY METRICS BAR --- */}
-            <div className="inline-flex flex-wrap justify-center items-center gap-4 md:gap-8 px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl">
-              <div className="flex items-center gap-2.5">
-                 <FaShieldAlt className="text-[#4041d1] w-5 h-5" />
-                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Non-Surgical</span>
-              </div>
-              <div className="hidden md:block w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
-              <div className="flex items-center gap-2.5">
-                 <FaCheckCircle className="text-[#4041d1] w-5 h-5" />
-                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">No Downtime</span>
-              </div>
-              <div className="hidden md:block w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
-              <div className="flex items-center gap-2.5">
-                 <FaHourglassEnd className="text-[#4041d1] w-5 h-5" />
-                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Clinic Based</span>
-              </div>
-            </div>
-            
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-blue-50/50 p-8 rounded-3xl border border-blue-100">
-              <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <span className="w-2 h-8 bg-[#4041d1] rounded-full block"></span> What these support
+            <div className="bg-blue-50/50 p-10 rounded-3xl border border-blue-100">
+              <h4 className="text-2xl font-raleway font-bold text-slate-900 mb-8 flex items-center gap-3">
+                <span className="w-2 h-8 bg-[#4041d1] rounded-full block"></span> What treatment may support:
               </h4>
-              <ul className="space-y-4">
+              <ul className="space-y-5">
                 {[
-                  "May support penile blood flow in selected patients",
-                  "May support tissue health and vascular responsiveness",
-                  "May help improve function over time",
-                  "May form part of a broader doctor-led treatment plan",
+                  "Penile blood flow in selected patients",
+                  "Local tissue health and responsiveness",
+                  "Gradual improvement over time",
+                  "A broader doctor-led treatment plan",
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0" />
+                  <li key={i} className="flex items-start gap-4">
+                    <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 text-lg" />
                     <span className="text-slate-700 font-medium">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
-              <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <span className="w-2 h-8 bg-slate-400 rounded-full block"></span> Limitations
+            <div className="bg-slate-50 p-10 rounded-3xl border border-slate-200">
+              <h4 className="text-2xl font-raleway font-bold text-slate-900 mb-8 flex items-center gap-3">
+                <span className="w-2 h-8 bg-slate-400 rounded-full block"></span> Important limitations:
               </h4>
-              <ul className="space-y-4">
+              <ul className="space-y-5">
                 {[
                   "Results vary between individuals",
                   "Improvement is usually gradual, not instant",
                   "Suitability depends on the underlying cause",
-                  "A medical review is needed before treatment is recommended",
+                  "A medical consultation is needed before treatment is recommended",
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-500">
-                    <FaCheckCircle className="mt-1 shrink-0" />
-                    <span className="text-sm font-medium">{item}</span>
+                  <li key={i} className="flex items-start gap-4 text-slate-500">
+                    <FaCheckCircle className="mt-1 shrink-0 text-lg" />
+                    <span className="text-base font-medium">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-
-          {/* --- NEW INTERNAL LINKS (Modified to keep users on the compliant page) --- */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <button 
-              onClick={handleAction}
-              className="px-8 py-4 w-full sm:w-auto bg-[#4041d1] hover:bg-[#2a2bb8] text-white text-center rounded-xl font-bold transition-all duration-300 shadow-lg active:scale-95 text-sm md:text-base"
-            >
-              Discuss Treatment Options
-            </button>
-            <button 
-              onClick={() => setIsAssessmentOpen(true)}
-              className="px-8 py-4 w-full sm:w-auto border-2 border-[#4041d1] text-[#4041d1] text-center rounded-xl font-bold transition-all duration-300 shadow-lg hover:bg-slate-50 active:scale-95 text-sm md:text-base"
-            >
-              Start Free Online Assessment
-            </button>
-          </div>
-
-        </div>
-      </section>
-      
-      {/* --- SECTION 6: THE PROTOCOL --- */}
-      <section className="relative py-20 lg:py-28 bg-slate-50 overflow-hidden font-inter border-y border-slate-200">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-block px-5 py-2 bg-white text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-slate-200 font-raleway shadow-sm">Our Treatment Approach</div>
-            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8 tracking-tight">A Structured Doctor-Led Treatment Plan</h2>
-          </div>
-
-          <div className="max-w-7xl mx-auto mt-12 relative">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 px-8 py-4 bg-white border border-slate-200 rounded-full shadow-md">
-                <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse" />
-                <span className="text-sm font-bold text-slate-800 uppercase tracking-[0.2em] font-raleway">Option: {protocolSteps[activeStep].title}</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 relative">
-              <div className="hidden lg:block absolute top-[80px] left-0 w-full h-[1px] border-t border-dashed border-slate-300 -z-10" />
-              {protocolSteps.map((step, index) => (
-                  <div
-                    key={index}
-                    className={`p-5 rounded-[2rem] border transition-all duration-300 h-full flex flex-col cursor-pointer ${activeStep === index ? "border-[#4041d1] bg-white shadow-xl scale-105 z-20" : "border-slate-200 bg-white opacity-80 hover:opacity-100"}`}
-                    onClick={() => setActiveStep(index)}
-                  >
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all ${activeStep === index ? "bg-[#4041d1] text-white" : "bg-slate-100 text-slate-400"}`}><step.icon className="w-5 h-5" /></div>
-                    <h3 className="font-raleway font-bold mb-2 text-base text-slate-900">{step.title}</h3>
-                    <p className="text-xs leading-relaxed text-slate-600 font-inter">{step.description}</p>
-                  </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* --- SECTION 5: BLOOD TESTS --- */}
+      {/* --- SECTION 7: BLOOD TESTS AND HORMONE REVIEW --- */}
       <section className="py-24 bg-[#0A1128] font-inter relative overflow-hidden">
         <div className="absolute top-0 right-0 -mt-20 w-96 h-96 bg-[#4041d1] rounded-full blur-[120px] opacity-30 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
           <div className="mb-10 w-24 h-24 bg-[#151e32] rounded-full flex items-center justify-center border border-white/10 shadow-2xl mx-auto"><FaVial className="text-[#8ea3ff] text-4xl" /></div>
-          <span className="text-[#8ea3ff] font-bold tracking-widest text-xs uppercase mb-4 block">Assessing The Bigger Picture</span>
-          <h3 className="text-3xl md:text-5xl font-raleway font-bold text-white mb-6 leading-tight">Could blood tests or hormone review help?</h3>
-          <p className="text-slate-300 text-base md:text-lg mb-10 max-w-2xl mx-auto">Where appropriate, doctor-led assessment may include discussion of blood tests. This is relevant if symptoms are worsening, current medications are becoming less effective, or you notice low energy.</p>
+          <span className="text-[#8ea3ff] font-bold tracking-widest text-xs uppercase mb-4 block">Looking at the Bigger Picture</span>
+          <h3 className="text-3xl md:text-5xl font-raleway font-bold text-white mb-6 leading-tight">In some cases, erection difficulties may be linked to wider health factors.</h3>
+          <p className="text-slate-300 text-base md:text-lg mb-10 max-w-2xl mx-auto">Where appropriate, your doctor may discuss blood tests or further health review. This can be especially relevant if symptoms are worsening, previous treatments are less effective, or you also notice low energy, reduced libido, or changes in general health.</p>
           <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {['Testosterone Levels', 'Cardiovascular Risk', 'Diabetes & HbA1c', 'Metabolic Health'].map((tag, i) => (
+            {['Testosterone Levels', 'Diabetes & HbA1c', 'Cardiovascular Risk', 'Metabolic Health'].map((tag, i) => (
               <span key={i} className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-slate-300 text-sm font-medium">{tag}</span>
             ))}
           </div>
-          <button 
-            onClick={() => setIsAssessmentOpen(true)}
-            className="px-8 py-4 bg-white hover:bg-slate-100 text-[#0A1128] rounded-xl font-bold transition-all text-sm flex items-center justify-center gap-2 group shadow-lg active:scale-95 font-inter"
-          >
-            Start Free Online Assessment
-            <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-          </button>
         </div>
       </section>
       
-      {/* --- PRIVACY & DISCREET CARE --- */}
+      {/* --- SECTION 8: PRIVACY & DISCREET CARE --- */}
       <section className="py-24 bg-white font-inter border-t border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-block px-4 py-1.5 bg-blue-50 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-wider mb-6">100% Confidential & Private</div>
           <h3 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8">Discreet, Private and Professional</h3>
           <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto mb-12">
-            We understand that discussing personal health can feel uncomfortable. That is why our clinics provide a private, respectful, and judgement-free environment where concerns are taken seriously and addressed with sensitivity.
+            We understand that discussing intimate health can feel sensitive. Healing-PRP Clinics provide a private, respectful, and judgement-free environment where your concerns are taken seriously.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 text-left">
-            {["GMC-registered doctors", "Personalised treatment planning", "No GP referral required", "Discreet messaging & booking"].map((item, i) => (
-              <div key={i} className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-center gap-3">
-                <FaCheckCircle className="text-[#4041d1] text-xl shrink-0" /> 
-                <span className="text-slate-800 font-medium text-sm">{item}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12 text-left">
+            {["Private 1:1 consultations", "GMC doctor-led care", "No GP referral required", "Personalised treatment planning", "Discreet communication & booking"].map((item, i) => (
+              <div key={i} className={`bg-slate-50 p-5 rounded-2xl border border-slate-100 flex flex-col gap-3 justify-center text-center ${i === 4 ? "sm:col-span-2 lg:col-span-1" : ""}`}>
+                <FaCheckCircle className="text-[#4041d1] text-2xl mx-auto" /> 
+                <span className="text-slate-800 font-medium text-sm leading-tight">{item}</span>
               </div>
             ))}
           </div>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
+        </div>
+      </section>
+
+      {/* --- FINAL CTA --- */}
+      <section className="py-20 bg-slate-50 font-inter border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+           <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Take the First Step with a Free Confidential Consultation</h3>
+           <p className="text-slate-600 text-lg leading-relaxed mb-10">
+             If you are experiencing erection difficulties, reduced firmness, or changes in confidence, a doctor-led consultation can help clarify the possible cause and discuss suitable treatment options.
+           </p>
+           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <button
               onClick={handleAction}
-              className="px-10 py-5 w-full md:w-auto bg-[#4041d1] text-white rounded-xl font-bold text-lg hover:bg-[#2a2bb8] transition-all shadow-xl shadow-blue-900/20 active:scale-95"
+              className="px-8 py-4 w-full sm:w-auto bg-[#4041d1] text-white rounded-xl font-bold text-lg hover:bg-[#2a2bb8] transition-all shadow-xl shadow-blue-900/20 active:scale-95"
             >
-              Book Free Confidential Consultation
+              Book Free Confidential ED Consultation
+            </button>
+            <button 
+              onClick={() => setIsAssessmentOpen(true)}
+              className="px-8 py-4 w-full sm:w-auto border-2 border-[#4041d1] text-[#4041d1] rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:bg-white active:scale-95"
+            >
+              Start Free Online Assessment
             </button>
           </div>
         </div>
       </section>
       
       {/* --- FAQs --- */}
-      <section id="faqs" className="py-24 bg-slate-50 font-inter border-t border-slate-200">
+      <section id="faqs" className="py-24 bg-white font-inter border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16"><h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">Common Questions About Treatment</h2></div>
           <div className="space-y-4">
             {displayFaqs.map((faq, index) => (
-              <div key={index} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+              <div key={index} className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <button className="w-full p-6 text-left flex items-center justify-between" onClick={() => toggleFAQ(index)}>
                   <h3 className="font-raleway font-bold text-slate-900 pr-8 text-base md:text-lg">{faq.question}</h3>
                   <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${openFAQIndex === index ? 'bg-[#4041d1] text-white' : 'bg-[#4041d1]/10 text-[#4041d1]'}`}>
@@ -648,7 +638,7 @@ export default function ErectileDysfunctionTreatmentClient({
                 <AnimatePresence>
                   {openFAQIndex === index && (
                     <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}>
-                      <div className="px-6 pb-8 border-t border-slate-100 pt-6"><p className="text-slate-600 leading-relaxed">{faq.answer}</p></div>
+                      <div className="px-6 pb-8 border-t border-slate-200 pt-6"><p className="text-slate-600 leading-relaxed">{faq.answer}</p></div>
                     </motion.div>
                   )}
                 </AnimatePresence>
