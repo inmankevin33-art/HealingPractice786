@@ -135,12 +135,31 @@ export default function ErectileDysfunctionTreatmentClient({
   };
 
   const treatmentOptions = [
-    { icon: FaWaveSquare, title: "Shockwave Therapy", description: "Low-intensity acoustic wave therapy that may support penile blood flow in selected patients." },
-    { icon: FaTint, title: "Plasma Therapy", description: "Doctor-prepared treatment using a concentrated sample from your own blood to support local tissue health." },
-    { icon: FaSyringe, title: "Plasma Shot", description: "A localised plasma-based treatment option that may be discussed where suitable after medical assessment." },
-    { icon: FaDna, title: "Hormone & Blood Review", description: "Assessment of testosterone, diabetes, cardiovascular risk, and metabolic health where appropriate." },
+    {
+      icon: FaWaveSquare,
+      title: "Shockwave Therapy",
+      description:
+        "Low-intensity acoustic wave therapy that may support penile blood flow in selected patients.",
+    },
+    {
+      icon: FaSyringe,
+      title: "Plasma Shot",
+      description:
+        "A doctor-prepared, localised treatment using a concentrated sample from your own blood to support tissue health. Suitability is assessed during consultation.",
+    },
+    {
+      icon: FaTint,
+      title: "Vascular Assessment",
+      description:
+        "Where appropriate, assessment of penile blood flow may be arranged, including Doppler ultrasound, to help identify vascular causes and guide treatment planning.",
+    },
+    {
+      icon: FaDna,
+      title: "Hormone & Blood Review",
+      description:
+        "Assessment of testosterone, diabetes, cardiovascular risk, and metabolic health where appropriate.",
+    },
   ];
-
   const quickSteps = [
     {
       title: "Free Confidential Assessment",
