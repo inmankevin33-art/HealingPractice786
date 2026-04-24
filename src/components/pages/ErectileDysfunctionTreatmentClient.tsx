@@ -69,7 +69,7 @@ export default function ErectileDysfunctionTreatmentClient({
     },
     {
       question: "Are your treatments surgical?",
-      answer: "No. Our clinics focus entirely on non-surgical, minimally invasive treatments such as advanced shockwave therapy and personalised medical management."
+      answer: "No. Our clinics focus entirely on non-surgical, minimally invasive treatments such as advanced shockwave therapy and personalised health & medication review."
     },
     {
       question: "How do I know which treatment is right for me?",
@@ -195,7 +195,7 @@ export default function ErectileDysfunctionTreatmentClient({
     { number: 1, icon: FaWaveSquare, title: "Shockwave Therapy", description: "Low-intensity sound waves supporting natural blood vessel health." },
     { number: 2, icon: FaSyringe, title: "Advanced Localised Therapy", description: "Non-surgical, clinically-prepared treatments targeting local tissue support." },
     { number: 3, icon: FaDna, title: "Hormone & Blood Review", description: "Reviewing health markers to identify underlying limiting factors." },
-    { number: 4, icon: FaPills, title: "Medical Management", description: "Tailored prescription support and optimization of wider health." },
+    { number: 4, icon: FaPills, title: "Health & Medication Review", description: "Tailored prescription support and optimization of wider health." },
     { number: 5, icon: FaCheckCircle, title: "Recovery Over Time", description: "A structured follow-up plan focusing on gradual improvement." },
   ];
 
@@ -424,7 +424,7 @@ export default function ErectileDysfunctionTreatmentClient({
                  </div>
                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
                     <h4 className="font-bold text-slate-900 mb-1 italic">Options beyond standard tablets</h4>
-                    <p className="text-sm text-slate-600">Where appropriate, your plan may include tailored medical management, shockwave therapy, or a combined approach.</p>
+                    <p className="text-sm text-slate-600">Where appropriate, your plan may include tailored health & medication review, shockwave therapy, or a combined approach.</p>
                  </div>
               </div>
             </div>
