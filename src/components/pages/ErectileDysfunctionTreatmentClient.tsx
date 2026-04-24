@@ -195,7 +195,7 @@ export default function ErectileDysfunctionTreatmentClient({
     { number: 1, icon: FaWaveSquare, title: "Shockwave Therapy", description: "Low-intensity sound waves supporting natural blood vessel health." },
     { number: 2, icon: FaSyringe, title: "Advanced Localised Therapy", description: "Non-surgical, clinically-prepared treatments targeting local tissue support." },
     { number: 3, icon: FaDna, title: "Hormone & Blood Review", description: "Reviewing health markers to identify underlying limiting factors." },
-    { number: 4, icon: FaPills, title: "Health & Medication Review", description: "Tailored prescription support and optimization of wider health." },
+    { number: 4, icon: FaPills, title: "Health & Medication Review", description: "Reviewing current medication, risk factors, and wider health where relevant." },
     { number: 5, icon: FaCheckCircle, title: "Recovery Over Time", description: "A structured follow-up plan focusing on gradual improvement." },
   ];
 
@@ -257,7 +257,7 @@ export default function ErectileDysfunctionTreatmentClient({
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-3 mt-10"
           >
-            {["Doctor-Led Care", "Takes ~30 Minutes", "Zero Downtime", "Discreet & Confidential"].map((chip) => (
+            {["Doctor-Led Care", "Quick In-Clinic Procedure", "No Planned Downtime", "Discreet & Confidential"].map((chip) => (
               <div key={chip} className="flex items-center gap-1.5 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm">
                 <FaCheckCircle className="text-blue-400" /> {chip}
               </div>
@@ -392,7 +392,7 @@ export default function ErectileDysfunctionTreatmentClient({
                 <ul className="space-y-4 mb-8">
                   {[
                     "Erection quality and firmness",
-                    "Response to current drug therapies",
+                    "Response to previous treatment options",
                     "Circulation and vascular factors",
                     "Hormonal and metabolic health",
                     "Medication side effects",
@@ -560,7 +560,7 @@ export default function ErectileDysfunctionTreatmentClient({
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-3 px-8 py-4 bg-white border border-slate-200 rounded-full shadow-md">
                 <span className="flex h-3 w-3 rounded-full bg-[#4041d1] animate-pulse" />
-                <span className="text-sm font-bold text-slate-800 uppercase tracking-[0.2em] font-raleway">Treatment Phase: {protocolSteps[activeStep].title}</span>
+                <span className="text-sm font-bold text-slate-800 uppercase tracking-[0.2em] font-raleway">Option: {protocolSteps[activeStep].title}</span>
               </div>
             </div>
 
