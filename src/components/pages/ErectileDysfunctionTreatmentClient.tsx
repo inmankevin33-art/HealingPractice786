@@ -257,7 +257,7 @@ export default function ErectileDysfunctionTreatmentClient({
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-3 mt-10"
           >
-            {["Tablets not working as well?", "Doctor-led treatment options", "Free confidential consultation", "Discreet private care"].map((chip) => (
+            {["Doctor-Led Care", "Takes ~30 Minutes", "Zero Downtime", "Discreet & Confidential"].map((chip) => (
               <div key={chip} className="flex items-center gap-1.5 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm">
                 <FaCheckCircle className="text-blue-400" /> {chip}
               </div>
