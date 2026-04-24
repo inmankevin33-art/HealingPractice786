@@ -77,6 +77,19 @@ export default function ContactCTASection() {
         clinic_location: activeClinic === "birmingham" ? "Birmingham (Edgbaston)" : "St Albans",
       });
 
+      // --- GOOGLE ADS CONVERSION TRACKING ---
+      if (typeof window !== "undefined") {
+        const w = window as Window & { gtag?: (...args: unknown[]) => void };
+        if (w.gtag) {
+          w.gtag("event", "generate_lead", {
+            event_category: "form_submission",
+            event_label: "contact_drawer_form",
+            value: 1, // Optional: Add a monetary value if applicable
+          });
+        }
+      }
+      // ---------------------------------------
+
       setSubmitStatus({ 
         type: "success", 
         message: "Thank you! Our clinical team will get back to you within 24 hours." 
@@ -164,18 +177,45 @@ export default function ContactCTASection() {
                           </div>
                         </div>
 
-                        {/* Form Fields - Updated Labels for Contrast */}
+                        {/* Form Fields - Updated Labels for Contrast & Added Autocomplete */}
                         <div className="md:col-span-2 space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Full Name</label>
-                          <input type="text" name="name" required value={formData.name} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" placeholder="Full Name" />
+                          <input 
+                            type="text" 
+                            name="name" 
+                            autoComplete="name"
+                            required 
+                            value={formData.name} 
+                            onChange={handleInputChange} 
+                            className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" 
+                            placeholder="Full Name" 
+                          />
                         </div>
                         <div className="space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Email</label>
-                          <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" placeholder="email@example.com" />
+                          <input 
+                            type="email" 
+                            name="email" 
+                            autoComplete="email"
+                            required 
+                            value={formData.email} 
+                            onChange={handleInputChange} 
+                            className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" 
+                            placeholder="email@example.com" 
+                          />
                         </div>
                         <div className="space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Phone</label>
-                          <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" placeholder="07xxx xxxxxx" />
+                          <input 
+                            type="tel" 
+                            name="phone" 
+                            autoComplete="tel"
+                            required 
+                            value={formData.phone} 
+                            onChange={handleInputChange} 
+                            className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-sm" 
+                            placeholder="07xxx xxxxxx" 
+                          />
                         </div>
                         <div className="md:col-span-2 space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Treatment</label>
