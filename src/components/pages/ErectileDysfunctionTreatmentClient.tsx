@@ -28,7 +28,6 @@ import {
   FaTint,
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
-import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import TrustReviews from "@/components/TrustReviews";
 import OnlineAssessmentModal from "@/components/OnlineAssessmentModal";
@@ -678,12 +677,27 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </section>
 
-      <div id="reviews-section">
+     <div id="reviews-section">
         <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
       </div>
       <ContactCTASection />
       <LocationSection /> 
-      <Footer />
+      
+      {/* --- MINIMAL AD FOOTER --- */}
+      <footer className="bg-[#0A1128] py-8 border-t border-white/10 text-center">
+        <div className="max-w-4xl mx-auto px-4">
+          <p className="text-slate-400 text-sm font-inter">
+            &copy; {new Date().getFullYear()} Healing-PRP Clinics. All rights reserved.
+          </p>
+          <div className="flex justify-center gap-4 mt-4 text-xs text-slate-500 font-inter">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <span>|</span>
+            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
+          </div>
+        </div>
+      </footer>
+      {/* ------------------------- */}
+
       <OnlineAssessmentModal isOpen={isAssessmentOpen} onClose={() => setIsAssessmentOpen(false)} />
     </>
   );
