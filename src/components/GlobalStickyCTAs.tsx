@@ -9,9 +9,16 @@ export default function GlobalStickyCTAs() {
     // This fires the event to open your slide-out drawer globally
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
     
-    // Fallback: If there's an embedded form on the page, it scrolls to it
-    const element = document.getElementById("contact-form-section");
-    element?.scrollIntoView({ behavior: "smooth" });
+    // Smooth scroll with offset to perfectly center the form
+    const section = document.getElementById("contact-form-section");
+    if (section) {
+      // Use a negative number here to scroll deeper. 
+      // If the form is still slightly too low, change this to -60 or -80!
+      const headerOffset = -40; 
+      const elementPosition = section.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
   };
 
   return (
