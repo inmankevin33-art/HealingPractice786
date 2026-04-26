@@ -224,7 +224,7 @@ export default function ErectileDysfunctionTreatmentClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-48 md:pb-24">
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-56 md:pb-24">
           <motion.div 
             custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="inline-block px-5 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md shadow-lg"
@@ -241,51 +241,68 @@ export default function ErectileDysfunctionTreatmentClient({
 
           <motion.p 
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-2 font-medium drop-shadow-md"
+            className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-5 font-medium drop-shadow-md"
           >
             Doctor-led, non-surgical treatment options for erection difficulties, reduced firmness, and confidence concerns.
           </motion.p>
+          
           <motion.p 
-            custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="text-base md:text-lg text-white font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
+            custom={2.5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="text-sm md:text-base text-white/95 font-inter leading-relaxed max-w-xl mx-auto mb-6 drop-shadow-md"
           >
-            Start with a <strong>free confidential consultation</strong> to understand possible causes and explore suitable options including shockwave therapy, plasma therapy, Plasma Shot, and personalised health review.
+            Start with a <strong>free confidential consultation</strong> to understand the possible cause and explore suitable options.
           </motion.p>
+
+          {/* --- HIGH CONVERSION BENEFIT CHIPS --- */}
+          <motion.div
+            custom={2.7} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="flex flex-wrap justify-center gap-2 mb-8"
+          >
+            {["Takes ~30 Mins", "Zero Downtime", "Minimal Discomfort"].map((chip) => (
+              <span
+                key={chip}
+                className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-[10px] md:text-xs font-bold uppercase tracking-wider backdrop-blur-sm"
+              >
+                {chip}
+              </span>
+            ))}
+          </motion.div>
 
           <motion.div 
             custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-3 justify-center items-center"
           >
             <button 
               onClick={handleAction}
               className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] hover:shadow-[0_0_25px_rgba(64,65,209,0.5)] active:scale-95 font-inter"
             >
-              <FaEnvelope className="w-4 h-4" /> Book Free Confidential ED Consultation
+              <FaEnvelope className="w-4 h-4" /> Book Free ED Consultation
             </button>
             <button 
               onClick={() => setIsAssessmentOpen(true)}
-              className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] active:scale-95 font-inter"
+              className="px-8 py-3.5 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white/95 text-[#4041d1] hover:bg-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-md active:scale-95 font-inter"
             >
-              Start Free Online Assessment
+              Start Online Assessment
             </button>
           </motion.div>
 
+          {/* --- TRUST BADGES --- */}
           <motion.div 
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="flex flex-wrap justify-center gap-3 mt-10"
+            className="flex flex-wrap justify-center gap-2 mt-8"
           >
-            {["GMC-registered doctor", "Discreet 1:1 care", "No GP referral required", "Free initial consultation"].map((chip) => (
-              <div key={chip} className="flex items-center gap-1.5 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm">
-                <FaCheckCircle className="text-blue-400" /> {chip}
+            {["GMC-Registered Doctor", "No GP Referral Required", "Discreet 1:1 Care", "Free Initial Consultation"].map((chip) => (
+              <div key={chip} className="flex items-center gap-1.5 px-3 py-1.5 bg-black/25 border border-white/20 rounded-full text-[9px] md:text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm">
+                <FaCheckCircle className="text-blue-400 shrink-0" /> {chip}
               </div>
             ))}
           </motion.div>
 
           <motion.div 
             custom={5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="inline-flex items-center justify-center gap-2 px-6 py-2 text-white/60 rounded-full text-[10px] md:text-xs mt-6 font-bold uppercase tracking-widest font-inter"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 text-white/65 rounded-full text-[9px] md:text-xs mt-5 font-bold uppercase tracking-widest font-inter"
           >
-             <FaMapMarkerAlt className="mb-0.5" /> 
+             <FaMapMarkerAlt className="mb-0.5 shrink-0" /> 
              <span>Serving: {servingAreas}</span>
           </motion.div>
         </div>
@@ -337,7 +354,7 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </div>
-
+      
       {/* --- SECTION 1: TREATMENT OPTIONS --- */}
       <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-b border-slate-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
