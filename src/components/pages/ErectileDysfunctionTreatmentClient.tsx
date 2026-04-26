@@ -134,30 +134,30 @@ export default function ErectileDysfunctionTreatmentClient({
     }),
   };
 
-  const treatmentOptions = [
-    {
-      icon: FaWaveSquare,
-      title: "Shockwave Therapy",
-      description:
-        "Low-intensity acoustic wave therapy that may support penile blood flow in selected patients.",
+ const treatmentOptions = [
+    { 
+      icon: FaWaveSquare, 
+      title: "Shockwave Therapy", 
+      description: "Low-intensity acoustic wave therapy that may support penile blood flow in selected patients.",
+      tags: ["Pain-free", "~30 min sessions", "No downtime"]
     },
-    {
-      icon: FaSyringe,
-      title: "Plasma Shot",
-      description:
-        "A doctor-prepared, localised treatment using a concentrated sample from your own blood to support tissue health. Suitability is assessed during consultation.",
+    { 
+      icon: FaSyringe, 
+      title: "Plasma Shot", 
+      description: "A doctor-prepared, localised treatment using a concentrated sample from your own blood to support tissue health. Suitability is assessed during consultation.",
+      tags: ["Minimal discomfort", "Takes ~30 mins", "No downtime"]
     },
-    {
-      icon: FaTint,
-      title: "Vascular Assessment",
-      description:
-        "Where appropriate, assessment of penile blood flow may be arranged, including Doppler ultrasound, to help identify vascular causes and guide treatment planning.",
+    { 
+      icon: FaTint, // Make sure you have FaTint or FaHeartbeat imported for Vascular
+      title: "Vascular Assessment", 
+      description: "Where appropriate, assessment of penile blood flow may be arranged, including Doppler ultrasound, to help identify vascular causes and guide treatment planning.",
+      tags: ["Non-invasive", "Painless ultrasound", "Immediate insights"]
     },
-    {
-      icon: FaDna,
-      title: "Hormone & Blood Review",
-      description:
-        "Assessment of testosterone, diabetes, cardiovascular risk, and metabolic health where appropriate.",
+    { 
+      icon: FaDna, 
+      title: "Hormone & Blood Review", 
+      description: "Assessment of testosterone, diabetes, cardiovascular risk, and metabolic health where appropriate.",
+      tags: ["Quick blood draw", "Fast lab results", "Targeted analysis"]
     },
   ];
   const quickSteps = [
@@ -357,7 +357,18 @@ export default function ErectileDysfunctionTreatmentClient({
                     <step.icon className="w-6 h-6" />
                   </div>
                   <h3 className="font-raleway font-bold mb-3 text-xl text-slate-900">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-600 font-inter">{step.description}</p>
+                  <p className="text-sm leading-relaxed text-slate-600 font-inter mb-6 flex-grow">{step.description}</p>
+                  
+                  {/* --- NEW TAGS SECTION --- */}
+                  {step.tags && (
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {step.tags.map((tag, i) => (
+                        <span key={i} className="px-2.5 py-1 bg-slate-50 border border-slate-100 rounded-md text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
             ))}
           </div>
