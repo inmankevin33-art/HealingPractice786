@@ -229,7 +229,10 @@ export default function ErectileDysfunctionTreatmentBirminghamPage() {
       {/* 4. Render Client Component with Birmingham Props */}
       <ErectileDysfunctionTreatmentClient 
         locationName="Birmingham"
-        servingAreas="Birmingham • Solihull • Sutton Coldfield • West Midlands"
+        servingAreas="Edgbaston • Solihull • Sutton Coldfield • West Midlands"
+        heroDescription={<>Start with a <strong>free confidential consultation</strong> at our Birmingham clinic to understand the possible cause and explore suitable options.</>}
+        trustLine="Patients attend our Birmingham clinic for discreet, doctor-led assessment and personalised treatment planning."
+        whyChooseText="Patients choose our Birmingham clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment."
         faqs={faqs}
       />
     </main>
