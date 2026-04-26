@@ -28,6 +28,7 @@ export default function GlobalStickyCTAs() {
         href="https://wa.me/447990364147" 
         target="_blank" 
         rel="noopener noreferrer"
+        aria-label="Contact us on WhatsApp"
         className="w-10 h-10 md:w-12 md:h-12 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform pointer-events-auto"
       >
         <FaWhatsapp className="w-5 h-5 md:w-6 md:h-6" />
