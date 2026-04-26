@@ -258,7 +258,7 @@ export default function ErectileDysfunctionTreatmentClient({
             custom={2.7} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-2 mb-8"
           >
-            {["Takes ~30 Mins", "Zero Downtime", "Minimal Discomfort"].map((chip) => (
+            {["Takes ~30 Mins", "No Planned Downtime", "Minimal Discomfort"].map((chip) => (
               <span
                 key={chip}
                 className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-[10px] md:text-xs font-bold uppercase tracking-wider backdrop-blur-sm"
