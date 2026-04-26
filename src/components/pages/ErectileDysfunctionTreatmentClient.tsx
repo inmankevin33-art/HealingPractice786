@@ -105,7 +105,8 @@ export default function ErectileDysfunctionTreatmentClient({
 
     requestAnimationFrame(() => {
       const section = document.getElementById("contact-form-section");
-      const headerOffset = 100; 
+      // Use a negative number here to scroll deeper past the padding
+      const headerOffset = -40; 
 
       if (section) {
         const elementPosition = section.getBoundingClientRect().top;
