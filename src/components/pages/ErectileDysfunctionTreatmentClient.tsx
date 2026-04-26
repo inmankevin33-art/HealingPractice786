@@ -38,15 +38,23 @@ type FaqType = {
   answer: string;
 };
 
+// 1. UPDATED PROPS INTERFACE
 interface ErectileDysfunctionProps {
   locationName?: string;
   servingAreas?: string;
+  heroDescription?: React.ReactNode; 
+  trustLine?: string;
+  whyChooseText?: string;
   faqs?: FaqType[]; 
 }
 
 export default function ErectileDysfunctionTreatmentClient({
   locationName = "St Albans",
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
+  // Added safe defaults just in case
+  heroDescription = <>Start with a <strong>free confidential consultation</strong> to understand the possible cause and explore suitable options.</>,
+  trustLine = "Patients attend our clinic for discreet, doctor-led assessment and personalised treatment planning.",
+  whyChooseText = "Patients choose our clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment.",
   faqs = [], 
 }: ErectileDysfunctionProps) {
   
@@ -251,11 +259,20 @@ export default function ErectileDysfunctionTreatmentClient({
             Doctor-led, non-surgical treatment options for erection difficulties, reduced firmness, and confidence concerns.
           </motion.p>
           
+          {/* --- 2. DYNAMIC HERO DESCRIPTION --- */}
           <motion.p 
             custom={2.5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="text-sm md:text-base text-white/95 font-inter leading-relaxed max-w-xl mx-auto mb-6 drop-shadow-md"
+            className="text-sm md:text-base text-white/95 font-inter leading-relaxed max-w-xl mx-auto mb-3 drop-shadow-md"
           >
-            Start with a <strong>free confidential consultation</strong> to understand the possible cause and explore suitable options.
+            {heroDescription}
+          </motion.p>
+
+          {/* --- 3. NEW DYNAMIC TRUST LINE --- */}
+          <motion.p
+            custom={2.6} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="text-xs md:text-sm text-blue-200/90 font-inter italic max-w-xl mx-auto mb-6"
+          >
+            {trustLine}
           </motion.p>
 
           {/* --- HIGH CONVERSION BENEFIT CHIPS --- */}
@@ -359,6 +376,18 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </div>
+
+      {/* --- 4. LOCAL DIFFERENTIATION SECTION --- */}
+      <section className="py-12 md:py-16 bg-slate-50 relative z-10 border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
+            Why choose our {locationName} clinic?
+          </h2>
+          <p className="text-slate-600 font-inter text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            {whyChooseText}
+          </p>
+        </div>
+      </section>
       
       {/* --- SECTION 1: TREATMENT OPTIONS --- */}
       <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-b border-slate-200">
@@ -706,7 +735,8 @@ export default function ErectileDysfunctionTreatmentClient({
       <LocationSection /> 
       
       {/* --- MINIMAL AD FOOTER --- */}
-      <footer className="bg-[#0A1128] py-8 border-t border-white/10 text-center">
+      {/* Reapplied pt-8 pb-28 here to give scroll clearance for the sticky CTA on mobile */}
+      <footer className="bg-[#0A1128] pt-8 pb-28 border-t border-white/10 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <p className="text-slate-400 text-sm font-inter">
             &copy; {new Date().getFullYear()} Healing-PRP Clinics. All rights reserved.
