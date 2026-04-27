@@ -25,7 +25,6 @@ import {
   FaVial,
   FaUserMd,
   FaFileAlt,
-  FaShieldAlt,
   FaTint,
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
@@ -38,7 +37,6 @@ type FaqType = {
   answer: string;
 };
 
-// 1. UPDATED PROPS INTERFACE
 interface ErectileDysfunctionProps {
   locationName?: string;
   servingAreas?: string;
@@ -51,11 +49,10 @@ interface ErectileDysfunctionProps {
 export default function ErectileDysfunctionTreatmentClient({
   locationName = "St Albans",
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
-  // Added safe defaults just in case
   heroDescription = <>Start with a <strong>free confidential consultation</strong> to understand the possible cause and explore suitable options.</>,
   trustLine = "Patients attend our clinic for discreet, doctor-led assessment and personalised treatment planning.",
   whyChooseText = "Patients choose our clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment.",
-  faqs = [], 
+  faqs = [], // Now strictly relies on this prop passed from page.tsx!
 }: ErectileDysfunctionProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
@@ -64,28 +61,6 @@ export default function ErectileDysfunctionTreatmentClient({
 
   const isBirmingham = locationName === "Birmingham";
   const basePath = isBirmingham ? "/birmingham" : "";
-
-  // Default compliant FAQs if none are passed
-  const defaultFaqs = [
-    {
-      question: "Do I need a GP referral to book a consultation?",
-      answer: "No, a GP referral is not required. You can book a direct, private consultation with our doctors for a full assessment of your symptoms."
-    },
-    {
-      question: "What happens during the initial consultation?",
-      answer: "Your doctor will discuss your medical history, current symptoms, and any previous treatments (like oral tablets) you have tried. We focus on identifying the root cause rather than just providing a temporary fix."
-    },
-    {
-      question: "Are your treatments surgical?",
-      answer: "No. Our clinics focus entirely on non-surgical, minimally invasive treatments such as advanced shockwave therapy and personalised medical management."
-    },
-    {
-      question: "How do I know which treatment is right for me?",
-      answer: "There is no 'one-size-fits-all' approach. Suitability for specific therapies is determined during your clinical assessment, ensuring the proposed plan aligns with your medical history and goals."
-    }
-  ];
-
-  const displayFaqs = faqs.length > 0 ? faqs : defaultFaqs;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -114,7 +89,6 @@ export default function ErectileDysfunctionTreatmentClient({
 
     requestAnimationFrame(() => {
       const section = document.getElementById("contact-form-section");
-      // Use a negative number here to scroll deeper past the padding
       const headerOffset = -40; 
 
       if (section) {
@@ -157,7 +131,7 @@ export default function ErectileDysfunctionTreatmentClient({
       tags: ["Minimal discomfort", "Takes ~30 mins", "No downtime"]
     },
     { 
-      icon: FaTint, // Make sure you have FaTint or FaHeartbeat imported for Vascular
+      icon: FaTint, 
       title: "Vascular Assessment", 
       description: "Where appropriate, assessment of penile blood flow may be arranged, including Doppler ultrasound, to help identify vascular causes and guide treatment planning.",
       tags: ["Non-invasive", "Painless ultrasound", "Immediate insights"]
@@ -169,6 +143,7 @@ export default function ErectileDysfunctionTreatmentClient({
       tags: ["Quick blood draw", "Fast lab results", "Targeted analysis"]
     },
   ];
+  
   const quickSteps = [
     {
       title: "Free Confidential Assessment",
@@ -259,7 +234,7 @@ export default function ErectileDysfunctionTreatmentClient({
             Doctor-led, non-surgical treatment options for erection difficulties, reduced firmness, and confidence concerns.
           </motion.p>
           
-          {/* --- 2. DYNAMIC HERO DESCRIPTION --- */}
+          {/* --- DYNAMIC HERO DESCRIPTION --- */}
           <motion.p 
             custom={2.5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="text-sm md:text-base text-white/95 font-inter leading-relaxed max-w-xl mx-auto mb-3 drop-shadow-md"
@@ -267,7 +242,7 @@ export default function ErectileDysfunctionTreatmentClient({
             {heroDescription}
           </motion.p>
 
-          {/* --- 3. NEW DYNAMIC TRUST LINE --- */}
+          {/* --- DYNAMIC TRUST LINE --- */}
           <motion.p
             custom={2.6} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="text-xs md:text-sm text-blue-200/90 font-inter italic max-w-xl mx-auto mb-6"
@@ -376,62 +351,21 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </div>
-      
-      {/* --- SECTION 1: TREATMENT OPTIONS --- */}
-      <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-b border-slate-200">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Available Treatments</span>
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6 tracking-tight">Available Erectile Dysfunction Treatment Options</h2>
-            <p className="text-slate-600 text-lg">
-              Treatment is not one-size-fits-all. After a doctor-led assessment, suitable non-surgical options may include:
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mt-12">
-            {treatmentOptions.map((step, index) => (
-                <div key={index} className="p-8 rounded-[2rem] border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-[#4041d1]/30 transition-all duration-300 flex flex-col group">
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-blue-50 text-[#4041d1] group-hover:scale-110 transition-transform">
-                    <step.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-raleway font-bold mb-3 text-xl text-slate-900">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-600 font-inter mb-6 flex-grow">{step.description}</p>
-                  
-                  {/* --- NEW TAGS SECTION --- */}
-                  {step.tags && (
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {step.tags.map((tag, i) => (
-                        <span key={i} className="px-2.5 py-1 bg-slate-50 border border-slate-100 rounded-md text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <p className="text-slate-600 font-medium italic">
-              The most appropriate approach depends on your symptoms, medical history, and treatment goals.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* --- 4. LOCAL DIFFERENTIATION SECTION --- */}
-      <section className="py-12 md:py-16 bg-slate-50 relative z-10 border-b border-slate-200">
+      {/* --- LOCAL DIFFERENTIATION SECTION --- */}
+      <section className="pt-24 pb-8 bg-white relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">
             Why choose our {locationName} clinic?
           </h2>
-          <p className="text-slate-600 font-inter text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-slate-600 font-inter text-lg leading-relaxed max-w-2xl mx-auto">
             {whyChooseText}
           </p>
         </div>
       </section>
 
       {/* --- SECTION 2: DOCTOR-LED APPROACH --- */}
-      <section className="py-24 bg-white font-inter">
+      <section className="pb-24 pt-8 bg-white font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1 relative">
@@ -481,9 +415,49 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </section>
+      
+      {/* --- SECTION 1: TREATMENT OPTIONS --- */}
+      <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-y border-slate-200">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Available Treatments</span>
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6 tracking-tight">Available Erectile Dysfunction Treatment Options</h2>
+            <p className="text-slate-600 text-lg">
+              Treatment is not one-size-fits-all. After a doctor-led assessment, suitable non-surgical options may include:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mt-12">
+            {treatmentOptions.map((step, index) => (
+                <div key={index} className="p-8 rounded-[2rem] border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-[#4041d1]/30 transition-all duration-300 flex flex-col group">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-blue-50 text-[#4041d1] group-hover:scale-110 transition-transform">
+                    <step.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-raleway font-bold mb-3 text-xl text-slate-900">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-600 font-inter mb-6 flex-grow">{step.description}</p>
+                  
+                  {step.tags && (
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {step.tags.map((tag, i) => (
+                        <span key={i} className="px-2.5 py-1 bg-slate-50 border border-slate-100 rounded-md text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <p className="text-slate-600 font-medium italic">
+              The most appropriate approach depends on your symptoms, medical history, and treatment goals.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* --- SECTION 3: WHO THIS SERVICE MAY HELP --- */}
-      <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
+      <section className="py-24 bg-white font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Who This Service May Help</h2>
@@ -500,7 +474,7 @@ export default function ErectileDysfunctionTreatmentClient({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group ${index === 4 ? "lg:col-start-2" : ""}`}
+                className={`bg-slate-50 rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group ${index === 4 ? "lg:col-start-2" : ""}`}
               >
                 <div className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform group-hover:scale-110`}><symptom.icon /></div>
                 <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">{symptom.title}</h3>
@@ -518,7 +492,7 @@ export default function ErectileDysfunctionTreatmentClient({
       </section>
 
       {/* --- SECTION 4: HOW THE PROCESS WORKS --- */}
-      <section className="py-24 bg-white font-inter">
+      <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">How the Process Works</h2>
@@ -527,8 +501,8 @@ export default function ErectileDysfunctionTreatmentClient({
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {quickSteps.map((step, idx) => (
-              <div key={idx} className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100 shadow-sm relative group hover:shadow-md transition-shadow">
-                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 text-[#4041d1] text-2xl shadow-sm group-hover:scale-110 transition-transform">
+              <div key={idx} className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm relative group hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 text-[#4041d1] text-2xl shadow-sm group-hover:scale-110 transition-transform">
                   <step.icon />
                 </div>
                 <h3 className="text-xl font-bold mb-3 font-raleway">Step {idx + 1}: {step.title}</h3>
@@ -552,7 +526,7 @@ export default function ErectileDysfunctionTreatmentClient({
       </section>
 
       {/* --- SECTION 5: WHY THE CAUSE MATTERS --- */}
-      <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
+      <section className="py-24 bg-white font-inter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="p-4 md:p-10">
@@ -568,7 +542,7 @@ export default function ErectileDysfunctionTreatmentClient({
               </p>
             </div>
 
-            <div className="bg-white p-10 rounded-3xl border border-slate-200 shadow-sm">
+            <div className="bg-slate-50 p-10 rounded-3xl border border-slate-200 shadow-sm">
                 <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Your Assessment May Consider:</span>
                 <ul className="space-y-5 mt-6">
                   {[
@@ -580,7 +554,7 @@ export default function ErectileDysfunctionTreatmentClient({
                     "Confidence and relationship impact",
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-4 text-slate-700 font-medium">
-                      <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 border border-slate-100">
                         <FaCheckCircle className="text-[#4041d1]" />
                       </div>
                       {item}
@@ -593,7 +567,7 @@ export default function ErectileDysfunctionTreatmentClient({
       </section>
 
      {/* --- SECTION 6: WHAT TREATMENTS MAY SUPPORT --- */}
-      <section className="py-24 bg-white font-inter">
+      <section className="py-24 bg-slate-50 border-t border-slate-200 font-inter">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">What Doctor-Led Treatments Can — and Cannot — Do</h3>
@@ -621,7 +595,7 @@ export default function ErectileDysfunctionTreatmentClient({
                 ))}
               </ul>
             </div>
-            <div className="bg-slate-50 p-10 rounded-3xl border border-slate-200">
+            <div className="bg-white p-10 rounded-3xl border border-slate-200 shadow-sm">
               <h4 className="text-2xl font-raleway font-bold text-slate-900 mb-8 flex items-center gap-3">
                 <span className="w-2 h-8 bg-slate-400 rounded-full block"></span> Important limitations:
               </h4>
@@ -703,30 +677,32 @@ export default function ErectileDysfunctionTreatmentClient({
       </section>
       
       {/* --- FAQs --- */}
-      <section id="faqs" className="py-24 bg-white font-inter border-t border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16"><h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">Common Questions About Treatment</h2></div>
-          <div className="space-y-4">
-            {displayFaqs.map((faq, index) => (
-              <div key={index} className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <button className="w-full p-6 text-left flex items-center justify-between" onClick={() => toggleFAQ(index)}>
-                  <h3 className="font-raleway font-bold text-slate-900 pr-8 text-base md:text-lg">{faq.question}</h3>
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${openFAQIndex === index ? 'bg-[#4041d1] text-white' : 'bg-[#4041d1]/10 text-[#4041d1]'}`}>
-                    {openFAQIndex === index ? <FaMinus /> : <FaPlus />}
-                  </div>
-                </button>
-                <AnimatePresence>
-                  {openFAQIndex === index && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}>
-                      <div className="px-6 pb-8 border-t border-slate-200 pt-6"><p className="text-slate-600 leading-relaxed">{faq.answer}</p></div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+      {faqs.length > 0 && (
+        <section id="faqs" className="py-24 bg-white font-inter border-t border-slate-200">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16"><h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">Common Questions About Treatment</h2></div>
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <button className="w-full p-6 text-left flex items-center justify-between" onClick={() => toggleFAQ(index)}>
+                    <h3 className="font-raleway font-bold text-slate-900 pr-8 text-base md:text-lg">{faq.question}</h3>
+                    <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${openFAQIndex === index ? 'bg-[#4041d1] text-white' : 'bg-[#4041d1]/10 text-[#4041d1]'}`}>
+                      {openFAQIndex === index ? <FaMinus /> : <FaPlus />}
+                    </div>
+                  </button>
+                  <AnimatePresence>
+                    {openFAQIndex === index && (
+                      <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}>
+                        <div className="px-6 pb-8 border-t border-slate-200 pt-6"><p className="text-slate-600 leading-relaxed">{faq.answer}</p></div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
      <div id="reviews-section">
         <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
@@ -735,7 +711,6 @@ export default function ErectileDysfunctionTreatmentClient({
       <LocationSection /> 
       
       {/* --- MINIMAL AD FOOTER --- */}
-      {/* Reapplied pt-8 pb-28 here to give scroll clearance for the sticky CTA on mobile */}
       <footer className="bg-[#0A1128] pt-8 pb-28 border-t border-white/10 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <p className="text-slate-400 text-sm font-inter">
@@ -748,7 +723,6 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </footer>
-      {/* ------------------------- */}
 
       <OnlineAssessmentModal isOpen={isAssessmentOpen} onClose={() => setIsAssessmentOpen(false)} />
     </>
