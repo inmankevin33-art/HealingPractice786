@@ -226,12 +226,12 @@ export default function ErectileDysfunctionTreatmentBirminghamPage() {
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema) }}
       />
       
-      {/* 4. Render Client Component with Birmingham Props */}
+     {/* 4. Render Client Component with Birmingham Props */}
       <ErectileDysfunctionTreatmentClient 
         locationName="Birmingham"
         servingAreas="Birmingham • Solihull • Sutton Coldfield • West Midlands"
         
-        {/* --- SHORTER, PUNCHIER HERO DESCRIPTION --- */}
+        // --- SHORTER, PUNCHIER HERO DESCRIPTION --- 
         heroDescription={<>Start with a <strong>free confidential consultation</strong> at our Birmingham clinic.</>}
         
         trustLine="Patients attend our Birmingham clinic for discreet, doctor-led assessment and personalised treatment planning."
