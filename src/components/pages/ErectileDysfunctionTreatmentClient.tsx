@@ -376,18 +376,6 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </div>
-
-      {/* --- 4. LOCAL DIFFERENTIATION SECTION --- */}
-      <section className="py-12 md:py-16 bg-slate-50 relative z-10 border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
-            Why choose our {locationName} clinic?
-          </h2>
-          <p className="text-slate-600 font-inter text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-            {whyChooseText}
-          </p>
-        </div>
-      </section>
       
       {/* --- SECTION 1: TREATMENT OPTIONS --- */}
       <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-b border-slate-200">
@@ -427,6 +415,18 @@ export default function ErectileDysfunctionTreatmentClient({
               The most appropriate approach depends on your symptoms, medical history, and treatment goals.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* --- 4. LOCAL DIFFERENTIATION SECTION --- */}
+      <section className="py-12 md:py-16 bg-slate-50 relative z-10 border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
+            Why choose our {locationName} clinic?
+          </h2>
+          <p className="text-slate-600 font-inter text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            {whyChooseText}
+          </p>
         </div>
       </section>
 
