@@ -230,7 +230,10 @@ export default function ErectileDysfunctionTreatmentBirminghamPage() {
       <ErectileDysfunctionTreatmentClient 
         locationName="Birmingham"
         servingAreas="Birmingham • Solihull • Sutton Coldfield • West Midlands"
-        heroDescription={<>Start with a <strong>free confidential consultation</strong> at our Birmingham clinic to understand the possible cause and explore suitable options.</>}
+        
+        {/* --- SHORTER, PUNCHIER HERO DESCRIPTION --- */}
+        heroDescription={<>Start with a <strong>free confidential consultation</strong> at our Birmingham clinic.</>}
+        
         trustLine="Patients attend our Birmingham clinic for discreet, doctor-led assessment and personalised treatment planning."
         whyChooseText="Patients choose our Birmingham clinic for our structured, doctor-led approach to erectile dysfunction. Because of our specialized medical expertise, we regularly welcome men travelling from across the wider Midlands, Manchester, Leeds, and Bradford seeking trusted, confidential care."
         faqs={faqs}
