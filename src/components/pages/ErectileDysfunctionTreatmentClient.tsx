@@ -50,7 +50,7 @@ export default function ErectileDysfunctionTreatmentClient({
   locationName = "St Albans",
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
   heroDescription = <>Start with a <strong>free confidential consultation</strong> to understand the possible cause and explore suitable options.</>,
-  trustLine = "Patients attend our clinic for discreet, doctor-led assessment and personalised treatment planning.",
+  trustLine = "Advanced regenerative treatment options for erectile dysfunction are available.",
   whyChooseText = "Patients choose our clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment.",
   faqs = [], // Now strictly relies on this prop passed from page.tsx!
 }: ErectileDysfunctionProps) {
