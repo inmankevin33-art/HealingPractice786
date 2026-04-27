@@ -418,7 +418,8 @@ export default function ErectileDysfunctionTreatmentClient({
                     "Your symptoms and concerns",
                     "Previous treatments and response so far",
                     "Medical history and current medication",
-                    "Possible contributing factors such as circulation, diabetes, hormonal changes, or stress"
+                    "Possible contributing factors such as circulation, diabetes, hormonal changes, or stress",
+                    "Based on this, suitable treatment options such as shockwave therapy, Plasma Shot, or further assessment may be discussed where appropriate"
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-4">
                       <FaStethoscope className="text-[#4041d1] mt-1 shrink-0 text-lg" />
