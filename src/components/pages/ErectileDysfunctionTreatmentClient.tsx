@@ -447,16 +447,29 @@ export default function ErectileDysfunctionTreatmentClient({
                   </p>
                 </div>
 
-                {/* --- COMBINED TRUST BADGE ADDED HERE --- */}
-                <div className="mb-10 pt-6 border-t border-slate-100">
-                  <div className="relative h-16 w-64 md:h-20 md:w-72">
+                {/* --- TRUST BADGES (SEPARATED FOR PERFECT MOBILE SCALING) --- */}
+                <div className="flex items-center gap-6 mb-10 pt-6 border-t border-slate-100">
+                  
+                  {/* Top Doctors Logo (Wider container for horizontal logo) */}
+                  <div className="relative h-10 w-32 md:h-12 md:w-40">
                     <Image 
-                      src="/trust-badges.png" 
-                      alt="GMC and Top Doctors Registered" 
+                      src="/top-doctors.webp" 
+                      alt="Registered with Top Doctors" 
                       fill
                       className="object-contain object-left grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
                     />
                   </div>
+
+                  {/* GMC Logo (More square/stacked container) */}
+                  <div className="relative h-14 w-24 md:h-16 md:w-28">
+                    <Image 
+                      src="/gmc.webp" 
+                      alt="General Medical Council Registered" 
+                      fill
+                      className="object-contain object-left grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
+                    />
+                  </div>
+
                 </div>
                 {/* ----------------------------------- */}
 
