@@ -446,6 +446,20 @@ export default function ErectileDysfunctionTreatmentClient({
                     The aim is to identify the likely underlying cause and guide you toward suitable treatment options, with no pressure to proceed.
                   </p>
                 </div>
+
+                {/* --- COMBINED TRUST BADGE ADDED HERE --- */}
+                <div className="mb-10 pt-6 border-t border-slate-100">
+                  <div className="relative h-16 w-64 md:h-20 md:w-72">
+                    <Image 
+                      src="/trust-badges.png" 
+                      alt="GMC and Top Doctors Registered" 
+                      fill
+                      className="object-contain object-left grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
+                    />
+                  </div>
+                </div>
+                {/* ----------------------------------- */}
+
                 <button 
                   onClick={handleAction}
                   className="w-full sm:w-max px-8 py-4 bg-[#4041d1] text-white rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95"
