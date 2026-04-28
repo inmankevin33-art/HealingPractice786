@@ -431,7 +431,7 @@ export default function ErectileDysfunctionTreatmentClient({
                   {/* Top Doctors Logo (Massively increased width and height) */}
                   <div className="relative h-14 w-40 md:h-16 md:w-48">
                     <Image 
-                      src="/top-doctors.png" 
+                      src="/top-doctors.webp" 
                       alt="Registered with Top Doctors" 
                       fill
                       className="object-contain object-left grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
