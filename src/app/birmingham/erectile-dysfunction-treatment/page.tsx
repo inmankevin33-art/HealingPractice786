@@ -7,21 +7,17 @@ const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c"
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Doctor-Led Erectile Dysfunction Treatment Birmingham | Healing-PRP",
+    absolute: "Erectile Dysfunction Treatment Birmingham | Doctor-Led ED Clinic",
   },
-
   description:
-    "Doctor-led Erectile Dysfunction (ED) clinic serving Birmingham & the West Midlands. We focus on natural function using non-surgical options like Shockwave and Plasma Therapy.",
-
-  // --- CANONICAL URL DEFINED HERE ---
+    "Private doctor-led erectile dysfunction treatment in Birmingham. Non-surgical options including shockwave therapy, Plasma Shot, vascular assessment and hormone review. Free confidential consultation.",
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction-treatment",
   },
-
   openGraph: {
-    title: "Doctor-Led Erectile Dysfunction Treatment Birmingham | Healing-PRP Clinics",
+    title: "Erectile Dysfunction Treatment Birmingham | Healing-PRP Clinics",
     description:
-      "Doctor-led non-surgical therapy for ED. Private, confidential assessments. Conveniently serving Birmingham, Solihull, and the West Midlands.",
+      "Private doctor-led erectile dysfunction assessment and non-surgical treatment options in Birmingham, serving Solihull, Sutton Coldfield and the West Midlands.",
     url: "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction-treatment",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
@@ -31,15 +27,15 @@ export const metadata: Metadata = {
         url: "/ed-doctor-consultation.webp",
         width: 1200,
         height: 630,
-        alt: "Private ED Consultation Birmingham",
+        alt: "Private erectile dysfunction consultation in Birmingham",
       },
     ],
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "Doctor-Led Erectile Dysfunction Treatment Birmingham",
-    description: "Doctor-led non-surgical therapy for ED in Birmingham. Private, confidential assessments.",
+    title: "Erectile Dysfunction Treatment Birmingham",
+    description:
+      "Doctor-led erectile dysfunction treatment options in Birmingham. Private, discreet and confidential consultations.",
     images: ["/ed-doctor-consultation.webp"],
   },
 };
@@ -47,21 +43,30 @@ export const metadata: Metadata = {
 // --- COMPLIANT SEO RICH FAQS ---
 const faqs = [
   {
-    question: "Do I need a GP referral to book a consultation?",
-    answer: "No, a GP referral is not required. You can book a direct, private consultation with our GMC-registered doctors for a full assessment of your symptoms."
+    question: "Do I need a GP referral?",
+    answer:
+      "No, a GP referral is not required. You can book a direct, private consultation at our Birmingham clinic.",
   },
   {
-    question: "What happens during the initial consultation at the Birmingham clinic?",
-    answer: "Your doctor will discuss your medical history, current symptoms, and any previous treatments (like oral tablets) you have tried. We focus on identifying the root cause rather than just providing a temporary fix."
+    question: "What happens during the initial consultation?",
+    answer:
+      "Your doctor will discuss your symptoms, medical history, current medication and any previous treatment response. The aim is to understand the likely cause and discuss suitable options.",
   },
   {
-    question: "Are your treatments surgical?",
-    answer: "No. Our clinics focus entirely on non-surgical, minimally invasive treatments such as advanced shockwave therapy and personalised medical management."
+    question: "Are the treatments surgical?",
+    answer:
+      "No. We focus on non-surgical options such as shockwave therapy, Plasma Shot, vascular assessment, hormone review and wider health assessment where appropriate.",
   },
   {
     question: "How do I know which treatment is right for me?",
-    answer: "There is no 'one-size-fits-all' approach. Suitability for specific therapies is determined during your clinical assessment, ensuring the proposed plan aligns with your medical history and goals."
-  }
+    answer:
+      "There is no one-size-fits-all approach. Suitability is assessed during consultation based on your symptoms, medical history and treatment goals.",
+  },
+  {
+    question: "Is the consultation confidential?",
+    answer:
+      "Yes. Consultations at our Birmingham clinic are private, discreet and handled sensitively by a GMC-registered doctor.",
+  },
 ];
 
 // --- UPGRADED JSON-LD SCHEMA (Google Ads Safe & Birmingham Targeted) ---
@@ -156,8 +161,8 @@ const edSchema = {
         },
         {
           "@type": "MedicalTherapy",
-          "name": "Personalised Medical Management",
-          "description": "Bespoke pharmacological treatment plans tailored to the patient's specific cardiovascular and metabolic profile.",
+          "name": "Health and Medication Review",
+          "description": "Review of current medication, cardiovascular risk, metabolic health and previous treatment response where clinically appropriate."
           "relevantSpecialty": "Urologic"
         }
       ]
@@ -234,7 +239,7 @@ export default function ErectileDysfunctionTreatmentBirminghamPage() {
         // --- SHORTER, PUNCHIER HERO DESCRIPTION --- 
         heroDescription={<>Start with a <strong>free confidential consultation</strong> at our Birmingham clinic.</>}
         
-        whyChooseText="Patients choose our Birmingham clinic for our structured, doctor-led approach to erectile dysfunction. Because of our specialized medical expertise, we regularly welcome men travelling from across the wider Midlands, Manchester, Leeds, and Bradford seeking trusted, confidential care."
+        whyChooseText="Patients choose our Birmingham clinic for a structured, doctor-led approach to erectile dysfunction assessment and treatment. We welcome men from across Birmingham, Edgbaston, Solihull, Sutton Coldfield and the wider West Midlands seeking discreet, confidential care."
         faqs={faqs}
       />
     </main>
