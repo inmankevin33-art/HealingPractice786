@@ -37,6 +37,7 @@ type FaqType = {
   answer: string;
 };
 
+// Removed the trustLine prop to prevent the build error
 interface ErectileDysfunctionProps {
   locationName?: string;
   servingAreas?: string;
@@ -50,7 +51,7 @@ export default function ErectileDysfunctionTreatmentClient({
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
   heroDescription = <>Start with a <strong>free confidential consultation</strong> to understand the possible cause and explore suitable options.</>,
   whyChooseText = "Patients choose our clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment.",
-  faqs = [], 
+  faqs = [], // Strictly relies on props from page.tsx now
 }: ErectileDysfunctionProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
@@ -273,7 +274,7 @@ export default function ErectileDysfunctionTreatmentClient({
             </button>
           </motion.div>
 
-          {/* --- TRUST BADGES (Updated to remove redundancy) --- */}
+          {/* --- TRUST BADGES (Updated) --- */}
           <motion.div 
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-2 mt-8"
@@ -367,7 +368,8 @@ export default function ErectileDysfunctionTreatmentClient({
                     "Your symptoms and concerns",
                     "Previous treatments and response so far",
                     "Medical history and current medication",
-                    "Possible contributing factors such as circulation, diabetes, hormonal changes, or stress"
+                    "Possible contributing factors such as circulation, diabetes, hormonal changes, or stress",
+                    "Based on this, suitable treatment options such as shockwave therapy, Plasma Shot, or further assessment may be discussed where appropriate"
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-4">
                       <FaStethoscope className="text-[#4041d1] mt-1 shrink-0 text-lg" />
@@ -397,8 +399,7 @@ export default function ErectileDysfunctionTreatmentClient({
 
                 {/* --- TRUST BADGES (SEPARATED FOR PERFECT MOBILE SCALING) --- */}
                 <div className="flex items-center gap-6 mb-10 pt-6 border-t border-slate-100">
-                  
-                  {/* Top Doctors Logo (Wider container for horizontal logo) */}
+                  {/* Top Doctors Logo */}
                   <div className="relative h-10 w-32 md:h-12 md:w-40">
                     <Image 
                       src="/top-doctors.png" 
@@ -408,7 +409,7 @@ export default function ErectileDysfunctionTreatmentClient({
                     />
                   </div>
 
-                  {/* GMC Logo (More square/stacked container) */}
+                  {/* GMC Logo */}
                   <div className="relative h-14 w-24 md:h-16 md:w-28">
                     <Image 
                       src="/gmc.png" 
@@ -417,7 +418,6 @@ export default function ErectileDysfunctionTreatmentClient({
                       className="object-contain object-left grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
                     />
                   </div>
-
                 </div>
                 {/* ----------------------------------- */}
 
@@ -432,7 +432,7 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </section>
-      
+
       {/* --- SECTION 1: TREATMENT OPTIONS --- */}
       <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-y border-slate-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
