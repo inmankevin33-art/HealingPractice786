@@ -37,7 +37,6 @@ type FaqType = {
   answer: string;
 };
 
-// 1. UPDATED PROPS INTERFACE
 interface ErectileDysfunctionProps {
   locationName?: string;
   servingAreas?: string;
@@ -195,14 +194,15 @@ export default function ErectileDysfunctionTreatmentClient({
   ];
 
   return (
-   <>
+    <>
       {/* --- MAGIC TRICK TO HIDE THE GLOBAL HEADER JUST ON THIS PAGE --- */}
       <style dangerouslySetInnerHTML={{ __html: `
         header, nav, .header, .navbar, #header { display: none !important; }
       `}} />
-     
+
       {/* --- HERO SECTION --- */}
-      <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
+      {/* Reduced min-h from 100vh to 82vh so the section below peeks through! */}
+      <div className="relative min-h-[82vh] md:min-h-[80vh] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90 z-10" />
@@ -216,7 +216,8 @@ export default function ErectileDysfunctionTreatmentClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-56 md:pb-24">
+        {/* Adjusted padding: Reduced pt-16 to pt-10 and pb-56 to pb-44 to match new shorter height */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10 pb-44 md:pb-24">
           <motion.div 
             custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="inline-block px-5 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md shadow-lg"
@@ -279,7 +280,7 @@ export default function ErectileDysfunctionTreatmentClient({
             </button>
           </motion.div>
 
-          {/* --- TRUST BADGES (Updated to remove redundancy) --- */}
+          {/* --- TRUST BADGES --- */}
           <motion.div 
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-2 mt-8"
@@ -347,38 +348,6 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </div>
-
-     {/* --- AUTHORITY LOGO BAND --- */}
-      <section className="py-10 bg-white border-b border-slate-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-8 font-inter">
-            Regulated & Recognised By
-          </p>
-          <div className="flex justify-center items-center gap-8 md:gap-24 flex-wrap">
-            
-            {/* Top Doctors Logo (Increased Size & Full Color) */}
-            <div className="relative h-16 w-48 md:h-20 md:w-64">
-              <Image 
-                src="/top-doctors.webp" 
-                alt="Top Doctors Registered" 
-                fill
-                className="object-contain"
-              />
-            </div>
-
-            {/* GMC Logo (Increased Size & Full Color) */}
-            <div className="relative h-20 w-40 md:h-24 md:w-48">
-              <Image 
-                src="/gmc.webp" 
-                alt="General Medical Council" 
-                fill
-                className="object-contain"
-              />
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* --- SECTION 1: TREATMENT OPTIONS --- */}
       <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-b border-slate-200">
@@ -461,10 +430,10 @@ export default function ErectileDysfunctionTreatmentClient({
                     The aim is to identify the likely underlying cause and guide you toward suitable treatment options, with no pressure to proceed.
                   </p>
                 </div>
-              
+
                 <button 
                   onClick={handleAction}
-                  className="w-full sm:w-max px-8 py-4 bg-[#4041d1] text-white rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95"
+                  className="w-full sm:w-max px-8 py-4 bg-[#4041d1] text-white rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95 mt-4"
                 >
                   Book Free Confidential Consultation
                   <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
