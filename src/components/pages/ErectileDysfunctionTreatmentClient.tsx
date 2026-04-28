@@ -353,7 +353,7 @@ export default function ErectileDysfunctionTreatmentClient({
             
             <div className="relative h-12 w-40 md:h-16 md:w-56">
               <Image 
-                src="/top-doctors.png" 
+                src="/top-doctors.webp" 
                 alt="Top Doctors Registered" 
                 fill
                 className="object-contain grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100"
@@ -362,7 +362,7 @@ export default function ErectileDysfunctionTreatmentClient({
 
             <div className="relative h-14 w-28 md:h-20 md:w-36">
               <Image 
-                src="/gmc.png" 
+                src="/gmc.webp" 
                 alt="General Medical Council" 
                 fill
                 className="object-contain grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100"
