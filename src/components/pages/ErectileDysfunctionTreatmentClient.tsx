@@ -195,7 +195,12 @@ export default function ErectileDysfunctionTreatmentClient({
   ];
 
   return (
-    <>
+   <>
+      {/* --- MAGIC TRICK TO HIDE THE GLOBAL HEADER JUST ON THIS PAGE --- */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        header, nav, .header, .navbar, #header { display: none !important; }
+      `}} />
+     
       {/* --- HERO SECTION --- */}
       <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
