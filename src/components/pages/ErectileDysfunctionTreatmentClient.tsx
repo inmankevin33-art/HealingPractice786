@@ -463,7 +463,7 @@ export default function ErectileDysfunctionTreatmentClient({
                   {/* GMC Logo (More square/stacked container) */}
                   <div className="relative h-14 w-24 md:h-16 md:w-28">
                     <Image 
-                      src="/gmc.webp" 
+                      src="/gmc.png" 
                       alt="General Medical Council Registered" 
                       fill
                       className="object-contain object-left grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
