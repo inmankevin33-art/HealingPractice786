@@ -201,21 +201,17 @@ export default function ErectileDysfunctionTreatmentClient({
       `}} />
 
       {/* --- HERO SECTION --- */}
-      {/* Reduced min-h from 100vh to 82vh so the section below peeks through! */}
-      <div className="relative min-h-[82vh] md:min-h-[80vh] overflow-hidden flex items-center justify-center bg-black">
+      {/* Reduced min-h from 100vh to 82vh. Heavy image removed and replaced with CSS gradient for 90+ PageSpeed. */}
+      <div className="relative min-h-[82vh] md:min-h-[80vh] overflow-hidden flex items-center justify-center bg-[#0A1128]">
+        
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/60 z-10" /> 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90 z-10" />
-          <Image 
-            src="/ed-doctor-consultation.webp" 
-            alt="Doctor led men's health consultation" 
-            fill
-            priority
-            quality={75}
-            className="object-cover opacity-90"
-          />
+          {/* Deep Navy to Black Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1e293b] via-[#0A1128] to-black" />
+          
+          {/* Subtle glowing orb effect behind the text for depth */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#4041d1] rounded-full blur-[150px] opacity-20 pointer-events-none" />
         </div>
-
+        
         {/* Adjusted padding: Reduced pt-16 to pt-10 and pb-56 to pb-44 to match new shorter height */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10 pb-44 md:pb-24">
           <motion.div 
