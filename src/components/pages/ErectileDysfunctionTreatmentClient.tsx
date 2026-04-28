@@ -424,32 +424,6 @@ export default function ErectileDysfunctionTreatmentClient({
                     The aim is to identify the likely underlying cause and guide you toward suitable treatment options, with no pressure to proceed.
                   </p>
                 </div>
-
-               {/* --- TRUST BADGES (RE-SIZED FOR PERFECT BALANCE) --- */}
-                <div className="flex items-center gap-6 mb-10 pt-6 border-t border-slate-100">
-                  
-                  {/* Top Doctors Logo (Massively increased width and height) */}
-                  <div className="relative h-14 w-40 md:h-16 md:w-48">
-                    <Image 
-                      src="/top-doctors.webp" 
-                      alt="Registered with Top Doctors" 
-                      fill
-                      className="object-contain object-left grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
-                    />
-                  </div>
-
-                  {/* GMC Logo (Kept slightly smaller so it doesn't overpower) */}
-                  <div className="relative h-12 w-20 md:h-14 md:w-24">
-                    <Image 
-                      src="/gmc.png" 
-                      alt="General Medical Council Registered" 
-                      fill
-                      className="object-contain object-left grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
-                    />
-                  </div>
-
-                </div>
-                {/* ----------------------------------- */}
               
                 <button 
                   onClick={handleAction}
