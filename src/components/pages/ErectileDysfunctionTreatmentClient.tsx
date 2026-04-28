@@ -343,6 +343,36 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </div>
 
+      {/* --- AUTHORITY LOGO BAND --- */}
+      <section className="py-10 bg-white border-b border-slate-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-6 font-inter">
+            Regulated & Recognised By
+          </p>
+          <div className="flex justify-center items-center gap-12 md:gap-24 flex-wrap">
+            
+            <div className="relative h-12 w-40 md:h-16 md:w-56">
+              <Image 
+                src="/top-doctors.png" 
+                alt="Top Doctors Registered" 
+                fill
+                className="object-contain grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100"
+              />
+            </div>
+
+            <div className="relative h-14 w-28 md:h-20 md:w-36">
+              <Image 
+                src="/gmc.png" 
+                alt="General Medical Council" 
+                fill
+                className="object-contain grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100"
+              />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* --- SECTION 1: TREATMENT OPTIONS --- */}
       <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-b border-slate-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
