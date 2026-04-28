@@ -201,51 +201,47 @@ export default function ErectileDysfunctionTreatmentClient({
       `}} />
 
       {/* --- HERO SECTION --- */}
-      {/* Reduced min-h from 100vh to 82vh. Heavy image removed and replaced with CSS gradient for 90+ PageSpeed. */}
+      {/* High-performance CSS background. Instant load, zero layout shift. */}
       <div className="relative min-h-[82vh] md:min-h-[80vh] overflow-hidden flex items-center justify-center bg-[#0A1128]">
         
         <div className="absolute inset-0 z-0">
-          {/* Deep Navy to Black Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#1e293b] via-[#0A1128] to-black" />
-          
-          {/* Subtle glowing orb effect behind the text for depth */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#4041d1] rounded-full blur-[150px] opacity-20 pointer-events-none" />
+          {/* Replaced heavy blur with ultra-fast radial gradient */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(64,65,209,0.25)_0%,_transparent_70%)] pointer-events-none" />
         </div>
         
-        {/* Adjusted padding: Reduced pt-16 to pt-10 and pb-56 to pb-44 to match new shorter height */}
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10 pb-44 md:pb-24">
           <motion.div 
-            custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={0} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="inline-block px-5 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md shadow-lg"
           >
             <span className="text-blue-100 text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase font-inter">Doctor-Led Private Clinic</span>
           </motion.div>
 
+          {/* isLoaded removed from animate logic to prevent JS delay - loads instantly now */}
           <motion.h1 
-            custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={1} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight drop-shadow-lg"
           >
             Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {locationName}
           </motion.h1>
 
           <motion.p 
-            custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={2} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-5 font-medium drop-shadow-md"
           >
             Doctor led non surgical advanced treatments for erection difficulties, reduced firmness, and confidence concerns.
           </motion.p>
           
-          {/* --- DYNAMIC HERO DESCRIPTION --- */}
           <motion.p 
-            custom={2.5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={2.5} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="text-sm md:text-base text-white/95 font-inter leading-relaxed max-w-xl mx-auto mb-6 drop-shadow-md"
           >
             {heroDescription}
           </motion.p>
 
-          {/* --- HIGH CONVERSION BENEFIT CHIPS --- */}
           <motion.div
-            custom={2.7} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={2.7} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-2 mb-8"
           >
             {["Takes ~30 Mins", "No Planned Downtime", "Minimal Discomfort"].map((chip) => (
@@ -259,7 +255,7 @@ export default function ErectileDysfunctionTreatmentClient({
           </motion.div>
 
           <motion.div 
-            custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={3} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="flex flex-col sm:flex-row gap-3 justify-center items-center"
           >
             <button 
@@ -276,9 +272,8 @@ export default function ErectileDysfunctionTreatmentClient({
             </button>
           </motion.div>
 
-          {/* --- TRUST BADGES --- */}
           <motion.div 
-            custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={4} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-2 mt-8"
           >
             {["No GP Referral Required", "Free Initial Consultation", "Fast Access Clinic"].map((chip) => (
@@ -289,7 +284,7 @@ export default function ErectileDysfunctionTreatmentClient({
           </motion.div>
 
           <motion.div 
-            custom={5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={5} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="inline-flex items-center justify-center gap-2 px-4 py-2 text-white/65 rounded-full text-[9px] md:text-xs mt-5 font-bold uppercase tracking-widest font-inter"
           >
              <FaMapMarkerAlt className="mb-0.5 shrink-0" /> 
