@@ -222,12 +222,11 @@ export default function ErectileDysfunctionTreatmentPage() {
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema) }}
       />
       
-      {/* 4. Render Client Component with St Albans Props */}
+     {/* 4. Render Client Component with St Albans Props */}
       <ErectileDysfunctionTreatmentClient 
         locationName="St Albans"
         servingAreas="St Albans • Luton • Harpenden • Hertfordshire"
-        heroDescription={<>Start with a <strong>free confidential consultation</strong> at our St Albans clinic to understand the possible cause and explore suitable options.</>}
-        trustLine="Patients attend our St Albans clinic for discreet, doctor-led assessment and personalised treatment planning."
+        heroDescription={<>Start with a <strong>free confidential consultation</strong> at our St Albans clinic.</>}
         whyChooseText="Patients choose our St Albans clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment."
         faqs={faqs}
       />
