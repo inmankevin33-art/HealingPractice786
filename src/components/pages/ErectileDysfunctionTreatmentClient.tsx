@@ -37,7 +37,7 @@ type FaqType = {
   answer: string;
 };
 
-// Removed the trustLine prop to prevent the build error
+// 1. UPDATED PROPS INTERFACE
 interface ErectileDysfunctionProps {
   locationName?: string;
   servingAreas?: string;
@@ -51,7 +51,7 @@ export default function ErectileDysfunctionTreatmentClient({
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
   heroDescription = <>Start with a <strong>free confidential consultation</strong> to understand the possible cause and explore suitable options.</>,
   whyChooseText = "Patients choose our clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment.",
-  faqs = [], // Strictly relies on props from page.tsx now
+  faqs = [], 
 }: ErectileDysfunctionProps) {
   
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
@@ -274,7 +274,7 @@ export default function ErectileDysfunctionTreatmentClient({
             </button>
           </motion.div>
 
-          {/* --- TRUST BADGES (Updated) --- */}
+          {/* --- TRUST BADGES (Updated to remove redundancy) --- */}
           <motion.div 
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-2 mt-8"
@@ -343,20 +343,48 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </div>
 
-      {/* --- LOCAL DIFFERENTIATION SECTION --- */}
-      <section className="pt-24 pb-8 bg-white relative z-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">
-            Why choose our {locationName} clinic?
-          </h2>
-          <p className="text-slate-600 font-inter text-lg leading-relaxed max-w-2xl mx-auto">
-            {whyChooseText}
-          </p>
+      {/* --- SECTION 1: TREATMENT OPTIONS --- */}
+      <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-b border-slate-200">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Available Treatments</span>
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6 tracking-tight">Available Erectile Dysfunction Treatment Options</h2>
+            <p className="text-slate-600 text-lg">
+              Treatment is not one-size-fits-all. After a doctor-led assessment, suitable non-surgical options may include:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mt-12">
+            {treatmentOptions.map((step, index) => (
+                <div key={index} className="p-8 rounded-[2rem] border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-[#4041d1]/30 transition-all duration-300 flex flex-col group">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-blue-50 text-[#4041d1] group-hover:scale-110 transition-transform">
+                    <step.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-raleway font-bold mb-3 text-xl text-slate-900">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-600 font-inter mb-6 flex-grow">{step.description}</p>
+                  
+                  {step.tags && (
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {step.tags.map((tag, i) => (
+                        <span key={i} className="px-2.5 py-1 bg-slate-50 border border-slate-100 rounded-md text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <p className="text-slate-600 font-medium italic">
+              The most appropriate approach depends on your symptoms, medical history, and treatment goals.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* --- SECTION 2: DOCTOR-LED APPROACH --- */}
-      <section className="pb-24 pt-8 bg-white font-inter">
+      <section className="py-24 bg-white font-inter border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1 relative">
@@ -399,7 +427,8 @@ export default function ErectileDysfunctionTreatmentClient({
 
                 {/* --- TRUST BADGES (SEPARATED FOR PERFECT MOBILE SCALING) --- */}
                 <div className="flex items-center gap-6 mb-10 pt-6 border-t border-slate-100">
-                  {/* Top Doctors Logo */}
+                  
+                  {/* Top Doctors Logo (Wider container for horizontal logo) */}
                   <div className="relative h-10 w-32 md:h-12 md:w-40">
                     <Image 
                       src="/top-doctors.png" 
@@ -409,7 +438,7 @@ export default function ErectileDysfunctionTreatmentClient({
                     />
                   </div>
 
-                  {/* GMC Logo */}
+                  {/* GMC Logo (More square/stacked container) */}
                   <div className="relative h-14 w-24 md:h-16 md:w-28">
                     <Image 
                       src="/gmc.png" 
@@ -418,6 +447,7 @@ export default function ErectileDysfunctionTreatmentClient({
                       className="object-contain object-left grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
                     />
                   </div>
+
                 </div>
                 {/* ----------------------------------- */}
 
@@ -433,43 +463,15 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </section>
 
-      {/* --- SECTION 1: TREATMENT OPTIONS --- */}
-      <section className="relative py-20 lg:py-24 bg-slate-50 overflow-hidden font-inter border-y border-slate-200">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Available Treatments</span>
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6 tracking-tight">Available Erectile Dysfunction Treatment Options</h2>
-            <p className="text-slate-600 text-lg">
-              Treatment is not one-size-fits-all. After a doctor-led assessment, suitable non-surgical options may include:
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mt-12">
-            {treatmentOptions.map((step, index) => (
-                <div key={index} className="p-8 rounded-[2rem] border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-[#4041d1]/30 transition-all duration-300 flex flex-col group">
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-blue-50 text-[#4041d1] group-hover:scale-110 transition-transform">
-                    <step.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-raleway font-bold mb-3 text-xl text-slate-900">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-600 font-inter mb-6 flex-grow">{step.description}</p>
-                  
-                  {step.tags && (
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {step.tags.map((tag, i) => (
-                        <span key={i} className="px-2.5 py-1 bg-slate-50 border border-slate-100 rounded-md text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <p className="text-slate-600 font-medium italic">
-              The most appropriate approach depends on your symptoms, medical history, and treatment goals.
-            </p>
-          </div>
+      {/* --- LOCAL DIFFERENTIATION SECTION --- */}
+      <section className="py-20 md:py-24 bg-slate-50 relative z-10 border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+            Why choose our {locationName} clinic?
+          </h2>
+          <p className="text-slate-600 font-inter text-lg leading-relaxed max-w-2xl mx-auto">
+            {whyChooseText}
+          </p>
         </div>
       </section>
 
