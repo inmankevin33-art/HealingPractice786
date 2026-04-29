@@ -56,6 +56,8 @@ export default function ErectileDysfunctionTreatmentClient({
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
   const isBirmingham = locationName === "Birmingham";
   const basePath = isBirmingham ? "/birmingham" : "";
@@ -696,17 +698,63 @@ export default function ErectileDysfunctionTreatmentClient({
           </p>
           <div className="flex justify-center gap-4 mt-4 text-xs text-slate-500 font-inter">
             
-            {/* 1. PASTE YOUR REAL PRIVACY POLICY URL IN THE href="" BELOW */}
-            <Link href="/your-actual-privacy-url" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <button 
+              onClick={() => setIsPrivacyModalOpen(true)} 
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </button>
             
             <span>|</span>
             
-            {/* 2. PASTE YOUR REAL TERMS URL IN THE href="" BELOW */}
-            <Link href="/your-actual-terms-url" className="hover:text-white transition-colors">Terms & Conditions</Link>
+            <button 
+              onClick={() => setIsTermsModalOpen(true)} 
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Terms & Conditions
+            </button>
             
           </div>
         </div>
       </footer>
+
+      {/* --- PRIVACY POLICY MODAL --- */}
+      {isPrivacyModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setIsPrivacyModalOpen(false)}>
+          <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[80vh] flex flex-col relative shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="p-4 md:p-6 border-b flex justify-between items-center sticky top-0 bg-white rounded-t-2xl z-10">
+              <h2 className="text-xl md:text-2xl font-bold text-slate-900 font-raleway">Privacy Policy</h2>
+              <button onClick={() => setIsPrivacyModalOpen(false)} className="text-slate-400 hover:text-red-500 transition-colors font-bold text-2xl px-2">✕</button>
+            </div>
+            <div className="p-4 md:p-6 overflow-y-auto text-slate-600 space-y-4 font-inter text-sm leading-relaxed">
+              
+              {/* PASTE YOUR PRIVACY POLICY TEXT BELOW HERE */}
+              <p>Your privacy is important to us...</p>
+              <p>We collect information to provide better services...</p>
+              
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- TERMS & CONDITIONS MODAL --- */}
+      {isTermsModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setIsTermsModalOpen(false)}>
+          <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[80vh] flex flex-col relative shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="p-4 md:p-6 border-b flex justify-between items-center sticky top-0 bg-white rounded-t-2xl z-10">
+              <h2 className="text-xl md:text-2xl font-bold text-slate-900 font-raleway">Terms & Conditions</h2>
+              <button onClick={() => setIsTermsModalOpen(false)} className="text-slate-400 hover:text-red-500 transition-colors font-bold text-2xl px-2">✕</button>
+            </div>
+            <div className="p-4 md:p-6 overflow-y-auto text-slate-600 space-y-4 font-inter text-sm leading-relaxed">
+              
+              {/* PASTE YOUR TERMS & CONDITIONS TEXT BELOW HERE */}
+              <p>Welcome to Healing-PRP Clinics...</p>
+              <p>By accessing this website, we assume you accept these terms and conditions...</p>
+              
+            </div>
+          </div>
+        </div>
+      )}
 
       <OnlineAssessmentModal isOpen={isAssessmentOpen} onClose={() => setIsAssessmentOpen(false)} />
     </>
