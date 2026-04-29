@@ -126,7 +126,7 @@ export default function ErectileDysfunctionTreatmentClient({
     },
     { 
       icon: FaSyringe, 
-      title: "Plasma Shot", 
+      title: "Advanced Regenerative Therapy", 
       description: "A doctor-prepared, localised treatment using a concentrated sample from your own blood to support tissue health. Suitability is assessed during consultation.",
       tags: ["Minimal discomfort", "Takes ~30 mins", "No downtime"]
     },
@@ -157,7 +157,7 @@ export default function ErectileDysfunctionTreatmentClient({
     },
     {
       title: "Tailored Plan Where Appropriate",
-      description: "This may include shockwave therapy, plasma therapy, Plasma Shot, health review, or a combined approach depending on suitability.",
+      description: "This may include shockwave therapy, plasma therapy, Advanced Regenerative Therapy, health review, or a combined approach depending on suitability.",
       icon: FaCheckCircle,
     },
   ];
@@ -384,7 +384,7 @@ export default function ErectileDysfunctionTreatmentClient({
                     "Previous treatments and response so far",
                     "Medical history and current medication",
                     "Possible contributing factors such as circulation, diabetes, hormonal changes, or stress",
-                    "Based on this, suitable treatment options such as shockwave therapy, Plasma Shot, or further assessment may be discussed where appropriate"
+                    "Based on this, suitable treatment options such as shockwave therapy, Advanced Regenerative Therapy, or further assessment may be discussed where appropriate"
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-4">
                       <FaStethoscope className="text-[#4041d1] mt-1 shrink-0 text-lg" />
