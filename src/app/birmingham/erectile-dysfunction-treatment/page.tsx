@@ -162,7 +162,7 @@ const edSchema = {
         {
           "@type": "MedicalTherapy",
           "name": "Health and Medication Review",
-          "description": "Review of current medication, cardiovascular risk, metabolic health and previous treatment response where clinically appropriate."
+          "description": "Review of current medication, cardiovascular risk, metabolic health and previous treatment response where clinically appropriate.",
           "relevantSpecialty": "Urologic"
         }
       ]
