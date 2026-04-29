@@ -695,9 +695,15 @@ export default function ErectileDysfunctionTreatmentClient({
             &copy; {new Date().getFullYear()} Healing-PRP Clinics. All rights reserved.
           </p>
           <div className="flex justify-center gap-4 mt-4 text-xs text-slate-500 font-inter">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            
+            {/* 1. PASTE YOUR REAL PRIVACY POLICY URL IN THE href="" BELOW */}
+            <Link href="/your-actual-privacy-url" className="hover:text-white transition-colors">Privacy Policy</Link>
+            
             <span>|</span>
-            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
+            
+            {/* 2. PASTE YOUR REAL TERMS URL IN THE href="" BELOW */}
+            <Link href="/your-actual-terms-url" className="hover:text-white transition-colors">Terms & Conditions</Link>
+            
           </div>
         </div>
       </footer>
