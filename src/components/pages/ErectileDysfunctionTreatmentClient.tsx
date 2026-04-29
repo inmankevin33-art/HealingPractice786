@@ -774,7 +774,7 @@ export default function ErectileDysfunctionTreatmentClient({
                 <p>Website information does not replace personalised medical advice. You must be at least 18 years old and provide accurate, complete medical history. We reserve the right to decline treatment if it is deemed clinically inappropriate or unsafe.</p>
 
                 <h3 className="font-bold text-slate-800 mt-4">2. Consultations & Outcomes</h3>
-                <p>All treatments are subject to a doctor-led assessment. "Free consultations" refer to an initial screening and do not include diagnostic tests, treatments, or extended medical reviews. Because individual biology varies, we cannot guarantee specific treatment outcomes.</p>
+                <p>All treatments are subject to a doctor-led assessment. &quot;Free consultations&quot; refer to an initial screening and do not include diagnostic tests, treatments, or extended medical reviews. Because individual biology varies, we cannot guarantee specific treatment outcomes.</p>
 
                 <h3 className="font-bold text-slate-800 mt-4">3. Payments, Cancellations & Refunds</h3>
                 <ul className="list-disc pl-5 space-y-1">
