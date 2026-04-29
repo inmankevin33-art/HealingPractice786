@@ -127,14 +127,14 @@ export default function ErectileDysfunctionTreatmentClient({
     { 
       icon: FaSyringe, 
       title: "Advanced Regenerative Therapy", 
-      description: "A doctor-prepared, localised treatment using a concentrated sample from your own blood to support tissue health. Suitability is assessed during consultation.",
+      description: "A doctor-prepared treatment option using a concentrated sample from your own blood. It may be considered as part of a personalised ED care plan after consultation.",
       tags: ["Minimal discomfort", "Takes ~30 mins", "No downtime"]
     },
     { 
       icon: FaTint, 
       title: "Vascular Assessment", 
       description: "Where appropriate, assessment of penile blood flow may be arranged, including Doppler ultrasound, to help identify vascular causes and guide treatment planning.",
-      tags: ["Non-invasive", "Painless ultrasound", "Immediate insights"]
+      tags: ["Non-invasive", "Ultrasound Assessment", "Immediate insights"]
     },
     { 
       icon: FaDna, 
