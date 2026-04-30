@@ -402,7 +402,7 @@ export default function ErectileDysfunctionTreatmentClient({
                 </h3>
                 <div className="text-slate-600 text-lg leading-relaxed space-y-6 mb-8">
                   <p>
-                    At Healing-PRP Clinics, consultations and treatments are carried out by <strong className="text-[#4041d1] font-bold">Dr Syed Abdi</strong>
+                    At Healing-PRP Clinics, consultations and treatments are carried out by <strong className="text-[#4041d1] font-bold">Dr Syed Abdi (GMC No: 6083294)</strong>.
                   </p>
                   <p>
                     <strong>This is not a one-size-fits-all service or an online-only approach.</strong>
