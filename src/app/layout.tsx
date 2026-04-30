@@ -3,7 +3,8 @@ import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import GlobalStickyCTAs from "@/components/GlobalStickyCTAs";
-import Script from "next/script";
+// 1. ADD THIS IMPORT
+import { GoogleTagManager } from '@next/third-parties/google'; 
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway" });
@@ -63,23 +64,9 @@ export default function RootLayout({
         {/* The Global Sticky Buttons */}
         <GlobalStickyCTAs />
 
-        {/* GOOGLE ADS BASE TRACKING CODE */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18130686557"
-        />
-        <Script
-          id="google-ads-tag"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-18130686557');
-            `,
-          }}
-        />
+        {/* 2. ADD THE GOOGLE TAG MANAGER HERE */}
+        {/* Replace AW-XXXXXXXXXX with your actual Google Ads measurement ID */}
+        <GoogleTagManager gtmId="AW-XXXXXXXXXX" />
       </body>
     </html>
   );
