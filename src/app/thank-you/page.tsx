@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { FaCheckCircle, FaArrowRight, FaFileInvoiceDollar, FaSyringe, FaBolt, FaInfoCircle } from "react-icons/fa";
 
 export default function ThankYouPage() {
-  const fadeUpVariants = {
+  const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
       opacity: 1,
@@ -18,7 +18,7 @@ export default function ThankYouPage() {
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center bg-black font-inter">
       
-      {/* 1. Background (Matched exactly to PShotClient.tsx) */}
+      {/* 1. Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/60 z-10" /> 
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90 z-10" />
@@ -59,7 +59,7 @@ export default function ThankYouPage() {
           Thank you. Dr. Abdi&apos;s clinical team has received your details and will be in touch shortly to schedule your confidential consultation. While you wait, explore our treatments and pricing below:
         </motion.p>
 
-        {/* Links Grid (Glassmorphism effect) */}
+        {/* Links Grid */}
         <motion.div 
           custom={3} initial="hidden" animate="visible" variants={fadeUpVariants}
           className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-10"
