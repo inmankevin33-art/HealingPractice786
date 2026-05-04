@@ -9,7 +9,7 @@ import emailjs from "@emailjs/browser";
 
 export default function ContactCTASection() {
   const pathname = usePathname();
-  const router = useRouter(); // Added router for the redirect
+  const router = useRouter(); 
   const [isOpen, setIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false); // Used for QR Logic
   
@@ -21,7 +21,7 @@ export default function ContactCTASection() {
     name: "",
     email: "",
     phone: "",
-    treatment: "Sexual Rejuvenation (P-Shot/O-Shot)",
+    treatment: "Erectile Dysfunction",
     message: "",
   });
   
@@ -89,7 +89,7 @@ export default function ContactCTASection() {
       }
       // ---------------------------------------
 
-     // REDIRECT TO THE CORRECT THANK YOU PAGE
+      // REDIRECT TO THE CORRECT THANK YOU PAGE
       if (activeClinic === "birmingham") {
         router.push("/birmingham/thank-you");
       } else {
@@ -97,14 +97,14 @@ export default function ContactCTASection() {
       }
       
       // Clear form in the background
-      setFormData({ name: "", email: "", phone: "", treatment: "Sexual Rejuvenation", message: "" });
+      setFormData({ name: "", email: "", phone: "", treatment: "Erectile Dysfunction", message: "" });
     } catch (error) {
       setSubmitStatus({ type: "error", message: "Failed to send. Please try WhatsApp." });
     } finally {
       setIsSubmitting(false);
     }
   };
-  
+
   return (
     <section id="contact-form-section" className="relative py-12 bg-white font-inter scroll-mt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -180,7 +180,7 @@ export default function ContactCTASection() {
                           </div>
                         </div>
 
-                        {/* Form Fields - Updated Labels for Contrast & Added Autocomplete */}
+                        {/* Form Fields */}
                         <div className="md:col-span-2 space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Full Name</label>
                           <input 
@@ -248,15 +248,12 @@ export default function ContactCTASection() {
 
                     {/* RIGHT SIDE: QUICK CONTACTS */}
                     <div className="lg:col-span-5 space-y-3">
-                      
-                      {/* ✅ MOBILE SMART LOGIC: Show Button on Mobile, QR on Desktop */}
                       <div className="w-full bg-white rounded-2xl border border-slate-100 p-6 text-center shadow-sm">
                         <div className="inline-flex items-center gap-2 text-green-600 mb-4 bg-green-50 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                           <FaWhatsapp className="w-3 h-3" /> Quick Chat
                         </div>
                         
                         {isDesktop ? (
-                          // DESKTOP: Show QR Code
                           <>
                             <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 inline-block mb-4">
                               <img src="/qrcode.png" alt="WhatsApp QR" className="w-32 h-32 mx-auto mix-blend-multiply" />
@@ -269,7 +266,6 @@ export default function ContactCTASection() {
                             </div>
                           </>
                         ) : (
-                          // MOBILE: Show Big Button
                           <div className="py-4">
                              <a 
                                href="https://wa.me/447990364147" 
@@ -286,7 +282,6 @@ export default function ContactCTASection() {
                         )}
                       </div>
 
-                      {/* Clinic Info Link */}
                       <Link href="/contact" className="w-full flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 hover:shadow-md transition-all">
                         <div className="w-10 h-10 bg-[var(--brand-blue-50)] text-[#4041d1] rounded-xl flex items-center justify-center text-lg"><FaInfoCircle /></div>
                         <div>
@@ -295,7 +290,6 @@ export default function ContactCTASection() {
                         </div>
                       </Link>
 
-                      {/* Standards List */}
                       <div className="p-5 bg-slate-100/50 rounded-2xl border border-slate-200/50">
                         <h4 className="text-[9px] font-bold text-[#4041d1] uppercase tracking-widest mb-3">Standards</h4>
                         <ul className="space-y-2">
