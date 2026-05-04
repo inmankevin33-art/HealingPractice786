@@ -89,18 +89,22 @@ export default function ContactCTASection() {
       }
       // ---------------------------------------
 
-      // REDIRECT TO THANK YOU PAGE
-      router.push("/thank-you");
+     // REDIRECT TO THE CORRECT THANK YOU PAGE
+      if (activeClinic === "birmingham") {
+        router.push("/birmingham/thank-you");
+      } else {
+        router.push("/thank-you");
+      }
       
       // Clear form in the background
-      setFormData({ name: "", email: "", phone: "", treatment: "Sexual Rejuvenation (P-Shot/O-Shot)", message: "" });
+      setFormData({ name: "", email: "", phone: "", treatment: "Sexual Rejuvenation", message: "" });
     } catch (error) {
       setSubmitStatus({ type: "error", message: "Failed to send. Please try WhatsApp." });
     } finally {
       setIsSubmitting(false);
     }
   };
-
+  
   return (
     <section id="contact-form-section" className="relative py-12 bg-white font-inter scroll-mt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
