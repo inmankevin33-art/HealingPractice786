@@ -12,7 +12,7 @@ interface OnlineAssessmentModalProps {
 }
 
 export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessmentModalProps) {
-  const router = useRouter(); // Added router for the redirect
+  const router = useRouter(); 
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string | number>>({});
   const [isComplete, setIsComplete] = useState(false);
@@ -103,7 +103,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // --- STANDALONE EMAILJS SUBMISSION LOGIC ---
   const handleFinalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
@@ -120,16 +119,14 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
       return;
     }
 
-    // Format the 10 answers into a clean, readable summary for the doctor
     let formattedAssessment = "=== ONLINE ED ASSESSMENT RESULTS ===\n\n";
     questions.forEach((q, index) => {
       formattedAssessment += `Q${index + 1}: ${q.title}\n`;
       formattedAssessment += `Answer: ${answers[index] || "Not answered"}\n\n`;
     });
 
-    const clinicLocation = window.location.pathname?.startsWith("/birmingham") 
-      ? "Birmingham (Edgbaston)" 
-      : "St Albans";
+    const isBirmingham = window.location.pathname?.startsWith("/birmingham");
+    const clinicLocation = isBirmingham ? "Birmingham (Edgbaston)" : "St Albans";
 
     try {
       emailjs.init(publicKey);
@@ -142,7 +139,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
         clinic_location: clinicLocation,
       });
 
-      // --- GOOGLE ADS CONVERSION TRACKING ---
       if (typeof window !== "undefined") {
         const w = window as Window & { gtag?: (...args: unknown[]) => void };
         if (w.gtag) {
@@ -151,12 +147,14 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
           });
         }
       }
-      // ---------------------------------------
 
-      // REDIRECT TO THANK YOU PAGE
-      router.push("/thank-you");
+      // SMART REDIRECT LOGIC
+      if (isBirmingham) {
+        router.push("/birmingham/thank-you");
+      } else {
+        router.push("/thank-you");
+      }
       
-      // Close modal and reset state in the background
       onClose();
       setTimeout(() => {
         setStep(0);
@@ -192,7 +190,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
         >
-          {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white z-10">
             <div className="flex items-center gap-4">
               {!isComplete && step > 0 && (
@@ -209,7 +206,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
             </button>
           </div>
 
-          {/* Progress Bar */}
           {!isComplete && (
             <div className="w-full bg-slate-100 h-1.5">
               <motion.div
@@ -221,11 +217,9 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
             </div>
           )}
 
-          {/* Content Area */}
           <div className="p-6 md:p-10 overflow-y-auto custom-scrollbar">
             <AnimatePresence mode="wait">
               {!isComplete ? (
-                /* QUESTION SCREEN */
                 <motion.div
                   key={step}
                   initial={{ opacity: 0, x: 20 }}
@@ -287,7 +281,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
                   )}
                 </motion.div>
               ) : (
-                /* FORM SCREEN */
                 <motion.div
                   key="form"
                   initial={{ opacity: 0, scale: 0.95 }}
