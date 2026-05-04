@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaArrowLeft, FaCheckCircle, FaUserMd, FaUser, FaEnvelope, FaPhone } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import { useRouter } from "next/navigation";
 
 interface OnlineAssessmentModalProps {
   isOpen: boolean;
@@ -11,6 +12,7 @@ interface OnlineAssessmentModalProps {
 }
 
 export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessmentModalProps) {
+  const router = useRouter(); // Added router for the redirect
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string | number>>({});
   const [isComplete, setIsComplete] = useState(false);
@@ -18,7 +20,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
   // Lead Capture State
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -145,28 +146,24 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
       if (typeof window !== "undefined") {
         const w = window as Window & { gtag?: (...args: unknown[]) => void };
         if (w.gtag) {
-          w.gtag("event", "generate_lead", {
-            event_category: "form_submission",
-            event_label: "online_assessment_completed",
-            value: 1, 
+          w.gtag('event', 'conversion', {
+            'send_to': 'AW-18130686557/hY3YCIONsKUcEN2kscVD'
           });
         }
       }
       // ---------------------------------------
 
-      setIsSubmitted(true);
+      // REDIRECT TO THANK YOU PAGE
+      router.push("/thank-you");
       
-      // Close modal and reset state after a short delay so they see the success message
+      // Close modal and reset state in the background
+      onClose();
       setTimeout(() => {
-        onClose();
-        setTimeout(() => {
-          setStep(0);
-          setIsComplete(false);
-          setIsSubmitted(false);
-          setAnswers({});
-          setFormData({ name: "", email: "", phone: "" });
-        }, 500);
-      }, 3000);
+        setStep(0);
+        setIsComplete(false);
+        setAnswers({});
+        setFormData({ name: "", email: "", phone: "" });
+      }, 500);
 
     } catch (error) {
       console.error("Failed to send assessment:", error);
@@ -289,7 +286,7 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
                     </p>
                   )}
                 </motion.div>
-              ) : !isSubmitted ? (
+              ) : (
                 /* FORM SCREEN */
                 <motion.div
                   key="form"
@@ -362,29 +359,6 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
                       Your details are strictly confidential and completely secure.
                     </p>
                   </form>
-                </motion.div>
-              ) : (
-                /* SUCCESS SCREEN */
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-12"
-                >
-                  <motion.div 
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                    className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6"
-                  >
-                    <FaCheckCircle className="text-green-500 text-5xl" />
-                  </motion.div>
-                  <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">
-                    Request Received
-                  </h2>
-                  <p className="text-slate-600 font-inter text-lg leading-relaxed mb-8 max-w-sm mx-auto">
-                    Thank you, {formData.name.split(' ')[0]}. Our clinical team will review your assessment and be in touch shortly.
-                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
