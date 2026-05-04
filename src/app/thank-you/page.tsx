@@ -13,10 +13,10 @@ export default function StAlbansThankYouPage() {
     <ThankYouClient 
       locationName="St Albans"
       links={{
-        pricing: "/pricing",
-        edOverview: "/treatments/erectile-dysfunction",
-        pShot: "/treatments/p-shot",
-        shockwave: "/treatments/shockwave"
+        pricing: "/prices",
+        edOverview: "erectile-dysfunction",
+        pShot: "/p-shot",
+        shockwave: "/shockwave-therapy-erectile-dysfunction"
       }}
     />
   );
