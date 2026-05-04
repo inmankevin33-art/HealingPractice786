@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaWhatsapp, FaTimes, FaCheckCircle, FaPaperPlane, FaInfoCircle, FaPhoneAlt, FaChevronDown } from "react-icons/fa";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
 
 export default function ContactCTASection() {
   const pathname = usePathname();
+  const router = useRouter(); // Added router for the redirect
   const [isOpen, setIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false); // Used for QR Logic
   
@@ -81,19 +82,17 @@ export default function ContactCTASection() {
       if (typeof window !== "undefined") {
         const w = window as Window & { gtag?: (...args: unknown[]) => void };
         if (w.gtag) {
-          w.gtag("event", "generate_lead", {
-            event_category: "form_submission",
-            event_label: "contact_drawer_form",
-            value: 1, // Optional: Add a monetary value if applicable
+          w.gtag('event', 'conversion', {
+            'send_to': 'AW-18130686557/hY3YCIONsKUcEN2kscVD'
           });
         }
       }
       // ---------------------------------------
 
-      setSubmitStatus({ 
-        type: "success", 
-        message: "Thank you! Our clinical team will get back to you within 24 hours." 
-      });
+      // REDIRECT TO THANK YOU PAGE
+      router.push("/thank-you");
+      
+      // Clear form in the background
       setFormData({ name: "", email: "", phone: "", treatment: "Sexual Rejuvenation (P-Shot/O-Shot)", message: "" });
     } catch (error) {
       setSubmitStatus({ type: "error", message: "Failed to send. Please try WhatsApp." });
@@ -220,7 +219,7 @@ export default function ContactCTASection() {
                         <div className="md:col-span-2 space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Treatment</label>
                           <select name="treatment" value={formData.treatment} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-slate-600 appearance-none text-sm">
-                            <option>Sexual Rejuvenation (P-Shot/O-Shot)</option>
+                            <option>Erectile Dysfunction</option>
                             <option>Hair Restoration</option>
                             <option>Joint Pain Relief</option>
                             <option>Facial Aesthetics</option>
