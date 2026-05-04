@@ -4,7 +4,7 @@ export const metadata = {
   title: "Request Received | Healing PRP Clinic Birmingham",
   robots: {
     index: false,
-    follow: false, // Prevents Google from ranking the thank you page
+    follow: false,
   },
 };
 
