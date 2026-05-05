@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import dynamic from "next/dynamic";
 import {
   FaPlus,
   FaMinus,
@@ -30,7 +29,10 @@ import {
 import LocationSection from "@/components/LocationSection";
 import ContactCTASection from "@/components/ContactCTASection";
 import TrustReviews from "@/components/TrustReviews";
-import OnlineAssessmentModal from "@/components/OnlineAssessmentModal";
+
+// --- LAZY LOADED COMPONENTS ---
+// This prevents the modal's code from loading until the user clicks the button
+const OnlineAssessmentModal = dynamic(() => import('@/components/OnlineAssessmentModal'), { ssr: false });
 
 type FaqType = {
   question: string;
@@ -44,6 +46,95 @@ interface ErectileDysfunctionProps {
   whyChooseText?: string;
   faqs?: FaqType[]; 
 }
+
+// --- STATIC DATA & CONFIG ---
+// Moved outside the component so they are only allocated in memory once
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
+  }),
+};
+
+const treatmentOptions = [
+  { 
+    icon: FaWaveSquare, 
+    title: "Shockwave Therapy", 
+    description: "Low-intensity acoustic wave therapy that may support penile blood flow in selected patients.",
+    tags: ["Pain-free", "~30 min sessions", "No downtime"]
+  },
+  { 
+    icon: FaSyringe, 
+    title: "Advanced ED Treatment Options", 
+    description: "A doctor-prepared treatment option using a concentrated sample from your own blood. It may be considered as part of a personalised ED care plan after consultation.",
+    tags: ["Minimal discomfort", "Takes ~30 mins", "No downtime"]
+  },
+  { 
+    icon: FaTint, 
+    title: "Vascular Assessment", 
+    description: "Where appropriate, assessment of penile blood flow may be arranged, including Doppler ultrasound, to help identify vascular causes and guide treatment planning.",
+    tags: ["Non-invasive", "Ultrasound Assessment", "Immediate insights"]
+  },
+  { 
+    icon: FaDna, 
+    title: "Hormone & Blood Review", 
+    description: "Assessment of testosterone, diabetes, cardiovascular risk, and metabolic health where appropriate.",
+    tags: ["Quick blood draw", "Fast lab results", "Targeted analysis"]
+  },
+];
+  
+const quickSteps = [
+  {
+    title: "Free Confidential Assessment",
+    description: "Tell us about your symptoms, medical history, and previous treatments in a private setting.",
+    icon: FaFileAlt,
+  },
+  {
+    title: "Doctor-Led Consultation",
+    description: "We review possible causes and discuss suitable treatment options.",
+    icon: FaUserMd,
+  },
+  {
+    title: "Tailored Plan Where Appropriate",
+    description: "This may include shockwave therapy, advanced ED treatment options, health review, or a combined approach depending on suitability.",
+    icon: FaCheckCircle,
+  },
+];
+
+const symptoms = [
+  {
+    title: "Difficulty Getting or Maintaining",
+    description: "Struggling to achieve or keep an erection during intimacy.",
+    icon: FaBatteryQuarter,
+    color: "bg-rose-50 text-rose-600",
+  },
+  {
+    title: "Reduced Firmness",
+    description: "Experiencing less firmness compared with your previous baseline.",
+    icon: FaHourglassEnd,
+    color: "bg-indigo-50 text-indigo-600",
+  },
+  {
+    title: "Less Reliable Response",
+    description: "Finding that previous treatments or tablets are no longer as effective.",
+    icon: FaPills,
+    color: "bg-[#f0f0ff] text-[#4041d1]",
+  },
+  {
+    title: "Concerns About Side Effects",
+    description: "Dissatisfaction with current options due to headaches, flushing, or other effects.",
+    icon: FaVial,
+    color: "bg-teal-50 text-teal-600",
+  },
+  {
+    title: "Reduced Confidence",
+    description: "The impact of symptoms is affecting your relationships or self-esteem.",
+    icon: FaUserShield,
+    color: "bg-amber-50 text-amber-600",
+  },
+];
 
 export default function ErectileDysfunctionTreatmentClient({
   locationName = "St Albans",
@@ -60,7 +151,6 @@ export default function ErectileDysfunctionTreatmentClient({
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
   const isBirmingham = locationName === "Birmingham";
-  const basePath = isBirmingham ? "/birmingham" : "";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -71,7 +161,7 @@ export default function ErectileDysfunctionTreatmentClient({
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-   const handleAction = (e: React.MouseEvent) => {
+  const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
 
     if (typeof window !== "undefined") {
@@ -108,93 +198,6 @@ export default function ErectileDysfunctionTreatmentClient({
     });
   };
   
-  const fadeUpVariants: Variants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
-    }),
-  };
-
- const treatmentOptions = [
-    { 
-      icon: FaWaveSquare, 
-      title: "Shockwave Therapy", 
-      description: "Low-intensity acoustic wave therapy that may support penile blood flow in selected patients.",
-      tags: ["Pain-free", "~30 min sessions", "No downtime"]
-    },
-    { 
-      icon: FaSyringe, 
-      title: "Advanced Regenerative Therapy", 
-      description: "A doctor-prepared treatment option using a concentrated sample from your own blood. It may be considered as part of a personalised ED care plan after consultation.",
-      tags: ["Minimal discomfort", "Takes ~30 mins", "No downtime"]
-    },
-    { 
-      icon: FaTint, 
-      title: "Vascular Assessment", 
-      description: "Where appropriate, assessment of penile blood flow may be arranged, including Doppler ultrasound, to help identify vascular causes and guide treatment planning.",
-      tags: ["Non-invasive", "Ultrasound Assessment", "Immediate insights"]
-    },
-    { 
-      icon: FaDna, 
-      title: "Hormone & Blood Review", 
-      description: "Assessment of testosterone, diabetes, cardiovascular risk, and metabolic health where appropriate.",
-      tags: ["Quick blood draw", "Fast lab results", "Targeted analysis"]
-    },
-  ];
-  
-  const quickSteps = [
-    {
-      title: "Free Confidential Assessment",
-      description: "Tell us about your symptoms, medical history, and previous treatments in a private setting.",
-      icon: FaFileAlt,
-    },
-    {
-      title: "Doctor-Led Consultation",
-      description: "We review possible causes and discuss suitable treatment options.",
-      icon: FaUserMd,
-    },
-    {
-      title: "Tailored Plan Where Appropriate",
-      description: "This may include shockwave therapy, plasma therapy, Advanced Regenerative Therapy, health review, or a combined approach depending on suitability.",
-      icon: FaCheckCircle,
-    },
-  ];
-
-  const symptoms = [
-    {
-      title: "Difficulty Getting or Maintaining",
-      description: "Struggling to achieve or keep an erection during intimacy.",
-      icon: FaBatteryQuarter,
-      color: "bg-rose-50 text-rose-600",
-    },
-    {
-      title: "Reduced Firmness",
-      description: "Experiencing less firmness compared with your previous baseline.",
-      icon: FaHourglassEnd,
-      color: "bg-indigo-50 text-indigo-600",
-    },
-    {
-      title: "Less Reliable Response",
-      description: "Finding that previous treatments or tablets are no longer as effective.",
-      icon: FaPills,
-      color: "bg-[#f0f0ff] text-[#4041d1]",
-    },
-    {
-      title: "Concerns About Side Effects",
-      description: "Dissatisfaction with current options due to headaches, flushing, or other effects.",
-      icon: FaVial,
-      color: "bg-teal-50 text-teal-600",
-    },
-    {
-      title: "Reduced Confidence",
-      description: "The impact of symptoms is affecting your relationships or self-esteem.",
-      icon: FaUserShield,
-      color: "bg-amber-50 text-amber-600",
-    },
-  ];
-
   return (
     <>
       {/* --- MAGIC TRICK TO HIDE THE GLOBAL HEADER JUST ON THIS PAGE --- */}
@@ -203,18 +206,14 @@ export default function ErectileDysfunctionTreatmentClient({
       `}} />
 
       {/* --- HERO SECTION --- */}
-      {/* High-performance CSS background. Instant load, zero layout shift. */}
       <div className="relative min-h-[82vh] md:min-h-[80vh] overflow-hidden flex items-center justify-center bg-[#0A1128]">
         
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1e293b] via-[#0A1128] to-black" />
-          {/* Replaced heavy blur with ultra-fast radial gradient */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(64,65,209,0.25)_0%,_transparent_70%)] pointer-events-none" />
         </div>
         
         <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10 pb-44 md:pb-24">
-          
-          {/* Removed motion wrappers from primary text elements for instant LCP loading */}
           
           <div className="inline-block px-5 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md shadow-lg">
             <span className="text-blue-100 text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase font-inter">Doctor-Led Private Clinic</span>
@@ -243,7 +242,6 @@ export default function ErectileDysfunctionTreatmentClient({
             ))}
           </div>
 
-          {/* Kept motion animations for secondary elements below the fold */}
           <motion.div 
             custom={3} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="flex flex-col sm:flex-row gap-3 justify-center items-center"
@@ -384,7 +382,7 @@ export default function ErectileDysfunctionTreatmentClient({
                     "Previous treatments and response so far",
                     "Medical history and current medication",
                     "Possible contributing factors such as circulation, diabetes, hormonal changes, or stress",
-                    "Based on this, suitable treatment options such as shockwave therapy, Advanced Regenerative Therapy, or further assessment may be discussed where appropriate"
+                    "Based on this, suitable treatment options such as shockwave therapy, Advanced ED Treatments, or further assessment may be discussed where appropriate"
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-4">
                       <FaStethoscope className="text-[#4041d1] mt-1 shrink-0 text-lg" />
@@ -794,7 +792,10 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       )}
 
-      <OnlineAssessmentModal isOpen={isAssessmentOpen} onClose={() => setIsAssessmentOpen(false)} />
+      {/* Only loaded when isAssessmentOpen becomes true */}
+      {isAssessmentOpen && (
+        <OnlineAssessmentModal isOpen={isAssessmentOpen} onClose={() => setIsAssessmentOpen(false)} />
+      )}
     </>
   );
 }
