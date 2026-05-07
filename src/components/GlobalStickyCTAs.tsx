@@ -1,48 +1,57 @@
 "use client";
 
-import React from "react";
-import { Phone } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
 
 export default function GlobalStickyCTAs() {
-  const openContactForm = () => {
-    // This fires the event to open your slide-out drawer globally
+  const handleAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // This triggers your global contact drawer to open!
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-    
-    // Smooth scroll with offset to perfectly center the form
-    const section = document.getElementById("contact-form-section");
-    if (section) {
-      // Use a negative number here to scroll deeper. 
-      // If the form is still slightly too low, change this to -60 or -80!
-      const headerOffset = -40; 
-      const elementPosition = section.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
   };
 
   return (
-    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[100] flex flex-col items-end gap-2 md:gap-3 pointer-events-none">
-      {/* WhatsApp Bubble (Slimmer on mobile) */}
-      <a 
-        href="https://wa.me/447990364147" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        aria-label="Contact us on WhatsApp"
-        className="w-10 h-10 md:w-12 md:h-12 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform pointer-events-auto"
-      >
-        <FaWhatsapp className="w-5 h-5 md:w-6 md:h-6" />
-      </a>
+    <>
+      {/* --- DESKTOP FLOATING BUTTONS (Hidden on Mobile) --- */}
+      <div className="hidden lg:flex fixed bottom-8 right-8 z-50 flex-col gap-4">
+        <button
+          onClick={handleAction}
+          className="w-14 h-14 bg-[#4041d1] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group"
+          aria-label="Contact Us"
+        >
+          <FaEnvelope className="text-2xl group-hover:scale-110 transition-transform" />
+        </button>
+        <a
+          href="https://wa.me/447990364147"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group"
+          aria-label="WhatsApp"
+        >
+          <FaWhatsapp className="text-3xl group-hover:scale-110 transition-transform" />
+        </a>
+      </div>
 
-      {/* Speak to a Specialist Button (Translucent blur, tighter padding) */}
-      <button 
-        onClick={openContactForm}
-        className="flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-6 md:py-3.5 bg-[#4041d1]/95 backdrop-blur-md text-white rounded-full font-bold text-[10px] md:text-[11px] shadow-2xl hover:bg-[#2a2bb8] transition-all group pointer-events-auto uppercase tracking-wider"
-      >
-        <Phone className="w-3 h-3 md:w-3.5 md:h-3.5 text-white group-hover:rotate-12 transition-transform" />
-        <span className="sm:hidden">Book Consult</span>
-        <span className="hidden sm:inline">Book free consultation</span>
-      </button>
-    </div>
+      {/* --- MOBILE STICKY BOTTOM BAR (Hidden on Desktop) --- */}
+      {/* Note: pb-[max(12px,env(safe-area-inset-bottom))] protects it from the iPhone home bar */}
+      <div className="fixed bottom-0 left-0 w-full z-[99999] bg-white border-t border-slate-200 p-3 lg:hidden flex gap-3 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.15)] pb-[max(12px,env(safe-area-inset-bottom))]">
+        <button 
+          onClick={handleAction} 
+          style={{ backgroundColor: '#4041d1', color: '#ffffff' }}
+          className="flex-1 py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-md active:scale-95 flex items-center justify-center gap-2 font-inter border-none"
+        >
+          Book Consult
+        </button>
+        <a 
+          href="https://wa.me/447990364147" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          style={{ backgroundColor: '#25D366', color: '#ffffff' }}
+          className="flex-1 py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-md active:scale-95 flex items-center justify-center gap-2 font-inter no-underline border-none"
+        >
+          <FaWhatsapp style={{ fontSize: '1.25rem', color: '#ffffff' }} /> 
+          <span style={{ color: '#ffffff' }}>WhatsApp</span>
+        </a>
+      </div>
+    </>
   );
 }
