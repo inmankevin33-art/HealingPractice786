@@ -267,20 +267,6 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </div>
 
-      {/* --- NEW CRO SECTION: FEES & QUALIFICATION --- */}
-      <section className="py-12 bg-white border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-           <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
-             <h3 className="font-raleway font-bold text-slate-900 text-xl mb-3 flex items-center justify-center gap-2">
-               Private ED Clinic Fees
-             </h3>
-             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-inter">
-               Your initial consultation is free. If treatment is suitable, fees are explained clearly before you decide. Shockwave therapy, PRP-based treatments, blood tests or Doppler assessments are charged separately depending on your personalised treatment plan.
-             </p>
-           </div>
-        </div>
-      </section>
-
       {/* --- MOVED UP: DOCTOR-LED APPROACH --- */}
       <section className="py-16 md:py-20 bg-slate-50 font-inter border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -319,6 +305,20 @@ export default function ErectileDysfunctionTreatmentClient({
                 </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* --- NEW CRO SECTION: FEES & QUALIFICATION --- */}
+      <section className="py-12 bg-white border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+           <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
+             <h3 className="font-raleway font-bold text-slate-900 text-xl mb-3 flex items-center justify-center gap-2">
+               Private ED Clinic Fees
+             </h3>
+             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-inter">
+               Your initial consultation is free. If treatment is suitable, fees are explained clearly before you decide. Shockwave therapy, PRP-based treatments, blood tests or Doppler assessments are charged separately depending on your personalised treatment plan.
+             </p>
+           </div>
         </div>
       </section>
 
