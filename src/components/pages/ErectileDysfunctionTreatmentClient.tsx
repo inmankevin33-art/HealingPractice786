@@ -138,7 +138,7 @@ const symptoms = [
 export default function ErectileDysfunctionTreatmentClient({
   locationName = "St Albans",
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
-  heroDescription = <>Doctor-led assessment for erection difficulties, reduced firmness and ED symptoms. Discreet private consultations with non-surgical options where suitable.</>, // Updated per CRO
+  heroDescription = <>Doctor-led assessment for erection difficulties, reduced firmness and ED symptoms.</>, // Updated per CRO
   whyChooseText = "Patients choose our clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment.",
   faqs = [], 
 }: ErectileDysfunctionProps) {
