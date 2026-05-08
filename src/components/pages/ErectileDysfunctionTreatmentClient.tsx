@@ -25,7 +25,6 @@ import {
   FaUserMd,
   FaFileAlt,
   FaTint,
-  FaWhatsapp,
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import ContactCTASection from "@/components/ContactCTASection";
