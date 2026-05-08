@@ -442,24 +442,6 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </footer>
 
-      {/* --- MOBILE STICKY CTA BAR (Only visible on small screens) --- */}
-      <div className="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-slate-200 p-3 lg:hidden flex gap-3 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.15)] pb-safe">
-        <button 
-          onClick={handleAction} 
-          className="flex-1 bg-[#4041d1] text-white py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-md active:scale-95 flex items-center justify-center gap-2 font-inter"
-        >
-          Book Consult
-        </button>
-        <a 
-          href="https://wa.me/447990364147" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="flex-1 bg-[#25D366] text-white py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-md active:scale-95 flex items-center justify-center gap-2 font-inter"
-        >
-          <FaWhatsapp className="text-lg" /> WhatsApp
-        </a>
-      </div>
-
       {/* --- MODALS --- */}
       {isPrivacyModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setIsPrivacyModalOpen(false)}>
