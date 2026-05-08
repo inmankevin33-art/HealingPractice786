@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     absolute: "Erectile Dysfunction Treatment Birmingham | Doctor-Led ED Clinic",
   },
   description:
-    "Private doctor-led erectile dysfunction treatment in Birmingham. Non-surgical options including shockwave therapy, Plasma Shot, vascular assessment and hormone review. Free confidential consultation.",
+    "Private ED clinic in Birmingham offering discreet doctor-led assessment, shockwave therapy options, vascular review and hormone testing. Free confidential consultation.",
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction-treatment",
   },
@@ -55,7 +55,7 @@ const faqs = [
   {
     question: "Are the treatments surgical?",
     answer:
-      "No. We focus on non-surgical options such as shockwave therapy, Plasma Shot, vascular assessment, hormone review and wider health assessment where appropriate.",
+      "No. We focus on non-surgical options such as shockwave therapy, vascular assessment, hormone review and wider health assessment where appropriate.",
   },
   {
     question: "How do I know which treatment is right for me?",
@@ -77,7 +77,7 @@ const edSchema = {
       "@type": "MedicalClinic",
       "@id": "https://www.healing-prp.co.uk/birmingham/erectile-dysfunction-treatment#clinic",
       "name": "Healing-PRP Clinics Birmingham",
-      "description": "Doctor-led Erectile Dysfunction (ED) clinic offering Shockwave Therapy, Plasma Therapy, and personalised medical management.",
+      "description": "Doctor-led Erectile Dysfunction (ED) clinic offering Shockwave Therapy and personalised medical management.",
       "telephone": "+44 7990 364147",
       "address": {
         "@type": "PostalAddress",
@@ -151,12 +151,6 @@ const edSchema = {
           "@type": "MedicalTherapy",
           "name": "Low-Intensity Extracorporeal Shockwave Therapy (Li-ESWT)",
           "description": "Non-surgical acoustic wave therapy to support blood flow and vascular health.",
-          "relevantSpecialty": "Urologic"
-        },
-        {
-          "@type": "MedicalTherapy",
-          "name": "Advanced Localised Plasma Therapy",
-          "description": "Regenerative therapy using a concentrated sample from the patient to support local tissue health.",
           "relevantSpecialty": "Urologic"
         },
         {
@@ -235,10 +229,6 @@ export default function ErectileDysfunctionTreatmentBirminghamPage() {
       <ErectileDysfunctionTreatmentClient 
         locationName="Birmingham"
         servingAreas="Birmingham • Solihull • Sutton Coldfield • West Midlands"
-        
-        // --- SHORTER, PUNCHIER HERO DESCRIPTION --- 
-        heroDescription={<>Start with a <strong>free confidential consultation</strong> at our Birmingham clinic.</>}
-        
         whyChooseText="Patients choose our Birmingham clinic for a structured, doctor-led approach to erectile dysfunction assessment and treatment. We welcome men from across Birmingham, Edgbaston, Solihull, Sutton Coldfield and the wider West Midlands seeking discreet, confidential care."
         faqs={faqs}
       />
