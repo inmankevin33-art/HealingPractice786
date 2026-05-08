@@ -315,7 +315,7 @@ export default function ErectileDysfunctionTreatmentClient({
                Private ED Clinic Fees
              </h3>
              <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-inter">
-               Your initial consultation is free. If treatment is suitable, fees are explained clearly before you decide. Shockwave therapy, PRP-based treatments, blood tests or Doppler assessments are charged separately depending on your personalised treatment plan.
+               Your initial consultation is free. If treatment is suitable, fees are explained clearly before you decide. Shockwave therapy, Advanced ED options, blood tests or Doppler assessments are charged separately depending on your personalised treatment plan.
              </p>
            </div>
         </div>
