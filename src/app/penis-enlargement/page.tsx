@@ -6,21 +6,20 @@ const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c"
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Non-Surgical Penis Enlargement St Albans | Doctor-Led HA Fillers",
+    absolute: "Penis Filler Clinic | Doctor-Led HA Girth Enhancement",
   },
 
   description:
-    "Private doctor-led non-surgical penis enlargement in St Albans using premium hyaluronic acid (HA) fillers. Designed to enhance penis girth with immediate visible results and minimal downtime.",
+    "Private doctor-led penis filler using premium HA filler for non-surgical girth enhancement. Discreet consultations and tailored treatment plans.",
 
   alternates: {
     canonical: "https://www.healing-prp.co.uk/penis-enlargement",
   },
 
   openGraph: {
-    title: "Non-Surgical Penis Enlargement St Albans | Healing-PRP Clinics",
+    title: "Penis Filler Clinic | Doctor-Led HA Girth Enhancement",
     description:
-      "Private doctor-led non-surgical penis enlargement in St Albans using hyaluronic acid (HA) fillers. Designed to enhance penis girth with immediate visible results and minimal downtime.",
-    url: "https://www.healing-prp.co.uk/penis-enlargement",
+       "Private doctor-led penis filler using premium HA filler for non-surgical girth enhancement. Discreet consultations and tailored treatment plans.",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
     type: "website",
@@ -36,9 +35,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Non-Surgical Penis Enlargement St Albans | Doctor-Led HA Fillers",
+    title: "Penis Filler Clinic | Doctor-Led HA Girth Enhancement",
     description:
-      "Doctor-led non-surgical penis enlargement in St Albans using hyaluronic acid (HA) fillers with minimal downtime.",
+      "Private doctor-led penis filler using premium HA filler for non-surgical girth enhancement. Discreet consultations and tailored treatment plans."
     images: ["/hero_img.png"],
   },
 };
