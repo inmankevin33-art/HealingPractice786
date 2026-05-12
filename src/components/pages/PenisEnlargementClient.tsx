@@ -80,10 +80,14 @@ export default function PenisEnlargementClient({
       }
     }
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    
+    // Increased timeout to 300ms to allow any form/drawer animations to complete
     setTimeout(() => {
       const section = document.getElementById("contact-form-section");
       if (section) {
-        const headerOffset = 100;
+        // Reduced headerOffset from 100 to 20 to scroll further down the page
+        // This ensures the bottom of the form clears the sticky footer bar
+        const headerOffset = 20; 
         const elementPosition = section.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.scrollY - headerOffset;
         window.scrollTo({
@@ -91,7 +95,7 @@ export default function PenisEnlargementClient({
           behavior: "smooth",
         });
       }
-    }, 100);
+    }, 300);
   };
 
   // --- VARIANTS ---
