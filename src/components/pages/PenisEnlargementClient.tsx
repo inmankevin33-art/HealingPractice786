@@ -14,7 +14,7 @@ import {
   FaExpandArrowsAlt,
   FaShieldAlt,
   FaArrowRight,
-  FaRegClock,     
+  FaRegClock,      
   FaWalking,  
   FaUserMd,   
   FaGoogle,
@@ -29,7 +29,7 @@ import Footer from "@/components/Footer";
 import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
 import TrustReviews from "@/components/TrustReviews";
-import PEOnlineAssessmentModal from "@/components/PEOnlineAssessmentModal"; // We will build this next
+import PEOnlineAssessmentModal from "@/components/PEOnlineAssessmentModal"; 
 
 // --- INTERFACE FOR DYNAMIC PROPS ---
 type FaqType = {
@@ -117,7 +117,7 @@ export default function PenisEnlargementClient({
   // --- DATA ---
   const benefits = [
     {
-      title: "Immediate Visible Penis Enlargement",
+      title: "Immediate Visible Girth Enhancement",
       description:
         "Notice a visible increase in penis girth immediately after treatment, with results designed to look proportionate and natural.",
       icon: FaExpandArrowsAlt,
@@ -140,7 +140,7 @@ export default function PenisEnlargementClient({
     {
       title: "Doctor-Led, Non-Surgical Option",
       description:
-        "This doctor-led non-surgical penis enlargement treatment offers a discreet option for men seeking visible enhancement without surgery.",
+        "This doctor-led penis filler treatment offers a discreet option for men seeking visible girth enhancement without surgery.",
       icon: FaShieldAlt,
       color: "bg-teal-50 text-teal-600",
     },
@@ -186,7 +186,7 @@ export default function PenisEnlargementClient({
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
           <Image 
             src="/PEnlargement.webp" 
-            alt="Non-Surgical Penis Enlargement Consultation" 
+            alt="Doctor-Led Penile Filler Consultation" 
             fill
             priority
             fetchPriority="high" 
@@ -219,7 +219,7 @@ export default function PenisEnlargementClient({
             variants={fadeUpVariants}
             className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
-            Non-Surgical Penis Enlargement <br />
+            Doctor-Led Penile Filler <br />
             <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block">in {locationName}</span>
           </motion.h1>
 
@@ -228,13 +228,26 @@ export default function PenisEnlargementClient({
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="mt-4 text-sm md:text-base text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
+            className="mt-4 text-sm md:text-base text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-6 font-medium"
           >
-           Private doctor-led non-surgical penis enlargement using premium hyaluronic acid (HA) fillers. Designed to enhance penis girth and, in some men, contribute to a fuller flaccid appearance with minimal downtime.
+           Premium hyaluronic acid (HA) filler for men seeking discreet, non-surgical penile girth enhancement in a clinical setting.
           </motion.p>
+
+          {/* New Injected Trust Signals Above Fold */}
+          <motion.div
+            custom={3}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+            className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-white/90 text-sm font-bold mb-8 font-inter uppercase tracking-wide"
+          >
+            <span className="flex items-center gap-2"><FaCheckCircle className="text-blue-400"/> GMC Registered</span>
+            <span className="flex items-center gap-2"><FaCheckCircle className="text-blue-400"/> Under 1 Hour</span>
+            <span className="flex items-center gap-2"><FaCheckCircle className="text-blue-400"/> From £995</span>
+          </motion.div>
           
           <motion.div 
-            custom={3}
+            custom={4}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -257,7 +270,7 @@ export default function PenisEnlargementClient({
           </motion.div>
 
           <motion.div 
-            custom={4}
+            custom={5}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
@@ -337,6 +350,29 @@ export default function PenisEnlargementClient({
           </div>
         </div>
       </div>
+
+      {/* --- INTRODUCTION & SYNONYM BRIDGE --- */}
+      <section className="py-16 md:py-24 bg-white relative z-30 border-b border-slate-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Layer 2 target strengthened with location */}
+          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+            Non-Surgical Penis Enlargement {locationName ? `in ${locationName}` : ''}
+          </h2>
+          <div className="prose prose-lg text-slate-600 mx-auto font-inter">
+            {/* Layer 3 target "non-surgical penoplasty" injected seamlessly */}
+            <p className="font-semibold text-slate-800 text-lg md:text-xl mb-4">
+              Penis filler, also referred to as penile filler, penile dermal filler, or non-surgical penoplasty, uses premium hyaluronic acid (HA) to increase girth without the need for invasive surgery.
+            </p>
+            <p className="mb-8">
+              While historically associated with surgical &quot;penis enlargement,&quot; modern advancements mean that achieving a proportionate, natural-looking increase in girth and a fuller flaccid appearance is now possible through a quick, minimally invasive procedure. Our treatments are administered exclusively by experienced doctors, ensuring maximum safety, discretion, and tailored volume planning.
+            </p>
+            <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 inline-block text-sm text-left shadow-sm">
+              <strong className="text-slate-900">Looking to improve erectile function or blood flow?</strong><br/>
+              Read about our <Link href="/p-shot" className="text-[#4041d1] hover:underline font-bold">P-Shot treatment here</Link>.
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* --- BENEFITS SECTION --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30">
@@ -494,7 +530,7 @@ export default function PenisEnlargementClient({
               </div>
               <h3 className="text-2xl font-bold font-raleway text-white mb-4">Part 2: The Aftercare</h3>
               <p className="text-slate-300 leading-relaxed mb-6">
-                 Aftercare is a key part of treatment. Following the procedure, the filler remains mouldable for a short period. You will be advised to perform daily massage exactly as instructed and to avoid sexual activity for a temporary period, helping the filler settle smoothly and evenly.              
+                 Aftercare is a key part of treatment. Following the procedure, the filler remains mouldable for a short period. You will be advised to perform daily massage exactly as instructed and to avoid sexual activity for a temporary period, helping the filler settle smoothly and evenly.               
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-sm text-slate-400 font-medium"><FaCheckCircle className="text-blue-400" /> Daily Prescribed Massage</li>
@@ -619,7 +655,7 @@ export default function PenisEnlargementClient({
 
           <div className="prose prose-lg prose-slate mx-auto mb-16">
             <p className="text-slate-600 font-inter text-lg leading-relaxed mb-6">
-              We understand that discussing penile enhancement is highly personal. 
+              We understand that discussing penile filler is highly personal. 
               Our clinics provide a discreet, confidential, and judgement-free 
               medical environment, where concerns are addressed professionally 
               and with absolute respect.
