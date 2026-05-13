@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Penis Filler Clinic | Doctor-Led HA Girth Enhancement",
     description:
-      "Private doctor-led penis filler using premium HA filler for non-surgical girth enhancement. Discreet consultations and tailored treatment plans."
+      "Private doctor-led penis filler using premium HA filler for non-surgical girth enhancement. Discreet consultations and tailored treatment plans.",
     images: ["/hero_img.png"],
   },
 };
