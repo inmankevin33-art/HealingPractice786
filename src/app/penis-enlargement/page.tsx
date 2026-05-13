@@ -43,33 +43,56 @@ export const metadata: Metadata = {
 };
 
 // --- SEO RICH FAQS (St Albans & Hertfordshire Focus) ---
-const faqs = [
+const stAlbansFaqs = [
   {
-    question: "What is non-surgical penis enlargement?",
-    answer: "At our St Albans clinic, non-surgical penis enlargement is a doctor-led procedure using premium hyaluronic acid (HA) filler to increase penis girth. In some men, the added volume and weight may also contribute to a fuller flaccid appearance.",
+    question: "What is penis filler treatment in St Albans?",
+    answer: "Penis filler treatment in St Albans is a non-surgical procedure using hyaluronic acid (HA) filler to increase penile girth. At Healing PRP in Hertfordshire, treatment is doctor-led, discreet and planned around your anatomy, goals and suitability.",
   },
   {
-    question: "Is the procedure painful?",
-    answer: "We prioritise comfort throughout the procedure. A strong local anaesthetic cream is applied before treatment, so most men describe the injections as very tolerable, with only mild pressure or brief discomfort.",
+    question: "Is penis filler the same as non-surgical penis enlargement?",
+    answer: "Yes. Penis filler, also known as penile filler or penile dermal filler, is a form of non-surgical penis enlargement. It does not involve surgery, implants or fat transfer. Instead, HA filler is carefully placed beneath the skin of the penile shaft to support girth enhancement.",
   },
   {
-    question: "How long does the treatment take and is there downtime?",
-    answer: "The appointment usually takes around 45 to 60 minutes. As this is a non-surgical treatment performed with a cannula technique, most patients can return to normal daily activities shortly afterwards, although specific aftercare advice should be followed.",
+    question: "Do you offer penis filler for men across Hertfordshire?",
+    answer: "Yes. Our St Albans clinic is suitable for men from across Hertfordshire, including Harpenden, Hatfield, Watford, Hemel Hempstead, Welwyn Garden City, Stevenage and surrounding areas. Consultations are private, discreet and confidential.",
   },
   {
-    question: "How long do HA filler results last?",
-    answer: "Results commonly last around 12 to 18 months, depending on factors such as metabolism, lifestyle, and the amount of filler used. Because hyaluronic acid is gradually broken down by the body, maintenance treatments may be considered over time.",
+    question: "Is St Albans convenient for men from North London?",
+    answer: "Yes. St Albans is easily accessible from parts of North London and nearby Hertfordshire towns by road and rail. Many patients prefer a discreet clinic outside central London while still receiving doctor-led care in a private clinical setting.",
   },
   {
-    question: "How do HA fillers compare with surgical fat transfer?",
-    answer: "HA filler treatment is a non-surgical option that avoids liposuction and a surgical recovery period. It can offer a more controlled and predictable approach to penis enlargement, and in experienced hands it also allows adjustment or reversal if required.",
+    question: "Who is suitable for penile filler in Hertfordshire?",
+    answer: "Penile filler may be suitable for men who want discreet girth enhancement without surgery. Suitability depends on your medical history, anatomy, expectations and examination findings. Dr Abdi will assess this carefully during your private consultation before advising whether treatment is appropriate.",
   },
   {
-    question: "What aftercare is required after non-surgical penis enlargement?",
-    answer: "Aftercare is an important part of treatment. You may be advised to carry out gentle massage as instructed and avoid sexual activity for a short period. Following your personalised aftercare plan helps support even filler distribution and the best possible outcome.",
-  }
+    question: "Is the penis filler procedure painful?",
+    answer: "Comfort is prioritised throughout the appointment. A strong local anaesthetic is used before treatment, and most men describe the procedure as very tolerable, with pressure or brief discomfort rather than significant pain.",
+  },
+  {
+    question: "How long does penis filler treatment take in St Albans?",
+    answer: "The appointment usually takes around 45 to 60 minutes, including consultation, preparation, treatment and aftercare advice. As this is a non-surgical treatment, most patients can return to normal daily activities shortly afterwards, provided they follow their aftercare instructions.",
+  },
+  {
+    question: "How long do HA penis filler results last?",
+    answer: "Results commonly last around 12 to 18 months, although this varies from person to person. Factors such as metabolism, lifestyle, anatomy, filler volume and individual response can all affect longevity. Maintenance treatment may be considered over time.",
+  },
+  {
+    question: "Can penis filler be adjusted or dissolved?",
+    answer: "One advantage of hyaluronic acid filler is that it can often be adjusted, refined or dissolved in appropriate circumstances using a dissolving enzyme. This makes HA filler a more flexible option compared with permanent fillers or some surgical approaches.",
+  },
+  {
+    question: "How does HA filler compare with surgical penis enlargement?",
+    answer: "HA filler is a non-surgical option that avoids liposuction, implants, general anaesthetic and a surgical recovery period. It allows controlled volume placement and may be adjusted if required. Surgical options may involve more downtime, swelling and a different risk profile.",
+  },
+  {
+    question: "What aftercare is needed after penile filler?",
+    answer: "Aftercare is important for smooth and even results. You may be advised to avoid sex, masturbation, heavy exercise, hot baths, saunas and alcohol for a short period. You may also be shown how to perform gentle massage if appropriate. Your exact aftercare plan will be explained after treatment.",
+  },
+  {
+    question: "How much does penis filler cost in St Albans?",
+    answer: "The cost depends on the amount of HA filler required and the treatment plan agreed during consultation. At Healing PRP St Albans, pricing is discussed clearly before treatment so you understand the recommended volume, expected outcome and total cost before deciding.",
+  },
 ];
-
 // --- UPGRADED JSON-LD SCHEMA ---
 const enlargementSchema = {
   "@context": "https://schema.org",
@@ -123,12 +146,22 @@ const enlargementSchema = {
     },
     {
       "@type": "MedicalTherapy",
-      "@id": "https://www.healing-prp.co.uk/penis-enlargement#therapy",
-      "name": "Non-Surgical Penis Enlargement (HA Fillers)",
-      "alternateName": ["Penis Enlargement", "Penis Fillers", "Non-Surgical Phalloplasty"],
-      "url": "https://www.healing-prp.co.uk/penis-enlargement",
-      "description": "Doctor-led procedure using Hyaluronic Acid (HA) dermal fillers for safe non-surgical penis enlargement.",
+      "@id": "https://www.healing-prp.co.uk/birmingham/penis-enlargement#therapy",
+      "name": "Penis Filler Birmingham",
+      "alternateName": [
+        "Penile Filler Birmingham",
+        "HA Penis Filler",
+        "Penile Dermal Filler",
+        "Non-Surgical Penis Enlargement",
+        "Non-Surgical Penoplasty",
+        "Penile Girth Enhancement",
+        "Penile Enhancement Birmingham"
+      ],
+      "url": "https://www.healing-prp.co.uk/birmingham/penis-enlargement",
+      "description": "Doctor-led penis filler treatment in Edgbaston, Birmingham using premium hyaluronic acid (HA) filler for men seeking discreet, non-surgical penile girth enhancement. Suitable for patients from Birmingham, the West Midlands and surrounding Midlands areas.",
       "relevantSpecialty": "Urologic",
+      "bodyLocation": "Penis",
+      "procedureType": "Non-surgical",
       "offers": {
         "@type": "Offer",
         "priceCurrency": "GBP",
