@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import dynamic from "next/dynamic";
 import {
   FaPlus,
   FaMinus,
@@ -25,11 +26,18 @@ import {
   FaHandsHelping,
   FaTimesCircle
 } from "react-icons/fa";
-import Footer from "@/components/Footer";
-import ContactCTASection from "@/components/ContactCTASection";
-import LocationSection from "@/components/LocationSection";
-import TrustReviews from "@/components/TrustReviews";
-import PEOnlineAssessmentModal from "@/components/PEOnlineAssessmentModal"; 
+
+// --- DYNAMIC IMPORTS FOR PAGESPEED OPTIMISATION ---
+// These components will only load when needed, speeding up the initial page render (LCP)
+const TrustReviews = dynamic(() => import("@/components/TrustReviews"), { 
+  ssr: false, // Prevents the heavy Trustindex widget from blocking the server render
+});
+const ContactCTASection = dynamic(() => import("@/components/ContactCTASection"));
+const LocationSection = dynamic(() => import("@/components/LocationSection"));
+const Footer = dynamic(() => import("@/components/Footer"));
+const PEOnlineAssessmentModal = dynamic(() => import("@/components/PEOnlineAssessmentModal"), {
+  ssr: false, // Modals do not need to be server-side rendered
+});
 
 // --- INTERFACE FOR DYNAMIC PROPS ---
 type FaqType = {
