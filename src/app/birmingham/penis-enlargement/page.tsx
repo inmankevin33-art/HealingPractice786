@@ -231,7 +231,7 @@ export default function BirminghamPenisEnlargementPage() {
       <PenisEnlargementClient 
         locationName="Birmingham"
         servingAreas="Edgbaston • Solihull • Sutton Coldfield • West Midlands"
-        faqs={faqs}
+        faqs={birminghamFaqs}
       />
     </main>
   );
