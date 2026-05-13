@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Penis Filler Clinic | Doctor-Led HA Girth Enhancement",
     description:
-       "Private doctor-led penis filler using premium HA filler for non-surgical girth enhancement. Discreet consultations and tailored treatment plans.",
+      "Private doctor-led penis filler using premium HA filler for non-surgical girth enhancement. Discreet consultations and tailored treatment plans.",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
     type: "website",
@@ -93,6 +93,7 @@ const stAlbansFaqs = [
     answer: "The cost depends on the amount of HA filler required and the treatment plan agreed during consultation. At Healing PRP St Albans, pricing is discussed clearly before treatment so you understand the recommended volume, expected outcome and total cost before deciding.",
   },
 ];
+
 // --- UPGRADED JSON-LD SCHEMA ---
 const enlargementSchema = {
   "@context": "https://schema.org",
@@ -146,19 +147,19 @@ const enlargementSchema = {
     },
     {
       "@type": "MedicalTherapy",
-      "@id": "https://www.healing-prp.co.uk/birmingham/penis-enlargement#therapy",
-      "name": "Penis Filler Birmingham",
+      "@id": "https://www.healing-prp.co.uk/penis-enlargement#therapy",
+      "name": "Penis Filler St Albans",
       "alternateName": [
-        "Penile Filler Birmingham",
+        "Penile Filler St Albans",
         "HA Penis Filler",
         "Penile Dermal Filler",
         "Non-Surgical Penis Enlargement",
         "Non-Surgical Penoplasty",
         "Penile Girth Enhancement",
-        "Penile Enhancement Birmingham"
+        "Penile Enhancement St Albans"
       ],
-      "url": "https://www.healing-prp.co.uk/birmingham/penis-enlargement",
-      "description": "Doctor-led penis filler treatment in Edgbaston, Birmingham using premium hyaluronic acid (HA) filler for men seeking discreet, non-surgical penile girth enhancement. Suitable for patients from Birmingham, the West Midlands and surrounding Midlands areas.",
+      "url": "https://www.healing-prp.co.uk/penis-enlargement",
+      "description": "Doctor-led penis filler treatment in St Albans using premium hyaluronic acid (HA) filler for men seeking discreet, non-surgical penile girth enhancement. Suitable for patients from Hertfordshire, North London and surrounding areas.",
       "relevantSpecialty": "Urologic",
       "bodyLocation": "Penis",
       "procedureType": "Non-surgical",
@@ -197,7 +198,7 @@ export default function PenisEnlargementPage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map((faq) => ({
+    "mainEntity": stAlbansFaqs.map((faq) => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
@@ -225,7 +226,7 @@ export default function PenisEnlargementPage() {
       <PenisEnlargementClient 
         locationName="St Albans"
         servingAreas="Harpenden • Luton • Watford • Hertfordshire"
-        faqs={faqs}
+        faqs={stAlbansFaqs}
       />
     </main>
   );
