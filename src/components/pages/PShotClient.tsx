@@ -59,9 +59,32 @@ export default function PShotClient({
 
   const isBirmingham = locationName === "Birmingham";
 
+  const isBirmingham = locationName === "Birmingham";
+
+ // --- NEW: Added the interaction state ---
+  const [hasInteracted, setHasInteracted] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsLoaded(true);
+
+    // --- NEW: Listen for the first real user interaction for PageSpeed ---
+    const handleInteraction = () => {
+      setHasInteracted(true);
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+    };
+
+    window.addEventListener("scroll", handleInteraction, { passive: true });
+    window.addEventListener("mousemove", handleInteraction, { passive: true });
+    window.addEventListener("touchstart", handleInteraction, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+    };
   }, []);
 
   const toggleFAQ = (index: number) => {
@@ -71,11 +94,29 @@ export default function PShotClient({
   // --- ACTION HANDLER ---
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (typeof window !== "undefined") {
+      const w = window as Window & { gtag?: (...args: unknown[]) => void };
+      if (w.gtag) {
+        w.gtag("event", "generate_lead", {
+          event_category: "engagement",
+          event_label: "opened_contact_drawer",
+          page_path: window.location.pathname,
+        });
+      }
+    }
+
+    // --- NEW: Force interaction state if they click before scrolling ---
+    setHasInteracted(true);
+    
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
+    
+    // Increased timeout to 300ms to allow any form/drawer animations to complete
     setTimeout(() => {
       const section = document.getElementById("contact-form-section");
       if (section) {
-        const headerOffset = 100;
+        // Reduced headerOffset from 100 to 20 to scroll further down the page
+        // This ensures the bottom of the form clears the sticky footer bar
+        const headerOffset = 20; 
         const elementPosition = section.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.scrollY - headerOffset;
         window.scrollTo({
@@ -83,9 +124,8 @@ export default function PShotClient({
           behavior: "smooth",
         });
       }
-    }, 100);
+    }, 300);
   };
-
   // --- VARIANTS ---
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
