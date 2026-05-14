@@ -65,9 +65,30 @@ export default function PenisEnlargementClient({
 
   const isBirmingham = locationName === "Birmingham";
 
+ // --- NEW: Added the interaction state ---
+  const [hasInteracted, setHasInteracted] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsLoaded(true);
+
+    // --- NEW: Listen for the first real user interaction for PageSpeed ---
+    const handleInteraction = () => {
+      setHasInteracted(true);
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+    };
+
+    window.addEventListener("scroll", handleInteraction, { passive: true });
+    window.addEventListener("mousemove", handleInteraction, { passive: true });
+    window.addEventListener("touchstart", handleInteraction, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+    };
   }, []);
 
   const toggleFAQ = (index: number) => {
@@ -87,6 +108,10 @@ export default function PenisEnlargementClient({
         });
       }
     }
+
+    // --- NEW: Force interaction state if they click before scrolling ---
+    setHasInteracted(true);
+    
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
     
     // Increased timeout to 300ms to allow any form/drawer animations to complete
@@ -105,7 +130,7 @@ export default function PenisEnlargementClient({
       }
     }, 300);
   };
-
+  
   // --- VARIANTS ---
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
