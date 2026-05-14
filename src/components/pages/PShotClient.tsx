@@ -59,8 +59,6 @@ export default function PShotClient({
 
   const isBirmingham = locationName === "Birmingham";
 
-  const isBirmingham = locationName === "Birmingham";
-
  // --- NEW: Added the interaction state ---
   const [hasInteracted, setHasInteracted] = useState(false);
 
