@@ -150,22 +150,23 @@ export default function OnlineAssessmentModal({ isOpen, onClose }: OnlineAssessm
       }
       // ---------------------------------------
 
-      // REDIRECT TO THE CORRECT THANK YOU PAGE
-      if (isBirmingham) {
-        router.push("/birmingham/thank-you");
-      } else {
-        router.push("/thank-you");
-      }
-      
-      onClose();
-      
-      // Reset state in the background
+      // DELAY THE REDIRECT BY 400ms TO ENSURE GOOGLE ADS CATCHES THE CONVERSION
       setTimeout(() => {
-        setStep(0);
-        setIsComplete(false);
-        setAnswers({});
-        setFormData({ name: "", email: "", phone: "" });
-      }, 500);
+        if (isBirmingham) {
+          router.push("/birmingham/thank-you");
+        } else {
+          router.push("/thank-you");
+        }
+        
+        // Close modal and reset state AFTER the redirect begins
+        onClose();
+        setTimeout(() => {
+          setStep(0);
+          setIsComplete(false);
+          setAnswers({});
+          setFormData({ name: "", email: "", phone: "" });
+        }, 100);
+      }, 400);
 
     } catch (error) {
       console.error("Failed to send assessment:", error);
