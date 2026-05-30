@@ -61,12 +61,12 @@ const treatmentOptions = [
     icon: FaWaveSquare, 
     title: "Shockwave Therapy", 
     description: "Low-intensity acoustic wave therapy that may support penile blood flow in selected patients.",
-    tags: ["Usually well tolerated", "~30 min sessions", "No downtime"] // Updated per CRO
+    tags: ["Usually well tolerated", "~30 min sessions", "No downtime"] 
   },
   { 
     icon: FaSyringe, 
-    title: "Advanced ED Options", 
-    description: "A doctor-prepared treatment option using a concentrated sample from your own blood.",
+    title: "PRP-Based ED Treatment", 
+    description: "A doctor-prepared treatment using a concentrated sample from your own blood. This may be considered as part of a personalised ED plan after consultation, depending on your symptoms and suitability.",
     tags: ["Minimal discomfort", "Takes ~30 mins", "No downtime"]
   },
   { 
@@ -137,7 +137,7 @@ const symptoms = [
 export default function ErectileDysfunctionTreatmentClient({
   locationName = "St Albans",
   servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
-  heroDescription = <>Doctor-led assessment for erection difficulties, reduced firmness and ED symptoms.</>, // Updated per CRO
+  heroDescription = <>Doctor-led assessment for erection difficulties, reduced firmness and ED symptoms.</>, 
   whyChooseText = "Patients choose our clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment.",
   faqs = [], 
 }: ErectileDysfunctionProps) {
@@ -307,20 +307,6 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </section>
 
-      {/* --- NEW CRO SECTION: FEES & QUALIFICATION --- */}
-      <section className="py-12 bg-white border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-           <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
-             <h3 className="font-raleway font-bold text-slate-900 text-xl mb-3 flex items-center justify-center gap-2">
-               Private ED Clinic Fees
-             </h3>
-             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-inter">
-               Your initial consultation is free. If treatment is suitable, fees are explained clearly before you decide. Shockwave therapy, Advanced ED options, blood tests or Doppler assessments are charged separately depending on your personalised treatment plan.
-             </p>
-           </div>
-        </div>
-      </section>
-
       {/* --- SECTION: TREATMENT OPTIONS (Compact Design) --- */}
       <section className="relative py-16 lg:py-20 bg-white overflow-hidden font-inter border-b border-slate-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -422,7 +408,22 @@ export default function ErectileDysfunctionTreatmentClient({
       <div id="reviews-section">
         <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
       </div>
+
+      {/* --- NEW CRO SECTION: BEFORE YOU BOOK (Moved down to sit perfectly above the form) --- */}
+      <section className="py-12 bg-white border-t border-slate-200" id="contact-form-section">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+           <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
+             <h3 className="font-raleway font-bold text-slate-900 text-xl mb-3 flex items-center justify-center gap-2">
+               Before you book
+             </h3>
+             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-inter">
+               This is a private doctor-led ED service in {locationName}. Your initial consultation is free, but treatment, blood tests, Doppler assessment, PRP-based treatment or shockwave therapy are charged separately if you proceed. Fees are explained clearly before any treatment decision.
+             </p>
+           </div>
+        </div>
+      </section>
       
+      {/* Contact Form Component - You will need to edit this file next! */}
       <ContactCTASection />
       <LocationSection /> 
       
