@@ -101,7 +101,8 @@ export default function ContactCTASection() {
         }
       }, 400);
 
-    } catch (error) {
+    } catch (err) {
+      console.error("EmailJS Error:", err);
       setSubmitStatus({ type: "error", message: "Failed to send. Please try WhatsApp." });
     } finally {
       setIsSubmitting(false);
@@ -229,7 +230,7 @@ export default function ContactCTASection() {
                             <option>Erectile Dysfunction</option>
                             <option>Shockwave Therapy for ED</option>
                             <option>P-Shot / PRP for ED</option>
-                            <option>Peyronie's Disease</option>
+                            <option>Peyronie&apos;s Disease</option>
                             <option>Penis Filler / Girth Enhancement</option>
                             <option>Testosterone / Blood Review</option>
                             <option>Not sure — I want advice</option>
@@ -262,6 +263,7 @@ export default function ContactCTASection() {
                         {isDesktop ? (
                           <>
                             <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 inline-block mb-4">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img src="/qrcode.png" alt="WhatsApp QR" className="w-32 h-32 mx-auto mix-blend-multiply" />
                             </div>
                             <div className="space-y-1">
