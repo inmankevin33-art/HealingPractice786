@@ -78,33 +78,36 @@ export default function ContactCTASection() {
         clinic_location: activeClinic === "birmingham" ? "Birmingham (Edgbaston)" : "St Albans",
       });
 
-      // --- GOOGLE ADS CONVERSION TRACKING ---
+    // --- GOOGLE ADS CONVERSION TRACKING ---
       if (typeof window !== "undefined") {
         const w = window as Window & { gtag?: (...args: unknown[]) => void };
         if (w.gtag) {
           w.gtag('event', 'conversion', {
-            'send_to': 'AW-18130686557/hY3YCIONsKUcEN2kscVD'
+            'send_to': 'AW-18130686557/hY3YCIONsKUcEN2kscVD' // Ensure this label is correct!
           });
         }
       }
       // ---------------------------------------
 
-      // REDIRECT TO THE CORRECT THANK YOU PAGE
-      if (activeClinic === "birmingham") {
-        router.push("/birmingham/thank-you");
-      } else {
-        router.push("/thank-you");
-      }
-      
-      // Clear form in the background
+      // Clear form in the background immediately
       setFormData({ name: "", email: "", phone: "", treatment: "Erectile Dysfunction", message: "" });
+
+      // DELAY THE REDIRECT BY 400ms TO ENSURE GOOGLE ADS CATCHES THE CONVERSION
+      setTimeout(() => {
+        if (activeClinic === "birmingham") {
+          router.push("/birmingham/thank-you");
+        } else {
+          router.push("/thank-you");
+        }
+      }, 400);
+
     } catch (error) {
       setSubmitStatus({ type: "error", message: "Failed to send. Please try WhatsApp." });
     } finally {
       setIsSubmitting(false);
     }
   };
-
+  
   return (
     <section id="contact-form-section" className="relative py-12 bg-white font-inter scroll-mt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -115,7 +118,7 @@ export default function ContactCTASection() {
             Get In Touch
           </div>
           <h2 className="text-2xl md:text-3xl font-raleway font-semibold text-slate-900 mb-4">
-            Speak with a Specialist
+            Speak with Dr Syed Abdi
           </h2>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
@@ -125,7 +128,7 @@ export default function ContactCTASection() {
                 className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-4 bg-[#4041d1] text-white rounded-2xl font-bold text-sm hover:bg-[#2a2bb8] transition-all shadow-xl shadow-blue-500/20 group"
               >
                 <FaPaperPlane className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                Book Consultation Now
+                Book Private ED Consultation
                 <FaChevronDown className="ml-2 opacity-50" />
               </button>
             )}
@@ -224,9 +227,12 @@ export default function ContactCTASection() {
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Treatment</label>
                           <select name="treatment" value={formData.treatment} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-slate-600 appearance-none text-sm">
                             <option>Erectile Dysfunction</option>
-                            <option>Hair Restoration</option>
-                            <option>Joint Pain Relief</option>
-                            <option>Facial Aesthetics</option>
+                            <option>Shockwave Therapy for ED</option>
+                            <option>P-Shot / PRP for ED</option>
+                            <option>Peyronie's Disease</option>
+                            <option>Penis Filler / Girth Enhancement</option>
+                            <option>Testosterone / Blood Review</option>
+                            <option>Not sure — I want advice</option>
                           </select>
                         </div>
                         <div className="md:col-span-2 space-y-1">
