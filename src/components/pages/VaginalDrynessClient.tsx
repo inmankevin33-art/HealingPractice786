@@ -212,7 +212,7 @@ export default function VaginalDrynessClient({
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="mt-4 text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-3xl mx-auto mb-10 font-medium"
           >
-            Discreet, doctor-led care for vaginal dryness, soreness, reduced lubrication and discomfort during intimacy. At HealingPRP Clinics, Dr Syed Abdi offers confidential assessment and selected non-hormonal treatment options, including hyaluronic acid, polynucleotides and PRP/O-Shot, where clinically appropriate.
+            Discreet, doctor-led care for vaginal dryness, soreness, reduced lubrication and discomfort during intimacy. At Healing PRP Clinics, Dr Syed Abdi offers confidential assessment and selected non-hormonal treatment options, including hyaluronic acid, polynucleotides and PRP/O-Shot, where clinically appropriate.
           </motion.p>
 
           <motion.div 
@@ -264,7 +264,7 @@ export default function VaginalDrynessClient({
             <div className="flex flex-col items-center p-4">
               <FaMapMarkerAlt className="text-[#4041d1] text-3xl mb-3" />
               <h3 className="text-white font-bold text-sm mb-2 uppercase tracking-wide">{locationName} clinic</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">Private intimate health consultations available at HealingPRP Clinics in {locationName}.</p>
+              <p className="text-slate-400 text-xs leading-relaxed">Private intimate health consultations available at Healing PRP Clinics in {locationName}.</p>
             </div>
           </div>
         </div>
@@ -280,7 +280,7 @@ export default function VaginalDrynessClient({
             Vaginal dryness is common, especially around perimenopause, menopause and after childbirth, but it can still feel uncomfortable, embarrassing or difficult to discuss. It may cause dryness, burning, soreness, reduced lubrication, discomfort during sex or a feeling that the tissue has become more fragile.
           </p>
           <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-6">
-            At HealingPRP Clinics, we take a medical-first approach. This means we do not simply offer an injection without understanding the cause of your symptoms. Your consultation will consider menopause-related changes, infection, irritation, medication, skin conditions, previous treatment, and any symptoms that may need further medical review.
+            At Healing PRP Clinics, we take a medical-first approach. This means we do not simply offer an injection without understanding the cause of your symptoms. Your consultation will consider menopause-related changes, infection, irritation, medication, skin conditions, previous treatment, and any symptoms that may need further medical review.
           </p>
           <p className="text-slate-600 text-base md:text-lg leading-relaxed font-medium">
             Where suitable, we can discuss non-hormonal options such as hyaluronic acid, polynucleotides and PRP/O-Shot. These treatments are intended to support hydration, tissue quality and intimate comfort, but results vary and no outcome can be guaranteed.
@@ -657,7 +657,7 @@ export default function VaginalDrynessClient({
                 Dr Syed Abdi is a UK-trained GP with over 20 years of medical experience and a special interest in regenerative medicine, sexual wellness and intimate health treatments. He provides discreet, confidential consultations for women experiencing vaginal dryness, soreness, reduced lubrication and intimate discomfort.
               </p>
               <p className="text-slate-300 mb-6 leading-relaxed">
-                As a doctor-led clinic, HealingPRP Clinics focuses on careful assessment, realistic expectations and safe treatment planning rather than one-size-fits-all procedures.
+                As a doctor-led clinic, Healing PRP Clinics focuses on careful assessment, realistic expectations and safe treatment planning rather than one-size-fits-all procedures.
               </p>
               <div className="text-xs text-slate-500 font-medium uppercase tracking-widest">
                 Reviewed by Dr Syed Abdi. Last updated: May 2026.
@@ -731,7 +731,7 @@ export default function VaginalDrynessClient({
             Book a private vaginal dryness consultation in {locationName}
           </h2>
           <p className="text-slate-600 text-lg mb-8">
-            If vaginal dryness, soreness or discomfort during intimacy is affecting your confidence or quality of life, you can book a confidential consultation with Dr Syed Abdi at HealingPRP Clinics in {locationName}.
+            If vaginal dryness, soreness or discomfort during intimacy is affecting your confidence or quality of life, you can book a confidential consultation with Dr Syed Abdi at Healing PRP Clinics in {locationName}.
           </p>
           <p className="text-slate-900 font-bold mb-10">
             Your symptoms will be assessed carefully, and suitable options will be explained clearly before any treatment is offered.
