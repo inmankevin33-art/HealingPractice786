@@ -464,8 +464,40 @@ export default function VaginalDrynessClient({
             <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">Comparing the treatment options</h2>
           </div>
           
-          <div className="overflow-x-auto bg-white rounded-2xl shadow-sm border border-slate-200">
-            <table className="w-full text-left border-collapse min-w-[800px]">
+          {/* Mobile View: Stacked Cards */}
+          <div className="block md:hidden space-y-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+              <h3 className="font-bold text-lg text-slate-900 mb-3 border-b border-slate-100 pb-2">Hyaluronic Acid</h3>
+              <div className="space-y-2 text-sm text-slate-600">
+                <p><strong className="text-slate-900">Main aim:</strong> Hydration and comfort</p>
+                <p><strong className="text-slate-900">Typical approach:</strong> Usually hydration-focused treatment; protocols vary</p>
+                <p><strong className="text-slate-900">Evidence level:</strong> Stronger evidence for topical/suppository use than injectable protocols</p>
+                <p><strong className="text-slate-900">Downtime:</strong> Usually minimal</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+              <h3 className="font-bold text-lg text-slate-900 mb-3 border-b border-slate-100 pb-2">Polynucleotides</h3>
+              <div className="space-y-2 text-sm text-slate-600">
+                <p><strong className="text-slate-900">Main aim:</strong> Tissue quality and regenerative support</p>
+                <p><strong className="text-slate-900">Typical approach:</strong> Usually a short course of treatments</p>
+                <p><strong className="text-slate-900">Evidence level:</strong> Emerging evidence</p>
+                <p><strong className="text-slate-900">Downtime:</strong> Usually minimal</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+              <h3 className="font-bold text-lg text-slate-900 mb-3 border-b border-slate-100 pb-2">PRP / O-Shot</h3>
+              <div className="space-y-2 text-sm text-slate-600">
+                <p><strong className="text-slate-900">Main aim:</strong> Regenerative support using your own blood</p>
+                <p><strong className="text-slate-900">Typical approach:</strong> Blood sample, centrifuge processing and injection</p>
+                <p><strong className="text-slate-900">Evidence level:</strong> Promising but variable evidence</p>
+                <p><strong className="text-slate-900">Downtime:</strong> Usually same day or 24 hours</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop View: Semantic Table */}
+          <div className="hidden md:block overflow-hidden bg-white rounded-2xl shadow-sm border border-slate-200">
+            <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-[#4041d1] text-white">
                   <th className="p-5 font-bold text-sm uppercase tracking-wide border-b border-white/20">Treatment</th>
@@ -622,7 +654,7 @@ export default function VaginalDrynessClient({
           <div className="text-center mb-10">
             <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-6">Evidence and realistic expectations</h2>
           </div>
-          <div className="prose prose-slate max-w-none text-slate-600">
+          <div className="prose prose-slate max-w-none text-slate-600 mb-12">
             <p>
               Vaginal dryness can be treated in different ways. Lubricants, moisturisers and vaginal oestrogen are commonly used options, especially when symptoms are related to menopause. Regenerative treatments such as PRP/O-Shot and polynucleotides are newer options and the evidence is still developing.
             </p>
@@ -641,6 +673,34 @@ export default function VaginalDrynessClient({
               </p>
             </div>
           </div>
+
+          {/* References and further reading */}
+          <div className="border-t border-slate-100 pt-10">
+            <h3 className="text-xl font-raleway font-bold text-slate-900 mb-4">References and further reading</h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a 
+                  href="https://www.nhs.uk/conditions/vaginal-dryness/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#4041d1] hover:underline flex items-center gap-2"
+                >
+                  <FaArrowRight className="text-xs shrink-0" /> NHS Advice: Vaginal dryness
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://www.nice.org.uk/guidance/ng23" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#4041d1] hover:underline flex items-center gap-2"
+                >
+                  <FaArrowRight className="text-xs shrink-0" /> NICE Guidance: Menopause diagnosis and management
+                </a>
+              </li>
+            </ul>
+          </div>
+
         </div>
       </section>
 
