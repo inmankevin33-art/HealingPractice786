@@ -129,7 +129,7 @@ export default function ContactCTASection() {
                 className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-4 bg-[#4041d1] text-white rounded-2xl font-bold text-sm hover:bg-[#2a2bb8] transition-all shadow-xl shadow-blue-500/20 group"
               >
                 <FaPaperPlane className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                Book Private ED Consultation
+                Book Private Consultation
                 <FaChevronDown className="ml-2 opacity-50" />
               </button>
             )}
