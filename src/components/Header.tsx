@@ -18,7 +18,10 @@ interface MenuItem {
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  
+  // --- LOCATION LOGIC ---
   const isBirmingham = pathname?.startsWith("/birmingham");
+  const isHampstead = pathname?.startsWith("/hampstead");
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -31,28 +34,35 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
+  // Helper to dynamically route links based on active location
+  const getRoute = (basePath: string) => {
+    if (isBirmingham) return `/birmingham${basePath}`;
+    if (isHampstead) return `/hampstead${basePath}`;
+    return basePath;
+  };
+
   // We split the menu into two columns for desktop to use space better
   const menuColumn1: MenuItem[] = [
-    { name: "Sexual Rejuvenation", href: isBirmingham ? "/birmingham/sexual-rejuvenation" : "/sexual-rejuvenation" },
-    { name: "P-Shot Treatment", href: isBirmingham ? "/birmingham/p-shot" : "/p-shot", isSubItem: true },
-    { name: "O-Shot Treatment", href: isBirmingham ? "/birmingham/o-shot" : "/o-shot", isSubItem: true },
-    { name: "Erectile Dysfunction", href: isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction", isSubItem: true },
-    { name: "Shockwave Therapy", href: isBirmingham ? "/birmingham/shockwave-therapy-erectile-dysfunction" : "/shockwave-therapy-erectile-dysfunction", isSubItem: true },
-    { name: "Premature Ejaculation", href: isBirmingham ? "/birmingham/premature-ejaculation" : "/premature-ejaculation", isSubItem: true },
-    { name: "Peyronie's Disease", href: isBirmingham ? "/birmingham/peyronies-disease" : "/peyronies-disease", isSubItem: true },
-    { name: "Personalised Medication", href: isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication", isSubItem: true },
-    { name: "Penis Enlargement", href: isBirmingham ? "/birmingham/penis-enlargement" : "/penis-enlargement", isSubItem: true },
+    { name: "Sexual Rejuvenation", href: getRoute("/sexual-rejuvenation") },
+    { name: "P-Shot Treatment", href: getRoute("/p-shot"), isSubItem: true },
+    { name: "O-Shot Treatment", href: getRoute("/o-shot"), isSubItem: true },
+    { name: "Erectile Dysfunction", href: getRoute("/erectile-dysfunction"), isSubItem: true },
+    { name: "Shockwave Therapy", href: getRoute("/shockwave-therapy-erectile-dysfunction"), isSubItem: true },
+    { name: "Premature Ejaculation", href: getRoute("/premature-ejaculation"), isSubItem: true },
+    { name: "Peyronie's Disease", href: getRoute("/peyronies-disease"), isSubItem: true },
+    { name: "Personalised Medication", href: getRoute("/personalised-ed-medication"), isSubItem: true },
+    { name: "Penis Enlargement", href: getRoute("/penis-enlargement"), isSubItem: true },
   ];
 
   const menuColumn2: MenuItem[] = [
-    { name: "Facial Aesthetics", href: isBirmingham ? "/birmingham/facial-aesthetics" : "/facial-aesthetics" },
-    { name: "Polynucleotides", href: isBirmingham ? "/birmingham/polynucleotides" : "/polynucleotides", isSubItem: true },
-    { name: "Joint Injections", href: isBirmingham ? "/birmingham/joint-injections" : "/joint-injections", isSpacer: true },
-    { name: "Hair Restoration", href: isBirmingham ? "/birmingham/hair-restoration" : "/hair-restoration", isSpacer: true },
-    { name: "Prices", href: isBirmingham ? "/birmingham/prices" : "/prices", isSpacer: true },
-    { name: "FAQs", href: isBirmingham ? "/birmingham/faq" : "/faq", isSpacer: true },
-    { name: "Health Blog", href: "/blog", isSpacer: true },
-    { name: "Contact Us", href: isBirmingham ? "/birmingham/contact" : "/contact", isContact: true, isSpacer: true },
+    { name: "Facial Aesthetics", href: getRoute("/facial-aesthetics") },
+    { name: "Polynucleotides", href: getRoute("/polynucleotides"), isSubItem: true },
+    { name: "Joint Injections", href: getRoute("/joint-injections"), isSpacer: true },
+    { name: "Hair Restoration", href: getRoute("/hair-restoration"), isSpacer: true },
+    { name: "Prices", href: getRoute("/prices"), isSpacer: true },
+    { name: "FAQs", href: getRoute("/faq"), isSpacer: true },
+    { name: "Health Blog", href: "/blog", isSpacer: true }, // Blog remains universal
+    { name: "Contact Us", href: getRoute("/contact"), isContact: true, isSpacer: true },
   ];
 
   return (
@@ -63,7 +73,7 @@ const Header = () => {
             
             {/* Logo Section */}
             <div className="flex-shrink-0">
-              <Link href={isBirmingham ? "/birmingham" : "/"} onClick={() => setIsMenuOpen(false)}>
+              <Link href={isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-3">
                   <div className="relative h-10 w-10 md:h-11 md:w-11 flex-shrink-0">
                     <Image src="/Logo2.png" alt="Healing-PRP Logo" fill className="object-contain" priority />
@@ -82,7 +92,7 @@ const Header = () => {
                 <div className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5 mb-1 font-inter">
                   <FaMapMarkerAlt className="w-3 h-3 text-[#4041d1]" />
                   <span className="text-slate-300">
-                    {isBirmingham ? "Birmingham Clinic" : "St Albans Clinic"}
+                    {isBirmingham ? "Birmingham Clinic" : isHampstead ? "Hampstead Clinic" : "St Albans Clinic"}
                   </span>
                 </div>
                 
@@ -133,19 +143,24 @@ const Header = () => {
               {/* Location Selectors */}
               <div className="mb-8 border-b border-white/10 pb-8">
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-4 font-inter">Select Your Location</p>
-                <div className="flex flex-col sm:flex-row gap-4 max-w-xl">
-                  {/* Removed onClick={() => setIsMenuOpen(false)} so it seamlessly switches without closing */}
+                <div className="flex flex-col md:flex-row gap-3 md:gap-4 max-w-3xl">
                   <Link 
                     href="/" 
-                    className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter ${!isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
+                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${!isBirmingham && !isHampstead ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
-                    St Albans Clinic
+                    St Albans
                   </Link>
                   <Link 
                     href="/birmingham" 
-                    className={`flex-1 flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter ${isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
+                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
-                    Birmingham Clinic
+                    Birmingham
+                  </Link>
+                  <Link 
+                    href="/hampstead" 
+                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${isHampstead ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
+                  >
+                    Hampstead
                   </Link>
                 </div>
               </div>
