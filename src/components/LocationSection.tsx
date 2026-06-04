@@ -7,20 +7,29 @@ import { motion } from "framer-motion";
 export default function LocationSection() {
   const pathname = usePathname();
   const isBirmingham = pathname?.startsWith("/birmingham");
+  const isHampstead = pathname?.startsWith("/hampstead");
 
   const clinic = isBirmingham 
-    ? {
+   ? {
         name: "Birmingham Clinic",
         district: "Edgbaston Medical Quarter",
         address: "38 Harborne Rd, Edgbaston, B15 3EB",
-        hours: "Mon-Fri: 9am - 6pm",
+        hours: "Mon-Fri: 9am - 6pm | Sat: 10am - 4pm | Sun: 10am - 3pm",
         mapLink: "https://www.google.com/maps/search/?api=1&query=38+Harborne+Rd,+Edgbaston,+Birmingham+B15+3EB", 
       }
-    : {
+   : isHampstead
+   ? {
+        name: "Hampstead Clinic",
+        district: "North West London",
+        address: "2 Hampstead High St, London NW3 1PR",
+        hours: "Mon-Fri: 9am - 6pm | Sat: 10am - 4pm | Sun: 10am - 3pm",
+        mapLink: "https://www.google.com/maps/search/?api=1&query=2+Hampstead+High+St,+London+NW3+1PR", 
+      }
+   : {
         name: "St Albans Clinic",
         district: "City Centre",
         address: "21 Victoria Street, St Albans, AL1 3JJ",
-        hours: "Mon-Fri: 9am - 6pm",
+        hours: "Mon-Fri: 9am - 6pm | Sat: 10am - 4pm | Sun: 10am - 3pm",
         mapLink: "https://www.google.com/maps/search/?api=1&query=21+Victoria+Street,+St+Albans,+AL1+3JJ", 
       };
 
