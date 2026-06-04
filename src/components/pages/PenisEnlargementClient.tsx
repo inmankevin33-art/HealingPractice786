@@ -400,7 +400,7 @@ export default function PenisEnlargementClient({
               Penis filler, also referred to as penile filler, penile dermal filler, or non-surgical penoplasty, uses premium hyaluronic acid (HA) to increase girth without the need for invasive surgery.
             </p>
             <p className="mb-8">
-              While historically associated with surgical &quot;penis enlargement,&quot; modern advancements mean that achieving a proportionate, natural-looking increase in girth and a fuller flaccid appearance is now possible through a quick, minimally invasive procedure. Our treatments are administered exclusively by experienced doctors, ensuring maximum safety, discretion, and tailored volume planning.
+              While historically associated with surgical &quot;penis enlargement,&quot; modern advancements mean that achieving a proportionate, natural-looking increase in girth and a fuller flaccid appearance is now possible through a quick, minimally invasive procedure. Our treatments are administered exclusively by Dr Abdi, ensuring maximum safety, discretion, and tailored volume planning.
             </p>
             <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 inline-block text-sm text-left shadow-sm">
               <strong className="text-slate-900">Looking to improve erectile function or blood flow?</strong><br/>
