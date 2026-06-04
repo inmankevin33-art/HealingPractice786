@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import { FaBars, FaTimes, FaMapMarkerAlt, FaPhoneAlt, FaChevronDown } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,20 +12,18 @@ interface MenuItem {
   href: string;
   isContact?: boolean;
   isSubItem?: boolean;
-  isSpacer?: boolean; // Used to add a little margin above new main sections
+  isSpacer?: boolean;
 }
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   
-  // --- LOCATION LOGIC ---
   const isBirmingham = pathname?.startsWith("/birmingham");
   const isHampstead = pathname?.startsWith("/hampstead");
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Prevent background scrolling when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -34,14 +32,12 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
-  // Helper to dynamically route links based on active location
   const getRoute = (basePath: string) => {
     if (isBirmingham) return `/birmingham${basePath}`;
     if (isHampstead) return `/hampstead${basePath}`;
     return basePath;
   };
 
-  // We split the menu into two columns for desktop to use space better
   const menuColumn1: MenuItem[] = [
     { name: "Sexual Rejuvenation", href: getRoute("/sexual-rejuvenation") },
     { name: "P-Shot Treatment", href: getRoute("/p-shot"), isSubItem: true },
@@ -61,7 +57,7 @@ const Header = () => {
     { name: "Hair Restoration", href: getRoute("/hair-restoration"), isSpacer: true },
     { name: "Prices", href: getRoute("/prices"), isSpacer: true },
     { name: "FAQs", href: getRoute("/faq"), isSpacer: true },
-    { name: "Health Blog", href: "/blog", isSpacer: true }, // Blog remains universal
+    { name: "Health Blog", href: "/blog", isSpacer: true },
     { name: "Contact Us", href: getRoute("/contact"), isContact: true, isSpacer: true },
   ];
 
@@ -87,15 +83,32 @@ const Header = () => {
 
             {/* Header Right Side */}
             <div className="flex items-center gap-4 md:gap-8">
-              {/* Desktop Clinic Info + Phone */}
+              
+              {/* Desktop Clinic Dropdown + Phone */}
               <div className="hidden lg:flex flex-col items-end">
-                <div className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5 mb-1 font-inter">
-                  <FaMapMarkerAlt className="w-3 h-3 text-[#4041d1]" />
-                  <span className="text-slate-300">
-                    {isBirmingham ? "Birmingham Clinic" : isHampstead ? "Hampstead Clinic" : "St Albans Clinic"}
-                  </span>
-                </div>
                 
+                {/* --- NEW: Zero-JS CSS Dropdown --- */}
+                <div className="relative group">
+                  <button className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5 mb-1 font-inter hover:text-white transition-colors pb-1">
+                    <FaMapMarkerAlt className="w-3 h-3 text-[#4041d1]" />
+                    <span>Our Clinics <FaChevronDown className="inline w-2 h-2 ml-0.5 opacity-50" /></span>
+                  </button>
+                  
+                  <div className="absolute top-full right-0 mt-0 w-56 bg-[#0f172a] border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0 overflow-hidden">
+                    <div className="flex flex-col py-2">
+                      <Link href="/hampstead" className={`px-4 py-3 text-xs font-inter font-bold hover:bg-white/5 transition-colors border-b border-white/5 ${isHampstead ? 'text-[#4041d1]' : 'text-slate-300'}`}>
+                        Hampstead, London
+                      </Link>
+                      <Link href="/birmingham" className={`px-4 py-3 text-xs font-inter font-bold hover:bg-white/5 transition-colors border-b border-white/5 ${isBirmingham ? 'text-[#4041d1]' : 'text-slate-300'}`}>
+                        Edgbaston, Birmingham
+                      </Link>
+                      <Link href="/" className={`px-4 py-3 text-xs font-inter font-bold hover:bg-white/5 transition-colors ${!isBirmingham && !isHampstead ? 'text-[#4041d1]' : 'text-slate-300'}`}>
+                        City Centre, St Albans
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
                 <a 
                   href="tel:07990364147" 
                   className="flex items-center gap-2 text-sm font-bold text-white hover:text-[#4041d1] transition-colors tracking-wider group font-inter"
@@ -105,14 +118,24 @@ const Header = () => {
                 </a>
               </div>
 
-              {/* Mobile Phone Link (Visible icon only) */}
-              <a 
-                href="tel:07990364147" 
-                className="lg:hidden p-2.5 bg-[#4041d1] rounded-full text-white shadow-lg shadow-blue-500/20"
-                aria-label="Call Clinic"
-              >
-                <FaPhoneAlt className="w-4 h-4 fill-current" />
-              </a>
+              {/* Mobile Icons (Phone + Location Menu Trigger) */}
+              <div className="flex lg:hidden items-center gap-2">
+                <button 
+                  onClick={toggleMenu}
+                  className="p-2.5 bg-slate-800 rounded-full text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+                  aria-label="View Clinics"
+                >
+                  <FaMapMarkerAlt className="w-4 h-4 fill-current" />
+                </button>
+
+                <a 
+                  href="tel:07990364147" 
+                  className="p-2.5 bg-[#4041d1] rounded-full text-white shadow-lg shadow-blue-500/20"
+                  aria-label="Call Clinic"
+                >
+                  <FaPhoneAlt className="w-4 h-4 fill-current" />
+                </a>
+              </div>
 
               {/* Menu Toggle */}
               <button 
@@ -135,7 +158,6 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            // Added pb-12 to container and pb-32 to inner div to ensure mobile scrolling never cuts off
             className="fixed inset-0 z-40 bg-[#0f172a] pt-20 pb-12 overflow-y-auto"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-4">
@@ -146,18 +168,21 @@ const Header = () => {
                 <div className="flex flex-col md:flex-row gap-3 md:gap-4 max-w-3xl">
                   <Link 
                     href="/" 
+                    onClick={() => setIsMenuOpen(false)}
                     className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${!isBirmingham && !isHampstead ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
                     St Albans
                   </Link>
                   <Link 
                     href="/birmingham" 
+                    onClick={() => setIsMenuOpen(false)}
                     className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
                     Birmingham
                   </Link>
                   <Link 
                     href="/hampstead" 
+                    onClick={() => setIsMenuOpen(false)}
                     className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${isHampstead ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
                     Hampstead
