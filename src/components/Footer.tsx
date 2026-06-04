@@ -28,7 +28,8 @@ export default function Footer() {
       "/birmingham/facial-aesthetics",
       "/birmingham/hair-restoration",
       "/birmingham/joint-injections",
-      "/birmingham/sexual-rejuvenation"
+      "/birmingham/sexual-rejuvenation",
+      "/hampstead/penis-filler" // Added new Hampstead page
     ];
     
     if (drawerPages.includes(pathname || "")) {
@@ -92,9 +93,9 @@ export default function Footer() {
   return (
     <footer className="bg-[#0f172a] text-white font-inter border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Expanded to lg:grid-cols-5 to accommodate the new column without breaking the layout */}
+        {/* Expanded to lg:grid-cols-6 to accommodate the Hampstead location without breaking layout */}
         <motion.div
-          className="py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8"
+          className="py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -210,6 +211,24 @@ export default function Footer() {
               </div>
             </div>
           </motion.div>
+
+          {/* Hampstead Location */}
+          <motion.div variants={itemVariants}>
+            <h4 className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-5">
+              Hampstead Clinic
+            </h4>
+            <div className="space-y-3 text-xs text-slate-400 leading-relaxed">
+              <div className="flex items-start gap-2.5">
+                <FaMapMarkerAlt className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-[#4041d1]/80" />
+                <p>2 Hampstead High St,<br />London NW3 1PR</p>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <FaPhone className="w-3.5 h-3.5 flex-shrink-0 text-[#4041d1]/80" />
+                <a href="tel:07990364147" className="hover:text-white transition-colors">+44 7990 364147</a>
+              </div>
+            </div>
+          </motion.div>
+
         </motion.div>
 
         {/* Bottom Bar */}
