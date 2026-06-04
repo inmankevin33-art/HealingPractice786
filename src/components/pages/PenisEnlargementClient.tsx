@@ -99,7 +99,6 @@ export default function PenisEnlargementClient({
     if (typeof window !== "undefined") {
       const w = window as Window & { gtag?: (...args: unknown[]) => void };
       if (w.gtag) {
-        // CHANGED: Fixed Google Ads tracking to fire contact_initiated instead of generate_lead
         w.gtag("event", "contact_initiated", {
           event_category: "engagement",
           event_label: "opened_contact_drawer",
@@ -783,7 +782,7 @@ export default function PenisEnlargementClient({
             </p>
           </div>
        
-          {/* Pricing Tiers */}
+          {/* --- Standard Pricing Tiers --- */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             
             {/* Tier 1 */}
@@ -833,11 +832,102 @@ export default function PenisEnlargementClient({
                 Discuss 20ml+ Option
               </button>
             </div>
-       
+          </div>
+
+          {/* --- NEW: Premium Teoxane Section (Applies universally) --- */}
+          <div className="mt-16 bg-[#0A1128] text-white p-8 md:p-10 rounded-3xl border border-blue-900/40 shadow-xl text-left">
+            <div className="inline-block px-4 py-1.5 bg-white/10 text-blue-200 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+              Premium Filler Option
+            </div>
+
+            <h3 className="text-2xl md:text-3xl font-raleway font-bold mb-3">
+              Premium Teoxane Ultra Deep HA Filler Packages
+            </h3>
+
+            <p className="text-slate-300 leading-relaxed mb-4">
+              For selected patients seeking a premium high-density HA filler option, Teoxane Ultra Deep may be discussed as part of a personalised penile girth enhancement plan. Filler choice, volume and suitability are reviewed during consultation with Dr Syed Abdi.
+            </p>
+
+            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+              Teoxane Ultra Deep is supplied in 1.2ml syringes, so premium treatment packages are planned in precise volume options of 9.6ml, 14.4ml or 19.2ml.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Premium Card 1 */}
+              <div className="bg-white/10 border border-white/10 rounded-2xl p-6 flex flex-col h-full">
+                <h4 className="text-blue-200 font-bold uppercase tracking-widest text-xs mb-2">
+                  Premium Starter
+                </h4>
+                <div className="text-4xl font-raleway font-bold text-white mb-2">
+                  9.6ml
+                </div>
+                <div className="text-blue-300 font-bold text-xl mb-5">
+                  From £2,200
+                </div>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6 flex-grow">
+                  A premium HA filler option for selected patients seeking a discreet, natural-looking girth enhancement using 8 x 1.2ml syringes.
+                </p>
+                <button
+                  onClick={handleAction}
+                  className="w-full py-3 bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-colors text-sm"
+                >
+                  Discuss 9.6ml Premium Option
+                </button>
+              </div>
+
+              {/* Premium Card 2 */}
+              <div className="bg-white/10 border border-white/10 rounded-2xl p-6 flex flex-col h-full">
+                <h4 className="text-blue-200 font-bold uppercase tracking-widest text-xs mb-2">
+                  Premium Plus
+                </h4>
+                <div className="text-4xl font-raleway font-bold text-white mb-2">
+                  14.4ml
+                </div>
+                <div className="text-blue-300 font-bold text-xl mb-5">
+                  From £2,950
+                </div>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6 flex-grow">
+                  A higher-volume premium option using 12 x 1.2ml syringes, suitable for selected patients wanting a more noticeable but proportionate enhancement.
+                </p>
+                <button
+                  onClick={handleAction}
+                  className="w-full py-3 bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-colors text-sm"
+                >
+                  Discuss 14.4ml Premium Option
+                </button>
+              </div>
+
+              {/* Premium Card 3 */}
+              <div className="bg-white/10 border border-white/10 rounded-2xl p-6 flex flex-col h-full">
+                <h4 className="text-blue-200 font-bold uppercase tracking-widest text-xs mb-2">
+                  Premium Maximum
+                </h4>
+                <div className="text-4xl font-raleway font-bold text-white mb-2">
+                  19.2ml
+                </div>
+                <div className="text-blue-300 font-bold text-xl mb-5">
+                  From £3,500
+                </div>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6 flex-grow">
+                  A high-volume premium package using 16 x 1.2ml syringes, considered only after consultation, anatomy review and suitability assessment.
+                </p>
+                <button
+                  onClick={handleAction}
+                  className="w-full py-3 bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-colors text-sm"
+                >
+                  Discuss 19.2ml Premium Option
+                </button>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-400 leading-relaxed mt-8">
+              Teoxane Ultra Deep is a premium hyaluronic acid dermal filler. Use for penile girth enhancement is considered only after consultation, consent and suitability assessment. Results vary between patients.
+            </p>
           </div>
        
-          <p className="text-sm text-slate-500 italic max-w-2xl mx-auto">
-            * Prices shown are indicative. Depending on your anatomy and treatment goals, Dr Abdi may recommend a different volume. All costs will be confirmed with you in writing before any procedure takes place. All treatment is subject to consultation and suitability assessment.
+          <p className="text-sm text-slate-500 italic max-w-2xl mx-auto mt-8">
+            * Prices shown are indicative. Depending on your anatomy and treatment goals, Dr Abdi may recommend a different volume or filler option. All costs will be confirmed with you in writing before any procedure takes place. All treatment is subject to consultation and suitability assessment.
           </p>
        
         </div>
@@ -922,7 +1012,6 @@ export default function PenisEnlargementClient({
         />
       </div>
 
-      {/* CHANGED: Now passing the defaultTreatment prop */}
       <ContactCTASection defaultTreatment="Penis Filler / Girth Enhancement" />
       <LocationSection />
       <Footer />
