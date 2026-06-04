@@ -7,21 +7,27 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
 
-export default function ContactCTASection() {
+// --- NEW: Interface for props ---
+interface ContactCTASectionProps {
+  defaultTreatment?: string;
+}
+
+export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunction" }: ContactCTASectionProps) {
   const pathname = usePathname();
   const router = useRouter(); 
   const [isOpen, setIsOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false); // Used for QR Logic
+  const [isDesktop, setIsDesktop] = useState(false);
   
   const [activeClinic, setActiveClinic] = useState<"st-albans" | "birmingham">(
     pathname?.startsWith("/birmingham") ? "birmingham" : "st-albans"
   );
 
+  // --- CHANGED: Uses the defaultTreatment prop ---
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    treatment: "Erectile Dysfunction",
+    treatment: defaultTreatment,
     message: "",
   });
   
@@ -41,7 +47,7 @@ export default function ContactCTASection() {
   // Check screen size for QR logic
   useEffect(() => {
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkDesktop(); // Run immediately
+    checkDesktop();
     window.addEventListener("resize", checkDesktop);
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
@@ -50,6 +56,33 @@ export default function ContactCTASection() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (submitStatus.type) setSubmitStatus({ type: null, message: "" });
+  };
+
+  // --- NEW: Call & WhatsApp tracking handlers ---
+  const handlePhoneClick = () => {
+    if (typeof window !== "undefined") {
+      const w = window as Window & { gtag?: (...args: unknown[]) => void };
+      if (w.gtag) {
+        w.gtag("event", "phone_click", {
+          event_category: "contact",
+          event_label: "phone_number_clicked",
+          page_path: window.location.pathname,
+        });
+      }
+    }
+  };
+
+  const handleWhatsAppClick = () => {
+    if (typeof window !== "undefined") {
+      const w = window as Window & { gtag?: (...args: unknown[]) => void };
+      if (w.gtag) {
+        w.gtag("event", "whatsapp_click", {
+          event_category: "contact",
+          event_label: "whatsapp_button_clicked",
+          page_path: window.location.pathname,
+        });
+      }
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -78,19 +111,19 @@ export default function ContactCTASection() {
         clinic_location: activeClinic === "birmingham" ? "Birmingham (Edgbaston)" : "St Albans",
       });
 
-    // --- GOOGLE ADS CONVERSION TRACKING ---
+      // --- GOOGLE ADS CONVERSION TRACKING ---
       if (typeof window !== "undefined") {
         const w = window as Window & { gtag?: (...args: unknown[]) => void };
         if (w.gtag) {
           w.gtag('event', 'conversion', {
-            'send_to': 'AW-18130686557/hY3YCIONsKUcEN2kscVD' // Ensure this label is correct!
+            'send_to': 'AW-18130686557/hY3YCIONsKUcEN2kscVD'
           });
         }
       }
       // ---------------------------------------
 
       // Clear form in the background immediately
-      setFormData({ name: "", email: "", phone: "", treatment: "Erectile Dysfunction", message: "" });
+      setFormData({ name: "", email: "", phone: "", treatment: defaultTreatment, message: "" });
 
       // DELAY THE REDIRECT BY 400ms TO ENSURE GOOGLE ADS CATCHES THE CONVERSION
       setTimeout(() => {
@@ -136,6 +169,7 @@ export default function ContactCTASection() {
 
             <a 
               href="tel:07990364147"
+              onClick={handlePhoneClick}
               className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-2xl font-bold text-sm hover:bg-slate-50 transition-all"
             >
               <FaPhoneAlt className="text-[#4041d1] w-3.5 h-3.5" />
@@ -227,13 +261,17 @@ export default function ContactCTASection() {
                         <div className="md:col-span-2 space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Treatment</label>
                           <select name="treatment" value={formData.treatment} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-slate-600 appearance-none text-sm">
+                            {/* --- CHANGED: Updated Options --- */}
+                            <option>Penis Filler / Girth Enhancement</option>
                             <option>Erectile Dysfunction</option>
                             <option>Shockwave Therapy for ED</option>
                             <option>P-Shot / PRP for ED</option>
                             <option>Peyronie&apos;s Disease</option>
-                            <option>Penis Filler / Girth Enhancement</option>
-                            <option>Testosterone / Blood Review</option>
-                            <option>Not sure — I want advice</option>
+                            <option>Vaginal Dryness Treatment</option>
+                            <option>Hair Restoration</option>
+                            <option>Joint Pain Relief</option>
+                            <option>Facial Aesthetics</option>
+                            <option>Other</option>
                           </select>
                         </div>
                         <div className="md:col-span-2 space-y-1">
@@ -279,6 +317,7 @@ export default function ContactCTASection() {
                                href="https://wa.me/447990364147" 
                                target="_blank" 
                                rel="noopener noreferrer"
+                               onClick={handleWhatsAppClick}
                                className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all"
                              >
                                <FaWhatsapp className="w-6 h-6" /> Open WhatsApp
