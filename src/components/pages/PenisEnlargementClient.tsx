@@ -211,15 +211,15 @@ export default function PenisEnlargementClient({
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
           <Image 
-            src="/PEnlargement.webp" 
-            alt="Doctor-Led Penile Filler Consultation" 
-            fill
-            priority
-            fetchPriority="high" 
-            quality={90}
-            sizes="100vw"
-            className="object-cover opacity-90"
-          />
+          src="/PEnlargement.webp" 
+          alt="Doctor-Led Penile Filler Consultation" 
+          fill
+          priority
+          fetchPriority="high" 
+          quality={70} // Changed from 90 to 70
+          sizes="100vw"
+          className="object-cover opacity-90"
+        />
         </div>
 
         {/* 2. Main Content */}
