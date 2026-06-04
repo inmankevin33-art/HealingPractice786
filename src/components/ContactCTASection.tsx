@@ -7,7 +7,6 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
 
-// --- NEW: Interface for props ---
 interface ContactCTASectionProps {
   defaultTreatment?: string;
 }
@@ -16,13 +15,17 @@ export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunc
   const pathname = usePathname();
   const router = useRouter(); 
   const [isOpen, setIsOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false); // Used for QR Logic
   
-  const [activeClinic, setActiveClinic] = useState<"st-albans" | "birmingham">(
-    pathname?.startsWith("/birmingham") ? "birmingham" : "st-albans"
+  // ADDED: Hampstead to the clinic state logic
+  const [activeClinic, setActiveClinic] = useState<"st-albans" | "birmingham" | "hampstead">(
+    pathname?.startsWith("/birmingham") 
+      ? "birmingham" 
+      : pathname?.startsWith("/hampstead") 
+      ? "hampstead" 
+      : "st-albans"
   );
 
-  // --- CHANGED: Uses the defaultTreatment prop ---
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -47,7 +50,7 @@ export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunc
   // Check screen size for QR logic
   useEffect(() => {
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkDesktop();
+    checkDesktop(); // Run immediately
     window.addEventListener("resize", checkDesktop);
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
@@ -58,7 +61,7 @@ export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunc
     if (submitStatus.type) setSubmitStatus({ type: null, message: "" });
   };
 
-  // --- NEW: Call & WhatsApp tracking handlers ---
+  // --- Call & WhatsApp tracking handlers ---
   const handlePhoneClick = () => {
     if (typeof window !== "undefined") {
       const w = window as Window & { gtag?: (...args: unknown[]) => void };
@@ -108,15 +111,16 @@ export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunc
         phone: formData.phone,
         treatment: formData.treatment,
         message: formData.message,
-        clinic_location: activeClinic === "birmingham" ? "Birmingham (Edgbaston)" : "St Albans",
+        // ADDED: Hampstead handling for email output
+        clinic_location: activeClinic === "birmingham" ? "Birmingham (Edgbaston)" : activeClinic === "hampstead" ? "Hampstead (London)" : "St Albans",
       });
 
-      // --- GOOGLE ADS CONVERSION TRACKING ---
+    // --- GOOGLE ADS CONVERSION TRACKING ---
       if (typeof window !== "undefined") {
         const w = window as Window & { gtag?: (...args: unknown[]) => void };
         if (w.gtag) {
           w.gtag('event', 'conversion', {
-            'send_to': 'AW-18130686557/hY3YCIONsKUcEN2kscVD'
+            'send_to': 'AW-18130686557/hY3YCIONsKUcEN2kscVD' 
           });
         }
       }
@@ -129,6 +133,8 @@ export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunc
       setTimeout(() => {
         if (activeClinic === "birmingham") {
           router.push("/birmingham/thank-you");
+        } else if (activeClinic === "hampstead") {
+          router.push("/hampstead/thank-you");
         } else {
           router.push("/thank-you");
         }
@@ -202,17 +208,18 @@ export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunc
                     <div className="lg:col-span-7">
                       <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
                         <div className="md:col-span-2 mb-2">
-                          <div className="flex p-1 bg-slate-200/50 rounded-2xl w-fit">
-                            {(["st-albans", "birmingham"] as const).map((clinic) => (
+                          <div className="flex flex-wrap gap-1 p-1 bg-slate-200/50 rounded-2xl w-fit">
+                            {/* ADDED: Hampstead to the map array */}
+                            {(["st-albans", "birmingham", "hampstead"] as const).map((clinic) => (
                               <button
                                 key={clinic}
                                 type="button"
                                 onClick={() => setActiveClinic(clinic)}
-                                className={`px-6 py-2 rounded-xl text-[11px] font-bold transition-all ${
+                                className={`px-4 sm:px-6 py-2 rounded-xl text-[11px] font-bold transition-all ${
                                   activeClinic === clinic ? "bg-white text-[#4041d1] shadow-sm" : "text-slate-500 hover:text-slate-700"
                                 }`}
                               >
-                                {clinic === "st-albans" ? "St Albans" : "Birmingham"}
+                                {clinic === "st-albans" ? "St Albans" : clinic === "birmingham" ? "Birmingham" : "Hampstead"}
                               </button>
                             ))}
                           </div>
@@ -261,7 +268,6 @@ export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunc
                         <div className="md:col-span-2 space-y-1">
                           <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Treatment</label>
                           <select name="treatment" value={formData.treatment} onChange={handleInputChange} className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-[#4041d1] transition-shadow bg-white text-slate-600 appearance-none text-sm">
-                            {/* --- CHANGED: Updated Options --- */}
                             <option>Penis Filler / Girth Enhancement</option>
                             <option>Erectile Dysfunction</option>
                             <option>Shockwave Therapy for ED</option>
