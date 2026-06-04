@@ -47,7 +47,12 @@ const Header = () => {
     { name: "Premature Ejaculation", href: getRoute("/premature-ejaculation"), isSubItem: true },
     { name: "Peyronie's Disease", href: getRoute("/peyronies-disease"), isSubItem: true },
     { name: "Personalised Medication", href: getRoute("/personalised-ed-medication"), isSubItem: true },
-    { name: "Penis Enlargement", href: getRoute("/penis-enlargement"), isSubItem: true },
+    // --- CHANGED: Specific override for Hampstead naming and URL ---
+    { 
+      name: isHampstead ? "Penis Filler" : "Penis Enlargement", 
+      href: isHampstead ? "/hampstead/penis-filler" : getRoute("/penis-enlargement"), 
+      isSubItem: true 
+    },
   ];
 
   const menuColumn2: MenuItem[] = [
@@ -87,7 +92,7 @@ const Header = () => {
               {/* Desktop Clinic Dropdown + Phone */}
               <div className="hidden lg:flex flex-col items-end">
                 
-                {/* --- NEW: Zero-JS CSS Dropdown --- */}
+                {/* Zero-JS CSS Dropdown */}
                 <div className="relative group">
                   <button className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5 mb-1 font-inter hover:text-white transition-colors pb-1">
                     <FaMapMarkerAlt className="w-3 h-3 text-[#4041d1]" />
