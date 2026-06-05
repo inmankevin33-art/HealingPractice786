@@ -47,20 +47,18 @@ const Header = () => {
     { name: "Premature Ejaculation", href: getRoute("/premature-ejaculation"), isSubItem: true },
     { name: "Peyronie's Disease", href: getRoute("/peyronies-disease"), isSubItem: true },
     { name: "Personalised Medication", href: getRoute("/personalised-ed-medication"), isSubItem: true },
-    // --- CHANGED: Name is universally "Penis Filler", but routes remain location-specific ---
-    { 
-      name: "Penis Filler", 
-      href: isHampstead ? "/hampstead/penis-filler" : getRoute("/penis-enlargement"), 
-      isSubItem: true 
-    },
+    { name: "Penis Filler", href: isHampstead ? "/hampstead/penis-filler" : getRoute("/penis-enlargement"), isSubItem: true },
   ];
 
+  // --- CHANGED: Dynamically hide non-intimate treatments for Hampstead ---
   const menuColumn2: MenuItem[] = [
-    { name: "Facial Aesthetics", href: getRoute("/facial-aesthetics") },
-    { name: "Polynucleotides", href: getRoute("/polynucleotides"), isSubItem: true },
-    { name: "Joint Injections", href: getRoute("/joint-injections"), isSpacer: true },
-    { name: "Hair Restoration", href: getRoute("/hair-restoration"), isSpacer: true },
-    { name: "Prices", href: getRoute("/prices"), isSpacer: true },
+    ...(!isHampstead ? [
+      { name: "Facial Aesthetics", href: getRoute("/facial-aesthetics") },
+      { name: "Polynucleotides", href: getRoute("/polynucleotides"), isSubItem: true },
+      { name: "Joint Injections", href: getRoute("/joint-injections"), isSpacer: true },
+      { name: "Hair Restoration", href: getRoute("/hair-restoration"), isSpacer: true },
+    ] : []),
+    { name: "Prices", href: getRoute("/prices"), isSpacer: !isHampstead }, // Removes top spacer if it becomes the first item
     { name: "FAQs", href: getRoute("/faq"), isSpacer: true },
     { name: "Health Blog", href: "/blog", isSpacer: true },
     { name: "Contact Us", href: getRoute("/contact"), isContact: true, isSpacer: true },
