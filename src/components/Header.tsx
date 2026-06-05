@@ -47,9 +47,9 @@ const Header = () => {
     { name: "Premature Ejaculation", href: getRoute("/premature-ejaculation"), isSubItem: true },
     { name: "Peyronie's Disease", href: getRoute("/peyronies-disease"), isSubItem: true },
     { name: "Personalised Medication", href: getRoute("/personalised-ed-medication"), isSubItem: true },
-    // --- CHANGED: Specific override for Hampstead naming and URL ---
+    // --- CHANGED: Name is universally "Penis Filler", but routes remain location-specific ---
     { 
-      name: isHampstead ? "Penis Filler" : "Penis Enlargement", 
+      name: "Penis Filler", 
       href: isHampstead ? "/hampstead/penis-filler" : getRoute("/penis-enlargement"), 
       isSubItem: true 
     },
