@@ -6,10 +6,10 @@ const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c"
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Penis Filler Hampstead | Doctor-Led HA Treatment",
+    absolute: "Penis Filler Hampstead, London | Doctor-Led HA Treatment",
   },
   // Kept concise and under 300 characters for optimal SEO display
-  description: "Private doctor-led penis filler in Hampstead using premium HA filler for girth enhancement. Discreet consultation in North West London, pricing from £995.",
+  description: "Private doctor-led penis filler in Hampstead, London using premium HA filler for girth enhancement. Discreet consultation in North West London, pricing from £995.",
   
   alternates: {
     canonical: "https://www.healing-prp.co.uk/hampstead/penis-filler",
