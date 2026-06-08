@@ -47,10 +47,14 @@ const Header = () => {
     { name: "Premature Ejaculation", href: getRoute("/premature-ejaculation"), isSubItem: true },
     { name: "Peyronie's Disease", href: getRoute("/peyronies-disease"), isSubItem: true },
     { name: "Personalised Medication", href: getRoute("/personalised-ed-medication"), isSubItem: true },
-    { name: "Penis Filler", href: isHampstead ? "/hampstead/penis-filler" : getRoute("/penis-enlargement"), isSubItem: true },
+    { 
+      name: "Penis Filler", 
+      href: isHampstead ? "/hampstead/penis-filler" : getRoute("/penis-enlargement"), 
+      isSubItem: true 
+    },
   ];
 
-  // --- CHANGED: Dynamically hide non-intimate treatments for Hampstead ---
+  // Dynamically hide non-intimate treatments for Hampstead
   const menuColumn2: MenuItem[] = [
     ...(!isHampstead ? [
       { name: "Facial Aesthetics", href: getRoute("/facial-aesthetics") },
@@ -58,7 +62,7 @@ const Header = () => {
       { name: "Joint Injections", href: getRoute("/joint-injections"), isSpacer: true },
       { name: "Hair Restoration", href: getRoute("/hair-restoration"), isSpacer: true },
     ] : []),
-    { name: "Prices", href: getRoute("/prices"), isSpacer: !isHampstead }, // Removes top spacer if it becomes the first item
+    { name: "Prices", href: getRoute("/prices"), isSpacer: !isHampstead }, 
     { name: "FAQs", href: getRoute("/faq"), isSpacer: true },
     { name: "Health Blog", href: "/blog", isSpacer: true },
     { name: "Contact Us", href: getRoute("/contact"), isContact: true, isSpacer: true },
@@ -70,16 +74,21 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             
-            {/* Logo Section */}
+            {/* --- CHANGED: Logo Section with Dynamic Location Badge --- */}
             <div className="flex-shrink-0">
               <Link href={isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-3">
                   <div className="relative h-10 w-10 md:h-11 md:w-11 flex-shrink-0">
                     <Image src="/Logo2.png" alt="Healing-PRP Logo" fill className="object-contain" priority />
                   </div>
-                  <h1 className="text-xl md:text-2xl font-raleway font-semibold text-white tracking-tight whitespace-nowrap">
-                    Healing-PRP Clinics
-                  </h1>
+                  <div className="flex flex-col items-start justify-center">
+                    <h1 className="text-lg md:text-2xl font-raleway font-semibold text-white tracking-tight whitespace-nowrap leading-none mb-1 md:mb-1.5">
+                      Healing-PRP Clinics
+                    </h1>
+                    <span className="inline-flex items-center px-2 py-0.5 bg-[#4041d1]/30 border border-[#4041d1]/50 text-blue-100 text-[8px] md:text-[9px] font-bold uppercase tracking-widest rounded-full font-inter leading-none">
+                      {isBirmingham ? "Birmingham Clinic" : isHampstead ? "Hampstead Clinic" : "St Albans Clinic"}
+                    </span>
+                  </div>
                 </div>
               </Link>
             </div>
