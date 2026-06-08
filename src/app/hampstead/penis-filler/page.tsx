@@ -6,19 +6,19 @@ const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c"
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Penis Filler Hampstead, London | Doctor-Led HA Treatment",
+    absolute: "Penis Filler Hampstead, London | Non-Surgical Girth Enhancement",
   },
-  // Kept concise and under 300 characters for optimal SEO display
-  description: "Private doctor-led penis filler in Hampstead, London using premium HA filler for girth enhancement. Discreet consultation in North West London, pricing from £995.",
+  description:
+    "Doctor-led penis filler treatment in Hampstead, London using hyaluronic acid filler. Discreet private consultation in North West London. Fees apply.",
   
   alternates: {
     canonical: "https://www.healing-prp.co.uk/hampstead/penis-filler",
   },
     
   openGraph: {
-    title: "Penis Filler Hampstead | Doctor-Led HA Treatment",
+    title: "Penis Filler Hampstead, London | Non-Surgical Girth Enhancement",
     description:
-      "Private doctor-led penis filler in Hampstead using premium HA filler for girth enhancement. Discreet consultation in North West London, pricing from £995.",
+      "Doctor-led penis filler treatment in Hampstead, London using hyaluronic acid filler. Discreet private consultation in North West London. Fees apply.",
     url: "https://www.healing-prp.co.uk/hampstead/penis-filler",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
@@ -28,21 +28,20 @@ export const metadata: Metadata = {
         url: "/hero_img.png",
         width: 1200,
         height: 630,
-        alt: "Doctor-Led Penis Filler Hampstead | Healing-PRP Clinics",
+        alt: "Doctor-Led Penis Filler Hampstead, London | Healing-PRP Clinics",
       },
     ],
   },
   
   twitter: {
     card: "summary_large_image",
-    title: "Penis Filler Hampstead | Doctor-Led HA Treatment",
-    description: "Private doctor-led penis filler in Hampstead using premium HA filler for girth enhancement. Discreet consultation in North West London, pricing from £995.",
+    title: "Penis Filler Hampstead, London | Non-Surgical Girth Enhancement",
+    description: "Doctor-led penis filler treatment in Hampstead, London using hyaluronic acid filler. Discreet private consultation in North West London. Fees apply.",
     images: ["/hero_img.png"],
   },
 };
 
 // --- SEO RICH FAQS (Hampstead & North West London Focus) ---
-// Updated to reflect medically compliant wording
 const hampsteadFaqs = [
   {
     question: "What is penis filler treatment in Hampstead?",
@@ -159,7 +158,7 @@ const enlargementSchemaHampstead = {
         "Penile Enhancement London"
       ],
       "url": "https://www.healing-prp.co.uk/hampstead/penis-filler",
-      "description": "Doctor-led penis filler treatment in Hampstead using premium hyaluronic acid (HA) filler for men seeking discreet, non-surgical penile girth enhancement. Suitable for patients from North West London and surrounding areas.",
+      "description": "Doctor-led penis filler treatment in Hampstead, London using premium hyaluronic acid (HA) filler for men seeking discreet, non-surgical penile girth enhancement. Suitable for patients from North West London and surrounding areas.",
       "relevantSpecialty": "Urologic",
       "bodyLocation": "Penis",
       "procedureType": "Non-surgical",
@@ -231,7 +230,7 @@ export default function HampsteadPenisFillerPage() {
       
       <PenisEnlargementClient 
         locationName="Hampstead"
-        servingAreas="Belsize Park • West Hampstead • Highgate • Golders Green • St John’s Wood • Swiss Cottage • North West London"
+        servingAreas="Hampstead, Belsize Park, West Hampstead, Highgate, Golders Green, St John’s Wood, Swiss Cottage and North West London"
         faqs={hampsteadFaqs}
       />
     </main>
