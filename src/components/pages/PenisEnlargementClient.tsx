@@ -753,7 +753,7 @@ export default function PenisEnlargementClient({
               aria-label="Speak To A Specialist"
               className="px-6 py-4 w-full md:w-max md:text-base text-sm items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg shadow-[#4041d1]/20 active:scale-95"
             >
-              <FaEnvelope className="w-4 h-4" aria-hidden="true" /> Request Free Consultation
+              <FaEnvelope className="w-4 h-4" aria-hidden="true" /> Book Private Consultation
             </button>
             <button
               onClick={() => setIsAssessmentOpen(true)}
