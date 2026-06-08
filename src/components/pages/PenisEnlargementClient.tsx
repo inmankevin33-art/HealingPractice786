@@ -211,15 +211,15 @@ export default function PenisEnlargementClient({
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
           <Image 
-          src="/PEnlargement.webp" 
-          alt="Doctor-Led Penile Filler Consultation" 
-          fill
-          priority
-          fetchPriority="high" 
-          quality={70} // Changed from 90 to 70
-          sizes="100vw"
-          className="object-cover opacity-90"
-        />
+            src="/PEnlargement.webp" 
+            alt="Doctor-Led Penile Filler Consultation" 
+            fill
+            priority
+            fetchPriority="high" 
+            quality={70}
+            sizes="100vw"
+            className="object-cover opacity-90"
+          />
         </div>
 
         {/* 2. Main Content */}
@@ -257,7 +257,7 @@ export default function PenisEnlargementClient({
             className="mt-4 text-sm md:text-base text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-6 font-medium"
           >
             {isHampstead 
-              ? "Private hyaluronic acid filler treatment for men seeking discreet, non-surgical girth enhancement in a premium North West London clinical setting." 
+              ? "Private hyaluronic acid filler treatment for men seeking discreet, non-surgical girth enhancement in Hampstead, North West London." 
               : "Premium hyaluronic acid (HA) filler for men seeking discreet, non-surgical penile girth enhancement in a clinical setting."}
           </motion.p>
 
@@ -393,14 +393,14 @@ export default function PenisEnlargementClient({
       <section className="py-16 md:py-24 bg-white relative z-30 border-b border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-            Non-Surgical Penis Enlargement {locationName ? `in ${locationName}` : ''}
+            Non-Surgical Penis Enlargement {isHampstead ? "in Hampstead, London" : locationName ? `in ${locationName}` : ''}
           </h2>
           <div className="prose prose-lg text-slate-600 mx-auto font-inter">
             <p className="font-semibold text-slate-800 text-lg md:text-xl mb-4">
               Penis filler, also referred to as penile filler, penile dermal filler, or non-surgical penoplasty, uses premium hyaluronic acid (HA) to increase girth without the need for invasive surgery.
             </p>
             <p className="mb-8">
-              While historically associated with surgical &quot;penis enlargement,&quot; modern advancements mean that achieving a proportionate, natural-looking increase in girth and a fuller flaccid appearance is now possible through a quick, minimally invasive procedure. Our treatments are administered exclusively by Dr Abdi, ensuring maximum safety, discretion, and tailored volume planning.
+              While historically associated with surgical &quot;penis enlargement,&quot; modern advancements mean that achieving a proportionate, natural-looking increase in girth and a fuller flaccid appearance is now possible through a quick, minimally invasive procedure. Our treatments are administered exclusively by experienced doctors, ensuring maximum safety, discretion, and tailored volume planning.
             </p>
             <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 inline-block text-sm text-left shadow-sm">
               <strong className="text-slate-900">Looking to improve erectile function or blood flow?</strong><br/>
