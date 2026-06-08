@@ -113,8 +113,8 @@ export default function Footer() {
             </div>
             
             <p className="text-slate-400 mb-6 text-xs leading-relaxed max-w-xs">
-              Evidence‑based treatments using your own Platelet‑Rich Plasma
-              (PRP) in a discreet, professional medical setting.
+              Doctor-led regenerative, injectable and intimate health treatments 
+              in a discreet professional medical setting.
             </p>
 
             {/* Visible Contact List */}
