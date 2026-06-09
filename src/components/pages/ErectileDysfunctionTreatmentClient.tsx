@@ -282,7 +282,7 @@ export default function ErectileDysfunctionTreatmentClient({
                 Treatment With Dr Syed Abdi
               </h2>
               <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, PRP treatments and non-surgical penile filler. The appointment is discreet, private and focused on suitability, safety and realistic expectations.
+                Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, PRP treatments and non-surgical intimate health procedures. The appointment is discreet, private and focused on suitability, safety and realistic expectations.
               </p>
             </div>
           </div>
