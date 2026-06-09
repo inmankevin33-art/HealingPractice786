@@ -392,27 +392,6 @@ export default function PenisEnlargementClient({
         </div>
       </div>
 
-      {/* --- INTRODUCTION & SYNONYM BRIDGE --- */}
-      <section className="py-16 md:py-24 bg-white relative z-30 border-b border-slate-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-            Non-Surgical Penis Enlargement {isHampstead ? "in Hampstead, London" : locationName ? `in ${locationName}` : ''}
-          </h2>
-          <div className="prose prose-lg text-slate-600 mx-auto font-inter">
-            <p className="font-semibold text-slate-800 text-lg md:text-xl mb-4">
-              Penis filler, also referred to as penile filler, penile dermal filler, or non-surgical penoplasty, uses premium hyaluronic acid (HA) to increase girth without the need for invasive surgery.
-            </p>
-            <p className="mb-8">
-              While historically associated with surgical &quot;penis enlargement,&quot; modern advancements mean that achieving a proportionate, natural-looking increase in girth and a fuller flaccid appearance is now possible through a quick, minimally invasive procedure. Treatment is carried out by Dr Abdi in a discreet clinical setting, supporting a high standard of safety, discretion and tailored volume planning.
-            </p>
-            <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 inline-block text-sm text-left shadow-sm">
-              <strong className="text-slate-900">Looking to improve erectile function or blood flow?</strong><br/>
-              Read about our <Link href="/p-shot" className="text-[#4041d1] hover:underline font-bold">P-Shot treatment here</Link>.
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* --- DOCTOR-LED TRUST SECTION (MOVED UP) --- */}
       <section className="py-24 bg-white font-inter border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -431,6 +410,27 @@ export default function PenisEnlargementClient({
               <p className="text-slate-600 text-base md:text-lg leading-relaxed">
                 Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, PRP treatments and non-surgical penile filler. The appointment is discreet, private and focused on suitability, safety and realistic expectations.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- INTRODUCTION & SYNONYM BRIDGE --- */}
+      <section className="py-16 md:py-24 bg-white relative z-30 border-b border-slate-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+            Non-Surgical Penis Enlargement {isHampstead ? "in Hampstead, London" : locationName ? `in ${locationName}` : ''}
+          </h2>
+          <div className="prose prose-lg text-slate-600 mx-auto font-inter">
+            <p className="font-semibold text-slate-800 text-lg md:text-xl mb-4">
+              Penis filler, also referred to as penile filler, penile dermal filler, or non-surgical penoplasty, uses premium hyaluronic acid (HA) to increase girth without the need for invasive surgery.
+            </p>
+            <p className="mb-8">
+              While historically associated with surgical &quot;penis enlargement,&quot; modern advancements mean that achieving a proportionate, natural-looking increase in girth and a fuller flaccid appearance is now possible through a quick, minimally invasive procedure. Treatment is carried out by Dr Abdi in a discreet clinical setting, supporting a high standard of safety, discretion and tailored volume planning.
+            </p>
+            <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 inline-block text-sm text-left shadow-sm">
+              <strong className="text-slate-900">Looking to improve erectile function or blood flow?</strong><br/>
+              Read about our <Link href="/p-shot" className="text-[#4041d1] hover:underline font-bold">P-Shot treatment here</Link>.
             </div>
           </div>
         </div>
