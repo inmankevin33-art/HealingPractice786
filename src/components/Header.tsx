@@ -19,11 +19,18 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   
+  // Real active route
   const isBirmingham = pathname?.startsWith("/birmingham");
   const isHampstead = pathname?.startsWith("/hampstead");
 
+  // --- NEW: Context Switcher State for the Menu ---
+  const [menuContext, setMenuContext] = useState<"stalbans" | "birmingham" | "hampstead">(
+    isBirmingham ? "birmingham" : isHampstead ? "hampstead" : "stalbans"
+  );
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  // Prevent background scrolling when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -32,40 +39,48 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
-  const getRoute = (basePath: string) => {
-    if (isBirmingham) return `/birmingham${basePath}`;
-    if (isHampstead) return `/hampstead${basePath}`;
+  // Keep menu context synced with the actual route when the menu is closed
+  useEffect(() => {
+    if (!isMenuOpen) {
+      setMenuContext(isBirmingham ? "birmingham" : isHampstead ? "hampstead" : "stalbans");
+    }
+  }, [isMenuOpen, isBirmingham, isHampstead]);
+
+  // Dynamic route builder based on the selected MENU context (not the actual page)
+  const getMenuRoute = (basePath: string) => {
+    if (menuContext === "birmingham") return `/birmingham${basePath}`;
+    if (menuContext === "hampstead") return `/hampstead${basePath}`;
     return basePath;
   };
 
   const menuColumn1: MenuItem[] = [
-    { name: "Sexual Rejuvenation", href: getRoute("/sexual-rejuvenation") },
-    { name: "P-Shot Treatment", href: getRoute("/p-shot"), isSubItem: true },
-    { name: "O-Shot Treatment", href: getRoute("/o-shot"), isSubItem: true },
-    { name: "Erectile Dysfunction", href: getRoute("/erectile-dysfunction"), isSubItem: true },
-    { name: "Shockwave Therapy", href: getRoute("/shockwave-therapy-erectile-dysfunction"), isSubItem: true },
-    { name: "Premature Ejaculation", href: getRoute("/premature-ejaculation"), isSubItem: true },
-    { name: "Peyronie's Disease", href: getRoute("/peyronies-disease"), isSubItem: true },
-    { name: "Personalised Medication", href: getRoute("/personalised-ed-medication"), isSubItem: true },
+    { name: "Sexual Rejuvenation", href: getMenuRoute("/sexual-rejuvenation") },
+    { name: "P-Shot Treatment", href: getMenuRoute("/p-shot"), isSubItem: true },
+    { name: "O-Shot Treatment", href: getMenuRoute("/o-shot"), isSubItem: true },
+    { name: "Erectile Dysfunction", href: getMenuRoute("/erectile-dysfunction"), isSubItem: true },
+    { name: "Shockwave Therapy", href: getMenuRoute("/shockwave-therapy-erectile-dysfunction"), isSubItem: true },
+    { name: "Premature Ejaculation", href: getMenuRoute("/premature-ejaculation"), isSubItem: true },
+    { name: "Peyronie's Disease", href: getMenuRoute("/peyronies-disease"), isSubItem: true },
+    { name: "Personalised Medication", href: getMenuRoute("/personalised-ed-medication"), isSubItem: true },
     { 
       name: "Penis Filler", 
-      href: isHampstead ? "/hampstead/penis-filler" : getRoute("/penis-enlargement"), 
+      href: menuContext === "hampstead" ? "/hampstead/penis-filler" : getMenuRoute("/penis-enlargement"), 
       isSubItem: true 
     },
   ];
 
-  // Dynamically hide non-intimate treatments for Hampstead
+  // Dynamically hide non-intimate treatments when the menu context is set to Hampstead
   const menuColumn2: MenuItem[] = [
-    ...(!isHampstead ? [
-      { name: "Facial Aesthetics", href: getRoute("/facial-aesthetics") },
-      { name: "Polynucleotides", href: getRoute("/polynucleotides"), isSubItem: true },
-      { name: "Joint Injections", href: getRoute("/joint-injections"), isSpacer: true },
-      { name: "Hair Restoration", href: getRoute("/hair-restoration"), isSpacer: true },
+    ...(menuContext !== "hampstead" ? [
+      { name: "Facial Aesthetics", href: getMenuRoute("/facial-aesthetics") },
+      { name: "Polynucleotides", href: getMenuRoute("/polynucleotides"), isSubItem: true },
+      { name: "Joint Injections", href: getMenuRoute("/joint-injections"), isSpacer: true },
+      { name: "Hair Restoration", href: getMenuRoute("/hair-restoration"), isSpacer: true },
     ] : []),
-    { name: "Prices", href: getRoute("/prices"), isSpacer: !isHampstead }, 
-    { name: "FAQs", href: getRoute("/faq"), isSpacer: true },
+    { name: "Prices", href: getMenuRoute("/prices"), isSpacer: menuContext !== "hampstead" }, 
+    { name: "FAQs", href: getMenuRoute("/faq"), isSpacer: true },
     { name: "Health Blog", href: "/blog", isSpacer: true },
-    { name: "Contact Us", href: getRoute("/contact"), isContact: true, isSpacer: true },
+    { name: "Contact Us", href: getMenuRoute("/contact"), isContact: true, isSpacer: true },
   ];
 
   return (
@@ -74,7 +89,7 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             
-            {/* --- CHANGED: Logo Section with Dynamic Location Badge --- */}
+            {/* Logo Section with Dynamic Location Badge */}
             <div className="flex-shrink-0">
               <Link href={isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-3">
@@ -85,8 +100,9 @@ const Header = () => {
                     <h1 className="text-lg md:text-2xl font-raleway font-semibold text-white tracking-tight whitespace-nowrap leading-none mb-1 md:mb-1.5">
                       Healing-PRP Clinics
                     </h1>
+                    {/* --- CHANGED: EXPLICIT WEBSITE BADGE --- */}
                     <span className="inline-flex items-center px-2 py-0.5 bg-[#4041d1]/30 border border-[#4041d1]/50 text-blue-100 text-[8px] md:text-[9px] font-bold uppercase tracking-widest rounded-full font-inter leading-none">
-                      {isBirmingham ? "Birmingham Clinic" : isHampstead ? "Hampstead Clinic" : "St Albans Clinic"}
+                      {isBirmingham ? "Birmingham Website" : isHampstead ? "Hampstead Website" : "St Albans Website"}
                     </span>
                   </div>
                 </div>
@@ -174,31 +190,28 @@ const Header = () => {
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-4">
               
-              {/* Location Selectors */}
+              {/* --- CHANGED: Location Selectors are now Interactive Buttons --- */}
               <div className="mb-8 border-b border-white/10 pb-8">
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-4 font-inter">Select Your Location</p>
                 <div className="flex flex-col md:flex-row gap-3 md:gap-4 max-w-3xl">
-                  <Link 
-                    href="/" 
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${!isBirmingham && !isHampstead ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
+                  <button 
+                    onClick={() => setMenuContext("stalbans")}
+                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${menuContext === "stalbans" ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
                     St Albans
-                  </Link>
-                  <Link 
-                    href="/birmingham" 
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${isBirmingham ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
+                  </button>
+                  <button 
+                    onClick={() => setMenuContext("birmingham")}
+                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${menuContext === "birmingham" ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
                     Birmingham
-                  </Link>
-                  <Link 
-                    href="/hampstead" 
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${isHampstead ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
+                  </button>
+                  <button 
+                    onClick={() => setMenuContext("hampstead")}
+                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${menuContext === "hampstead" ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
                   >
                     Hampstead
-                  </Link>
+                  </button>
                 </div>
               </div>
 
@@ -209,7 +222,7 @@ const Header = () => {
                 <div className="flex flex-col space-y-3">
                   {menuColumn1.map((item, idx) => (
                     <motion.div
-                      key={`col1-${idx}`}
+                      key={`col1-${idx}-${menuContext}`} // Added menuContext to key to force re-animation on switch
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.05 }}
@@ -234,7 +247,7 @@ const Header = () => {
                 <div className="flex flex-col space-y-3 mt-6 md:mt-0">
                   {menuColumn2.map((item, idx) => (
                     <motion.div
-                      key={`col2-${idx}`}
+                      key={`col2-${idx}-${menuContext}`} // Added menuContext to key to force re-animation on switch
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: (menuColumn1.length + idx) * 0.05 }}
