@@ -413,6 +413,29 @@ export default function PenisEnlargementClient({
         </div>
       </section>
 
+      {/* --- DOCTOR-LED TRUST SECTION (MOVED UP) --- */}
+      <section className="py-24 bg-white font-inter border-b border-slate-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div className="shrink-0 relative">
+              <img
+                src="/dr-syed-abdi.webp"
+                alt="Dr Syed Abdi, GMC-registered doctor at Healing-PRP Clinics"
+                className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-md mx-auto md:mx-0 border-4 border-white"
+              />
+            </div>
+            <div className="text-center md:text-left">
+              <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
+                Treatment With Dr Syed Abdi
+              </h2>
+              <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+                Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, PRP treatments and non-surgical penile filler. The appointment is discreet, private and focused on suitability, safety and realistic expectations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- BENEFITS SECTION --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -677,29 +700,6 @@ export default function PenisEnlargementClient({
                    <div className="text-slate-500 text-[10px] font-medium">Dependent on metabolism</div>
               </div>
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- DOCTOR-LED TRUST SECTION --- */}
-      <section className="py-24 bg-white font-inter border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="shrink-0 relative">
-              <img
-                src="/dr-syed-abdi.webp"
-                alt="Dr Syed Abdi, GMC-registered doctor at Healing-PRP Clinics"
-                className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-md mx-auto md:mx-0 border-4 border-white"
-              />
-            </div>
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
-                Treatment With Dr Syed Abdi
-              </h2>
-              <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, PRP treatments and non-surgical penile filler. The appointment is discreet, private and focused on suitability, safety and realistic expectations.
-              </p>
-            </div>
           </div>
         </div>
       </section>
