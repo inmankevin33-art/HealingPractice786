@@ -246,9 +246,12 @@ export default function PenisEnlargementClient({
             className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
             {isHampstead ? "Doctor-Led Penis Filler" : "Doctor-Led Penile Filler"} <br />
-            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block">in {locationName}</span>
+            {/* SAFELY ADDED LONDON CONDITIONALLY */}
+            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block">
+              in {isHampstead ? "Hampstead, London" : locationName}
+            </span>
           </motion.h1>
-
+          
           <motion.p 
             custom={2}
             initial="hidden"
