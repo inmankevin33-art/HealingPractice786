@@ -400,7 +400,7 @@ export default function PenisEnlargementClient({
               Penis filler, also referred to as penile filler, penile dermal filler, or non-surgical penoplasty, uses premium hyaluronic acid (HA) to increase girth without the need for invasive surgery.
             </p>
             <p className="mb-8">
-              While historically associated with surgical &quot;penis enlargement,&quot; modern advancements mean that achieving a proportionate, natural-looking increase in girth and a fuller flaccid appearance is now possible through a quick, minimally invasive procedure. Our treatments are administered exclusively by Dr Abdi, ensuring maximum safety, discretion, and tailored volume planning.
+              While historically associated with surgical &quot;penis enlargement,&quot; modern advancements mean that achieving a proportionate, natural-looking increase in girth and a fuller flaccid appearance is now possible through a quick, minimally invasive procedure. Treatment is carried out by Dr Abdi in a discreet clinical setting, supporting a high standard of safety, discretion and tailored volume planning.
             </p>
             <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 inline-block text-sm text-left shadow-sm">
               <strong className="text-slate-900">Looking to improve erectile function or blood flow?</strong><br/>
@@ -469,7 +469,7 @@ export default function PenisEnlargementClient({
               HA Fillers vs. Surgical Fat Transfer
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              We exclusively use premium Hyaluronic Acid (HA) because it offers a safer, more predictable, and natural-feeling result compared to invasive surgical options.
+              We use premium hyaluronic acid filler because it offers a controlled, adjustable and non-surgical approach for men seeking girth enhancement without surgery.
             </p>
           </div>
 
@@ -759,7 +759,7 @@ export default function PenisEnlargementClient({
               onClick={() => setIsAssessmentOpen(true)}
               className="px-6 py-4 w-full md:w-max md:text-base text-sm items-center justify-center cursor-pointer border-2 border-slate-200 text-slate-700 hover:bg-slate-50 rounded-xl font-inter font-bold transition-all duration-300 inline-flex gap-2 active:scale-95"
             >
-              Start Free Online Assessment
+              Check Suitability
             </button>
           </div>
 
