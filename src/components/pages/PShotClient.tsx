@@ -16,7 +16,7 @@ import {
   FaExpandArrowsAlt,
   FaShieldAlt,
   FaArrowRight,
-  FaRegClock,     
+  FaRegClock,      
   FaWalking,  
   FaUserMd,   
   FaMicroscope, 
@@ -57,16 +57,18 @@ export default function PShotClient({
   const [showAllFaqs, setShowAllFaqs] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
+  // --- LOCATION LOGIC ---
   const isBirmingham = locationName === "Birmingham";
+  const isHampstead = locationName === "Hampstead";
 
- // --- NEW: Added the interaction state ---
+  // --- INTERACTION STATE ---
   const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsLoaded(true);
 
-    // --- NEW: Listen for the first real user interaction for PageSpeed ---
+    // --- Listen for the first real user interaction for PageSpeed ---
     const handleInteraction = () => {
       setHasInteracted(true);
       window.removeEventListener("scroll", handleInteraction);
@@ -103,7 +105,7 @@ export default function PShotClient({
       }
     }
 
-    // --- NEW: Force interaction state if they click before scrolling ---
+    // --- Force interaction state if they click before scrolling ---
     setHasInteracted(true);
     
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
@@ -124,6 +126,7 @@ export default function PShotClient({
       }
     }, 300);
   };
+  
   // --- VARIANTS ---
   const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
@@ -208,7 +211,7 @@ export default function PShotClient({
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         
         {/* 1. Background */}
         <div className="absolute inset-0 z-0">
@@ -226,14 +229,14 @@ export default function PShotClient({
         </div>
 
         {/* 2. Main Content */}
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-48 md:pb-24">
           
           <motion.div 
             custom={0}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
             variants={fadeUpVariants}
-            className="inline-block px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
+            className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 border border-blue-400/30 rounded-full bg-blue-900/20 backdrop-blur-sm transform-gpu"
           >
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Doctor-Led Private Clinic</span>
           </motion.div>
@@ -246,7 +249,9 @@ export default function PShotClient({
             className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
             The P-Shot (Priapus Shot) <br />
-            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block">in {locationName}</span>
+            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block">
+              in {isHampstead ? "Hampstead, London" : locationName}
+            </span>
           </motion.h1>
 
           <motion.p 
@@ -258,6 +263,8 @@ export default function PShotClient({
           >
             {isBirmingham 
               ? "The P-Shot (Priapus Shot) is a clinician-delivered PRP procedure offered at our Edgbaston clinic in Birmingham. Designed as an advanced Erectile Dysfunction (ED) treatment, it uses platelet-rich plasma prepared from your own blood to support sexual performance, tissue health, and penile blood flow. A consultation is required to assess suitability and discuss alternatives."
+              : isHampstead
+              ? "The P-Shot (Priapus Shot) is a doctor-led PRP procedure offered at our Hampstead clinic in London. Designed as an advanced Erectile Dysfunction (ED) option, it uses platelet-rich plasma prepared from your own blood to support sexual performance, tissue health, and penile blood flow. A private clinical consultation is required to assess suitability."
               : "A doctor-led PRP-based procedure using your own platelet-rich plasma. Designed as an advanced Erectile Dysfunction (ED) option, it is discussed during consultation for suitable patients seeking non-surgical treatments to support sexual performance. A clinical consultation is required to assess suitability and discuss alternatives."
             }
           </motion.p>
@@ -297,10 +304,10 @@ export default function PShotClient({
           </motion.div>
         </div>
 
-        {/* 3. Hero Trust Badges */}
-        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        {/* --- HERO TRUST BADGES (Fixed for Mobile) --- */}
+        <div className={`absolute bottom-0 left-0 w-full z-30 bg-[#0A1128]/95 backdrop-blur-xl border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
-            <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 divide-none md:divide-x divide-white/10">
               
               <a 
                 href="#reviews" 
@@ -710,6 +717,18 @@ export default function PShotClient({
             </div>
           )}
 
+          {isHampstead && (
+            <div className="max-w-3xl mx-auto mb-16 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm text-left flex items-start gap-4">
+               <FaMapMarkerAlt className="text-[#4041d1] text-3xl shrink-0 mt-1" aria-hidden="true" />
+               <div>
+                 <h3 className="font-bold font-raleway text-slate-900 mb-2 text-lg">Visiting our Hampstead Clinic</h3>
+                 <p className="text-slate-600 text-sm leading-relaxed">
+                   Our Hampstead clinic provides a highly private, professional medical environment for intimate regenerative health consultations. Conveniently located for patients across North West London, including Belsize Park, West Hampstead, Highgate, Golders Green, and St John's Wood.
+                 </p>
+               </div>
+            </div>
+          )}
+
           {/* Action Buttons */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full">
             <button
@@ -720,7 +739,7 @@ export default function PShotClient({
               <FaEnvelope className="w-4 h-4" aria-hidden="true" /> Speak To A Specialist
             </button>
             <Link
-              href={isBirmingham ? "/birmingham/faq" : "/faq"}
+              href={isBirmingham ? "/birmingham/faq" : isHampstead ? "/hampstead/faq" : "/faq"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-slate-200 text-slate-700 hover:border-[#4041d1] hover:text-[#4041d1] bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
             >
               View Clinic FAQs
@@ -757,7 +776,7 @@ export default function PShotClient({
                   This approach uses your own platelet-rich plasma (PRP), enhanced with exosome-derived regenerative signalling, and is designed to support tissue repair and blood flow.
                 </p>
                 <div className="mt-6 flex items-center gap-2 text-xs font-bold text-[#4041d1] uppercase tracking-widest">
-                  <FaMapMarkerAlt aria-hidden="true" /> Available in St Albans & Birmingham
+                  <FaMapMarkerAlt aria-hidden="true" /> Available in St Albans, Birmingham & Hampstead
                 </div>
               </div>
 
@@ -861,7 +880,7 @@ export default function PShotClient({
                   </div>
                </div>
             </div>
-            <Link aria-label="View Full Price List" href={isBirmingham ? "/birmingham/prices" : "/prices"} className="text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] inline-flex items-center gap-2 transition-colors relative z-10 group">
+            <Link aria-label="View Full Price List" href={isBirmingham ? "/birmingham/prices" : isHampstead ? "/hampstead/prices" : "/prices"} className="text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] inline-flex items-center gap-2 transition-colors relative z-10 group">
               View Full Price List <FaArrowRight className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </Link>
           </div>
