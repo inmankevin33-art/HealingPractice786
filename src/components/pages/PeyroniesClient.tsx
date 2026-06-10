@@ -50,9 +50,13 @@ export default function PeyroniesClient({
   const [isLoaded, setIsLoaded] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
+  // --- LOCATION LOGIC ---
   const isBirmingham = locationName === "Birmingham";
-  const basePath = isBirmingham ? "/birmingham" : "";
+  const isHampstead = locationName === "Hampstead";
+  
+  const basePath = isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "";
   const shockwaveLink = `${basePath}/shockwave-therapy-erectile-dysfunction`; 
+  const localPShotLink = isHampstead ? "/hampstead/p-shot" : pShotLink;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -150,7 +154,7 @@ export default function PeyroniesClient({
             custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight drop-shadow-lg"
           >
-            Peyronie&apos;s Disease <br className="hidden sm:block"/> Treatment in {locationName}
+            Peyronie&apos;s Disease <br className="hidden sm:block"/> Treatment in {isHampstead ? "Hampstead, London" : locationName}
           </motion.h1>
 
          <motion.p 
@@ -364,7 +368,7 @@ export default function PeyroniesClient({
                 <button onClick={handleAction} className="w-full text-center px-6 py-3 bg-[#4041d1] text-white font-bold rounded-xl text-sm transition-all hover:bg-[#2a2bb8]">
                   Arrange Free Confidential Consult
                 </button>
-                <Link href={pShotLink} className="w-full text-center px-6 py-3 bg-white text-[#4041d1] font-bold rounded-xl text-sm border border-slate-200 transition-all hover:bg-slate-100">
+                <Link href={localPShotLink} className="w-full text-center px-6 py-3 bg-white text-[#4041d1] font-bold rounded-xl text-sm border border-slate-200 transition-all hover:bg-slate-100">
                   More info about P-Shot
                 </Link>
               </div>
@@ -411,6 +415,32 @@ export default function PeyroniesClient({
           <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto mb-12">
             We understand that discussing Peyronie&apos;s Disease can feel uncomfortable. Our clinics provide a private, respectful, and judgement-free environment where concerns are taken seriously and addressed with sensitivity.
           </p>
+
+          {/* Localised Location Blocks */}
+          {isBirmingham && (
+            <div className="max-w-3xl mx-auto mb-16 bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm text-left flex items-start gap-4">
+               <FaMapMarkerAlt className="text-[#4041d1] text-3xl shrink-0 mt-1" aria-hidden="true" />
+               <div>
+                 <h3 className="font-bold font-raleway text-slate-900 mb-2 text-lg">Visiting our Edgbaston Clinic</h3>
+                 <p className="text-slate-600 text-sm leading-relaxed">
+                   Located at 38 Harborne Rd, Edgbaston, our Birmingham clinic offers a highly discreet environment with private consultation rooms. We provide clear directions and parking instructions prior to your appointment to ensure your arrival is stress-free and entirely confidential.
+                 </p>
+               </div>
+            </div>
+          )}
+
+          {isHampstead && (
+            <div className="max-w-3xl mx-auto mb-16 bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm text-left flex items-start gap-4">
+               <FaMapMarkerAlt className="text-[#4041d1] text-3xl shrink-0 mt-1" aria-hidden="true" />
+               <div>
+                 <h3 className="font-bold font-raleway text-slate-900 mb-2 text-lg">Visiting our Hampstead Clinic</h3>
+                 <p className="text-slate-600 text-sm leading-relaxed">
+                   Located at <strong>2 Hampstead High St, London NW3 1PR</strong>, our Hampstead clinic provides a highly private, professional medical environment for intimate regenerative health consultations. Conveniently located for patients across North West London, including Belsize Park, West Hampstead, and Highgate.
+                 </p>
+               </div>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 text-left">
             {["GMC-registered doctors", "Personalised treatment planning", "No GP referral required", "Discreet messaging & booking"].map((item, i) => (
               <div key={i} className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-center gap-3">
