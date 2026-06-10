@@ -36,10 +36,10 @@ type FaqType = {
 
 type SexualHealthClientProps = {
   locationName?: string;
-  faqs: FaqType[]; // <--- Now expecting FAQs as a prop
+  faqs: FaqType[]; // Expecting FAQs from the Server (page.tsx)
 };
 
-export default function SexualHealthClient({
+export default function SexualRejuvenationClient({
   locationName = "St Albans",
   faqs,
 }: SexualHealthClientProps) {
@@ -49,19 +49,22 @@ export default function SexualHealthClient({
 
   // --- DYNAMIC LINKS BASED ON LOCATION ---
   const isBirmingham = locationName === "Birmingham";
+  const isHampstead = locationName === "Hampstead";
   
-  const pShotUrl = isBirmingham ? "/birmingham/p-shot" : "/p-shot";
-  const edUrl = isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction";
-  const peUrl = isBirmingham ? "/birmingham/premature-ejaculation" : "/premature-ejaculation";
-  const peyroniesUrl = isBirmingham ? "/birmingham/peyronies-disease" : "/peyronies-disease";
-  const oShotUrl = isBirmingham ? "/birmingham/o-shot" : "/o-shot"; 
-  const medsUrl = isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication";
-  const pricesUrl = isBirmingham ? "/birmingham/prices" : "/prices";
-  const faqUrl = isBirmingham ? "/birmingham/faq" : "/faq";
+  const pShotUrl = isBirmingham ? "/birmingham/p-shot" : isHampstead ? "/hampstead/p-shot" : "/p-shot";
+  const edUrl = isBirmingham ? "/birmingham/erectile-dysfunction" : isHampstead ? "/hampstead/erectile-dysfunction" : "/erectile-dysfunction";
+  const peUrl = isBirmingham ? "/birmingham/premature-ejaculation" : isHampstead ? "/hampstead/premature-ejaculation" : "/premature-ejaculation";
+  const peyroniesUrl = isBirmingham ? "/birmingham/peyronies-disease" : isHampstead ? "/hampstead/peyronies-disease" : "/peyronies-disease";
+  const oShotUrl = isBirmingham ? "/birmingham/o-shot" : isHampstead ? "/hampstead/o-shot" : "/o-shot"; 
+  const medsUrl = isBirmingham ? "/birmingham/personalised-ed-medication" : isHampstead ? "/hampstead/personalised-ed-medication" : "/personalised-ed-medication";
+  const pricesUrl = isBirmingham ? "/birmingham/prices" : isHampstead ? "/hampstead/prices" : "/prices";
+  const faqUrl = isBirmingham ? "/birmingham/faq" : isHampstead ? "/hampstead/faq" : "/faq";
 
   // Determine nearby areas text based on location
   const nearbyAreas = isBirmingham
     ? "Solihull, Edgbaston, Sutton Coldfield, and the West Midlands"
+    : isHampstead
+    ? "Hampstead, Belsize Park, West Hampstead, and North West London"
     : "Harpenden, Watford, Welwyn Garden City, Hitchin, Luton, Hertford, and London";
 
   useEffect(() => {
@@ -173,8 +176,24 @@ export default function SexualHealthClient({
   const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   // --- UNIFIED ACTION HANDLER ---
-  const handleAction = (e: React.MouseEvent) => {
+ const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    // --- NEW GA4 CONVERSION TRACKING (Strict TypeScript Compliant) ---
+    if (typeof window !== "undefined") {
+      // Safely tell TypeScript that window might have a gtag function
+      const w = window as Window & { gtag?: (...args: unknown[]) => void };
+      
+      if (w.gtag) {
+        w.gtag("event", "generate_lead", {
+          event_category: "engagement",
+          event_label: "opened_contact_drawer",
+          page_path: window.location.pathname,
+        });
+      }
+    }
+    // -----------------------------------------------------------------
+
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
     setTimeout(() => {
       const section = document.getElementById("contact-form-section");
@@ -193,7 +212,7 @@ export default function SexualHealthClient({
   return (
     <>
       {/* --- HERO SECTION (Dark Premium) --- */}
-      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/50 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90 z-10" />
@@ -206,7 +225,7 @@ export default function SexualHealthClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 md:pt-48 pb-16">
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-48 md:pb-24">
           <motion.h1 
             custom={1}
             initial="hidden"
@@ -215,7 +234,7 @@ export default function SexualHealthClient({
             className="md:text-[2.75rem] lg:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight drop-shadow-lg"
           >
             <span className="md:whitespace-nowrap">Sexual Rejuvenation & Natural Regeneration</span> <br className="hidden md:block" />
-            in {locationName}
+            in {isHampstead ? "Hampstead, London" : locationName}
           </motion.h1>
 
           <motion.p 
@@ -227,7 +246,7 @@ export default function SexualHealthClient({
           >
             Patient-centred, non-surgical solutions to support confidence,
             sensitivity and intimacy — delivered by a fully insured,
-            GMC-registered doctor in {locationName}.
+            GMC-registered doctor in {isHampstead ? "Hampstead, London" : locationName}.
           </motion.p>
 
           <motion.div 
@@ -261,10 +280,10 @@ export default function SexualHealthClient({
           </motion.div>
         </div>
 
-        {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
-        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        {/* --- HERO TRUST BADGES (Fixed for Mobile) --- */}
+        <div className={`absolute bottom-0 left-0 w-full z-30 bg-[#0A1128]/95 backdrop-blur-xl border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
-            <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 divide-none md:divide-x divide-white/10">
               <a href="#reviews" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
