@@ -106,8 +106,10 @@ const enlargementSchemaHampstead = {
       "telephone": "+447990364147",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "2 Hampstead High St",
         "addressLocality": "London",
         "addressRegion": "Greater London",
+        "postalCode": "NW3 1PR",
         "addressCountry": "GB"
       },
       "areaServed": [
