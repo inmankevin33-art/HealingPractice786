@@ -60,8 +60,11 @@ export default function ErectileDysfunctionClient({
   const [showAllFaqs, setShowAllFaqs] = useState(false); 
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
+  // --- LOCATION LOGIC ---
   const isBirmingham = locationName === "Birmingham";
-  const basePath = isBirmingham ? "/birmingham" : "";
+  const isHampstead = locationName === "Hampstead";
+  
+  const basePath = isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "";
   const shockwaveLink = `${basePath}/shockwave-therapy-erectile-dysfunction`;
 
   useEffect(() => {
@@ -222,7 +225,7 @@ export default function ErectileDysfunctionClient({
             custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight drop-shadow-lg"
           >
-            Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {locationName}
+            Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {isHampstead ? "Hampstead, London" : locationName}
           </motion.h1>
 
           {/* Shortened Hero Paragraph */}
@@ -320,7 +323,7 @@ export default function ErectileDysfunctionClient({
         </div>
       </div>
 
- {/* --- SECTION 1: PERSONALIZED APPROACH --- */}
+   {/* --- SECTION 1: PERSONALIZED APPROACH --- */}
       <section className="py-20 bg-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Doctor-Led ED Assessment</span>
@@ -329,7 +332,7 @@ export default function ErectileDysfunctionClient({
             </h2>
             <div className="text-slate-600 text-lg leading-relaxed space-y-6">
               <p>
-                At Healing-PRP Clinics, <strong className="text-[#4041d1] font-bold">Dr Syed Abdi</strong> offers discreet, doctor-led assessment for men experiencing erectile dysfunction, reduced firmness, or loss of sexual confidence.
+                At Healing-PRP Clinics, <Link href={`${basePath}/our-doctor`} className="text-[#4041d1] font-bold hover:underline transition-all duration-300">Dr Syed Abdi</Link> offers discreet, doctor-led assessment for men experiencing erectile dysfunction, reduced firmness, or loss of sexual confidence.
               </p>
               <p>
                 Your journey starts with a <strong>free confidential consultation</strong>, designed to understand the wider picture rather than offer the same treatment to every patient. This includes your symptoms, medical history, current medication, and possible contributing factors such as diabetes, circulation, hormonal changes, or stress.
@@ -341,7 +344,7 @@ export default function ErectileDysfunctionClient({
             <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full transform-gpu"></div>
         </div>
       </section>
-      
+
       {/* --- HOW IT WORKS --- */}
       <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -628,7 +631,7 @@ export default function ErectileDysfunctionClient({
               Book Free Confidential Consultation
             </button>
             <Link
-              href={isBirmingham ? "/birmingham/prices" : "/prices"}
+              href={isBirmingham ? "/birmingham/prices" : isHampstead ? "/hampstead/prices" : "/prices"}
               className="px-10 py-5 w-full md:w-auto border-2 border-slate-200 text-slate-600 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all"
             >
               View Treatment Prices
