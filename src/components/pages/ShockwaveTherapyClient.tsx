@@ -49,8 +49,11 @@ export default function ShockwaveTherapyClient({
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
 
+  // --- LOCATION LOGIC ---
   const isBirmingham = locationName === "Birmingham";
-  const treatmentCostsRoute = isBirmingham ? "/birmingham/treatment-costs" : "/treatment-costs";
+  const isHampstead = locationName === "Hampstead";
+  
+  const treatmentCostsRoute = isBirmingham ? "/birmingham/treatment-costs" : isHampstead ? "/hampstead/prices" : "/treatment-costs";
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
@@ -110,7 +113,7 @@ export default function ShockwaveTherapyClient({
   return (
     <>
     {/* --- HERO SECTION --- */}
-      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         
         {/* Background Section */}
         <div className="absolute inset-0 z-0">
@@ -125,7 +128,7 @@ export default function ShockwaveTherapyClient({
         </div>
 
         {/* Main Content */}
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-48 md:pb-24">
           
           <motion.div
             custom={0}
@@ -145,7 +148,9 @@ export default function ShockwaveTherapyClient({
             className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
             Shockwave Therapy for ED & Peyronie&apos;s <br />
-            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block">Clinic in {locationName}</span>
+            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block">
+              Clinic in {isHampstead ? "Hampstead, London" : locationName}
+            </span>
           </motion.h1>
 
           <motion.p
@@ -185,15 +190,15 @@ export default function ShockwaveTherapyClient({
           </motion.div>
         </div>
         
-        {/* --- HERO TRUST BADGES --- */}
+        {/* --- HERO TRUST BADGES (Fixed for Mobile) --- */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 z-30"
+          className="absolute bottom-0 left-0 w-full bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 z-30"
         >
           <div className="px-2 py-4 max-w-7xl mx-auto">
-            <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 divide-none md:divide-x divide-white/10">
               <a href="#reviews" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -320,7 +325,7 @@ export default function ShockwaveTherapyClient({
                   </p>
                   
                   <Link 
-                    href={isBirmingham ? "/birmingham/p-shot" : "/p-shot"}
+                    href={isBirmingham ? "/birmingham/p-shot" : isHampstead ? "/hampstead/p-shot" : "/p-shot"}
                     className="inline-flex items-center gap-2 text-[#4041d1] font-bold text-sm md:text-base hover:text-[#2a2bb8] transition-colors group"
                   >
                     Combine with the P-Shot for maximum regenerative synergy 
@@ -456,7 +461,7 @@ export default function ShockwaveTherapyClient({
                     Regenerative treatments take time as the body grows new vessels. We offer bespoke, doctor-prescribed ED medication to provide support while your shockwave therapy results develop. 
                   </p>
                   <Link 
-                    href={isBirmingham ? "/birmingham/personalised-ed-medication" : "/personalised-ed-medication"}
+                    href={isBirmingham ? "/birmingham/personalised-ed-medication" : isHampstead ? "/hampstead/personalised-ed-medication" : "/personalised-ed-medication"}
                     className="inline-flex items-center gap-2 text-[#4041d1] font-bold text-sm md:text-base hover:text-[#2a2bb8] transition-colors group"
                   >
                     Explore Personalised ED Medication →
@@ -628,7 +633,7 @@ export default function ShockwaveTherapyClient({
                 </p>
                 <div className="mt-auto">
                   <Link 
-                    href={isBirmingham ? "/birmingham/p-shot" : "/p-shot"}
+                    href={isBirmingham ? "/birmingham/p-shot" : isHampstead ? "/hampstead/p-shot" : "/p-shot"}
                     className="inline-flex items-center gap-2 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors"
                   >
                     Learn about the P-Shot <FaArrowRight className="w-3 h-3" />
@@ -682,7 +687,7 @@ export default function ShockwaveTherapyClient({
               
               <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mt-4">
                 <Link 
-                  href={isBirmingham ? "/birmingham/erectile-dysfunction" : "/erectile-dysfunction"}
+                  href={isBirmingham ? "/birmingham/erectile-dysfunction" : isHampstead ? "/hampstead/erectile-dysfunction" : "/erectile-dysfunction"}
                   className="px-8 py-3.5 bg-white border-2 border-[#4041d1] text-[#4041d1] hover:bg-[#4041d1]/5 rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-sm active:scale-95 font-inter"
                 >
                   Explore ED Treatments
@@ -690,7 +695,7 @@ export default function ShockwaveTherapyClient({
                 </Link>
 
                 <Link 
-                  href={isBirmingham ? "/birmingham/p-shot" : "/p-shot"}
+                  href={isBirmingham ? "/birmingham/p-shot" : isHampstead ? "/hampstead/p-shot" : "/p-shot"}
                   className="px-8 py-3.5 bg-[#4041d1] text-white hover:bg-[#2a2bb8] rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-md active:scale-95 font-inter"
                 >
                   Explore the P-Shot
@@ -720,7 +725,7 @@ export default function ShockwaveTherapyClient({
               View Treatment Prices
             </Link>
             <Link
-              href={isBirmingham ? "/birmingham/faq" : "/faq"}
+              href={isBirmingham ? "/birmingham/faq" : isHampstead ? "/hampstead/faq" : "/faq"}
               className="w-full md:w-auto px-6 py-3 flex items-center justify-center text-sm cursor-pointer border-2 border-slate-200 text-slate-700 hover:border-[#4041d1] hover:text-[#4041d1] bg-white rounded-lg font-inter font-bold transition-all duration-300"
             >
               View Clinic FAQs
