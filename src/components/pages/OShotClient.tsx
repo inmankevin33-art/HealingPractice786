@@ -56,7 +56,9 @@ export default function OShotClient({
   const [isLoaded, setIsLoaded] = useState(false);
   const [showAllFaqs, setShowAllFaqs] = useState(false); 
 
+  // --- LOCATION LOGIC ---
   const isBirmingham = locationName === "Birmingham";
+  const isHampstead = locationName === "Hampstead";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,6 +72,17 @@ export default function OShotClient({
   // --- ACTION HANDLER ---
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (typeof window !== "undefined") {
+      const w = window as Window & { gtag?: (...args: unknown[]) => void };
+      if (w.gtag) {
+        w.gtag("event", "generate_lead", {
+          event_category: "engagement",
+          event_label: "opened_contact_drawer",
+          page_path: window.location.pathname,
+        });
+      }
+    }
+
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
     setTimeout(() => {
       const section = document.getElementById("contact-form-section");
@@ -170,7 +183,7 @@ export default function OShotClient({
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <div className="relative md:h-[calc(100vh-4rem)] pb-5 md:pb-0 lg:h-[calc(100vh-5rem)] overflow-hidden flex items-center justify-center bg-black">
+      <div className="relative min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
@@ -183,7 +196,7 @@ export default function OShotClient({
           />
         </div>
 
-        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pb-24">
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-48 md:pb-24">
           
           {/* Top Sleek Badge */}
           <motion.div 
@@ -196,17 +209,19 @@ export default function OShotClient({
             <span className="text-blue-200 text-xs font-bold tracking-widest uppercase font-inter">Women&apos;s Private Clinic</span>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             custom={1}
             initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+            animate="visible"
             variants={fadeUpVariants}
-            className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
-            The O-Shot® (Orgasm Shot)<br className="hidden sm:block" />
-            <span className="md:text-5xl text-3xl">in {locationName}</span>
+            The O-Shot (Orgasm Shot) <br />
+            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block">
+              in {isHampstead ? "Hampstead, London" : locationName}
+            </span>
           </motion.h1>
-
+          
           <motion.p 
             custom={2}
             initial="hidden"
@@ -244,10 +259,10 @@ export default function OShotClient({
           </motion.div>
         </div>
 
-        {/* --- HERO TRUST BADGES (LOWER BORDER) --- */}
-        <div className={`md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        {/* --- HERO TRUST BADGES (Fixed for Mobile) --- */}
+        <div className={`absolute bottom-0 left-0 w-full z-30 bg-[#0A1128]/95 backdrop-blur-xl border-t border-white/10 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="px-2 py-4 max-w-7xl mx-auto">
-            <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 divide-none md:divide-x divide-white/10">
               
               <a href="#reviews" onClick={(e) => {
                 e.preventDefault();
@@ -541,7 +556,7 @@ export default function OShotClient({
                   This approach uses your own platelet-rich plasma (PRP), enhanced with exosome-derived regenerative signalling, designed to support intimate tissue repair, natural moisture, and blood flow.
                 </p>
                 <div className="mt-6 flex items-center gap-2 text-xs font-bold text-[#4041d1] uppercase tracking-widest">
-                  <FaMapMarkerAlt /> Available in St Albans & Birmingham
+                  <FaMapMarkerAlt /> Available in St Albans, Birmingham & Hampstead
                 </div>
               </div>
 
@@ -748,6 +763,31 @@ export default function OShotClient({
             ))}
           </div>
 
+          {/* Localised Location Blocks */}
+          {isBirmingham && (
+            <div className="max-w-3xl mx-auto mb-16 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm text-left flex items-start gap-4">
+               <FaMapMarkerAlt className="text-[#4041d1] text-3xl shrink-0 mt-1" />
+               <div>
+                 <h3 className="font-bold font-raleway text-slate-900 mb-2 text-lg">Visiting our Edgbaston Clinic</h3>
+                 <p className="text-slate-600 text-sm leading-relaxed">
+                   Located at 38 Harborne Rd, Edgbaston, our Birmingham clinic offers a highly discreet environment with private consultation rooms. We provide clear directions and parking instructions prior to your appointment to ensure your arrival is stress-free and entirely confidential.
+                 </p>
+               </div>
+            </div>
+          )}
+
+          {isHampstead && (
+            <div className="max-w-3xl mx-auto mb-16 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm text-left flex items-start gap-4">
+               <FaMapMarkerAlt className="text-[#4041d1] text-3xl shrink-0 mt-1" />
+               <div>
+                 <h3 className="font-bold font-raleway text-slate-900 mb-2 text-lg">Visiting our Hampstead Clinic</h3>
+                 <p className="text-slate-600 text-sm leading-relaxed">
+                   Located at <strong>2 Hampstead High St, London NW3 1PR</strong>, our Hampstead clinic provides a highly private, professional medical environment for intimate regenerative health consultations. Conveniently located for patients across North West London, including Belsize Park, West Hampstead, and Highgate.
+                 </p>
+               </div>
+            </div>
+          )}
+
           <div className="max-w-3xl mx-auto p-6 bg-white rounded-2xl border border-slate-200 mb-10 shadow-sm">
             <p className="text-slate-600 text-sm leading-relaxed font-medium">
               Our pricing is intentionally kept accessible compared with many
@@ -767,14 +807,14 @@ export default function OShotClient({
             </button>
 
             <Link
-              href={isBirmingham ? "/birmingham/prices" : "/prices"}
+              href={isBirmingham ? "/birmingham/prices" : isHampstead ? "/hampstead/prices" : "/prices"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2 shadow-lg"
             >
               View Treatment Prices
             </Link>
             
             <Link
-              href={isBirmingham ? "/birmingham/faq" : "/faq"}
+              href={isBirmingham ? "/birmingham/faq" : isHampstead ? "/hampstead/faq" : "/faq"}
               className="px-6 py-3 w-full md:w-max md:text-sm text-xs items-center justify-center cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-lg font-inter font-bold transition-all duration-300 inline-flex gap-2"
             >
               View Clinic FAQs
@@ -786,7 +826,7 @@ export default function OShotClient({
       </section>
 
       {/* --- FAQs --- */}
-      <section id="faqs" className="py-24 bg-white font-inter">
+      <section id="faqs" className="py-24 bg-white font-inter border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">
