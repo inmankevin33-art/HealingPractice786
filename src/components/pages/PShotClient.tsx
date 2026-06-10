@@ -723,7 +723,7 @@ export default function PShotClient({
                <div>
                  <h3 className="font-bold font-raleway text-slate-900 mb-2 text-lg">Visiting our Hampstead Clinic</h3>
                  <p className="text-slate-600 text-sm leading-relaxed">
-                   Our Hampstead clinic provides a highly private, professional medical environment for intimate regenerative health consultations. Conveniently located for patients across North West London, including Belsize Park, West Hampstead, Highgate, Golders Green, and St John's Wood.
+                   Our Hampstead clinic provides a highly private, professional medical environment for intimate regenerative health consultations. Conveniently located for patients across North West London, including Belsize Park, West Hampstead, Highgate, Golders Green, and John&apos;s Wood.
                  </p>
                </div>
             </div>
