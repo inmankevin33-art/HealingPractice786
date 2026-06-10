@@ -111,7 +111,7 @@ export default function SexualRejuvenationClient({
       icon: FaHeartbeat
     },
     {
-      title: "The P-Shot® (Priapus Shot)",
+      title: "The P-Shot (Priapus Shot)",
       category: "Men's Health",
       description: "Advanced Platelet-Rich Plasma (PRP) therapy designed to rejuvenate penile tissue, support firmness, and enhance sensitivity.",
       bullets: [
@@ -147,7 +147,7 @@ export default function SexualRejuvenationClient({
       icon: FaDna
     },
     {
-      title: "The O-Shot®",
+      title: "The O-Shot",
       category: "Female Rejuvenation",
       description: "A natural, PRP-based treatment to support vaginal health, improve natural lubrication, and enhance sexual sensation.",
       bullets: [
