@@ -6,7 +6,11 @@ import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 
-export default function ContactClient() {
+interface ContactClientProps {
+  locationName?: string;
+}
+
+export default function ContactClient({ locationName = "St Albans" }: ContactClientProps) {
   return (
     <main className="min-h-screen bg-white transform-gpu">
       {/* 1. Removed the dark Hero section as requested.
