@@ -19,10 +19,18 @@ export default function Hero() {
 
   const pathname = usePathname();
   const isBirmingham = pathname?.startsWith("/birmingham");
-  const prefix = isBirmingham ? "/birmingham" : "";
+  const isHampstead = pathname?.startsWith("/hampstead");
+  
+  const prefix = isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "";
   
   // --- DYNAMIC LOCATION TEXT ---
-  const locationSuffix = isBirmingham ? "in Birmingham" : "in St Albans";
+  const locationSuffix = isBirmingham ? "in Birmingham" : isHampstead ? "in London" : "in St Albans";
+  
+  const locationBadgeText = isBirmingham 
+    ? "Birmingham • Edgbaston • Solihull • Midlands" 
+    : isHampstead 
+    ? "Hampstead • Belsize Park • North West London"
+    : "St Albans • Harpenden • Luton • London";
 
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -39,20 +47,14 @@ export default function Hero() {
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        delay: i * 0.15,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
     }),
   };
 
   return (
-    <div className="relative w-full mt-0 pt-0 h-[85vh] lg:h-[72vh] min-h-[600px] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
+    <div className="relative w-full mt-0 pt-0 min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
       
-      {/* --- UPGRADED BACKGROUND SECTION --- */}
       <div className="absolute inset-0 z-0">
-        {/* Mobile Image */}
         <Image 
           src="/mobilehero.webp" 
           alt="Healing-PRP Clinics Mobile" 
@@ -60,7 +62,6 @@ export default function Hero() {
           priority 
           className="object-cover object-top sm:hidden" 
         />
-        {/* Desktop Image */}
         <Image 
           src="/herobg.webp" 
           alt="Healing-PRP Clinics" 
@@ -68,73 +69,78 @@ export default function Hero() {
           priority 
           className="object-cover object-[center_15%] hidden sm:block" 
         />
-        {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/60 z-10"></div>
       </div>
 
-      {/* Main Content - pb-32 md:pb-40 pushes content lower, creating a cinematic feel */}
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-32 md:pb-40">
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-48 md:pb-40">
         
         <motion.div 
-          custom={1}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUpVariants}
+          custom={1} initial="hidden" animate="visible" variants={fadeUpVariants}
           className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter"
         >
           <FaMapMarkerAlt className="inline-block mr-2 mb-0.5 text-white/70" />
-          {isBirmingham 
-            ? "Birmingham • Edgbaston • Solihull • Midlands" 
-            : "St Albans • Harpenden • Luton • London"}
+          {locationBadgeText}
         </motion.div>
 
-        {/* --- DYNAMIC H1 HEADING --- */}
         <motion.h1 
-          custom={2}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUpVariants}
+          custom={2} initial="hidden" animate="visible" variants={fadeUpVariants}
           className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
         >
           Doctor-Led Intimate Health & <br /> Regenerative Treatments {locationSuffix}
         </motion.h1>
 
         <motion.h2 
-          custom={3}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUpVariants}
+          custom={3} initial="hidden" animate="visible" variants={fadeUpVariants}
           className="mt-2 text-lg md:text-xl font-medium font-raleway text-blue-100 leading-relaxed max-w-4xl mx-auto mb-10"
         >
           Discreet, private care and evidence-based treatment plans for <br className="hidden md:block" />
-          <Link href={`${prefix}/erectile-dysfunction`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            Erectile dysfunction
-          </Link>
-          {", "}
-          <Link href={`${prefix}/sexual-rejuvenation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            Sexual wellness
-          </Link>
-          {", "}
-          <Link href={`${prefix}/joint-injections`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            Joint injections
-          </Link>
-          {", "}
-          <Link href={`${prefix}/hair-restoration`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            Hair restoration
-          </Link>
-          {", and "}
-          <Link href={`${prefix}/facial-aesthetics`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-            Facial aesthetics
-          </Link>
-          .
+          {isHampstead ? (
+            <>
+              <Link href={`${prefix}/erectile-dysfunction`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Erectile dysfunction
+              </Link>
+              {", "}
+              <Link href={`${prefix}/premature-ejaculation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Premature ejaculation
+              </Link>
+              {", "}
+              <Link href={`${prefix}/vaginal-dryness`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Vaginal dryness
+              </Link>
+              {", and "}
+              <Link href={`${prefix}/sexual-rejuvenation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Sexual wellness
+              </Link>
+              .
+            </>
+          ) : (
+            <>
+              <Link href={`${prefix}/erectile-dysfunction`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Erectile dysfunction
+              </Link>
+              {", "}
+              <Link href={`${prefix}/sexual-rejuvenation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Sexual wellness
+              </Link>
+              {", "}
+              <Link href={`${prefix}/joint-injections`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Joint injections
+              </Link>
+              {", "}
+              <Link href={`${prefix}/hair-restoration`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Hair restoration
+              </Link>
+              {", and "}
+              <Link href={`${prefix}/facial-aesthetics`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Facial aesthetics
+              </Link>
+              .
+            </>
+          )}
         </motion.h2>
         
-        {/* The Exact Two Buttons: Assessment (White) + Book (Blue) */}
         <motion.div 
-          custom={4}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUpVariants}
+          custom={4} initial="hidden" animate="visible" variants={fadeUpVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center" 
         >
           <button 
@@ -154,17 +160,12 @@ export default function Hero() {
 
       </div>
 
-      {/* --- HERO TRUST BADGES --- */}
       <motion.div 
-        custom={5}
-        initial="hidden"
-        animate="visible"
-        variants={fadeUpVariants}
-        className="md:block absolute hidden bottom-0 left-0 right-0 bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 z-30"
+        custom={5} initial="hidden" animate="visible" variants={fadeUpVariants}
+        className="absolute bottom-0 left-0 w-full bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 z-30"
       >
         <div className="px-2 py-4 max-w-7xl mx-auto">
-          <div className="grid grid-cols-4 gap-2 divide-x divide-white/10">
-            
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 divide-none md:divide-x divide-white/10">
             <a href="#reviews" onClick={(e) => {
               e.preventDefault();
               document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -183,7 +184,6 @@ export default function Hero() {
                 </div>
               </div>
             </a>
-
             <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
@@ -195,7 +195,6 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-            
             <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
@@ -207,7 +206,6 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-
             <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
@@ -219,7 +217,6 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </motion.div>
@@ -228,7 +225,6 @@ export default function Hero() {
         isOpen={isAssessmentOpen} 
         onClose={() => setIsAssessmentOpen(false)} 
       />
-
     </div>
   );
 }
