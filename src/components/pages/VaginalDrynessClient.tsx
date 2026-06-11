@@ -192,7 +192,7 @@ export default function VaginalDrynessClient({
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
           <img 
-            src="/vaginal-dryness-treatment.webp" 
+            src="/o-shot-consultation.webp" 
             alt="Doctor-led vaginal dryness consultation" 
             className="absolute inset-0 w-full h-full object-cover"
             onError={(e) => (e.currentTarget.src = "/o-shot-consultation.webp")}
