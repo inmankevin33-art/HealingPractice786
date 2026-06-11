@@ -8,58 +8,73 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 import Link from "next/link";
 
-export default function PricesClient({ isBirmingham = false }: { isBirmingham?: boolean }) {
-  const locationName = isBirmingham ? "Birmingham" : "St Albans";
+interface PricesClientProps {
+  isBirmingham?: boolean;
+  isHampstead?: boolean;
+}
+
+export default function PricesClient({ isBirmingham = false, isHampstead = false }: PricesClientProps) {
+  
+  // Dynamic location naming
+  const locationName = isBirmingham ? "Birmingham" : isHampstead ? "Hampstead" : "St Albans";
+  
+  // Dynamic service area for the subtitle
+  const regionalArea = isBirmingham 
+    ? "the West Midlands" 
+    : isHampstead 
+    ? "North West London" 
+    : "Hertfordshire";
 
   const categories = [
     {
-      id: "facial",
-      title: "Facial Aesthetics",
+      id: "sexual",
+      title: "Sexual Rejuvenation",
       items: [
-        { name: "DNA Glow Plus™", price: "£500", sessions: "Course of 3: £1400", details: "Premium: Poly + HA + PRP Microneedling" },
-        { name: "DNA Glow Concept™", price: "£375", sessions: "Course of 3: £1100", details: "Signature: Poly + HA + Microneedling" },
-        { name: "Exosome-Enhanced Skin Regeneration", price: "£375", sessions: "Course of 3: £1100", details: "Advanced cellular repair & skin revitalisation" },
-        { name: "Polynucleotides", price: "From £150", sessions: "1-3 sessions", details: "Advanced skin repair & hydration" },
-        { name: "HA Skin Boosters", price: "£250", sessions: "2-3 sessions", details: "Deep hydration & glow" },
-        { name: "PRP Microneedling", price: "£150", sessions: "2-3 sessions", details: "Texture & acne scar support" },
-        { name: "Vampire Facial", price: "£550", sessions: "Course of 3: £1500", details: "Full face regeneration" },
-        { name: "Botox (3 Areas)", price: "£200", sessions: "Single", details: "Anti-wrinkle injections" },
+        { name: "P-Shot PRP", price: "£995", sessions: "Course of 3: £2600", details: "Doctor-led premium PRP treatment" },
+        { name: "Peyronie’s Disease Protocol", price: "Upon consultation", sessions: "Custom treatment plan", details: "Targeted doctor-led regenerative protocol" },
+        { name: "EXO P-Shot", price: "£1500", sessions: "Course of 3: £4000", details: "Advanced exosome-enhanced treatment" },
+        { name: "Personalised Medication", price: "Upon consultation", sessions: "Custom treatment plan", details: "Tailored support for ED and PE" },
+        { name: "Shockwave Therapy", price: "£300", sessions: "Course of 6: £1500", details: "Low-intensity acoustic wave therapy" },
+        { name: "O-Shot", price: "£995/session", sessions: "1–3 sessions", details: "Doctor-led treatment for intimate wellbeing" },
       ]
     },
     {
       id: "joint",
       title: "Joint Injections",
       items: [
-        { name: "PRP Joint Injection", price: "From £250", sessions: "1-3 sessions", details: "Regenerative pain relief" },
-        { name: "Steroid Injection", price: "£120", sessions: "Single", details: "Anti-inflammatory relief" },
+        { name: "PRP Joint Injection", price: "From £350/session", sessions: "1-3 sessions recommended", details: "Regenerative pain relief" },
+        { name: "Steroid Injection", price: "£150/session", sessions: "Single", details: "Anti-inflammatory relief" },
       ]
     },
     {
       id: "hair",
       title: "Hair Restoration",
       items: [
-        { name: "PRP Hair Treatment", price: "£200", sessions: "Course of 3: £500", details: "Natural follicle stimulation" },
+        { name: "PRP Hair Treatment", price: "£295", sessions: "Course of 3: £850", details: "Natural follicle stimulation" },
         { name: "Hair Exosomes", price: "From £400", sessions: "Tailored plan", details: "Advanced scalp regeneration" },
       ]
     },
     {
-      id: "sexual",
-      title: "Sexual Rejuvenation",
+      id: "facial",
+      title: "Facial Aesthetics",
       items: [
-        { name: "P-Shot (PRP)", price: "£1,250", sessions: "Course of 3: £3,000", details: "Premium double-spin PRP" },
-        { name: "Peyronie's Disease Protocol", price: "£1,250", sessions: "Course of 3: £3,000", details: "Targeted plaque breakdown" },
-        { name: "EXO P-Shot", price: "£1,500", sessions: "Enhanced", details: "Advanced exosome protocol" },
-        { name: "O-Shot", price: "£1,250", sessions: "1-3 sessions", details: "Female health & sensitivity" },
-        { name: "Personalised Medication", price: "Upon Consultation", sessions: "Custom formulations", details: "Bespoke ED & PE management" },
+        { name: "DNA Glow Plus™", price: "£600", sessions: "Course of 3: £1600", details: "Premium: Poly + HA + PRP Microneedling (Face only. Add £100 for neck)" },
+        { name: "DNA Glow Concept™", price: "£500", sessions: "Course of 3: £1400", details: "Signature: Poly + HA + Microneedling (Face only. Add £100 for neck)" },
+        { name: "Exosome-Enhanced Skin Regeneration", price: "£475", sessions: "Course of 3: £1200", details: "Advanced cellular repair & skin revitalisation" },
+        { name: "Polynucleotides", price: "From £250/session", sessions: "1-3 sessions recommended", details: "Advanced skin repair & hydration" },
+        { name: "HA Skin Boosters", price: "£250/session", sessions: "2-3 sessions recommended", details: "Deep hydration & glow" },
+        { name: "PRP Microneedling", price: "£200/session", sessions: "2-3 sessions recommended", details: "Texture & acne scar support" },
+        { name: "Vampire Facial", price: "£550", sessions: "Course of 3: £1500", details: "Full face regeneration" },
+        { name: "Botox (3 Areas)", price: "£200", sessions: "Single", details: "Anti-wrinkle injections" },
       ]
     }
-  ];
-    
+  ]; 
+
   const priceSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     "name": "Healing-PRP Clinics",
-    "priceRange": "£120 - £1800",
+    "priceRange": "£120 - £4200",
     "image": "https://www.healing-prp.co.uk/Logo2.png",
     "description": `Doctor-led regenerative medicine prices for ${locationName}.`
   };
@@ -126,7 +141,7 @@ export default function PricesClient({ isBirmingham = false }: { isBirmingham?: 
                   className="text-base mt-2 text-slate-600 leading-relaxed max-w-2xl mx-auto font-inter"
                   variants={itemVariants}
                 >
-                  Doctor-led regenerative treatments with clear, upfront costs. Serving patients across {isBirmingham ? "the West Midlands" : "Hertfordshire"}.
+                  Doctor-led regenerative treatments with clear, upfront costs. Serving patients across {regionalArea}.
                 </motion.p>
 
                 {/* Stacked Layout */}
