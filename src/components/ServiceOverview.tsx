@@ -8,9 +8,10 @@ import { FaVenusMars, FaSyringe, FaRunning, FaSmile } from "react-icons/fa";
 export default function ServiceOverview() {
   const pathname = usePathname();
   const isBirmingham = pathname?.startsWith("/birmingham");
-  const prefix = isBirmingham ? "/birmingham" : "";
+  const isHampstead = pathname?.startsWith("/hampstead");
+  
+  const prefix = isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "";
 
-  // REORDERED SERVICES: Intimate Health is now #1 (Far Left)
   const services = [
     {
       title: "Men's & Women's Intimate Health",
@@ -18,7 +19,6 @@ export default function ServiceOverview() {
       icon: FaVenusMars, 
       link: `${prefix}/sexual-rejuvenation`,
       color: "bg-blue-50 text-[#4041d1]",
-      // THE SEO GOLDMINE: Direct links to specific YMYL pages
       subLinks: [
         { name: "ED", href: `${prefix}/erectile-dysfunction` },
         { name: "P-Shot", href: `${prefix}/p-shot` },
@@ -62,6 +62,9 @@ export default function ServiceOverview() {
     }
   ];
 
+  // FILTER: Only show intimate health if on the Hampstead route
+  const displayedServices = isHampstead ? services.slice(0, 1) : services;
+
   return (
     <section className="py-24 bg-white font-inter">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,7 +75,7 @@ export default function ServiceOverview() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 tracking-tight"
           >
-            Our Core Treatments
+            {isHampstead ? "Our Specialist Focus" : "Our Core Treatments"}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -81,13 +84,15 @@ export default function ServiceOverview() {
             transition={{ delay: 0.1 }}
             className="text-slate-600 text-lg leading-relaxed font-inter"
           >
-            We specialize in regenerative medicine, using your body&apos;s natural healing abilities 
-            alongside medically proven aesthetic and pain-relief protocols.
+            {isHampstead 
+              ? "Our Hampstead clinic specializes exclusively in discreet, private, doctor-led regenerative therapies for men's and women's intimate health." 
+              : "We specialize in regenerative medicine, using your body's natural healing abilities alongside medically proven aesthetic and pain-relief protocols."}
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-          {services.map((service, index) => (
+        {/* Dynamic Grid: Centers a single card, but expands for 4 cards */}
+        <div className={`grid grid-cols-1 ${isHampstead ? 'max-w-md mx-auto' : 'md:grid-cols-2 lg:grid-cols-4'} gap-8 relative`}>
+          {displayedServices.map((service, index) => (
             <motion.div 
               key={index} 
               className="relative flex items-center h-full"
@@ -114,7 +119,6 @@ export default function ServiceOverview() {
                   {service.description}
                 </p>
 
-                {/* PREMIUM SEO SUB-LINKS (Interactive Pills) */}
                 <div className="flex flex-wrap gap-2 mb-8 mt-auto pt-4">
                   {service.subLinks.map((subLink, idx) => (
                     <Link 
@@ -127,7 +131,6 @@ export default function ServiceOverview() {
                   ))}
                 </div>
                 
-                {/* View Treatments Link (Cleaned up, no arrow) */}
                 <Link href={service.link} className="inline-block text-xs font-bold uppercase tracking-widest text-[#4041d1] hover:text-[#2a2bb8] transition-colors w-max mt-auto">
                   View Treatments
                 </Link>
