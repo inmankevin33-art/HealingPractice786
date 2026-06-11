@@ -1,45 +1,18 @@
 import type { Metadata } from "next";
 import FaqClient from "@/components/pages/FaqClient";
 import Footer from "@/components/Footer";
-import Script from "next/script";
+
+// Helper recommended pattern: sanitize JSON-LD to mitigate XSS vectors.
+const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c");
 
 export const metadata: Metadata = {
-  // 1. Optimized Title: Result will be "Treatment & Clinic FAQs | Birmingham Clinic"
-  title: "Treatment & Clinic FAQs", 
-  
-  description: "Patient FAQs for our Birmingham Edgbaston clinic. Specialist answers on PRP for joint pain, hair loss, and sexual health. Expert doctor-led care in the West Midlands.",
-  
+  title: {
+    absolute: "Treatment & Clinic FAQs | Birmingham Clinic",
+  },
+  description: "Expert answers on PRP Hair Restoration, Joint Injections, and Sexual Rejuvenation. Find information on parking and specialist doctor-led treatments in Edgbaston.",
   alternates: {
     canonical: "https://www.healing-prp.co.uk/birmingham/faq",
   },
-
-  // 2. Added Regional Keywords
- keywords: [
-    // Your strong original local & trust keywords
-    "PRP treatment FAQ Birmingham",
-    "Edgbaston medical quarter PRP clinic",
-    "GMC registered doctor Edgbaston",
-    "Private PRP doctor Wolverhampton",
-    "Healing-PRP Birmingham parking",
-    
-    // NEW: High-intent FAQ searches (Cost & Comparisons)
-    "PRP treatment cost Birmingham", 
-    "PRP vs steroid injection knee",
-    "How much is the P-Shot UK",
-    
-    // NEW: Missing treatments explicitly mentioned in your text/site
-    "Exosome therapy West Midlands",
-    "Polynucleotides Birmingham",
-    
-    // Your original highly-targeted treatment questions
-    "Is PRP safe for joints",
-    "Joint injection recovery time Solihull",
-    "P-Shot results Birmingham",
-    "O-Shot safety Sutton Coldfield",
-    "PRP hair loss questions West Midlands"
-  ],
-  
-  // 3. Added OpenGraph for consistent social/message sharing
   openGraph: {
     title: "PRP & Regenerative Medicine FAQs | Birmingham",
     description: "Doctor-led answers for Hair, Joints, and Sexual Wellness treatments in Edgbaston and the West Midlands.",
@@ -47,82 +20,161 @@ export const metadata: Metadata = {
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
     type: "website",
+    images: [
+      {
+        url: "/hero_img.png",
+        width: 1200,
+        height: 630,
+        alt: "Doctor-Led Treatment FAQs Birmingham",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PRP & Regenerative Medicine FAQs | Birmingham",
+    description: "Doctor-led answers for Hair, Joints, and Sexual Wellness treatments in Edgbaston.",
+    images: ["/hero_img.png"],
   },
 };
 
-export default function BirminghamFaqPage() {
-  const birminghamFaqs = [
-    {
-      question: "Are P-Shot® results permanent?",
-      answer: "Results are long-lasting but not permanent as the body continues to age naturally. At our Birmingham clinic, patients enjoy improvements for months; you can find full details on our [Sexual Rejuvenation](/birmingham/sexual-rejuvenation) page."
-    },
-    {
-      question: "Is PRP better than a steroid injection for knee pain?",
-      answer: "Steroids offer fast, temporary relief but can weaken joint tissue over time. PRP is a regenerative therapy at our Edgbaston clinic that promotes long-term healing. View full details on our [Joint Injections](/birmingham/joint-injections) page."
-    },
-    {
-      question: "Can I get PRP Hair Restoration in the West Midlands?",
-      answer: "Absolutely. We offer advanced PRP and Exosome therapy at our Birmingham clinic for both men and women. Read about our specialized protocols on the [Hair Restoration](/birmingham/hair-restoration) page."
-    },
-    {
-      question: "Does PRP work for advanced 'bone-on-bone' arthritis?",
-      answer: "PRP is most effective for early to moderate osteoarthritis. For advanced cases, our Birmingham-based doctor will assess if regenerative therapy is still a viable option. See our [Joint Injections](/birmingham/joint-injections) section for more."
-    },
-    {
-      question: "How long do the results of a P-Shot® or O-Shot® last?",
-      answer: "Most patients experience improved sensitivity and performance for months or more depending upon individual case. To see how these treatments work, visit our [Sexual Rejuvenation](/birmingham/sexual-rejuvenation) section."
-    },
-    {
-      question: "Where exactly is the Birmingham clinic located?",
-      answer: "Our clinic is situated in the prestigious Edgbaston Medical Quarter. It is easily accessible for patients traveling from Birmingham City Centre, Solihull, and Sutton Coldfield."
-    },
-    {
-      question: "Is there parking available at the Birmingham location?",
-      answer: "Yes, we have dedicated parking for patients. There is also ample, low-cost street parking available in the immediate vicinity of our Edgbaston clinic."
-    },
-    {
-      question: "Is there any downtime after Sexual Rejuvenation treatments?",
-      answer: "There is virtually no downtime; you can return to your Birmingham routine immediately. We recommend 2-3 days of rest before resuming sexual activity; see more recovery tips on our [Sexual Rejuvenation](/birmingham/sexual-rejuvenation) page."
-    },
-    {
-      question: "Can I drive home after a PRP joint injection?",
-      answer: "Yes, you can drive home to Solihull, Wolverhampton, or beyond immediately after treatment. Any mild stiffness usually subsides within 24 hours. Check our [Joint Injections](/birmingham/joint-injections) FAQ for post-care."
-    },
-    {
-      question: "Are your doctors GMC-registered?",
-      answer: "Yes, all treatments at Healing-PRP Clinics are delivered by a GMC-registered doctor with over 10 years of medical experience. This ensures the highest standards of safety for our West Midlands patients."
-    }
-  ];
+const mainFaqs = [
+  {
+    question: "Are the results of the P-Shot® permanent?",
+    answer: "While results are long-lasting, they are not permanent as the natural aging process continues. The P-Shot® stimulates natural tissue growth typically lasting 12-18 months; details are on our [Sexual Rejuvenation](/birmingham/sexual-rejuvenation) page."
+  },
+  {
+    question: "Is PRP better than a steroid injection for knee pain?",
+    answer: "Steroids provide fast relief but can weaken tendons over time. PRP is a regenerative therapy at our Birmingham clinic that promotes long-term healing."
+  },
+  {
+    question: "Can I get PRP Hair Restoration in the West Midlands?",
+    answer: "Yes, we offer advanced PRP and Exosome therapy at our Edgbaston branch. This treatment stimulates natural follicle growth."
+  },
+  {
+    question: "Does PRP work for advanced 'bone-on-bone' arthritis?",
+    answer: "PRP is most effective for early to moderate osteoarthritis. For advanced cases, our Birmingham-based doctor will assess if regenerative therapy can still provide relief."
+  },
+  {
+    question: "How long do the results of a P-Shot® or O-Shot® last?",
+    answer: "Most patients enjoy improved sensitivity and performance for 12 to 18 months. To see how these treatments work, visit our [Sexual Rejuvenation](/birmingham/sexual-rejuvenation) section."
+  },
+  {
+    question: "Is there any downtime after Hair Restoration?",
+    answer: "There is minimal downtime; you can return to work in Birmingham immediately. We advise waiting 24 hours before washing hair."
+  },
+  {
+    question: "Do you offer a consultation before treatment?",
+    answer: "Yes — every client receives a personal consultation with our GMC-registered doctor in Edgbaston to tailor a safe, effective plan."
+  },
+  {
+    question: "Are your products safe and approved?",
+    answer: "We use only high-quality, CE-marked products and follow strict medical sterility protocols under the direct supervision of a GMC-registered doctor."
+  },
+  {
+    question: "Can I drive home after a PRP joint injection?",
+    answer: "Yes, you can drive home to Solihull, Sutton Coldfield, or surrounding West Midlands areas immediately."
+  },
+  {
+    question: "Where exactly is the Birmingham clinic located?",
+    answer: "Our clinic is located at 38 Harborne Rd, Edgbaston, Birmingham (B15 3EB). We are perfectly positioned for patients traveling across the West Midlands."
+  },
+  {
+    question: "Is there parking available at the Edgbaston location?",
+    answer: "Yes, there is convenient parking available nearby. We provide specific parking directions via WhatsApp once your appointment is confirmed."
+  }
+];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": birminghamFaqs.map((faq) => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        // The crucial regex fix to strip markdown links for Google's schema parser!
-        "text": faq.answer.replace(/\[(.*?)\]\((.*?)\)/g, '$1'),
+// --- UPGRADED JSON-LD SCHEMA: Medical Clinic & FAQ ---
+const faqSchemaBirmingham = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "mainEntity": mainFaqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer.replace(/\[(.*?)\]\((.*?)\)/g, '$1'),
+        },
+      })),
+    },
+    {
+      "@type": "MedicalClinic",
+      "@id": "https://www.healing-prp.co.uk/birmingham/faq#clinic",
+      "name": "Healing-PRP Clinics Birmingham",
+      "url": "https://www.healing-prp.co.uk/birmingham/faq",
+      "description": "Doctor-led regenerative medicine clinic serving Edgbaston and the West Midlands.",
+      "telephone": "+447990364147",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "38 Harborne Rd",
+        "addressLocality": "Birmingham",
+        "addressRegion": "West Midlands",
+        "postalCode": "B15 3EB",
+        "addressCountry": "GB"
       },
-    })),
-  };
+      "areaServed": [
+        { "@type": "City", "name": "Birmingham" },
+        { "@type": "City", "name": "Edgbaston" },
+        { "@type": "AdministrativeArea", "name": "West Midlands" }
+      ],
+      "medicalDirector": {
+        "@type": "Physician",
+        "name": "Dr Syed Abdi",
+        "jobTitle": "GMC Registered Doctor",
+        "url": "https://www.healing-prp.co.uk/our-doctor",
+        "knowsAbout": ["PRP Therapy", "Regenerative Medicine", "Sexual Health"]
+      }
+    }
+  ]
+};
 
+// --- BREADCRUMB SCHEMA ---
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.healing-prp.co.uk/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Birmingham Clinic",
+      "item": "https://www.healing-prp.co.uk/birmingham"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Treatment & Clinic FAQs",
+      "item": "https://www.healing-prp.co.uk/birmingham/faq"
+    }
+  ]
+};
+
+export default function BirminghamFaqPage() {
   return (
-    <>
-      <Script
-        id="faq-schema-birmingham"
+    <main>
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchemaBirmingham) }}
       />
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema) }}
+      />
       <FaqClient 
-        title="Birmingham Clinic FAQs"
-        description="Specific information about our Edgbaston location, parking, and specialist regenerative treatments in Birmingham."
-        locationBadge="Birmingham • Edgbaston • West Midlands"
-        faqs={birminghamFaqs}
+        title="Frequently Asked Questions"
+        description="Clear answers about consultations, treatments, and what to expect at our Birmingham clinic."
+        locationBadge="GMC-Registered | CE-Marked | Edgbaston & West Midlands"
+        locationName="Birmingham"
+        faqs={mainFaqs}
       />
       <Footer />
-    </>
+    </main>
   );
 }
