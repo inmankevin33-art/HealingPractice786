@@ -50,7 +50,14 @@ export default function VaginalDrynessClient({
   const [isLoaded, setIsLoaded] = useState(false);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
 
+  // --- LOCATION LOGIC ---
   const isBirmingham = locationName === "Birmingham";
+  const isHampstead = locationName === "Hampstead";
+
+  const basePath = isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "";
+  const contactRoute = isBirmingham ? "/birmingham/contact" : isHampstead ? "/hampstead/contact" : "/contact";
+  const pricesRoute = isBirmingham ? "/birmingham/prices" : isHampstead ? "/hampstead/prices" : "/prices";
+  const oShotRoute = isBirmingham ? "/birmingham/o-shot" : isHampstead ? "/hampstead/o-shot" : "/o-shot";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -132,7 +139,7 @@ export default function VaginalDrynessClient({
 
   const resultsList = [
     "Hyaluronic acid may help support hydration and comfort, with changes often developing over days to weeks.",
-    "Polynucleotide results usually build gradually over a course of treatments.",
+    "Combined polynucleotide + hyaluronic acid results usually build gradually over a course of treatments.",
     "PRP/O-Shot results are usually assessed over several weeks rather than immediately.",
     "Some patients need more than one session.",
     "Maintenance treatment may be needed.",
@@ -180,7 +187,7 @@ export default function VaginalDrynessClient({
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <div className="relative min-h-[90vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
+      <div className="relative min-h-[85vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
@@ -205,18 +212,25 @@ export default function VaginalDrynessClient({
             className="text-3xl md:text-5xl lg:text-6xl font-bold font-raleway text-white leading-tight mb-6 tracking-tight"
           >
             Vaginal Dryness Treatment <br />
-            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block font-medium">in {locationName}</span>
+            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block font-medium">in {isHampstead ? "Hampstead, London" : locationName}</span>
           </motion.h1>
           
           <motion.p 
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="mt-4 text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-3xl mx-auto mb-10 font-medium"
+            className="mt-4 text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 font-medium"
           >
-            Discreet, doctor-led care for vaginal dryness, soreness, reduced lubrication and discomfort during intimacy. At HealingPRP Clinics, Dr Syed Abdi offers confidential assessment and selected non-hormonal treatment options, including hyaluronic acid, polynucleotides and PRP/O-Shot, where clinically appropriate.
+            Doctor-led care for vaginal dryness, reduced lubrication, soreness and discomfort during intimacy. Confidential non-hormonal treatment options are discussed after assessment.
+          </motion.p>
+          
+          <motion.p
+            custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="text-xs text-blue-200/80 mb-6 max-w-lg mx-auto font-inter"
+          >
+            Assessed by Dr Syed Abdi, UK-trained GP.
           </motion.p>
 
           <motion.div 
-            custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <button 
@@ -234,7 +248,7 @@ export default function VaginalDrynessClient({
           </motion.div>
 
           <motion.p
-            custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="mt-6 text-xs text-blue-200/70 max-w-lg mx-auto"
           >
             Confidential appointments available in {locationName}. Suitable treatment is discussed after medical assessment.
@@ -244,27 +258,23 @@ export default function VaginalDrynessClient({
 
       {/* --- TRUST STRIP --- */}
       <div className="bg-[#0A1128] border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-            <div className="flex flex-col items-center p-4">
-              <FaUserMd className="text-[#4041d1] text-3xl mb-3" />
-              <h3 className="text-white font-bold text-sm mb-2 uppercase tracking-wide">Doctor-led assessment</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">Your symptoms are reviewed by an experienced UK GP before treatment is recommended.</p>
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div className="flex flex-col items-center">
+              <h3 className="text-white font-bold text-xs mb-1 uppercase tracking-wide">Doctor-led</h3>
+              <p className="text-slate-400 text-[10px] leading-relaxed">UK GP review before treatment</p>
             </div>
-            <div className="flex flex-col items-center p-4">
-              <FaLeaf className="text-[#4041d1] text-3xl mb-3" />
-              <h3 className="text-white font-bold text-sm mb-2 uppercase tracking-wide">Non-hormonal options</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">We offer selected treatment options for women who prefer or require a non-hormonal approach.</p>
+            <div className="flex flex-col items-center">
+              <h3 className="text-white font-bold text-xs mb-1 uppercase tracking-wide">Non-hormonal</h3>
+              <p className="text-slate-400 text-[10px] leading-relaxed">Selected options available</p>
             </div>
-            <div className="flex flex-col items-center p-4">
-              <FaUserShield className="text-[#4041d1] text-3xl mb-3" />
-              <h3 className="text-white font-bold text-sm mb-2 uppercase tracking-wide">Discreet private care</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">Appointments are confidential, respectful and focused on your comfort.</p>
+            <div className="flex flex-col items-center">
+              <h3 className="text-white font-bold text-xs mb-1 uppercase tracking-wide">Private care</h3>
+              <p className="text-slate-400 text-[10px] leading-relaxed">Confidential and respectful</p>
             </div>
-            <div className="flex flex-col items-center p-4">
-              <FaMapMarkerAlt className="text-[#4041d1] text-3xl mb-3" />
-              <h3 className="text-white font-bold text-sm mb-2 uppercase tracking-wide">{locationName} clinic</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">Private intimate health consultations available at HealingPRP Clinics in {locationName}.</p>
+            <div className="flex flex-col items-center">
+              <h3 className="text-white font-bold text-xs mb-1 uppercase tracking-wide">{locationName} clinic</h3>
+              <p className="text-slate-400 text-[10px] leading-relaxed">Private consultations available</p>
             </div>
           </div>
         </div>
@@ -274,17 +284,19 @@ export default function VaginalDrynessClient({
       <section className="py-20 bg-white font-inter">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-            Private treatment for vaginal dryness, soreness and intimate discomfort
+            Private treatment for vaginal dryness and intimate discomfort
           </h2>
           <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-6">
-            Vaginal dryness is common, especially around perimenopause, menopause and after childbirth, but it can still feel uncomfortable, embarrassing or difficult to discuss. It may cause dryness, burning, soreness, reduced lubrication, discomfort during sex or a feeling that the tissue has become more fragile.
+            Vaginal dryness is common, especially around menopause, after childbirth, or with hormonal change. It may cause dryness, burning, soreness, reduced lubrication or discomfort during intimacy.
           </p>
-          <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-6">
-            At HealingPRP Clinics, we take a medical-first approach. This means we do not simply offer an injection without understanding the cause of your symptoms. Your consultation will consider menopause-related changes, infection, irritation, medication, skin conditions, previous treatment, and any symptoms that may need further medical review.
+          <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-8">
+            At HealingPRP Clinics, we take a medical-first approach. Your symptoms are assessed carefully before treatment is recommended.
           </p>
-          <p className="text-slate-600 text-base md:text-lg leading-relaxed font-medium">
-            Where suitable, we can discuss non-hormonal options such as hyaluronic acid, polynucleotides and PRP/O-Shot. These treatments are intended to support hydration, tissue quality and intimate comfort, but results vary and no outcome can be guaranteed.
-          </p>
+          <div className="bg-blue-50/80 p-6 rounded-2xl border border-blue-100">
+            <p className="text-slate-800 text-base font-medium">
+              Where appropriate, we may discuss non-hormonal options such as vaginal hyaluronic acid, combined polynucleotide + hyaluronic acid treatment, or PRP/O-Shot.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -297,7 +309,7 @@ export default function VaginalDrynessClient({
               Vaginal dryness can happen for several reasons. For many women, it is linked to lower oestrogen levels during perimenopause or menopause. This can make the vaginal and vulval tissues feel thinner, drier, more sensitive or more easily irritated.
             </p>
             <p className="text-slate-600 text-lg leading-relaxed mt-4">
-              Other possible causes include breastfeeding, some medications, cancer treatment, stress, reduced arousal, recurrent thrush or urinary infections, perfumed intimate products, and vulval skin conditions such as lichen sclerosus.
+              Other possible causes include breastfeeding, some medications, cancer treatment, stress, reduced arousal, recurrent thrush or urinary infections, perfumed intimate products, and vulval skin conditions.
             </p>
           </div>
 
@@ -342,7 +354,7 @@ export default function VaginalDrynessClient({
               ))}
             </ul>
             <p className="text-red-800 text-sm font-bold bg-red-100 p-4 rounded-xl">
-              If any of these apply, Dr Abdi may recommend GP, gynaecology or specialist review before treatment.
+              If any of these apply, Dr Abdi may recommend GP, gynaecology or specialist review before treatment is considered.
             </p>
           </div>
         </div>
@@ -353,10 +365,10 @@ export default function VaginalDrynessClient({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Treatment options for vaginal dryness</h2>
           <p className="text-slate-600 text-lg leading-relaxed mb-6">
-            Treatment depends on the cause, severity and your personal preferences. Some women benefit from simple lubricants or vaginal moisturisers. Vaginal oestrogen is also commonly recommended for menopausal vaginal dryness where appropriate.
+            Treatment depends on the cause, severity and your personal preferences. Some women benefit from lubricants, vaginal moisturisers or vaginal oestrogen where appropriate.
           </p>
           <p className="text-slate-600 text-lg leading-relaxed">
-            However, some women prefer non-hormonal options, cannot use hormones, or want additional support for tissue comfort, hydration and intimate wellbeing. In these cases, selected treatments such as hyaluronic acid, polynucleotides or PRP/O-Shot may be discussed after assessment.
+            Some women prefer non-hormonal options, cannot use hormones, or want additional support for hydration, tissue comfort and intimate wellbeing. In these cases, selected treatments such as vaginal hyaluronic acid, combined polynucleotide + hyaluronic acid treatment, or PRP/O-Shot may be discussed after assessment.
           </p>
         </div>
       </section>
@@ -383,7 +395,7 @@ export default function VaginalDrynessClient({
               <p className="text-sm font-bold text-[#4041d1] mb-4 uppercase tracking-wide">Hydration-focused support for dryness and tissue comfort</p>
               <div className="text-slate-600 text-sm space-y-4 mb-6 flex-grow">
                 <p>Hyaluronic acid is a moisture-binding substance that helps tissue hold water. In intimate health, it may be used to support hydration, elasticity and comfort in women experiencing vaginal dryness or irritation.</p>
-                <p>The strongest evidence for vaginal hyaluronic acid is for moisturisers, gels and suppositories. Injectable protocols vary between clinics, so we explain clearly what treatment is being offered and what outcome is realistic for your symptoms.</p>
+                <p>Vaginal hyaluronic acid may be considered for women looking for a non-hormonal option focused on hydration, comfort and tissue support.</p>
               </div>
               <div className="bg-white p-5 rounded-2xl border border-slate-100 mb-4">
                 <p className="text-xs font-bold text-slate-900 mb-2 uppercase">May be suitable for:</p>
@@ -395,22 +407,26 @@ export default function VaginalDrynessClient({
                   <li>women who want hydration-focused tissue support</li>
                 </ul>
               </div>
-              <p className="text-xs text-slate-500 italic border-l-2 border-blue-300 pl-3">
-                This is not a cosmetic vaginal filler treatment. The aim is to support hydration, tissue comfort and intimate wellbeing in suitable patients.
+              <p className="text-xs text-slate-500 italic border-l-2 border-blue-300 pl-3 mb-6">
+                The aim is to support hydration, tissue comfort and intimate wellbeing in suitable patients.
               </p>
+              <div className="mt-auto pt-4 border-t border-slate-200">
+                <Link href={contactRoute} className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors">
+                  Ask about Hyaluronic Acid <FaArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
             </div>
 
-            {/* Card 2: PN */}
+            {/* Card 2: PN + HA */}
             <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200 flex flex-col">
               <div className="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
                 <FaDna />
               </div>
-              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Vaginal Polynucleotides</h3>
-              <p className="text-sm font-bold text-[#4041d1] mb-4 uppercase tracking-wide">Regenerative support for tissue quality and comfort</p>
+              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Polynucleotide + Hyaluronic Acid</h3>
+              <p className="text-sm font-bold text-[#4041d1] mb-4 uppercase tracking-wide">Combined tissue-support and hydration treatment</p>
               <div className="text-slate-600 text-sm space-y-4 mb-6 flex-grow">
-                <p>Polynucleotides are DNA-derived molecules used in regenerative aesthetic medicine. They are designed to support tissue repair, hydration and collagen activity. In intimate health, they may be considered for women experiencing dryness, soreness, thinning or reduced tissue comfort.</p>
-                <p>The evidence for vulvo-vaginal polynucleotide treatment is still developing, and many published protocols combine polynucleotides with hyaluronic acid. For this reason, we describe this as an emerging treatment option rather than a guaranteed solution.</p>
-                <p className="font-medium text-slate-700 bg-indigo-50 p-3 rounded-lg">Polynucleotide treatment is usually offered as a course rather than a one-off treatment. Many protocols involve several sessions spaced a few weeks apart, with improvement developing gradually.</p>
+                <p>In our clinic, polynucleotides are combined with hyaluronic acid as a treatment approach designed to support hydration, tissue quality and intimate comfort.</p>
+                <p>This option may be considered where vaginal dryness is accompanied by soreness, tissue fragility or reduced tissue comfort. Improvement usually develops gradually over a course of treatment rather than after a single session.</p>
               </div>
               <div className="bg-white p-5 rounded-2xl border border-slate-100 mb-4">
                 <p className="text-xs font-bold text-slate-900 mb-2 uppercase">May be suitable for:</p>
@@ -418,13 +434,18 @@ export default function VaginalDrynessClient({
                   <li>vaginal dryness linked to tissue fragility</li>
                   <li>soreness or irritation</li>
                   <li>reduced intimate comfort</li>
-                  <li>women seeking a non-hormonal regenerative approach</li>
+                  <li>women seeking a non-hormonal regenerative-style approach</li>
                   <li>women who understand that results build gradually</li>
                 </ul>
               </div>
-              <p className="text-xs text-slate-500 italic border-l-2 border-indigo-300 pl-3">
-                Polynucleotides may help support tissue quality and hydration, but clinical response varies and long-term evidence is still limited.
+              <p className="text-xs text-slate-500 italic border-l-2 border-indigo-300 pl-3 mb-6">
+                Combined polynucleotide + hyaluronic acid treatment may help support hydration and tissue quality, but response varies and more than one treatment is often needed.
               </p>
+              <div className="mt-auto pt-4 border-t border-slate-200">
+                <Link href={contactRoute} className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors">
+                  Ask about Polynucleotides + HA <FaArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
             </div>
 
             {/* Card 3: PRP/O-Shot */}
@@ -435,9 +456,8 @@ export default function VaginalDrynessClient({
               <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">PRP / O-Shot</h3>
               <p className="text-sm font-bold text-[#4041d1] mb-4 uppercase tracking-wide">Platelet-rich plasma treatment using your own blood</p>
               <div className="text-slate-600 text-sm space-y-4 mb-6 flex-grow">
-                <p>PRP stands for platelet-rich plasma. A small sample of your blood is taken and processed in a centrifuge to concentrate platelets and growth-factor-containing plasma. This plasma is then carefully injected into selected intimate tissues.</p>
-                <p>The O-Shot is a commonly used name for PRP treatment in female intimate health. It may be considered for symptoms such as vaginal dryness, reduced lubrication, discomfort during sex or reduced sensitivity. However, PRP protocols vary between clinics and studies, and results cannot be guaranteed.</p>
-                <p className="font-medium text-slate-700 bg-rose-50 p-3 rounded-lg">Some patients have one treatment followed by review, while others may require a course or maintenance treatment. Published studies have used different protocols, so your treatment plan will be individual.</p>
+                <p>PRP stands for platelet-rich plasma. A small blood sample is taken and processed in a centrifuge to concentrate platelets and growth-factor-rich plasma. This plasma is then carefully injected into selected intimate tissues.</p>
+                <p>The O-Shot is a commonly used name for PRP treatment in female intimate health. It may be considered for vaginal dryness, reduced lubrication, discomfort during intimacy or reduced sensitivity in selected patients.</p>
               </div>
               <div className="bg-white p-5 rounded-2xl border border-slate-100 mb-4">
                 <p className="text-xs font-bold text-slate-900 mb-2 uppercase">May be suitable for:</p>
@@ -449,9 +469,14 @@ export default function VaginalDrynessClient({
                   <li>selected urinary or intimate symptoms after assessment</li>
                 </ul>
               </div>
-              <p className="text-xs text-slate-500 italic border-l-2 border-rose-300 pl-3">
-                PRP is a promising regenerative option, but the evidence is still evolving and treatment response varies.
+              <p className="text-xs text-slate-500 italic border-l-2 border-rose-300 pl-3 mb-6">
+                PRP is a promising regenerative option, but evidence is still evolving and treatment response varies.
               </p>
+              <div className="mt-auto pt-4 border-t border-slate-200">
+                <Link href={oShotRoute} className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors">
+                  Read more about the O-Shot <FaArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -470,16 +495,16 @@ export default function VaginalDrynessClient({
               <h3 className="font-bold text-lg text-slate-900 mb-3 border-b border-slate-100 pb-2">Hyaluronic Acid</h3>
               <div className="space-y-2 text-sm text-slate-600">
                 <p><strong className="text-slate-900">Main aim:</strong> Hydration and comfort</p>
-                <p><strong className="text-slate-900">Typical approach:</strong> Usually hydration-focused treatment; protocols vary</p>
+                <p><strong className="text-slate-900">Typical approach:</strong> Hydration-focused support; treatment plan varies</p>
                 <p><strong className="text-slate-900">Evidence level:</strong> Stronger evidence for topical/suppository use than injectable protocols</p>
                 <p><strong className="text-slate-900">Downtime:</strong> Usually minimal</p>
               </div>
             </div>
             <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
-              <h3 className="font-bold text-lg text-slate-900 mb-3 border-b border-slate-100 pb-2">Polynucleotides</h3>
+              <h3 className="font-bold text-lg text-slate-900 mb-3 border-b border-slate-100 pb-2">Polynucleotide + HA</h3>
               <div className="space-y-2 text-sm text-slate-600">
-                <p><strong className="text-slate-900">Main aim:</strong> Tissue quality and regenerative support</p>
-                <p><strong className="text-slate-900">Typical approach:</strong> Usually a short course of treatments</p>
+                <p><strong className="text-slate-900">Main aim:</strong> Tissue support and hydration</p>
+                <p><strong className="text-slate-900">Typical approach:</strong> Usually a short course of combined treatments</p>
                 <p><strong className="text-slate-900">Evidence level:</strong> Emerging evidence</p>
                 <p><strong className="text-slate-900">Downtime:</strong> Usually minimal</p>
               </div>
@@ -511,14 +536,14 @@ export default function VaginalDrynessClient({
                 <tr className="border-b border-slate-100 hover:bg-slate-50">
                   <td className="p-5 font-bold text-slate-900">Hyaluronic Acid</td>
                   <td className="p-5">Hydration and comfort</td>
-                  <td className="p-5">Usually hydration-focused treatment; protocols vary</td>
+                  <td className="p-5">Hydration-focused support; treatment plan varies</td>
                   <td className="p-5">Stronger evidence for topical/suppository use than injectable protocols</td>
                   <td className="p-5">Usually minimal</td>
                 </tr>
                 <tr className="border-b border-slate-100 hover:bg-slate-50">
-                  <td className="p-5 font-bold text-slate-900">Polynucleotides</td>
-                  <td className="p-5">Tissue quality and regenerative support</td>
-                  <td className="p-5">Usually a short course of treatments</td>
+                  <td className="p-5 font-bold text-slate-900">Polynucleotide + HA</td>
+                  <td className="p-5">Tissue support and hydration</td>
+                  <td className="p-5">Usually a short course of combined treatments</td>
                   <td className="p-5">Emerging evidence</td>
                   <td className="p-5">Usually minimal</td>
                 </tr>
@@ -550,7 +575,7 @@ export default function VaginalDrynessClient({
               <h2 className="text-2xl font-raleway font-bold text-slate-900">What happens during your consultation?</h2>
             </div>
             <p className="text-slate-600 mb-6">
-              Your consultation is confidential and doctor-led. The aim is to understand your symptoms properly before recommending treatment. During the consultation, Dr Abdi may discuss:
+              Your consultation is confidential and doctor-led. The aim is to understand your symptoms properly before any treatment is recommended. During the consultation, Dr Abdi may discuss:
             </p>
             <ul className="space-y-3 mb-6 text-slate-600 text-sm">
               {consultationList.map((item, i) => (
@@ -573,15 +598,15 @@ export default function VaginalDrynessClient({
               <h2 className="text-2xl font-raleway font-bold text-slate-900">What happens during treatment?</h2>
             </div>
             <p className="text-slate-600 mb-6">
-              The exact treatment steps depend on whether you are having hyaluronic acid, polynucleotides, PRP/O-Shot or a combination approach. Before any procedure, the treatment area is cleaned and numbing cream or local anaesthetic may be used to improve comfort.
+              The exact treatment steps depend on whether you are having vaginal hyaluronic acid, combined polynucleotide + hyaluronic acid treatment, PRP/O-Shot, or a personalised combination approach. Before any procedure, the treatment area is cleaned and numbing cream or local anaesthetic may be used to improve comfort.
             </p>
             <div className="space-y-4 text-sm text-slate-600 mb-6">
-              <p><strong>For HA:</strong> For hyaluronic acid treatment, small amounts of product may be placed into selected tissues to support hydration and comfort. The aim is not cosmetic enlargement, but improvement in dryness-related symptoms where appropriate.</p>
-              <p><strong>For Polynucleotides:</strong> For polynucleotide treatment, small amounts of product are placed into selected tissues to support tissue quality, hydration and regenerative activity. A course of treatment may be recommended.</p>
-              <p><strong>For PRP/O-Shot:</strong> For PRP/O-Shot treatment, a small blood sample is taken and processed to prepare platelet-rich plasma. The PRP is then injected into selected intimate tissues according to your symptoms and treatment plan.</p>
+              <p><strong>For Vaginal HA:</strong> Small amounts of hyaluronic acid may be placed into selected tissues to support hydration, comfort and tissue suppleness.</p>
+              <p><strong>For Polynucleotide + HA:</strong> Small amounts of combined polynucleotide and hyaluronic acid product may be placed into selected tissues to support hydration, tissue quality and regenerative activity. A course of treatment is often recommended.</p>
+              <p><strong>For PRP / O-Shot:</strong> A small blood sample is taken and processed to prepare platelet-rich plasma. The PRP is then injected into selected intimate tissues according to your symptoms and treatment plan.</p>
             </div>
             <p className="font-medium text-slate-900 bg-slate-50 p-4 rounded-xl border border-slate-100">
-              Most treatments are performed in clinic with minimal downtime, but individual recovery and results can vary.
+              Most treatments are performed in clinic with minimal downtime, although recovery and results vary from person to person.
             </p>
           </div>
         </div>
@@ -590,24 +615,23 @@ export default function VaginalDrynessClient({
       {/* --- RESULTS, SIDE EFFECTS, CONTRAINDICATIONS, AFTERCARE --- */}
       <section className="py-20 bg-slate-50 font-inter border-t border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8">
             
             {/* Results */}
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-              <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-2">
                 <FaClock className="text-[#4041d1]" /> When might I notice results?
               </h2>
               <p className="text-slate-600 mb-4 text-sm">Results vary depending on the treatment used, the severity of dryness, hormonal status, tissue quality and any underlying medical factors.</p>
               <ul className="space-y-2 mb-6 text-sm text-slate-600 list-disc pl-5">
                 {resultsList.map((res, i) => <li key={i}>{res}</li>)}
               </ul>
-              <p className="text-sm font-bold text-[#4041d1]">At your consultation, Dr Abdi will explain what is realistic for your symptoms and whether another treatment route may be more suitable.</p>
             </div>
 
             {/* Side Effects */}
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-              <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <FaInfoCircle className="text-amber-500" /> Possible side effects and downtime
+              <h2 className="text-xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <FaInfoCircle className="text-amber-500" /> Possible side effects & downtime
               </h2>
               <p className="text-slate-600 mb-4 text-sm">Most patients return to normal daily activities quickly, but intimate treatments can cause temporary side effects.</p>
               <ul className="space-y-2 mb-6 text-sm text-slate-600 grid grid-cols-2">
@@ -617,31 +641,28 @@ export default function VaginalDrynessClient({
                   </li>
                 ))}
               </ul>
-              <p className="text-sm font-bold text-amber-700">You will be given aftercare advice and told what symptoms should prompt medical review.</p>
             </div>
 
             {/* Contraindications */}
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-              <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-2">
                 <FaBan className="text-red-500" /> Who may not be suitable?
               </h2>
               <p className="text-slate-600 mb-4 text-sm">Treatment may not be suitable for everyone. Injectable intimate treatments may need to be delayed or avoided in some situations.</p>
               <ul className="space-y-2 mb-6 text-sm text-slate-600 list-disc pl-5">
                 {contraindicationsList.map((ci, i) => <li key={i}>{ci}</li>)}
               </ul>
-              <p className="text-sm font-bold text-red-700">If treatment is not suitable, Dr Abdi will explain why and may advise a different medical route.</p>
             </div>
 
             {/* Aftercare */}
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-              <h2 className="text-2xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-raleway font-bold text-slate-900 mb-4 flex items-center gap-2">
                 <FaCheckCircle className="text-green-500" /> Aftercare advice
               </h2>
               <p className="text-slate-600 mb-4 text-sm">Aftercare depends on the treatment performed. You will receive personalised advice before leaving the clinic.</p>
               <ul className="space-y-2 mb-6 text-sm text-slate-600 list-disc pl-5">
                 {aftercareList.map((ac, i) => <li key={i}>{ac}</li>)}
               </ul>
-              <p className="text-sm font-bold text-green-700">Your individual aftercare instructions may differ depending on the treatment and your medical history.</p>
             </div>
 
           </div>
@@ -662,14 +683,14 @@ export default function VaginalDrynessClient({
               Some studies suggest that PRP may improve symptoms such as lubrication, discomfort and sexual function in selected women, but treatment protocols vary and the long-term durability of results is not fully established.
             </p>
             <p>
-              Polynucleotide treatment is also an emerging area in intimate health. Early evidence is encouraging, but it should not be presented as a guaranteed or proven cure for vaginal dryness.
+              Combined polynucleotide and hyaluronic acid treatment is also an emerging area in intimate health. Early evidence is encouraging, but it should not be presented as a guaranteed or proven cure for vaginal dryness.
             </p>
             <p>
               Hyaluronic acid has stronger evidence as a non-hormonal moisturising option, particularly in topical or suppository form. Injectable protocols vary, so we explain clearly what is being offered and what outcome is realistic.
             </p>
             <div className="bg-blue-50 border-l-4 border-[#4041d1] p-6 mt-8 rounded-r-xl">
               <p className="font-bold text-slate-900 m-0">
-                Our approach is to explain the possible benefits, limitations, risks and alternatives before treatment, so you can make an informed decision.
+                Our approach is to explain the likely benefits, limitations, risks and alternatives before treatment, so you can make an informed decision.
               </p>
             </div>
           </div>
@@ -732,10 +753,10 @@ export default function VaginalDrynessClient({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">Treatment prices</h2>
           <p className="text-slate-600 mb-8 max-w-2xl mx-auto">
-            Treatment cost depends on the option recommended, the number of sessions required and whether a combination approach is used.
+            The recommended treatment depends on your symptoms, suitability and whether a single treatment or a course is advised.
           </p>
           <Link 
-            href={isBirmingham ? "/birmingham/prices" : "/prices"}
+            href={pricesRoute}
             className="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-[#4041d1] text-[#4041d1] rounded-xl font-bold hover:bg-[#4041d1] hover:text-white transition-all duration-300"
           >
             View our treatment prices <FaArrowRight />
@@ -794,7 +815,7 @@ export default function VaginalDrynessClient({
             If vaginal dryness, soreness or discomfort during intimacy is affecting your confidence or quality of life, you can book a confidential consultation with Dr Syed Abdi at HealingPRP Clinics in {locationName}.
           </p>
           <p className="text-slate-900 font-bold mb-10">
-            Your symptoms will be assessed carefully, and suitable options will be explained clearly before any treatment is offered.
+            Your symptoms will be assessed carefully and suitable options will be explained clearly before treatment is recommended.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
@@ -804,7 +825,7 @@ export default function VaginalDrynessClient({
               Book Private consultation
             </button>
             <Link 
-              href="/contact"
+              href={contactRoute}
               className="px-8 py-4 bg-white hover:bg-slate-100 text-slate-900 border border-slate-200 rounded-xl font-bold transition-all duration-300 flex items-center justify-center shadow-sm"
             >
               Ask a Confidential Question
