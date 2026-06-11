@@ -100,6 +100,10 @@ export default function Hero() {
                 Erectile dysfunction
               </Link>
               {", "}
+              <Link href={`${prefix}/peyronies-disease`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
+                Peyronie&apos;s disease
+              </Link>
+              {", "}
               <Link href={`${prefix}/premature-ejaculation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
                 Premature ejaculation
               </Link>
@@ -109,7 +113,7 @@ export default function Hero() {
               </Link>
               {", and "}
               <Link href={`${prefix}/sexual-rejuvenation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Sexual wellness
+                Reduced sensitivity
               </Link>
               .
             </>
