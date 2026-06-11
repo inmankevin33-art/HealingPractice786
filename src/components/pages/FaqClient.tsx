@@ -28,6 +28,12 @@ export default function FaqClient({
 }: FaqClientProps) {
   const [openFAQKey, setOpenFAQKey] = useState<string | null>(null);
 
+  // --- LOCATION LOGIC ---
+  const isBirmingham = locationName === "Birmingham";
+  const isHampstead = locationName === "Hampstead";
+  
+  const treatmentPricesUrl = isBirmingham ? "/birmingham/prices" : isHampstead ? "/hampstead/prices" : "/prices";
+
   const toggleFAQ = (key: string) => {
     setOpenFAQKey(openFAQKey === key ? null : key);
   };
@@ -107,7 +113,7 @@ export default function FaqClient({
                   </button>
 
                   <Link
-                    href={locationName === "Birmingham" ? "/birmingham/prices" : "/prices"}
+                    href={treatmentPricesUrl}
                     // BRAND COLOR LOCK: Border & Text
                     className="px-8 py-3.5 w-full sm:w-max flex items-center justify-center text-sm cursor-pointer border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 rounded-xl font-inter font-bold transition-all duration-300"
                   >
