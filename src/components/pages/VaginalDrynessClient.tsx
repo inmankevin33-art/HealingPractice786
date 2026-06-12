@@ -336,10 +336,10 @@ export default function VaginalDrynessClient({
           <div className="text-center mb-8">
             <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">When to see your regular GP urgently</h2>
             <p className="text-slate-600">
-              While your consultation with Dr Abdi includes a full medical review, certain "red flag" symptoms require diagnostic investigation through your regular NHS GP or gynaecologist before private regenerative treatments can be considered.
+              While your consultation with Dr Abdi includes a full medical review, certain &quot;red flag&quot; symptoms require diagnostic investigation through your regular NHS GP or gynaecologist before private regenerative treatments can be considered.
             </p>
           </div>
-
+          
           <div className="bg-red-50 border border-red-200 rounded-2xl p-8 shadow-sm">
             <div className="flex items-center gap-3 mb-6">
               <FaExclamationTriangle className="text-red-600 text-2xl" />
