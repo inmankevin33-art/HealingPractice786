@@ -386,18 +386,22 @@ export default function VaginalDrynessClient({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
             {/* Card 1: HA */}
-            <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200 flex flex-col">
-              <div className="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+            <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200 flex flex-col h-full">
+              <div className="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shrink-0">
                 <FaTint />
               </div>
               <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Vaginal Hyaluronic Acid</h3>
               <p className="text-sm font-bold text-[#4041d1] mb-4 uppercase tracking-wide">Hydration-focused support for dryness and tissue comfort</p>
-              <div className="text-slate-600 text-sm space-y-4 mb-6 flex-grow">
+              
+              <div className="text-slate-600 text-sm space-y-4 mb-6">
                 <p>Hyaluronic acid is a moisture-binding substance that helps tissue hold water. In intimate health, it may be used to support hydration, elasticity and comfort in women experiencing vaginal dryness or irritation.</p>
                 <p>Vaginal hyaluronic acid may be considered for women looking for a non-hormonal option focused on hydration, comfort and tissue support.</p>
               </div>
-              <div className="bg-white p-5 rounded-2xl border border-slate-100 mb-4">
+              
+              {/* UPDATED: White box now has flex-grow to stretch and fill gaps */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-100 mb-6 flex-grow flex flex-col">
                 <p className="text-xs font-bold text-slate-900 mb-2 uppercase">May be suitable for:</p>
                 <ul className="text-sm text-slate-600 space-y-1 list-disc pl-4">
                   <li>mild to moderate vaginal dryness</li>
@@ -407,28 +411,34 @@ export default function VaginalDrynessClient({
                   <li>women who want hydration-focused tissue support</li>
                 </ul>
               </div>
-              <p className="text-xs text-slate-500 italic border-l-2 border-blue-300 pl-3 mb-6">
-                The aim is to support hydration, tissue comfort and intimate wellbeing in suitable patients.
-              </p>
-              <div className="mt-auto pt-4 border-t border-slate-200">
-                <Link href={contactRoute} className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors">
-                  Ask about Hyaluronic Acid <FaArrowRight className="w-3 h-3" />
-                </Link>
+              
+              {/* UPDATED: Grouped disclaimer & link with mt-auto and min-h-[60px] to align bottoms */}
+              <div className="flex flex-col justify-end mt-auto">
+                <p className="text-xs text-slate-500 italic border-l-2 border-blue-300 pl-3 mb-6 min-h-[60px] flex items-center">
+                  The aim is to support hydration, tissue comfort and intimate wellbeing in suitable patients.
+                </p>
+                <div className="pt-4 border-t border-slate-200">
+                  <Link href={contactRoute} className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors">
+                    Ask about Hyaluronic Acid <FaArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
               </div>
             </div>
 
             {/* Card 2: PN + HA */}
-            <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200 flex flex-col">
-              <div className="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+            <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200 flex flex-col h-full">
+              <div className="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shrink-0">
                 <FaDna />
               </div>
               <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Polynucleotide + Hyaluronic Acid</h3>
               <p className="text-sm font-bold text-[#4041d1] mb-4 uppercase tracking-wide">Combined tissue-support and hydration treatment</p>
-              <div className="text-slate-600 text-sm space-y-4 mb-6 flex-grow">
+              
+              <div className="text-slate-600 text-sm space-y-4 mb-6">
                 <p>In our clinic, polynucleotides are combined with hyaluronic acid as a treatment approach designed to support hydration, tissue quality and intimate comfort.</p>
                 <p>This option may be considered where vaginal dryness is accompanied by soreness, tissue fragility or reduced tissue comfort. Improvement usually develops gradually over a course of treatment rather than after a single session.</p>
               </div>
-              <div className="bg-white p-5 rounded-2xl border border-slate-100 mb-4">
+              
+              <div className="bg-white p-5 rounded-2xl border border-slate-100 mb-6 flex-grow flex flex-col">
                 <p className="text-xs font-bold text-slate-900 mb-2 uppercase">May be suitable for:</p>
                 <ul className="text-sm text-slate-600 space-y-1 list-disc pl-4">
                   <li>vaginal dryness linked to tissue fragility</li>
@@ -438,28 +448,33 @@ export default function VaginalDrynessClient({
                   <li>women who understand that results build gradually</li>
                 </ul>
               </div>
-              <p className="text-xs text-slate-500 italic border-l-2 border-indigo-300 pl-3 mb-6">
-                Combined polynucleotide + hyaluronic acid treatment may help support hydration and tissue quality, but response varies and more than one treatment is often needed.
-              </p>
-              <div className="mt-auto pt-4 border-t border-slate-200">
-                <Link href={contactRoute} className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors">
-                  Ask about Polynucleotides + HA <FaArrowRight className="w-3 h-3" />
-                </Link>
+              
+              <div className="flex flex-col justify-end mt-auto">
+                <p className="text-xs text-slate-500 italic border-l-2 border-indigo-300 pl-3 mb-6 min-h-[60px] flex items-center">
+                  Combined polynucleotide + hyaluronic acid treatment may help support hydration and tissue quality, but response varies and more than one treatment is often needed.
+                </p>
+                <div className="pt-4 border-t border-slate-200">
+                  <Link href={contactRoute} className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors">
+                    Ask about Polynucleotides + HA <FaArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
               </div>
             </div>
 
             {/* Card 3: PRP/O-Shot */}
-            <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200 flex flex-col">
-              <div className="w-14 h-14 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+            <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200 flex flex-col h-full">
+              <div className="w-14 h-14 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shrink-0">
                 <FaHeartbeat />
               </div>
               <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">PRP / O-Shot</h3>
               <p className="text-sm font-bold text-[#4041d1] mb-4 uppercase tracking-wide">Platelet-rich plasma treatment using your own blood</p>
-              <div className="text-slate-600 text-sm space-y-4 mb-6 flex-grow">
+              
+              <div className="text-slate-600 text-sm space-y-4 mb-6">
                 <p>PRP stands for platelet-rich plasma. A small blood sample is taken and processed in a centrifuge to concentrate platelets and growth-factor-rich plasma. This plasma is then carefully injected into selected intimate tissues.</p>
                 <p>The O-Shot is a commonly used name for PRP treatment in female intimate health. It may be considered for vaginal dryness, reduced lubrication, discomfort during intimacy or reduced sensitivity in selected patients.</p>
               </div>
-              <div className="bg-white p-5 rounded-2xl border border-slate-100 mb-4">
+              
+              <div className="bg-white p-5 rounded-2xl border border-slate-100 mb-6 flex-grow flex flex-col">
                 <p className="text-xs font-bold text-slate-900 mb-2 uppercase">May be suitable for:</p>
                 <ul className="text-sm text-slate-600 space-y-1 list-disc pl-4">
                   <li>vaginal dryness with reduced lubrication</li>
@@ -469,15 +484,19 @@ export default function VaginalDrynessClient({
                   <li>selected urinary or intimate symptoms after assessment</li>
                 </ul>
               </div>
-              <p className="text-xs text-slate-500 italic border-l-2 border-rose-300 pl-3 mb-6">
-                PRP is a promising regenerative option, but evidence is still evolving and treatment response varies.
-              </p>
-              <div className="mt-auto pt-4 border-t border-slate-200">
-                <Link href={oShotRoute} className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors">
-                  Read more about the O-Shot <FaArrowRight className="w-3 h-3" />
-                </Link>
+              
+              <div className="flex flex-col justify-end mt-auto">
+                <p className="text-xs text-slate-500 italic border-l-2 border-rose-300 pl-3 mb-6 min-h-[60px] flex items-center">
+                  PRP is a promising regenerative option, but evidence is still evolving and treatment response varies.
+                </p>
+                <div className="pt-4 border-t border-slate-200">
+                  <Link href={oShotRoute} className="inline-flex items-center gap-1 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors">
+                    Read more about the O-Shot <FaArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
