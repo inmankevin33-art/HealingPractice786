@@ -430,7 +430,8 @@ export default function VaginalDrynessClient({
               <div className="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shrink-0">
                 <FaDna />
               </div>
-              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Polynucleotide + Hyaluronic Acid</h3>
+              {/* UPDATED HEADING: Shortened to keep on one line */}
+              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-2">Polynucleotide + HA</h3>
               <p className="text-sm font-bold text-[#4041d1] mb-4 uppercase tracking-wide">Combined tissue-support and hydration treatment</p>
               
               <div className="text-slate-600 text-sm space-y-4 mb-6">
