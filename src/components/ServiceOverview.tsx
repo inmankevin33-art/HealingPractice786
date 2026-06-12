@@ -20,6 +20,7 @@ export default function ServiceOverview() {
       icon: FaVenusMars, 
       link: `${prefix}/sexual-rejuvenation`,
       color: "bg-blue-50 text-[#4041d1]",
+      ctaLabel: "View Men’s Treatments",
       subLinks: [
         { name: "Erectile Dysfunction", href: `${prefix}/erectile-dysfunction` },
         { name: "Peyronie's Disease", href: `${prefix}/peyronies-disease` },
@@ -35,6 +36,7 @@ export default function ServiceOverview() {
       icon: FaVenusMars, // Re-using for intimate health, styled with a different color below
       link: `${prefix}/sexual-rejuvenation`,
       color: "bg-rose-50 text-rose-600",
+      ctaLabel: "View Women’s Treatments",
       subLinks: [
         { name: "Vaginal Dryness", href: `${prefix}/vaginal-dryness` },
         { name: "Reduced Sensitivity", href: `${prefix}/sexual-rejuvenation` },
@@ -156,13 +158,13 @@ export default function ServiceOverview() {
                   {service.description}
                 </p>
 
-                {/* Sub-links now push to the bottom automatically without the extra text link below them */}
-                <div className="flex flex-wrap gap-2.5 mt-auto pt-4">
+                {/* UPDATED: Valid Tailwind classes for padding (px-4 py-[10px]) and gap-3 */}
+                <div className="flex flex-wrap gap-3 mt-auto pt-4">
                   {service.subLinks.map((subLink, idx) => (
                     <Link 
                       key={idx} 
                       href={subLink.href}
-                      className={`inline-flex items-center justify-center text-xs font-bold uppercase tracking-wider border px-4.5 py-2.5 rounded-lg transition-all duration-300 ${
+                      className={`inline-flex items-center justify-center text-xs font-bold uppercase tracking-wider border px-4 py-[10px] rounded-lg transition-all duration-300 ${
                         isHampstead && index === 1 
                           ? 'bg-rose-50/50 border-rose-200 text-rose-700 hover:bg-rose-600 hover:border-rose-600 hover:text-white hover:shadow-md'
                           : 'bg-blue-50/50 border-blue-200 text-[#4041d1] hover:bg-[#4041d1] hover:border-[#4041d1] hover:text-white hover:shadow-md'
