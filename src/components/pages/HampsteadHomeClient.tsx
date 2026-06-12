@@ -4,7 +4,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import EDFeatureBlock from "@/components/EDFeatureBlock";
 import ServiceOverview from "@/components/ServiceOverview";
-import PRPExplanationSection from "@/components/PRPExplanationSection";
+import IntimateTreatmentApproachSection from "@/components/IntimateTreatmentApproachSection";
 import DynamicFAQ from "@/components/DynamicFAQ";
 import ContactCTASection from "@/components/ContactCTASection";
 import LocationSection from "@/components/LocationSection";
@@ -35,8 +35,8 @@ export default function HampsteadHomeClient({ faqs }: HampsteadClientProps) {
         <ServiceOverview />
       </div>
 
-      {/* 4. PRP Explanation Section */}
-      <PRPExplanationSection />
+      {/* 4. Hampstead Specific Intimate Health Section */}
+      <IntimateTreatmentApproachSection />
 
       {/* --- CTA BAR --- */}
       <section className="py-12 bg-white border-t border-slate-50">
@@ -46,7 +46,7 @@ export default function HampsteadHomeClient({ faqs }: HampsteadClientProps) {
             href="#contact-form-section"
             className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm bg-[#0A1128] hover:bg-slate-800 text-white rounded-xl font-bold transition-all shadow-lg active:scale-95 gap-2 font-inter"
           >
-            Book Free Initial Consultation
+            Book Private Consultation
           </Link>
 
           <Link
@@ -60,7 +60,7 @@ export default function HampsteadHomeClient({ faqs }: HampsteadClientProps) {
             href="/hampstead/faq"
             className="px-8 py-3.5 w-full md:w-max flex items-center justify-center text-sm border-2 border-[#4041d1] text-[#4041d1] hover:bg-blue-50 bg-white rounded-xl font-bold transition-all active:scale-95 gap-2 font-inter"
           >
-            View Clinic FAQs
+            View Common Questions
           </Link>
         </div>
       </section>
