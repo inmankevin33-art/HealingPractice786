@@ -22,10 +22,12 @@ export default function ServiceOverview() {
       color: "bg-blue-50 text-[#4041d1]",
       ctaLabel: "View Men’s Treatments",
       subLinks: [
-        { name: "ED", href: `${prefix}/erectile-dysfunction` },
+        { name: "Erectile Dysfunction", href: `${prefix}/erectile-dysfunction` },
+        { name: "Peyronie's Disease", href: `${prefix}/peyronies-disease` },
+        { name: "Premature Ejaculation", href: `${prefix}/premature-ejaculation` },
+        { name: "Shockwave", href: `${prefix}/erectile-dysfunction` },
         { name: "P-Shot", href: `${prefix}/p-shot` },
-        { name: "Peyronie’s", href: `${prefix}/peyronies-disease` },
-        { name: "Premature Ejaculation", href: `${prefix}/premature-ejaculation` }
+        { name: "Penis Filler", href: `${prefix}/penis-filler` }
       ]
     },
     {
@@ -37,8 +39,10 @@ export default function ServiceOverview() {
       ctaLabel: "View Women’s Treatments",
       subLinks: [
         { name: "Vaginal Dryness", href: `${prefix}/vaginal-dryness` },
+        { name: "Reduced Sensitivity", href: `${prefix}/sexual-rejuvenation` },
         { name: "O-Shot", href: `${prefix}/o-shot` },
-        { name: "Reduced Sensitivity", href: `${prefix}/o-shot` }
+        { name: "Vaginal HA", href: `${prefix}/vaginal-dryness` },
+        { name: "Vaginal Polynucleotide/HA", href: `${prefix}/vaginal-dryness` }
       ]
     }
   ];
@@ -154,15 +158,16 @@ export default function ServiceOverview() {
                   {service.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-8 mt-auto pt-4">
+                {/* UPDATED: Increased gap-2.5, text-xs, and px-4.5 py-2.5 for larger buttons */}
+                <div className="flex flex-wrap gap-2.5 mb-8 mt-auto pt-4">
                   {service.subLinks.map((subLink, idx) => (
                     <Link 
                       key={idx} 
                       href={subLink.href}
-                      className={`inline-flex items-center justify-center text-[11px] font-bold uppercase tracking-wider border px-4 py-2 rounded-lg transition-all duration-300 ${
+                      className={`inline-flex items-center justify-center text-xs font-bold uppercase tracking-wider border px-4.5 py-2.5 rounded-lg transition-all duration-300 ${
                         isHampstead && index === 1 
-                          ? 'bg-rose-50/50 border-rose-100 text-rose-600 hover:bg-rose-600 hover:border-rose-600 hover:text-white hover:shadow-md'
-                          : 'bg-blue-50/50 border-blue-100 text-[#4041d1] hover:bg-[#4041d1] hover:border-[#4041d1] hover:text-white hover:shadow-md'
+                          ? 'bg-rose-50/50 border-rose-200 text-rose-700 hover:bg-rose-600 hover:border-rose-600 hover:text-white hover:shadow-md'
+                          : 'bg-blue-50/50 border-blue-200 text-[#4041d1] hover:bg-[#4041d1] hover:border-[#4041d1] hover:text-white hover:shadow-md'
                       }`}
                     >
                       {subLink.name}
