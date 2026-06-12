@@ -20,12 +20,11 @@ export default function ServiceOverview() {
       icon: FaVenusMars, 
       link: `${prefix}/sexual-rejuvenation`,
       color: "bg-blue-50 text-[#4041d1]",
-      ctaLabel: "View Men’s Treatments",
       subLinks: [
         { name: "Erectile Dysfunction", href: `${prefix}/erectile-dysfunction` },
         { name: "Peyronie's Disease", href: `${prefix}/peyronies-disease` },
         { name: "Premature Ejaculation", href: `${prefix}/premature-ejaculation` },
-        { name: "Shockwave", href: `${prefix}/erectile-dysfunction` },
+        { name: "Shockwave", href: `${prefix}/shockwave-therapy-erectile-dysfunction` },
         { name: "P-Shot", href: `${prefix}/p-shot` },
         { name: "Penis Filler", href: `${prefix}/penis-filler` }
       ]
@@ -36,7 +35,6 @@ export default function ServiceOverview() {
       icon: FaVenusMars, // Re-using for intimate health, styled with a different color below
       link: `${prefix}/sexual-rejuvenation`,
       color: "bg-rose-50 text-rose-600",
-      ctaLabel: "View Women’s Treatments",
       subLinks: [
         { name: "Vaginal Dryness", href: `${prefix}/vaginal-dryness` },
         { name: "Reduced Sensitivity", href: `${prefix}/sexual-rejuvenation` },
@@ -158,8 +156,8 @@ export default function ServiceOverview() {
                   {service.description}
                 </p>
 
-                {/* UPDATED: Increased gap-2.5, text-xs, and px-4.5 py-2.5 for larger buttons */}
-                <div className="flex flex-wrap gap-2.5 mb-8 mt-auto pt-4">
+                {/* Sub-links now push to the bottom automatically without the extra text link below them */}
+                <div className="flex flex-wrap gap-2.5 mt-auto pt-4">
                   {service.subLinks.map((subLink, idx) => (
                     <Link 
                       key={idx} 
@@ -175,11 +173,12 @@ export default function ServiceOverview() {
                   ))}
                 </div>
                 
-                <Link href={service.link} className={`inline-block text-xs font-bold uppercase tracking-widest transition-colors w-max mt-auto ${
-                  isHampstead && index === 1 ? 'text-rose-600 hover:text-rose-800' : 'text-[#4041d1] hover:text-[#2a2bb8]'
-                }`}>
-                  {service.ctaLabel}
-                </Link>
+                {/* Standard Clinic locations keep the bottom text link, Hampstead removes it */}
+                {!isHampstead && service.ctaLabel && (
+                  <Link href={service.link} className="inline-block text-xs font-bold uppercase tracking-widest transition-colors w-max mt-6 text-[#4041d1] hover:text-[#2a2bb8]">
+                    {service.ctaLabel}
+                  </Link>
+                )}
               </motion.div>
             </motion.div>
           ))}
