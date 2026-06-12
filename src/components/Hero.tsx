@@ -86,39 +86,23 @@ export default function Hero() {
           custom={2} initial="hidden" animate="visible" variants={fadeUpVariants}
           className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
         >
-          Doctor-Led Intimate Health & <br /> Regenerative Treatments {locationSuffix}
+          {isHampstead 
+            ? <>Doctor-Led Intimate Health <br className="hidden md:block" /> Treatments {locationSuffix}</>
+            : <>Doctor-Led Intimate Health & <br /> Regenerative Treatments {locationSuffix}</>
+          }
         </motion.h1>
 
         <motion.h2 
           custom={3} initial="hidden" animate="visible" variants={fadeUpVariants}
           className="mt-2 text-lg md:text-xl font-medium font-raleway text-blue-100 leading-relaxed max-w-4xl mx-auto mb-10"
         >
-          Discreet, private care and evidence-based treatment plans for <br className="hidden md:block" />
           {isHampstead ? (
             <>
-              <Link href={`${prefix}/erectile-dysfunction`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Erectile dysfunction
-              </Link>
-              {", "}
-              <Link href={`${prefix}/peyronies-disease`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Peyronie&apos;s disease
-              </Link>
-              {", "}
-              <Link href={`${prefix}/premature-ejaculation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Premature ejaculation
-              </Link>
-              {", "}
-              <Link href={`${prefix}/vaginal-dryness`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Vaginal dryness
-              </Link>
-              {", and "}
-              <Link href={`${prefix}/sexual-rejuvenation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Reduced sensitivity
-              </Link>
-              .
+              Discreet, private care and personalised treatment plans for erectile dysfunction, Peyronie&apos;s disease, premature ejaculation, vaginal dryness and selected intimate sensitivity concerns.
             </>
           ) : (
             <>
+              Discreet, private care and evidence-based treatment plans for <br className="hidden md:block" />
               <Link href={`${prefix}/erectile-dysfunction`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
                 Erectile dysfunction
               </Link>
@@ -158,7 +142,7 @@ export default function Hero() {
             onClick={handleAction}
             className="w-full sm:w-auto px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
           >
-            <FaEnvelope className="w-4 h-4" /> Book Consultation
+            <FaEnvelope className="w-4 h-4" /> {isHampstead ? "Book Private Consultation" : "Book Consultation"}
           </button>
         </motion.div>
 
