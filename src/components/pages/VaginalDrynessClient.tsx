@@ -729,9 +729,16 @@ export default function VaginalDrynessClient({
       <section className="py-20 bg-slate-900 text-white font-inter">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-            <div className="w-32 h-32 md:w-48 md:h-48 bg-slate-800 rounded-full flex-shrink-0 flex items-center justify-center border-4 border-[#4041d1]/30">
-              <FaUserMd className="text-6xl text-slate-500" />
+            
+            {/* UPDATED: Replaced Icon with Dr Abdi's Photo */}
+            <div className="w-32 h-32 md:w-48 md:h-48 rounded-full flex-shrink-0 border-4 border-[#4041d1]/30 overflow-hidden relative shadow-lg">
+              <img 
+                src="/dr-syed-abdi.webp" 
+                alt="Dr Syed Abdi, Medical Director" 
+                className="w-full h-full object-cover"
+              />
             </div>
+            
             <div>
               <h2 className="text-3xl font-raleway font-bold mb-4">Doctor-led care with Dr Syed Abdi</h2>
               <p className="text-slate-300 mb-4 leading-relaxed">
