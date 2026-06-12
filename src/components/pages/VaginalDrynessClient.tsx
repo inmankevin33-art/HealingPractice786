@@ -334,16 +334,16 @@ export default function VaginalDrynessClient({
       <section className="py-16 bg-white font-inter">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">When vaginal dryness needs medical assessment first</h2>
+            <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">When to see your regular GP urgently</h2>
             <p className="text-slate-600">
-              Some symptoms should be assessed before any intimate injectable treatment is considered. This is to make sure there is no infection, skin condition or other medical problem that needs a different type of care.
+              While your consultation with Dr Abdi includes a full medical review, certain "red flag" symptoms require diagnostic investigation through your regular NHS GP or gynaecologist before private regenerative treatments can be considered.
             </p>
           </div>
 
           <div className="bg-red-50 border border-red-200 rounded-2xl p-8 shadow-sm">
             <div className="flex items-center gap-3 mb-6">
               <FaExclamationTriangle className="text-red-600 text-2xl" />
-              <h3 className="font-bold text-red-900 text-lg">Please arrange medical review first if you have:</h3>
+              <h3 className="font-bold text-red-900 text-lg">Please consult your GP urgently if you have:</h3>
             </div>
             <ul className="space-y-2 mb-6">
               {redFlagsList.map((flag, idx) => (
@@ -354,7 +354,7 @@ export default function VaginalDrynessClient({
               ))}
             </ul>
             <p className="text-red-800 text-sm font-bold bg-red-100 p-4 rounded-xl">
-              If any of these apply, Dr Abdi may recommend GP, gynaecology or specialist review before treatment is considered.
+              If you are experiencing any of these symptoms, please arrange an urgent review with your regular healthcare provider. Regenerative treatments cannot proceed until serious underlying conditions have been safely ruled out.
             </p>
           </div>
         </div>
