@@ -12,13 +12,46 @@ export default function ServiceOverview() {
   
   const prefix = isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "";
 
-  const services = [
+  // --- HAMPSTEAD SPECIFIC SERVICES ---
+  const hampsteadServices = [
+    {
+      title: "Men’s Intimate Health",
+      description: "Doctor-led assessment and treatment options for erectile dysfunction, Peyronie’s disease, premature ejaculation and selected male intimate health concerns.",
+      icon: FaVenusMars, 
+      link: `${prefix}/sexual-rejuvenation`,
+      color: "bg-blue-50 text-[#4041d1]",
+      ctaLabel: "View Men’s Treatments",
+      subLinks: [
+        { name: "ED", href: `${prefix}/erectile-dysfunction` },
+        { name: "P-Shot", href: `${prefix}/p-shot` },
+        { name: "Peyronie’s", href: `${prefix}/peyronies-disease` },
+        { name: "Premature Ejaculation", href: `${prefix}/premature-ejaculation` }
+      ]
+    },
+    {
+      title: "Women’s Intimate Health",
+      description: "Doctor-led assessment and treatment options for vaginal dryness, reduced sensitivity and selected women’s intimate health concerns, with discreet care tailored to symptoms and treatment goals.",
+      icon: FaVenusMars, // Re-using for intimate health, styled with a different color below
+      link: `${prefix}/sexual-rejuvenation`,
+      color: "bg-rose-50 text-rose-600",
+      ctaLabel: "View Women’s Treatments",
+      subLinks: [
+        { name: "Vaginal Dryness", href: `${prefix}/vaginal-dryness` },
+        { name: "O-Shot", href: `${prefix}/o-shot` },
+        { name: "Reduced Sensitivity", href: `${prefix}/o-shot` }
+      ]
+    }
+  ];
+
+  // --- STANDARD CLINIC SERVICES ---
+  const standardServices = [
     {
       title: "Men's & Women's Intimate Health",
       description: "Doctor-led treatment options for erectile dysfunction, Peyronie’s disease, premature ejaculation, and selected women’s sexual wellness concerns.",
       icon: FaVenusMars, 
       link: `${prefix}/sexual-rejuvenation`,
       color: "bg-blue-50 text-[#4041d1]",
+      ctaLabel: "View Treatments",
       subLinks: [
         { name: "ED", href: `${prefix}/erectile-dysfunction` },
         { name: "P-Shot", href: `${prefix}/p-shot` },
@@ -33,6 +66,7 @@ export default function ServiceOverview() {
       icon: FaRunning,
       link: `${prefix}/joint-injections`,
       color: "bg-indigo-50 text-indigo-600",
+      ctaLabel: "View Treatments",
       subLinks: [
         { name: "PRP for Joints", href: `${prefix}/joint-injections` },
         { name: "Sports Injuries", href: `${prefix}/joint-injections` }
@@ -44,6 +78,7 @@ export default function ServiceOverview() {
       icon: FaSyringe, 
       link: `${prefix}/hair-restoration`,
       color: "bg-teal-50 text-teal-600",
+      ctaLabel: "View Treatments",
       subLinks: [
         { name: "PRP Hair Therapy", href: `${prefix}/hair-restoration` },
         { name: "Exosomes", href: `${prefix}/hair-restoration` }
@@ -55,6 +90,7 @@ export default function ServiceOverview() {
       icon: FaSmile,
       link: `${prefix}/facial-aesthetics`,
       color: "bg-rose-50 text-rose-600",
+      ctaLabel: "View Treatments",
       subLinks: [
         { name: "Polynucleotides", href: `${prefix}/facial-aesthetics` },
         { name: "Vampire Facials", href: `${prefix}/facial-aesthetics` }
@@ -62,8 +98,7 @@ export default function ServiceOverview() {
     }
   ];
 
-  // FILTER: Only show intimate health if on the Hampstead route
-  const displayedServices = isHampstead ? services.slice(0, 1) : services;
+  const displayedServices = isHampstead ? hampsteadServices : standardServices;
 
   return (
     <section className="py-24 bg-white font-inter">
@@ -75,7 +110,7 @@ export default function ServiceOverview() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-raleway font-bold text-slate-900 mb-6 tracking-tight"
           >
-            {isHampstead ? "Our Specialist Focus" : "Our Core Treatments"}
+            {isHampstead ? "Our Intimate Health Focus" : "Our Core Treatments"}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -85,13 +120,13 @@ export default function ServiceOverview() {
             className="text-slate-600 text-lg leading-relaxed font-inter"
           >
             {isHampstead 
-              ? "Our Hampstead clinic specializes exclusively in discreet, private, doctor-led regenerative therapies for men's and women's intimate health." 
+              ? "Our Hampstead clinic focuses on discreet, doctor-led care for men’s and women’s intimate health, with treatment options tailored to symptoms, medical history and individual goals." 
               : "We specialize in regenerative medicine, using your body's natural healing abilities alongside medically proven aesthetic and pain-relief protocols."}
           </motion.p>
         </div>
 
-        {/* Dynamic Grid: Centers a single card, but expands for 4 cards */}
-        <div className={`grid grid-cols-1 ${isHampstead ? 'max-w-md mx-auto' : 'md:grid-cols-2 lg:grid-cols-4'} gap-8 relative`}>
+        {/* Adjust grid dynamically based on the number of cards */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 ${!isHampstead && 'lg:grid-cols-4'} gap-8 relative max-w-5xl mx-auto`}>
           {displayedServices.map((service, index) => (
             <motion.div 
               key={index} 
@@ -124,15 +159,21 @@ export default function ServiceOverview() {
                     <Link 
                       key={idx} 
                       href={subLink.href}
-                      className="inline-flex items-center justify-center text-[11px] font-bold uppercase tracking-wider bg-blue-50/50 border border-blue-100 text-[#4041d1] px-4 py-2 rounded-lg hover:bg-[#4041d1] hover:border-[#4041d1] hover:text-white hover:shadow-md transition-all duration-300"
+                      className={`inline-flex items-center justify-center text-[11px] font-bold uppercase tracking-wider border px-4 py-2 rounded-lg transition-all duration-300 ${
+                        isHampstead && index === 1 
+                          ? 'bg-rose-50/50 border-rose-100 text-rose-600 hover:bg-rose-600 hover:border-rose-600 hover:text-white hover:shadow-md'
+                          : 'bg-blue-50/50 border-blue-100 text-[#4041d1] hover:bg-[#4041d1] hover:border-[#4041d1] hover:text-white hover:shadow-md'
+                      }`}
                     >
                       {subLink.name}
                     </Link>
                   ))}
                 </div>
                 
-                <Link href={service.link} className="inline-block text-xs font-bold uppercase tracking-widest text-[#4041d1] hover:text-[#2a2bb8] transition-colors w-max mt-auto">
-                  View Treatments
+                <Link href={service.link} className={`inline-block text-xs font-bold uppercase tracking-widest transition-colors w-max mt-auto ${
+                  isHampstead && index === 1 ? 'text-rose-600 hover:text-rose-800' : 'text-[#4041d1] hover:text-[#2a2bb8]'
+                }`}>
+                  {service.ctaLabel}
                 </Link>
               </motion.div>
             </motion.div>
