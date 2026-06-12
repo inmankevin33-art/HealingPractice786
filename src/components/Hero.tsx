@@ -131,12 +131,15 @@ export default function Hero() {
           custom={4} initial="hidden" animate="visible" variants={fadeUpVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center" 
         >
-          <button 
-            onClick={() => setIsAssessmentOpen(true)}
-            className="w-full sm:w-auto px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
-          >
-             Take Free Online Assessment
-          </button>
+          {/* Only render the assessment button on non-Hampstead pages */}
+          {!isHampstead && (
+            <button 
+              onClick={() => setIsAssessmentOpen(true)}
+              className="w-full sm:w-auto px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
+            >
+               Take Free Online Assessment
+            </button>
+          )}
 
           <button 
             onClick={handleAction}
@@ -209,10 +212,13 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <OnlineAssessmentModal 
-        isOpen={isAssessmentOpen} 
-        onClose={() => setIsAssessmentOpen(false)} 
-      />
+      {/* Only render the modal if not on Hampstead to save DOM bloat */}
+      {!isHampstead && (
+        <OnlineAssessmentModal 
+          isOpen={isAssessmentOpen} 
+          onClose={() => setIsAssessmentOpen(false)} 
+        />
+      )}
     </div>
   );
 }
