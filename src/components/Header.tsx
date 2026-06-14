@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaMapMarkerAlt, FaPhoneAlt, FaChevronDown } from "react-icons/fa";
+import { FaBars, FaTimes, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,24 +9,21 @@ import Image from "next/image";
 
 interface MenuItem {
   name: string;
-  href: string;
+  href?: string;
   isContact?: boolean;
   isSubItem?: boolean;
   isSpacer?: boolean;
+  isCategoryTitle?: boolean; // New flag for unclickable category headers
 }
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   
-  // Real active route
+  // Location variables
   const isBirmingham = pathname?.startsWith("/birmingham");
   const isHampstead = pathname?.startsWith("/hampstead");
-
-  // --- NEW: Context Switcher State for the Menu ---
-  const [menuContext, setMenuContext] = useState<"stalbans" | "birmingham" | "hampstead">(
-    isBirmingham ? "birmingham" : isHampstead ? "hampstead" : "stalbans"
-  );
+  const isStAlbans = !isBirmingham && !isHampstead;
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -39,49 +36,61 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
-  // Keep menu context synced with the actual route when the menu is closed
-  useEffect(() => {
-    if (!isMenuOpen) {
-      setMenuContext(isBirmingham ? "birmingham" : isHampstead ? "hampstead" : "stalbans");
-    }
-  }, [isMenuOpen, isBirmingham, isHampstead]);
-
-  // Dynamic route builder based on the selected MENU context (not the actual page)
-  const getMenuRoute = (basePath: string) => {
-    if (menuContext === "birmingham") return `/birmingham${basePath}`;
-    if (menuContext === "hampstead") return `/hampstead${basePath}`;
-    return basePath;
+  // Dynamic route prefixer
+  const getPrefix = () => {
+    if (isBirmingham) return "/birmingham";
+    if (isHampstead) return "/hampstead";
+    return "";
   };
+  const prefix = getPrefix();
+  const link = (path: string) => `${prefix}${path}`;
 
+  // Column 1: Intimate Health
   const menuColumn1: MenuItem[] = [
-    { name: "Sexual Rejuvenation", href: getMenuRoute("/sexual-rejuvenation") },
-    { name: "P-Shot Treatment", href: getMenuRoute("/p-shot"), isSubItem: true },
-    { name: "O-Shot Treatment", href: getMenuRoute("/o-shot"), isSubItem: true },
-    { name: "Erectile Dysfunction", href: getMenuRoute("/erectile-dysfunction"), isSubItem: true },
-    { name: "Shockwave Therapy", href: getMenuRoute("/shockwave-therapy-erectile-dysfunction"), isSubItem: true },
-    { name: "Premature Ejaculation", href: getMenuRoute("/premature-ejaculation"), isSubItem: true },
-    { name: "Peyronie's Disease", href: getMenuRoute("/peyronies-disease"), isSubItem: true },
-    { name: "Personalised Medication", href: getMenuRoute("/personalised-ed-medication"), isSubItem: true },
-    { 
-      name: "Penis Filler", 
-      href: menuContext === "hampstead" ? "/hampstead/penis-filler" : getMenuRoute("/penis-enlargement"), 
-      isSubItem: true 
-    },
+    { name: "Men's Health", isCategoryTitle: true },
+    { name: "P-Shot Treatment", href: link("/p-shot"), isSubItem: true },
+    { name: "Erectile Dysfunction", href: link("/erectile-dysfunction"), isSubItem: true },
+    { name: "Shockwave Therapy", href: link("/shockwave-therapy-erectile-dysfunction"), isSubItem: true },
+    { name: "Premature Ejaculation", href: link("/premature-ejaculation"), isSubItem: true },
+    { name: "Peyronie's Disease", href: link("/peyronies-disease"), isSubItem: true },
+    { name: "Personalised Medication", href: link("/personalised-ed-medication"), isSubItem: true },
+    { name: "Penis Enlargement", href: link("/penis-enlargement"), isSubItem: true },
+    
+    { name: "Women's Health", isCategoryTitle: true, isSpacer: true },
+    { name: "O-Shot Treatment", href: link("/o-shot"), isSubItem: true },
+    { name: "Vaginal Dryness", href: link("/vaginal-dryness"), isSubItem: true },
+    { name: "Sexual Rejuvenation", href: link("/sexual-rejuvenation"), isSubItem: true },
   ];
 
-  // Dynamically hide non-intimate treatments when the menu context is set to Hampstead
-  const menuColumn2: MenuItem[] = [
-    ...(menuContext !== "hampstead" ? [
-      { name: "Facial Aesthetics", href: getMenuRoute("/facial-aesthetics") },
-      { name: "Polynucleotides", href: getMenuRoute("/polynucleotides"), isSubItem: true },
-      { name: "Joint Injections", href: getMenuRoute("/joint-injections"), isSpacer: true },
-      { name: "Hair Restoration", href: getMenuRoute("/hair-restoration"), isSpacer: true },
-    ] : []),
-    { name: "Prices", href: getMenuRoute("/prices"), isSpacer: menuContext !== "hampstead" }, 
-    { name: "FAQs", href: getMenuRoute("/faq"), isSpacer: true },
-    { name: "Health Blog", href: "/blog", isSpacer: true },
-    { name: "Contact Us", href: getMenuRoute("/contact"), isContact: true, isSpacer: true },
+  // Column 2: Aesthetics, Info & Contact
+  let menuColumn2: MenuItem[] = [
+    { name: "Aesthetics & Wellness", isCategoryTitle: true },
+    { name: "Facial Aesthetics", href: link("/facial-aesthetics"), isSubItem: true },
+    { name: "Polynucleotides", href: link("/polynucleotides"), isSubItem: true },
+    { name: "Joint Injections", href: link("/joint-injections"), isSubItem: true },
+    { name: "Hair Restoration", href: link("/hair-restoration"), isSubItem: true },
+    
+    { name: "Clinic Information", isCategoryTitle: true, isSpacer: true },
+    { name: "Prices", href: link("/prices"), isSubItem: true },
+    { name: "FAQs", href: link("/faq"), isSubItem: true },
+    { name: "Health Blog", href: "/blog", isSubItem: true },
+    { name: "Contact Us", href: link("/contact"), isContact: true, isSpacer: true },
   ];
+
+  // Filter out aesthetics for Hampstead
+  if (isHampstead) {
+    menuColumn2 = [
+      { name: "Clinic Information", isCategoryTitle: true },
+      { name: "Prices", href: link("/prices"), isSubItem: true },
+      { name: "FAQs", href: link("/faq"), isSubItem: true },
+      { name: "Health Blog", href: "/blog", isSubItem: true },
+      { name: "Contact Us", href: link("/contact"), isContact: true, isSpacer: true },
+    ];
+  }
+
+  // Active Style logic for the location selector
+  const activeLocationStyle = "border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]";
+  const inactiveLocationStyle = "border-white/10 text-slate-400 hover:border-white/20 hover:text-white";
 
   return (
     <>
@@ -89,19 +98,18 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             
-            {/* Logo Section with Dynamic Location Badge */}
+            {/* Logo & Location Badge Section */}
             <div className="flex-shrink-0">
               <Link href={isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "/"} onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-3">
                   <div className="relative h-10 w-10 md:h-11 md:w-11 flex-shrink-0">
                     <Image src="/Logo2.png" alt="Healing-PRP Logo" fill className="object-contain" priority />
                   </div>
-                  <div className="flex flex-col items-start justify-center">
-                    <h1 className="text-lg md:text-2xl font-raleway font-semibold text-white tracking-tight whitespace-nowrap leading-none mb-1 md:mb-1.5">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <h1 className="text-xl md:text-2xl font-raleway font-semibold text-white tracking-tight whitespace-nowrap">
                       Healing-PRP Clinics
                     </h1>
-                    {/* --- CHANGED: EXPLICIT WEBSITE BADGE --- */}
-                    <span className="inline-flex items-center px-2 py-0.5 bg-[#4041d1]/30 border border-[#4041d1]/50 text-blue-100 text-[8px] md:text-[9px] font-bold uppercase tracking-widest rounded-full font-inter leading-none">
+                    <span className="bg-[#4041d1] text-white text-[9px] sm:text-[10px] md:text-xs px-2.5 py-0.5 sm:py-1 rounded-full font-bold uppercase tracking-widest shadow-sm w-fit">
                       {isBirmingham ? "Birmingham Website" : isHampstead ? "Hampstead Website" : "St Albans Website"}
                     </span>
                   </div>
@@ -111,32 +119,15 @@ const Header = () => {
 
             {/* Header Right Side */}
             <div className="flex items-center gap-4 md:gap-8">
-              
-              {/* Desktop Clinic Dropdown + Phone */}
+              {/* Desktop Clinic Info + Phone */}
               <div className="hidden lg:flex flex-col items-end">
-                
-                {/* Zero-JS CSS Dropdown */}
-                <div className="relative group">
-                  <button className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5 mb-1 font-inter hover:text-white transition-colors pb-1">
-                    <FaMapMarkerAlt className="w-3 h-3 text-[#4041d1]" />
-                    <span>Our Clinics <FaChevronDown className="inline w-2 h-2 ml-0.5 opacity-50" /></span>
-                  </button>
-                  
-                  <div className="absolute top-full right-0 mt-0 w-56 bg-[#0f172a] border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0 overflow-hidden">
-                    <div className="flex flex-col py-2">
-                      <Link href="/hampstead" className={`px-4 py-3 text-xs font-inter font-bold hover:bg-white/5 transition-colors border-b border-white/5 ${isHampstead ? 'text-[#4041d1]' : 'text-slate-300'}`}>
-                        Hampstead, London
-                      </Link>
-                      <Link href="/birmingham" className={`px-4 py-3 text-xs font-inter font-bold hover:bg-white/5 transition-colors border-b border-white/5 ${isBirmingham ? 'text-[#4041d1]' : 'text-slate-300'}`}>
-                        Edgbaston, Birmingham
-                      </Link>
-                      <Link href="/" className={`px-4 py-3 text-xs font-inter font-bold hover:bg-white/5 transition-colors ${!isBirmingham && !isHampstead ? 'text-[#4041d1]' : 'text-slate-300'}`}>
-                        City Centre, St Albans
-                      </Link>
-                    </div>
-                  </div>
+                <div className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-1.5 mb-1 font-inter">
+                  <FaMapMarkerAlt className="w-3 h-3 text-[#4041d1]" />
+                  <span className="text-slate-300">
+                    {isBirmingham ? "Birmingham Clinic" : isHampstead ? "Hampstead Clinic" : "St Albans Clinic"}
+                  </span>
                 </div>
-
+                
                 <a 
                   href="tel:07990364147" 
                   className="flex items-center gap-2 text-sm font-bold text-white hover:text-[#4041d1] transition-colors tracking-wider group font-inter"
@@ -146,24 +137,14 @@ const Header = () => {
                 </a>
               </div>
 
-              {/* Mobile Icons (Phone + Location Menu Trigger) */}
-              <div className="flex lg:hidden items-center gap-2">
-                <button 
-                  onClick={toggleMenu}
-                  className="p-2.5 bg-slate-800 rounded-full text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
-                  aria-label="View Clinics"
-                >
-                  <FaMapMarkerAlt className="w-4 h-4 fill-current" />
-                </button>
-
-                <a 
-                  href="tel:07990364147" 
-                  className="p-2.5 bg-[#4041d1] rounded-full text-white shadow-lg shadow-blue-500/20"
-                  aria-label="Call Clinic"
-                >
-                  <FaPhoneAlt className="w-4 h-4 fill-current" />
-                </a>
-              </div>
+              {/* Mobile Phone Link (Visible icon only) */}
+              <a 
+                href="tel:07990364147" 
+                className="lg:hidden p-2.5 bg-[#4041d1] rounded-full text-white shadow-lg shadow-blue-500/20"
+                aria-label="Call Clinic"
+              >
+                <FaPhoneAlt className="w-4 h-4 fill-current" />
+              </a>
 
               {/* Menu Toggle */}
               <button 
@@ -190,82 +171,94 @@ const Header = () => {
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-4">
               
-              {/* --- CHANGED: Location Selectors are now Interactive Buttons --- */}
+              {/* Location Selectors */}
               <div className="mb-8 border-b border-white/10 pb-8">
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-4 font-inter">Select Your Location</p>
-                <div className="flex flex-col md:flex-row gap-3 md:gap-4 max-w-3xl">
-                  <button 
-                    onClick={() => setMenuContext("stalbans")}
-                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${menuContext === "stalbans" ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl">
+                  <Link 
+                    href="/" 
+                    className={`flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter text-sm md:text-base ${isStAlbans ? activeLocationStyle : inactiveLocationStyle}`}
                   >
-                    St Albans
-                  </button>
-                  <button 
-                    onClick={() => setMenuContext("birmingham")}
-                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${menuContext === "birmingham" ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
+                    St Albans Clinic
+                  </Link>
+                  <Link 
+                    href="/birmingham" 
+                    className={`flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter text-sm md:text-base ${isBirmingham ? activeLocationStyle : inactiveLocationStyle}`}
                   >
-                    Birmingham
-                  </button>
-                  <button 
-                    onClick={() => setMenuContext("hampstead")}
-                    className={`flex-1 flex items-center justify-center p-3 md:p-4 rounded-xl border-2 transition-all font-inter ${menuContext === "hampstead" ? 'border-[#4041d1] bg-[#4041d1]/10 text-white font-bold shadow-[0_0_20px_rgba(64,65,209,0.3)]' : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'}`}
+                    Birmingham Clinic
+                  </Link>
+                  <Link 
+                    href="/hampstead" 
+                    className={`flex items-center justify-center p-4 rounded-xl border-2 transition-all font-inter text-sm md:text-base ${isHampstead ? activeLocationStyle : inactiveLocationStyle}`}
                   >
-                    Hampstead
-                  </button>
+                    Hampstead, London
+                  </Link>
                 </div>
               </div>
 
-              {/* Navigation Grid (2 Columns on Desktop, 1 on Mobile) */}
+              {/* Navigation Grid */}
               <nav className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
                 
                 {/* Column 1 */}
                 <div className="flex flex-col space-y-3">
                   {menuColumn1.map((item, idx) => (
                     <motion.div
-                      key={`col1-${idx}-${menuContext}`} // Added menuContext to key to force re-animation on switch
+                      key={`col1-${idx}`}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      className={`${item.isSubItem ? "pl-6 border-l-2 border-white/10 ml-1" : ""} ${item.isSpacer ? "mt-4" : ""}`}
+                      transition={{ delay: idx * 0.03 }}
+                      className={`${item.isSubItem ? "pl-4 border-l-2 border-white/10 ml-1" : ""} ${item.isSpacer ? "mt-6" : ""}`}
                     >
-                      <Link 
-                        href={item.href} 
-                        className={`text-xl md:text-2xl font-raleway transition-colors inline-block ${
-                          item.isSubItem 
-                            ? "font-medium text-slate-400 hover:text-[#4041d1]" 
-                            : "font-medium text-white hover:text-[#4041d1]"
-                        }`}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
+                      {item.isCategoryTitle ? (
+                        <span className="text-xs md:text-sm font-inter font-bold text-[#4041d1] uppercase tracking-[0.2em] mb-1 block">
+                          {item.name}
+                        </span>
+                      ) : (
+                        <Link 
+                          href={item.href || "#"} 
+                          className={`text-xl md:text-2xl font-raleway transition-colors inline-block ${
+                            item.isSubItem 
+                              ? "font-medium text-slate-400 hover:text-white" 
+                              : "font-medium text-white hover:text-[#4041d1]"
+                          }`}
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
                 </div>
 
                 {/* Column 2 */}
-                <div className="flex flex-col space-y-3 mt-6 md:mt-0">
+                <div className="flex flex-col space-y-3 mt-8 md:mt-0">
                   {menuColumn2.map((item, idx) => (
                     <motion.div
-                      key={`col2-${idx}-${menuContext}`} // Added menuContext to key to force re-animation on switch
+                      key={`col2-${idx}`}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (menuColumn1.length + idx) * 0.05 }}
-                      className={`${item.isSubItem ? "pl-6 border-l-2 border-white/10 ml-1" : ""} ${item.isSpacer ? "pt-4" : ""}`}
+                      transition={{ delay: (menuColumn1.length + idx) * 0.03 }}
+                      className={`${item.isSubItem ? "pl-4 border-l-2 border-white/10 ml-1" : ""} ${item.isSpacer ? "mt-6" : ""}`}
                     >
-                      <Link 
-                        href={item.href} 
-                        className={`text-xl md:text-2xl font-raleway transition-colors inline-block ${
-                          item.isContact 
-                            ? "text-[#4041d1] font-bold border-b-2 border-[#4041d1]/30 pb-1" 
-                            : item.isSubItem 
-                              ? "font-medium text-slate-400 hover:text-[#4041d1]" 
-                              : "font-medium text-white hover:text-[#4041d1]"
-                        }`}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
+                      {item.isCategoryTitle ? (
+                        <span className="text-xs md:text-sm font-inter font-bold text-[#4041d1] uppercase tracking-[0.2em] mb-1 block">
+                          {item.name}
+                        </span>
+                      ) : (
+                        <Link 
+                          href={item.href || "#"} 
+                          className={`text-xl md:text-2xl font-raleway transition-colors inline-block ${
+                            item.isContact 
+                              ? "text-[#4041d1] font-bold border-b-2 border-[#4041d1]/30 pb-1 hover:text-white" 
+                              : item.isSubItem 
+                                ? "font-medium text-slate-400 hover:text-white" 
+                                : "font-medium text-white hover:text-[#4041d1]"
+                          }`}
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
                 </div>
