@@ -54,7 +54,8 @@ const Header = () => {
     { name: "Premature Ejaculation", href: link("/premature-ejaculation"), isSubItem: true },
     { name: "Peyronie's Disease", href: link("/peyronies-disease"), isSubItem: true },
     { name: "Personalised Medication", href: link("/personalised-ed-medication"), isSubItem: true },
-    { name: "Penis Enlargement", href: link("/penis-enlargement"), isSubItem: true },
+    // Conditional routing for Penis Enlargement / Penis Filler
+    { name: "Penis Enlargement", href: isHampstead ? "/hampstead/penis-filler" : link("/penis-enlargement"), isSubItem: true },
     
     { name: "Women's Health", isCategoryTitle: true, isSpacer: true },
     { name: "O-Shot Treatment", href: link("/o-shot"), isSubItem: true },
