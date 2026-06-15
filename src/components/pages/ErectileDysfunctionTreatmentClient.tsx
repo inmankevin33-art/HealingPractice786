@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import dynamic from "next/dynamic";
 import {
@@ -27,6 +27,8 @@ import {
   FaTint,
   FaHeartbeat,
   FaClipboardList,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -168,7 +170,7 @@ const symptoms = [
 export default function ErectileDysfunctionTreatmentClient({
   locationName = "Birmingham",
   servingAreas = "Edgbaston • Solihull • Sutton Coldfield • West Midlands",
-  heroDescription = <>Doctor-led assessment and treatment options for erection difficulties, reduced firmness and ED symptoms, including shockwave therapy, PRP-based treatment, blood tests, vascular review and medication review where suitable.</>, 
+  heroDescription = <>Doctor-led assessment and treatment options for erection difficulties, reduced firmness and ED symptoms.</>, 
   whyChooseText = "Patients choose our clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment.",
   faqs = [], 
 }: ErectileDysfunctionProps) {
@@ -178,6 +180,8 @@ export default function ErectileDysfunctionTreatmentClient({
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   const isBirmingham = locationName === "Birmingham";
 
@@ -190,13 +194,24 @@ export default function ErectileDysfunctionTreatmentClient({
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
+  const scrollLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    }
+  };
+
   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
 
     if (typeof window !== "undefined") {
       const w = window as Window & { gtag?: (...args: unknown[]) => void };
       if (w.gtag) {
-        // Only firing an engagement event as requested!
         w.gtag("event", "contact_initiated", { 
           event_category: "engagement",
           event_label: "clicked_book_consultation",
@@ -237,7 +252,7 @@ export default function ErectileDysfunctionTreatmentClient({
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}} />
 
-      {/* --- HERO SECTION (More Compact) --- */}
+      {/* --- HERO SECTION --- */}
       <div className="relative overflow-hidden flex flex-col items-center justify-center bg-[#0A1128] pt-12 pb-10 md:pt-20 md:pb-16">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1e293b] via-[#0A1128] to-black" />
@@ -251,13 +266,27 @@ export default function ErectileDysfunctionTreatmentClient({
             <span className="text-blue-100 text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase font-inter">Led By Dr Abdi</span>
           </div>
 
-          <h1 className="md:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-5 tracking-tight drop-shadow-lg">
+          <h1 className="md:text-5xl lg:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-5 tracking-tight drop-shadow-lg">
             Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {locationName}
           </h1>
           
-          <p className="text-sm md:text-base text-white/90 font-inter leading-relaxed max-w-2xl mx-auto mb-3 drop-shadow-md">
+          <p className="text-sm md:text-base text-white/90 font-inter leading-relaxed max-w-2xl mx-auto mb-5 drop-shadow-md">
             {heroDescription}
           </p>
+
+          {/* NEW TREATMENT PILLS */}
+          <motion.div 
+            custom={0} initial="hidden" animate="visible" variants={fadeUpVariants}
+            className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto mb-8"
+          >
+            {["Shockwave Therapy", "PRP-Based Treatment", "Vascular Review", "Medication Review"].map((pill, idx) => (
+              <div key={idx} className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm">
+                <FaCheckCircle className="text-blue-400 w-3 h-3 shrink-0" />
+                <span className="text-white text-[11px] md:text-xs font-semibold tracking-wide font-inter">{pill}</span>
+              </div>
+            ))}
+          </motion.div>
+
           <p className="text-[11px] md:text-xs text-blue-200 font-inter max-w-2xl mx-auto mb-8 font-semibold tracking-wide">
             Face-to-face private care with Dr Syed Abdi, GMC-registered doctor. No GP referral needed. Private treatment fees apply.
           </p>
@@ -288,13 +317,37 @@ export default function ErectileDysfunctionTreatmentClient({
           </motion.p>
         </div>
 
-        {/* --- NEW MOBILE TREATMENT SLIDER (Sits right under the Hero Buttons) --- */}
+        {/* --- MOBILE TREATMENT SLIDER (With Functional Arrows) --- */}
         <div className="relative z-20 w-full mt-12 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
-             <h3 className="text-white font-raleway font-bold text-lg md:text-xl">Treatment options may include</h3>
-             <p className="text-slate-400 text-xs font-inter mt-1">Suitability is checked before any treatment plan is recommended.</p>
+          <div className="flex items-end justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+             <div>
+               <h3 className="text-white font-raleway font-bold text-lg md:text-xl">Treatment options may include</h3>
+               <p className="text-slate-400 text-xs font-inter mt-1">Suitability is checked before any treatment plan is recommended.</p>
+             </div>
+             
+             {/* Nav Arrows */}
+             <div className="hidden sm:flex items-center gap-2">
+                <button 
+                  onClick={scrollLeft} 
+                  className="w-8 h-8 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition-colors backdrop-blur-sm"
+                  aria-label="Scroll left"
+                >
+                  <FaChevronLeft className="w-3 h-3" />
+                </button>
+                <button 
+                  onClick={scrollRight} 
+                  className="w-8 h-8 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition-colors backdrop-blur-sm"
+                  aria-label="Scroll right"
+                >
+                  <FaChevronRight className="w-3 h-3" />
+                </button>
+             </div>
           </div>
-          <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-4 sm:px-6 lg:px-8 pb-8 gap-4 w-full">
+
+          <div 
+            ref={sliderRef}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-4 sm:px-6 lg:px-8 pb-8 gap-4 w-full"
+          >
             {mobileTreatmentCards.map((card, idx) => (
               <div 
                 key={idx} 
@@ -309,6 +362,13 @@ export default function ErectileDysfunctionTreatmentClient({
             ))}
             {/* Spacer for right padding on scroll */}
             <div className="shrink-0 w-4 sm:w-8"></div>
+          </div>
+          
+          {/* Mobile visible swipe indicator */}
+          <div className="sm:hidden flex items-center justify-center gap-2 text-slate-400 text-[10px] font-bold uppercase tracking-widest -mt-4 mb-4">
+             <FaChevronLeft className="w-2.5 h-2.5 opacity-50" />
+             Swipe for more
+             <FaChevronRight className="w-2.5 h-2.5 opacity-50" />
           </div>
         </div>
       </div>
@@ -502,7 +562,6 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </section>
       
-      {/* Contact Form Component - Note: Default prop implementation may require ContactCTASection to accept defaultTreatment prop! */}
       <ContactCTASection />
       <LocationSection /> 
       
