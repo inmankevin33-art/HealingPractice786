@@ -25,6 +25,8 @@ import {
   FaUserMd,
   FaFileAlt,
   FaTint,
+  FaHeartbeat,
+  FaClipboardList,
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import ContactCTASection from "@/components/ContactCTASection";
@@ -56,24 +58,53 @@ const fadeUpVariants: Variants = {
   }),
 };
 
+// --- NEW MOBILE SLIDER CARDS ---
+const mobileTreatmentCards = [
+  {
+    title: "Shockwave Therapy",
+    text: "A non-surgical option for selected men with erection difficulties, reduced firmness or suspected blood-flow-related ED.",
+    icon: FaWaveSquare,
+  },
+  {
+    title: "PRP-Based ED Treatment",
+    text: "A regenerative treatment option that may be discussed where suitable after doctor-led assessment.",
+    icon: FaSyringe,
+  },
+  {
+    title: "Vascular Review / Doppler",
+    text: "Where clinically appropriate, penile blood-flow assessment or Doppler ultrasound may be discussed or arranged to help identify vascular causes of ED.",
+    icon: FaHeartbeat,
+  },
+  {
+    title: "Blood & Hormone Review",
+    text: "Checks may include diabetes, cholesterol, testosterone and other contributing factors where clinically appropriate.",
+    icon: FaDna,
+  },
+  {
+    title: "Medication Review",
+    text: "Current medication, health conditions and previous treatment response are reviewed as part of your assessment.",
+    icon: FaClipboardList,
+  },
+];
+
 const treatmentOptions = [
   { 
     icon: FaWaveSquare, 
     title: "Shockwave Therapy", 
     description: "Low-intensity acoustic wave therapy that may support penile blood flow in selected patients.",
-    tags: ["Usually well tolerated", "~30 min sessions", "No downtime"] 
+    tags: ["Usually well tolerated", "~30 min sessions", "No planned downtime"] 
   },
   { 
     icon: FaSyringe, 
     title: "PRP-Based ED Treatment", 
     description: "A doctor-prepared treatment using a concentrated sample from your own blood. This may be considered as part of a personalised ED plan after consultation, depending on your symptoms and suitability.",
-    tags: ["Minimal discomfort", "Takes ~30 mins", "No downtime"]
+    tags: ["Minimal discomfort", "Takes ~30 mins", "No planned downtime"]
   },
   { 
     icon: FaTint, 
     title: "Vascular Assessment", 
-    description: "Assessment of penile blood flow, including Doppler ultrasound, to identify vascular causes.",
-    tags: ["Non-invasive", "Ultrasound", "Direct insights"]
+    description: "Vascular-focused assessment, with penile Doppler ultrasound discussed or arranged where clinically appropriate.",
+    tags: ["Non-invasive", "Assessment", "Direct insights"]
   },
   { 
     icon: FaDna, 
@@ -135,9 +166,9 @@ const symptoms = [
 ];
 
 export default function ErectileDysfunctionTreatmentClient({
-  locationName = "St Albans",
-  servingAreas = "Harpenden • Luton • Watford • Hertfordshire",
-  heroDescription = <>Doctor-led assessment for erection difficulties, reduced firmness and ED symptoms.</>, 
+  locationName = "Birmingham",
+  servingAreas = "Edgbaston • Solihull • Sutton Coldfield • West Midlands",
+  heroDescription = <>Doctor-led assessment and treatment options for erection difficulties, reduced firmness and ED symptoms, including shockwave therapy, PRP-based treatment, blood tests, vascular review and medication review where suitable.</>, 
   whyChooseText = "Patients choose our clinic for accessible, doctor-led care and a structured approach to erectile dysfunction assessment and treatment.",
   faqs = [], 
 }: ErectileDysfunctionProps) {
@@ -165,6 +196,7 @@ export default function ErectileDysfunctionTreatmentClient({
     if (typeof window !== "undefined") {
       const w = window as Window & { gtag?: (...args: unknown[]) => void };
       if (w.gtag) {
+        // Only firing an engagement event as requested!
         w.gtag("event", "contact_initiated", { 
           event_category: "engagement",
           event_label: "clicked_book_consultation",
@@ -199,10 +231,14 @@ export default function ErectileDysfunctionTreatmentClient({
         
         /* Safe padding for iOS devices */
         .pb-safe { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+
+        /* Hide scrollbar for mobile slider */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}} />
 
       {/* --- HERO SECTION (More Compact) --- */}
-      <div className="relative overflow-hidden flex items-center justify-center bg-[#0A1128] pt-12 pb-16 md:pt-20 md:pb-24">
+      <div className="relative overflow-hidden flex flex-col items-center justify-center bg-[#0A1128] pt-12 pb-10 md:pt-20 md:pb-16">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1e293b] via-[#0A1128] to-black" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(64,65,209,0.25)_0%,_transparent_70%)] pointer-events-none" />
@@ -219,8 +255,11 @@ export default function ErectileDysfunctionTreatmentClient({
             Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {locationName}
           </h1>
           
-          <p className="text-sm md:text-base text-white/90 font-inter leading-relaxed max-w-2xl mx-auto mb-8 drop-shadow-md">
+          <p className="text-sm md:text-base text-white/90 font-inter leading-relaxed max-w-2xl mx-auto mb-3 drop-shadow-md">
             {heroDescription}
+          </p>
+          <p className="text-[11px] md:text-xs text-blue-200 font-inter max-w-2xl mx-auto mb-8 font-semibold tracking-wide">
+            Face-to-face private care with Dr Syed Abdi, GMC-registered doctor. No GP referral needed. Private treatment fees apply.
           </p>
 
           <motion.div 
@@ -237,7 +276,7 @@ export default function ErectileDysfunctionTreatmentClient({
               onClick={() => setIsAssessmentOpen(true)}
               className="px-8 py-3.5 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white/10 border border-white/20 text-white hover:bg-white hover:text-[#4041d1] rounded-xl font-bold transition-all duration-300 gap-2 active:scale-95 font-inter"
             >
-              Check Treatment Suitability
+              Check ED Treatment Suitability
             </button>
           </motion.div>
 
@@ -245,28 +284,36 @@ export default function ErectileDysfunctionTreatmentClient({
             custom={2} initial="hidden" animate="visible" variants={fadeUpVariants}
             className="mt-4 text-[11px] md:text-xs text-slate-400 font-inter max-w-sm mx-auto"
           >
-            Free initial consultation available. Private treatment fees apply if you proceed.
+            Free initial discussion available. Private treatment fees apply if you proceed.
           </motion.p>
+        </div>
 
-          {/* Compact Hero Trust Badges */}
-          <motion.div 
-            custom={3} initial="hidden" animate="visible" variants={fadeUpVariants}
-            className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-8 pt-8 border-t border-white/10"
-          >
-            <div className="flex items-center gap-2 text-[11px] md:text-xs font-bold text-slate-300 uppercase tracking-wider font-inter">
-              <FaStar className="text-amber-400 w-3 h-3" /> 5.0 Patient Rating
-            </div>
-            <div className="flex items-center gap-2 text-[11px] md:text-xs font-bold text-slate-300 uppercase tracking-wider font-inter">
-              <FaLock className="text-blue-400 w-3 h-3" /> 1:1 Discreet Care
-            </div>
-            <div className="flex items-center gap-2 text-[11px] md:text-xs font-bold text-slate-300 uppercase tracking-wider font-inter">
-              <FaUserMd className="text-teal-400 w-3 h-3" /> GMC Registered
-            </div>
-          </motion.div>
+        {/* --- NEW MOBILE TREATMENT SLIDER (Sits right under the Hero Buttons) --- */}
+        <div className="relative z-20 w-full mt-12 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+             <h3 className="text-white font-raleway font-bold text-lg md:text-xl">Treatment options may include</h3>
+             <p className="text-slate-400 text-xs font-inter mt-1">Suitability is checked before any treatment plan is recommended.</p>
+          </div>
+          <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-4 sm:px-6 lg:px-8 pb-8 gap-4 w-full">
+            {mobileTreatmentCards.map((card, idx) => (
+              <div 
+                key={idx} 
+                className="snap-start shrink-0 w-[85%] max-w-[280px] sm:w-[280px] bg-slate-900/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-5 shadow-xl flex flex-col"
+              >
+                <div className="w-8 h-8 rounded-lg bg-blue-900/50 flex items-center justify-center mb-3">
+                  <card.icon className="w-4 h-4 text-blue-400" />
+                </div>
+                <h4 className="text-white font-bold font-raleway text-sm mb-2">{card.title}</h4>
+                <p className="text-slate-400 text-[11px] font-inter leading-relaxed">{card.text}</p>
+              </div>
+            ))}
+            {/* Spacer for right padding on scroll */}
+            <div className="shrink-0 w-4 sm:w-8"></div>
+          </div>
         </div>
       </div>
 
-      {/* --- DOCTOR-LED TRUST SECTION (MOVED UP) --- */}
+       {/* --- DOCTOR-LED TRUST SECTION --- */}
       <section className="py-24 bg-white font-inter border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-12">
@@ -282,14 +329,14 @@ export default function ErectileDysfunctionTreatmentClient({
                 Treatment With Dr Syed Abdi
               </h2>
               <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, PRP treatments and non-surgical intimate health procedures. The appointment is discreet, private and focused on suitability, safety and realistic expectations.
+                Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, erectile dysfunction assessment, shockwave therapy, PRP-based treatments and non-surgical intimate health procedures. The appointment is discreet, private and focused on understanding the likely cause of your symptoms, checking suitability and discussing realistic treatment options.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- MOVED UP: DOCTOR-LED APPROACH --- */}
+      {/* --- DOCTOR-LED APPROACH --- */}
       <section className="py-16 md:py-20 bg-slate-50 font-inter border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -301,7 +348,9 @@ export default function ErectileDysfunctionTreatmentClient({
                     "Your symptoms and concerns",
                     "Previous treatments and response so far",
                     "Medical history and current medication",
-                    "Possible contributing factors (circulation, hormones, stress)",
+                    "Possible contributing factors, including circulation, hormones, stress and lifestyle",
+                    "Vascular review, with penile Doppler ultrasound discussed or arranged where clinically appropriate",
+                    "Suitable treatment options, which may include shockwave therapy, PRP-based treatment, blood tests, medication review or referral where appropriate",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 text-base" />
@@ -330,8 +379,27 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </section>
 
-      {/* --- SECTION: TREATMENT OPTIONS (Compact Design) --- */}
-      <section className="relative py-16 lg:py-20 bg-white overflow-hidden font-inter border-b border-slate-200">
+      {/* --- NEW SHOCKWAVE FOCUS SECTION --- */}
+      <section className="py-16 md:py-20 bg-white font-inter">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
+            Considering Shockwave Therapy for ED in {locationName}?
+          </h2>
+          <p className="text-slate-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
+            Shockwave therapy may be suitable for selected men with erection difficulties, reduced firmness or suspected blood-flow-related ED. At Healing-PRP Clinics {locationName}, treatment is offered after a doctor-led assessment so that your symptoms, medical history and suitability are reviewed before any treatment plan is recommended.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            {["Non-surgical treatment option", "Usually well tolerated", "Suitability checked first", "Private clinic fees apply"].map((badge, idx) => (
+              <span key={idx} className="bg-blue-50 text-[#4041d1] px-4 py-2 rounded-full text-sm font-bold border border-blue-100 shadow-sm">
+                {badge}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECTION: FULL TREATMENT OPTIONS GRID --- */}
+      <section className="relative py-16 lg:py-20 bg-slate-50 overflow-hidden font-inter border-y border-slate-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4 tracking-tight">ED Treatment Options</h2>
@@ -342,7 +410,7 @@ export default function ErectileDysfunctionTreatmentClient({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">
             {treatmentOptions.map((step, index) => (
-                <div key={index} className="p-6 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-white shadow-sm hover:shadow-lg hover:border-[#4041d1]/30 transition-all duration-300 flex flex-col group">
+                <div key={index} className="p-6 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 shadow-sm hover:shadow-lg hover:border-[#4041d1]/30 transition-all duration-300 flex flex-col group">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-blue-100 text-[#4041d1] group-hover:scale-110 transition-transform">
                     <step.icon className="w-5 h-5" />
                   </div>
@@ -352,7 +420,7 @@ export default function ErectileDysfunctionTreatmentClient({
                   {step.tags && (
                     <div className="flex flex-wrap gap-1.5 mt-auto">
                       {step.tags.map((tag, i) => (
-                        <span key={i} className="px-2 py-0.5 bg-white border border-slate-200 rounded text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
+                        <span key={i} className="px-2 py-0.5 bg-slate-50 border border-slate-200 rounded text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
                           {tag}
                         </span>
                       ))}
@@ -364,20 +432,8 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </section>
 
-      {/* --- LOCAL DIFFERENTIATION SECTION --- */}
-      <section className="py-16 bg-slate-50 relative z-10 border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
-            Why choose our {locationName} clinic?
-          </h2>
-          <p className="text-slate-600 font-inter text-base leading-relaxed max-w-2xl mx-auto">
-            {whyChooseText}
-          </p>
-        </div>
-      </section>
-
       {/* --- SECTION: WHO THIS SERVICE MAY HELP --- */}
-      <section className="py-16 bg-white font-inter">
+      <section className="py-16 bg-white font-inter border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">Is this suitable for you?</h2>
@@ -408,7 +464,7 @@ export default function ErectileDysfunctionTreatmentClient({
       </section>
 
       {/* --- SECTION: HOW THE PROCESS WORKS --- */}
-      <section className="py-16 bg-slate-50 font-inter border-y border-slate-200">
+      <section className="py-16 bg-slate-50 font-inter border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">How the Process Works</h2>
@@ -432,7 +488,7 @@ export default function ErectileDysfunctionTreatmentClient({
         <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
       </div>
 
-      {/* --- NEW CRO SECTION: BEFORE YOU BOOK (Moved down to sit perfectly above the form) --- */}
+      {/* --- NEW CRO SECTION: BEFORE YOU BOOK --- */}
       <section className="py-12 bg-white border-t border-slate-200" id="contact-form-section">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
@@ -440,18 +496,17 @@ export default function ErectileDysfunctionTreatmentClient({
                Before you book
              </h3>
              <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-inter">
-               This is a private doctor-led ED service in {locationName}. Your initial consultation is free, but treatment, blood tests, Doppler assessment, PRP-based treatment or shockwave therapy are charged separately if you proceed. Fees are explained clearly before any treatment decision.
+               This is a private doctor-led ED service. An initial discussion may be free, but treatment, blood tests, penile Doppler ultrasound, PRP-based treatment or shockwave therapy are charged separately if you proceed. Fees are discussed clearly before any treatment plan is agreed.
              </p>
            </div>
         </div>
       </section>
       
-      {/* Contact Form Component - You will need to edit this file next! */}
+      {/* Contact Form Component - Note: Default prop implementation may require ContactCTASection to accept defaultTreatment prop! */}
       <ContactCTASection />
       <LocationSection /> 
       
       {/* --- MINIMAL AD FOOTER --- */}
-      {/* Added extra padding bottom (pb-32) so the sticky bar doesn't cover footer links */}
       <footer className="bg-[#0A1128] pt-8 pb-32 border-t border-white/10 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <p className="text-slate-400 text-sm font-inter">
