@@ -321,7 +321,7 @@ export default function PeyroniesClient({
             <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Non-Surgical Solutions</span>
             <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">Our Treatment Approach</h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-10">
-              We combine regenerative therapies to encourage plaque remodelling and vascular regeneration. Depending on your assessment, treatment may include one or both of the following options.
+              We combine regenerative therapies to encourage plaque remodelling and vascular regeneration. Depending on your assessment, treatment may include one or more of the following options.
             </p>
 
             {/* --- TIME & SAFETY METRICS BAR --- */}
@@ -342,6 +342,76 @@ export default function PeyroniesClient({
               </div>
             </div>
           </div>
+
+          {/* --- NEW HA INJECTIONS FEATURED BLOCK --- */}
+          <div className="bg-slate-50 rounded-3xl p-8 lg:p-10 border border-slate-200 mb-8 shadow-sm relative overflow-hidden">
+            <div className="flex flex-col lg:flex-row gap-10 relative z-10">
+              
+              {/* Left Content Area */}
+              <div className="lg:w-7/12 flex flex-col justify-center">
+                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                  <FaSyringe className="text-[#4041d1] text-2xl" />
+                </div>
+                <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-4">
+                  Hyaluronic Acid (HA) Plaque Injections
+                </h3>
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  At HealingPRP Clinics, we offer <strong>hyaluronic acid injections for Peyronie's disease</strong> as a primary, minimally invasive treatment option in {locationName}. Hyaluronic acid is a naturally occurring substance found throughout the body. When carefully injected directly into Peyronie’s plaques, it acts to soften the tissue, reduce inflammation, and support the remodelling of scar tissue responsible for penile curvature.
+                </p>
+
+                <h4 className="text-lg font-bold text-slate-900 mb-2 font-raleway">Combination Therapy (HA + PRP)</h4>
+                <p className="text-slate-600 leading-relaxed mb-8">
+                  For enhanced regenerative effects, HA injections are frequently combined with <strong>Platelet-Rich Plasma (PRP) therapy</strong>. This combined approach aims to simultaneously improve plaque elasticity with HA while utilizing your own natural growth factors from PRP to encourage tissue repair and long-term healing.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+                  <button onClick={handleAction} className="w-full sm:w-auto text-center px-6 py-3 bg-[#4041d1] text-white font-bold rounded-xl text-sm transition-all hover:bg-[#2a2bb8]">
+                    Discuss HA Injections with Dr Abdi
+                  </button>
+                </div>
+              </div>
+
+              {/* Right List Area */}
+              <div className="lg:w-5/12 bg-white rounded-2xl p-6 lg:p-8 border border-slate-100 shadow-sm flex flex-col justify-center">
+                <h4 className="font-bold text-slate-900 mb-4 font-raleway flex items-center gap-2">
+                  <FaCheckCircle className="text-[#4041d1]" /> Potential Benefits
+                </h4>
+                <ul className="space-y-3 mb-8">
+                  {[
+                    "Reduction in penile curvature", 
+                    "Improved plaque softness and flexibility", 
+                    "Better comfort during erections", 
+                    "Reduced progression of scar tissue",
+                    "Potential improvement in sexual function"
+                  ].map((benefit, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm text-slate-700">
+                      <FaCheck className="text-green-500 shrink-0 mt-0.5" />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <h4 className="font-bold text-slate-900 mb-4 font-raleway flex items-center gap-2">
+                  <FaUserMd className="text-[#4041d1]" /> Who May Be Suitable?
+                </h4>
+                <ul className="space-y-3">
+                  {[
+                    "Men with mild to moderate Peyronie’s disease", 
+                    "Those with a palpable plaque", 
+                    "Patients wishing to avoid invasive surgery"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm text-slate-700">
+                      <FaCheck className="text-green-500 shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          {/* --- END HA FEATURED BLOCK --- */}
+
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
