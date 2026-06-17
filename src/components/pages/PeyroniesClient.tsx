@@ -161,7 +161,7 @@ export default function PeyroniesClient({
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
           >
-            Private, doctor-led care for men experiencing penile curvature, pain, or reduced elasticity. Start with a <strong>free confidential consultation</strong> to assess the condition and discuss tailored non-surgical options like P-Shot or Shockwave therapy.
+            Private, doctor-led care for men experiencing penile curvature, pain, or reduced elasticity. Start with a <strong>confidential consultation</strong> to assess the condition and discuss tailored non-surgical options like P-Shot or Shockwave therapy.
           </motion.p>
 
           <motion.div 
@@ -276,7 +276,7 @@ export default function PeyroniesClient({
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Common Symptoms & Who This Is For</h2>
             <p className="text-slate-600 text-lg">
-              This service is for men seeking non-surgical options who recognise any of the following and want a <strong>free, confidential first discussion</strong>:
+              This service is for men seeking private, non-surgical ED treatment options who recognise any of the following and want a <strong>confidential, doctor-led first discussion</strong>:
             </p>
           </div>
 
