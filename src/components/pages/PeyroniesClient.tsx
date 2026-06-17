@@ -172,7 +172,7 @@ export default function PeyroniesClient({
               onClick={handleAction}
               className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] active:scale-95 font-inter"
             >
-              <FaEnvelope className="w-4 h-4" /> Book Free Confidential Consultation
+              <FaEnvelope className="w-4 h-4" /> Book Confidential Consultation
             </button>
             <button 
               onClick={() => setIsAssessmentOpen(true)}
@@ -187,7 +187,7 @@ export default function PeyroniesClient({
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-3 mt-10"
           >
-            {["Curvature & Pain Relief", "Non-Surgical Options", "Free Confidential Consultation", "Discreet Private Care"].map((chip) => (
+            {["Curvature & Pain Relief", "Non-Surgical Options", "Confidential Consultation", "Discreet Private Care"].map((chip) => (
               <div key={chip} className="flex items-center gap-1.5 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm">
                 <FaCheckCircle className="text-blue-400" /> {chip}
               </div>
@@ -263,7 +263,7 @@ export default function PeyroniesClient({
                 Peyronie&apos;s Disease occurs when fibrous scar tissue (plaques) forms in the tunica albuginea, causing penile curvature, indentation, pain, and sometimes shortening. It often follows micro‑trauma, though in many cases, the cause is unclear. 
               </p>
               <p>
-                Your journey starts with a <strong>free confidential consultation</strong>. <Link href={`${basePath}/our-doctor`} className="text-[#4041d1] font-bold hover:underline transition-all duration-300">Dr Syed Abdi</Link> will review your symptoms, medical history, and the active or stable phase of your condition to determine the safest, most effective approach.
+                Your journey starts with a <strong>confidential consultation</strong>. <Link href={`${basePath}/our-doctor`} className="text-[#4041d1] font-bold hover:underline transition-all duration-300">Dr Syed Abdi</Link> will review your symptoms, medical history, and the active or stable phase of your condition to determine the safest, most effective approach.
               </p>
             </div>
             <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full"></div>
@@ -328,12 +328,12 @@ export default function PeyroniesClient({
             <div className="inline-flex flex-wrap justify-center items-center gap-4 md:gap-8 px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl">
               <div className="flex items-center gap-2.5">
                  <FaShieldAlt className="text-[#4041d1] w-5 h-5" />
-                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">100% Non-Surgical</span>
+                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Non-Surgical</span>
               </div>
               <div className="hidden md:block w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
               <div className="flex items-center gap-2.5">
                  <FaCheckCircle className="text-[#4041d1] w-5 h-5" />
-                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Zero Downtime</span>
+                 <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">No Downtime</span>
               </div>
               <div className="hidden md:block w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
               <div className="flex items-center gap-2.5">
@@ -430,7 +430,7 @@ export default function PeyroniesClient({
                   <FaHourglassEnd className="text-[#4041d1] shrink-0" /> Takes approx. 30 Minutes
                 </li>
                 <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
-                  <FaCheckCircle className="text-[#4041d1] shrink-0" /> Zero downtime
+                  <FaCheckCircle className="text-[#4041d1] shrink-0" /> No downtime
                 </li>
               </ul>
 
@@ -459,7 +459,7 @@ export default function PeyroniesClient({
                   <FaHourglassEnd className="text-[#4041d1] shrink-0" /> Takes approx. 20 Minutes
                 </li>
                 <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
-                  <FaCheckCircle className="text-[#4041d1] shrink-0" /> Pain-free & Zero downtime
+                  <FaCheckCircle className="text-[#4041d1] shrink-0" /> Pain-free & No downtime
                 </li>
               </ul>
 
@@ -512,7 +512,7 @@ export default function PeyroniesClient({
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 text-left">
-            {["GMC-registered doctors", "Personalised treatment planning", "No GP referral required", "Discreet messaging & booking"].map((item, i) => (
+            {["GMC-registered doctor", "Personalised treatment planning", "No GP referral required", "Discreet messaging & booking"].map((item, i) => (
               <div key={i} className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-center gap-3">
                 <FaCheckCircle className="text-[#4041d1] text-xl shrink-0" /> 
                 <span className="text-slate-800 font-medium text-sm">{item}</span>
@@ -524,7 +524,7 @@ export default function PeyroniesClient({
               onClick={handleAction}
               className="px-10 py-5 w-full md:w-auto bg-[#4041d1] text-white rounded-xl font-bold text-lg hover:bg-[#2a2bb8] transition-all shadow-xl active:scale-95"
             >
-              Request Free Confidential Consultation
+              Book Confidential Consultation
             </button>
             <button
               onClick={() => setIsAssessmentOpen(true)}
