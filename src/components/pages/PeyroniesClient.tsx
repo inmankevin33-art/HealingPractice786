@@ -356,7 +356,7 @@ export default function PeyroniesClient({
                   Hyaluronic Acid (HA) Plaque Injections
                 </h3>
                 <p className="text-slate-600 leading-relaxed mb-6">
-                  At HealingPRP Clinics, we offer <strong>hyaluronic acid injections for Peyronie's disease</strong> as a primary, minimally invasive treatment option in {locationName}. Hyaluronic acid is a naturally occurring substance found throughout the body. When carefully injected directly into Peyronie’s plaques, it acts to soften the tissue, reduce inflammation, and support the remodelling of scar tissue responsible for penile curvature.
+                  At Healing PRP Clinics, we offer <strong>hyaluronic acid injections for Peyronie&apos;s disease</strong> as a primary, minimally invasive treatment option in {locationName}. Hyaluronic acid is a naturally occurring substance found throughout the body. When carefully injected directly into Peyronie&apos;s plaques, it acts to soften the tissue, reduce inflammation, and support the remodelling of scar tissue responsible for penile curvature.
                 </p>
 
                 <h4 className="text-lg font-bold text-slate-900 mb-2 font-raleway">Combination Therapy (HA + PRP)</h4>
