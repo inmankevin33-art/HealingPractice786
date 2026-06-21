@@ -38,7 +38,7 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 1. Fire Meta Pixel Lead Event (Strict TypeScript compliant)
+    // 1. Fire Meta Pixel Lead Event
     if (typeof window !== "undefined") {
       const w = window as Window & { fbq?: (...args: unknown[]) => void };
       if (w.fbq) {
@@ -50,23 +50,32 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
     }
 
     try {
-      // 2. Send data to your existing contact API
-      await fetch("/api/contact", {
+      // 2. Send data to your existing contact API with PLACEHOLDERS for missing fields
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
-          phone,
+          name: name,
+          phone: phone,
+          // Injecting dummy data so your backend validation doesn't block the email
+          email: "instagram-lead@healing-prp.co.uk", 
+          service: campaignName, // Changed to 'service' in case your API uses that instead of 'treatment'
           treatment: campaignName,
+          message: `URGENT CALLBACK REQUEST: This lead came from the Instagram Landing Page for ${campaignName}. Please call them at ${phone}.`,
           source: "Instagram Landing Page",
         }),
       });
+
+      if (!response.ok) {
+        throw new Error("Backend API rejected the submission");
+      }
 
       setIsSuccess(true);
       setName("");
       setPhone("");
     } catch (error) {
       console.error("Form submission error:", error);
+      alert("Something went wrong. Please try clicking the WhatsApp button instead.");
     } finally {
       setIsSubmitting(false);
     }
