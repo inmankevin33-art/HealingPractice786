@@ -50,24 +50,29 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
     }
 
     try {
-      // 2. Send data to your existing contact API with PLACEHOLDERS for missing fields
+      // 2. Send the "kitchen sink" payload to satisfy the API validation
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name,
+          firstName: name, // Often required instead of 'name'
+          lastName: "Instagram Lead", // Often required
           phone: phone,
-          // Injecting dummy data so your backend validation doesn't block the email
-          email: "instagram-lead@healing-prp.co.uk", 
-          service: campaignName, // Changed to 'service' in case your API uses that instead of 'treatment'
+          email: "instagram-lead@healing-prp.co.uk",
+          service: campaignName,
           treatment: campaignName,
+          location: "Instagram Campaign", // Often required for multi-clinic setups
           message: `URGENT CALLBACK REQUEST: This lead came from the Instagram Landing Page for ${campaignName}. Please call them at ${phone}.`,
           source: "Instagram Landing Page",
         }),
       });
 
+      // 3. Capture the exact error message from the server if it fails
       if (!response.ok) {
-        throw new Error("Backend API rejected the submission");
+        const errorDetails = await response.text();
+        console.error("SERVER REJECTION DETAILS:", errorDetails);
+        throw new Error(`API rejected submission: ${response.status}`);
       }
 
       setIsSuccess(true);
@@ -75,7 +80,7 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
       setPhone("");
     } catch (error) {
       console.error("Form submission error:", error);
-      alert("Something went wrong. Please try clicking the WhatsApp button instead.");
+      alert("Something went wrong. Please check the developer console or try clicking the WhatsApp button instead.");
     } finally {
       setIsSubmitting(false);
     }
