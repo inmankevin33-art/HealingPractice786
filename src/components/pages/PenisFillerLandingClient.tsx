@@ -185,7 +185,7 @@ export default function PenisFillerLandingClient({
     // Smooth scroll to InstaLeadForm instead of opening drawer
     const formElement = document.getElementById("insta-lead-form");
     if (formElement) {
-      const headerOffset = 20; 
+      const headerOffset = 80; 
       const elementPosition = formElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
