@@ -466,20 +466,6 @@ export default function PenisFillerLandingClient({
       <div id="reviews-section">
         <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
       </div>
-
-      {/* --- NEW CRO SECTION: BEFORE YOU BOOK --- */}
-      <section className="py-12 bg-white border-t border-slate-200" id="contact-form-section">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-           <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
-             <h3 className="font-raleway font-bold text-slate-900 text-xl mb-3 flex items-center justify-center gap-2">
-               Before you book
-             </h3>
-             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-inter">
-               This is a private doctor-led penis filler consultation service. An initial discussion may be free, but structural treatment is charged separately if you proceed. Suitability parameters, expectations, procedural risks, clinical aftercare, and baseline treatment fees are discussed clearly before any treatment plan is agreed.
-             </p>
-           </div>
-        </div>
-      </section>
       
       {/* --- INSTAGRAM OPTIMIZED LEAD FORM --- */}
       <section className="py-12 bg-slate-50 border-t border-slate-200 pb-24 md:pb-12 relative z-10">
