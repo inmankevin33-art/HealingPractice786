@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import {
   FaCheckCircle,
   FaStar,
@@ -16,8 +16,8 @@ import {
   FaBriefcaseMedical,
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
-import ContactCTASection from "@/components/ContactCTASection";
 import TrustReviews from "@/components/TrustReviews";
+import InstaLeadForm from "@/components/InstaLeadForm";
 
 type FaqType = {
   question: string;
@@ -133,6 +133,7 @@ export default function PenisFillerLandingClient({
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [showStickyBar, setShowStickyBar] = useState(false);
   
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -141,6 +142,18 @@ export default function PenisFillerLandingClient({
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsLoaded(true);
+
+    // Track scroll to show sticky bar on mobile
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        setShowStickyBar(true);
+      } else {
+        setShowStickyBar(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollLeft = () => {
@@ -169,18 +182,14 @@ export default function PenisFillerLandingClient({
       }
     }
 
-    window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-
-    requestAnimationFrame(() => {
-      const section = document.getElementById("contact-form-section");
-      const headerOffset = -40; 
-
-      if (section) {
-        const elementPosition = section.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-      }
-    });
+    // Smooth scroll to InstaLeadForm instead of opening drawer
+    const formElement = document.getElementById("insta-lead-form");
+    if (formElement) {
+      const headerOffset = 20; 
+      const elementPosition = formElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
   };
   
   return (
@@ -200,6 +209,26 @@ export default function PenisFillerLandingClient({
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}} />
+
+      {/* --- STICKY MOBILE CTA BAR --- */}
+      <AnimatePresence>
+        {showStickyBar && (
+          <motion.div
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            exit={{ y: 100 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="fixed bottom-0 left-0 w-full z-[100] sm:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 shadow-[0_-10px_20px_rgba(0,0,0,0.1)] pb-safe"
+          >
+            <button
+              onClick={handleAction}
+              className="w-full bg-[#4041d1] hover:bg-[#2a2bb8] text-white font-bold font-inter py-4 rounded-xl shadow-lg active:scale-95 transition-all text-sm"
+            >
+              Request Callback
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* --- HERO SECTION --- */}
       <div className="relative overflow-hidden flex flex-col items-center justify-center bg-[#0A1128] pt-12 pb-10 md:pt-20 md:pb-16">
@@ -452,12 +481,17 @@ export default function PenisFillerLandingClient({
         </div>
       </section>
       
-      {/* Passing default props to form dropdown */}
-      <ContactCTASection defaultTreatment="Penis Filler / Girth Enhancement" />
+      {/* --- INSTAGRAM OPTIMIZED LEAD FORM --- */}
+      <section className="py-12 bg-slate-50 border-t border-slate-200 pb-24 md:pb-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
+        </div>
+      </section>
+
       <LocationSection /> 
       
       {/* --- MINIMAL AD FOOTER --- */}
-      <footer className="bg-[#0A1128] pt-8 pb-32 border-t border-white/10 text-center">
+      <footer className="bg-[#0A1128] pt-8 pb-32 md:pb-12 border-t border-white/10 text-center relative z-0">
         <div className="max-w-4xl mx-auto px-4">
           <p className="text-slate-400 text-sm font-inter">
             &copy; {new Date().getFullYear()} Healing-PRP Clinics. All rights reserved.
@@ -472,7 +506,7 @@ export default function PenisFillerLandingClient({
 
       {/* --- MODALS --- */}
       {isPrivacyModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setIsPrivacyModalOpen(false)}>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setIsPrivacyModalOpen(false)}>
           <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[80vh] flex flex-col relative shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="p-4 md:p-6 border-b flex justify-between items-center sticky top-0 bg-white rounded-t-2xl z-10">
               <h2 className="text-xl md:text-2xl font-bold text-slate-900 font-raleway">Privacy Policy</h2>
@@ -496,7 +530,7 @@ export default function PenisFillerLandingClient({
       )}
 
       {isTermsModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setIsTermsModalOpen(false)}>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setIsTermsModalOpen(false)}>
           <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[80vh] flex flex-col relative shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="p-4 md:p-6 border-b flex justify-between items-center sticky top-0 bg-white rounded-t-2xl z-10">
               <h2 className="text-xl md:text-2xl font-bold text-slate-900 font-raleway">Booking Terms & Conditions</h2>
