@@ -14,15 +14,18 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // IMPORTANT: Replace this with your clinic's actual WhatsApp Business number (including country code, no + or spaces)
-  const CLINIC_WHATSAPP_NUMBER = "+447990364147"; 
+  const CLINIC_WHATSAPP_NUMBER = "447123456789"; 
 
   const handleWhatsAppClick = () => {
-    // 1. Fire Meta Pixel Lead Event
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "Lead", {
-        content_name: campaignName,
-        lead_type: "WhatsApp",
-      });
+    // 1. Fire Meta Pixel Lead Event (Strict TypeScript compliant)
+    if (typeof window !== "undefined") {
+      const w = window as Window & { fbq?: (...args: unknown[]) => void };
+      if (w.fbq) {
+        w.fbq("track", "Lead", {
+          content_name: campaignName,
+          lead_type: "WhatsApp",
+        });
+      }
     }
 
     // 2. Open WhatsApp with pre-filled message
@@ -35,17 +38,19 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 1. Fire Meta Pixel Lead Event
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "Lead", {
-        content_name: campaignName,
-        lead_type: "Form Submission",
-      });
+    // 1. Fire Meta Pixel Lead Event (Strict TypeScript compliant)
+    if (typeof window !== "undefined") {
+      const w = window as Window & { fbq?: (...args: unknown[]) => void };
+      if (w.fbq) {
+        w.fbq("track", "Lead", {
+          content_name: campaignName,
+          lead_type: "Form Submission",
+        });
+      }
     }
 
     try {
       // 2. Send data to your existing contact API
-      // (Ensure this matches the endpoint your current ContactCTASection uses)
       await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
