@@ -14,7 +14,7 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // IMPORTANT: Replace this with your clinic's actual WhatsApp Business number (including country code, no + or spaces)
-  const CLINIC_WHATSAPP_NUMBER = "00447990364147"; 
+  const CLINIC_WHATSAPP_NUMBER = "447990364147"; 
 
   const handleWhatsAppClick = () => {
     // 1. Fire Meta Pixel Lead Event (Strict TypeScript compliant)
