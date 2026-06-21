@@ -116,7 +116,7 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
         <div className="h-px bg-slate-200 flex-1"></div>
       </div>
 
-      {/* MICRO-FORM */}
+      {/* MICRO-FORM WITH AUTOFILL ENABLED */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-1.5 font-inter">First Name</label>
@@ -124,6 +124,7 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
             type="text"
             id="name"
             required
+            autoComplete="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#4041d1] focus:border-[#4041d1] outline-none transition-all font-inter text-slate-900 placeholder:text-slate-400"
@@ -137,6 +138,7 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
             type="tel"
             id="phone"
             required
+            autoComplete="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#4041d1] focus:border-[#4041d1] outline-none transition-all font-inter text-slate-900 placeholder:text-slate-400"
