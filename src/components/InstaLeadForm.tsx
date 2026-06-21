@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FaWhatsapp, FaLock, FaPhoneAlt, FaCheckCircle } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 interface InstaLeadFormProps {
   campaignName: string;
@@ -13,11 +14,11 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // IMPORTANT: Replace this with your clinic's actual WhatsApp Business number (including country code, no + or spaces)
+  // IMPORTANT: Replace this with your clinic's actual WhatsApp Business number
   const CLINIC_WHATSAPP_NUMBER = "447990364147"; 
 
   const handleWhatsAppClick = () => {
-    // 1. Fire Meta Pixel Lead Event (Strict TypeScript compliant)
+    // 1. Fire Meta Pixel Lead Event
     if (typeof window !== "undefined") {
       const w = window as Window & { fbq?: (...args: unknown[]) => void };
       if (w.fbq) {
@@ -28,7 +29,7 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
       }
     }
 
-    // 2. Open WhatsApp with pre-filled message
+    // 2. Open WhatsApp
     const message = `Hi Healing-PRP, I would like some more information about the ${campaignName}.`;
     const waUrl = `https://wa.me/${CLINIC_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(waUrl, "_blank");
@@ -36,6 +37,7 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setIsSubmitting(true);
 
     // 1. Fire Meta Pixel Lead Event
@@ -49,38 +51,36 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
       }
     }
 
-    try {
-      // 2. Send the "kitchen sink" payload to satisfy the API validation
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name,
-          firstName: name, // Often required instead of 'name'
-          lastName: "Instagram Lead", // Often required
-          phone: phone,
-          email: "instagram-lead@healing-prp.co.uk",
-          service: campaignName,
-          treatment: campaignName,
-          location: "Instagram Campaign", // Often required for multi-clinic setups
-          message: `URGENT CALLBACK REQUEST: This lead came from the Instagram Landing Page for ${campaignName}. Please call them at ${phone}.`,
-          source: "Instagram Landing Page",
-        }),
-      });
+    // 2. Grab your existing EmailJS credentials
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-      // 3. Capture the exact error message from the server if it fails
-      if (!response.ok) {
-        const errorDetails = await response.text();
-        console.error("SERVER REJECTION DETAILS:", errorDetails);
-        throw new Error(`API rejected submission: ${response.status}`);
-      }
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("Email service unconfigured.");
+      alert("System error. Please use WhatsApp instead.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // 3. Send using EmailJS (Matching your template variables perfectly)
+      emailjs.init(publicKey);
+      await emailjs.send(serviceId, templateId, {
+        from_name: name,
+        from_email: "instagram-lead@healing-prp.co.uk", // Dummy email to bypass validation
+        phone: phone,
+        treatment: campaignName,
+        clinic_location: "Instagram Ad Lead", // Identifies the source in your inbox
+        message: `URGENT CALLBACK REQUEST: This lead came from an Instagram Ad for ${campaignName}. Please call them directly at ${phone}.`,
+      });
 
       setIsSuccess(true);
       setName("");
       setPhone("");
     } catch (error) {
-      console.error("Form submission error:", error);
-      alert("Something went wrong. Please check the developer console or try clicking the WhatsApp button instead.");
+      console.error("EmailJS Error:", error);
+      alert("Failed to send. Please try clicking the WhatsApp button instead.");
     } finally {
       setIsSubmitting(false);
     }
@@ -114,7 +114,6 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
         </p>
       </div>
 
-      {/* WHATSAPP BUTTON (Primary focus for mobile users) */}
       <button
         onClick={handleWhatsAppClick}
         type="button"
@@ -130,7 +129,6 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
         <div className="h-px bg-slate-200 flex-1"></div>
       </div>
 
-      {/* MICRO-FORM WITH AUTOFILL ENABLED */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-1.5 font-inter">First Name</label>
