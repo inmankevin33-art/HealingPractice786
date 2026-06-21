@@ -182,13 +182,10 @@ export default function PenisFillerLandingClient({
       }
     }
 
-    // Smooth scroll to InstaLeadForm instead of opening drawer
+    // THE FIX: Let the browser perfectly center the form on the screen
     const formElement = document.getElementById("insta-lead-form");
     if (formElement) {
-      const headerOffset = 80; 
-      const elementPosition = formElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      formElement.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
   
