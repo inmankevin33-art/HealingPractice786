@@ -450,6 +450,45 @@ export default function PenisFillerLandingClient({
            <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
         </div>
       </section>
+     {/* --- MOVED LEAD FORM: DIRECTLY UNDER DOCTOR SECTION --- */}
+      <section id="mobile-form-target" className="pt-16 pb-16 bg-slate-50 border-t border-slate-200 relative z-10 shadow-inner">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
+        </div>
+      </section>
+
+      {/* --- NEW: WHY CHOOSE US SECTION --- */}
+      <section className="py-16 bg-[#0A1128] text-white font-inter relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-[radial-gradient(ellipse_at_center,_rgba(64,65,209,0.3)_0%,_transparent_70%)] pointer-events-none z-0" />
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold mb-4 text-white">Why Patients Choose Healing-PRP</h2>
+            <p className="text-blue-200 text-sm md:text-base max-w-2xl mx-auto font-medium">
+              We prioritise clinical safety, absolute discretion, and natural-feeling results.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {[
+              "GMC Registered Doctor",
+              "Over 20 Years Medical Experience",
+              "Premium HA Dermal Fillers",
+              "Doctor-Led Consultations",
+              "Discreet Private Clinics",
+              "Ongoing Aftercare Support"
+            ].map((perk, idx) => (
+              <div key={idx} className="flex items-center gap-4 bg-white/5 border border-white/10 p-5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-colors">
+                <div className="w-10 h-10 rounded-full bg-[#4041d1]/30 flex items-center justify-center shrink-0 border border-[#4041d1]/50">
+                  <FaCheckCircle className="text-blue-400 w-5 h-5" />
+                </div>
+                <span className="font-bold text-sm md:text-base tracking-wide text-white font-raleway">{perk}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* --- TREATMENT OVERVIEW SECTION --- */}
       <section className="py-16 bg-white font-inter border-b border-slate-200">
