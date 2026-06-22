@@ -125,7 +125,8 @@ const quickSteps = [
 export default function PenisFillerLandingClient({
   locationName = "Birmingham",
   servingAreas = "Edgbaston • Solihull • Sutton Coldfield • West Midlands",
-  heroDescription = <>Doctor-led non-surgical girth enhancement using hyaluronic acid filler.</>, 
+  // CHANGED: Hook updated to focus on emotion/confidence per CRO feedback
+  heroDescription = <>Helping men improve confidence with doctor-led, non-surgical penile girth enhancement.</>, 
   whyChooseText = "Patients choose our clinic for discreet, highly professional, doctor-led intimate aesthetic care and a structured approach to clinical assessment.",
   faqs = [], 
 }: PenisFillerProps) {
@@ -156,25 +157,26 @@ export default function PenisFillerLandingClient({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // NEW: Ultimate Global Interceptor (Catches Mobile & Desktop)
+  // ULTIMATE GLOBAL INTERCEPTOR (Updated for Desktop/Mobile specific targets)
   useEffect(() => {
-    // 1. Function to cleanly scroll to the form
     const scrollToForm = () => {
-      const formElement = document.getElementById("insta-lead-form");
-      if (formElement) {
-        const yOffset = -40; // 40px gap
-        const y = formElement.getBoundingClientRect().top + window.scrollY + yOffset;
+      // Check screen size to determine which form to scroll to
+      const isDesktop = window.innerWidth >= 1024;
+      const targetId = isDesktop ? "desktop-form-target" : "mobile-form-target";
+      const wrapper = document.getElementById(targetId);
+      
+      if (wrapper) {
+        const yOffset = isDesktop ? -120 : -40; // Desktop needs more room for hero navbar
+        const y = wrapper.getBoundingClientRect().top + window.scrollY + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
     };
 
-    // 2. Catch the custom React event (often used by desktop navigations)
     const handleGlobalContactEvent = (e: Event) => {
       e.stopPropagation();
       scrollToForm();
     };
 
-    // 3. Aggressively catch physical clicks on ANY global button
     const hijackGlobalClicks = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const clickable = target.closest("button, a");
@@ -183,7 +185,6 @@ export default function PenisFillerLandingClient({
         const text = clickable.textContent?.toLowerCase() || "";
         const href = clickable.getAttribute("href") || "";
         
-        // Broaden the net: Catch any button text that implies booking/contacting
         const isContactAction = 
           text.includes("book") || 
           text.includes("consult") || 
@@ -199,11 +200,9 @@ export default function PenisFillerLandingClient({
       }
     };
 
-    // Attach BOTH listeners in the "capture" phase (true) to intercept them early
     window.addEventListener("open-contact-drawer", handleGlobalContactEvent, true);
     window.addEventListener("click", hijackGlobalClicks, true);
     
-    // Cleanup when the user leaves the page
     return () => {
       window.removeEventListener("open-contact-drawer", handleGlobalContactEvent, true);
       window.removeEventListener("click", hijackGlobalClicks, true);
@@ -236,29 +235,23 @@ export default function PenisFillerLandingClient({
       }
     }
 
-    // Scroll to the cleanly separated form section
-    const formElement = document.getElementById("insta-lead-form");
-    if (formElement) {
-      const yOffset = -40; // 40px gap above the form for a clean frame
-      const y = formElement.getBoundingClientRect().top + window.scrollY + yOffset;
+    const isDesktop = window.innerWidth >= 1024;
+    const targetId = isDesktop ? "desktop-form-target" : "mobile-form-target";
+    const wrapper = document.getElementById(targetId);
+    
+    if (wrapper) {
+      const yOffset = isDesktop ? -120 : -40;
+      const y = wrapper.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
   
   return (
     <>
-      {/* --- CSS OVERRIDES --- */}
       <style dangerouslySetInnerHTML={{ __html: `
-        /* Hide global header */
         header, nav, .header, .navbar, #header { display: none !important; }
-        
-        /* Hide global floating buttons to prevent overlap with sticky actions */
         .floating-whatsapp, .whatsapp-float, #whatsapp-button, .floating-contact { display: none !important; }
-        
-        /* Safe padding for iOS devices */
         .pb-safe { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
-
-        /* Hide scrollbar for mobile slider */
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}} />
@@ -283,72 +276,86 @@ export default function PenisFillerLandingClient({
         )}
       </AnimatePresence>
 
-      {/* --- HERO SECTION --- */}
+      {/* --- HERO SECTION (Now 2 Columns on Desktop) --- */}
       <div className="relative overflow-hidden flex flex-col items-center justify-center bg-[#0A1128] pt-12 pb-10 md:pt-20 md:pb-16">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1e293b] via-[#0A1128] to-black" />
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(64,65,209,0.25)_0%,_transparent_70%)] pointer-events-none" />
         </div>
         
-        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
-          
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md shadow-lg">
-            <FaStethoscope className="text-blue-400 w-3 h-3" />
-            <span className="text-blue-100 text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase font-inter">Led By Dr Abdi</span>
-          </div>
-
-          <h1 className="md:text-5xl lg:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-5 tracking-tight drop-shadow-lg">
-            Penis Filler Consultation in {locationName}
-          </h1>
-          
-          <p className="text-sm md:text-base text-white/90 font-inter leading-relaxed max-w-2xl mx-auto mb-5 drop-shadow-md">
-            {heroDescription}
-          </p>
-
-          {/* HIGH CONVERTING QUICK SCAN PILLS */}
-          <motion.div 
-            custom={0} initial="hidden" animate="visible" variants={fadeUpVariants}
-            className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto mb-8"
-          >
-            {["Girth Enhancement", "Improved Proportions", "HA Dermal Fillers", "Doctor-Led Care"].map((pill, idx) => (
-              <div key={idx} className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm">
-                <FaCheckCircle className="text-blue-400 w-3 h-3 shrink-0" />
-                <span className="text-white text-[11px] md:text-xs font-semibold tracking-wide font-inter">{pill}</span>
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* LEFT COL: Text & CTA */}
+            <div className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
+              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md shadow-lg">
+                <FaStethoscope className="text-blue-400 w-3 h-3" />
+                <span className="text-blue-100 text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase font-inter">Led By Dr Abdi</span>
               </div>
-            ))}
-          </motion.div>
 
-          <p className="text-[11px] md:text-xs text-blue-200 font-inter max-w-2xl mx-auto mb-8 font-semibold tracking-wide">
-            Face-to-face private care with Dr Syed Abdi, GMC-registered doctor. No GP referral needed. Private treatment fees apply.
-          </p>
+              <h1 className="md:text-5xl lg:text-6xl text-4xl font-bold font-raleway text-white leading-tight mb-5 tracking-tight drop-shadow-lg">
+                Penis Filler Consultation in {locationName}
+              </h1>
+              
+              <p className="text-sm md:text-base text-white/90 font-inter leading-relaxed max-w-2xl lg:mx-0 mb-5 drop-shadow-md">
+                {heroDescription}
+              </p>
 
-          <motion.div 
-            custom={1} initial="hidden" animate="visible" variants={fadeUpVariants}
-            className="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-xl mx-auto"
-          >
-            <button 
-              onClick={handleAction}
-              className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] hover:shadow-[0_0_25px_rgba(64,65,209,0.5)] active:scale-95 font-inter"
-            >
-              Book Confidential Consultation
-            </button>
-            <button 
-              onClick={handleAction}
-              className="px-8 py-3.5 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white/10 border border-white/20 text-white hover:bg-white hover:text-[#4041d1] rounded-xl font-bold transition-all duration-300 gap-2 active:scale-95 font-inter"
-            >
-              Ask About Suitability
-            </button>
-          </motion.div>
+              <motion.div 
+                custom={0} initial="hidden" animate="visible" variants={fadeUpVariants}
+                className="flex flex-wrap justify-center lg:justify-start gap-2 max-w-2xl mb-8"
+              >
+                {["Girth Enhancement", "Improved Proportions", "HA Dermal Fillers", "Doctor-Led Care"].map((pill, idx) => (
+                  <div key={idx} className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm">
+                    <FaCheckCircle className="text-blue-400 w-3 h-3 shrink-0" />
+                    <span className="text-white text-[11px] md:text-xs font-semibold tracking-wide font-inter">{pill}</span>
+                  </div>
+                ))}
+              </motion.div>
 
-          <motion.p 
-            custom={2} initial="hidden" animate="visible" variants={fadeUpVariants}
-            className="mt-4 text-[11px] md:text-xs text-slate-400 font-inter max-w-sm mx-auto"
-          >
-            Free initial discussion available. Private treatment fees apply if you proceed.
-          </motion.p>
+              <p className="text-[11px] md:text-xs text-blue-200 font-inter max-w-2xl lg:mx-0 mb-8 font-semibold tracking-wide text-center lg:text-left">
+                Face-to-face private care with Dr Syed Abdi, GMC-registered doctor. No GP referral needed. Private treatment fees apply.
+              </p>
+
+              <motion.div 
+                custom={1} initial="hidden" animate="visible" variants={fadeUpVariants}
+                className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center w-full max-w-xl lg:max-w-none"
+              >
+                <button 
+                  onClick={handleAction}
+                  className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] hover:shadow-[0_0_25px_rgba(64,65,209,0.5)] active:scale-95 font-inter"
+                >
+                  Book Confidential Consultation
+                </button>
+                <button 
+                  onClick={handleAction}
+                  className="px-8 py-3.5 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white/10 border border-white/20 text-white hover:bg-white hover:text-[#4041d1] rounded-xl font-bold transition-all duration-300 gap-2 active:scale-95 font-inter"
+                >
+                  Ask About Suitability
+                </button>
+              </motion.div>
+
+              <motion.p 
+                custom={2} initial="hidden" animate="visible" variants={fadeUpVariants}
+                className="mt-4 text-[11px] md:text-xs text-slate-400 font-inter max-w-sm lg:mx-0 text-center lg:text-left"
+              >
+                Free initial discussion available. Private treatment fees apply if you proceed.
+              </motion.p>
+            </div>
+
+            {/* RIGHT COL: Desktop Lead Form */}
+            <div id="desktop-form-target" className="hidden lg:block lg:col-span-5 relative z-30">
+               {/* Aesthetic glow behind the form */}
+               <div className="absolute inset-0 bg-blue-500/20 blur-[50px] rounded-full pointer-events-none"></div>
+               <div className="relative">
+                 <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
+               </div>
+            </div>
+
+          </div>
         </div>
 
-        {/* --- MOBILE TREATMENT SLIDER (Perfect Centering & Floating Arrows) --- */}
+        {/* --- MOBILE TREATMENT SLIDER --- */}
         <div className="relative z-20 w-full mt-12 overflow-hidden">
           <div className="text-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
              <h3 className="text-white font-raleway font-bold text-lg md:text-xl">Treatment parameters may include</h3>
@@ -356,7 +363,6 @@ export default function PenisFillerLandingClient({
           </div>
 
           <div className="relative max-w-5xl mx-auto w-full">
-             {/* Left Overlay Arrow */}
              <button 
                onClick={scrollLeft} 
                className="absolute left-2 top-[calc(50%-16px)] -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-slate-800/90 border border-slate-600 flex items-center justify-center text-white shadow-xl hover:bg-slate-700 hover:scale-105 transition-all backdrop-blur-md"
@@ -365,7 +371,6 @@ export default function PenisFillerLandingClient({
                <FaChevronLeft className="w-3.5 h-3.5 -ml-0.5" />
              </button>
 
-             {/* Center-Aligned Carousel Track */}
              <div 
                ref={sliderRef}
                className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 gap-4 w-full px-[calc(50vw-140px)] md:px-[calc(50%-140px)]"
@@ -384,7 +389,6 @@ export default function PenisFillerLandingClient({
                ))}
              </div>
 
-             {/* Right Overlay Arrow */}
              <button 
                onClick={scrollRight} 
                className="absolute right-2 top-[calc(50%-16px)] -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-slate-800/90 border border-slate-600 flex items-center justify-center text-white shadow-xl hover:bg-slate-700 hover:scale-105 transition-all backdrop-blur-md"
@@ -419,8 +423,15 @@ export default function PenisFillerLandingClient({
         </div>
       </section>
 
+      {/* --- MOVED LEAD FORM: DIRECTLY UNDER DOCTOR SECTION --- */}
+      <section id="mobile-form-target" className="pt-16 pb-16 bg-slate-50 border-t border-slate-200 relative z-10 shadow-inner">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
+        </div>
+      </section>
+
       {/* --- TREATMENT OVERVIEW SECTION --- */}
-      <section className="py-16 bg-slate-50 font-inter border-b border-slate-200">
+      <section className="py-16 bg-white font-inter border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Procedure Overview</span>
           <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
@@ -433,7 +444,7 @@ export default function PenisFillerLandingClient({
       </section>
 
       {/* --- WHAT THIS TREATMENT MAY HELP WITH --- */}
-      <section className="py-16 bg-white font-inter border-b border-slate-200">
+      <section className="py-16 bg-slate-50 font-inter border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">Who Is This Suitable For?</h2>
@@ -450,7 +461,7 @@ export default function PenisFillerLandingClient({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className={`bg-slate-50 rounded-2xl p-6 border border-slate-100 flex flex-col h-full group ${index === 4 ? "lg:col-start-2" : ""}`}
+                className={`bg-white rounded-2xl p-6 border border-slate-100 flex flex-col h-full group shadow-sm ${index === 4 ? "lg:col-start-2" : ""}`}
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className={`w-10 h-10 rounded-xl ${symptom.color} flex items-center justify-center text-lg shrink-0`}><symptom.icon /></div>
@@ -464,7 +475,7 @@ export default function PenisFillerLandingClient({
       </section>
 
       {/* --- SECTION: HOW THE PROCESS WORKS --- */}
-      <section className="py-16 bg-slate-50 font-inter border-b border-slate-200">
+      <section className="py-16 bg-white font-inter border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">How the Process Works</h2>
@@ -472,8 +483,8 @@ export default function PenisFillerLandingClient({
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {quickSteps.map((step, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative group hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center mb-4 text-[#4041d1] text-lg shadow-sm">
+              <div key={idx} className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm relative group hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-4 text-[#4041d1] text-lg shadow-sm">
                   <step.icon />
                 </div>
                 <h3 className="text-lg font-bold mb-2 font-raleway">Step {idx + 1}: {step.title}</h3>
@@ -485,10 +496,10 @@ export default function PenisFillerLandingClient({
       </section>
 
       {/* --- SAFETY AND REALISTIC EXPECTATIONS SECTION --- */}
-      <section className="py-16 bg-white font-inter border-b border-slate-200">
+      <section className="py-16 bg-slate-50 font-inter border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-6">Safety & Realistic Expectations</h2>
-          <div className="bg-slate-50 rounded-2xl p-6 md:p-8 border border-slate-200 text-left max-w-3xl mx-auto">
+          <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 text-left max-w-3xl mx-auto shadow-sm">
             <ul className="space-y-4 text-slate-700 text-sm md:text-base leading-relaxed">
               <li className="flex items-start gap-2.5">
                 <FaCheckCircle className="text-[#4041d1] w-4 h-4 mt-1 shrink-0" />
@@ -515,16 +526,7 @@ export default function PenisFillerLandingClient({
         </div>
       </section>
 
-    {/* --- INSTAGRAM OPTIMIZED LEAD FORM SECTION --- */}
-      {/* Placed ABOVE the dynamic iframe so scroll calculations are 100% accurate */}
-      <section className="pt-16 pb-16 bg-slate-50 border-t border-slate-200 relative z-10 shadow-inner">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
-        </div>
-      </section>
-
       {/* --- REVIEWS SECTION --- */}
-      {/* Moved below the form. The sticky bar will comfortably float over this as they read */}
       <section id="reviews-section" className="py-16 bg-white border-t border-slate-200 relative z-0 pb-32">
         <div className="max-w-5xl mx-auto px-4 text-center mb-10">
            <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900">
