@@ -544,10 +544,6 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </section>
 
-      <div id="reviews-section">
-        <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
-      </div>
-
       {/* --- NEW CRO SECTION: BEFORE YOU BOOK --- */}
       <section className="py-12 bg-white border-t border-slate-200" id="contact-form-section">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -564,6 +560,9 @@ export default function ErectileDysfunctionTreatmentClient({
       
       <ContactCTASection />
       <LocationSection /> 
+      <div id="reviews-section">
+        <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
+      </div>
       
       {/* --- MINIMAL AD FOOTER --- */}
       <footer className="bg-[#0A1128] pt-8 pb-32 border-t border-white/10 text-center">
