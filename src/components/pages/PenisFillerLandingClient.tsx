@@ -156,28 +156,42 @@ export default function PenisFillerLandingClient({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // NEW: Hijack the global sticky button's custom event
+  // NEW: Aggressive Click Interceptor for the Global Sticky Bar
   useEffect(() => {
-    const handleGlobalContactEvent = (e: Event) => {
-      // 1. Stop the old drawer from opening
-      e.stopPropagation(); 
+    const hijackGlobalClicks = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const clickable = target.closest("button, a");
       
-      // 2. Scroll to our new Instagram form perfectly
-      const formElement = document.getElementById("insta-lead-form");
-      if (formElement) {
-        const yOffset = -40; // Clean 40px gap
-        const y = formElement.getBoundingClientRect().top + window.scrollY + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
+      if (clickable) {
+        const text = clickable.textContent?.toLowerCase() || "";
+        const href = clickable.getAttribute("href") || "";
+        
+        // If they click the global "Book Consult" button or an old anchor link
+        if (text.includes("book consult") || href.includes("#contact-form-section")) {
+          
+          // 1. Stop the global layout from ever seeing this click
+          e.preventDefault();
+          e.stopPropagation(); 
+          
+          // 2. Scroll smoothly to our new Instagram form
+          const formElement = document.getElementById("insta-lead-form");
+          if (formElement) {
+            const yOffset = -40; // 40px gap
+            const y = formElement.getBoundingClientRect().top + window.scrollY + yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }
       }
     };
 
-    // Listen for the event that your global sticky button fires
-    window.addEventListener("open-contact-drawer", handleGlobalContactEvent);
+    // The 'true' parameter is the magic trick. It forces the browser to run THIS 
+    // function first, catching the click before your global layout does.
+    window.addEventListener("click", hijackGlobalClicks, true);
     
-    // Cleanup the listener when the user leaves the page
-    return () => window.removeEventListener("open-contact-drawer", handleGlobalContactEvent);
+    // Cleanup
+    return () => window.removeEventListener("click", hijackGlobalClicks, true);
   }, []);
-
+  
   const scrollLeft = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({ left: -296, behavior: "smooth" });
