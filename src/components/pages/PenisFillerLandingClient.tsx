@@ -461,9 +461,18 @@ export default function PenisFillerLandingClient({
         </div>
       </section>
 
-     {/* --- REVIEWS SECTION --- */}
-      <section id="reviews-section" className="py-16 bg-white relative z-0">
-        <div className="max-w-5xl mx-auto px-4 text-center mb-8">
+    {/* --- INSTAGRAM OPTIMIZED LEAD FORM SECTION --- */}
+      {/* Placed ABOVE the dynamic iframe so scroll calculations are 100% accurate */}
+      <section className="pt-16 pb-16 bg-slate-50 border-t border-slate-200 relative z-10 shadow-inner">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
+        </div>
+      </section>
+
+      {/* --- REVIEWS SECTION --- */}
+      {/* Moved below the form. The sticky bar will comfortably float over this as they read */}
+      <section id="reviews-section" className="py-16 bg-white border-t border-slate-200 relative z-0 pb-32">
+        <div className="max-w-5xl mx-auto px-4 text-center mb-10">
            <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900">
              Patient Experiences
            </h2>
@@ -473,13 +482,6 @@ export default function PenisFillerLandingClient({
         </div>
         <div className="max-w-7xl mx-auto">
           <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
-        </div>
-      </section>
-      
-      {/* --- INSTAGRAM OPTIMIZED LEAD FORM SECTION --- */}
-      <section className="pt-16 pb-48 bg-slate-100 border-t border-slate-200 relative z-10 shadow-inner">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
         </div>
       </section>
 
