@@ -543,20 +543,6 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </section>
-
-      {/* --- NEW CRO SECTION: BEFORE YOU BOOK --- */}
-      <section className="py-12 bg-white border-t border-slate-200" id="contact-form-section">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-           <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
-             <h3 className="font-raleway font-bold text-slate-900 text-xl mb-3 flex items-center justify-center gap-2">
-               Before you book
-             </h3>
-             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-inter">
-               This is a private doctor-led ED service. An initial discussion may be free, but treatment, blood tests, penile Doppler ultrasound, PRP-based treatment or shockwave therapy are charged separately if you proceed. Fees are discussed clearly before any treatment plan is agreed.
-             </p>
-           </div>
-        </div>
-      </section>
       
       <ContactCTASection />
       <LocationSection /> 
