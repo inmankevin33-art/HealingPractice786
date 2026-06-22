@@ -14,6 +14,8 @@ import {
   FaChevronRight,
   FaLayerGroup,
   FaBriefcaseMedical,
+  FaSyringe,
+  FaHandsHelping,
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import TrustReviews from "@/components/TrustReviews";
@@ -125,7 +127,6 @@ const quickSteps = [
 export default function PenisFillerLandingClient({
   locationName = "Birmingham",
   servingAreas = "Edgbaston • Solihull • Sutton Coldfield • West Midlands",
-  // CHANGED: Hook updated to focus on emotion/confidence per CRO feedback
   heroDescription = <>Helping men improve confidence with doctor-led, non-surgical penile girth enhancement.</>, 
   whyChooseText = "Patients choose our clinic for discreet, highly professional, doctor-led intimate aesthetic care and a structured approach to clinical assessment.",
   faqs = [], 
@@ -144,7 +145,6 @@ export default function PenisFillerLandingClient({
     window.scrollTo(0, 0);
     setIsLoaded(true);
 
-    // Track scroll to show sticky bar on mobile
     const handleScroll = () => {
       if (window.scrollY > 500) {
         setShowStickyBar(true);
@@ -157,16 +157,14 @@ export default function PenisFillerLandingClient({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ULTIMATE GLOBAL INTERCEPTOR (Updated for Desktop/Mobile specific targets)
   useEffect(() => {
     const scrollToForm = () => {
-      // Check screen size to determine which form to scroll to
       const isDesktop = window.innerWidth >= 1024;
       const targetId = isDesktop ? "desktop-form-target" : "mobile-form-target";
       const wrapper = document.getElementById(targetId);
       
       if (wrapper) {
-        const yOffset = isDesktop ? -120 : -40; // Desktop needs more room for hero navbar
+        const yOffset = isDesktop ? -120 : -40;
         const y = wrapper.getBoundingClientRect().top + window.scrollY + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
@@ -276,7 +274,7 @@ export default function PenisFillerLandingClient({
         )}
       </AnimatePresence>
 
-      {/* --- HERO SECTION (Now 2 Columns on Desktop) --- */}
+      {/* --- HERO SECTION --- */}
       <div className="relative overflow-hidden flex flex-col items-center justify-center bg-[#0A1128] pt-12 pb-10 md:pt-20 md:pb-16">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1e293b] via-[#0A1128] to-black" />
@@ -286,7 +284,6 @@ export default function PenisFillerLandingClient({
         <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* LEFT COL: Text & CTA */}
             <div className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-white/20 rounded-full bg-[#1e293b]/50 backdrop-blur-md shadow-lg">
                 <FaStethoscope className="text-blue-400 w-3 h-3" />
@@ -343,9 +340,7 @@ export default function PenisFillerLandingClient({
               </motion.p>
             </div>
 
-            {/* RIGHT COL: Desktop Lead Form */}
             <div id="desktop-form-target" className="hidden lg:block lg:col-span-5 relative z-30">
-               {/* Aesthetic glow behind the form */}
                <div className="absolute inset-0 bg-blue-500/20 blur-[50px] rounded-full pointer-events-none"></div>
                <div className="relative">
                  <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
@@ -355,7 +350,6 @@ export default function PenisFillerLandingClient({
           </div>
         </div>
 
-        {/* --- MOBILE TREATMENT SLIDER --- */}
         <div className="relative z-20 w-full mt-12 overflow-hidden">
           <div className="text-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
              <h3 className="text-white font-raleway font-bold text-lg md:text-xl">Treatment parameters may include</h3>
@@ -405,7 +399,6 @@ export default function PenisFillerLandingClient({
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* LEFT SIDE: Doctor Image & Video Player */}
             <div className="w-full lg:col-span-5 space-y-6 flex flex-col items-center">
               <div className="shrink-0 relative">
                 <img
@@ -415,7 +408,6 @@ export default function PenisFillerLandingClient({
                 />
               </div>
               
-              {/* SPEED-OPTIMIZED VIDEO PLAYER BLOCK */}
               <div className="w-full max-w-sm bg-black rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative aspect-video group">
                 <video 
                   src="/dr-abdi-welcome.mp4" 
@@ -430,7 +422,6 @@ export default function PenisFillerLandingClient({
               </div>
             </div>
 
-            {/* RIGHT SIDE: Doctor Bio Text */}
             <div className="text-center lg:text-left lg:col-span-7">
               <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
                 Treatment With Dr Syed Abdi
@@ -453,7 +444,6 @@ export default function PenisFillerLandingClient({
 
       {/* --- NEW: WHY CHOOSE US SECTION --- */}
       <section className="py-16 bg-[#0A1128] text-white font-inter relative overflow-hidden">
-        {/* Subtle background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-[radial-gradient(ellipse_at_center,_rgba(64,65,209,0.3)_0%,_transparent_70%)] pointer-events-none z-0" />
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -545,6 +535,72 @@ export default function PenisFillerLandingClient({
                 <p className="text-slate-600 text-sm leading-relaxed">{step.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- TWO-PART TREATMENT APPROACH --- */}
+      <section className="py-20 bg-[#0A1128] relative overflow-hidden font-inter border-y border-[#1a2342]">
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-overlay pointer-events-none"></div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-14">
+            <div className="inline-block px-4 py-1.5 bg-[#4041d1]/20 text-blue-300 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-[#4041d1]/30">
+              Treatment & Aftercare
+            </div>
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-white mb-6 leading-tight">
+              A Two-Part Treatment Approach
+            </h2>
+            <p className="text-slate-300 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+              A smooth, natural-looking result depends on careful treatment technique and following the aftercare advice given after your procedure.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            <div className="bg-white/[0.05] border border-white/10 rounded-3xl p-8 md:p-10 backdrop-blur-sm flex flex-col justify-center">
+              <div className="w-16 h-16 bg-[#4041d1] rounded-2xl flex items-center justify-center mb-6 text-white text-3xl shadow-lg shadow-[#4041d1]/30">
+                <FaSyringe />
+              </div>
+              <h3 className="text-2xl font-bold font-raleway text-white mb-4">
+                Part 1: Careful Filler Placement
+              </h3>
+              <p className="text-slate-300 leading-relaxed mb-6">
+                Dr Abdi uses a careful medical technique to place hyaluronic acid filler in measured layers, aiming to support balanced and proportionate girth enhancement.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-3 text-sm text-slate-400 font-medium">
+                  <FaCheckCircle className="text-[#4041d1]" /> GMC-registered doctor
+                </li>
+                <li className="flex items-center gap-3 text-sm text-slate-400 font-medium">
+                  <FaCheckCircle className="text-[#4041d1]" /> Premium hyaluronic acid filler
+                </li>
+                <li className="flex items-center gap-3 text-sm text-slate-400 font-medium">
+                  <FaCheckCircle className="text-[#4041d1]" /> Clinical sterility and safety protocols
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white/[0.05] border border-white/10 rounded-3xl p-8 md:p-10 backdrop-blur-sm flex flex-col justify-center">
+              <div className="w-16 h-16 bg-blue-400 rounded-2xl flex items-center justify-center mb-6 text-slate-900 text-3xl shadow-lg">
+                <FaHandsHelping />
+              </div>
+              <h3 className="text-2xl font-bold font-raleway text-white mb-4">
+                Part 2: Following Aftercare
+              </h3>
+              <p className="text-slate-300 leading-relaxed mb-6">
+                After the procedure, the filler can remain mouldable for a short period. You will be given clear aftercare instructions, including massage guidance and temporary restrictions, to help the filler settle as evenly as possible.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-3 text-sm text-slate-400 font-medium">
+                  <FaCheckCircle className="text-blue-400" /> Massage guidance where appropriate
+                </li>
+                <li className="flex items-center gap-3 text-sm text-slate-400 font-medium">
+                  <FaCheckCircle className="text-blue-400" /> Temporary activity restrictions
+                </li>
+                <li className="flex items-center gap-3 text-sm text-slate-400 font-medium">
+                  <FaCheckCircle className="text-blue-400" /> Clear clinic aftercare instructions
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
