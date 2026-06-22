@@ -156,6 +156,28 @@ export default function PenisFillerLandingClient({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // NEW: Hijack the global sticky button's custom event
+  useEffect(() => {
+    const handleGlobalContactEvent = (e: Event) => {
+      // 1. Stop the old drawer from opening
+      e.stopPropagation(); 
+      
+      // 2. Scroll to our new Instagram form perfectly
+      const formElement = document.getElementById("insta-lead-form");
+      if (formElement) {
+        const yOffset = -40; // Clean 40px gap
+        const y = formElement.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    };
+
+    // Listen for the event that your global sticky button fires
+    window.addEventListener("open-contact-drawer", handleGlobalContactEvent);
+    
+    // Cleanup the listener when the user leaves the page
+    return () => window.removeEventListener("open-contact-drawer", handleGlobalContactEvent);
+  }, []);
+
   const scrollLeft = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({ left: -296, behavior: "smooth" });
