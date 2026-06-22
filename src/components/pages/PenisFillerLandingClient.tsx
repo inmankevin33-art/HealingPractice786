@@ -185,7 +185,7 @@ export default function PenisFillerLandingClient({
     // THE FIX: Let the browser perfectly center the form on the screen
     const formElement = document.getElementById("insta-lead-form");
     if (formElement) {
-      formElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      formElement.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
   
@@ -465,7 +465,7 @@ export default function PenisFillerLandingClient({
       </div>
       
       {/* --- INSTAGRAM OPTIMIZED LEAD FORM --- */}
-      <section className="py-12 bg-slate-50 border-t border-slate-200 pb-24 md:pb-12 relative z-10">
+      <section className="pt-6 pb-32 bg-slate-50 border-t border-slate-200 md:pb-12 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
         </div>
