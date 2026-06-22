@@ -156,8 +156,25 @@ export default function PenisFillerLandingClient({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // NEW: Aggressive Click Interceptor for the Global Sticky Bar
+  // NEW: Ultimate Global Interceptor (Catches Mobile & Desktop)
   useEffect(() => {
+    // 1. Function to cleanly scroll to the form
+    const scrollToForm = () => {
+      const formElement = document.getElementById("insta-lead-form");
+      if (formElement) {
+        const yOffset = -40; // 40px gap
+        const y = formElement.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    };
+
+    // 2. Catch the custom React event (often used by desktop navigations)
+    const handleGlobalContactEvent = (e: Event) => {
+      e.stopPropagation();
+      scrollToForm();
+    };
+
+    // 3. Aggressively catch physical clicks on ANY global button
     const hijackGlobalClicks = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const clickable = target.closest("button, a");
@@ -166,30 +183,31 @@ export default function PenisFillerLandingClient({
         const text = clickable.textContent?.toLowerCase() || "";
         const href = clickable.getAttribute("href") || "";
         
-        // If they click the global "Book Consult" button or an old anchor link
-        if (text.includes("book consult") || href.includes("#contact-form-section")) {
-          
-          // 1. Stop the global layout from ever seeing this click
+        // Broaden the net: Catch any button text that implies booking/contacting
+        const isContactAction = 
+          text.includes("book") || 
+          text.includes("consult") || 
+          text.includes("contact") ||
+          href.includes("#contact-form-section") ||
+          href.includes("/contact");
+        
+        if (isContactAction) {
           e.preventDefault();
           e.stopPropagation(); 
-          
-          // 2. Scroll smoothly to our new Instagram form
-          const formElement = document.getElementById("insta-lead-form");
-          if (formElement) {
-            const yOffset = -40; // 40px gap
-            const y = formElement.getBoundingClientRect().top + window.scrollY + yOffset;
-            window.scrollTo({ top: y, behavior: "smooth" });
-          }
+          scrollToForm();
         }
       }
     };
 
-    // The 'true' parameter is the magic trick. It forces the browser to run THIS 
-    // function first, catching the click before your global layout does.
+    // Attach BOTH listeners in the "capture" phase (true) to intercept them early
+    window.addEventListener("open-contact-drawer", handleGlobalContactEvent, true);
     window.addEventListener("click", hijackGlobalClicks, true);
     
-    // Cleanup
-    return () => window.removeEventListener("click", hijackGlobalClicks, true);
+    // Cleanup when the user leaves the page
+    return () => {
+      window.removeEventListener("open-contact-drawer", handleGlobalContactEvent, true);
+      window.removeEventListener("click", hijackGlobalClicks, true);
+    };
   }, []);
   
   const scrollLeft = () => {
