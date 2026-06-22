@@ -400,18 +400,38 @@ export default function PenisFillerLandingClient({
         </div>
       </div>
 
-       {/* --- DOCTOR-LED TRUST SECTION --- */}
+      {/* --- DOCTOR-LED TRUST SECTION (With Video Integration) --- */}
       <section className="py-20 bg-white font-inter border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="shrink-0 relative">
-              <img
-                src="/dr-syed-abdi.webp"
-                alt="Dr Syed Abdi, GMC-registered doctor at Healing-PRP Clinics"
-                className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-md mx-auto md:mx-0 border-4 border-white"
-              />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* LEFT SIDE: Doctor Image & Video Player */}
+            <div className="w-full lg:col-span-5 space-y-6 flex flex-col items-center">
+              <div className="shrink-0 relative">
+                <img
+                  src="/dr-syed-abdi.webp"
+                  alt="Dr Syed Abdi, GMC-registered doctor at Healing-PRP Clinics"
+                  className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-md mx-auto md:mx-0 border-4 border-white"
+                />
+              </div>
+              
+              {/* SPEED-OPTIMIZED VIDEO PLAYER BLOCK */}
+              <div className="w-full max-w-sm bg-black rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative aspect-video group">
+                <video 
+                  src="/dr-abdi-welcome.mp4" 
+                  poster="/dr-abdi-thumbnail.jpg" 
+                  preload="none" 
+                  controls
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded font-inter pointer-events-none group-hover:opacity-0 transition-opacity z-10">
+                  ⏱️ 35s Welcome Video
+                </div>
+              </div>
             </div>
-            <div className="text-center md:text-left">
+
+            {/* RIGHT SIDE: Doctor Bio Text */}
+            <div className="text-center lg:text-left lg:col-span-7">
               <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
                 Treatment With Dr Syed Abdi
               </h2>
@@ -419,6 +439,7 @@ export default function PenisFillerLandingClient({
                 Your evaluation, treatment planning, and procedure are carried out exclusively by Dr Syed Abdi, a GMC-registered doctor experienced in male intimate health and advanced hyaluronic acid filler treatments. The environment is entirely discreet, private, and oriented around mapping out safe outcomes, evaluating baseline suitability, and prioritizing clinical care.
               </p>
             </div>
+            
           </div>
         </div>
       </section>
