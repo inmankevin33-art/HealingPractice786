@@ -182,10 +182,12 @@ export default function PenisFillerLandingClient({
       }
     }
 
-    // THE FIX: Let the browser perfectly center the form on the screen
+    // THE FIX: Hard-coded math to bypass the Trustindex iframe sizing issues
     const formElement = document.getElementById("insta-lead-form");
     if (formElement) {
-      formElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      const yOffset = -24; // Leaves exactly a 24px gap at the top of your screen
+      const y = formElement.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
   
@@ -460,12 +462,13 @@ export default function PenisFillerLandingClient({
       </section>
 
       {/* --- REVIEWS --- */}
-      <div id="reviews-section">
+      <div id="reviews-section" className="bg-white relative z-0">
         <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
       </div>
       
       {/* --- INSTAGRAM OPTIMIZED LEAD FORM --- */}
-      <section className="pt-6 pb-32 bg-slate-50 border-t border-slate-200 md:pb-12 relative z-10">
+      {/* -mt-8 pulls the form up over the review gap. pb-40 ensures the sticky bar never overlaps the submit button */}
+      <section className="pt-4 pb-40 bg-slate-50 border-t border-slate-200 md:pb-16 relative z-10 -mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <InstaLeadForm campaignName="Penis Filler / Girth Enhancement" />
         </div>
