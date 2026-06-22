@@ -98,7 +98,7 @@ export default function InstaLeadForm({ campaignName }: InstaLeadFormProps) {
   }
 
   return (
-    <div id="insta-lead-form" className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-xl max-w-lg mx-auto w-full relative z-10">
+    <div id="insta-lead-form" className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-xl max-w-lg mx-auto w-full relative z-10 scroll-mt-6">
       <div className="text-center mb-6">
         <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full mb-3">
           <FaLock className="w-3 h-3" /> 100% Confidential
