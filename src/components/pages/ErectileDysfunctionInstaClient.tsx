@@ -654,21 +654,6 @@ export default function ErectileDysfunctionInstaClient({
       </section>
 
       <LocationSection /> 
-
-      {/* --- REVIEWS SECTION --- */}
-      <section id="reviews-section" className="py-16 bg-slate-50 border-t border-slate-200 relative z-0 pb-32">
-        <div className="max-w-5xl mx-auto px-4 text-center mb-10">
-           <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900">
-             Patient Experiences
-           </h2>
-           <p className="text-slate-500 text-sm mt-2 font-inter">
-             Verified independent reviews from our clinical patients.
-           </p>
-        </div>
-        <div className="max-w-7xl mx-auto">
-          <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
-        </div>
-      </section>
       
       {/* --- MINIMAL AD FOOTER --- */}
       <footer className="bg-[#0A1128] pt-8 pb-32 border-t border-white/10 text-center">
