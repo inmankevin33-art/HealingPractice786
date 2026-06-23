@@ -510,6 +510,21 @@ export default function ErectileDysfunctionInstaClient({
         </div>
       </section>
 
+      {/* --- REVIEWS SECTION --- */}
+      <section id="reviews-section" className="py-16 bg-slate-50 border-t border-slate-200 relative z-0 pb-32">
+        <div className="max-w-5xl mx-auto px-4 text-center mb-10">
+           <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900">
+             Patient Experiences
+           </h2>
+           <p className="text-slate-500 text-sm mt-2 font-inter">
+             Verified independent reviews from our clinical patients.
+           </p>
+        </div>
+        <div className="max-w-7xl mx-auto">
+          <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
+        </div>
+      </section>
+
       {/* --- NEW: WHY CHOOSE US SECTION --- */}
       <section className="py-16 bg-[#0A1128] text-white font-inter relative overflow-hidden">
         {/* Subtle background glow */}
@@ -582,59 +597,6 @@ export default function ErectileDysfunctionInstaClient({
                   </p>
                 </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- NEW SHOCKWAVE FOCUS SECTION --- */}
-      <section className="py-16 md:py-20 bg-slate-50 font-inter border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-            Considering Shockwave Therapy for ED in {locationName}?
-          </h2>
-          <p className="text-slate-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
-            Shockwave therapy may be suitable for selected men with erection difficulties, reduced firmness or suspected blood-flow-related ED. At Healing-PRP Clinics {locationName}, treatment is offered after a doctor-led assessment so that your symptoms, medical history and suitability are reviewed before any treatment plan is recommended.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {["Non-surgical treatment option", "Usually well tolerated", "Suitability checked first", "Private clinic fees apply"].map((badge, idx) => (
-              <span key={idx} className="bg-white text-[#4041d1] px-4 py-2 rounded-full text-sm font-bold border border-blue-100 shadow-sm">
-                {badge}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- SECTION: FULL TREATMENT OPTIONS GRID --- */}
-      <section className="relative py-16 lg:py-20 bg-white overflow-hidden font-inter border-b border-slate-200">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4 tracking-tight">ED Treatment Options</h2>
-            <p className="text-slate-600 text-base">
-              After a doctor-led assessment, suitable options may include:
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">
-            {treatmentOptions.map((step, index) => (
-                <div key={index} className="p-6 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-white shadow-sm hover:shadow-lg hover:border-[#4041d1]/30 transition-all duration-300 flex flex-col group">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-blue-100 text-[#4041d1] group-hover:scale-110 transition-transform">
-                    <step.icon className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-raleway font-bold mb-2 text-lg text-slate-900">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-600 font-inter mb-4 flex-grow">{step.description}</p>
-                  
-                  {step.tags && (
-                    <div className="flex flex-wrap gap-1.5 mt-auto">
-                      {step.tags.map((tag, i) => (
-                        <span key={i} className="px-2 py-0.5 bg-white border border-slate-200 rounded text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-            ))}
           </div>
         </div>
       </section>
