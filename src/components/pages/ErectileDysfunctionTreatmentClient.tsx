@@ -31,7 +31,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
-import ContactCTASection from "@/components/ContactCTASection";
+import GoogleAdsLeadForm from "@/components/GoogleAdsLeadForm";
 import TrustReviews from "@/components/TrustReviews";
 
 // --- LAZY LOADED COMPONENTS ---
@@ -543,8 +543,20 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </section>
-      
-      <ContactCTASection />
+
+      {/* --- RENDER THE NEW DYNAMIC GOOGLE ADS FORM --- */}
+      <div id="contact-form-section">
+        <GoogleAdsLeadForm 
+          locationName={locationName} 
+          conversionLabel={
+            isBirmingham 
+              ? "AW-18130686557/YOUR_BIRMINGHAM_LABEL"
+              : "AW-18130686557/hY3YCIONsKUcEN2kscVD"
+          } 
+          treatment="Erectile Dysfunction"
+        />
+      </div>
+
       <LocationSection /> 
       <div id="reviews-section">
         <TrustReviews widgetUrl={isBirmingham ? "https://cdn.trustindex.io/loader.js?e2cf4a365239367f2a3607c0513" : "https://cdn.trustindex.io/loader.js?eb147a565c3c36945f26281e586"} />
