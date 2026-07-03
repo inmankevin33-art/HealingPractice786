@@ -63,7 +63,7 @@ export default function RootLayout({
         {/* The Global Sticky Buttons */}
         <GlobalStickyCTAs />
 
-       {/* GOOGLE ADS BASE TRACKING CODE */}
+       {/* GOOGLE ADS & ANALYTICS BASE TRACKING CODE */}
         <Script
           strategy="lazyOnload"
           src="https://www.googletagmanager.com/gtag/js?id=AW-18130686557"
@@ -76,11 +76,12 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-18130686543');
+              
+              // Google Ads Link
+              gtag('config', 'AW-18130686557');
+              
+              // Google Analytics 4 Link
+              gtag('config', 'G-PB0GD280PD');
             `,
           }}
         />
-      </body>
-    </html>
-  );
-}
