@@ -82,6 +82,10 @@ export default function RootLayout({
               
               // Google Analytics 4 Link
               gtag('config', 'G-PB0GD280PD');
-            `,
+           `,
           }}
         />
+      </body>
+    </html>
+  );
+}
