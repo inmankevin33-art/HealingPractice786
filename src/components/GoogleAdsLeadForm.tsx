@@ -17,8 +17,9 @@ export default function GoogleAdsLeadForm({
   sourcePage = "Google Ads Landing Page",
   conversionLabel,
 }: GoogleAdsLeadFormProps) {
-  const [firstName, setFirstName] = useState("");
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [concern, setConcern] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -75,12 +76,14 @@ export default function GoogleAdsLeadForm({
     try {
       emailjs.init(publicKey);
       await emailjs.send(serviceId, templateId, {
-        from_name: firstName,
+        from_name: name,
         from_email: "google-ads@healing-prp.co.uk",
         phone: phone,
         treatment: defaultTreatment,
         clinic_location: defaultLocation || "Not specified",
-        message: `New callback request\n\nName: ${firstName}\nPhone: ${phone}\nTreatment: ${defaultTreatment}\nLocation: ${defaultLocation}\nSource page: ${sourcePage}\nPage path: ${window.location.pathname}`,
+        message: `New callback request\n\nName: ${name}\nPhone: ${phone}\nBrief symptoms / concern: ${
+          concern.trim() ? concern : "Not provided"
+        }\nTreatment: ${defaultTreatment}\nLocation: ${defaultLocation}\nSource page: ${sourcePage}\nPage path: ${window.location.pathname}`,
       });
 
       // --- GA4 & GOOGLE ADS TRACKING ON SUCCESSFUL SUBMIT ---
@@ -102,8 +105,9 @@ export default function GoogleAdsLeadForm({
       }
 
       setIsSuccess(true);
-      setFirstName("");
+      setName("");
       setPhone("");
+      setConcern("");
     } catch (error) {
       console.error("EmailJS Error:", error);
       setErrorMessage("Failed to send. Please try clicking the WhatsApp button instead.");
@@ -162,18 +166,18 @@ export default function GoogleAdsLeadForm({
       {/* --- FORM FIELDS --- */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="firstName" className="block text-sm font-semibold text-slate-700 mb-1.5 font-inter">
-            First Name
+          <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-1.5 font-inter">
+            Name
           </label>
           <input
             type="text"
-            id="firstName"
+            id="name"
             required
-            autoComplete="given-name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            autoComplete="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#4041d1] focus:border-[#4041d1] outline-none transition-all font-inter text-slate-900 placeholder:text-slate-400"
-            placeholder="John"
+            placeholder="Your name"
           />
         </div>
 
@@ -190,6 +194,19 @@ export default function GoogleAdsLeadForm({
             onChange={(e) => setPhone(e.target.value)}
             className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#4041d1] focus:border-[#4041d1] outline-none transition-all font-inter text-slate-900 placeholder:text-slate-400"
             placeholder="07700 900000"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="concern" className="block text-sm font-semibold text-slate-700 mb-1.5 font-inter">
+            Brief symptoms or concern <span className="text-slate-400 font-normal">(optional)</span>
+          </label>
+          <textarea
+            id="concern"
+            value={concern}
+            onChange={(e) => setConcern(e.target.value)}
+            className="w-full min-h-[90px] px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#4041d1] focus:border-[#4041d1] outline-none transition-all font-inter text-slate-900 placeholder:text-slate-400 resize-none"
+            placeholder="Briefly tell us what you would like help with, or leave blank and we can discuss privately."
           />
         </div>
 
