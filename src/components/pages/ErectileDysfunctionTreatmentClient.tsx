@@ -547,13 +547,14 @@ export default function ErectileDysfunctionTreatmentClient({
       {/* --- RENDER THE NEW DYNAMIC GOOGLE ADS FORM --- */}
       <div id="contact-form-section">
         <GoogleAdsLeadForm 
-          locationName={locationName} 
+          defaultTreatment="Erectile Dysfunction"
+          defaultLocation={locationName} 
+          sourcePage={`${locationName} ED Google Ads Landing Page`}
           conversionLabel={
             isBirmingham 
               ? "AW-18130686557/YOUR_BIRMINGHAM_LABEL"
-              : "AW-18130686557/hY3YCIONsKUcEN2kscVD"
+              : "AW-18130686557/hY3YCIONsKUcEN2kscVD" // St Albans Label
           } 
-          treatment="Erectile Dysfunction"
         />
       </div>
 
