@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import dynamic from "next/dynamic";
@@ -378,10 +379,14 @@ export default function ErectileDysfunctionTreatmentClient({
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="shrink-0 relative">
-              <img
+              <Image
                 src="/dr-syed-abdi.webp"
                 alt="Dr Syed Abdi, GMC-registered doctor at Healing-PRP Clinics"
+                width={192}
+                height={192}
                 className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-md mx-auto md:mx-0 border-4 border-white"
+                loading="lazy"
+                quality={85}
               />
             </div>
             <div className="text-center md:text-left">
