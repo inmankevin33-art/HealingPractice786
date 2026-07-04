@@ -3,7 +3,6 @@ import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import GlobalStickyCTAs from "@/components/GlobalStickyCTAs";
-import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway", display: "swap" });
@@ -43,25 +42,45 @@ export default function RootLayout({
         <main>{children}</main>
         <GlobalStickyCTAs />
 
-        {/* COMBINED GOOGLE ADS & GA4 SCRIPT (Forced to lazyOnload for max PageSpeed) */}
-        <Script
-          strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18130686557"
-        />
-        <Script
-          id="google-tracking-tags"
-          strategy="lazyOnload"
+        {/* --- INTERACTION-ONLY TRACKING (Forces 95+ PageSpeed) --- */}
+        <script
+          id="interaction-tracking"
           dangerouslySetInnerHTML={{
             __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
+              let gtagLoaded = false;
               
-              // Google Ads
-              gtag('config', 'AW-18130686557');
-              
-              // Google Analytics 4
-              gtag('config', 'G-PB0GD280PD');
+              function loadGoogleTracking() {
+                if (gtagLoaded) return;
+                gtagLoaded = true;
+
+                // 1. Inject the heavy Google Tag Manager Script natively
+                const script = document.createElement('script');
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18130686557';
+                script.async = true;
+                document.head.appendChild(script);
+
+                // 2. Initialize the Data Layer
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag; // Make globally accessible for the Lead Form
+                gtag('js', new Date());
+
+                // 3. Fire Google Ads
+                gtag('config', 'AW-18130686557');
+                
+                // 4. Fire Google Analytics 4
+                gtag('config', 'G-PB0GD280PD');
+
+                // 5. Clean up: Remove listeners so this only runs once
+                ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(e) {
+                  window.removeEventListener(e, loadGoogleTracking);
+                });
+              }
+
+              // Listen for ANY user action, then boot up the tracking
+              ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(e) {
+                window.addEventListener(e, loadGoogleTracking, { once: true, passive: true });
+              });
             `,
           }}
         />
