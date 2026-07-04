@@ -171,7 +171,7 @@ export default function GoogleAdsLeadForm({
         className="w-full flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white py-4 rounded-xl font-bold font-inter transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 mb-6"
       >
         <FaWhatsapp className="text-2xl" />
-        Chat on WhatsApp
+        Chat or Call on WhatsApp
       </button>
 
       {/* --- DIVIDER --- */}
