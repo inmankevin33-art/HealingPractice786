@@ -323,25 +323,30 @@ export default function ErectileDysfunctionClient({
         </div>
       </div>
 
-   {/* --- SECTION 1: PERSONALIZED APPROACH --- */}
-      <section className="py-20 bg-white font-inter">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-[#4041d1] font-bold tracking-widest text-sm md:text-base uppercase mb-2 block">Doctor-Led ED Assessment</span>
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">
-              A More Personalised Approach to ED Treatment
-            </h2>
-            <div className="text-slate-600 text-lg leading-relaxed space-y-6">
-              <p>
-                At Healing-PRP Clinics, <Link href={`${basePath}/our-doctor`} className="text-[#4041d1] font-bold hover:underline transition-all duration-300">Dr Syed Abdi</Link> offers discreet, doctor-led assessment for men experiencing erectile dysfunction, reduced firmness, or loss of sexual confidence.
-              </p>
-              <p>
-                Your journey starts with a <strong>free confidential consultation</strong>, designed to understand the wider picture rather than offer the same treatment to every patient. This includes your symptoms, medical history, current medication, and possible contributing factors such as diabetes, circulation, hormonal changes, or stress.
-              </p>
-              <p>
-                The aim is to give you clarity on what may be causing the problem and which treatment options, such as medication optimisation, shockwave therapy, or P-Shot treatment, may be most appropriate in your case.
+   {/* --- DOCTOR-LED TRUST SECTION --- */}
+      <section className="py-24 bg-white font-inter border-b border-slate-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div className="shrink-0 relative">
+              <Image
+                src="/dr-syed-abdi.webp"
+                alt="Dr Syed Abdi, GMC-registered doctor at Healing-PRP Clinics"
+                width={192}
+                height={192}
+                className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-md mx-auto md:mx-0 border-4 border-white"
+                loading="lazy"
+                quality={85}
+              />
+            </div>
+            <div className="text-center md:text-left">
+              <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
+                Treatment With Dr Syed Abdi
+              </h2>
+              <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+                Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, erectile dysfunction assessment, shockwave therapy, PRP-based treatments and non-surgical intimate health procedures. The appointment is discreet, private and focused on understanding the likely cause of your symptoms, checking suitability and discussing realistic treatment options.
               </p>
             </div>
-            <div className="w-24 h-1 bg-[#4041d1] mx-auto mt-10 rounded-full transform-gpu"></div>
+          </div>
         </div>
       </section>
 
