@@ -3,6 +3,7 @@ import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import GlobalStickyCTAs from "@/components/GlobalStickyCTAs";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -63,26 +64,19 @@ export default function RootLayout({
         {/* The Global Sticky Buttons */}
         <GlobalStickyCTAs />
 
-       {/* GOOGLE ADS & ANALYTICS BASE TRACKING CODE */}
+        {/* 1. NATIVE NEXT.JS GOOGLE ANALYTICS (Handles the heavy lifting) */}
+        <GoogleAnalytics gaId="G-PB0GD280PD" />
+        
+        {/* 2. MINIMAL CONFIG FOR GOOGLE ADS (Piggybacks on the GA script without hurting speed) */}
         <Script
-          strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18130686557"
-        />
-        <Script
-          id="google-ads-tag"
-          strategy="lazyOnload"
+          id="google-ads-config"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              
-              // Google Ads Link
               gtag('config', 'AW-18130686557');
-              
-              // Google Analytics 4 Link
-              gtag('config', 'G-PB0GD280PD');
-           `,
+            `,
           }}
         />
       </body>
