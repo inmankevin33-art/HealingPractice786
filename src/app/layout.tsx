@@ -3,7 +3,6 @@ import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import GlobalStickyCTAs from "@/components/GlobalStickyCTAs";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -11,34 +10,22 @@ const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway", displa
 
 // --- GLOBAL SEO DEFAULTS ---
 export const metadata: Metadata = {
-  // Required for Next.js to auto-generate correct URLs for all child pages
   metadataBase: new URL("https://www.healing-prp.co.uk"),
-  
   title: {
-    // Moved "Doctor-Led" to the front for maximum impact
-    // Length: 58 characters (Perfect sweet spot)
     default: "Doctor-Led Regenerative Medicine | Healing-PRP Clinics",
-    // General brand template for top-level pages (Home, About, Contact)
     template: "%s | Healing-PRP Clinics", 
   },
-  
   description: "Specialist private clinic in St Albans & Birmingham. PRP Hair Restoration, Joint Injections, P-Shot & O-Shot treatments by GMC-registered doctors.",
-  
   icons: {
     icon: "/Logo2.png", 
     shortcut: "/Logo2.png",
     apple: "/Logo2.png", 
   },
-  
   openGraph: {
-    // Universal site-wide tags ONLY. 
-    // Title, description, and URL are intentionally left out so child pages can define them!
     type: "website",
     locale: "en_GB",
     siteName: "Healing-PRP Clinics",
   },
-
-  // Added base Twitter formatting for site-wide social sharing reliability
   twitter: {
     card: "summary_large_image",
   },
@@ -50,32 +37,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Updated lang to "en-GB" for stronger local UK SEO targeting
     <html lang="en-GB" className="scroll-smooth">
       <body className={`${inter.variable} ${raleway.variable} font-sans antialiased bg-slate-50 text-slate-900`}>
-        {/* Header appears on ALL pages */}
         <Header /> 
-        
-        {/* Main Content Area */}
-        <main>
-          {children}
-        </main>
-            
-        {/* The Global Sticky Buttons */}
+        <main>{children}</main>
         <GlobalStickyCTAs />
 
-        {/* 1. NATIVE NEXT.JS GOOGLE ANALYTICS (Handles the heavy lifting) */}
-        <GoogleAnalytics gaId="G-PB0GD280PD" />
-        
-        {/* 2. MINIMAL CONFIG FOR GOOGLE ADS (Piggybacks on the GA script without hurting speed) */}
+        {/* COMBINED GOOGLE ADS & GA4 SCRIPT (Forced to lazyOnload for max PageSpeed) */}
         <Script
-          id="google-ads-config"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18130686557"
+        />
+        <Script
+          id="google-tracking-tags"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              
+              // Google Ads
               gtag('config', 'AW-18130686557');
+              
+              // Google Analytics 4
+              gtag('config', 'G-PB0GD280PD');
             `,
           }}
         />
