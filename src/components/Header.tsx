@@ -150,6 +150,7 @@ const Header = () => {
               {/* Menu Toggle */}
               <button 
                 onClick={toggleMenu} 
+                aria-label={isMenuOpen ? "Close mobile menu" : "Open mobile menu"}
                 className="flex items-center gap-3 group px-3 py-2 hover:bg-white/5 rounded-lg transition-all"
               >
                 <span className="hidden md:inline text-xs font-bold font-inter text-white uppercase tracking-widest">
