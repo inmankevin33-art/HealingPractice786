@@ -206,10 +206,13 @@ export default function ErectileDysfunctionClient({
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90 z-10" />
-          <img 
+          <Image 
             src="/ed-doctor-consultation.webp" 
             alt="Erectile dysfunction treatment consultation" 
-            className="absolute inset-0 w-full h-full object-cover opacity-90"
+            fill
+            priority
+            quality={85}
+            className="object-cover opacity-90"
           />
         </div>
 
