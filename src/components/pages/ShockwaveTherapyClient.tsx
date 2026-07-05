@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   FaCheck,
   FaPlus,
@@ -119,10 +120,13 @@ export default function ShockwaveTherapyClient({
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" /> 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
-          <img 
+          <Image  
             src="/ed-doctor-consultation.webp" 
             alt="Shockwave Therapy Consultation" 
-            className="absolute inset-0 w-full h-full object-cover opacity-90"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
             fetchPriority="high"
           />
         </div>
