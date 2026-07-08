@@ -9,7 +9,7 @@ import emailjs from "@emailjs/browser";
 
 interface ContactCTASectionProps {
   defaultTreatment?: string;
-
+}
 
 export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunction" }: ContactCTASectionProps) {
   const pathname = usePathname();
