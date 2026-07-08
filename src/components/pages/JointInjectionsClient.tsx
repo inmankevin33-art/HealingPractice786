@@ -327,7 +327,7 @@ export default function JointInjectionsClient({
                 >
                   A joint injection delivers targeted therapy into a joint or
                   surrounding soft tissue to reduce inflammation, relieve pain,
-                  improve mobility, and support recovery.
+                  support recovery and improve mobility.
                 </motion.p>
                 <motion.p
                   className="text-sm font-inter text-slate-600"
