@@ -292,7 +292,7 @@ export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunc
                         )}
 
                         <button disabled={isSubmitting} className="md:col-span-2 w-full py-4 bg-[#4041d1] text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#2a2bb8] transition-all shadow-xl shadow-blue-600/20 disabled:bg-slate-300 text-sm">
-                          {isSubmitting ? "Sending..." : "Send My Enquiry"}
+                          {isSubmitting ? "Sending..." : "Book Consultation"}
                         </button>
                       </form>
                     </div>
