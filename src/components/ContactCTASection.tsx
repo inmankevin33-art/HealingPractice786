@@ -346,7 +346,7 @@ export default function ContactCTASection({ defaultTreatment = "Erectile Dysfunc
                       <div className="p-5 bg-slate-100/50 rounded-2xl border border-slate-200/50">
                         <h4 className="text-[9px] font-bold text-[#4041d1] uppercase tracking-widest mb-3">Standards</h4>
                         <ul className="space-y-2">
-                          {["Private 1:1 Medical", "Doctor-Led Care", "No Referral Needed"].map((text, i) => (
+                          {["Private 1:1 Medical", "Doctor-Led", "No Referral Needed"].map((text, i) => (
                             <li key={i} className="flex items-center gap-2 text-slate-700 text-[11px] font-semibold">
                               <FaCheckCircle className="text-[#4041d1] w-3 h-3" /> {text}
                             </li>
