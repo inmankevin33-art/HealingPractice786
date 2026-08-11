@@ -218,7 +218,7 @@ export default function OzoneClient({
             </h2>
             <div className="text-slate-600 text-lg leading-relaxed space-y-6">
               <p>
-                Medical ozone therapy involves the use of a precisely controlled oxygen-ozone mixture, administered using highly specialised medical equipment. Rather than a "one-size-fits-all" approach, ozone therapy can be administered through several distinct routes, depending entirely on your unique clinical circumstances.
+                Medical ozone therapy involves the use of a precisely controlled oxygen-ozone mixture, administered using highly specialised medical equipment. Rather than a &quot;one-size-fits-all&quot; approach, ozone therapy can be administered through several distinct routes, depending entirely on your unique clinical circumstances.
               </p>
               <p>
                 The method of administration varies significantly depending on the purpose of the treatment and the condition being assessed. It is an adjunctive therapy designed to work alongside, rather than replace, standard medical care. At Healing-PRP Clinics, we focus on evidence-aware applications of medical ozone, ensuring that every protocol is delivered safely and appropriately for your specific needs.
