@@ -66,10 +66,10 @@ export default function RootLayout({
                 gtag('js', new Date());
 
                 // 3. Fire Google Ads
-                gtag('config', 'AW-18130686557');
+                gtag('config', 'AW-..........');
                 
                 // 4. Fire Google Analytics 4
-                gtag('config', 'G-PB0GD280PD');
+                gtag('config', 'G-..........');
 
                 // 5. Clean up: Remove listeners so this only runs once
                 ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(e) {
