@@ -374,33 +374,6 @@ export default function PShotClient({
         </div>
       </div>
 
-       {/* --- DOCTOR-LED TRUST SECTION --- */}
-      <section className="py-24 bg-white font-inter border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="shrink-0 relative">
-              <Image
-                src="/dr-syed-abdi.webp"
-                alt="Dr Syed Abdi, GMC-registered doctor at Healing-PRP Clinics"
-                width={192}
-                height={192}
-                className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-md mx-auto md:mx-0 border-4 border-white"
-                loading="lazy"
-                quality={85}
-              />
-            </div>
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
-                Treatment With Dr Syed Abdi
-              </h2>
-              <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, erectile dysfunction assessment, shockwave therapy, PRP-based treatments and non-surgical intimate health procedures. The appointment is discreet, private and focused on understanding the likely cause of your symptoms, checking suitability and discussing realistic treatment options.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* --- BENEFITS SECTION --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -731,19 +704,32 @@ export default function PShotClient({
             </div>
           </div>
 
-          {/* Localised Location Block */}
+          {/* Localised Location Blocks for Birmingham (with Manchester Link) */}
           {isBirmingham && (
-            <div className="max-w-3xl mx-auto mb-16 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm text-left flex items-start gap-4">
-               <FaMapMarkerAlt className="text-[#4041d1] text-3xl shrink-0 mt-1" aria-hidden="true" />
-               <div>
-                 <h3 className="font-bold font-raleway text-slate-900 mb-2 text-lg">Visiting our Edgbaston Clinic</h3>
-                 <p className="text-slate-600 text-sm leading-relaxed">
-                   Located at 38 Harborne Rd, Edgbaston, our Birmingham clinic offers a highly discreet environment with private consultation rooms. We provide clear directions and parking instructions prior to your appointment to ensure your arrival is stress-free and entirely confidential.
-                 </p>
-               </div>
+            <div className="max-w-3xl mx-auto mb-16 flex flex-col gap-6">
+              <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm text-left flex items-start gap-4">
+                 <FaMapMarkerAlt className="text-[#4041d1] text-3xl shrink-0 mt-1" aria-hidden="true" />
+                 <div>
+                   <h3 className="font-bold font-raleway text-slate-900 mb-2 text-lg">Visiting our Edgbaston Clinic</h3>
+                   <p className="text-slate-600 text-sm leading-relaxed">
+                     Located at 38 Harborne Rd, Edgbaston, our Birmingham clinic offers a highly discreet environment with private consultation rooms. We provide clear directions and parking instructions prior to your appointment to ensure your arrival is stress-free and entirely confidential.
+                   </p>
+                 </div>
+              </div>
+
+              {/* Manchester Travel Link (Birmingham Only) */}
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-left">
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Some patients travel from Manchester and the wider North West to our Birmingham clinic for private, doctor-led P-Shot / PRP-based ED treatment. Healing PRP Clinics does not currently have a Manchester clinic; patients from Manchester are seen at our Edgbaston, Birmingham clinic after consultation and suitability assessment.
+                </p>
+                <p className="text-slate-600 text-sm leading-relaxed mt-2">
+                  Read more here: <Link href="/blog/p-shot-near-manchester-prp-treatment-ed" className="text-[#4041d1] font-bold hover:underline transition-colors">P-Shot Near Manchester</Link>
+                </p>
+              </div>
             </div>
           )}
 
+          {/* Localised Location Block for Hampstead */}
           {isHampstead && (
             <div className="max-w-3xl mx-auto mb-16 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm text-left flex items-start gap-4">
                <FaMapMarkerAlt className="text-[#4041d1] text-3xl shrink-0 mt-1" aria-hidden="true" />
@@ -844,7 +830,7 @@ export default function PShotClient({
                   <div>
                     <h4 className="text-lg font-bold font-raleway mb-2 text-blue-100">Platelet Activation</h4>
                     <p className="text-sm text-slate-300 leading-relaxed">
-                      A key step in PRP-based treatments. During processing, platelets are physiologically activated, encouraging the release of growth factors involved in tissue repair and vascular support.                    
+                      A key step in PRP-based treatments. During processing, platelets are physiologically activated, encouraging the release of growth factors involved in tissue repair and vascular support.                   
                     </p>
                   </div>
                 </div>
