@@ -232,12 +232,15 @@ export default function ErectileDysfunctionClient({
             Erectile Dysfunction <br className="hidden sm:block"/> Treatment in {isHampstead ? "Hampstead, London" : locationName}
           </motion.h1>
 
-          {/* Shortened Hero Paragraph */}
-         <motion.p 
+          <motion.p 
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="text-base md:text-lg text-blue-50/90 font-inter leading-relaxed max-w-2xl mx-auto mb-10 font-medium drop-shadow-md"
           >
-            Private, doctor-led care for erection difficulties, reduced firmness, or tablet side effects. Start with a <strong>free confidential consultation</strong> to assess the cause and discuss tailored options like medication, Shockwave, or P-Shot treatment.
+            {isHampstead ? (
+              "Private doctor-led ED and impotence assessment in Hampstead, North West London, for men with erection difficulties, reduced firmness, weak erections or difficulty maintaining an erection."
+            ) : (
+              <>Private, doctor-led care for erection difficulties, reduced firmness, or tablet side effects. Start with a <strong>free confidential consultation</strong> to assess the cause and discuss tailored options like medication, Shockwave, or P-Shot treatment.</>
+            )}
           </motion.p>
 
           <motion.div 
@@ -327,7 +330,7 @@ export default function ErectileDysfunctionClient({
         </div>
       </div>
 
-   {/* --- DOCTOR-LED TRUST SECTION --- */}
+      {/* --- DOCTOR-LED TRUST SECTION --- */}
       <section className="py-24 bg-white font-inter border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-12">
@@ -347,13 +350,13 @@ export default function ErectileDysfunctionClient({
                 Treatment With Dr Syed Abdi
               </h2>
               <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                Your consultation and treatment are carried out by Dr Syed Abdi, a GMC-registered doctor with experience in men’s intimate health, erectile dysfunction assessment, shockwave therapy, PRP-based treatments and non-surgical intimate health procedures. The appointment is discreet, private and focused on understanding the likely cause of your symptoms, checking suitability and discussing realistic treatment options.
+                Your consultation and treatment are carried out by Dr Syed Abdi, GMC No. 6083294, a UK-trained and GMC-registered doctor with experience in men’s intimate health, erectile dysfunction assessment, shockwave therapy, PRP-based treatments and non-surgical intimate health procedures. The appointment is discreet, private and focused on understanding the likely cause of your symptoms, checking suitability and discussing realistic treatment options.
               </p>
             </div>
           </div>
         </div>
       </section>
-
+      
       {/* --- HOW IT WORKS --- */}
       <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -443,8 +446,29 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
+      {/* --- COMMON ED SYMPTOMS WE HELP ASSESS --- */}
+      <section className="py-20 bg-slate-50 font-inter border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Common ED Symptoms We Help Assess</h2>
+          <div className="prose prose-lg prose-slate mx-auto text-left md:text-center">
+            <p className="text-slate-600 mb-6 text-base md:text-lg">
+              Men may seek private ED treatment for different symptoms, including difficulty getting or maintaining an erection, reduced firmness, losing an erection during intimacy, weaker erections than before, or a less reliable response to tablets.
+            </p>
+            <p className="text-slate-600 mb-8 text-base md:text-lg">
+              At Healing-PRP Clinics {locationName}, Dr Syed Abdi provides a discreet, doctor-led assessment to understand possible causes such as blood-flow changes, high blood pressure, diabetes, medication side effects, stress, anxiety, hormone imbalance or lifestyle factors.
+            </p>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm inline-block text-left md:text-center">
+              <p className="text-slate-800 font-medium m-0 flex items-center gap-3">
+                <FaInfoCircle className="text-[#4041d1] shrink-0 text-xl" />
+                Treatment options are discussed only after consultation and suitability assessment. Fees apply.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- SYMPTOMS GRID --- */}
-      <section className="py-24 bg-slate-50 font-inter border-t border-slate-200">
+      <section className="py-24 bg-white font-inter border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Who this page is for</h2>
@@ -461,7 +485,7 @@ export default function ErectileDysfunctionClient({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group"
+                className="bg-slate-50 rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group"
               >
                 <div className={`w-14 h-14 rounded-2xl ${symptom.color} flex items-center justify-center mb-6 text-2xl transition-transform group-hover:scale-110`}><symptom.icon /></div>
                 <h3 className="text-xl font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">{symptom.title}</h3>
@@ -473,7 +497,7 @@ export default function ErectileDysfunctionClient({
       </section>
 
      {/* --- SECTION 7: WHAT IT CAN / CANNOT DO --- */}
-      <section className="py-24 bg-white font-inter">
+      <section className="py-24 bg-slate-50 font-inter">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h3 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">What P-Shot and Shockwave Therapy Can — and Cannot — Do</h3>
@@ -482,7 +506,7 @@ export default function ErectileDysfunctionClient({
             </p>
 
             {/* --- TIME & SAFETY METRICS BAR --- */}
-            <div className="inline-flex flex-wrap justify-center items-center gap-4 md:gap-8 px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl">
+            <div className="inline-flex flex-wrap justify-center items-center gap-4 md:gap-8 px-6 py-4 bg-white border border-slate-200 shadow-sm rounded-2xl">
               <div className="flex items-center gap-2.5">
                  <FaShieldAlt className="text-[#4041d1] w-5 h-5" />
                  <span className="text-slate-800 font-bold text-xs md:text-sm uppercase tracking-wide">Non-Surgical</span>
@@ -520,7 +544,7 @@ export default function ErectileDysfunctionClient({
                 ))}
               </ul>
             </div>
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
               <h4 className="text-xl font-raleway font-bold text-slate-900 mb-6 flex items-center gap-2">
                 <span className="w-2 h-8 bg-slate-400 rounded-full block"></span> Limitations
               </h4>
@@ -560,10 +584,10 @@ export default function ErectileDysfunctionClient({
       </section>
       
       {/* --- SECTION 6: THE PROTOCOL --- */}
-      <section className="relative py-20 lg:py-28 bg-slate-50 overflow-hidden font-inter border-y border-slate-200">
+      <section className="relative py-20 lg:py-28 bg-white overflow-hidden font-inter border-y border-slate-200">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-block px-5 py-2 bg-white text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-slate-200 font-raleway shadow-sm">Our Treatment Approach</div>
+            <div className="inline-block px-5 py-2 bg-slate-50 text-[#4041d1] rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-slate-200 font-raleway shadow-sm">Our Treatment Approach</div>
             <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8 tracking-tight">A Structured Doctor-Led Treatment Plan</h2>
           </div>
 
@@ -580,7 +604,7 @@ export default function ErectileDysfunctionClient({
               {protocolSteps.map((step, index) => (
                   <div
                     key={index}
-                    className={`p-5 rounded-[2rem] border transition-all duration-300 h-full flex flex-col cursor-pointer ${activeStep === index ? "border-[#4041d1] bg-white shadow-xl scale-105 z-20" : "border-slate-200 bg-white opacity-80 hover:opacity-100"}`}
+                    className={`p-5 rounded-[2rem] border transition-all duration-300 h-full flex flex-col cursor-pointer ${activeStep === index ? "border-[#4041d1] bg-slate-50 shadow-xl scale-105 z-20" : "border-slate-200 bg-white opacity-80 hover:opacity-100"}`}
                     onClick={() => setActiveStep(index)}
                   >
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all ${activeStep === index ? "bg-[#4041d1] text-white" : "bg-slate-100 text-slate-400"}`}><step.icon className="w-5 h-5" /></div>
