@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+import OzoneClient from "@/components/pages/OzoneClient";
+
+// Helper recommended pattern: sanitize JSON-LD to mitigate XSS vectors.
+const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c");
+
 export const metadata: Metadata = {
   title: {
     absolute: "Ozone Therapy Hampstead & London | Healing-PRP Clinics",
