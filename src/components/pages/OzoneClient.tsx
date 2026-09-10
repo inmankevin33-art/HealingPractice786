@@ -244,7 +244,7 @@ export default function OzoneClient({
               <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                 <FaVial className="text-[#4041d1] text-2xl" />
               </div>
-              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Major Ozone Autohaemotherapy (MAH)</h3>
+              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Major Ozone Autohaemotherapy (Ozone Blood Therapy)</h3>
               <p className="text-slate-600 leading-relaxed">
                 A measured amount of your blood is safely withdrawn into a sterile, closed medical system. It is then exposed to a precisely controlled oxygen-ozone mixture before being gently returned to your body. Treatment protocols and the number of sessions vary according to the clinical indication.
               </p>
@@ -254,7 +254,7 @@ export default function OzoneClient({
               <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                 <FaNotesMedical className="text-[#4041d1] text-2xl" />
               </div>
-              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Rectal Ozone Insufflation</h3>
+              <h3 className="text-2xl font-raleway font-bold text-slate-900 mb-4">Rectal Ozone Therapy (Insufflation)</h3>
               <p className="text-slate-600 leading-relaxed">
                 A controlled volume of medical ozone gas is administered rectally using appropriate, comfortable medical equipment. This is a common and well-tolerated route investigated for both systemic and local applications.
               </p>
@@ -305,7 +305,7 @@ export default function OzoneClient({
       <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">Conditions We Are Investigating</h2>
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">Conditions We Assess for Ozone Therapy</h2>
             <p className="text-slate-600 text-lg leading-relaxed">
               Ozone therapy has been investigated for a number of medical conditions. The quality and amount of evidence varies considerably depending on both the condition and the route of administration.
             </p>
@@ -328,7 +328,7 @@ export default function OzoneClient({
               <h3 className="text-xl font-raleway font-bold text-slate-900 mb-2">Ulcerative Colitis</h3>
               <span className="inline-block px-3 py-1 bg-blue-50 text-[#4041d1] text-xs font-bold uppercase rounded-md mb-4">Route: Rectal Ozone</span>
               <p className="text-slate-600 text-sm mb-6 leading-relaxed">
-                Ozone has been investigated as an adjunctive approach for mucosal healing. It is not intended to replace gastroenterology care or prescribed IBD medication.
+                Rectal ozone has been investigated as an adjunctive approach in ulcerative colitis. It is not intended to replace gastroenterology care or prescribed IBD medication.
               </p>
               <Link href="/ozone-therapy/ulcerative-colitis" className="text-[#4041d1] font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all">
                 Learn more about Rectal Ozone Therapy and Colitis <FaArrowRight className="w-3 h-3" />
@@ -339,7 +339,7 @@ export default function OzoneClient({
               <h3 className="text-xl font-raleway font-bold text-slate-900 mb-2">Recurrent Bacterial Vaginosis (BV)</h3>
               <span className="inline-block px-3 py-1 bg-blue-50 text-[#4041d1] text-xs font-bold uppercase rounded-md mb-4">Route: Vaginal Ozone</span>
               <p className="text-slate-600 text-sm mb-6 leading-relaxed">
-                Local ozone approaches have been investigated in women&apos;s health for recurrent imbalances, though clinical evidence remains developing.
+                Local ozone approaches have been studied for bacterial vaginosis and other vaginal conditions, although the clinical evidence remains limited and further research is needed.
               </p>
               <Link href="/ozone-therapy/recurrent-bv" className="text-[#4041d1] font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all">
                 Learn more about Ozone Therapy and Recurrent BV <FaArrowRight className="w-3 h-3" />
