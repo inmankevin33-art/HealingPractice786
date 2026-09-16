@@ -463,6 +463,239 @@ export default function OzoneClient({
         </div>
       </section>
 
+      {/* --- OZONE THERAPY COST --- */}
+      <section id="pricing" className="py-24 bg-white font-inter">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-[#4041d1] font-bold tracking-widest text-sm uppercase mb-3 block">
+              Treatment Costs
+            </span>
+
+            <h2 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-6">
+              Ozone Therapy Cost
+            </h2>
+
+            <p className="text-slate-600 text-lg leading-relaxed">
+              The cost of ozone therapy depends on the treatment method and
+              protocol recommended following your clinical assessment.
+              Treatment courses are available where clinically appropriate.
+            </p>
+          </div>
+
+          {/* BLOOD OZONE */}
+          <div className="mb-12">
+            <h3 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 text-center mb-8">
+              Ozone Blood Therapy
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+
+              {/* 5 PASS */}
+              <div className="bg-slate-50 rounded-[2rem] p-8 lg:p-10 border border-slate-200 shadow-sm">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center">
+                    <FaVial className="text-[#4041d1] text-xl" />
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-raleway font-bold text-slate-900">
+                      5-Pass Ozone Blood Therapy
+                    </h4>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Major Ozone Autohaemotherapy
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <div className="flex items-end gap-2">
+                    <span className="text-4xl font-bold text-slate-900">
+                      £395
+                    </span>
+                    <span className="text-slate-500 mb-1">
+                      per session
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl border border-slate-200 p-5">
+                  <p className="text-sm text-slate-500 mb-1">
+                    Course of 10 sessions
+                  </p>
+                  <p className="text-2xl font-bold text-[#4041d1]">
+                    £2,750
+                  </p>
+                </div>
+              </div>
+
+              {/* 10 PASS */}
+              <div className="bg-slate-50 rounded-[2rem] p-8 lg:p-10 border border-[#4041d1]/20 shadow-sm">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center">
+                    <FaVial className="text-[#4041d1] text-xl" />
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-raleway font-bold text-slate-900">
+                      10-Pass Ozone Blood Therapy
+                    </h4>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Major Ozone Autohaemotherapy
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <div className="flex items-end gap-2">
+                    <span className="text-4xl font-bold text-slate-900">
+                      £595
+                    </span>
+                    <span className="text-slate-500 mb-1">
+                      per session
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl border border-slate-200 p-5">
+                  <p className="text-sm text-slate-500 mb-1">
+                    Course of 10 sessions
+                  </p>
+                  <p className="text-2xl font-bold text-[#4041d1]">
+                    £3,950
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* LOCAL OZONE TREATMENTS */}
+          <div className="mb-10">
+            <h3 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 text-center mb-8">
+              Local Ozone Treatments
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+              {/* RECTAL */}
+              <div className="bg-slate-50 rounded-2xl p-7 border border-slate-200 shadow-sm">
+                <div className="w-11 h-11 bg-indigo-50 rounded-xl flex items-center justify-center mb-5">
+                  <FaNotesMedical className="text-[#4041d1] text-lg" />
+                </div>
+
+                <h4 className="text-xl font-raleway font-bold text-slate-900 mb-4">
+                  Rectal Ozone Therapy
+                </h4>
+
+                <p className="text-3xl font-bold text-slate-900 mb-1">
+                  £150
+                </p>
+                <p className="text-sm text-slate-500 mb-5">
+                  per session
+                </p>
+
+                <div className="border-t border-slate-200 pt-4">
+                  <p className="text-sm text-slate-500">
+                    Course of 10 sessions
+                  </p>
+                  <p className="text-xl font-bold text-[#4041d1] mt-1">
+                    £1,100
+                  </p>
+                </div>
+              </div>
+
+              {/* VAGINAL */}
+              <div className="bg-slate-50 rounded-2xl p-7 border border-slate-200 shadow-sm">
+                <div className="w-11 h-11 bg-indigo-50 rounded-xl flex items-center justify-center mb-5">
+                  <FaHeartbeat className="text-[#4041d1] text-lg" />
+                </div>
+
+                <h4 className="text-xl font-raleway font-bold text-slate-900 mb-4">
+                  Vaginal Ozone Therapy
+                </h4>
+
+                <p className="text-3xl font-bold text-slate-900 mb-1">
+                  £150
+                </p>
+                <p className="text-sm text-slate-500 mb-5">
+                  per session
+                </p>
+
+                <div className="border-t border-slate-200 pt-4">
+                  <p className="text-sm text-slate-500">
+                    Course of 10 sessions
+                  </p>
+                  <p className="text-xl font-bold text-[#4041d1] mt-1">
+                    £1,100
+                  </p>
+                </div>
+              </div>
+
+              {/* NASAL / SINUS */}
+              <div className="bg-slate-50 rounded-2xl p-7 border border-slate-200 shadow-sm">
+                <div className="w-11 h-11 bg-indigo-50 rounded-xl flex items-center justify-center mb-5">
+                  <FaUserMd className="text-[#4041d1] text-lg" />
+                </div>
+
+                <h4 className="text-xl font-raleway font-bold text-slate-900 mb-4">
+                  Nasal / Sinus Ozone Therapy
+                </h4>
+
+                <p className="text-3xl font-bold text-slate-900 mb-1">
+                  £75
+                </p>
+                <p className="text-sm text-slate-500 mb-5">
+                  per session
+                </p>
+
+                <div className="border-t border-slate-200 pt-4">
+                  <p className="text-sm text-slate-500">
+                    Course of 10 sessions
+                  </p>
+                  <p className="text-xl font-bold text-[#4041d1] mt-1">
+                    £550
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* CONSULTATION */}
+          <div className="max-w-4xl mx-auto mt-12 bg-indigo-50/60 border border-indigo-100 rounded-2xl p-6 md:p-8 text-center">
+            <h3 className="text-xl font-raleway font-bold text-slate-900 mb-2">
+              Initial Medical Consultation
+            </h3>
+
+            <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+              Your consultation includes a medical assessment, review of your
+              symptoms and current treatment, and discussion of whether ozone
+              therapy may have an appropriate role in your care.
+            </p>
+          </div>
+
+          {/* CLINICAL NOTE */}
+          <div className="max-w-4xl mx-auto mt-8 text-center">
+            <p className="text-sm text-slate-500 leading-relaxed">
+              The appropriate treatment route, number of passes and number of
+              sessions are determined following clinical assessment.
+            </p>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-10 text-center">
+            <button
+              onClick={handleAction}
+              className="px-10 py-5 w-full md:w-auto bg-[#4041d1] text-white rounded-xl font-bold text-lg hover:bg-[#2a2bb8] transition-all shadow-xl active:scale-95"
+            >
+              Book an Ozone Therapy Consultation
+            </button>
+          </div>
+
+        </div>
+      </section>
+
       {/* --- FAQs Section --- */}
       <section id="faqs" className="py-20 lg:py-24 bg-white border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
