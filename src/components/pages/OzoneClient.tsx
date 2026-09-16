@@ -589,7 +589,7 @@ export default function OzoneClient({
                 </h4>
 
                 <p className="text-3xl font-bold text-slate-900 mb-1">
-                  £150
+                  £200
                 </p>
                 <p className="text-sm text-slate-500 mb-5">
                   per session
@@ -600,7 +600,7 @@ export default function OzoneClient({
                     Course of 10 sessions
                   </p>
                   <p className="text-xl font-bold text-[#4041d1] mt-1">
-                    £1,100
+                    £1,500
                   </p>
                 </div>
               </div>
@@ -616,7 +616,7 @@ export default function OzoneClient({
                 </h4>
 
                 <p className="text-3xl font-bold text-slate-900 mb-1">
-                  £150
+                  £200
                 </p>
                 <p className="text-sm text-slate-500 mb-5">
                   per session
