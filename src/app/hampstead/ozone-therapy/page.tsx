@@ -6,7 +6,7 @@ const safeJsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c"
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Ozone Therapy Hampstead & London | Healing-PRP Clinics",
+    absolute: "Ozone Therapy Hampstead, London | Healing-PRP Clinics",
   },
 
   description:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Ozone Therapy Hampstead & London | Healing-PRP Clinics",
+    title: "Ozone Therapy Hampstead, London | Healing-PRP Clinics",
     description:
       "Doctor-led ozone therapy in Hampstead, London, including ozone blood therapy (MAH), rectal, vaginal and sinus ozone treatment following clinical assessment.",
     url: "https://www.healing-prp.co.uk/hampstead/ozone-therapy",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Ozone Therapy Hampstead & London | Healing-PRP Clinics",
+    title: "Ozone Therapy Hampstead, London | Healing-PRP Clinics",
     description:
       "Doctor-led ozone therapy in Hampstead including ozone blood therapy, rectal, vaginal and sinus ozone treatments.",
     images: ["/hero_img.png"],
