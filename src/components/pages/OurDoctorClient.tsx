@@ -227,7 +227,7 @@ export default function OurDoctorClient() {
                 A significant part of Dr Abdi’s private practice focuses on men’s and women’s intimate health. He regularly assesses patients with erectile dysfunction, Peyronie’s disease, premature ejaculation, vaginal dryness and other intimate health concerns. Treatment planning may include regenerative procedures such as PRP-based treatments, shockwave therapy, hyaluronic acid treatments and other clinically appropriate options following individual assessment.
               </p>
               <p className="text-slate-300 font-inter leading-relaxed">
-                Dr Abdi has performed more than 500 P-Shot procedures and has extensive experience with PRP-based intimate health treatments. His practical training and clinical experience in regenerative intimate-health procedures included work alongside Dr Sharif Wakil at SW Clinics.
+                Dr Abdi has extensive experience in PRP-based intimate-health treatments and has undertaken specific training in P-Shot and O-Shot procedures. His approach combines careful medical assessment, procedural experience and realistic discussion of expected outcomes.
               </p>
             </motion.div>
 
