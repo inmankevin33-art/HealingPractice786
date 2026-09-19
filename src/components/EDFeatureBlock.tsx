@@ -46,7 +46,7 @@ export default function EDFeatureBlock() {
                 Meet Dr Syed Abdi <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
               </Link>
               <a 
-                href="www.linkedin.com/in/syed-abdi-056b28b9" 
+                href="https://www.linkedin.com/in/syed-abdi-056b28b9" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-bold text-[#0A66C2] hover:text-[#004182] transition-colors font-inter"
