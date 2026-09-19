@@ -7,7 +7,8 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaExternalLinkAlt,
-  FaArrowRight
+  FaArrowRight,
+  FaLinkedin
 } from "react-icons/fa";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
@@ -170,8 +171,14 @@ export default function OurDoctorClient() {
                     </a>
                   </span>
                 </li>
+                {/* --- ADDED LINKEDIN LINK --- */}
+                <li className="flex items-center gap-3 pt-2">
+                  <a href="https://www.linkedin.com/in/syed-abdi-056b28b9" target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:text-[#004182] font-inter text-base font-bold flex items-center gap-2 transition-colors">
+                    <FaLinkedin className="w-5 h-5" /> Connect on LinkedIn
+                  </a>
+                </li>
               </ul>
-
+              
               <h3 className="text-lg font-bold text-slate-900 mb-3 font-raleway">NHS GP with extensive Urgent Treatment Centre experience</h3>
               <p className="text-slate-600 font-inter leading-relaxed text-sm bg-slate-50 p-6 rounded-xl border border-slate-100 mb-4">
                 Before completing GP training, Dr Abdi worked extensively in hospital medicine, including Emergency Medicine and Trauma & Orthopaedics. This background provided broad experience in acute assessment, musculoskeletal conditions, minor injuries and procedural medicine.
