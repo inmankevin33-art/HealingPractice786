@@ -221,7 +221,7 @@ export default function OurDoctorClient() {
             </motion.div>
             
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants} custom={0}>
-              <h2 className="text-2xl md:text-3xl font-raleway font-bold mb-6">Background in Trauma & Orthopaedics</h2>
+              <h2 className="text-2xl md:text-3xl font-raleway font-bold mb-6">NHS & Hospital Background</h2>
               <div className="w-12 h-1 bg-[#4041d1] mb-8" />
               <p className="text-slate-300 font-inter leading-relaxed mb-6">
                 Before entering General Practice, Dr Abdi spent several years working in Trauma & Orthopaedics and Emergency Medicine. This experience provides a strong foundation in musculoskeletal anatomy, clinical examination, joint conditions and injection-based procedures.
