@@ -108,33 +108,42 @@ export default function OurDoctorClient() {
       {/* --- HERO SECTION --- */}
       <section className="relative pt-20 pb-24 lg:pt-28 lg:pb-32 overflow-hidden bg-[#0A1128] text-center">
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          
           <motion.p 
             custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="text-blue-300 text-xs md:text-sm font-bold tracking-[0.2em] uppercase font-inter mb-6"
+            className="text-blue-300 text-xs md:text-sm font-bold tracking-[0.2em] uppercase font-inter mb-4"
           >
-            MEDICAL DIRECTOR • HEALING-PRP CLINICS
+            Medical Director • Healing-PRP Clinics
           </motion.p>
 
           <motion.h1 
             custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="text-4xl md:text-6xl font-raleway font-bold text-white leading-tight mb-8 tracking-tight"
+            className="text-4xl md:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight"
           >
             Dr Syed Abdi, MBBS MRCGP
           </motion.h1>
 
-          <motion.div 
+          <motion.p 
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="text-slate-300 text-sm md:text-base font-medium tracking-wide font-inter mb-8"
+          >
+            GMC-Registered GP | Regenerative & Intimate Health
+          </motion.p>
+
+          <motion.div 
+            custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="w-24 h-1 bg-[#4041d1] mx-auto mb-8"
           />
 
           <motion.p 
-            custom={3} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="text-lg md:text-xl text-slate-300 font-inter leading-relaxed max-w-3xl mx-auto font-light"
           >
             Dr Syed Abdi is a GMC-registered GP and Medical Director of Healing-PRP Clinics. He qualified in medicine in 2003 and has worked in UK healthcare since 2005, with clinical experience spanning general practice, urgent care, emergency medicine and Trauma & Orthopaedics.
           </motion.p>
+          
           <motion.p 
-            custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            custom={5} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="text-lg md:text-xl text-slate-300 font-inter leading-relaxed max-w-3xl mx-auto font-light mt-6"
           >
             His private clinical work focuses on men’s and women’s intimate health, regenerative medicine, joint injections, hair restoration and selected aesthetic procedures. His approach is based on careful medical assessment, realistic expectations and direct doctor-led care.
