@@ -208,17 +208,6 @@ export default function OurDoctorClient() {
       <section className="py-24 bg-[#0A1128] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants} custom={0}>
-              <h2 className="text-2xl md:text-3xl font-raleway font-bold mb-6">Background in Trauma & Orthopaedics</h2>
-              <div className="w-12 h-1 bg-[#4041d1] mb-8" />
-              <p className="text-slate-300 font-inter leading-relaxed mb-6">
-                Before entering General Practice, Dr Abdi spent several years working in Trauma & Orthopaedics and Emergency Medicine. This experience provides a strong foundation in musculoskeletal anatomy, clinical examination, joint conditions and injection-based procedures.
-              </p>
-              <p className="text-white font-inter font-medium text-lg border-l-4 border-[#4041d1] pl-4">
-                Today, this experience supports his work in PRP joint injections, steroid joint injections and musculoskeletal assessment.
-              </p>
-            </motion.div>
 
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants} custom={1}>
               <h2 className="text-2xl md:text-3xl font-raleway font-bold mb-6">Clinical Focus in Men’s & Women’s Intimate Health</h2>
@@ -228,6 +217,17 @@ export default function OurDoctorClient() {
               </p>
               <p className="text-slate-300 font-inter leading-relaxed">
                 Dr Abdi has extensive experience in PRP-based intimate-health treatments and has undertaken specific training in P-Shot and O-Shot procedures. His approach combines careful medical assessment, procedural experience and realistic discussion of expected outcomes.
+              </p>
+            </motion.div>
+            
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants} custom={0}>
+              <h2 className="text-2xl md:text-3xl font-raleway font-bold mb-6">Background in Trauma & Orthopaedics</h2>
+              <div className="w-12 h-1 bg-[#4041d1] mb-8" />
+              <p className="text-slate-300 font-inter leading-relaxed mb-6">
+                Before entering General Practice, Dr Abdi spent several years working in Trauma & Orthopaedics and Emergency Medicine. This experience provides a strong foundation in musculoskeletal anatomy, clinical examination, joint conditions and injection-based procedures.
+              </p>
+              <p className="text-white font-inter font-medium text-lg border-l-4 border-[#4041d1] pl-4">
+                Today, this experience supports his work in PRP joint injections, steroid joint injections and musculoskeletal assessment.
               </p>
             </motion.div>
 
