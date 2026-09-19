@@ -81,7 +81,7 @@ export default function OurDoctorClient() {
       },
       {
         "@type": "Hospital",
-        "name": "Royal Free London NHS Foundation Trust"
+        "name": "East & North Herts NHS Trust"
       }
     ],
     "knowsAbout": ["Erectile Dysfunction", "Peyronie's Disease", "PRP Joint Injections", "Medical Ozone Therapy", "Shockwave Therapy"]
@@ -177,7 +177,7 @@ export default function OurDoctorClient() {
                 Before completing GP training, Dr Abdi worked extensively in hospital medicine, including Emergency Medicine and Trauma & Orthopaedics. This background provided broad experience in acute assessment, musculoskeletal conditions, minor injuries and procedural medicine.
               </p>
               <p className="text-slate-600 font-inter leading-relaxed text-sm bg-slate-50 p-6 rounded-xl border border-slate-100">
-                Dr Abdi has worked extensively in NHS urgent care, including Urgent Treatment Centre services within the Royal Free London NHS Foundation Trust. His current NHS work includes urgent care at Chase Farm Hospital within the Royal Free London NHS Foundation Trust.
+                Dr Abdi has worked extensively in NHS urgent care, including Urgent Treatment Centre services within the East & North Herts NHS Trust. His current NHS work includes urgent care at Lister Hospital, Stevenage.
               </p>
             </motion.div>
 
