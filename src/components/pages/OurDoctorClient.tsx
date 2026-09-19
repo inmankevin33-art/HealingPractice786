@@ -109,19 +109,19 @@ export default function OurDoctorClient() {
       <section className="relative pt-20 pb-24 lg:pt-28 lg:pb-32 overflow-hidden bg-[#0A1128] text-center">
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <motion.p 
-            custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="text-blue-300 text-xs md:text-sm font-bold tracking-[0.2em] uppercase font-inter mb-4"
-          >
-            Medical Director • Healing-PRP Clinics
-          </motion.p>
-
           <motion.h1 
-            custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
-            className="text-4xl md:text-6xl font-raleway font-bold text-white leading-tight mb-4 tracking-tight"
+            custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="text-4xl md:text-6xl font-raleway font-bold text-white leading-tight mb-3 tracking-tight"
           >
             Dr Syed Abdi, MBBS MRCGP
           </motion.h1>
+
+          <motion.p 
+            custom={1} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
+            className="text-blue-300 text-xs md:text-sm font-bold tracking-[0.2em] uppercase font-inter mb-3"
+          >
+            Medical Director • Healing-PRP Clinics
+          </motion.p>
 
           <motion.p 
             custom={2} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
