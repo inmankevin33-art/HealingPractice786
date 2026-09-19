@@ -112,7 +112,7 @@ export default function OurDoctorClient() {
             custom={0} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="text-blue-300 text-xs md:text-sm font-bold tracking-[0.2em] uppercase font-inter mb-6"
           >
-            GP & Medical Director of Healing-PRP Clinics
+            MEDICAL DIRECTOR • HEALING-PRP CLINICS
           </motion.p>
 
           <motion.h1 
