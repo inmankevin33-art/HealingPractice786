@@ -366,7 +366,7 @@ export default function OurDoctorClient() {
           </p>
           <button 
             onClick={handleAction}
-            className="px-8 py-4 bg-[#0A1128] hover:bg-slate-800 text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-slate-900/20 active:scale-95 font-inter inline-flex items-center"
+            className="px-8 py-4 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter inline-flex items-center"
           >
             <FaEnvelope className="w-4 h-4 mr-2" /> Book a Consultation with Dr Syed Abdi
           </button>
