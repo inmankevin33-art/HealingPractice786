@@ -239,6 +239,9 @@ export default function OurDoctorClient() {
               <p className="text-slate-300 font-inter leading-relaxed mb-6">
                 Before entering General Practice, Dr Abdi spent several years working in Trauma & Orthopaedics and Emergency Medicine. This experience provides a strong foundation in musculoskeletal anatomy, clinical examination, joint conditions and injection-based procedures.
               </p>
+              <p className="text-slate-300 font-inter leading-relaxed mb-6">
+                Dr Abdi has worked extensively in NHS urgent care, including Urgent Treatment Centre services within the East & North Herts NHS Trust. His current NHS work includes urgent care at Lister Hospital, Stevenage.
+              </p>
               <p className="text-white font-inter font-medium text-lg border-l-4 border-[#4041d1] pl-4">
                 Today, this experience supports his work in PRP joint injections, steroid joint injections and musculoskeletal assessment.
               </p>
