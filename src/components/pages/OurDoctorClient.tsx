@@ -281,20 +281,27 @@ export default function OurDoctorClient() {
         </div>
       </section>
 
-      {/* --- TREATMENT CARDS (Factual Grid) --- */}
+     {/* --- TREATMENT CARDS (Factual Grid) --- */}
       <section className="py-24 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {expertiseList.map((item, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                <h4 className="text-lg font-raleway font-bold text-slate-900 mb-3">{item.title}</h4>
-                <p className="text-slate-600 font-inter text-sm leading-relaxed">{item.desc}</p>
-              </div>
+              <Link 
+                href={item.href} 
+                key={idx} 
+                className="bg-white p-8 rounded-xl border border-slate-100 shadow-sm hover:shadow-md hover:border-[#4041d1]/50 transition-all group flex flex-col"
+              >
+                <h4 className="text-lg font-raleway font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">{item.title}</h4>
+                <p className="text-slate-600 font-inter text-sm leading-relaxed mb-6 flex-grow">{item.desc}</p>
+                <div className="text-[#4041d1] font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all mt-auto">
+                  View Treatment <FaArrowRight className="w-3 h-3" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
-
+      
       {/* --- PRESCRIBING & PHILOSOPHY --- */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
