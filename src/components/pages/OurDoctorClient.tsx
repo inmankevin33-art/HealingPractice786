@@ -328,7 +328,9 @@ export default function OurDoctorClient() {
       <section className="py-20 bg-slate-50 border-t border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-4">Where Dr Abdi Consults</h2>
-          <p className="text-slate-600 font-inter mb-12">Dr Syed Abdi sees private patients across Healing-PRP Clinics in:</p>
+          <p className="text-slate-600 font-inter mb-12 leading-relaxed">
+            Dr Syed Abdi sees private patients across <br className="hidden sm:block" />
+            Healing-PRP Clinics in:</p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <Link href="/birmingham" className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-[#4041d1] transition-all group flex flex-col items-center">
