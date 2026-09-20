@@ -85,7 +85,7 @@ export default function OurDoctorClient() {
         "name": "East & North Herts NHS Trust"
       }
     ],
-    "knowsAbout": ["Erectile Dysfunction", "Peyronie's Disease", "PRP Joint Injections", "Medical Ozone Therapy", "Shockwave Therapy"]
+    "knowsAbout": ["Erectile Dysfunction", "Peyronie's Disease", "PRP Joint Injections", "Shockwave Therapy"]
   };
 
   const expertiseList = [
@@ -93,8 +93,7 @@ export default function OurDoctorClient() {
     { title: "Shockwave Therapy", desc: "Non-invasive acoustic-wave treatment used in selected erectile dysfunction and Peyronie’s disease pathways." },
     { title: "PRP Therapy", desc: "Autologous platelet-rich plasma treatments used for selected joint, hair and intimate-health indications." },
     { title: "Joint Injections", desc: "PRP and steroid joint injections following clinical musculoskeletal assessment." },
-    { title: "Hair Restoration", desc: "PRP and selected regenerative treatments for hair and scalp concerns." },
-    { title: "Ozone Therapy", desc: "Doctor-led medical ozone therapy available at the Hampstead clinic following clinical assessment." }
+    { title: "Hair Restoration", desc: "PRP and selected regenerative treatments for hair and scalp concerns." }
   ];
 
   return (
@@ -249,7 +248,7 @@ export default function OurDoctorClient() {
         </div>
       </section>
 
-      {/* --- REGENERATIVE MEDICINE & OZONE --- */}
+      {/* --- REGENERATIVE MEDICINE --- */}
       <section className="py-24 bg-white border-b border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants}>
@@ -257,11 +256,6 @@ export default function OurDoctorClient() {
             <p className="text-slate-600 font-inter leading-relaxed text-lg mb-6">
               Dr Abdi’s regenerative medicine work includes PRP-based treatments for selected musculoskeletal, hair and intimate-health concerns, alongside other emerging regenerative procedures. The strength of clinical evidence varies between treatments and conditions. Patients are given a realistic explanation of the available evidence, potential benefits, limitations and alternatives before deciding whether to proceed.
             </p>
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 mt-8 text-left">
-              <h3 className="text-xl font-bold font-raleway text-slate-900 mb-3">Medical Ozone Therapy</h3>
-              <p className="text-slate-600 font-inter leading-relaxed">
-                At the Hampstead clinic, Dr Abdi is also developing a doctor-led medical ozone therapy service using established clinical protocols and individual medical assessment. Ozone therapy is considered an adjunctive treatment, and its potential role depends on the condition, route of administration and available clinical evidence.
-              </p>
             </div>
           </motion.div>
         </div>
