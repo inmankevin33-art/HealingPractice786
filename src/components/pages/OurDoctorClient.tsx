@@ -89,12 +89,36 @@ export default function OurDoctorClient() {
   };
 
   const expertiseList = [
-    { title: "P-Shot / PRP Intimate Health", desc: "Doctor-led PRP treatments used within selected men’s and women’s intimate-health pathways." },
-    { title: "Shockwave Therapy", desc: "Non-invasive acoustic-wave treatment used in selected erectile dysfunction and Peyronie’s disease pathways." },
-    { title: "Penis Filler", desc: "Hyaluronic acid penile filler treatment focused on natural-looking enhancement following medical assessment and treatment planning." },
-    { title: "O-Shot Treatment", desc: "Doctor-led PRP treatment used within selected women’s intimate-health pathways following individual clinical assessment." },
-    { title: "Joint Injections", desc: "PRP and steroid joint injections following clinical musculoskeletal assessment." },
-    { title: "Hair Restoration", desc: "PRP and selected regenerative treatments for hair and scalp concerns." }
+    {
+      title: "P-Shot Treatment",
+      desc: "Doctor-led PRP treatment used within selected men’s intimate-health pathways, including erectile dysfunction and sexual wellness.",
+      href: "/birmingham/p-shot"
+    },
+    {
+      title: "O-Shot Treatment",
+      desc: "Doctor-led PRP treatment used within selected women’s intimate-health pathways following individual clinical assessment.",
+      href: "/o-shot"
+    },
+    {
+      title: "Penis Filler",
+      desc: "Hyaluronic acid penile filler treatment focused on natural-looking enhancement following medical assessment and treatment planning.",
+      href: "/birmingham/penis-enlargement"
+    },
+    {
+      title: "Shockwave Therapy",
+      desc: "Non-invasive acoustic-wave treatment used in selected erectile dysfunction and Peyronie’s disease pathways.",
+      href: "/birmingham/shockwave-therapy-erectile-dysfunction"
+    },
+    {
+      title: "Joint Injections",
+      desc: "PRP and steroid joint injections following clinical musculoskeletal assessment.",
+      href: "/joint-injections"
+    },
+    {
+      title: "Hair Restoration",
+      desc: "PRP and selected regenerative treatments for hair and scalp concerns.",
+      href: "/hair-restoration"
+    }
   ];
 
   return (
