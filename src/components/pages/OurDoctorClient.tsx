@@ -150,16 +150,16 @@ export default function OurDoctorClient() {
         </div>
       </section>
 
-      {/* --- QUALIFICATIONS & CLINICAL EXPERIENCE --- */}
+     {/* --- QUALIFICATIONS & CLINICAL EXPERIENCE --- */}
       <section className="py-24 bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
-            {/* Left: Factual Credentials & Hospital Background */}
+            {/* Left: Factual Credentials */}
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants} custom={0}>
               <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-8">Qualifications & Clinical Experience</h2>
               
-              <ul className="space-y-4 mb-10 border-l-2 border-[#4041d1]/20 pl-6">
+              <ul className="space-y-4 border-l-2 border-[#4041d1]/20 pl-6">
                 {[
                   "MBBS – Medical Degree, 2003",
                   "MRCGP – Member of the Royal College of General Practitioners, 2014",
@@ -185,13 +185,6 @@ export default function OurDoctorClient() {
                   </a>
                 </li>
               </ul>
-              
-              <p className="text-slate-600 font-inter leading-relaxed text-sm bg-slate-50 p-6 rounded-xl border border-slate-100 mb-4">
-                Before completing GP training, Dr Abdi worked extensively in hospital medicine, including Emergency Medicine and Trauma & Orthopaedics. This background provided broad experience in acute assessment, musculoskeletal conditions, minor injuries and procedural medicine.
-              </p>
-              <p className="text-slate-600 font-inter leading-relaxed text-sm bg-slate-50 p-6 rounded-xl border border-slate-100">
-                Dr Abdi has worked extensively in NHS urgent care, including Urgent Treatment Centre services within the East & North Herts NHS Trust. His current NHS work includes urgent care at Lister Hospital, Stevenage.
-              </p>
             </motion.div>
 
             {/* Right: Portrait */}
