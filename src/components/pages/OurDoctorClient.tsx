@@ -361,18 +361,11 @@ export default function OurDoctorClient() {
       <section className="py-24 bg-slate-100 text-center font-inter px-4 border-t border-slate-200">
         <div className="max-w-3xl mx-auto">
           <h3 className="text-3xl md:text-5xl font-raleway font-bold text-slate-900 mb-8">Direct Doctor-Led Care</h3>
-          <p className="text-slate-600 text-lg leading-relaxed mb-10">
+          <p className="text-slate-600 text-lg leading-relaxed">
             Patients are assessed and treated within a doctor-led clinical pathway. Dr Abdi is directly involved in consultation, treatment planning and clinical follow-up where appropriate.
           </p>
-          <button 
-            onClick={handleAction}
-            className="px-8 py-4 bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter inline-flex items-center"
-          >
-            <FaEnvelope className="w-4 h-4 mr-2" /> Book a Consultation with Dr Syed Abdi
-          </button>
         </div>
       </section>
-
       <div id="contact-form-section">
         <ContactCTASection />
       </div>
