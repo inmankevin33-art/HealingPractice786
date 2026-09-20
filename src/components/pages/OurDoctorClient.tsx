@@ -256,7 +256,6 @@ export default function OurDoctorClient() {
             <p className="text-slate-600 font-inter leading-relaxed text-lg mb-6">
               Dr Abdi’s regenerative medicine work includes PRP-based treatments for selected musculoskeletal, hair and intimate-health concerns, alongside other emerging regenerative procedures. The strength of clinical evidence varies between treatments and conditions. Patients are given a realistic explanation of the available evidence, potential benefits, limitations and alternatives before deciding whether to proceed.
             </p>
-            </div>
           </motion.div>
         </div>
       </section>
