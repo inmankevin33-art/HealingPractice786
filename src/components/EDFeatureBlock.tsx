@@ -40,7 +40,7 @@ export default function EDFeatureBlock() {
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-6 justify-center md:justify-start">
               <Link 
-                href={`${prefix}/our-doctor`}
+                href="/our-doctor"
                 className="inline-flex items-center gap-2 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8] transition-colors font-inter group"
               >
                 Meet Dr Syed Abdi <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
