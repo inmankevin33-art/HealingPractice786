@@ -10,14 +10,14 @@ export const metadata: Metadata = {
     absolute: "Dr Syed Abdi | GP & Medical Director | Healing-PRP Clinics",
   },
   description:
-    "Meet Dr Syed Abdi, GMC-registered GP and Medical Director of Healing-PRP Clinics, with experience in urgent care, orthopaedics, regenerative medicine and intimate health.",
+    "Meet Dr Syed Abdi, GMC-registered GP and Medical Director of Healing-PRP Clinics, with experience in regenerative medicine and intimate health.",
   alternates: {
     canonical: "https://www.healing-prp.co.uk/our-doctor",
   },
   openGraph: {
     title: "Dr Syed Abdi | GP & Medical Director | Healing-PRP Clinics",
     description:
-      "Meet Dr Syed Abdi, GMC-registered GP and Medical Director of Healing-PRP Clinics, with experience in urgent care, orthopaedics, regenerative medicine and intimate health.",
+      "Meet Dr Syed Abdi, GMC-registered GP and Medical Director of Healing-PRP Clinics, with experience in regenerative medicine and intimate health.",
     url: "https://www.healing-prp.co.uk/our-doctor",
     siteName: "Healing-PRP Clinics",
     locale: "en_GB",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dr Syed Abdi | GP & Medical Director",
     description:
-      "GMC-registered GP and Medical Director of Healing-PRP Clinics, with experience in urgent care, orthopaedics, regenerative medicine and intimate health.",
+      "GMC-registered GP and Medical Director of Healing-PRP Clinics, with experience in regenerative medicine and intimate health.",
     images: ["/DrAbdi.webp"],
   },
 };
@@ -47,7 +47,7 @@ const doctorSchema = {
   "@id": "https://www.healing-prp.co.uk/our-doctor#dr-syed-abdi",
   "name": "Dr Syed Abdi",
   "jobTitle": "Medical Director",
-  "medicalSpecialty": ["General Practice", "Regenerative Medicine", "Intimate Health", "Orthopaedics"],
+  "medicalSpecialty": ["Intimate Health", "Regenerative Medicine", "General Practice", "Orthopaedics"],
   "identifier": [
     {
       "@type": "PropertyValue",
@@ -67,16 +67,14 @@ const doctorSchema = {
     },
     {
       "@type": "Hospital",
-      "name": "Royal Free London NHS Foundation Trust"
-    },
-    {
-      "@type": "Hospital",
       "name": "East & North Herts NHS Trust"
     }
   ],
   "knowsAbout": [
     "Erectile Dysfunction", 
-    "Peyronie's Disease", 
+    "Peyronie's Disease",
+    "Penis Filler",
+    "Vaginal Dryness",
     "PRP Joint Injections", 
     "Medical Ozone Therapy", 
     "Shockwave Therapy", 
