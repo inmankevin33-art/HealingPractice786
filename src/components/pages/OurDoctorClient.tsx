@@ -96,12 +96,6 @@ export default function OurDoctorClient() {
 
   return (
     <div className="bg-white">
-      <Script
-        id="doctor-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(doctorSchema) }}
-      />
-
       {/* --- HERO SECTION --- */}
       <section className="relative pt-20 pb-24 lg:pt-28 lg:pb-32 overflow-hidden bg-[#0A1128] text-center">
         <div className="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
