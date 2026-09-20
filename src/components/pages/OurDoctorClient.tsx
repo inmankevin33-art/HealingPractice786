@@ -187,7 +187,6 @@ export default function OurDoctorClient() {
                 </li>
               </ul>
               
-              <h3 className="text-lg font-bold text-slate-900 mb-3 font-raleway">Medical & Clinical Experience</h3>
               <p className="text-slate-600 font-inter leading-relaxed text-sm bg-slate-50 p-6 rounded-xl border border-slate-100 mb-4">
                 Before completing GP training, Dr Abdi worked extensively in hospital medicine, including Emergency Medicine and Trauma & Orthopaedics. This background provided broad experience in acute assessment, musculoskeletal conditions, minor injuries and procedural medicine.
               </p>
