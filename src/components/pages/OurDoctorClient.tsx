@@ -91,7 +91,8 @@ export default function OurDoctorClient() {
   const expertiseList = [
     { title: "P-Shot / PRP Intimate Health", desc: "Doctor-led PRP treatments used within selected men’s and women’s intimate-health pathways." },
     { title: "Shockwave Therapy", desc: "Non-invasive acoustic-wave treatment used in selected erectile dysfunction and Peyronie’s disease pathways." },
-    { title: "PRP Therapy", desc: "Autologous platelet-rich plasma treatments used for selected joint, hair and intimate-health indications." },
+    { title: "Penis Filler", desc: "Hyaluronic acid penile filler treatment focused on natural-looking enhancement following medical assessment and treatment planning." },
+    { title: "O-Shot Treatment", desc: "Doctor-led PRP treatment used within selected women’s intimate-health pathways following individual clinical assessment." },
     { title: "Joint Injections", desc: "PRP and steroid joint injections following clinical musculoskeletal assessment." },
     { title: "Hair Restoration", desc: "PRP and selected regenerative treatments for hair and scalp concerns." }
   ];
