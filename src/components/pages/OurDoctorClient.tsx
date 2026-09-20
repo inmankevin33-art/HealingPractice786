@@ -61,33 +61,6 @@ export default function OurDoctorClient() {
     }),
   };
 
-  // E-E-A-T JSON-LD Schema (Updated to factual framework)
-  const doctorSchema = {
-    "@context": "https://schema.org",
-    "@type": "Physician",
-    "name": "Dr Syed Abdi",
-    "medicalSpecialty": ["General Practice", "Regenerative Medicine", "Intimate Health", "Orthopaedics"],
-    "identifier": [
-      {
-        "@type": "PropertyValue",
-        "propertyID": "GMC Registration Number",
-        "value": "6083294"
-      }
-    ],
-    "worksFor": [
-      {
-        "@type": "MedicalClinic",
-        "name": "Healing-PRP Clinics",
-        "url": "https://www.healing-prp.co.uk"
-      },
-      {
-        "@type": "Hospital",
-        "name": "East & North Herts NHS Trust"
-      }
-    ],
-    "knowsAbout": ["Erectile Dysfunction", "Peyronie's Disease", "PRP Joint Injections", "Shockwave Therapy"]
-  };
-
   const expertiseList = [
     {
       title: "P-Shot Treatment",
