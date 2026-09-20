@@ -165,7 +165,6 @@ export default function OurDoctorClient() {
                   "MBBS – Medical Degree, 2003",
                   "MRCGP – Member of the Royal College of General Practitioners, 2014",
                   "GMC Registered with Licence to Practise",
-                  "GP Register since 2014",
                   "More than 10 years’ experience as a UK GP"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
