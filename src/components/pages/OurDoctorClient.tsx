@@ -249,11 +249,11 @@ export default function OurDoctorClient() {
       </section>
 
       {/* --- REGENERATIVE MEDICINE --- */}
-      <section className="py-24 bg-white border-b border-slate-100">
+      <section className="pt-24 pb-12 bg-white border-b border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants}>
             <h2 className="text-3xl font-raleway font-bold text-slate-900 mb-6">Regenerative Medicine</h2>
-            <p className="text-slate-600 font-inter leading-relaxed text-lg mb-6">
+            <p className="text-slate-600 font-inter leading-relaxed text-lg">
               Dr Abdi’s regenerative medicine work includes PRP-based treatments for selected musculoskeletal, hair and intimate-health concerns, alongside other emerging regenerative procedures. The strength of clinical evidence varies between treatments and conditions. Patients are given a realistic explanation of the available evidence, potential benefits, limitations and alternatives before deciding whether to proceed.
             </p>
           </motion.div>
