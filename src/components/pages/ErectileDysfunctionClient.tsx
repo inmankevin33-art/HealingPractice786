@@ -672,6 +672,139 @@ export default function ErectileDysfunctionClient({
           </div>
         </div>
       </section>
+
+       // Published ED articles. Keep links directly to the live blog URLs.
+  // Regional guides come first; general ED resources fill remaining slots.
+  const sharedEdGuides = [
+    {
+      title: "Why ED Treatments Fail: 9 Fixable Reasons",
+      description: "Explore why tablets or other treatments may not work as expected, from medication timing to diabetes, hormones and stress.",
+      href: "/blog/why-ed-treatments-fail-birmingham",
+      category: "Understanding ED",
+    },
+    {
+      title: "Advanced Erectile Dysfunction Treatment: The Bigger Picture",
+      description: "Why effective ED care starts with assessment, realistic expectations and a tailored treatment plan rather than one procedure.",
+      href: "/blog/advanced-erectile-dysfunction-treatment-strategy",
+      category: "Treatment Planning",
+    },
+    {
+      title: "Impotence Clinic: When to Seek a Private ED Assessment",
+      description: "Understand when recurring erection difficulties deserve medical advice and what a confidential assessment can involve.",
+      href: "/blog/impotence-clinic-ed-assessment-treatment-options",
+      category: "Doctor-Led Advice",
+    },
+  ];
+
+  const regionalEdGuides = isBirmingham
+    ? [
+        {
+          title: "High Blood Pressure, Diabetes and Erectile Dysfunction",
+          description: "How diabetes, hypertension and cardiovascular health can influence erections, with advice for men in Birmingham.",
+          href: "/blog/high-blood-pressure-diabetes-ed-birmingham",
+          category: "ED Causes",
+        },
+        {
+          title: "P-Shot for Erectile Dysfunction in Birmingham: Can It Help?",
+          description: "A doctor-led look at PRP treatment for ED, current evidence, suitability and realistic expectations.",
+          href: "/blog/p-shot-erectile-dysfunction-birmingham",
+          category: "P-Shot / PRP",
+        },
+        {
+          title: "Focused Shockwave Therapy for ED in Birmingham",
+          description: "Learn how focused shockwave therapy is used, who may be suitable and why assessment matters.",
+          href: "/blog/focused-shockwave-therapy-for-erectile-dysfunction-birmingham",
+          category: "Shockwave Therapy",
+        },
+        {
+          title: "ED Treatment Near Oxford and Gloucestershire",
+          description: "Information for men considering travelling to the Birmingham clinic for private erectile dysfunction assessment.",
+          href: "/blog/ed-treatment-near-oxford-gloucestershire",
+          category: "Travelling for Care",
+        },
+      ]
+    : isHampstead
+      ? [
+          {
+            title: "ED Doctor in Hampstead, London: When to Seek Help",
+            description: "What to expect from a private erectile dysfunction consultation in Hampstead and when to seek assessment.",
+            href: "/blog/ed-doctor-hampstead-london-private-assessment",
+            category: "Hampstead / London",
+          },
+        ]
+      : [
+          {
+            title: "Focused Shockwave Therapy for ED in St Albans",
+            description: "A practical guide to focused shockwave treatment, patient suitability and the importance of a medical review.",
+            href: "/blog/focused-shockwave-therapy-for-erectile-dysfunction-st-albans",
+            category: "Shockwave Therapy",
+          },
+          {
+            title: "P-Shot for Erectile Dysfunction in St Albans",
+            description: "An introduction to platelet-rich plasma treatment and the role of doctor-led assessment for ED.",
+            href: "/blog/p-shot-erectile-dysfunction-st-albans-birmingham",
+            category: "P-Shot / PRP",
+          },
+        ];
+    
+      // Curate rather than crowd the main treatment page; add future blogs here.
+      const edBlogGuides = [...regionalEdGuides, ...sharedEdGuides].slice(0, 6);
+
+
+
+      {/* --- ED EDUCATIONAL BLOG GUIDES: BEFORE FAQS --- */}
+      <section
+        aria-labelledby="ed-guides-heading"
+        className="py-20 md:py-24 bg-[#F6F7FF] font-inter border-y border-slate-200"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <span className="inline-block px-4 py-2 mb-5 bg-white border border-indigo-100 rounded-full text-xs font-bold uppercase tracking-[0.12em] text-[#4041d1]">
+              Erectile Dysfunction Resources
+            </span>
+            <h2
+              id="ed-guides-heading"
+              className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-5"
+            >
+              Erectile Dysfunction: Doctor-Written Guides
+            </h2>
+            <p className="text-base md:text-lg leading-relaxed text-slate-600">
+              Explore practical articles from Dr Syed Abdi about erectile dysfunction,
+              common health-related causes and treatment options. These guides are
+              educational and do not replace an individual medical assessment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {edBlogGuides.map((article) => (
+              <article key={article.href} className="h-full">
+                <Link
+                  href={article.href}
+                  className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1]"
+                >
+                  <div className="flex items-center justify-between gap-3 mb-6">
+                    <span className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-bold text-[#4041d1]">
+                      {article.category}
+                    </span>
+                    <FaFileAlt aria-hidden="true" className="text-[#4041d1] text-lg shrink-0" />
+                  </div>
+                  <h3 className="font-raleway text-lg md:text-xl leading-snug font-bold text-slate-900 mb-3 group-hover:text-[#4041d1] transition-colors">
+                    {article.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-slate-600 mb-6 flex-grow">
+                    {article.description}
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-bold text-[#4041d1]">
+                    Read article
+                    <FaArrowRight aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       
       {/* --- FAQs --- */}
       <section id="faqs" className="py-24 bg-slate-50 font-inter border-t border-slate-200">
