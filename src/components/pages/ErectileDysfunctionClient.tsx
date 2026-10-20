@@ -290,9 +290,10 @@ export default function ErectileDysfunctionClient({
             alt="Erectile dysfunction treatment consultation" 
             fill
             priority
-            quality={85}
+            sizes="100vw"
+            quality={75}
             className="object-cover opacity-90"
-          />
+          />        
         </div>
 
         {/* Added pb-48 here to ensure content doesn't get hidden behind the trust badges on mobile */}
