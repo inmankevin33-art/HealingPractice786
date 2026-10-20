@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import EDFeatureBlock from "@/components/EDFeatureBlock";
+import EDFeatureBlock from "@/components/EDFeatureBlock"; // <-- Import added
 import {
   FaPlus,
   FaMinus,
   FaBatteryQuarter,
   FaHourglassEnd,
+  FaFeather,
   FaPills,
   FaWaveSquare,
   FaSyringe,
@@ -21,6 +22,7 @@ import {
   FaGoogle,
   FaStar,
   FaLock,
+  FaChevronDown,
   FaStethoscope,
   FaUserShield,
   FaVial,
@@ -76,13 +78,15 @@ export default function ErectileDysfunctionClient({
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-  const handleAction = (e: React.MouseEvent) => {
+   const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
 
     // 1. TRACKING FIX: Log intent, not the final lead
     if (typeof window !== "undefined") {
       const w = window as Window & { gtag?: (...args: unknown[]) => void };
       if (w.gtag) {
+        // Changed from "generate_lead" to a custom intent event.
+        // This stops Google Ads from optimizing for clickers instead of form fillers.
         w.gtag("event", "contact_initiated", { 
           event_category: "engagement",
           event_label: "clicked_book_consultation",
@@ -95,6 +99,9 @@ export default function ErectileDysfunctionClient({
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
 
     // 3. SCROLLING FIX: More robust scroll handling
+    // We use requestAnimationFrame to ensure the browser has painted the current frame.
+    // If the section is already on the page, it scrolls immediately. 
+    // We also include a safer fallback just in case the component mounts lazily.
     requestAnimationFrame(() => {
       const section = document.getElementById("contact-form-section");
       const headerOffset = 100; // Adjust this to match your sticky header height
@@ -104,6 +111,7 @@ export default function ErectileDysfunctionClient({
         const offsetPosition = elementPosition + window.scrollY - headerOffset;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       } else {
+        // Fallback for lazily rendered elements
         setTimeout(() => {
           const delayedSection = document.getElementById("contact-form-section");
           if (delayedSection) {
@@ -146,7 +154,7 @@ export default function ErectileDysfunctionClient({
     },
   ];
 
-  const symptoms = [
+   const symptoms = [
     {
       title: "Weak erections or reduced firmness",
       description:
@@ -293,7 +301,7 @@ export default function ErectileDysfunctionClient({
             sizes="100vw"
             quality={75}
             className="object-cover opacity-90"
-          />        
+          />
         </div>
 
         {/* Added pb-48 here to ensure content doesn't get hidden behind the trust badges on mobile */}
@@ -728,7 +736,7 @@ export default function ErectileDysfunctionClient({
           </div>
         </div>
       </section>
-
+      
       {/* --- ED EDUCATIONAL BLOG GUIDES: BEFORE FAQS --- */}
       <section
         aria-labelledby="ed-guides-heading"
