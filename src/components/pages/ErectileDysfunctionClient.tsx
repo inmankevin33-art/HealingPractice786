@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import EDFeatureBlock from "@/components/EDFeatureBlock";
 import {
   FaPlus,
   FaMinus,
   FaBatteryQuarter,
   FaHourglassEnd,
-  FaFeather,
   FaPills,
   FaWaveSquare,
   FaSyringe,
@@ -21,7 +21,6 @@ import {
   FaGoogle,
   FaStar,
   FaLock,
-  FaChevronDown,
   FaStethoscope,
   FaUserShield,
   FaVial,
@@ -77,15 +76,13 @@ export default function ErectileDysfunctionClient({
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-   const handleAction = (e: React.MouseEvent) => {
+  const handleAction = (e: React.MouseEvent) => {
     e.preventDefault();
 
     // 1. TRACKING FIX: Log intent, not the final lead
     if (typeof window !== "undefined") {
       const w = window as Window & { gtag?: (...args: unknown[]) => void };
       if (w.gtag) {
-        // Changed from "generate_lead" to a custom intent event.
-        // This stops Google Ads from optimizing for clickers instead of form fillers.
         w.gtag("event", "contact_initiated", { 
           event_category: "engagement",
           event_label: "clicked_book_consultation",
@@ -98,9 +95,6 @@ export default function ErectileDysfunctionClient({
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
 
     // 3. SCROLLING FIX: More robust scroll handling
-    // We use requestAnimationFrame to ensure the browser has painted the current frame.
-    // If the section is already on the page, it scrolls immediately. 
-    // We also include a safer fallback just in case the component mounts lazily.
     requestAnimationFrame(() => {
       const section = document.getElementById("contact-form-section");
       const headerOffset = 100; // Adjust this to match your sticky header height
@@ -110,7 +104,6 @@ export default function ErectileDysfunctionClient({
         const offsetPosition = elementPosition + window.scrollY - headerOffset;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       } else {
-        // Fallback for lazily rendered elements
         setTimeout(() => {
           const delayedSection = document.getElementById("contact-form-section");
           if (delayedSection) {
@@ -134,58 +127,67 @@ export default function ErectileDysfunctionClient({
 
   const quickSteps = [
     {
-      title: "Complete a confidential assessment",
-      description: "Tell us about your symptoms, medical history, and any current treatment.",
+      title: "Private ED assessment",
+      description:
+        "Tell us about your erection difficulties, weak erections, reduced firmness, medical history and any previous response to tablets or treatment.",
       icon: FaFileAlt,
     },
     {
       title: "Doctor-led consultation",
-      description: "We review likely contributing factors and discuss the most suitable options.",
+      description:
+        "Dr Syed Abdi reviews possible causes of erectile dysfunction, including blood-flow changes, diabetes, blood pressure, hormones, medication side effects and psychological factors.",
       icon: FaUserMd,
     },
     {
-      title: "Move forward with a tailored plan",
-      description: "This may include medication support, shockwave therapy, P-Shot, or a combined approach where appropriate.",
+      title: "Tailored ED treatment plan",
+      description:
+        "Suitable options may include medication review, blood tests, shockwave therapy, P-Shot or a combined approach where appropriate. Treatment is only discussed after suitability assessment.",
       icon: FaCheckCircle,
     },
   ];
 
   const symptoms = [
     {
-      title: "Struggling to get an erection",
-      description: "You may find it harder than before to achieve an erection even when desire is still there.",
+      title: "Weak erections or reduced firmness",
+      description:
+        "Erections may feel softer, less reliable, or not firm enough for sex even when desire is still present.",
       icon: FaBatteryQuarter,
       color: "bg-rose-50 text-rose-600",
     },
     {
-      title: "Losing firmness during intimacy",
-      description: "An erection may start but become softer or harder to maintain during sex.",
+      title: "Difficulty maintaining an erection",
+      description:
+        "You may be able to get an erection but struggle to maintain firmness during intimacy or lose your erection during sex.",
       icon: FaHourglassEnd,
       color: "bg-indigo-50 text-indigo-600",
     },
     {
-      title: "Tablets no longer feel enough",
-      description: "Viagra or Cialis may still help, but the response may feel weaker or less reliable than before.",
+      title: "ED tablets not working as well",
+      description:
+        "Viagra or Cialis may still help, but the response may feel weaker, less predictable or not as reliable as before.",
       icon: FaPills,
       color: "bg-[#f0f0ff] text-[#4041d1]",
     },
     {
-      title: "Side effects from ED tablets",
-      description: "Some men want an alternative approach because of headaches, flushing, or other unwanted effects.",
+      title: "Blood pressure, diabetes or circulation concerns",
+      description:
+        "Erectile dysfunction can sometimes be linked with blood-flow changes, high blood pressure, diabetes, cholesterol or wider cardiovascular risk factors.",
       icon: FaVial,
       color: "bg-teal-50 text-teal-600",
     },
     {
-      title: "Confidence has dropped",
-      description: "ED often affects more than physical function and can begin to impact self-esteem and relationships.",
-      icon: FaUserShield,
-      color: "bg-amber-50 text-amber-600",
-    },
-    {
-      title: "You want a medically guided plan",
-      description: "You are not looking for a quick online prescription, but a proper assessment and a tailored treatment strategy.",
+      title: "Side effects from ED tablets",
+      description:
+        "Some men want a doctor-led review because tablets cause headaches, flushing, indigestion, nasal congestion or other unwanted effects.",
       icon: FaStethoscope,
       color: "bg-emerald-50 text-emerald-600",
+    },
+    {
+      title: "Stress, confidence or psychological ED",
+      description:
+        "ED can affect confidence and relationships. Stress, anxiety and psychological factors may also contribute, either alone or alongside physical causes.",
+      icon: FaUserShield,
+      color: "bg-amber-50 text-amber-600",
     },
   ];
 
@@ -196,6 +198,83 @@ export default function ErectileDysfunctionClient({
     { number: 4, icon: FaPills, title: "Medication & Health", description: "Tailored medication and optimization of diabetes or blood pressure." },
     { number: 5, icon: FaCheckCircle, title: "Recovery Over Time", description: "A structured follow-up plan for gradual, natural improvement." },
   ];
+
+  // Published ED articles. Keep links directly to the live blog URLs.
+  // Regional guides come first; general ED resources fill remaining slots.
+  const sharedEdGuides = [
+    {
+      title: "Why ED Treatments Fail: 9 Fixable Reasons",
+      description: "Explore why tablets or other treatments may not work as expected, from medication timing to diabetes, hormones and stress.",
+      href: "/blog/why-ed-treatments-fail-birmingham",
+      category: "Understanding ED",
+    },
+    {
+      title: "Advanced Erectile Dysfunction Treatment: The Bigger Picture",
+      description: "Why effective ED care starts with assessment, realistic expectations and a tailored treatment plan rather than one procedure.",
+      href: "/blog/advanced-erectile-dysfunction-treatment-strategy",
+      category: "Treatment Planning",
+    },
+    {
+      title: "Impotence Clinic: When to Seek a Private ED Assessment",
+      description: "Understand when recurring erection difficulties deserve medical advice and what a confidential assessment can involve.",
+      href: "/blog/impotence-clinic-ed-assessment-treatment-options",
+      category: "Doctor-Led Advice",
+    },
+  ];
+
+  const regionalEdGuides = isBirmingham
+    ? [
+        {
+          title: "High Blood Pressure, Diabetes and Erectile Dysfunction",
+          description: "How diabetes, hypertension and cardiovascular health can influence erections, with advice for men in Birmingham.",
+          href: "/blog/high-blood-pressure-diabetes-ed-birmingham",
+          category: "ED Causes",
+        },
+        {
+          title: "P-Shot for Erectile Dysfunction in Birmingham: Can It Help?",
+          description: "A doctor-led look at PRP treatment for ED, current evidence, suitability and realistic expectations.",
+          href: "/blog/p-shot-erectile-dysfunction-birmingham",
+          category: "P-Shot / PRP",
+        },
+        {
+          title: "Focused Shockwave Therapy for ED in Birmingham",
+          description: "Learn how focused shockwave therapy is used, who may be suitable and why assessment matters.",
+          href: "/blog/focused-shockwave-therapy-for-erectile-dysfunction-birmingham",
+          category: "Shockwave Therapy",
+        },
+        {
+          title: "ED Treatment Near Oxford and Gloucestershire",
+          description: "Information for men considering travelling to the Birmingham clinic for private erectile dysfunction assessment.",
+          href: "/blog/ed-treatment-near-oxford-gloucestershire",
+          category: "Travelling for Care",
+        },
+      ]
+    : isHampstead
+      ? [
+          {
+            title: "ED Doctor in Hampstead, London: When to Seek Help",
+            description: "What to expect from a private erectile dysfunction consultation in Hampstead and when to seek assessment.",
+            href: "/blog/ed-doctor-hampstead-london-private-assessment",
+            category: "Hampstead / London",
+          },
+        ]
+      : [
+          {
+            title: "Focused Shockwave Therapy for ED in St Albans",
+            description: "A practical guide to focused shockwave treatment, patient suitability and the importance of a medical review.",
+            href: "/blog/focused-shockwave-therapy-for-erectile-dysfunction-st-albans",
+            category: "Shockwave Therapy",
+          },
+          {
+            title: "P-Shot for Erectile Dysfunction in St Albans",
+            description: "An introduction to platelet-rich plasma treatment and the role of doctor-led assessment for ED.",
+            href: "/blog/p-shot-erectile-dysfunction-st-albans-birmingham",
+            category: "P-Shot / PRP",
+          },
+        ];
+
+  // Curate rather than crowd the main treatment page; add future blogs here.
+  const edBlogGuides = [...regionalEdGuides, ...sharedEdGuides].slice(0, 6);
 
   const displayedFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
@@ -239,7 +318,7 @@ export default function ErectileDysfunctionClient({
             {isHampstead ? (
               "Private doctor-led ED and impotence assessment in Hampstead, North West London, for men with erection difficulties, reduced firmness, weak erections or difficulty maintaining an erection."
             ) : (
-              <>Private, doctor-led care for erection difficulties, reduced firmness, or tablet side effects. Start with a <strong>free confidential consultation</strong> to assess the cause and discuss tailored options like medication, Shockwave, or P-Shot treatment.</>
+              <>Private doctor-led ED and impotence assessment in Birmingham for men with weak erections, reduced firmness, difficulty maintaining an erection, tablet side effects or a less reliable response to previous treatment. Suitability, risks and fees are discussed before any treatment plan is agreed.</>
             )}
           </motion.p>
 
@@ -251,13 +330,13 @@ export default function ErectileDysfunctionClient({
               onClick={handleAction}
               className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(64,65,209,0.3)] hover:shadow-[0_0_25px_rgba(64,65,209,0.5)] active:scale-95 font-inter"
             >
-              <FaEnvelope className="w-4 h-4" /> Book Free Confidential Consultation
+              <FaEnvelope className="w-4 h-4" /> Request Private Callback
             </button>
             <button 
               onClick={() => setIsAssessmentOpen(true)}
               className="px-8 py-4 w-full sm:w-auto flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-slate-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] active:scale-95 font-inter"
             >
-              Start Free Online Assessment
+              Check ED Suitability
             </button>
           </motion.div>
 
@@ -266,7 +345,7 @@ export default function ErectileDysfunctionClient({
             custom={4} initial="hidden" animate={isLoaded ? "visible" : "hidden"} variants={fadeUpVariants}
             className="flex flex-wrap justify-center gap-3 mt-10"
           >
-            {["Tablets not working as well?", "Doctor-led treatment options", "Free confidential consultation", "Discreet private care"].map((chip) => (
+            {["Weak erections or reduced firmness?", "Difficulty maintaining an erection?", "Doctor-led ED treatment options", "Discreet private care"].map((chip) => (
               <div key={chip} className="flex items-center gap-1.5 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-[10px] md:text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm">
                 <FaCheckCircle className="text-blue-400" /> {chip}
               </div>
@@ -330,39 +409,15 @@ export default function ErectileDysfunctionClient({
         </div>
       </div>
 
-      {/* --- DOCTOR-LED TRUST SECTION --- */}
-      <section className="py-24 bg-white font-inter border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="shrink-0 relative">
-              <Image
-                src="/dr-syed-abdi.webp"
-                alt="Dr Syed Abdi, GMC-registered doctor at Healing-PRP Clinics"
-                width={192}
-                height={192}
-                className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-md mx-auto md:mx-0 border-4 border-white"
-                loading="lazy"
-                quality={85}
-              />
-            </div>
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl md:text-3xl font-raleway font-bold text-slate-900 mb-4">
-                Treatment With Dr Syed Abdi
-              </h2>
-              <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                Your consultation and treatment are carried out by Dr Syed Abdi, GMC No. 6083294, a UK-trained and GMC-registered doctor with experience in men’s intimate health, erectile dysfunction assessment, shockwave therapy, PRP-based treatments and non-surgical intimate health procedures. The appointment is discreet, private and focused on understanding the likely cause of your symptoms, checking suitability and discussing realistic treatment options.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* --- DOCTOR-LED TRUST SECTION (MOVED UP) --- */}
+      <EDFeatureBlock />
       
       {/* --- HOW IT WORKS --- */}
       <section className="py-24 bg-slate-50 font-inter border-y border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">How the process works</h2>
-            <p className="text-slate-600 text-lg">The aim is to make the process clear, discreet, and medically guided from the start.</p>
+            <p className="text-slate-600 text-lg">A clear, discreet process for erectile dysfunction, impotence, weak erections, reduced firmness or difficulty maintaining an erection — starting with a doctor-led assessment.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -379,13 +434,13 @@ export default function ErectileDysfunctionClient({
           
           <div className="mt-12 p-8 bg-blue-600 rounded-2xl text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-blue-900/20">
             <p className="text-lg font-medium max-w-2xl">
-              There is no pressure to proceed. The purpose of the consultation is to help you understand the likely cause of the problem and which treatment options may be suitable for you.
+              There is no pressure to proceed. The purpose of the private ED consultation is to help you understand the likely cause of your symptoms and which erectile dysfunction treatment options may be suitable for you.
             </p>
             <button 
               onClick={handleAction}
               className="px-8 py-4 bg-white text-[#4041d1] rounded-xl font-bold whitespace-nowrap hover:bg-slate-100 transition-colors shadow-lg active:scale-95"
             >
-              Book Free Confidential Consultation
+              Request Private Callback
             </button>
           </div>
         </div>
@@ -398,19 +453,19 @@ export default function ErectileDysfunctionClient({
             <div className="bg-blue-50/50 p-10 rounded-3xl border border-blue-100">
                 <span className="text-[#4041d1] font-bold tracking-widest text-xs uppercase mb-3 block">Treatment Planning</span>
                 <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">
-                  The right treatment depends on the cause
+                  The right erectile dysfunction treatment depends on the cause
                 </h3>
                 <p className="text-slate-600 text-base leading-relaxed mb-6">
-                  Not every case of erectile dysfunction is the same. Some men are better suited to medication optimisation, while others may benefit from circulation-focused treatment such as shockwave therapy or PRP-based options such as the P-Shot.
+                  Not every case of erectile dysfunction or impotence has the same cause. Some men mainly need medication review or health optimisation, while others may be suitable for circulation-focused treatment such as shockwave therapy or PRP-based options such as the P-Shot.
                 </p>
                 <ul className="space-y-4 mb-8">
                   {[
-                    "Erection quality and firmness",
-                    "Response to Viagra or Cialis",
-                    "Circulation and vascular factors",
-                    "Hormonal and metabolic health",
-                    "Medication side effects",
-                    "Confidence and relationship impact",
+                    "Weak erections and reduced firmness",
+                    "Difficulty getting or maintaining an erection",
+                    "Response to ED tablets such as Viagra or Cialis",
+                    "Blood-flow, diabetes and blood pressure factors",
+                    "Hormone, testosterone and metabolic health",
+                    "Medication side effects, stress or psychological ED",
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-700 font-medium">
                       <FaCheckCircle className="text-[#4041d1] shrink-0" /> {item}
@@ -421,24 +476,24 @@ export default function ErectileDysfunctionClient({
                   onClick={handleAction}
                   className="w-full sm:w-max px-8 py-3.5 bg-[#4041d1] text-white rounded-xl font-bold transition-all duration-300 text-sm flex items-center justify-center gap-2 group shadow-xl shadow-[#4041d1]/20 active:scale-95"
                 >
-                  Book Free Confidential Consultation
+                  Request Private Callback
                   <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </button>
             </div>
 
             <div className="p-10">
-              <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">Why choose a doctor-led review?</h3>
+              <h3 className="text-3xl font-raleway font-bold text-slate-900 mb-6">Why choose a doctor-led ED review?</h3>
               <p className="text-slate-600 text-base leading-relaxed mb-6">
-                A proper doctor-led assessment helps identify contributing factors, review treatment suitability properly, and avoid a one-size-fits-all approach.
+                A doctor-led ED assessment helps identify possible causes of erectile dysfunction, review treatment suitability properly, and avoid a one-size-fits-all approach to impotence or weak erections.
               </p>
               <div className="space-y-4">
                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
                     <h4 className="font-bold text-slate-900 mb-1 italic">Medical assessment first</h4>
-                    <p className="text-sm text-slate-600">Treatment recommendations are based on your symptoms, medical history, current medication, and wider health factors.</p>
+                    <p className="text-sm text-slate-600">Treatment recommendations are based on your symptoms, medical history, current medication, blood pressure, diabetes risk, hormone health and wider lifestyle factors.</p>
                  </div>
                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <h4 className="font-bold text-slate-900 mb-1 italic">Options beyond standard tablets</h4>
-                    <p className="text-sm text-slate-600">Where appropriate, your plan may include medication support, shockwave therapy, P-Shot treatment, or a combined approach.</p>
+                    <h4 className="font-bold text-slate-900 mb-1 italic">Options beyond standard ED tablets</h4>
+                    <p className="text-sm text-slate-600">Where appropriate, your plan may include medication review, blood tests, shockwave therapy, P-Shot treatment, or a combined approach after suitability assessment.</p>
                  </div>
               </div>
             </div>
@@ -446,13 +501,13 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      {/* --- COMMON ED SYMPTOMS WE HELP ASSESS --- */}
+      {/* --- ED and Impotence Symptoms We Help Assess --- */}
       <section className="py-20 bg-slate-50 font-inter border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Common ED Symptoms We Help Assess</h2>
+          <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">ED and Impotence Symptoms We Help Assess</h2>
           <div className="prose prose-lg prose-slate mx-auto text-left md:text-center">
             <p className="text-slate-600 mb-6 text-base md:text-lg">
-              Men may seek private ED treatment for different symptoms, including difficulty getting or maintaining an erection, reduced firmness, losing an erection during intimacy, weaker erections than before, or a less reliable response to tablets.
+              Men may seek private ED treatment for different symptoms, including weak erections, reduced firmness, difficulty getting or maintaining an erection, losing an erection during sex, or a less reliable response to tablets.
             </p>
             <p className="text-slate-600 mb-8 text-base md:text-lg">
               At Healing-PRP Clinics {locationName}, Dr Syed Abdi provides a discreet, doctor-led assessment to understand possible causes such as blood-flow changes, high blood pressure, diabetes, medication side effects, stress, anxiety, hormone imbalance or lifestyle factors.
@@ -471,9 +526,9 @@ export default function ErectileDysfunctionClient({
       <section className="py-24 bg-white font-inter border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Who this page is for</h2>
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-6">Who May Benefit From a Private ED Assessment?</h2>
             <p className="text-slate-600 text-lg">
-              This service may be appropriate for men who recognise one or more of the following and want a confidential doctor-led discussion about the next step:
+              This page is for men who recognise one or more of the following symptoms and want a confidential, doctor-led discussion about erectile dysfunction treatment options:
             </p>
           </div>
 
@@ -673,85 +728,6 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-       // Published ED articles. Keep links directly to the live blog URLs.
-  // Regional guides come first; general ED resources fill remaining slots.
-  const sharedEdGuides = [
-    {
-      title: "Why ED Treatments Fail: 9 Fixable Reasons",
-      description: "Explore why tablets or other treatments may not work as expected, from medication timing to diabetes, hormones and stress.",
-      href: "/blog/why-ed-treatments-fail-birmingham",
-      category: "Understanding ED",
-    },
-    {
-      title: "Advanced Erectile Dysfunction Treatment: The Bigger Picture",
-      description: "Why effective ED care starts with assessment, realistic expectations and a tailored treatment plan rather than one procedure.",
-      href: "/blog/advanced-erectile-dysfunction-treatment-strategy",
-      category: "Treatment Planning",
-    },
-    {
-      title: "Impotence Clinic: When to Seek a Private ED Assessment",
-      description: "Understand when recurring erection difficulties deserve medical advice and what a confidential assessment can involve.",
-      href: "/blog/impotence-clinic-ed-assessment-treatment-options",
-      category: "Doctor-Led Advice",
-    },
-  ];
-
-  const regionalEdGuides = isBirmingham
-    ? [
-        {
-          title: "High Blood Pressure, Diabetes and Erectile Dysfunction",
-          description: "How diabetes, hypertension and cardiovascular health can influence erections, with advice for men in Birmingham.",
-          href: "/blog/high-blood-pressure-diabetes-ed-birmingham",
-          category: "ED Causes",
-        },
-        {
-          title: "P-Shot for Erectile Dysfunction in Birmingham: Can It Help?",
-          description: "A doctor-led look at PRP treatment for ED, current evidence, suitability and realistic expectations.",
-          href: "/blog/p-shot-erectile-dysfunction-birmingham",
-          category: "P-Shot / PRP",
-        },
-        {
-          title: "Focused Shockwave Therapy for ED in Birmingham",
-          description: "Learn how focused shockwave therapy is used, who may be suitable and why assessment matters.",
-          href: "/blog/focused-shockwave-therapy-for-erectile-dysfunction-birmingham",
-          category: "Shockwave Therapy",
-        },
-        {
-          title: "ED Treatment Near Oxford and Gloucestershire",
-          description: "Information for men considering travelling to the Birmingham clinic for private erectile dysfunction assessment.",
-          href: "/blog/ed-treatment-near-oxford-gloucestershire",
-          category: "Travelling for Care",
-        },
-      ]
-    : isHampstead
-      ? [
-          {
-            title: "ED Doctor in Hampstead, London: When to Seek Help",
-            description: "What to expect from a private erectile dysfunction consultation in Hampstead and when to seek assessment.",
-            href: "/blog/ed-doctor-hampstead-london-private-assessment",
-            category: "Hampstead / London",
-          },
-        ]
-      : [
-          {
-            title: "Focused Shockwave Therapy for ED in St Albans",
-            description: "A practical guide to focused shockwave treatment, patient suitability and the importance of a medical review.",
-            href: "/blog/focused-shockwave-therapy-for-erectile-dysfunction-st-albans",
-            category: "Shockwave Therapy",
-          },
-          {
-            title: "P-Shot for Erectile Dysfunction in St Albans",
-            description: "An introduction to platelet-rich plasma treatment and the role of doctor-led assessment for ED.",
-            href: "/blog/p-shot-erectile-dysfunction-st-albans-birmingham",
-            category: "P-Shot / PRP",
-          },
-        ];
-    
-      // Curate rather than crowd the main treatment page; add future blogs here.
-      const edBlogGuides = [...regionalEdGuides, ...sharedEdGuides].slice(0, 6);
-
-
-
       {/* --- ED EDUCATIONAL BLOG GUIDES: BEFORE FAQS --- */}
       <section
         aria-labelledby="ed-guides-heading"
@@ -805,7 +781,6 @@ export default function ErectileDysfunctionClient({
         </div>
       </section>
 
-      
       {/* --- FAQs --- */}
       <section id="faqs" className="py-24 bg-slate-50 font-inter border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
