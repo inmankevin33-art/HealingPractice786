@@ -322,7 +322,7 @@ export default function BlogPostClient({ post, navigation }: { post: BlogPost; n
             <div className="w-full bg-slate-50 flex justify-center">
               <img 
                 src={getImageUrl(post.coverImage.url)} 
-                alt={post.coverImage.title || "Cover"} 
+                alt={post.coverImage.description?.trim() || `Illustration for ${post.title}`} 
                 className="w-full h-auto"
               />
             </div>
