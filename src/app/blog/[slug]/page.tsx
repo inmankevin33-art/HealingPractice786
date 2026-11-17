@@ -6,6 +6,10 @@ import BlogPostClient from "@/components/pages/BlogPostClient";
 // FIXED: Using your exact function name "getAllBlogPosts"
 import { getBlogPostBySlug, getAllBlogPosts } from "@/lib/contentful"; 
 
+// Blog entries are published in Contentful and must be resolved at request time.
+// This prevents a temporary missing-entry response from being cached as a 404.
+export const dynamic = "force-dynamic";
+
 // --- 1. DYNAMIC METADATA GENERATION ---
 type BlogPageProps = {
   params: Promise<{ slug: string }>;
