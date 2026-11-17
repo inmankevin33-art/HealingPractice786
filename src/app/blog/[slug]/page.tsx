@@ -7,16 +7,21 @@ import BlogPostClient from "@/components/pages/BlogPostClient";
 import { getBlogPostBySlug, getAllBlogPosts } from "@/lib/contentful"; 
 
 // --- 1. DYNAMIC METADATA GENERATION ---
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getBlogPostBySlug(params.slug);
+type BlogPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     return { title: "Post Not Found | Healing-PRP Clinics" };
   }
 
-  const seoTitle = `${post.title} | Healing-PRP Clinics UK`;
-  const seoDescription = post.excerpt || "Read the latest medical insights and advanced regenerative aesthetic treatments from Dr. Syed Abdi at Healing-PRP Clinics.";
-  const canonicalUrl = `https://www.healing-prp.co.uk/blog/${params.slug}`;
+  const seoTitle = post.seoTitle || post.title;
+  const seoDescription = post.seoDescription || post.excerpt || "Read the latest medical insights and advanced regenerative aesthetic treatments from Dr. Syed Abdi at Healing-PRP Clinics.";
+  const canonicalUrl = `https://www.healing-prp.co.uk/blog/${slug}`;
   
   const imageUrl = post.coverImage?.url 
     ? (post.coverImage.url.startsWith("//") ? `https:${post.coverImage.url}` : post.coverImage.url)
@@ -56,8 +61,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 // --- 2. MAIN PAGE COMPONENT ---
-export default async function Page({ params }: { params: { slug: string } }) {
-  const post = await getBlogPostBySlug(params.slug);
+export default async function Page({ params }: BlogPageProps) {
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -67,7 +73,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const allPosts = await getAllBlogPosts();
   
   // FIXED TYPINGS: Replaced 'any' with the specific expected type
-  const currentIndex = allPosts.findIndex((p: { slug: string }) => p.slug === params.slug);
+  const currentIndex = allPosts.findIndex((p: { slug: string }) => p.slug === slug);
   
   let nextArticle = undefined;
 
@@ -84,36 +90,36 @@ export default async function Page({ params }: { params: { slug: string } }) {
   // --- 3. DYNAMIC JSON-LD SCHEMA ---
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
+    "@type": "BlogPosting",
     "headline": post.title,
     "description": post.excerpt || "Medical insight from Healing-PRP Clinics.",
-    "image": post.coverImage?.url ? `https:${post.coverImage.url}` : "",
+    "image": post.coverImage?.url || "",
     "author": {
       "@type": "Person",
       "name": "Dr. Syed Abdi",
-      "jobTitle": "GMC Registered Doctor",
-      "url": "https://www.healing-prp.co.uk" 
+      "jobTitle": "Medical Director",
+      "url": "https://www.healing-prp.co.uk/our-doctor" 
     },
     "publisher": {
       "@type": "MedicalClinic",
       "name": "Healing-PRP Clinics",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.healing-prp.co.uk/logo.png"
+        "url": "https://www.healing-prp.co.uk/Logo2.png"
       }
     },
     "datePublished": post.date,
     "dateModified": post.date,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.healing-prp.co.uk/blog/${params.slug}`
+      "@id": `https://www.healing-prp.co.uk/blog/${slug}`
     }
   };
 
   return (
     <main>
       <Script
-        id={`article-schema-${params.slug}`}
+        id={`article-schema-${slug}`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
