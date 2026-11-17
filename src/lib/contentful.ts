@@ -34,7 +34,7 @@ export interface BlogPost {
 }
 
 // Helper function to safely extract Image URLs from Contentful's nested object structure
-const extractImageUrl = (imageField: unknown): { url: string; title: string } | undefined => {
+const extractImageUrl = (imageField: unknown): { url: string; title: string; description?: string } | undefined => {
   if (!imageField) return undefined;
   try {
     const fields = (imageField as Record<string, unknown>).fields as Record<string, unknown>;
@@ -45,6 +45,7 @@ const extractImageUrl = (imageField: unknown): { url: string; title: string } | 
     return {
       url: url.startsWith("//") ? `https:${url}` : url,
       title: (fields?.title as string) || "Blog Image",
+      description: (fields?.description as string) || undefined,
     };
   } catch {
     return undefined;
