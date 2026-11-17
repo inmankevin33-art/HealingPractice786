@@ -21,7 +21,7 @@ const Header = () => {
   const pathname = usePathname();
   
   // Location variables
-  const isBirmingham = pathname?.startsWith("/birmingham");
+  const isBirmingham =\n    pathname?.startsWith("/birmingham") ||\n    (pathname?.startsWith("/blog/") && pathname.toLowerCase().includes("birmingham"));
   const isHampstead = pathname?.startsWith("/hampstead");
   const isStAlbans = !isBirmingham && !isHampstead;
 
@@ -107,9 +107,9 @@ const Header = () => {
                     <Image src="/Logo2.png" alt="Healing-PRP Logo" fill className="object-contain" priority />
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                    <h1 className="text-xl md:text-2xl font-raleway font-semibold text-white tracking-tight whitespace-nowrap">
+                    <span className="text-xl md:text-2xl font-raleway font-semibold text-white tracking-tight whitespace-nowrap">
                       Healing-PRP Clinics
-                    </h1>
+                    </span>
                     <span className="bg-[#4041d1] text-white text-[9px] sm:text-[10px] md:text-xs px-2.5 py-0.5 sm:py-1 rounded-full font-bold uppercase tracking-widest shadow-sm w-fit">
                       {isBirmingham ? "Birmingham Website" : isHampstead ? "Hampstead Website" : "St Albans Website"}
                     </span>
