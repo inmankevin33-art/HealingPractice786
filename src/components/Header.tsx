@@ -21,7 +21,9 @@ const Header = () => {
   const pathname = usePathname();
   
   // Location variables
-  const isBirmingham =\n    pathname?.startsWith("/birmingham") ||\n    (pathname?.startsWith("/blog/") && pathname.toLowerCase().includes("birmingham"));
+  const isBirmingham =
+    pathname?.startsWith("/birmingham") ||
+    (pathname?.startsWith("/blog/") && pathname?.toLowerCase().includes("birmingham"));
   const isHampstead = pathname?.startsWith("/hampstead");
   const isStAlbans = !isBirmingham && !isHampstead;
 
