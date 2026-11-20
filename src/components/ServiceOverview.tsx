@@ -51,7 +51,7 @@ const featuredTreatments: FeaturedTreatment[] = [
   },
   {
     title: "Peyronie's Disease",
-    image: "/images/treatments/peyronies-thumb.webp",
+    image: "Peyronies.webp",
     imageAlt: "Clinical assessment for Peyronie's disease in Birmingham",
     description:
       "Individual assessment of penile curvature, plaque and erectile function, including discussion of HA plaque injections, PRP and shockwave where appropriate.",
