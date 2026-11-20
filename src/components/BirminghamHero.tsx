@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import OnlineAssessmentModal from "./OnlineAssessmentModal"; 
 
-export default function Hero() {
+export default function BirminghamHero() {
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false); 
 
   const pathname = usePathname();
