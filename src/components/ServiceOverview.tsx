@@ -1,7 +1,17 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import type { IconType } from "react-icons";
+import {
+  FaArrowRight,
+  FaSyringe,
+  FaVenusMars,
+  FaRunning,
+  FaSmile,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 type FeaturedTreatment = {
   title: string;
@@ -15,50 +25,44 @@ type AdditionalTreatment = {
   title: string;
   description: string;
   href: string;
+  icon: IconType;
+  iconStyle: string;
 };
 
-// Birmingham-only content. The original ServiceOverview.tsx remains unchanged.
-// Put these image files in /public/images/treatments/.
+// All URLs are explicit because this component is exclusive to Birmingham.
+// Images live in public/images/treatments/ and are lazy-loaded below the hero.
 const featuredTreatments: FeaturedTreatment[] = [
   {
     title: "Penile Filler",
-    description:
-      "Doctor-led HA girth enhancement, with individual volume planning and aftercare.",
-    href: "/birmingham/penis-enlargement",
     image: "/images/treatments/penile-filler-thumb.webp",
-    imageAlt: "Medical illustration representing hyaluronic acid filler treatment",
+    imageAlt: "Illustration representing hyaluronic acid filler treatment",
+    description:
+      "Doctor-led hyaluronic acid (HA) penile filler with individual assessment, proportionate volume planning, careful placement and aftercare.",
+    href: "/birmingham/penis-enlargement",
   },
   {
     title: "Erectile Dysfunction",
-    description:
-      "Private ED assessment, including contributing factors and suitable treatment options.",
-    href: "/birmingham/erectile-dysfunction",
     image: "/images/treatments/ed-thumb.webp",
     imageAlt: "Medical illustration representing erectile function and circulation",
+    description:
+      "Private medical assessment of erection difficulties, including possible contributing factors, medication options and tailored treatments.",
+    href: "/birmingham/erectile-dysfunction",
   },
   {
     title: "Peyronie's Disease",
-    description:
-      "Assessment of penile curvature and plaque, with individual treatment discussion.",
-    href: "/birmingham/peyronies-disease",
     image: "/images/treatments/peyronies-thumb.webp",
-    imageAlt: "Medical illustration representing Peyronie's disease assessment",
+    imageAlt: "Illustration representing clinical assessment of Peyronie's disease",
+    description:
+      "Individual assessment of penile curvature, plaque and erectile function, including discussion of HA plaque injections, PRP and shockwave where appropriate.",
+    href: "/birmingham/peyronies-disease",
   },
   {
-    title: "P-Shot (PRP)",
-    description:
-      "A consultation-led discussion of penile PRP injections, suitability and evidence limits.",
-    href: "/birmingham/p-shot",
+    title: "P-Shot & Shockwave",
     image: "/images/treatments/p-shot-shockwave-thumb.webp",
-    imageAlt: "Platelet-rich plasma preparation in a clinical setting",
-  },
-  {
-    title: "Shockwave Therapy",
+    imageAlt: "Illustration of platelet-rich plasma preparation for P-Shot treatment",
     description:
-      "Focused discussion of shockwave options for ED, including risks and evidence limitations.",
-    href: "/birmingham/shockwave-therapy-erectile-dysfunction",
-    image: "/images/treatments/shockwave-thumb.webp",
-    imageAlt: "Shockwave therapy equipment in a medical treatment room",
+      "Consultation-led discussion of PRP injections and low-intensity shockwave therapy, including suitability, potential risks and current evidence.",
+    href: "/birmingham/p-shot",
   },
 ];
 
@@ -66,156 +70,197 @@ const additionalTreatments: AdditionalTreatment[] = [
   {
     title: "Women's Intimate Health",
     description:
-      "Private consultations for vaginal dryness and other intimate health concerns.",
+      "Consultations for vaginal dryness and other intimate health concerns, with treatment options discussed according to clinical suitability.",
     href: "/birmingham/sexual-rejuvenation",
+    icon: FaVenusMars,
+    iconStyle: "bg-rose-50 text-rose-600",
   },
   {
     title: "Hair Restoration",
     description:
-      "Hair and scalp assessment with discussion of suitable injection-based options.",
+      "Individual hair-loss and scalp assessment, with PRP and selected scalp-injection options discussed where appropriate.",
     href: "/birmingham/hair-restoration",
+    icon: FaSyringe,
+    iconStyle: "bg-teal-50 text-teal-700",
   },
   {
     title: "Joint Injections",
     description:
-      "Assessment of joint concerns and clinically appropriate injection options.",
+      "Assessment and selected injection options for joint pain, including PRP or corticosteroid injections when clinically appropriate.",
     href: "/birmingham/joint-injections",
+    icon: FaRunning,
+    iconStyle: "bg-indigo-50 text-indigo-600",
   },
   {
     title: "Facial Aesthetics",
     description:
-      "Individualised facial aesthetics consultations and skin treatment options.",
+      "Personalised facial aesthetics consultations, including skin boosters, polynucleotides and selected regenerative treatments.",
     href: "/birmingham/facial-aesthetics",
+    icon: FaSmile,
+    iconStyle: "bg-amber-50 text-amber-700",
   },
 ];
 
 export default function BirminghamServiceOverview() {
   return (
     <div className="w-full font-inter">
-      {/* Five image-led featured treatments. No Framer Motion or external scripts. */}
+      {/* Featured treatments: large image-led cards on brand navy */}
       <section
         aria-labelledby="birmingham-featured-services-heading"
-        className="bg-[#0A1128] py-16 text-white md:py-20"
+        className="relative isolate overflow-hidden bg-[#0A1128] py-20 text-white md:py-24"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-indigo-200">
-              Birmingham · Edgbaston
-            </p>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-32 -top-36 h-[28rem] w-[28rem] rounded-full bg-[#4041d1]/20 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-48 -left-32 h-[26rem] w-[26rem] rounded-full bg-blue-700/10 blur-3xl"
+        />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto mb-12 max-w-3xl text-center md:mb-16"
+          >
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-300/25 bg-indigo-400/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-200">
+              <FaMapMarkerAlt aria-hidden="true" /> Birmingham · Edgbaston
+            </span>
             <h2
               id="birmingham-featured-services-heading"
-              className="font-raleway text-3xl font-bold tracking-tight md:text-4xl"
+              className="mb-5 font-raleway text-3xl font-bold tracking-tight text-white md:text-5xl"
             >
               Featured Treatments in Birmingham
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-200 md:text-base">
-              Private, doctor-led consultations and carefully planned treatment
-              options for men’s intimate health.
+            <p className="text-base leading-relaxed text-slate-200 md:text-lg">
+              Private, discreet, doctor-led consultations and treatment options,
+              with individual assessment, careful planning and personalised care.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Three equally sized cards in the first desktop row; two centred below. */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-6">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {featuredTreatments.map((treatment, index) => (
-              <article
+              <motion.article
                 key={treatment.title}
-                className={`min-w-0 xl:col-span-2 ${
-                  index === 3 ? "xl:col-start-2" : ""
-                } ${index === 4 ? "xl:col-start-4" : ""}`}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                whileHover={{ y: -5 }}
+                className="h-full overflow-hidden rounded-[2rem] border border-white/10 bg-white text-slate-900 shadow-lg shadow-black/15 transition-shadow duration-300 hover:shadow-2xl hover:shadow-black/30"
               >
-                {/* One link for the whole card: image, description and CTA. */}
                 <Link
                   href={treatment.href}
-                  prefetch={false}
-                  className="group flex h-[390px] flex-col overflow-hidden rounded-3xl bg-white text-slate-900 shadow-sm transition-colors duration-200 hover:bg-slate-50 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-indigo-300 sm:h-[410px]"
+                  className="group flex h-full flex-col focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1]"
                 >
-                  {/* Image occupies approximately the upper two-thirds. */}
-                  <div className="relative h-[245px] w-full shrink-0 overflow-hidden bg-gradient-to-br from-[#263D67] via-[#172A50] to-[#0A1128] sm:h-[260px]">
-                    {/* Neat fallback if a new image has not yet been uploaded. */}
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 flex items-center justify-center px-4 text-center text-xs font-semibold uppercase tracking-widest text-white/60"
-                    >
-                      Healing PRP Clinics
-                    </div>
+                  {/* Upper ~2/3: full-bleed treatment image */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
                     <Image
                       src={treatment.image}
                       alt={treatment.imageAlt}
                       fill
-                      sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
-                      quality={65}
+                      sizes="(max-width: 1023px) 100vw, 50vw"
+                      quality={75}
                       loading="lazy"
-                      className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.025]"
-                      onError={(event) => {
-                        // Avoid the browser's broken-image icon in the preview.
-                        event.currentTarget.style.display = "none";
-                      }}
+                      className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
                     />
                   </div>
 
-                  <div className="flex min-h-0 flex-1 flex-col px-5 py-4 sm:px-6 sm:py-5">
-                    <h3 className="font-raleway text-xl font-bold leading-snug text-[#0A1128]">
-                      {treatment.title}
-                    </h3>
-                    <p className="mt-2 line-clamp-2 text-sm leading-5 text-slate-600">
-                      {treatment.description}
-                    </p>
-                    <span className="mt-auto inline-flex items-center gap-2 pt-3 text-sm font-bold text-[#4041d1] group-hover:text-[#2a2bb8]">
-                      Explore treatment <span aria-hidden="true">→</span>
-                    </span>
+                  {/* Lower ~1/3: title, description, and single CTA cue */}
+                  <div className="flex flex-1 flex-col justify-between p-6 md:p-8">
+                    <div>
+                      <h3 className="mb-3 font-raleway text-2xl font-bold text-slate-900 transition-colors group-hover:text-[#4041d1]">
+                        {treatment.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-slate-600 md:text-base">
+                        {treatment.description}
+                      </p>
+                    </div>
+
+                    <div className="mt-6">
+                      <span className="inline-flex items-center gap-2 rounded-xl bg-[#4041d1] px-5 py-3 text-sm font-bold text-white transition-colors group-hover:bg-[#2a2bb8]">
+                        Explore treatment
+                        <FaArrowRight
+                          aria-hidden="true"
+                          className="text-xs transition-transform duration-300 group-hover:translate-x-1"
+                        />
+                      </span>
+                    </div>
                   </div>
                 </Link>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Keep other services compact, with no icons or duplicate links. */}
+      {/* Supporting treatments: single link per card */}
       <section
         aria-labelledby="birmingham-additional-services-heading"
         className="bg-white py-16 md:py-20"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-10 max-w-3xl text-center">
+          <div className="mb-10 text-center md:mb-12">
             <h2
               id="birmingham-additional-services-heading"
-              className="font-raleway text-2xl font-bold text-slate-900 md:text-3xl"
+              className="mb-3 font-raleway text-2xl font-bold text-slate-900 md:text-3xl"
             >
               More Services at Our Birmingham Clinic
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 md:text-base">
-              Individual consultations across women's intimate health, hair,
-              joint and facial treatments.
+            <p className="mx-auto max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
+              Our broader treatment range includes women’s intimate health, hair,
+              joints and facial aesthetics.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-            {additionalTreatments.map((treatment) => (
-              <article key={treatment.title}>
-                <Link
-                  href={treatment.href}
-                  prefetch={false}
-                  className="group flex h-full min-h-[190px] flex-col rounded-2xl border border-slate-200 bg-slate-50 px-6 py-6 transition-colors duration-200 hover:border-indigo-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1]"
+            {additionalTreatments.map((treatment, index) => {
+              const Icon = treatment.icon;
+              return (
+                <motion.article
+                  key={treatment.title}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.45, delay: index * 0.06 }}
+                  whileHover={{ y: -4 }}
+                  className="h-full"
                 >
-                  <h3 className="font-raleway text-lg font-bold text-[#0A1128]">
-                    {treatment.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
-                    {treatment.description}
-                  </p>
-                  <span className="mt-5 text-sm font-bold text-[#4041d1] group-hover:text-[#2a2bb8]">
-                    View treatment <span aria-hidden="true">→</span>
-                  </span>
-                </Link>
-              </article>
-            ))}
+                  <Link
+                    href={treatment.href}
+                    className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50/50 p-6 shadow-sm transition-all duration-300 hover:border-blue-200 hover:bg-white hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1]"
+                  >
+                    <span
+                      className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl text-xl ${treatment.iconStyle}`}
+                    >
+                      <Icon aria-hidden="true" />
+                    </span>
+                    <h3 className="mb-3 font-raleway text-xl font-bold text-slate-900 transition-colors group-hover:text-[#4041d1]">
+                      {treatment.title}
+                    </h3>
+                    <p className="mb-6 flex-grow text-sm leading-6 text-slate-600">
+                      {treatment.description}
+                    </p>
+                    <span className="inline-flex w-fit items-center gap-2 text-sm font-bold text-[#4041d1] group-hover:text-[#2a2bb8]">
+                      View treatment
+                      <FaArrowRight
+                        aria-hidden="true"
+                        className="text-xs transition-transform duration-300 group-hover:translate-x-1"
+                      />
+                    </span>
+                  </Link>
+                </motion.article>
+              );
+            })}
           </div>
 
-          <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-5 text-slate-500">
-            All treatments require individual consultation and suitability
-            assessment. Risks, alternatives and evidence limitations are discussed;
-            results vary.
+          <p className="mx-auto mt-9 max-w-3xl text-center text-xs leading-relaxed text-slate-500">
+            All treatments are subject to an individual consultation and suitability
+            assessment. Benefits, risks, alternatives and evidence limitations are
+            discussed before treatment; results vary.
           </p>
         </div>
       </section>
