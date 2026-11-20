@@ -59,7 +59,7 @@ const featuredTreatments: FeaturedTreatment[] = [
   },
   {
     title: "P-Shot (PRP Treatment)",
-    image: "PSHOT.webp",
+    image: "PShot.webp",
     imageAlt: "Platelet-rich plasma P-Shot treatment in Birmingham",
     description:
       "Doctor-led platelet-rich plasma (PRP) treatment prepared from your own blood, discussed following individual clinical assessment and suitability review.",
