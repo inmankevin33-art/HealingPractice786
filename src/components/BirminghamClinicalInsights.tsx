@@ -1,184 +1,131 @@
-"use client";
-
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { FaSyringe, FaSync, FaGem, FaStar, FaCheckCircle, FaArrowRight } from "react-icons/fa";
 
-export default function PRPExplanationSection() {
-  // DYNAMIC ROUTING LOGIC
-  const pathname = usePathname();
-  const isBirmingham = pathname?.startsWith("/birmingham");
-  const prefix = isBirmingham ? "/birmingham" : "";
+type ClinicalArticle = {
+  category: string;
+  title: string;
+  description: string;
+  href: string;
+};
 
-  const [activeStep, setActiveStep] = useState(0);
+// Birmingham-only, curated articles. Use confirmed published URLs.
+// Update this list when you want to feature a different article.
+const articles: ClinicalArticle[] = [
+  {
+    category: "Penile filler · Clinical observations",
+    title: "Will Penile Filler Look and Feel Natural?",
+    description:
+      "Dr Abdi explains how anatomy, HA filler selection, volume planning and aftercare can influence appearance and feel, drawing on clinical observations.",
+    href: "/blog/does-penile-filler-feel-natural-birmingham",
+  },
+  {
+    category: "Erectile dysfunction · Medical assessment",
+    title: "Diabetes and Erectile Dysfunction in Birmingham",
+    description:
+      "How diabetes can affect erections, why assessment matters and which treatment options may be appropriate.",
+    href: "/blog/diabetes-erectile-dysfunction-birmingham",
+  },
+  {
+    category: "Peyronie's disease · Emerging evidence",
+    title: "Hyaluronic Acid Injections for Peyronie's Disease",
+    description:
+      "A balanced look at developing research, treatment limitations and early observations from clinical practice.",
+    href: "/blog/hyaluronic-acid-injections-peyronies-disease",
+  },
+  {
+    category: "Penile filler · Patient education",
+    title: "Penile Filler Before & After: What to Expect",
+    description:
+      "Understand realistic girth-enhancement expectations, what photographs can show and why technique and aftercare matter.",
+    href: "/blog/penile-filler-before-after-birmingham",
+  },
+  {
+    category: "P-Shot · Clinical insights",
+    title: "P-Shot for Erectile Dysfunction: Can It Help?",
+    description:
+      "An explanation of PRP, clinical suitability, patient-reported experiences and the limits of current evidence.",
+    href: "/blog/p-shot-erectile-dysfunction-birmingham",
+  },
+  {
+    category: "Women's intimate health · Treatment options",
+    title: "Vaginal Dryness: Understanding Treatment Options",
+    description:
+      "Established and emerging options for vaginal dryness, including local oestrogen, hyaluronic acid and the O-Shot.",
+    href: "/blog/vaginal-dryness-treatment-options",
+  },
+];
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.05, delayChildren: 0.1 },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4, ease: "easeOut" },
-    },
-  };
-
-  const steps = [
-    { number: 1, icon: FaSyringe, title: "Blood Collection", description: "A small amount of blood is taken from your arm, similar to a standard test." },
-    { number: 2, icon: FaSync, title: "Centrifuge Process", description: "It's spun in a medical centrifuge to isolate the concentrated PRP layer." },
-    { number: 3, icon: FaGem, title: "PRP Concentration", description: "Pure Platelet-Rich Plasma—dense with growth factors—is carefully collected." },
-    { number: 4, icon: FaStar, title: "Injection & Healing", description: "PRP is injected into the target area to stimulate natural repair and regeneration." },
-  ];
-
-  // REORDERED & RENAMED APPLICATION CARDS
-  const applications = [
-    { title: "Men's Health", desc: "Supports tissue health and optimized blood flow.", href: `${prefix}/erectile-dysfunction` },
-    { title: "Women's Health", desc: "Enhances sensitivity and natural tissue regeneration.", href: `${prefix}/o-shot` },
-    { title: "Joint Injections", desc: "Aids recovery and reduces joint discomfort.", href: `${prefix}/joint-injections` },
-    { title: "Hair Restoration", desc: "Supports scalp health and follicle density.", href: `${prefix}/hair-restoration` },
-  ];
-
+export default function BirminghamClinicalInsights() {
   return (
-    <section 
-      id="prp-explanation" 
-      className="relative py-20 lg:py-28 bg-[#0A1128] overflow-hidden font-inter"
-      style={{ backgroundImage: 'radial-gradient(circle at 10% 10%, rgba(64, 65, 209, 0.15) 0%, transparent 40%)' }}
+    <section
+      id="clinical-insights"
+      aria-labelledby="clinical-insights-heading"
+      className="relative overflow-hidden bg-[#0A1128] py-16 font-inter md:py-24"
     >
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-12"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-        >
-          <motion.div
-            className="inline-block px-4 py-1.5 bg-[#4041d1]/20 text-[#8ea3ff] rounded-full text-[10px] font-bold uppercase tracking-[0.2em] mb-6 border border-[#4041d1]/30 font-raleway"
-            variants={itemVariants}
+      {/* Matches the original premium PRP section without animations or extra JS. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 10% 8%, rgba(64,65,209,0.22), transparent 42%), radial-gradient(circle at 90% 90%, rgba(64,65,209,0.1), transparent 38%)",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <span className="inline-flex rounded-full border border-[#4041d1]/35 bg-[#4041d1]/20 px-4 py-2 font-raleway text-[11px] font-bold uppercase tracking-[0.18em] text-[#AAB9FF]">
+            Doctor-led insights · Research · Patient education
+          </span>
+          <h2
+            id="clinical-insights-heading"
+            className="mt-5 font-raleway text-3xl font-bold tracking-tight text-white md:text-4xl"
           >
-            Scientific Excellence
-          </motion.div>
+            Clinical Insights &amp; Evidence
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
+            Explore practical treatment guidance, published evidence and clinical
+            observations from Dr Syed Abdi. Understand the questions that matter
+            before deciding whether a treatment may be suitable for you.
+          </p>
+        </div>
 
-          <motion.h2
-            className="text-3xl md:text-4xl font-raleway font-bold text-white leading-tight mb-6 tracking-tight"
-            variants={itemVariants}
-          >
-            What is Platelet-Rich Plasma?
-          </motion.h2>
-
-          <div className="max-w-4xl mx-auto space-y-8">
-            <motion.p
-              className="text-base text-slate-200 leading-relaxed font-medium font-inter"
-              variants={itemVariants}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {articles.map((article) => (
+            <article
+              key={article.href}
+              className="group flex h-full flex-col rounded-3xl border border-white/15 bg-white/[0.06] p-6 transition-colors duration-200 hover:border-[#889BFF]/50 hover:bg-white/[0.09]"
             >
-              Platelet-Rich Plasma (PRP) is prepared using a small sample of your own blood, 
-              carefully processed to concentrate platelets, growth factors, and healing proteins. 
-              These components play a key role in supporting tissue repair and collagen production.
-            </motion.p>
-
-            {/* INTERACTIVE APPLICATION CARDS */}
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left"
-              variants={itemVariants}
-            >
-              {applications.map((app, i) => (
-                <Link href={app.href} key={i}>
-                  <div className="group flex items-center justify-between p-5 bg-white/[0.03] rounded-2xl border border-white/10 hover:border-[#4041d1]/60 hover:bg-[#4041d1]/10 hover:shadow-[0_0_20px_rgba(64,65,209,0.15)] transition-all duration-300 cursor-pointer overflow-hidden h-full">
-                    <div className="flex items-start gap-3">
-                      <FaCheckCircle className="text-[#4041d1] mt-1 shrink-0 w-3.5 h-3.5" />
-                      <div>
-                        <span className="text-white font-bold block text-sm font-raleway group-hover:text-[#8ea3ff] transition-colors">{app.title}</span>
-                        <span className="text-slate-400 text-xs font-inter">{app.desc}</span>
-                      </div>
-                    </div>
-                    {/* Sliding Arrow for Interaction Cue */}
-                    <FaArrowRight className="text-[#8ea3ff] w-4 h-4 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shrink-0 ml-4" />
-                  </div>
-                </Link>
-              ))}
-            </motion.div>
-
-            <motion.p
-              className="text-xs text-slate-400 italic font-inter"
-              variants={itemVariants}
-            >
-              Because PRP is derived from your own blood, it is biocompatible and tailored to your body’s natural healing processes.
-            </motion.p>
-          </div>
-        </motion.div>
-
-        {/* Process Steps */}
-        <div className="max-w-6xl mx-auto mt-16 relative">
-          <div className="text-center mb-10">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeStep}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -5 }}
-                transition={{ duration: 0.2 }}
-                className="inline-flex items-center gap-3 px-6 py-3 bg-[#4041d1]/10 border border-[#4041d1]/40 rounded-full shadow-[0_0_15px_rgba(64,65,209,0.25)] backdrop-blur-md"
+              <p className="font-raleway text-[11px] font-bold uppercase tracking-[0.15em] text-[#AAB9FF]">
+                {article.category}
+              </p>
+              <h3 className="mt-4 font-raleway text-xl font-bold leading-snug text-white">
+                {article.title}
+              </h3>
+              <p className="mb-6 mt-3 flex-1 text-sm leading-relaxed text-slate-300">
+                {article.description}
+              </p>
+              <Link
+                href={article.href}
+                className="inline-flex w-fit items-center gap-2 rounded-md font-inter text-sm font-bold text-[#BAC7FF] underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#BAC7FF]"
+                aria-label={`Read article: ${article.title}`}
               >
-                <span className="flex h-2 w-2 rounded-full bg-[#4041d1] animate-pulse shadow-[0_0_8px_#4041d1]" />
-                <span className="text-xs font-bold text-white uppercase tracking-[0.25em] font-raleway">
-                  Phase 0{steps[activeStep].number}: {steps[activeStep].title}
-                </span>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                Read article <span aria-hidden="true">→</span>
+              </Link>
+            </article>
+          ))}
+        </div>
 
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+        <div className="mt-10 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 text-center md:flex-row md:text-left">
+          <p className="max-w-2xl text-xs leading-relaxed text-slate-400">
+            Clinical observations are not the same as controlled research.
+            Evidence, suitability and outcomes vary by treatment and individual.
+          </p>
+          <Link
+            href="/blog"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-[#8F9EFF]/40 bg-[#4041d1] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#3435bb] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
-            <div className="hidden lg:block absolute top-[100px] left-0 w-full h-[1px] border-t border-dashed border-white/10 -z-10" />
-
-            {steps.map((step, index) => {
-              const IconComponent = step.icon;
-              const isActive = activeStep === index;
-
-              return (
-                <motion.div
-                  key={index}
-                  className="relative group will-change-transform transform-gpu"
-                  onClick={() => setActiveStep(index)}
-                  variants={itemVariants}
-                >
-                  <div
-                    className={`p-6 rounded-[2rem] border transition-all duration-300 cursor-pointer h-full flex flex-col ${
-                      isActive
-                        ? "border-[#4041d1] bg-white shadow-xl shadow-[#4041d1]/20 scale-105 z-20"
-                        : "border-white/10 bg-white/[0.04] opacity-70 hover:opacity-100"
-                    }`}
-                  >
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 ${
-                      isActive ? "bg-[#4041d1] text-white shadow-lg" : "bg-white/10 text-slate-300 group-hover:text-[#4041d1]"
-                    }`}>
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-
-                    <h3 className={`font-raleway font-bold mb-2 text-base transition-colors ${isActive ? "text-slate-900" : "text-white"}`}>
-                      {step.title}
-                    </h3>
-                    <p className={`text-xs leading-relaxed font-inter transition-colors ${isActive ? "text-slate-600" : "text-slate-400"}`}>
-                      {step.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
+            View all clinical articles <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>
