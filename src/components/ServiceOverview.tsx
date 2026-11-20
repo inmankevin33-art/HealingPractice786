@@ -59,7 +59,7 @@ const featuredTreatments: FeaturedTreatment[] = [
   },
   {
     title: "P-Shot (PRP Treatment)",
-    image: "/images/treatments/p-shot-thumb.webp",
+    image: "PSHOT.webp",
     imageAlt: "Platelet-rich plasma P-Shot treatment in Birmingham",
     description:
       "Doctor-led platelet-rich plasma (PRP) treatment prepared from your own blood, discussed following individual clinical assessment and suitability review.",
@@ -67,7 +67,7 @@ const featuredTreatments: FeaturedTreatment[] = [
   },
   {
     title: "Shockwave Therapy",
-    image: "/images/treatments/shockwave-thumb.webp",
+    image: "Shockwave.webp",
     imageAlt: "Low-intensity shockwave therapy for erectile dysfunction in Birmingham",
     description:
       "Non-invasive acoustic wave therapy used within selected erectile dysfunction and Peyronie's disease pathways to support vascular health.",
