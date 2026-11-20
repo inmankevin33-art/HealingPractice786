@@ -141,7 +141,7 @@ export default function BirminghamServiceOverview() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2 lg:gap-7">
             {featuredTreatments.map((treatment, index) => (
               <motion.article
                 key={treatment.title}
@@ -150,7 +150,7 @@ export default function BirminghamServiceOverview() {
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 whileHover={{ y: -5 }}
-                className="h-full overflow-hidden rounded-[2rem] border border-white/10 bg-white text-slate-900 shadow-lg shadow-black/15 transition-shadow duration-300 hover:shadow-2xl hover:shadow-black/30"
+                className="h-full overflow-hidden rounded-3xl border border-white/10 bg-white text-slate-900 shadow-lg shadow-black/15 transition-shadow duration-300 hover:shadow-2xl hover:shadow-black/30"
               >
                 <Link
                   href={treatment.href}
@@ -162,26 +162,26 @@ export default function BirminghamServiceOverview() {
                       src={treatment.image}
                       alt={treatment.imageAlt}
                       fill
-                      sizes="(max-width: 1023px) 100vw, 50vw"
+                      sizes="(max-width: 767px) 100vw, 440px"
                       quality={75}
                       loading="lazy"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
+                      className="object-cover object-center transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
                     />
                   </div>
 
-                  {/* Lower ~1/3: title, description, and single CTA cue */}
-                  <div className="flex flex-1 flex-col justify-between p-6 md:p-8">
+                  {/* Lower ~1/3: compact title, description, and single CTA cue */}
+                  <div className="flex flex-1 flex-col justify-between p-6">
                     <div>
-                      <h3 className="mb-3 font-raleway text-2xl font-bold text-slate-900 transition-colors group-hover:text-[#4041d1]">
+                      <h3 className="mb-2 font-raleway text-xl font-bold text-slate-900 transition-colors group-hover:text-[#4041d1] md:text-2xl">
                         {treatment.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-slate-600 md:text-base">
+                      <p className="text-sm leading-relaxed text-slate-600">
                         {treatment.description}
                       </p>
                     </div>
 
-                    <div className="mt-6">
-                      <span className="inline-flex items-center gap-2 rounded-xl bg-[#4041d1] px-5 py-3 text-sm font-bold text-white transition-colors group-hover:bg-[#2a2bb8]">
+                    <div className="mt-5">
+                      <span className="inline-flex items-center gap-2 rounded-xl bg-[#4041d1] px-4 py-2.5 text-sm font-bold text-white transition-colors group-hover:bg-[#2a2bb8]">
                         Explore treatment
                         <FaArrowRight
                           aria-hidden="true"
@@ -193,7 +193,7 @@ export default function BirminghamServiceOverview() {
                 </Link>
               </motion.article>
             ))}
-          </div>
+          </div>         
         </div>
       </section>
 
