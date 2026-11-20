@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import {
@@ -30,11 +31,19 @@ type Treatment = {
   links: TreatmentLink[];
 };
 
+type FeaturedTreatment = Treatment & {
+  image: string;
+  imageAlt: string;
+};
+
 // All URLs are explicit because this component is exclusive to Birmingham.
-const featuredTreatments: Treatment[] = [
+// Images live in public/images/treatments/ and are lazy-loaded below the hero.
+const featuredTreatments: FeaturedTreatment[] = [
   {
     title: "Penile Filler",
     eyebrow: "Girth enhancement",
+    image: "/images/treatments/penile-filler-thumb.webp",
+    imageAlt: "Illustration representing hyaluronic acid filler treatment",
     description:
       "Doctor-led hyaluronic acid (HA) penile filler with individual assessment, proportionate volume planning, careful placement and aftercare.",
     href: "/birmingham/penis-enlargement",
@@ -54,6 +63,8 @@ const featuredTreatments: Treatment[] = [
   {
     title: "Erectile Dysfunction",
     eyebrow: "Men's intimate health",
+    image: "/images/treatments/ed-thumb.webp",
+    imageAlt: "Medical illustration representing erectile function and circulation",
     description:
       "Private medical assessment of erection difficulties, including possible contributing factors, medication options and other appropriate treatments.",
     href: "/birmingham/erectile-dysfunction",
@@ -70,6 +81,8 @@ const featuredTreatments: Treatment[] = [
   {
     title: "Peyronie's Disease",
     eyebrow: "Curvature & plaque assessment",
+    image: "/images/treatments/peyronies-thumb.webp",
+    imageAlt: "Illustration representing clinical assessment of Peyronie's disease",
     description:
       "Individual assessment of penile curvature, plaque and erectile function, including discussion of HA plaque injections, PRP and shockwave where appropriate, with evidence limitations explained.",
     href: "/birmingham/peyronies-disease",
@@ -85,6 +98,8 @@ const featuredTreatments: Treatment[] = [
   {
     title: "P-Shot & Shockwave",
     eyebrow: "Selected ED treatment options",
+    image: "/images/treatments/p-shot-shockwave-thumb.webp",
+    imageAlt: "Illustration of platelet-rich plasma preparation for P-Shot treatment",
     description:
       "Consultation-led discussion of PRP injections and low-intensity shockwave therapy, including suitability, potential risks and the limits of current evidence.",
     href: "/birmingham/p-shot",
@@ -199,15 +214,30 @@ export default function BirminghamServiceOverview() {
                     : "border-slate-200 bg-white"
                 }`}
               >
-                <div className="mb-6 flex items-center justify-between gap-3">
-                  <span
-                    className={`flex h-14 w-14 items-center justify-center rounded-2xl text-2xl ${treatment.iconStyle}`}
-                  >
-                    <Icon aria-hidden="true" />
-                  </span>
-                  <span className="text-right text-[11px] font-bold uppercase tracking-widest text-slate-400">
-                    {treatment.eyebrow}
-                  </span>
+                {/* Compact treatment thumbnail: lazy-loaded and optimised by Next.js */}
+                <div className="mb-6 flex items-start justify-between gap-4">
+                  <div className="flex min-w-0 flex-col items-start gap-3">
+                    <span
+                      className={`flex h-14 w-14 items-center justify-center rounded-2xl text-2xl ${treatment.iconStyle}`}
+                    >
+                      <Icon aria-hidden="true" />
+                    </span>
+                    <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                      {treatment.eyebrow}
+                    </span>
+                  </div>
+                  <div className="h-24 w-36 shrink-0 overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-100 shadow-sm sm:h-[107px] sm:w-40">
+                    <Image
+                      src={treatment.image}
+                      alt={treatment.imageAlt}
+                      width={480}
+                      height={320}
+                      sizes="(max-width: 639px) 144px, 160px"
+                      quality={70}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    />
+                  </div>
                 </div>
 
                 <h3 className="mb-3 font-raleway text-2xl font-bold text-slate-900">
