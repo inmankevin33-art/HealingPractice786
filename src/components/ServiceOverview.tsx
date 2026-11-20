@@ -165,185 +165,203 @@ const additionalTreatments: Treatment[] = [
 
 export default function BirminghamServiceOverview() {
   return (
-    <section
-      aria-labelledby="birmingham-services-heading"
-      className="relative overflow-hidden bg-white py-20 md:py-24 font-inter"
-    >
-      <div className="pointer-events-none absolute -top-24 right-0 h-80 w-80 rounded-full bg-blue-50/60 blur-3xl" />
+    <div className="w-full font-inter">
+      {/* Featured treatments: premium navy section, same brand colour as PRP area */}
+      <section
+        aria-labelledby="birmingham-featured-services-heading"
+        className="relative isolate overflow-hidden bg-[#0A1128] py-20 text-white md:py-24"
+      >
+        {/* Decorative background only: no extra images, downloads or JavaScript */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-32 -top-36 h-[28rem] w-[28rem] rounded-full bg-[#4041d1]/20 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-48 -left-32 h-[26rem] w-[26rem] rounded-full bg-blue-700/10 blur-3xl"
+        />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto mb-12 max-w-3xl text-center md:mb-16"
-        >
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#4041d1]">
-            <FaMapMarkerAlt aria-hidden="true" /> Birmingham · Edgbaston
-          </span>
-          <h2
-            id="birmingham-services-heading"
-            className="mb-5 font-raleway text-3xl font-bold tracking-tight text-slate-900 md:text-5xl"
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto mb-12 max-w-3xl text-center md:mb-16"
           >
-            Doctor-Led Treatments in Birmingham
-          </h2>
-          <p className="text-base leading-relaxed text-slate-600 md:text-lg">
-            Private, discreet consultations for men’s and women’s intimate health,
-            alongside selected regenerative, joint and aesthetic treatments.
-            Explore the options below to understand suitability, evidence and
-            what to expect.
-          </p>
-        </motion.div>
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-300/25 bg-indigo-400/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-blue-200">
+              <FaMapMarkerAlt aria-hidden="true" /> Birmingham · Edgbaston
+            </span>
+            <h2
+              id="birmingham-featured-services-heading"
+              className="mb-5 font-raleway text-3xl font-bold tracking-tight text-white md:text-5xl"
+            >
+              Featured Treatments in Birmingham
+            </h2>
+            <p className="text-base leading-relaxed text-slate-200 md:text-lg">
+              Private, discreet, doctor-led consultations and treatment options,
+              with individual assessment, careful planning and personalised care.
+            </p>
+          </motion.div>
 
-        {/* Featured services: the main treatment pathways */}
-        <div className="mb-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {featuredTreatments.map((treatment, index) => {
-            const Icon = treatment.icon;
-            return (
-              <motion.article
-                key={treatment.title}
-                initial={{ opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                whileHover={{ y: -5 }}
-                className={`group flex h-full flex-col rounded-[2rem] border p-7 shadow-sm transition-shadow duration-300 hover:shadow-xl md:p-9 ${
-                  index === 0
-                    ? "border-blue-200 bg-gradient-to-br from-blue-50 via-white to-white"
-                    : "border-slate-200 bg-white"
-                }`}
-              >
-                {/* Compact treatment thumbnail: lazy-loaded and optimised by Next.js */}
-                <div className="mb-6 flex items-start justify-between gap-4">
-                  <div className="flex min-w-0 flex-col items-start gap-3">
-                    <span
-                      className={`flex h-14 w-14 items-center justify-center rounded-2xl text-2xl ${treatment.iconStyle}`}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {featuredTreatments.map((treatment, index) => {
+              const Icon = treatment.icon;
+              return (
+                <motion.article
+                  key={treatment.title}
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  whileHover={{ y: -5 }}
+                  className={`group flex h-full flex-col rounded-[2rem] border p-7 text-slate-900 shadow-lg shadow-black/10 transition-shadow duration-300 hover:shadow-xl hover:shadow-black/20 md:p-9 ${
+                    index === 0
+                      ? "border-blue-200 bg-gradient-to-br from-blue-50 via-white to-white"
+                      : "border-white/80 bg-white"
+                  }`}
+                >
+                  {/* Compact thumbnail, lazy-loaded and delivered responsively by Next.js */}
+                  <div className="mb-6 flex items-start justify-between gap-4">
+                    <div className="flex min-w-0 flex-col items-start gap-3">
+                      <span
+                        className={`flex h-14 w-14 items-center justify-center rounded-2xl text-2xl ${treatment.iconStyle}`}
+                      >
+                        <Icon aria-hidden="true" />
+                      </span>
+                      <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                        {treatment.eyebrow}
+                      </span>
+                    </div>
+                    <div className="h-24 w-36 shrink-0 overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-100 shadow-sm sm:h-[107px] sm:w-40">
+                      <Image
+                        src={treatment.image}
+                        alt={treatment.imageAlt}
+                        width={480}
+                        height={320}
+                        sizes="(max-width: 639px) 144px, 160px"
+                        quality={70}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transform-none"
+                      />
+                    </div>
+                  </div>
+
+                  <h3 className="mb-3 font-raleway text-2xl font-bold text-slate-900">
+                    <Link
+                      href={treatment.href}
+                      className="transition-colors hover:text-[#4041d1] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4041d1]"
                     >
-                      <Icon aria-hidden="true" />
-                    </span>
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">
-                      {treatment.eyebrow}
-                    </span>
-                  </div>
-                  <div className="h-24 w-36 shrink-0 overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-100 shadow-sm sm:h-[107px] sm:w-40">
-                    <Image
-                      src={treatment.image}
-                      alt={treatment.imageAlt}
-                      width={480}
-                      height={320}
-                      sizes="(max-width: 639px) 144px, 160px"
-                      quality={70}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                </div>
+                      {treatment.title}
+                    </Link>
+                  </h3>
+                  <p className="mb-6 flex-grow text-sm leading-7 text-slate-600 md:text-base">
+                    {treatment.description}
+                  </p>
 
-                <h3 className="mb-3 font-raleway text-2xl font-bold text-slate-900">
+                  <div className="mb-6 flex flex-wrap gap-2">
+                    {treatment.links.map((link) => (
+                      <Link
+                        key={`${treatment.title}-${link.href}`}
+                        href={link.href}
+                        className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-xs font-semibold text-[#4041d1] transition-colors hover:border-blue-200 hover:bg-blue-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4041d1]"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+
                   <Link
                     href={treatment.href}
-                    className="transition-colors hover:text-[#4041d1] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4041d1]"
+                    className="inline-flex w-fit items-center gap-2 rounded-xl bg-[#4041d1] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#2a2bb8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1]"
                   >
-                    {treatment.title}
+                    Explore treatment
+                    <FaArrowRight
+                      aria-hidden="true"
+                      className="text-xs transition-transform group-hover:translate-x-1"
+                    />
                   </Link>
-                </h3>
-                <p className="mb-6 flex-grow text-sm leading-7 text-slate-600 md:text-base">
-                  {treatment.description}
-                </p>
-
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {treatment.links.map((link) => (
-                    <Link
-                      key={`${treatment.title}-${link.href}`}
-                      href={link.href}
-                      className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-xs font-semibold text-[#4041d1] transition-colors hover:border-blue-200 hover:bg-blue-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4041d1]"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-
-                <Link
-                  href={treatment.href}
-                  className="inline-flex w-fit items-center gap-2 rounded-xl bg-[#4041d1] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#2a2bb8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1]"
-                >
-                  Explore treatment
-                  <FaArrowRight
-                    aria-hidden="true"
-                    className="text-xs transition-transform group-hover:translate-x-1"
-                  />
-                </Link>
-              </motion.article>
-            );
-          })}
+                </motion.article>
+              );
+            })}
+          </div>
         </div>
+      </section>
 
-        {/* Supporting services: clearly visible without competing with the featured cards */}
-        <div className="mb-8 text-center">
-          <h2 className="mb-3 font-raleway text-2xl font-bold text-slate-900 md:text-3xl">
-            More Services at Our Birmingham Clinic
-          </h2>
-          <p className="mx-auto max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
-            Our broader treatment range includes women’s intimate health, hair,
-            joints and facial aesthetics.
+      {/* Supporting treatments: light section for clear contrast and breathing room */}
+      <section
+        aria-labelledby="birmingham-additional-services-heading"
+        className="bg-white py-16 md:py-20"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center md:mb-12">
+            <h2
+              id="birmingham-additional-services-heading"
+              className="mb-3 font-raleway text-2xl font-bold text-slate-900 md:text-3xl"
+            >
+              More Services at Our Birmingham Clinic
+            </h2>
+            <p className="mx-auto max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
+              Our broader treatment range includes women’s intimate health, hair,
+              joints and facial aesthetics.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {additionalTreatments.map((treatment, index) => {
+              const Icon = treatment.icon;
+              return (
+                <motion.article
+                  key={treatment.title}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.45, delay: index * 0.06 }}
+                  whileHover={{ y: -4 }}
+                  className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50/50 p-6 shadow-sm transition-all duration-300 hover:border-blue-200 hover:bg-white hover:shadow-lg"
+                >
+                  <span
+                    className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl text-xl ${treatment.iconStyle}`}
+                  >
+                    <Icon aria-hidden="true" />
+                  </span>
+                  <h3 className="mb-3 font-raleway text-xl font-bold text-slate-900">
+                    <Link href={treatment.href} className="hover:text-[#4041d1]">
+                      {treatment.title}
+                    </Link>
+                  </h3>
+                  <p className="mb-5 flex-grow text-sm leading-6 text-slate-600">
+                    {treatment.description}
+                  </p>
+                  <div className="mb-5 flex flex-wrap gap-x-3 gap-y-2">
+                    {treatment.links.map((link) => (
+                      <Link
+                        href={link.href}
+                        key={`${treatment.title}-${link.href}`}
+                        className="text-xs font-semibold text-[#4041d1] underline-offset-4 hover:underline"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                  <Link
+                    href={treatment.href}
+                    className="inline-flex w-fit items-center gap-2 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8]"
+                  >
+                    View treatment <FaArrowRight aria-hidden="true" className="text-xs" />
+                  </Link>
+                </motion.article>
+              );
+            })}
+          </div>
+
+          <p className="mx-auto mt-9 max-w-3xl text-center text-xs leading-relaxed text-slate-500">
+            All treatments are subject to an individual consultation and suitability
+            assessment. Benefits, risks, alternatives and evidence limitations are
+            discussed before treatment; results vary.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {additionalTreatments.map((treatment, index) => {
-            const Icon = treatment.icon;
-            return (
-              <motion.article
-                key={treatment.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.45, delay: index * 0.06 }}
-                whileHover={{ y: -4 }}
-                className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50/50 p-6 shadow-sm transition-all duration-300 hover:border-blue-200 hover:bg-white hover:shadow-lg"
-              >
-                <span
-                  className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl text-xl ${treatment.iconStyle}`}
-                >
-                  <Icon aria-hidden="true" />
-                </span>
-                <h3 className="mb-3 font-raleway text-xl font-bold text-slate-900">
-                  <Link href={treatment.href} className="hover:text-[#4041d1]">
-                    {treatment.title}
-                  </Link>
-                </h3>
-                <p className="mb-5 flex-grow text-sm leading-6 text-slate-600">
-                  {treatment.description}
-                </p>
-                <div className="mb-5 flex flex-wrap gap-x-3 gap-y-2">
-                  {treatment.links.map((link) => (
-                    <Link
-                      href={link.href}
-                      key={`${treatment.title}-${link.href}`}
-                      className="text-xs font-semibold text-[#4041d1] underline-offset-4 hover:underline"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-                <Link
-                  href={treatment.href}
-                  className="inline-flex w-fit items-center gap-2 text-sm font-bold text-[#4041d1] hover:text-[#2a2bb8]"
-                >
-                  View treatment <FaArrowRight aria-hidden="true" className="text-xs" />
-                </Link>
-              </motion.article>
-            );
-          })}
-        </div>
-
-        <p className="mx-auto mt-9 max-w-3xl text-center text-xs leading-relaxed text-slate-500">
-          All treatments are subject to an individual consultation and suitability
-          assessment. Benefits, risks, alternatives and evidence limitations are
-          discussed before treatment; results vary.
-        </p>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
