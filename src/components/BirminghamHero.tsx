@@ -1,224 +1,231 @@
 "use client";
 
 import { useState } from "react";
-import { motion, Variants } from "framer-motion";
-import Link from "next/link";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { 
-  FaEnvelope, 
-  FaMapMarkerAlt, 
-  FaGoogle, 
-  FaStar, 
-  FaLock
+import Link from "next/link";
+import {
+  FaArrowRight,
+  FaGoogle,
+  FaLock,
+  FaMapMarkerAlt,
+  FaUserMd,
 } from "react-icons/fa";
-import OnlineAssessmentModal from "./OnlineAssessmentModal"; 
+
+// The ED questionnaire is only downloaded if a visitor opens it.
+const OnlineAssessmentModal = dynamic(
+  () => import("./OnlineAssessmentModal"),
+  { ssr: false }
+);
+
+const treatmentLinks = [
+  { label: "Penile filler", href: "/birmingham/penis-enlargement" },
+  { label: "Erectile dysfunction", href: "/birmingham/erectile-dysfunction" },
+  { label: "Peyronie's disease", href: "/birmingham/peyronies-disease" },
+  { label: "P-Shot (PRP)", href: "/birmingham/p-shot" },
+  { label: "Women's intimate health", href: "/birmingham/o-shot" },
+] as const;
 
 export default function BirminghamHero() {
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false); 
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
-  const pathname = usePathname();
-  const isBirmingham = pathname?.startsWith("/birmingham");
-  const isHampstead = pathname?.startsWith("/hampstead");
-  
-  const prefix = isBirmingham ? "/birmingham" : isHampstead ? "/hampstead" : "";
-  
-  // --- DYNAMIC LOCATION TEXT ---
-  const locationSuffix = isBirmingham ? "in Birmingham" : isHampstead ? "in London" : "in St Albans";
-  
-  const locationBadgeText = isBirmingham 
-    ? "Birmingham • Edgbaston • Solihull • Midlands" 
-    : isHampstead 
-    ? "Hampstead • Belsize Park • North West London"
-    : "St Albans • Harpenden • Luton • London";
-
-  const handleAction = (e: React.MouseEvent) => {
-    e.preventDefault();
+  // Preserve the contact-drawer integration used by the existing Hero.
+  const handleConsultation = () => {
     window.dispatchEvent(new CustomEvent("open-contact-drawer"));
-    
-    const section = document.getElementById("contact-form-section");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+    document
+      .getElementById("contact-form-section")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
-  
-  const fadeUpVariants: Variants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, delay: i * 0.15, ease: "easeOut" },
-    }),
+
+  const scrollToReviews = () => {
+    document
+      .getElementById("reviews-section")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
-    <div className="relative w-full mt-0 pt-0 min-h-[100vh] md:min-h-[calc(100vh-4rem)] overflow-hidden flex flex-col items-center justify-end bg-[#0A1128]">
-      
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="/mobilehero.webp" 
-          alt="Healing-PRP Clinics Mobile" 
-          fill 
-          priority 
-          className="object-cover object-top sm:hidden" 
-        />
-        <Image 
-          src="/herobg.webp" 
-          alt="Healing-PRP Clinics" 
-          fill 
-          priority 
-          className="object-cover object-[center_15%] hidden sm:block" 
-        />
-        <div className="absolute inset-0 bg-black/60 z-10"></div>
-      </div>
+    <section
+      id="birmingham-hero"
+      aria-labelledby="birmingham-hero-heading"
+      className="relative isolate overflow-hidden bg-[#0A1128] font-inter text-white"
+    >
+      {/* Lightweight CSS background accents; no full-screen background image. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse at 16% 18%, rgba(64,65,209,0.20), transparent 44%), radial-gradient(ellipse at 90% 82%, rgba(35,89,160,0.12), transparent 42%)",
+        }}
+      />
 
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-48 md:pb-40">
-        
-        <motion.div 
-          custom={1} initial="hidden" animate="visible" variants={fadeUpVariants}
-          className="inline-block px-4 py-1.5 bg-[#4041d1] text-white rounded-full text-[10px] mb-6 font-bold uppercase tracking-[0.2em] font-inter"
-        >
-          <FaMapMarkerAlt className="inline-block mr-2 mb-0.5 text-white/70" />
-          {locationBadgeText}
-        </motion.div>
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-9 px-4 pb-10 pt-12 sm:gap-12 sm:px-6 sm:pb-14 sm:pt-16 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-16 lg:px-8 lg:pb-20 lg:pt-20">
+        {/* Copy and CTAs */}
+        <div className="min-w-0 lg:py-4">
+          <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-[#8086fa]/35 bg-[#4041d1]/15 px-3 py-2 text-[10px] font-bold uppercase leading-4 tracking-[0.13em] text-[#C5CBFF] sm:px-4 sm:text-xs">
+            <FaMapMarkerAlt aria-hidden="true" className="shrink-0" />
+            <span>Birmingham · Edgbaston Medical Quarter</span>
+          </div>
 
-        <motion.h1 
-          custom={2} initial="hidden" animate="visible" variants={fadeUpVariants}
-          className="md:text-5xl text-3xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
-        >
-          {isHampstead 
-            ? <>Doctor-Led Intimate Health <br className="hidden md:block" /> Treatments {locationSuffix}</>
-            : <>Doctor-Led Intimate Health & <br /> Regenerative Treatments {locationSuffix}</>
-          }
-        </motion.h1>
-
-        <motion.h2 
-          custom={3} initial="hidden" animate="visible" variants={fadeUpVariants}
-          className="mt-2 text-lg md:text-xl font-medium font-raleway text-blue-100 leading-relaxed max-w-4xl mx-auto mb-10"
-        >
-          {isHampstead ? (
-            <>
-              Discreet, private care and personalised treatment plans for erectile dysfunction, Peyronie&apos;s disease, premature ejaculation, vaginal dryness and selected intimate sensitivity concerns.
-            </>
-          ) : (
-            <>
-              Discreet, private care and evidence-based treatment plans for <br className="hidden md:block" />
-              <Link href={`${prefix}/erectile-dysfunction`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Erectile dysfunction
-              </Link>
-              {", "}
-              <Link href={`${prefix}/sexual-rejuvenation`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Sexual wellness
-              </Link>
-              {", "}
-              <Link href={`${prefix}/joint-injections`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Joint injections
-              </Link>
-              {", "}
-              <Link href={`${prefix}/hair-restoration`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Hair restoration
-              </Link>
-              {", and "}
-              <Link href={`${prefix}/facial-aesthetics`} className="font-bold text-white border-b border-white/30 hover:text-[#4041d1] hover:border-[#4041d1] transition-colors duration-300">
-                Facial aesthetics
-              </Link>
-              .
-            </>
-          )}
-        </motion.h2>
-        
-        <motion.div 
-          custom={4} initial="hidden" animate="visible" variants={fadeUpVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center" 
-        >
-          {/* Only render the assessment button on non-Hampstead pages */}
-          {!isHampstead && (
-            <button 
-              onClick={() => setIsAssessmentOpen(true)}
-              className="w-full sm:w-auto px-8 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-white text-[#4041d1] hover:bg-blue-50 rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-white/10 active:scale-95 font-inter border-2 border-white"
-            >
-               Take Free Online Assessment
-            </button>
-          )}
-
-          <button 
-            onClick={handleAction}
-            className="w-full sm:w-auto px-10 py-3.5 flex items-center justify-center text-sm cursor-pointer bg-[#4041d1] hover:bg-[#2a2bb8] text-white rounded-xl font-bold transition-all duration-300 gap-2 shadow-xl shadow-[#4041d1]/20 active:scale-95 font-inter"
+          <h1
+            id="birmingham-hero-heading"
+            className="max-w-[680px] font-raleway text-[clamp(2.1rem,5.2vw,4.35rem)] font-bold leading-[1.10] tracking-tight text-white"
           >
-            <FaEnvelope className="w-4 h-4" /> {isHampstead ? "Book Private Consultation" : "Book Consultation"}
-          </button>
-        </motion.div>
+            Doctor-Led Intimate Health &amp; Aesthetic Care in{" "}
+            <span className="text-[#A9B6FF]">Birmingham</span>
+          </h1>
 
-      </div>
+          <p className="mt-5 max-w-[610px] text-base leading-7 text-slate-200 sm:mt-6 sm:text-lg sm:leading-8">
+            Private, discreet consultations with Dr Syed Abdi for men's and
+            women's intimate health, with personalised assessment and clear
+            discussion of suitable treatment options.
+          </p>
 
-      <motion.div 
-        custom={5} initial="hidden" animate="visible" variants={fadeUpVariants}
-        className="absolute bottom-0 left-0 w-full bg-[#0f172a]/90 backdrop-blur-md border-t border-white/10 z-30"
-      >
-        <div className="px-2 py-4 max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 divide-none md:divide-x divide-white/10">
-            <a href="#reviews" onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth' });
-            }} className="flex justify-center items-center group cursor-pointer px-2">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-[#4285F4] group-hover:scale-110 transition-transform shadow-md">
-                  <FaGoogle className="w-4 h-4" />
-                </div>
-                <div className="flex flex-col items-start">
-                  <div className="flex text-amber-400 text-[10px] mb-0.5">
-                    <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
-                  </div>
-                  <span className="text-white text-[9px] font-bold tracking-widest uppercase opacity-90 group-hover:opacity-100 font-inter">
-                    5.0 Patient Rating
-                  </span>
-                </div>
-              </div>
+          <div
+            aria-label="Explore Birmingham treatments"
+            className="mt-6 flex flex-wrap gap-2 sm:mt-7"
+          >
+            {treatmentLinks.map((treatment) => (
+              <Link
+                key={treatment.href}
+                href={treatment.href}
+                prefetch={false}
+                className="rounded-full border border-white/20 bg-white/[0.06] px-3.5 py-2 text-xs font-medium text-slate-100 transition-colors hover:border-[#A9B6FF]/65 hover:bg-[#4041d1]/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-sm"
+              >
+                {treatment.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <button
+              type="button"
+              onClick={handleConsultation}
+              className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-[#4041d1] px-6 py-3.5 text-sm font-bold text-white shadow-[0_12px_36px_rgba(32,35,138,0.26)] transition-colors hover:bg-[#5152e6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+            >
+              Request Private Consultation
+              <FaArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsAssessmentOpen(true)}
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-white/30 bg-white/[0.07] px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-white/[0.13] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+            >
+              Take Free ED Assessment
+            </button>
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+            <a
+              href="#treatments"
+              className="inline-flex items-center gap-2 font-semibold text-[#BEC8FF] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+            >
+              Explore all treatments
+              <FaArrowRight aria-hidden="true" className="h-3 w-3" />
             </a>
-            <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-[#4041d1] rounded-full flex items-center justify-center text-white font-bold text-[12px] shadow-md border border-white/10">
-                  10+
-                </div>
-                <div className="flex flex-col items-start">
-                  <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Years</span>
-                  <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Experience</span>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-[#1f3a68] rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-md border border-white/10">
-                  GMC
-                </div>
-                <div className="flex flex-col items-start">
-                  <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Registered</span>
-                  <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Doctor</span>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center items-center px-2 opacity-90 hover:opacity-100 transition-opacity">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-slate-300 shadow-md border border-white/10">
-                  <FaLock className="w-3.5 h-3.5" />
-                </div>
-                <div className="flex flex-col items-start">
-                  <span className="text-white text-[9px] font-bold uppercase tracking-widest leading-tight font-inter">Strictly 1:1</span>
-                  <span className="text-blue-400 text-[9px] font-semibold tracking-wider uppercase leading-tight mt-0.5 font-inter">Discreet Care</span>
-                </div>
-              </div>
+            <span className="text-xs text-slate-400">
+              Consultation and suitability assessment required
+            </span>
+          </div>
+        </div>
+
+        {/* Real doctor portrait: one small image, reused across screen sizes. */}
+        <div className="relative mx-auto w-full max-w-[540px] lg:mx-0 lg:max-w-none">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-3 rounded-[2.2rem] bg-[#4041d1]/15 blur-2xl sm:-inset-5"
+          />
+
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-white/20 bg-[#1E293B] shadow-[0_26px_70px_rgba(0,0,0,0.28)] sm:aspect-[5/4] lg:aspect-[4/5]">
+            <Image
+              src="/images/birmingham-doctor-hero.webp"
+              alt="Dr Syed Abdi, GMC-registered doctor and medical director of Healing PRP Clinics"
+              fill
+              priority
+              sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) min(540px, calc(100vw - 48px)), 42vw"
+              quality={80}
+              className="object-cover object-[center_28%] lg:object-[center_22%]"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A1128]/70 via-transparent to-transparent"
+            />
+
+            <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-white/20 bg-[#0A1128]/90 px-4 py-3 sm:bottom-6 sm:left-6 sm:right-6 sm:px-5 sm:py-4">
+              <p className="font-raleway text-base font-bold text-white sm:text-lg">
+                Dr Syed Abdi
+              </p>
+              <p className="mt-0.5 text-xs text-slate-200 sm:text-sm">
+                GMC-Registered GP · Medical Director
+              </p>
+              <Link
+                href="/our-doctor"
+                prefetch={false}
+                className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-[#BFC9FF] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+              >
+                Meet your doctor
+                <FaArrowRight aria-hidden="true" className="h-3 w-3" />
+              </Link>
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Only render the modal if not on Hampstead to save DOM bloat */}
-      {!isHampstead && (
-        <OnlineAssessmentModal 
-          isOpen={isAssessmentOpen} 
-          onClose={() => setIsAssessmentOpen(false)} 
+      {/* Compact trust strip. No fixed or unverified star rating. */}
+      <div className="relative border-t border-white/10 bg-white/[0.035]">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 gap-y-5 px-4 py-5 sm:px-6 sm:py-6 lg:grid-cols-4 lg:gap-6 lg:px-8">
+          <button
+            type="button"
+            onClick={scrollToReviews}
+            className="group flex min-w-0 items-center gap-3 text-left focus-visible:rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[#4285F4]">
+              <FaGoogle aria-hidden="true" />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-xs font-bold text-white group-hover:underline sm:text-sm">Patient Reviews</span>
+              <span className="mt-0.5 block text-[11px] text-slate-300">Read experiences</span>
+            </span>
+          </button>
+
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#4041d1]/35 text-xs font-bold text-white">
+              10+
+            </span>
+            <span className="min-w-0">
+              <span className="block text-xs font-bold text-white sm:text-sm">Years of GP Experience</span>
+              <span className="mt-0.5 block text-[11px] text-slate-300">UK clinical care</span>
+            </span>
+          </div>
+
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#4041d1]/35 text-white">
+              <FaUserMd aria-hidden="true" className="h-4 w-4" />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-xs font-bold text-white sm:text-sm">GMC-Registered Doctor</span>
+              <span className="mt-0.5 block text-[11px] text-slate-300">Doctor-led consultations</span>
+            </span>
+          </div>
+
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#4041d1]/35 text-white">
+              <FaLock aria-hidden="true" className="h-3.5 w-3.5" />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-xs font-bold text-white sm:text-sm">Discreet Private Care</span>
+              <span className="mt-0.5 block text-[11px] text-slate-300">Confidential appointments</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {isAssessmentOpen && (
+        <OnlineAssessmentModal
+          isOpen={isAssessmentOpen}
+          onClose={() => setIsAssessmentOpen(false)}
         />
       )}
-    </div>
+    </section>
   );
 }
