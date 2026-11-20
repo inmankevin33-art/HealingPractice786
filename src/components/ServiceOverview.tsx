@@ -42,7 +42,7 @@ const featuredTreatments: FeaturedTreatment[] = [
   },
   {
     title: "Erectile Dysfunction",
-    image: "P-Shot.webp",
+    image: "P-SHOT.webp",
     imageAlt: "Medical illustration representing erectile function and circulation",
     description:
       "Private medical assessment of erection difficulties, including possible contributing factors, medication options and tailored treatments.",
