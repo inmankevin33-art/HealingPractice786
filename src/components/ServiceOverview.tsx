@@ -34,7 +34,7 @@ type AdditionalTreatment = {
 const featuredTreatments: FeaturedTreatment[] = [
   {
     title: "Penile Filler",
-    image: "/images/treatments/penile-filler-thumb.webp",
+    image: "PEnlargement.webp",
     imageAlt: "Illustration representing hyaluronic acid filler treatment",
     description:
       "Doctor-led hyaluronic acid (HA) penile filler with individual assessment, proportionate volume planning, careful placement and aftercare.",
