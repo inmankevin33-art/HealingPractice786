@@ -76,8 +76,8 @@ export default function BirminghamHero() {
           </h1>
 
           <p className="mt-5 max-w-[610px] text-base leading-7 text-slate-200 sm:mt-6 sm:text-lg sm:leading-8">
-            Private, discreet consultations with Dr Syed Abdi for men's and
-            women's intimate health, with personalised assessment and clear
+            Private, discreet consultations with Dr Syed Abdi for men&apos;s and
+            women&apos;s intimate health, with personalised assessment and clear
             discussion of suitable treatment options.
           </p>
 
