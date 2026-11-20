@@ -72,7 +72,7 @@ export default function BirminghamClinicalInsights() {
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+        <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
           <span className="inline-flex rounded-full border border-[#4041d1]/35 bg-[#4041d1]/20 px-4 py-2 font-raleway text-[11px] font-bold uppercase tracking-[0.18em] text-[#AAB9FF]">
             Doctor-led insights · Research · Patient education
           </span>
@@ -89,11 +89,19 @@ export default function BirminghamClinicalInsights() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        {/* Mobile-only swipe hint */}
+        <div className="mb-3 flex items-center justify-end md:hidden">
+          <span className="text-xs font-semibold tracking-wide text-[#AAB9FF]">
+            Swipe to explore <span aria-hidden="true">→</span>
+          </span>
+        </div>
+
+        {/* Horizontal scroll-snap on mobile; standard 2/3-col grid on md+ */}
+        <div className="-mx-4 flex snap-x snap-mandatory scroll-pl-4 gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:scroll-pl-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 lg:gap-6">
           {articles.map((article) => (
             <article
               key={article.href}
-              className="group flex h-full flex-col rounded-3xl border border-white/15 bg-white/[0.06] p-6 transition-colors duration-200 hover:border-[#889BFF]/50 hover:bg-white/[0.09]"
+              className="group flex w-[84%] max-w-[340px] shrink-0 snap-start flex-col rounded-3xl border border-white/15 bg-white/[0.06] p-6 transition-colors duration-200 hover:border-[#889BFF]/50 hover:bg-white/[0.09] md:h-full md:w-auto md:max-w-none"
             >
               <p className="font-raleway text-[11px] font-bold uppercase tracking-[0.15em] text-[#AAB9FF]">
                 {article.category}
