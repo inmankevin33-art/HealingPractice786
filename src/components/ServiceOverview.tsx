@@ -32,7 +32,7 @@ type AdditionalTreatment = {
 // Flagship treatment displayed as a wide horizontal card on desktop
 const flagshipTreatment: FeaturedTreatment = {
   title: "Penile Filler",
-  image: "/images/treatments/penile-filler-thumb.webp",
+  image: "Pfiller.webp",
   imageAlt: "Doctor-led hyaluronic acid penile filler treatment in Birmingham",
   description:
     "Doctor-led hyaluronic acid (HA) penile filler with individual assessment, proportionate volume planning, careful placement and structured aftercare.",
@@ -43,7 +43,7 @@ const flagshipTreatment: FeaturedTreatment = {
 const featuredTreatments: FeaturedTreatment[] = [
   {
     title: "Erectile Dysfunction",
-    image: "/images/treatments/ed-thumb.webp",
+    image: "P-SHOT.webp",
     imageAlt: "Private doctor-led erectile dysfunction consultation in Birmingham",
     description:
       "Private medical assessment of erection difficulties, including possible contributing factors, medication review and tailored treatment options.",
