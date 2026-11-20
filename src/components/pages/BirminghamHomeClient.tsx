@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Hero from "@/components/Hero";
+import BirminghamHero from "@/components/BirminghamHero";
 import EDFeatureBlock from "@/components/EDFeatureBlock";
 import ServiceOverview from "@/components/ServiceOverview";
 import BirminghamClinicalInsights from "@/components/BirminghamClinicalInsights";
@@ -26,7 +26,7 @@ export default function BirminghamHomeClient({ faqs }: BirminghamClientProps) {
     <main className="flex flex-col w-full selection:bg-blue-100 transform-gpu">
       
       {/* 1. Smart Hero (Automatically detects /birmingham URL) */}
-      <Hero />
+      <BirminghamHero />
       
       {/* 2. Doctor Authority Block */}
       <EDFeatureBlock />
