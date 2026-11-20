@@ -436,6 +436,67 @@ export default function PenisEnlargementClient({
         </div>
       </section>
 
+      {/* --- BIRMINGHAM PATIENT QUESTIONS --- */}
+      {isBirmingham && (
+        <section className="py-16 md:py-20 bg-slate-50 border-b border-slate-100">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-5">
+                Questions Patients Ask Before Penis Filler in Birmingham
+              </h2>
+      
+              <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+                Will penile filler look and feel natural? How much
+                filler is appropriate? And what if you have already
+                received filler elsewhere?
+              </p>
+            </div>
+      
+            <div className="bg-white rounded-3xl border border-slate-200 p-7 md:p-10 shadow-sm">
+      
+              <p className="text-slate-700 leading-relaxed mb-5">
+                These are common questions discussed during
+                consultations with Dr Syed Abdi at Healing PRP
+                Clinics in Birmingham.
+              </p>
+      
+              <p className="text-slate-700 leading-relaxed mb-6">
+                Natural appearance and feel depend on individual
+                anatomy, HA filler selection, proportionate volume
+                planning, careful placement and aftercare.
+                Results vary, and a completely natural result
+                cannot be guaranteed.
+              </p>
+      
+              <p className="text-slate-700 leading-relaxed mb-7">
+                Patients who have previously received penile filler
+                can also request an assessment of their existing
+                treatment before any further enhancement is
+                considered.
+              </p>
+      
+              <div className="flex flex-col gap-4">
+                <Link
+                  href="/blog/does-penile-filler-feel-natural-birmingh"
+                  className="font-bold text-[#4041d1] hover:underline"
+                >
+                  Will Penile Filler Look and Feel Natural?
+                </Link>
+      
+                <Link
+                  href="/blog/penile-filler-before-after-birmingh"
+                  className="font-bold text-[#4041d1] hover:underline"
+                >
+                  Penile Filler Before and After: What to Expect
+                </Link>
+              </div>
+      
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* --- BENEFITS SECTION --- */}
       <section className="py-24 bg-slate-50 font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
