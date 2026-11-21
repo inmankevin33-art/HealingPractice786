@@ -169,6 +169,7 @@ export default function BirminghamHero() {
             </div>
           </div>
         </div>
+      </div>
 
       {/* Compact trust strip. No fixed or unverified star rating. */}
       <div className="relative border-t border-white/10 bg-white/[0.035]">
@@ -182,8 +183,12 @@ export default function BirminghamHero() {
               <FaGoogle aria-hidden="true" />
             </span>
             <span className="min-w-0">
-              <span className="block text-xs font-bold text-white group-hover:underline sm:text-sm">Patient Reviews</span>
-              <span className="mt-0.5 block text-[11px] text-slate-300">Read experiences</span>
+              <span className="block text-xs font-bold text-white group-hover:underline sm:text-sm">
+                Patient Reviews
+              </span>
+              <span className="mt-0.5 block text-[11px] text-slate-300">
+                Read experiences
+              </span>
             </span>
           </button>
 
@@ -192,8 +197,12 @@ export default function BirminghamHero() {
               10+
             </span>
             <span className="min-w-0">
-              <span className="block text-xs font-bold text-white sm:text-sm">Years of GP Experience</span>
-              <span className="mt-0.5 block text-[11px] text-slate-300">UK clinical care</span>
+              <span className="block text-xs font-bold text-white sm:text-sm">
+                Years of GP Experience
+              </span>
+              <span className="mt-0.5 block text-[11px] text-slate-300">
+                UK clinical care
+              </span>
             </span>
           </div>
 
@@ -202,8 +211,12 @@ export default function BirminghamHero() {
               <FaUserMd aria-hidden="true" className="h-4 w-4" />
             </span>
             <span className="min-w-0">
-              <span className="block text-xs font-bold text-white sm:text-sm">GMC-Registered Doctor</span>
-              <span className="mt-0.5 block text-[11px] text-slate-300">Doctor-led consultations</span>
+              <span className="block text-xs font-bold text-white sm:text-sm">
+                GMC-Registered Doctor
+              </span>
+              <span className="mt-0.5 block text-[11px] text-slate-300">
+                Doctor-led consultations
+              </span>
             </span>
           </div>
 
@@ -212,8 +225,12 @@ export default function BirminghamHero() {
               <FaLock aria-hidden="true" className="h-3.5 w-3.5" />
             </span>
             <span className="min-w-0">
-              <span className="block text-xs font-bold text-white sm:text-sm">Discreet Private Care</span>
-              <span className="mt-0.5 block text-[11px] text-slate-300">Confidential appointments</span>
+              <span className="block text-xs font-bold text-white sm:text-sm">
+                Discreet Private Care
+              </span>
+              <span className="mt-0.5 block text-[11px] text-slate-300">
+                Confidential appointments
+              </span>
             </span>
           </div>
         </div>
