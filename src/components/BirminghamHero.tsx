@@ -130,28 +130,28 @@ export default function BirminghamHero() {
         </div>
 
         {/* Real doctor portrait: one small image, reused across screen sizes. */}
-        <div className="relative mx-auto w-full max-w-[540px] lg:mx-0 lg:max-w-none">
+        <div className="relative mx-auto w-full max-w-[380px] sm:max-w-[440px] lg:mx-0 lg:max-w-none">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -inset-3 rounded-[2.2rem] bg-[#4041d1]/15 blur-2xl sm:-inset-5"
           />
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-white/20 bg-[#1E293B] shadow-[0_26px_70px_rgba(0,0,0,0.28)] sm:aspect-[5/4] lg:aspect-[4/5]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-white/20 bg-[#1E293B] shadow-[0_26px_70px_rgba(0,0,0,0.28)]">
             <Image
               src="birmingham-doctor-hero.webp"
               alt="Dr Syed Abdi, GMC-registered doctor and medical director of Healing PRP Clinics"
               fill
               priority
-              sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) min(540px, calc(100vw - 48px)), 42vw"
+              sizes="(max-width: 639px) min(380px, calc(100vw - 32px)), (max-width: 1023px) 440px, 42vw"
               quality={80}
-              className="object-cover object-[center_28%] lg:object-[center_22%]"
+              className="object-cover object-top lg:object-[center_22%]"
             />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A1128]/70 via-transparent to-transparent"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A1128]/75 via-transparent to-transparent"
             />
 
-            <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-white/20 bg-[#0A1128]/90 px-4 py-3 sm:bottom-6 sm:left-6 sm:right-6 sm:px-5 sm:py-4">
+            <div className="absolute bottom-3 left-3 right-3 rounded-xl border border-white/20 bg-[#0A1128]/90 px-4 py-2.5 sm:bottom-5 sm:left-5 sm:right-5 sm:px-5 sm:py-3.5 lg:bottom-6 lg:left-6 lg:right-6 lg:py-4">
               <p className="font-raleway text-base font-bold text-white sm:text-lg">
                 Dr Syed Abdi
               </p>
@@ -161,7 +161,7 @@ export default function BirminghamHero() {
               <Link
                 href="/our-doctor"
                 prefetch={false}
-                className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-[#BFC9FF] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+                className="mt-1.5 inline-flex items-center gap-2 text-xs font-semibold text-[#BFC9FF] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white sm:mt-2"
               >
                 Meet your doctor
                 <FaArrowRight aria-hidden="true" className="h-3 w-3" />
@@ -169,7 +169,6 @@ export default function BirminghamHero() {
             </div>
           </div>
         </div>
-      </div>
 
       {/* Compact trust strip. No fixed or unverified star rating. */}
       <div className="relative border-t border-white/10 bg-white/[0.035]">
