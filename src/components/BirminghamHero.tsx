@@ -155,7 +155,7 @@ export default function BirminghamHero() {
                 Dr Syed Abdi
               </p>
               <p className="mt-0.5 text-xs text-slate-200 sm:text-sm">
-                GMC-Registered GP · Medical Director
+                Medical Director
               </p>
               <Link
                 href="/our-doctor"
