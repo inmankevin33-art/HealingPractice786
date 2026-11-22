@@ -100,7 +100,7 @@ export default function BirminghamHero() {
 
           <div
             aria-label="Explore Birmingham treatments"
-            className="mt-5 flex flex-wrap gap-2 sm:mt-6"
+            className="mt-5 hidden flex-wrap gap-2 lg:mt-6 lg:flex"
           >
             {treatmentLinks.map((treatment) => (
               <Link
@@ -114,7 +114,7 @@ export default function BirminghamHero() {
             ))}
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm sm:mt-5">
+          <div className="mt-4 hidden flex-wrap items-center gap-x-5 gap-y-2 text-sm lg:mt-5 lg:flex">
             <a
               href="#treatments"
               className="inline-flex items-center gap-2 font-semibold text-[#BEC8FF] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
@@ -137,7 +137,7 @@ export default function BirminghamHero() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-white/20 bg-[#1E293B] shadow-[0_26px_70px_rgba(0,0,0,0.28)] sm:aspect-[4/5] sm:rounded-[1.75rem]">
             <Image
-              src="birmingham-doctor-hero.webp"
+              src="/images/birmingham-doctor-hero.webp"
               alt="Dr Syed Abdi, GMC-registered doctor and medical director of Healing PRP Clinics"
               fill
               priority
@@ -168,6 +168,35 @@ export default function BirminghamHero() {
             </div>
           </div>
         </div>
+
+        {/* Mobile only: place the treatment links after the doctor photograph.
+            On desktop the original links remain beside the portrait. */}
+        <nav aria-label="Explore Birmingham treatments" className="min-w-0 lg:hidden">
+          <div className="flex flex-wrap gap-2">
+            {treatmentLinks.map((treatment) => (
+              <Link
+                key={treatment.href}
+                href={treatment.href}
+                prefetch={false}
+                className="rounded-full border border-white/20 bg-white/[0.06] px-3 py-1.5 text-[12px] font-medium leading-5 text-slate-100 transition-colors hover:border-[#A9B6FF]/65 hover:bg-[#4041d1]/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-3.5 sm:py-2 sm:text-sm"
+              >
+                {treatment.label}
+              </Link>
+            ))}
+          </div>
+          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+            <a
+              href="#treatments"
+              className="inline-flex items-center gap-2 font-semibold text-[#BEC8FF] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+            >
+              Explore all treatments
+              <FaArrowRight aria-hidden="true" className="h-3 w-3" />
+            </a>
+            <span className="text-xs text-slate-400">
+              Consultation and suitability assessment required
+            </span>
+          </div>
+        </nav>
       </div>
 
       {/* Compact trust strip. No fixed or unverified star rating. */}
