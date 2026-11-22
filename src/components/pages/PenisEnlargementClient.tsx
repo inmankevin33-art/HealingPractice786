@@ -471,7 +471,7 @@ export default function PenisEnlargementClient({
           </div>
         </section>
       ) : (
-        <EDFeatureBlock variant="penis-filler" />
+        <EDFeatureBlock />
       )}
 
       {/* --- INTRODUCTION & SYNONYM BRIDGE --- */}
