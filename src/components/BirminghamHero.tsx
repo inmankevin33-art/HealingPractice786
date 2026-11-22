@@ -137,7 +137,7 @@ export default function BirminghamHero() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-white/20 bg-[#1E293B] shadow-[0_26px_70px_rgba(0,0,0,0.28)] sm:aspect-[4/5] sm:rounded-[1.75rem]">
             <Image
-              src="/images/birmingham-doctor-hero.webp"
+              src="birmingham-doctor-hero.webp"
               alt="Dr Syed Abdi, GMC-registered doctor and medical director of Healing PRP Clinics"
               fill
               priority
