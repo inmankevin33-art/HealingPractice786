@@ -571,15 +571,15 @@ export default function PenisEnlargementClient({
         </section>
       )}
 
-      {/* --- BENEFITS SECTION --- */}
-      <section className={`${isBirmingham ? "py-16 md:py-20 bg-[#111B37]" : "py-24 bg-slate-50"} font-inter relative z-30`}>
+      {/* --- BENEFITS: NATIVE MOBILE SWIPE, FOUR-CARD DESKTOP GRID --- */}
+      <section className="py-16 md:py-20 bg-[#111B37] font-inter relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center max-w-3xl mx-auto ${isBirmingham ? "mb-10 md:mb-12" : "mb-16"}`}>
+          <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={`text-3xl md:text-4xl font-raleway font-bold mb-6 ${isBirmingham ? "text-white" : "text-slate-900"}`}
+              className="text-3xl md:text-4xl font-raleway font-bold mb-6 text-white"
             >
               Why Men Choose HA Fillers
             </motion.h2>
@@ -588,12 +588,19 @@ export default function PenisEnlargementClient({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className={`${isBirmingham ? "text-slate-300" : "text-slate-600"} text-lg leading-relaxed font-inter`}
+              className="text-slate-300 text-lg leading-relaxed font-inter"
             >
               A discreet, non-surgical option for men seeking a planned and proportionate increase in girth without surgical fat transfer.
             </motion.p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {/* No carousel dependency: native touch scrolling and CSS scroll snapping. */}
+          <div
+            role="region"
+            aria-label="Benefits of HA penis filler — swipe to see all four"
+            tabIndex={0}
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory overscroll-x-contain scroll-smooth pb-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:gap-5 lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none lg:pb-0"
+          >
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
@@ -602,7 +609,7 @@ export default function PenisEnlargementClient({
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col h-full group cursor-default"
+                className="w-[78vw] max-w-[330px] shrink-0 snap-start bg-white rounded-[2rem] p-6 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#4041d1]/20 transition-all duration-300 flex flex-col group cursor-default sm:w-[44%] lg:w-auto lg:max-w-none lg:shrink lg:p-8"
               >
                 <div
                   className={`w-14 h-14 rounded-2xl ${benefit.color} flex items-center justify-center mb-6 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
@@ -618,70 +625,79 @@ export default function PenisEnlargementClient({
               </motion.div>
             ))}
           </div>
+          <p className="mt-2 text-center text-xs font-medium tracking-wide text-slate-300 lg:hidden">
+            Swipe to explore more benefits <FaArrowRight aria-hidden="true" className="ml-1 inline-block" />
+          </p>
         </div>
       </section>
 
-      {/* --- WHY CHOOSE HEALING PRP: BIRMINGHAM ONLY --- */}
-      {isBirmingham && (
-        <section className="py-12 md:py-16 bg-slate-50 font-inter border-b border-slate-200">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-9 md:mb-12">
-              <p className="inline-block px-4 py-1.5 rounded-full bg-[#4041d1]/10 text-[#4041d1] text-xs font-bold uppercase tracking-wider mb-5">
-                What You Can Expect
-              </p>
-              <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">
-                Why Choose Healing PRP Clinics for Penis Filler in Birmingham?
-              </h2>
-              <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                More than the number of millilitres: careful assessment, informed choices and ongoing support are central to our approach.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-              {[
-                {
-                  icon: FaUserMd,
-                  title: "Direct Doctor-Led Care",
-                  description: "Discuss suitability, expectations and consent with Dr Abdi, who also performs your treatment.",
-                },
-                {
-                  icon: FaExpandArrowsAlt,
-                  title: "Individual Volume Planning",
-                  description: "Anatomy, previous filler and personal goals are considered before deciding whether a volume is appropriate.",
-                },
-                {
-                  icon: FaSyringe,
-                  title: "Considered HA Filler Selection",
-                  description: "Product characteristics, possible limitations and treatment options are explained rather than focusing only on price per ml.",
-                },
-                {
-                  icon: FaHandsHelping,
-                  title: "Aftercare & Follow-Up",
-                  description: "Receive tailored aftercare guidance and information about when and how to seek advice if concerns arise.",
-                },
-              ].map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={item.title}
-                    className="h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-                  >
-                    <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#4041d1]/10 text-[#4041d1]">
-                      <Icon aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    <h3 className="font-raleway text-lg font-bold text-slate-900 mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-slate-600">
-                      {item.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+      {/* --- WHY CHOOSE HEALING PRP: ALL PENIS FILLER LOCATIONS --- */}
+      <section className="py-12 md:py-16 bg-slate-50 font-inter border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-9 md:mb-12">
+            <p className="inline-block px-4 py-1.5 rounded-full bg-[#4041d1]/10 text-[#4041d1] text-xs font-bold uppercase tracking-wider mb-5">
+              What You Can Expect
+            </p>
+            <h2 className="text-3xl md:text-4xl font-raleway font-bold text-slate-900 mb-4">
+              Why Choose Healing PRP Clinics for Penis Filler{isBirmingham ? " in Birmingham" : isHampstead ? " in Hampstead" : " in St Albans"}?
+            </h2>
+            <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+              More than the number of millilitres: careful assessment, informed choices and ongoing support are central to our approach.
+            </p>
           </div>
-        </section>
-      )}
+
+          <div
+            role="region"
+            aria-label="Why choose Healing PRP Clinics — swipe to see all four reasons"
+            tabIndex={0}
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory overscroll-x-contain scroll-smooth pb-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1] sm:gap-5 lg:grid lg:grid-cols-4 lg:overflow-visible lg:snap-none lg:pb-0"
+          >
+            {[
+              {
+                icon: FaUserMd,
+                title: "Direct Doctor-Led Care",
+                description: "Discuss suitability, expectations and consent with Dr Abdi, who also performs your treatment.",
+              },
+              {
+                icon: FaExpandArrowsAlt,
+                title: "Individual Volume Planning",
+                description: "Anatomy, previous filler and personal goals are considered before deciding whether a volume is appropriate.",
+              },
+              {
+                icon: FaSyringe,
+                title: "Considered HA Filler Selection",
+                description: "Product characteristics, possible limitations and treatment options are explained rather than focusing only on price per ml.",
+              },
+              {
+                icon: FaHandsHelping,
+                title: "Aftercare & Follow-Up",
+                description: "Receive tailored aftercare guidance and information about when and how to seek advice if concerns arise.",
+              },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="w-[78vw] max-w-[330px] shrink-0 snap-start rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:w-[44%] lg:w-auto lg:max-w-none lg:shrink"
+                >
+                  <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#4041d1]/10 text-[#4041d1]">
+                    <Icon aria-hidden="true" className="h-5 w-5" />
+                  </span>
+                  <h3 className="font-raleway text-lg font-bold text-slate-900 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-slate-600">
+                    {item.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <p className="mt-2 text-center text-xs font-medium tracking-wide text-slate-500 lg:hidden">
+            Swipe to see more about our approach <FaArrowRight aria-hidden="true" className="ml-1 inline-block" />
+          </p>
+        </div>
+      </section>
 
       {/* --- HA FILLERS VS SURGERY (COMPARISON) --- */}
       <section className={`${isBirmingham ? "py-16 md:py-20" : "py-24"} bg-white font-inter border-t border-slate-100`}>
