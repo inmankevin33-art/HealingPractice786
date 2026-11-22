@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -44,6 +45,7 @@ export default function BirminghamHero() {
   };
 
   return (
+    <>
     <section
       id="birmingham-hero"
       aria-labelledby="birmingham-hero-heading"
@@ -137,7 +139,7 @@ export default function BirminghamHero() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-white/20 bg-[#1E293B] shadow-[0_26px_70px_rgba(0,0,0,0.28)] sm:aspect-[4/5] sm:rounded-[1.75rem]">
             <Image
-              src="birmingham-doctor-hero.webp"
+              src="/images/birmingham-doctor-hero.webp"
               alt="Dr Syed Abdi, GMC-registered doctor and medical director of Healing PRP Clinics"
               fill
               priority
@@ -264,12 +266,18 @@ export default function BirminghamHero() {
         </div>
       </div>
 
-      {isAssessmentOpen && (
+    </section>
+
+    {/* Render outside the Hero's isolate/overflow-hidden stacking context. */}
+    {isAssessmentOpen &&
+      typeof document !== "undefined" &&
+      createPortal(
         <OnlineAssessmentModal
           isOpen={isAssessmentOpen}
           onClose={() => setIsAssessmentOpen(false)}
-        />
+        />,
+        document.body
       )}
-    </section>
+    </>
   );
 }
