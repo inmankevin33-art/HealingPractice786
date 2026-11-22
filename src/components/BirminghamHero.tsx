@@ -135,7 +135,7 @@ export default function BirminghamHero() {
             className="pointer-events-none absolute -inset-3 rounded-[2.2rem] bg-[#4041d1]/15 blur-2xl sm:-inset-5"
           />
 
-          <div className="relative aspect-[6/5] overflow-hidden rounded-[1.5rem] border border-white/20 bg-[#1E293B] shadow-[0_26px_70px_rgba(0,0,0,0.28)] sm:aspect-[4/5] sm:rounded-[1.75rem]">
+          <className="relative aspect-[4/3] sm:aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-white/20 bg-[#1E293B]"
             <Image
               src="birmingham-doctor-hero.webp"
               alt="Dr Syed Abdi, GMC-registered doctor and medical director of Healing PRP Clinics"
