@@ -107,7 +107,7 @@ export default function BirminghamHero() {
                 key={treatment.href}
                 href={treatment.href}
                 prefetch={false}
-                className="rounded-full border border-white/20 bg-white/[0.06] px-3 py-1.5 text-[12px] font-medium leading-5 text-slate-100 transition-colors hover:border-[#A9B6FF]/65 hover:bg-[#4041d1]/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-3.5 sm:py-2 sm:text-sm"
+                className="rounded-full border border-[#777CF5]/70 bg-[#4041d1]/55 px-3 py-1.5 text-[12px] font-semibold leading-5 text-white transition-colors hover:border-[#A9B6FF] hover:bg-[#4041d1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-3.5 sm:py-2 sm:text-sm"
               >
                 {treatment.label}
               </Link>
@@ -178,7 +178,7 @@ export default function BirminghamHero() {
                 key={treatment.href}
                 href={treatment.href}
                 prefetch={false}
-                className="rounded-full border border-white/20 bg-white/[0.06] px-3 py-1.5 text-[12px] font-medium leading-5 text-slate-100 transition-colors hover:border-[#A9B6FF]/65 hover:bg-[#4041d1]/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-3.5 sm:py-2 sm:text-sm"
+                className="rounded-full border border-[#777CF5]/70 bg-[#4041d1]/55 px-3 py-1.5 text-[12px] font-semibold leading-5 text-white transition-colors hover:border-[#A9B6FF] hover:bg-[#4041d1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-3.5 sm:py-2 sm:text-sm"
               >
                 {treatment.label}
               </Link>
