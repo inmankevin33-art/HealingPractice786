@@ -212,7 +212,7 @@ export default function PenisEnlargementClient({
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10" />
           <Image 
             src="/PEnlargement.webp" 
-            alt="Doctor-Led Penile Filler Consultation" 
+            alt="Doctor-Led Penis Filler Consultation" 
             fill
             priority
             fetchPriority="high" 
@@ -245,12 +245,30 @@ export default function PenisEnlargementClient({
             variants={fadeUpVariants}
             className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway text-white leading-tight mb-4 tracking-tight"
           >
-            {isHampstead ? "Doctor-Led Penis Filler" : "Doctor-Led Penile Filler"} <br />
-            {/* SAFELY ADDED LONDON CONDITIONALLY */}
-            <span className="text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2 inline-block">
-              in {isHampstead ? "Hampstead, London" : locationName}
-            </span>
+            {isBirmingham ? (
+              <>
+                Penis Filler Birmingham
+                <span className="block text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2">
+                  Doctor-Led HA Treatment
+                </span>
+              </>
+            ) : isHampstead ? (
+              <>
+                Penis Filler in London
+                <span className="block text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2">
+                  Doctor-Led Treatment in Hampstead
+                </span>
+              </>
+            ) : (
+              <>
+                Penis Filler Treatment
+                <span className="block text-xl md:text-3xl lg:text-4xl text-blue-100 mt-2">
+                  St Albans, Hertfordshire
+                </span>
+              </>
+            )}
           </motion.h1>
+
           
           <motion.p 
             custom={2}
