@@ -34,7 +34,6 @@ import {
 import LocationSection from "@/components/LocationSection";
 import GoogleAdsLeadForm from "@/components/GoogleAdsLeadForm";
 import TrustReviews from "@/components/TrustReviews";
-import EDLandingStickyCTAs from "@/components/EDLandingStickyCTAs";
 
 // --- LAZY LOADED COMPONENTS ---
 const OnlineAssessmentModal = dynamic(() => import('@/components/OnlineAssessmentModal'), { ssr: false });
@@ -237,23 +236,8 @@ export default function ErectileDysfunctionTreatmentClient({
     });
   };
   
-  // A single form instance; placed earlier on the Birmingham Ads page only.
-  // Keep the conversion label and submission component unchanged.
-  const edLeadForm = (
-    <div id="contact-form-section">
-      <GoogleAdsLeadForm
-        defaultTreatment="Erectile Dysfunction"
-        defaultLocation={locationName}
-        sourcePage={`${locationName} ED Google Ads Landing Page`}
-        conversionLabel="AW-18-mCP"
-      />
-    </div>
-  );
-
   return (
     <>
-      {/* Dedicated sticky buttons for Birmingham ED Ads only */}
-      <EDLandingStickyCTAs />
       {/* --- CSS OVERRIDES --- */}
       <style dangerouslySetInnerHTML={{ __html: `
         /* Hide global header */
@@ -270,119 +254,7 @@ export default function ErectileDysfunctionTreatmentClient({
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}} />
 
-      {/* --- BIRMINGHAM ADS HERO: homepage-inspired, assessment-led --- */}
-      {isBirmingham ? (
-      <div className="relative overflow-hidden bg-[#0A1128] font-inter text-white">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#161B45] via-[#0A1128] to-[#070D1E]" />
-        <div className="pointer-events-none absolute -left-24 top-16 h-80 w-80 rounded-full bg-indigo-500/10 blur-3xl" />
-
-        {/* Small branded top strip; the normal site header is intentionally hidden on Ads pages. */}
-        <div className="relative z-10 mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 pt-7 sm:px-8 lg:px-10">
-          <div className="flex items-center gap-3">
-            <span className="font-raleway text-lg font-bold tracking-tight sm:text-xl">Healing-PRP Clinics</span>
-            <span className="rounded-full border border-indigo-400/40 bg-indigo-500/25 px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-indigo-100 sm:text-[10px]">
-              Birmingham clinic
-            </span>
-          </div>
-          <span className="text-xs font-medium text-indigo-200">Edgbaston Medical Quarter</span>
-        </div>
-
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-5 pb-12 pt-12 sm:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:px-10 lg:pb-20 lg:pt-16">
-          <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-indigo-400/35 bg-indigo-500/10 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-indigo-200 sm:text-xs">
-              <FaStethoscope aria-hidden="true" className="shrink-0" />
-              Private doctor-led ED assessment
-            </div>
-
-            <h1 className="mb-6 font-raleway text-4xl font-bold leading-[1.09] tracking-tight sm:text-5xl lg:text-[3.6rem]">
-              Erectile Dysfunction Treatment in{' '}
-              <span className="text-[#A5B4FC]">Birmingham</span>
-            </h1>
-
-            <p className="mb-3 text-lg font-semibold leading-snug text-white sm:text-xl">
-              ED tablets not working as well as before?
-            </p>
-            <p className="max-w-xl text-sm leading-7 text-slate-200 sm:text-base">
-              Struggling with reduced firmness or erections that are less reliable?
-              Speak with Dr Syed Abdi, a GMC-registered GP, about possible causes,
-              previous treatment response and suitable next steps.
-            </p>
-
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <button
-                type="button"
-                onClick={handleAction}
-                className="inline-flex min-h-13 items-center justify-center gap-3 rounded-xl bg-[#4041d1] px-6 py-4 text-sm font-bold text-white shadow-lg shadow-indigo-900/30 transition-colors hover:bg-[#3032b8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Request Confidential Callback
-                <FaArrowRight aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsAssessmentOpen(true)}
-                className="inline-flex min-h-13 items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 py-4 text-sm font-bold text-white transition-colors hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Start Free ED Questionnaire
-              </button>
-            </div>
-            <p className="mt-4 max-w-xl text-xs leading-5 text-slate-300">
-              No GP referral needed. Free initial discussion available; private medical
-              consultation, investigation and treatment fees are explained before booking.
-              The questionnaire is not a medical diagnosis.
-            </p>
-
-            <div className="mt-7 flex flex-wrap gap-2 text-xs font-semibold text-indigo-100">
-              {['GMC-registered GP', 'Face-to-face appointments', 'Confidential care'].map((item) => (
-                <span key={item} className="rounded-full border border-indigo-300/30 bg-indigo-500/20 px-3 py-2">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative mx-auto w-full max-w-[500px] lg:max-w-none">
-            <div className="relative aspect-[4/4.7] overflow-hidden rounded-[28px] border border-white/15 bg-slate-800 shadow-2xl shadow-black/40">
-              <Image
-                src="/dr-syed-abdi.webp"
-                alt="Dr Syed Abdi, GMC-registered GP and Medical Director of Healing-PRP Clinics"
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 42vw"
-                className="object-cover object-top"
-              />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#0A1128]/95 via-[#0A1128]/30 to-transparent" />
-              <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/20 bg-[#0A1128]/90 px-5 py-4 backdrop-blur-md">
-                <p className="font-raleway text-lg font-bold text-white">Dr Syed Abdi</p>
-                <p className="mt-1 text-xs text-slate-200">GMC-registered GP · Medical Director</p>
-                <p className="mt-2 text-xs font-medium text-indigo-200">Doctor-led ED assessment in Birmingham</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Homepage-style trust strip, without unverified ratings or outcome claims. */}
-        <div className="relative z-10 border-t border-white/10 bg-white/[0.04]">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-5 gap-y-5 px-5 py-6 sm:px-8 lg:grid-cols-4 lg:px-10">
-            {[
-              { label: 'Patient Reviews', detail: 'Real patient experiences', Icon: FaGoogle },
-              { label: '10+ Years of GP Experience', detail: 'UK clinical care', Icon: FaUserMd },
-              { label: 'GMC-Registered Doctor', detail: 'Medical assessment', Icon: FaStethoscope },
-              { label: 'Discreet Private Care', detail: 'Confidential appointments', Icon: FaLock },
-            ].map(({ label, detail, Icon }) => (
-              <div key={label} className="flex items-start gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-500/25 text-indigo-200">
-                  <Icon aria-hidden="true" className="text-sm" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold leading-5 text-white sm:text-sm">{label}</div>
-                  <div className="text-[11px] leading-4 text-slate-300">{detail}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      ) : (
+      {/* --- HERO SECTION --- */}
       <div className="relative overflow-hidden flex flex-col items-center justify-center bg-[#0A1128] pt-12 pb-10 md:pt-20 md:pb-16">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1e293b] via-[#0A1128] to-black" />
@@ -511,235 +383,7 @@ export default function ErectileDysfunctionTreatmentClient({
           </div>
         </div>
       </div>
-      )}
 
-      {/* --- PREMIUM BIRMINGHAM JOURNEY: problem → assessment → action --- */}
-      {isBirmingham ? (
-        <>
-          {/* 1. A patient-centred explanation in a clear editorial split layout. */}
-          <section className="relative overflow-hidden bg-[#F7F9FF] py-16 font-inter md:py-24">
-            <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-indigo-100/60 blur-3xl" />
-            <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[0.94fr_1.06fr] lg:gap-16 lg:px-10">
-              <div>
-                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#4041d1] shadow-sm sm:text-xs">
-                  <FaStethoscope aria-hidden="true" /> Understand the cause
-                </div>
-                <h2 className="max-w-xl font-raleway text-3xl font-bold leading-tight tracking-tight text-[#0A1128] sm:text-4xl lg:text-5xl">
-                  When erections become <span className="text-[#4041d1]">less reliable</span>,
-                  a medical review can help.
-                </h2>
-                <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 md:text-lg">
-                  ED tablets such as sildenafil and tadalafil can help many men. If your response
-                  has changed—or you have new erection difficulties—there may be several contributing
-                  factors worth reviewing rather than simply changing treatment.
-                </p>
-                <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600">
-                  Dr Syed Abdi offers a confidential, face-to-face assessment of symptoms, previous
-                  medication response, relevant health conditions and realistic next steps.
-                </p>
-                <button
-                  type="button"
-                  onClick={handleAction}
-                  className="mt-7 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#4041d1] px-7 py-4 text-sm font-bold text-white shadow-lg shadow-indigo-900/15 transition-colors hover:bg-[#3032b8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1] sm:w-auto"
-                >
-                  Request a Confidential Callback
-                  <FaArrowRight aria-hidden="true" />
-                </button>
-              </div>
-
-              <div className="relative overflow-hidden rounded-[28px] bg-[#0A1128] p-6 text-white shadow-2xl shadow-indigo-950/20 sm:p-9 lg:p-11">
-                <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-indigo-500/25 blur-3xl" />
-                <div className="relative">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-indigo-200 sm:text-xs">
-                    A proper assessment considers
-                  </span>
-                  <h3 className="mt-3 font-raleway text-2xl font-bold leading-snug sm:text-3xl">
-                    More than the prescription.
-                  </h3>
-                  <div className="mt-8 space-y-3">
-                    {[
-                      {
-                        Icon: FaPills,
-                        title: "Your current medication",
-                        text: "How tablets are used, previous response, side effects and other medicines.",
-                      },
-                      {
-                        Icon: FaHeartbeat,
-                        title: "Circulation and general health",
-                        text: "Diabetes, cardiovascular risk, blood pressure and other relevant factors.",
-                      },
-                      {
-                        Icon: FaStethoscope,
-                        title: "The wider picture",
-                        text: "Hormones, lifestyle, stress and relationship factors where relevant.",
-                      },
-                    ].map(({ Icon, title, text }) => (
-                      <div key={title} className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.07] p-4 sm:p-5">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-400/20 text-indigo-200">
-                          <Icon aria-hidden="true" className="text-lg" />
-                        </div>
-                        <div>
-                          <h4 className="font-raleway text-sm font-bold text-white sm:text-base">{title}</h4>
-                          <p className="mt-1 text-xs leading-6 text-slate-300 sm:text-sm">{text}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="mt-6 text-xs leading-6 text-indigo-100/85">
-                    Further tests, including blood tests or penile Doppler, are considered only when clinically appropriate.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* 2. Clear steps and fee transparency instead of three repetitive text sections. */}
-          <section className="bg-white py-16 font-inter md:py-24" aria-labelledby="ed-process-heading">
-            <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-              <div className="mx-auto max-w-3xl text-center">
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#4041d1]">Your appointment, explained</span>
-                <h2 id="ed-process-heading" className="mt-4 font-raleway text-3xl font-bold tracking-tight text-[#0A1128] sm:text-4xl">
-                  A clear next step, without pressure.
-                </h2>
-                <p className="mt-4 text-base leading-8 text-slate-600">
-                  Whether you're seeking your first ED assessment or tablets have become less effective,
-                  the starting point is a conversation—not a pre-selected procedure.
-                </p>
-              </div>
-
-              <div className="mt-11 grid gap-5 md:grid-cols-3">
-                {[
-                  {
-                    number: "01",
-                    title: "Tell us what's happening",
-                    text: "Request a confidential callback or complete the short ED questionnaire.",
-                    Icon: FaFileAlt,
-                  },
-                  {
-                    number: "02",
-                    title: "Meet your doctor",
-                    text: "Discuss your history, symptoms, medication response and investigations if needed.",
-                    Icon: FaUserMd,
-                  },
-                  {
-                    number: "03",
-                    title: "Understand your options",
-                    text: "Receive a balanced explanation of suitability, limitations, costs and next steps.",
-                    Icon: FaClipboardList,
-                  },
-                ].map(({ number, title, text, Icon }) => (
-                  <div key={number} className="group relative rounded-3xl border border-slate-200 bg-[#F8FAFF] p-7 transition-colors hover:border-indigo-200 hover:bg-white sm:p-8">
-                    <div className="flex items-center justify-between">
-                      <span className="font-raleway text-4xl font-bold tracking-tight text-indigo-200">{number}</span>
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-100 text-[#4041d1]">
-                        <Icon aria-hidden="true" />
-                      </div>
-                    </div>
-                    <h3 className="mt-6 font-raleway text-xl font-bold text-[#0A1128]">{title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">{text}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-indigo-100 bg-indigo-50/60 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-                <div className="max-w-3xl">
-                  <p className="font-bold text-[#0A1128]">Clear information about fees</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">
-                    An initial telephone discussion is available free of charge. A full medical consultation,
-                    investigations and any treatment may involve fees, which are explained before booking.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setIsAssessmentOpen(true)}
-                  className="inline-flex shrink-0 items-center justify-center rounded-xl border border-[#4041d1]/25 bg-white px-5 py-3 text-sm font-bold text-[#4041d1] transition-colors hover:bg-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1]"
-                >
-                  Start Free ED Questionnaire
-                </button>
-              </div>
-            </div>
-          </section>
-
-          {/* Lead form is now early in the journey; same component, ID and Ads conversion label. */}
-          {edLeadForm}
-
-          {/* 3. A single focused treatment overview replaces duplicate shockwave sales messaging. */}
-          <section className="relative overflow-hidden bg-[#0A1128] py-16 font-inter text-white md:py-20">
-            <div className="pointer-events-none absolute -left-20 -bottom-28 h-80 w-80 rounded-full bg-indigo-500/15 blur-3xl" />
-            <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-              <div className="max-w-3xl">
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-200">After your assessment</span>
-                <h2 className="mt-3 font-raleway text-3xl font-bold tracking-tight sm:text-4xl">
-                  Options discussed around your needs—not a one-size-fits-all treatment.
-                </h2>
-                <p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base">
-                  What is appropriate depends on the likely causes, your preferences, previous treatment response and clinical suitability.
-                </p>
-              </div>
-              <div className="mt-9 grid gap-4 md:grid-cols-3">
-                {[
-                  {
-                    Icon: FaPills,
-                    title: "Medication review",
-                    text: "Review existing ED medication, how it is taken, effectiveness and possible alternatives.",
-                  },
-                  {
-                    Icon: FaHeartbeat,
-                    title: "Medical investigations",
-                    text: "Relevant blood tests and vascular assessment may be considered when they could change care.",
-                  },
-                  {
-                    Icon: FaWaveSquare,
-                    title: "Selected non-surgical options",
-                    text: "Shockwave therapy may be discussed for selected men, with uncertainty and limitations explained.",
-                  },
-                ].map(({ Icon, title, text }) => (
-                  <div key={title} className="rounded-2xl border border-white/15 bg-white/[0.07] p-6">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-500/20 text-indigo-200">
-                      <Icon aria-hidden="true" />
-                    </div>
-                    <h3 className="mt-5 font-raleway text-lg font-bold">{title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-300">{text}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-7 max-w-4xl text-xs leading-6 text-indigo-100/80">
-                Not every treatment is suitable for every patient. Shockwave evidence remains limited and results vary;
-                no treatment outcome can be guaranteed.
-              </p>
-            </div>
-          </section>
-
-          {/* Display real FAQ content when FAQPage schema is supplied by page.tsx. */}
-          {faqs.length > 0 && (
-            <section className="bg-white py-16 font-inter md:py-20" aria-labelledby="ed-faq-heading">
-              <div className="mx-auto max-w-3xl px-5 sm:px-8">
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#4041d1]">Patient questions</span>
-                <h2 id="ed-faq-heading" className="mt-3 font-raleway text-3xl font-bold text-[#0A1128]">Frequently asked questions</h2>
-                <div className="mt-7 space-y-3">
-                  {faqs.map((faq, index) => (
-                    <div key={faq.question} className="overflow-hidden rounded-xl border border-slate-200 bg-[#F8FAFF]">
-                      <button
-                        type="button"
-                        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-[#0A1128] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4041d1]"
-                        aria-expanded={openFAQIndex === index}
-                        onClick={() => toggleFAQ(index)}
-                      >
-                        <span>{faq.question}</span>
-                        {openFAQIndex === index ? <FaMinus aria-hidden="true" /> : <FaPlus aria-hidden="true" />}
-                      </button>
-                      {openFAQIndex === index && (
-                        <p className="border-t border-slate-200 px-5 py-4 text-sm leading-7 text-slate-600">{faq.answer}</p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          )}
-        </>
-      ) : (
-        <>
       {/* --- DOCTOR-LED TRUST SECTION --- */}
       <section className="py-24 bg-white font-inter border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -930,11 +574,15 @@ export default function ErectileDysfunctionTreatmentClient({
         </div>
       </section>
 
-        </>
-      )}
-
-      {/* Hampstead keeps its original lower form position; Birmingham already rendered it above. */}
-      {!isBirmingham && edLeadForm}
+      {/* --- RENDER THE NEW DYNAMIC GOOGLE ADS FORM --- */}
+      <div id="contact-form-section">
+        <GoogleAdsLeadForm 
+          defaultTreatment="Erectile Dysfunction"
+          defaultLocation={locationName} 
+          sourcePage={`${locationName} ED Google Ads Landing Page`}
+          conversionLabel="AW-18130686557/2I-mCPTDgs0cEN2kscVD"
+        />
+      </div>
 
       <LocationSection /> 
       <div id="reviews-section">
